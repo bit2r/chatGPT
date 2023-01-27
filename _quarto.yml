@@ -2,7 +2,6 @@ project:
   type: website
   output-dir: docs
 
-
 website:
   title: "chatGPT"
   favicon: "images/profile.png"
@@ -20,9 +19,7 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/bit2r/chatGPT
   page-footer:
     center: |
       [한국 R 사용자회](mailto:admin@r2bit.com)
