@@ -2,10 +2,8 @@
   {
     "listing": "/blog.html",
     "items": [
-      "/posts/post-with-code/index.html",
       "/posts/20230127-ide/ide_war.html",
-      "/posts/20230126-vscode/ide_vscode.html",
-      "/posts/welcome/index.html"
+      "/posts/20230126-vscode/ide_vscode.html"
     ]
   },
   {
