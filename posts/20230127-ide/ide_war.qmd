@@ -1,0 +1,41 @@
+---
+title: "AI가 쏘아올린 작은 공"
+description: "AI가 기존 데이터 과학 패러다임을 바꾸고 있습니다."
+categories: [IDE, rstudio, jupyter, vscode, copilot]
+date: today # 날짜 설정: now, last-modified
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+image: '../../images/ide_war_ds.png'
+---
+
+# 데이터 과학 편집기
+
+데이터 과학 제품과 서비스 개발을 위해서 IDE(통합개발환경)을 두고 
+RStudio와 Jupyter 두 진영으로 나눠 치열한 경쟁을 펼쳤다. 각자 장점을 두고 범위를
+확대하면서 진정한 데이터 과학 패자가 되고자 한편의 드라마를 펼쳤다.
+
+그 중심에는 RStudio와 아나콘다가 있으며 마치 현대차와 기아차처럼 동일한 자동차인데
+세부 구성과 디자인에 차이만 있을 뿐 어느 것이 더 우월하고 좋다는 마케팅을 펼쳤다.
+
+
+![](../../images/ide_war_ds.png)
+
+
+# 마이크로소프트의 등장
+
+데이터 과학 편집기에 Visual Studio Code가 등장하면서 큰 변화가 일어나고 있다.
+특히 인공지능 기능을 탑재한 Extension이 VS Code에 추가되면서 기존 RStudio와 쥬피터 
+IDE가 하던 기능을 넘어 새로운 지평을 열어가고 있다.
+
+그 중심에는 GitHub을 마이크로소프트가 인수하면서 새로 출시한 부조종사(Copilot)이 있고
+조만간 CodeGPT도 도입되면 기존 RStudio와 Jupyter는 기존과 전혀 다른 위상을 가지게 될 것으로 보인다.
+
+![](../../images/ide_war.png)
+
+
+
+
+

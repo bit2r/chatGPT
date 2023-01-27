@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "chatGPT 와 데이터 과학",
+    "section": "",
+    "text": "Description 1\n\n\n\nImage 1"
+  },
+  {
+    "objectID": "project.html#shiny-flex-dashboard---sales-forecasting-and-anomaly-detection",
+    "href": "project.html#shiny-flex-dashboard---sales-forecasting-and-anomaly-detection",
+    "title": "chatGPT 와 데이터 과학",
+    "section": "Shiny Flex Dashboard - Sales forecasting and anomaly detection",
+    "text": "Shiny Flex Dashboard - Sales forecasting and anomaly detection\n\n\nImage 2\n\n\n\nDescription 2"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code.\n\nCode1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/20230126-vscode/ide_vscode.html",
+    "href": "posts/20230126-vscode/ide_vscode.html",
+    "title": "Visual Studio Code",
+    "section": "",
+    "text": "R을 설치한다.\n\nlanguageserver 패키지를 설치한다.\n\n\ninstall.packages(\"languageserver\")\n\n\nVisual Studio Code 에서 R extension을 설치한다.\n\n.R 파일에 개발을 시작한다.\n\n\nR extension을 설치하게 되면 VS Code에서 R 코드 개발을 원활히 할 수 있도록 지원한다. VS Code 에 필수적인 R extension은 다음을 꼽을 수 있다. R extension을 설치하면 RStudio에서 기본설정으로 지정된 단축키를 별도 설정없이 자동 지정되기 때문에 편리하다.\n\nR - REditorSupport\nR Markdown All in One\nQuarto\nR Debugger\n\n\n\nVS Code를 실행하고 R Extension 설치\n\n\n\nR Extension 설치되면 코드 창 상단에 실행버튼이 활성화되고 Ctrl + Enter 혹은 Ctrl + Shift + Enter\n\n\nR 코드 실행화면"
+  },
+  {
+    "objectID": "posts/20230126-vscode/ide_vscode.html#keybindings.json",
+    "href": "posts/20230126-vscode/ide_vscode.html#keybindings.json",
+    "title": "Visual Studio Code",
+    "section": "keybindings.json",
+    "text": "keybindings.json\nkeybindings.json 파일에 R 혹은 파이썬 코드를 삽입시킬 수 있는 키보드 단축키를 등록시킨다. 자료출처: VS Code: Add a Rmarkdown Code Chunk Snippet Key Binding\n// Place your key bindings in this file to override the defaults\n[\n    // keybindings for R scripts. \n    {\n        \"key\": \"Ctrl+Shift+m\",\n        \"command\": \"type\",\n        \"args\": { \"text\": \" %>% \" },\n        \"when\": \"editorTextFocus && editorLangId == r\"\n      },\n      {\n        \"key\": \"Alt+-\",\n        \"command\": \"type\",\n        \"args\": { \"text\": \" <- \" },\n        \"when\": \"editorTextFocus && editorLangId == r\"\n      },\n      // keybindings for Rmarkdown\n      {\n        \"key\": \"Ctrl+Shift+m\",\n        \"command\": \"type\",\n        \"args\": { \"text\": \" %>% \" },\n        \"when\": \"editorTextFocus && editorLangId == rmd\"\n      },\n      {\n        \"key\": \"Alt+-\",\n        \"command\": \"type\",\n        \"args\": { \"text\": \" <- \" },\n        \"when\": \"editorTextFocus && editorLangId == rmd\"\n      },\n      // keybindings for R terminal (radian included)\n      {\n        \"key\": \"Ctrl+Shift+m\",\n        \"command\": \"workbench.action.terminal.sendSequence\",\n        \"args\": { \"text\": \" %>% \" },\n        \"when\": \"terminalFocus\"\n      },\n      {\n        \"key\": \"Alt+-\",\n        \"command\": \"workbench.action.terminal.sendSequence\",\n        \"args\": { \"text\": \" <- \" },\n        \"when\": \"terminalFocus\"\n      },\n      // Insert R Code chunk\n      {\n        \"key\": \"ctrl+alt+i\". \n        \"command\": \"editor.action.insertSnippet\",\n        \"when\": \"editorTextFocus\",\n        \"args\": {\"snippet\": \"```{r}\\n$0\\n```\"}\n      },\n      {\n        \"key\": \"ctrl+alt+o\". \n        \"command\": \"editor.action.insertSnippet\",\n        \"when\": \"editorTextFocus\",\n        \"args\": {\"snippet\": \"options(\\n  max.print=100,\\n  vsc.use_httpgd=TRUE,\\n  device='quartz'\\n)\"}\n      },\n      {\n        \"key\": \"ctrl+alt+m\",\n        \"command\": \"editor.action.insertSnippet\",\n        \"when\": \"editorTextFocus\",\n        \"args\":{\n          \"snippet\": \"---\\ntitle: '$0'\\nauthor: '이광춘'\\ndate: '2023-01-27'\\noutput:\\n  pagedown::html_paged:\\n    self_contained: true\\n    toc: false\\n---\\n\\n```{r setup, include=FALSE}\\nknitr::opts_chunk\\\\$set(\\n  echo = FALSE,\\n  message = FALSE,\\n  warning=FALSE\\n)\\n```\"\n        }\n      },\n\n]"
+  },
+  {
+    "objectID": "posts/20230126-vscode/ide_vscode.html#html-미리보기",
+    "href": "posts/20230126-vscode/ide_vscode.html#html-미리보기",
+    "title": "Visual Studio Code",
+    "section": "HTML 미리보기",
+    "text": "HTML 미리보기\n.Rmd 파일을  CTRL  +  Shift  +  k  단축키로 컴파일시키면 .html 파일이 생성된다. .html 파일 결과를 직접 실시간으로 확인하고자 한다면, 마이크로소프트가 개발한 Live Preview - VS Code Extension 플러그인을 설치한다."
+  },
+  {
+    "objectID": "posts/20230127-ide/ide_war.html",
+    "href": "posts/20230127-ide/ide_war.html",
+    "title": "AI가 쏘아올린 작은 공",
+    "section": "",
+    "text": "데이터 과학 편집기\n데이터 과학 제품과 서비스 개발을 위해서 IDE(통합개발환경)을 두고 RStudio와 Jupyter 두 진영으로 나눠 치열한 경쟁을 펼쳤다. 각자 장점을 두고 범위를 확대하면서 진정한 데이터 과학 패자가 되고자 한편의 드라마를 펼쳤다.\n그 중심에는 RStudio와 아나콘다가 있으며 마치 현대차와 기아차처럼 동일한 자동차인데 세부 구성과 디자인에 차이만 있을 뿐 어느 것이 더 우월하고 좋다는 마케팅을 펼쳤다.\n\n\n\n마이크로소프트의 등장\n데이터 과학 편집기에 Visual Studio Code가 등장하면서 큰 변화가 일어나고 있다. 특히 인공지능 기능을 탑재한 Extension이 VS Code에 추가되면서 기존 RStudio와 쥬피터 IDE가 하던 기능을 넘어 새로운 지평을 열어가고 있다.\n그 중심에는 GitHub을 마이크로소프트가 인수하면서 새로 출시한 부조종사(Copilot)이 있고 조만간 CodeGPT도 도입되면 기존 RStudio와 Jupyter는 기존과 전혀 다른 위상을 가지게 될 것으로 보인다."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "chatGPT가 연 새로운 시대를 데이터 과학자와 함께 합니다."
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "블로그",
+    "section": "",
+    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJan 27, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nAI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\nJan 27, 2023\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\nJan 26, 2023\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nJan 24, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "AI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\nJan 27, 2023\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\nJan 26, 2023\n\n\n이광춘\n\n\n\n\n\n\nNo matching items"
+  }
+]

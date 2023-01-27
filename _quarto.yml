@@ -1,0 +1,50 @@
+project:
+  type: website
+  output-dir: docs
+
+
+website:
+  title: "chatGPT"
+  favicon: "images/profile.png"
+  search:
+    location: navbar
+    type: overlay
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: project.qmd
+        text: Projects
+      - href: blog.qmd
+        text: "게시글"
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/
+      - icon: twitter
+        href: https://twitter.com
+  page-footer:
+    center: |
+      [한국 R 사용자회](mailto:admin@r2bit.com)
+    left: |
+      [Quarto](https://quarto.org/) 개발
+    right: |
+      [Github 코드 저장소](https://github.com/bit2r/chatGPT)
+    background: "#2780e3"
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: styles.css
+    code-link: true
+    code-fold: show
+    code-tools: true
+    code-block-bg: "white"
+    code-block-border-left: "#31BAE9"
+    highlight-style: github
+    toc: true
+
+execute:
+  freeze: true

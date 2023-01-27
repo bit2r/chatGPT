@@ -1,0 +1,38 @@
+---
+title: "chatGPT 와 데이터 과학"
+---
+
+## Quarto blog - Data visualizations - Animation and Interactivity
+
+:::: columns
+
+::: {.column width="55%"}
+Description 1
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="40%"}
+Image 1
+:::
+
+::::
+
+## Shiny Flex Dashboard - Sales forecasting and anomaly detection
+
+:::: columns
+
+::: {.column width="40%"}
+Image 2
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
+Description 2
+:::
+
+::::
+

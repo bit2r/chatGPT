@@ -1,0 +1,21 @@
+---
+title: "About"
+image: "images/profile.png"
+about:
+  template: jolla
+  links:
+    - icon: house
+      text: Homepage
+      href: https://r2bit.com
+    - icon: slack
+      text: Slack
+      href: https://korea-r-user-group.slack.com
+    - icon: facebook
+      text: Facebook
+      href: https://www.facebook.com/groups/tidyverse
+    - icon: github
+      text: Github
+      href: https://github.com/bit2r
+---
+
+chatGPT가 연 새로운 시대를 데이터 과학자와 함께 합니다. 
