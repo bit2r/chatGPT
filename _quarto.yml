@@ -2,6 +2,9 @@ project:
   type: website
   output-dir: docs
 
+lang: kr
+date-format: "YYYY년 MM월 DD일"
+
 website:
   title: "chatGPT"
   favicon: "images/profile.png"
@@ -34,7 +37,7 @@ format:
     theme:
       light: cosmo
       dark: darkly
-    css: styles.css
+    css: css/quarto.css
     code-link: true
     code-fold: show
     code-tools: true

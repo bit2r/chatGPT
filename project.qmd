@@ -1,38 +1,82 @@
 ---
-title: "chatGPT 와 데이터 과학"
+title: "chatGPT"
+subtitle: "프로젝트"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
 ---
 
-## Quarto blog - Data visualizations - Animation and Interactivity
 
-:::: columns
+# 1 백만 사용자 {{< fa solid rocket >}}
 
-::: {.column width="55%"}
-Description 1
-:::
+1 백만 가입자를 가질 때까지 걸린 소요시간을 보면 chatGPT 의 영향력을 파악할 수 있다.
 
-::: {.column width="5%"}
-:::
 
-::: {.column width="40%"}
-Image 1
-:::
+![](images/one_million_users.jpg)
 
-::::
+# Genearative AI
 
-## Shiny Flex Dashboard - Sales forecasting and anomaly detection
+- 구분
+  - generation: text &rarr; image
+  - classification: image &rarr; text
+  - transformation: image &rarr; image (or text &rarr; text)
 
-:::: columns
+- AI 프로젝트
+  - GPT-3
+  - Dalle.2 (text-to-image)
+  - Meta’s AI (text-to-video)
+  - Google AI (text-to-video)
+  - Stable Diffusion (text-to-image)
+  - Tesla AI (humanoid robot + self-driving)
 
-::: {.column width="40%"}
-Image 2
-:::
+- text-to-X
+  - text-to-gif (T2G)
+  - text-to-3D (T2D)
+  - text-to-text (T2T)
+  - text-to-NFT (T2N)
+  - text-to-code (T2C)
+  - text-to-image (T2I)
+  - text-to-audio (T2S)
+  - text-to-video (T2V)
+  - text-to-music (T2M)
+  - text-to-motion (T2Mo)
+- 기타
+  - brain-to-text (B2T)
+  - image-to-text (I2T)
+  - speech-to-text (S2T)
+  - audio-to-audio (A2A)
+  - tweet-to-image (Tt2I)
+  - text-to-sound (T2S)
 
-::: {.column width="5%"}
-:::
 
-::: {.column width="55%"}
-Description 2
-:::
-
-::::
+![](images/generative_ai.jpg)
 
