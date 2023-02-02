@@ -40,8 +40,25 @@ editor_options:
 
 1 백만 가입자를 가질 때까지 걸린 소요시간을 보면 chatGPT 의 영향력을 파악할 수 있다.
 
-
 ![](images/one_million_users.jpg)
+
+# 패러다임
+
+![Andrej Karpathy Twit](images/software_3.jpeg)
+
+- Pre-Software: Special-purpose computer
+- Software 1.0: Design the Algorithm
+- Software 2.0: Design the Dataset
+- Software 3.0: Design the Prompt
+
+# Prompt engineering
+
+- Instructions
+- Question
+- Input data
+- Examples
+
+[[Xavier (Xavi) Amatriain(January 5, 2023), "Prompt Engineering 101 - Introduction and resources", Linkedin](https://www.linkedin.com/pulse/prompt-engineering-101-introduction-resources-amatriain/)]{.aside}
 
 # Genearative AI
 

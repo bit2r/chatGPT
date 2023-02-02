@@ -4,7 +4,7 @@
     "href": "project.html",
     "title": "chatGPT",
     "section": "",
-    "text": "1 1 백만 사용자 \n\n1 백만 가입자를 가질 때까지 걸린 소요시간을 보면 chatGPT 의 영향력을 파악할 수 있다.\n\n\n\n\n\n2 Genearative AI\n\n구분\n\ngeneration: text → image\nclassification: image → text\ntransformation: image → image (or text → text)\n\n\nAI 프로젝트\n\nGPT-3\nDalle.2 (text-to-image)\nMeta’s AI (text-to-video)\nGoogle AI (text-to-video)\nStable Diffusion (text-to-image)\nTesla AI (humanoid robot + self-driving)\n\n\ntext-to-X\n\ntext-to-gif (T2G)\ntext-to-3D (T2D)\ntext-to-text (T2T)\ntext-to-NFT (T2N)\ntext-to-code (T2C)\ntext-to-image (T2I)\ntext-to-audio (T2S)\ntext-to-video (T2V)\ntext-to-music (T2M)\ntext-to-motion (T2Mo)\n\n\n기타\n\nbrain-to-text (B2T)\nimage-to-text (I2T)\nspeech-to-text (S2T)\naudio-to-audio (A2A)\ntweet-to-image (Tt2I)\ntext-to-sound (T2S)"
+    "text": "1 1 백만 사용자 \n\n1 백만 가입자를 가질 때까지 걸린 소요시간을 보면 chatGPT 의 영향력을 파악할 수 있다.\n\n\n\n\n\n2 패러다임\n\n\nAndrej Karpathy Twit\n\n\n\nPre-Software: Special-purpose computer\nSoftware 1.0: Design the Algorithm\nSoftware 2.0: Design the Dataset\nSoftware 3.0: Design the Prompt\n\n3 Prompt engineering\n\nInstructions\nQuestion\nInput data\nExamples\n\nXavier (Xavi) Amatriain(January 5, 2023), “Prompt Engineering 101 - Introduction and resources”, Linkedin\n\n4 Genearative AI\n\n구분\n\ngeneration: text → image\nclassification: image → text\ntransformation: image → image (or text → text)\n\n\nAI 프로젝트\n\nGPT-3\nDalle.2 (text-to-image)\nMeta’s AI (text-to-video)\nGoogle AI (text-to-video)\nStable Diffusion (text-to-image)\nTesla AI (humanoid robot + self-driving)\n\n\ntext-to-X\n\ntext-to-gif (T2G)\ntext-to-3D (T2D)\ntext-to-text (T2T)\ntext-to-NFT (T2N)\ntext-to-code (T2C)\ntext-to-image (T2I)\ntext-to-audio (T2S)\ntext-to-video (T2V)\ntext-to-music (T2M)\ntext-to-motion (T2Mo)\n\n\n기타\n\nbrain-to-text (B2T)\nimage-to-text (I2T)\nspeech-to-text (S2T)\naudio-to-audio (A2A)\ntweet-to-image (Tt2I)\ntext-to-sound (T2S)"
   },
   {
     "objectID": "project.html#shiny-flex-dashboard---sales-forecasting-and-anomaly-detection",
@@ -74,6 +74,6 @@
     "href": "index.html",
     "title": "chatGPT",
     "section": "",
-    "text": "가자…\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nAI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 01월 31일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
+    "text": "가자…\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nAI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 02일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
   }
 ]
