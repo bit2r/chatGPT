@@ -15,8 +15,12 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: project.qmd
-        text: Projects
+      - text: Codex
+        menu:
+        - href: project.qmd
+          text: Projects
+        - href: codex.qmd
+          text: "OpenAI codex"
       - href: blog.qmd
         text: "게시글"
     right:

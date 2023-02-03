@@ -1,0 +1,16 @@
+{
+  "hash": "dddb8fdac66e9013c3a0c04cd087c380",
+  "result": {
+    "markdown": "---\ntitle: \"chatGPT\"\nsubtitle: \"OpenAI codex - R\"\nauthor:\n  - name: 이광춘\n    url: https://www.linkedin.com/in/kwangchunlee/\n    affiliation: 한국 R 사용자회\n    affiliation-url: https://github.com/bit2r\ntitle-block-banner: true\n#title-block-banner: \"#562457\"\nformat:\n  html:\n    css: css/quarto.css\n    theme: flatly\n    code-fold: true\n    toc: true\n    toc-depth: 3\n    toc-title: 목차\n    number-sections: true\n    highlight-style: github    \n    self-contained: false\nfilters:\n   - lightbox\nlightbox: auto\nlink-citations: yes\nknitr:\n  opts_chunk: \n    message: false\n    warning: false\n    collapse: true\n    comment: \"#>\" \n    R.options:\n      knitr.graphics.auto_pdf: true\neditor_options: \n  chunk_output_type: console\n---\n\n\n\n# Codex\n\n[[Low-code and GPT-3: easier said than done with OpenAI Codex](https://medium.com/data-reply-it-datatech/low-code-and-gpt-3-easier-said-than-done-with-openai-codex-d3c1d4aebc8b)]{.aside}\n\n- 주석을 코드로 전환\n- 맥락을 보고 다음 코드를 자동 작성\n- 라이브러리, API 등 추천을 통해 새로운 지식 전달\n- 주석 자동 추가\n- 동일한 기능을 갖지면 효율성 좋은 코드로 변환\n\n\n# 이미지 생성\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(openai)\n\n# usethis::edit_r_environ(scope = \"project\")\n\nresponse <- create_image(\n    prompt = \"Create R programming language logo for Korean R user group in a kandinsky and Gustav Klimt style embracing Python programming language supported by many contributors around the world, which must include R logo from R consortium and wikipedia\",\n    n = 1,\n    size = \"256x256\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\nlibrary(magick)\nastronaut <- image_read(response$data$url)\nprint(astronaut)\n#> # A tibble: 1 × 7\n#>   format width height colorspace matte filesize density\n#>   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  \n#> 1 PNG      256    256 sRGB       FALSE   197109 72x72\n```\n\n::: {.cell-output-display}\n![](codex_files/figure-html/unnamed-chunk-1-1.png){width=128}\n:::\n:::\n\n\n\n# 예측모형\n\n\n::: {.cell}\n\n```{.r .cell-code}\npenguins_classification_instruction <- \n  glue::glue(\"# R language\\n\",\n             \"Build sex classification machine learning model withe palmer penguin datatset\\n\",\n             \"Use palmer penguins data package for dataset\\n\",\n             \"Use tidymodels framework\\n\",\n             \"Use random forest model\\n\",\n             \"Include evaluation metrics including accruacy, precision, reall\")\n\nbuild_model <- create_completion(\n    model=\"code-davinci-002\",\n    prompt = penguins_classification_instruction,\n    max_tokens=1024,\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n\nparsed_code <- str_split(build_model$choices$text, \"\\n\")[[1]]\n\nwrite_lines(parsed_code, \"palmer_penguins.Rmd\")\n\n```\n:::\n",
+    "supporting": [
+      "codex_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

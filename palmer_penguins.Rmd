@@ -1,0 +1,122 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+## Getting Started
+### Prerequisites
+
+Install packages library <b> palmerpenguins </b> and <b>tidymodels</b> 
+
+```{r, eval = FALSE}
+install.packages('palmerpenguins')
+install.packages('tidymodels')
+```
+
+### Load package libraries
+Load libraries
+```{r}
+library(dplyr)
+library(palmerpenguins)
+library(data.table)
+library(ggplot2)
+library(tidyverse)
+library(tidymodels)
+library(ggfortify)
+library(recipes)
+library(rsample)
+library(yardstick)
+library(caret)
+library(profvis)
+library(purrr)
+```
+## Load data
+```{r}
+penguins <- penguins %>% 
+  mutate_if(is.character, as.factor) %>% 
+  drop_na()
+```
+
+## EDA
+The <b>penguins</b> dataset includes measurements of flow characteristics of the components. Only pterosaur data are considered in this project
+```{r }
+glimpse(penguins)
+```
+```{r }
+summary(penguins)
+```
+```{r }
+penguins %>% select_if(Negate(is.factor)) %>% 
+  cor() %>% 
+  as.data.frame() %>% 
+  rowid_to_column() %>% 
+  pivot_longer(- rowid) %>% 
+  arrange(desc(abs(value))) %>% 
+  filter(value != 1)
+```
+```{r, eval = FALSE }
+site_number <- 1:4
+pdf('penguin_data.pdf')
+par(mfrow = c(2, 2))
+for (i in site_number)
+{
+  penguins %>% 
+    filter(site_number == i) %>% 
+    ggplot(aes(x= species, y= flipper_length_mm, fill = species, color= species)) +
+    geom_boxplot() +
+    labs(x = 'Species', y = 'Flipper length (mm)', title = paste('Fvuwerfvczefcfzccfgct', i)) +
+    theme(axis.text = element_text(size = 8))
+}
+dev.off()
+```
+
+```{r, eval = FALSE }
+ggviolin(penguins, x = species,
+        y = bill_length_mm+bill_depth_mm,
+        fill = species)
+```
+
+```{r, eval = FALSE }
+glimpse(penguins$sex)
+table(penguins$sex, useNA='ifany')
+```
+## Data preparation
+Set for training and testing data
+
+```{r, eval = FALSE }
+set.seed(3223)
+train_test_split <- penguins %>% initial_split(prop = .7)
+penguin_train <- training(train_test_split)
+penguin_test <- testing(train_test_split)
+glimpse(penguin_train)
+```
+
+Create recipe
+
+```{r, eval = FALSE }
+softmaxkitchen <- recipe(sex ~ ., data = penguin_train) %>%
+ step_other(antipodean_island, all_nominal())%>%
+step_novel(all_nominal())%>%
+step_other(bill_length_mm, one_of('median-virginica'))%>%
+step_other(bill_depth_mm, one_of('median-virginica'))
+```
+
+## Visualize recipe steps
+
+```{r, eval = FALSE }
+print(softmaxkitchen)
+```
+
+```{r, eval = FALSE }
+prepped_penguin <- prep(softmaxkitchen, new_data = penguin_train)
+prepped_penguin %>% juice() %>% get_condition(pen_length_mm) -> penguin_ped_len
+prepped_penguin %>% juice() %>% get_condition(flipper_length_mm) -> penguin_flipper_len
+penguin_ped_len
+penguin_flipper_len
+penguin_sex
+prepped_penguin %>% bake(new_data = penguin_train) -> penguin_data
+penguin_data %>% juice() -> penguin_data_j
+penguin_data_j
+penguin_pen_len <- penguin_data_j %>
+```

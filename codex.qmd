@@ -1,0 +1,99 @@
+---
+title: "chatGPT"
+subtitle: "OpenAI codex - R"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# Codex
+
+[[Low-code and GPT-3: easier said than done with OpenAI Codex](https://medium.com/data-reply-it-datatech/low-code-and-gpt-3-easier-said-than-done-with-openai-codex-d3c1d4aebc8b)]{.aside}
+
+- 주석을 코드로 전환
+- 맥락을 보고 다음 코드를 자동 작성
+- 라이브러리, API 등 추천을 통해 새로운 지식 전달
+- 주석 자동 추가
+- 동일한 기능을 갖지면 효율성 좋은 코드로 변환
+
+
+# 이미지 생성
+
+```{r}
+library(tidyverse)
+library(openai)
+
+# usethis::edit_r_environ(scope = "project")
+
+response <- create_image(
+    prompt = "Create R programming language logo for Korean R user group in a kandinsky and Gustav Klimt style embracing Python programming language supported by many contributors around the world, which must include R logo from R consortium and wikipedia",
+    n = 1,
+    size = "256x256",
+    response_format = "url",
+    openai_api_key = Sys.getenv("OPEN_AI_KEY")
+)
+
+library(magick)
+astronaut <- image_read(response$data$url)
+print(astronaut)
+```
+
+
+# 예측모형
+
+```{r, eval = FALSE}
+penguins_classification_instruction <- 
+  glue::glue("# R language\n",
+             "Build sex classification machine learning model withe palmer penguin datatset\n",
+             "Use palmer penguins data package for dataset\n",
+             "Use tidymodels framework\n",
+             "Use random forest model\n",
+             "Include evaluation metrics including accruacy, precision, reall")
+
+build_model <- create_completion(
+    model="code-davinci-002",
+    prompt = penguins_classification_instruction,
+    max_tokens=1024,
+    openai_api_key = Sys.getenv("OPEN_AI_KEY")
+)
+```
+
+```{r, eval = FALSE}
+
+parsed_code <- str_split(build_model$choices$text, "\n")[[1]]
+
+write_lines(parsed_code, "palmer_penguins.Rmd")
+
+```
+
+
