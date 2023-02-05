@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "!*.Rmd"
 
 lang: kr
 date-format: "YYYY년 MM월 DD일"
@@ -18,15 +21,23 @@ website:
       - text: Codex
         menu:
         - href: project.qmd
-          text: Projects
+          text: "Projects"
         - href: codex.qmd
-          text: "OpenAI codex"
+          text: "OpenAI Codex"
       - href: blog.qmd
         text: "게시글"
     right:
-      - about.qmd
       - icon: github
         href: https://github.com/bit2r/chatGPT
+      - href: https://r2bit.com
+        text: "R사용자회"
+      - icon: github
+        text: "Open Assistant"
+        href: https://github.com/LAION-AI/Open-Assistant
+      - text: "RTutor"
+        href: https://rtutor.ai/
+      - text: "About"
+        href: about.qmd
   page-footer:
     center: |
       [한국 R 사용자회](mailto:admin@r2bit.com)

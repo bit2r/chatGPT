@@ -97,3 +97,29 @@ editor_options:
 
 ![](images/generative_ai.jpg)
 
+
+# 데이터와 하드웨어
+
+![](images/cpu_gpu.jpg)
+
+# Open Assistant
+
+
+::: {#fig-assistant layout-ncol=3}
+
+![Label Asssistant Reply](images/OA_label_assistant_reply.png)
+
+![Initial Prompt](images/OA_label_initial_prompt.png)
+
+![Label Prompter Reply](images/OA_label_prompter_reply.png)
+
+![Reply as Assistant](images/OA_reply_as_assistant.png)
+
+![Reply as User](images/OA_reply_as_user.png)
+
+
+[Open Assistant](https://open-assistant.io/dashboard)
+:::
+
+
+
