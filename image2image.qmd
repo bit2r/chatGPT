@@ -1,0 +1,181 @@
+---
+title: "chatGPT"
+subtitle: "이미지 생성"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - custom-callout.lua   
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# 무병장수 
+
+역사상 가장 유명한 화풍을 chatGPT로부터 추천받아 이를 다양한 방식으로 시각화해보자. 
+무병장수(無病長壽)를 주제로 그림을 그려보자.
+
+> 무병장수 세상을 르네상스 화풍으로 그려줘 : 
+> 'draw good health and long life world in a Renaissance style'
+
+## chatGPT 프롬프트
+
+recommend the most famous painting style in history
+
+::: {.custom-callout-tip collapse="true"}
+
+Here are some of the most famous painting styles in history:
+
+1. Renaissance: The Renaissance was a cultural movement in Italy from the 14th to the 17th century, characterized by a renewed interest in classical art, philosophy, and science. Renaissance paintings are known for their realism, balance, and harmony.
+
+1. Baroque: The Baroque style was popular in Europe from the late 16th to the early 18th century. Baroque paintings are known for their dramatic lighting, intense emotions, and dynamic compositions.
+
+1. Impressionism: Impressionism was a modernist movement in French painting in the late 19th century. Impressionist paintings are known for their loose brushstrokes, light-filled compositions, and focus on capturing fleeting moments.
+
+1. Surrealism: Surrealism was a cultural movement in the 20th century that aimed to liberate the imagination and explore the subconscious. Surrealist paintings are known for their dreamlike and fantastical imagery.
+
+1. Abstract Expressionism: Abstract Expressionism was a modernist movement in American painting in the mid-20th century. Abstract Expressionist paintings are known for their large canvases, gestural brushstrokes, and emphasis on the process of creation.
+
+These are just a few examples of famous painting styles in history. There are many other styles that have influenced and shaped the course of art history.
+
+:::
+
+[[Open AI - Create image API](https://platform.openai.com/docs/api-reference/images/create)]{.aside}
+
+::: {.panel-tabset}
+
+## 르네상스(Renaissance)
+
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(openai)
+
+# usethis::edit_r_environ(scope = "project")
+
+response <- create_image(
+    prompt = "draw good health and long life world in a Renaissance style",
+    n = 1,
+    size = "1024x1024",
+    response_format = "url",
+    openai_api_key = Sys.getenv('OPEN_AI_KEY')
+)
+
+Renaissance <- image_read(response$data$url)
+print(Renaissance)
+
+image_write(Renaissance, path = "images/styles/Renaissance.png", format = "png")
+```
+
+![](images/styles/Renaissance.png)
+
+## 바로크(Baroque)
+
+```{r}
+#| eval: false
+response <- create_image(
+    prompt = "draw good health and long life world in a Baroque style",
+    n = 1,
+    size = "1024x1024",
+    response_format = "url",
+    openai_api_key = Sys.getenv('OPEN_AI_KEY')
+)
+
+Baroque <- image_read(response$data$url)
+print(Baroque)
+
+image_write(Baroque, path = "images/styles/Baroque.png", format = "png")
+```
+
+![](images/styles/Baroque.png)
+
+## 인상주의(Impressionism)
+
+```{r}
+#| eval: false
+response <- create_image(
+    prompt = "draw good health and long life world in a Impressionism style",
+    n = 1,
+    size = "1024x1024",
+    response_format = "url",
+    openai_api_key = Sys.getenv('OPEN_AI_KEY')
+)
+
+Impressionism <- image_read(response$data$url)
+print(Impressionism)
+
+image_write(Impressionism, path = "images/styles/Impressionism.png", format = "png")
+```
+
+![](images/styles/Impressionism.png)
+
+## 초현실주의(Surrealism)
+
+```{r}
+#| eval: false
+response <- create_image(
+    prompt = "draw good health and long life world in a Surrealism style",
+    n = 1,
+    size = "1024x1024",
+    response_format = "url",
+    openai_api_key = Sys.getenv('OPEN_AI_KEY')
+)
+
+Surrealism <- image_read(response$data$url)
+print(Surrealism)
+
+image_write(Surrealism, path = "images/styles/Surrealism.png", format = "png")
+```
+
+![](images/styles/Surrealism.png)
+
+## 추상표현주의(Abstract Expressionism)
+
+```{r}
+#| eval: false
+response <- create_image(
+    prompt = "draw good health and long life world in a Abstract Expressionism style",
+    n = 1,
+    size = "1024x1024",
+    response_format = "url",
+    openai_api_key = Sys.getenv('OPEN_AI_KEY')
+)
+
+expressionism <- image_read(response$data$url)
+print(expressionism)
+
+image_write(expressionism, path = "images/styles/expressionism.png", format = "png")
+```
+
+![](images/styles/expressionism.png)
+
+:::
+

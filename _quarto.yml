@@ -24,6 +24,8 @@ website:
           text: "Projects"
         - href: codex.qmd
           text: "OpenAI Codex"
+        - href: image2image.qmd
+          text: "이미지 생성"
       - href: blog.qmd
         text: "게시글"
     right:
