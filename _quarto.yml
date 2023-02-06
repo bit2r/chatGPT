@@ -26,6 +26,8 @@ website:
           text: "OpenAI Codex"
         - href: image2image.qmd
           text: "이미지 생성"
+        - href: math.qmd
+          text: "수학문제"
       - href: blog.qmd
         text: "게시글"
     right:

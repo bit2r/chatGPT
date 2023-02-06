@@ -1,0 +1,117 @@
+---
+title: "chatGPT"
+subtitle: "수학문제"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - custom-callout.lua   
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# 수능 짝수형 문제
+
+## 2번 문제 
+
+> 함수 $f(x)=x^3+3 x^2+x-1$ 에 대하여 $f^{\prime}(1)$ 의 값은?
+
+
+```{r}
+#| eval: true
+library(tidyverse)
+library(openai)
+
+solve_math_02 <- create_completion(
+    model="text-davinci-003",
+    prompt = '\\text { 2. 함수 } f(x)=x^3+3 x^2+x-1 \\text { 에 대하여 } f^{\\prime}(1) \\text { 의 값은? } and explain the answer',
+    max_tokens=1024,
+    openai_api_key = Sys.getenv("OPEN_AI_KEY")
+)
+
+cat(solve_math_02$choices$text)
+```
+
+
+
+## 3번 문제
+
+
+> 등차수열 $\left\{a_n\right\}$ 에 대하여
+> $$
+> a_2=6, \quad a_4+a_6=36
+> $$
+> 일 때, $a_{10}$ 의 값은?
+
+
+```{r}
+#| eval: false
+
+solve_math_03 <- create_completion(
+    model="text-davinci-003",
+    prompt = '등차수열 $\left\{a_n\right\}$ 에 대하여
+$$
+a_2=6, \quad a_4+a_6=36
+$$
+일 때, $a_{10}$ 의 값은?',
+    max_tokens=1024,
+    openai_api_key = Sys.getenv("OPEN_AI_KEY")
+)
+
+cat(solve_math_03$choices$text)
+```
+
+
+$$
+\begin{align}
+& a_2 = 6 \\
+& a_4 + a_6 = 36 \\
+\end{align}
+$$
+
+등차수열의 정의에 따라 $a_n = a_1 + (n-1)d$ 이므로, $a_1$ 과 $d$ 를 구해야 합니다.
+
+$$
+\begin{align}
+& a_2 = 6 \\
+& a_2 = a_1 + (2-1)d \\
+\therefore \quad & a_1 = 6 - d \\
+\end{align}
+$$
+
+$$
+\begin{align}
+& a_4 + a_6 = 36 \\
+& a_4 = a_1 + (4-1)d \\
+& a_6 = a_1 + (6-1)d \\
+\therefore \quad & a_1 + 3d + a_1 + 5d = 36
+\end{align}
+$$
