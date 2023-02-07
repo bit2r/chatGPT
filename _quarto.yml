@@ -30,6 +30,8 @@ website:
           text: "수학문제"
         - href: rcoding.qmd
           text: "R 코딩개발"
+        - href: interview.qmd
+          text: "데이터 과학문제"
       - href: blog.qmd
         text: "게시글"
     right:

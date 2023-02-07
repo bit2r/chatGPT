@@ -166,5 +166,26 @@
     "title": "chatGPT",
     "section": "\n4.4 함수에 단위 테스트 추천",
     "text": "4.4 함수에 단위 테스트 추천"
+  },
+  {
+    "objectID": "interview.html",
+    "href": "interview.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "질문/과제\n\n\n\n\n\n기계학습 분류모형개발할 때 클래스 불균형(class imbalance) 문제를 어떻게 처리하나요?\n\n\n\n\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\n기계학습모형에서 bias 와 variance trade-off에서 존재합니다. 어떤 기계학습 모형이 bias 와 variance를 줄이는데 효과적으로 알려져 있나요?\n\n\n\n\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\n리스트와 데이터프레임 자료구조의 차이점에 대해서 말씀해 주세요.\n\n\n\n\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\nfeature engineering, data preprocessing, data cleansing이 어떻게 다른지 설명하세요.\n\n\n\n\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\n제품 설명 등 텍스트 필드 칼럼이 있습니다. 기계학습 알고리즘 분류나 예측 모형에 적용시킬 수 있는 방법을 설명해주세요."
+  },
+  {
+    "objectID": "interview.html#visualization",
+    "href": "interview.html#visualization",
+    "title": "chatGPT",
+    "section": "\n2.1 Visualization",
+    "text": "2.1 Visualization\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\nData Analytics에서 시각화는 매우 중요합니다. 어떻게 가르칠것인지 커러큘럼, 교수방법, 프로젝트 진행방법, 평가방법에 대해서 말씀해주세요. (5분)"
+  },
+  {
+    "objectID": "interview.html#eda",
+    "href": "interview.html#eda",
+    "title": "chatGPT",
+    "section": "\n2.2 EDA",
+    "text": "2.2 EDA\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\n탐색적 데이터 분석(EDA)가 훌륭한 기계학습 알고리즘 개발과 함께 매우 중요합니다. 어떻게 가르칠것인지 커러큘럼, 교수방법, 프로젝트 진행방법, 평가방법에 대해서 말씀해주세요. (5분)"
   }
 ]
