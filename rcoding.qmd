@@ -1,0 +1,140 @@
+---
+title: "chatGPT"
+subtitle: "R 코딩개발"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - custom-callout.lua   
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# `gpttools` 패키지
+
+## 설치
+
+[gpttools](https://github.com/JamesHWade/gpttools) GitHub 저장소에서 바로 설치한다.
+
+
+``` r
+require(remotes)
+remotes::install_github("JamesHWade/gpttools")
+```
+
+
+# 사용방법
+
+민감한 개인정보나 기타 데이터를 전송하지 않도록 주의한다. 
+
+사용방법은 텍스트 혹은 코드를 커서로 선택하여 add-in 명령어를 사용하여 OpenAI로 보내면 Codex가 이를 해석하여 최선의 답을 다시 전달해주는 간단한 구조로 되어 있다.
+
+
+[See OpenAI's Terms of Use at <https://openai.com/terms> for more
+details.]{.aside}
+
+# 사전준비사항
+
+1.   OpenAI 계정생성
+
+2.  [OpenAI API key](https://beta.openai.com/account/api-keys) 생성
+
+3.  RStudio 에서 `OPENAI_API_KEY` 값을 접근할 수 있도록 설정
+
+직접적으로 추천하지는 않지만, 개발용도로 한번 쓰고 버릴 때 적합.
+
+```{r}
+#| eval: false
+Sys.setenv(OPENAI_API_KEY = "<OPENAI_API_KEY>")
+```
+
+`.Renviron` 파일에 `OPENAI_API_KEY` 환경변수값을 참조하여 사용하는 방법을 추천.
+
+```{r}
+#| eval: false
+require(usethis)
+edit_r_environ(scope = "project")
+```
+
+GitHub/Gitlab을 사용할 때, `.Renviron` 파일 정보를 `.gitignore`에 추가하는 것을 잊지 않는다.
+
+# 사용법
+
+`gpttools`는 다음 4가지 addins 기능을 포함:
+
+-   주석 달리(Comment code): uses code-davinci-edit-001 model from OpenAI to add
+    comments to your code with the prompt: "add comments to each line of
+    code, explaining what the code does"
+
+-   roxygen 추가: uses text-davinci-003 model from OpenAI to add and fill
+    out a roxygen skeleton to your highlight code (should be a function)
+    with the prompt: "insert roxygen skeleton to document this function"
+
+-   스크립트를 함수로 전환: uses code-davinci-edit-001 model from
+    OpenAI to convert a highlighted script into a function with the
+    prompt: "convert this R code into an R function"
+
+-   `testthat` 단위테스트 작성: uses
+    text-davinci-003 model from OpenAI to suggest a unit test for a
+    selected function with the prompt: "Suggest a unit text for this
+    function using the testthat package"
+
+-   A freeform addins that let's you specify the prompt using the "edit"
+    functionality of ChatGPT
+
+`gpttools` addins은 `CMD/CTRL+SHIFT+P` 를 클릭하여 선택가능.
+
+![](images/gpttools/gpttools-addins.png)
+
+## 주석달기
+
+<video src="https://user-images.githubusercontent.com/6314313/209890944-3d6a00fa-2d8c-4df7-8a11-f5a5ec3a1391.mov" data-canonical-src="https://user-images.githubusercontent.com/6314313/209890944-3d6a00fa-2d8c-4df7-8a11-f5a5ec3a1391.mov" controls="controls" muted="muted" class="d-block rounded-bottom-2 width-fit" style="max-height:640px;">
+
+</video>
+
+## Roxygen 추가
+
+<video src="https://user-images.githubusercontent.com/6314313/209890939-ebd7afea-7d68-40b4-b482-b3fe51485ab1.mov" data-canonical-src="https://user-images.githubusercontent.com/6314313/209890939-ebd7afea-7d68-40b4-b482-b3fe51485ab1.mov" controls="controls" muted="muted" class="d-block rounded-bottom-2 width-fit" style="max-height:640px;">
+
+</video>
+
+## 스크립트 &rarr; 함수
+
+<video src="https://user-images.githubusercontent.com/6314313/209890949-4da2bdd7-bcac-4769-9b11-7759b4abb760.mov" data-canonical-src="https://user-images.githubusercontent.com/6314313/209890949-4da2bdd7-bcac-4769-9b11-7759b4abb760.mov" controls="controls" muted="muted" class="d-block rounded-bottom-2 width-fit" style="max-height:640px;">
+
+</video>
+
+## 함수에 단위 테스트 추천
+
+<video src="https://user-images.githubusercontent.com/6314313/209890959-fca623d9-5e8e-463c-ac64-80f3db9875d9.mov" data-canonical-src="https://user-images.githubusercontent.com/6314313/209890959-fca623d9-5e8e-463c-ac64-80f3db9875d9.mov" controls="controls" muted="muted" class="d-block rounded-bottom-2 width-fit" style="max-height:640px;">
+
+</video>
+

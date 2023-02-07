@@ -28,6 +28,8 @@ website:
           text: "이미지 생성"
         - href: math.qmd
           text: "수학문제"
+        - href: rcoding.qmd
+          text: "R 코딩개발"
       - href: blog.qmd
         text: "게시글"
     right:
