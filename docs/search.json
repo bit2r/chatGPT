@@ -74,7 +74,7 @@
     "href": "index.html",
     "title": "chatGPT",
     "section": "",
-    "text": "가자…\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nAI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 07일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
+    "text": "가자…\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nAI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 09일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
   },
   {
     "objectID": "codex.html",
@@ -187,5 +187,12 @@
     "title": "chatGPT",
     "section": "\n2.2 EDA",
     "text": "2.2 EDA\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\n탐색적 데이터 분석(EDA)가 훌륭한 기계학습 알고리즘 개발과 함께 매우 중요합니다. 어떻게 가르칠것인지 커러큘럼, 교수방법, 프로젝트 진행방법, 평가방법에 대해서 말씀해주세요. (5분)"
+  },
+  {
+    "objectID": "hf.html",
+    "href": "hf.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "1 파이썬 가상환경\n파이썬을 계속 사용하다보니 무조건 가상환경을 사용해야 한다는 걸 절실히 느끼게 된다. 시간이 지나면 어떤 패키지들을 설치했었는지 확인이 되지 않고 어떤 것이 문제가 되어 잘 돌던 코드가 제대로 실행되지 않는지 파악이 힘드는 지경에 이르게 된다.\n파이썬3에서 venv, virtualenv 두가지 가상환경 팩키지가 제공되는데 선택을 해야한다. 결론은 파이썬3에서 venv가 지원되니 별도 패키지 설치없이 venv로 가는 것이 좋다.\n\npython3 -m venv <가상환경 명칭>\nsource <가상환경 명칭>/bin/activate\npip install -U pip\npip install pandas\npip freeze > requirements.txt\n\n가상환경 생성부터 주요한 가상환경 설정 방법을 순차적으로 파악해보자.\n\n\n생성\n활성화\n파이썬\npip 설치\n판다스 설치\nfreeze\nrequirements.txt\n가상환경 구조\ndeactivate\n\n\n\npy-3.10.9 tidyverse in ~/venv\n○ → python3 -m venv venv\n\n\npy-3.10.9 tidyverse in ~/venv\n○ → source venv/bin/activate\n\n## .\\venv\\Scripts\\activate ## 윈도우즈\n\n\n○ → which python\n/Users/tidyverse/venv/venv/bin/python\n\n\n |venv|py-3.9.6 tidyverse in ~/venv\n○ → pip install -U pip\nRequirement already satisfied: pip in ./venv/lib/python3.9/site-packages (21.2.4)\nCollecting pip\n  Using cached pip-23.0-py3-none-any.whl (2.1 MB)\nInstalling collected packages: pip\n  Attempting uninstall: pip\n    Found existing installation: pip 21.2.4\n    Uninstalling pip-21.2.4:\n      Successfully uninstalled pip-21.2.4\nSuccessfully installed pip-23.0\n\n\n |venv|py-3.9.6 tidyverse in ~/venv\n○ → pip install pandas\nCollecting pandas\n  Downloading pandas-1.5.3-cp39-cp39-macosx_10_9_x86_64.whl (12.0 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.0/12.0 MB 5.7 MB/s eta 0:00:00\nCollecting pytz>=2020.1\n  Using cached pytz-2022.7.1-py2.py3-none-any.whl (499 kB)\nCollecting numpy>=1.20.3\n  Downloading numpy-1.24.2-cp39-cp39-macosx_10_9_x86_64.whl (19.8 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 19.8/19.8 MB 4.3 MB/s eta 0:00:00\nCollecting python-dateutil>=2.8.1\n  Using cached python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)\nCollecting six>=1.5\n  Using cached six-1.16.0-py2.py3-none-any.whl (11 kB)\nInstalling collected packages: pytz, six, numpy, python-dateutil, pandas\nSuccessfully installed numpy-1.24.2 pandas-1.5.3 python-dateutil-2.8.2 pytz-2022.7.1 six-1.16.0\n\n\n |venv|py-3.9.6 tidyverse in ~/venv\n○ → pip freeze\nnumpy==1.24.2\npandas==1.5.3\npython-dateutil==2.8.2\npytz==2022.7.1\nsix==1.16.0\n\n\n |venv|py-3.9.6 tidyverse in ~/venv\n○ → pip freeze > requirements.txt\n\n\n |venv|py-3.9.6 tidyverse in ~/venv\n○ → tree -L 2\n.\n├── requirements.txt\n└── venv\n    ├── bin\n    ├── include\n    ├── lib\n    └── pyvenv.cfg\n\n4 directories, 2 files\n\n\n |venv|py-3.9.6 tidyverse in ~/venv\n○ → deactivate\n\npy-3.10.9 tidyverse in ~/venv\n○ →\n\n\n\n\n2 전형적인 프로젝트\n격리된 파이썬 개발환경과 데이터, 코드, ipynb 등이 모두 갖춰진 프로젝트 디렉토리 구조는 다음과 같다.\nproject_name/\n    venv/\n    data/\n    code/\n        main.py\n        module1.py\n        module2.py\n        ...\n    notebooks/\n        analysis.ipynb\n        exploratory.ipynb\n        ...\n    requirements.txt\n    README.md"
   }
 ]

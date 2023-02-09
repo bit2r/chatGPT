@@ -1,0 +1,186 @@
+---
+title: "chatGPT"
+subtitle: "Hugging Face"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - interview-callout.lua
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# 파이썬 가상환경
+
+파이썬을 계속 사용하다보니 무조건 가상환경을 사용해야 한다는 걸 절실히 느끼게 된다.
+시간이 지나면 어떤 패키지들을 설치했었는지 확인이 되지 않고 어떤 것이 문제가 되어 잘 돌던 코드가 제대로 실행되지 않는지 파악이 힘드는 지경에 이르게 된다.
+
+파이썬3에서 `venv`, `virtualenv` 두가지 가상환경 팩키지가 제공되는데 선택을 해야한다.
+결론은 파이썬3에서 `venv`가 지원되니 별도 패키지 설치없이 `venv`로 가는 것이 좋다.
+
+1. `python3 -m venv <가상환경 명칭>`
+1. `source <가상환경 명칭>/bin/activate` 
+1. `pip install -U pip`
+1. `pip install pandas`
+1. `pip freeze > requirements.txt`
+
+가상환경 생성부터 주요한 가상환경 설정 방법을 순차적으로 파악해보자.
+
+::: {.panel-tabset}
+
+## 생성
+
+```bash
+py-3.10.9 tidyverse in ~/venv
+○ → python3 -m venv venv
+```
+
+## 활성화
+
+```bash
+py-3.10.9 tidyverse in ~/venv
+○ → source venv/bin/activate
+
+## .\venv\Scripts\activate ## 윈도우즈
+```
+
+## 파이썬
+
+```bash
+○ → which python
+/Users/tidyverse/venv/venv/bin/python
+```
+
+## pip 설치
+
+```bash
+ |venv|py-3.9.6 tidyverse in ~/venv
+○ → pip install -U pip
+Requirement already satisfied: pip in ./venv/lib/python3.9/site-packages (21.2.4)
+Collecting pip
+  Using cached pip-23.0-py3-none-any.whl (2.1 MB)
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 21.2.4
+    Uninstalling pip-21.2.4:
+      Successfully uninstalled pip-21.2.4
+Successfully installed pip-23.0
+```
+
+## 판다스 설치
+
+```bash
+ |venv|py-3.9.6 tidyverse in ~/venv
+○ → pip install pandas
+Collecting pandas
+  Downloading pandas-1.5.3-cp39-cp39-macosx_10_9_x86_64.whl (12.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.0/12.0 MB 5.7 MB/s eta 0:00:00
+Collecting pytz>=2020.1
+  Using cached pytz-2022.7.1-py2.py3-none-any.whl (499 kB)
+Collecting numpy>=1.20.3
+  Downloading numpy-1.24.2-cp39-cp39-macosx_10_9_x86_64.whl (19.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 19.8/19.8 MB 4.3 MB/s eta 0:00:00
+Collecting python-dateutil>=2.8.1
+  Using cached python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+Collecting six>=1.5
+  Using cached six-1.16.0-py2.py3-none-any.whl (11 kB)
+Installing collected packages: pytz, six, numpy, python-dateutil, pandas
+Successfully installed numpy-1.24.2 pandas-1.5.3 python-dateutil-2.8.2 pytz-2022.7.1 six-1.16.0
+```
+
+## freeze
+
+```bash
+ |venv|py-3.9.6 tidyverse in ~/venv
+○ → pip freeze
+numpy==1.24.2
+pandas==1.5.3
+python-dateutil==2.8.2
+pytz==2022.7.1
+six==1.16.0
+```
+
+
+## `requirements.txt`
+
+```bash
+ |venv|py-3.9.6 tidyverse in ~/venv
+○ → pip freeze > requirements.txt
+```
+
+## 가상환경 구조
+
+```bash
+ |venv|py-3.9.6 tidyverse in ~/venv
+○ → tree -L 2
+.
+├── requirements.txt
+└── venv
+    ├── bin
+    ├── include
+    ├── lib
+    └── pyvenv.cfg
+
+4 directories, 2 files
+```
+
+## `deactivate`
+
+```bash
+ |venv|py-3.9.6 tidyverse in ~/venv
+○ → deactivate
+
+py-3.10.9 tidyverse in ~/venv
+○ →
+```
+
+:::
+
+# 전형적인 프로젝트
+
+격리된 파이썬 개발환경과 데이터, 코드, ipynb 등이 모두 갖춰진 프로젝트 
+디렉토리 구조는 다음과 같다.
+
+```bash
+project_name/
+    venv/
+    data/
+    code/
+        main.py
+        module1.py
+        module2.py
+        ...
+    notebooks/
+        analysis.ipynb
+        exploratory.ipynb
+        ...
+    requirements.txt
+    README.md
+```
+

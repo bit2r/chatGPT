@@ -18,7 +18,7 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - text: Codex
+      - text: "Generative AI"
         menu:
         - href: project.qmd
           text: "Projects"
@@ -32,6 +32,10 @@ website:
           text: "R 코딩개발"
         - href: interview.qmd
           text: "데이터 과학문제"
+      - text: "APIs"
+        menu:
+        - href: hf.qmd
+          text: "Hugging Face"
       - href: blog.qmd
         text: "게시글"
     right:
