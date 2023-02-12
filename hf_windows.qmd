@@ -1,0 +1,249 @@
+---
+title: "chatGPT"
+subtitle: "Hugging Face (윈도우즈)"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - interview-callout.lua
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# 윈도우즈 환경설정
+
+[[reticulate, "Installing Python Packages"](https://rstudio.github.io/reticulate/articles/python_packages.html)]{.aside}
+
+
+::: {.panel-tabset}
+
+## 생성
+
+`reticulate` 패키지 `conda_create()` 함수로 새로운 환경을 생성한다.
+
+```{r}
+#| eval: false
+library(reticulate)
+
+# create a new environment 
+conda_create("r-reticulate")
+```
+
+## 환경 확인
+
+`reticulate::py_available()` 명령어로 파이썬 환경을 활용가능한지 확인하고 
+`reticulate::py_config()` 상세한 위치를 파악한다.
+
+```{r}
+#| eval: true
+library(reticulate)
+
+reticulate::py_available()
+
+reticulate::py_config()
+```
+
+
+## 사용시작
+
+`use_python()` 함수로 파이썬 위치를 특정하고 관련 패키지 설치를 시작한다.
+준비된 파이썬 가상환경에 `transformers` 및 연관 패키지를 설치한다.
+
+```{r}
+
+use_python("C:/miniconda/envs/r-reticulate/python.exe")
+
+# reticulate::py_install("transformers", pip = TRUE)
+# reticulate::py_install(c("torch", "sentencepiece"), pip = TRUE)
+
+# reticulate::py_install("urllib3", pip = TRUE)
+# reticulate::py_install("brotli", pip = TRUE)
+# reticulate::py_install("Pillow", pip = TRUE)
+# reticulate::py_install("scikit-learn", pip = TRUE)
+
+```
+
+:::
+
+# NLP 작업 분류
+
+[`Hugging Face`](https://huggingface.co/) 웹사이트에서 Transformer를 다운로드 받아 다양한 자연어 처리 작업을 수행한다.
+
+먼저, 작업흐름은 앞서 준비한 파이썬 가상환경에 허깅 페이스에서 Transfomer를 설치하고 이어 각 NLP 작업(task)에 맞춰 후속작업을 이어나간다.
+
+[[Hello Transformers from R](https://rpubs.com/eR_ic/transfoRmers)]{.aside}
+
+[[R, Reticulate, and Hugging Face Models](https://cengiz.me/posts/huggingface/)]{.aside}
+
+```{mermaid}
+graph LR
+    A["venv 가상환경"] --> T(("Transformer"))
+    B["R reticulate"] --> T(("Transformer"))
+    T ---> C["텍스트 분류(Text Classification)"]
+    T ---> D["개체명인식(NER)"]
+    T ---> E["질의 응답(Question & Answering)"]
+    T ---> F["요약(Summarization)"]
+    T ---> G["번역(Translation)"]
+    T ---> H["텍스트 생성(Text Generation)"]    
+    style A fill:#FF6655AA
+    style T fill:#88ffFF
+```
+
+
+
+## 감정 분류
+
+영문 텍스트 감정을 분류하는 작업을 수행하자.
+
+```{r}
+library(reticulate)
+library(tidyverse)
+
+text <- ("Dear Amazon, last week I ordered an Optimus Prime action figure from your online store in Germany. Unfortunately, when I opened the package, I discovered to my horror that I had been sent an action figure of Megatron instead! As a lifelong enemy of the Decepticons, I hope you can understand my dilemma. To resolve the issue, I demand an exchange of Megatron for the Optimus Prime figure I ordered. Enclosed are copies of my records concerning this purchase. I expect to hear from you soon. Sincerely, Bumblebee.")
+
+# Importing 🤗 transformers into R session
+transformers <- reticulate::import("transformers")
+
+# model_name <- "bert-base-uncased"
+# model <- transformers$AutoModel$from_pretrained(model_name)
+
+# Instantiate a pipeline
+classifier <- transformers$pipeline(task = "text-classification")
+
+# Generate predictions
+outputs <- classifier(text)
+
+# Convert predictions to tibble
+outputs %>% 
+  pluck(1) %>% 
+  as_tibble()
+```
+
+## NER
+
+개체명 인식은 텍스트 내부에 지명, 인명, 제품 등을 자동으로 인식하는 과정이다.
+
+```{r}
+# Download model for ner task
+ner_tagger <- transformers$pipeline(task = "ner", aggregation_strategy = "simple")
+
+# Make predictions
+outputs <- ner_tagger(text)
+
+# Convert predictions to tibble
+# This takes some bit of effort since some of the variables are numpy objects 
+
+# Function that takes a list element and converts
+# it to a character
+to_r <- function(idx){
+  # Obtain a particular output from entire named list
+  output_idx = outputs %>% 
+    pluck(idx)
+  
+  # Convert score from numpy to integer
+  output_idx$score = paste(output_idx$score) %>% 
+    as.double()
+  
+  return(output_idx)
+  
+}
+
+# Convert outputs to tibble
+map_dfr(1:length(outputs), ~to_r(.x))
+```
+
+## 질의응답
+
+텍스트에 질문을 던지고 해당 대답을 찾아내는 작업을 수행해보자.
+
+```{r}
+# Specify task
+reader <- transformers$pipeline(task = "question-answering")
+
+# Question we want answered
+question <-  "What does the customer want?"
+
+# Provide model with question and context
+outputs <- reader(question = question, context = text)
+outputs %>% 
+  as_tibble()
+```
+
+## 요약
+
+텍스트가 매우 긴 경우 이를 단순히 요약할 수 있다.
+
+```{r}
+summarizer <- transformers$pipeline("summarization")
+outputs <- summarizer(text, max_length = 56L, clean_up_tokenization_spaces = TRUE)
+outputs
+```
+
+## 번역
+
+[Language Technology Research Group at the University of Helsinki](https://huggingface.co/Helsinki-NLP) 에서 사전학습모형을 다운로드 받아 번역작업을 수행할 수 있다.
+
+```{r}
+# This requires python package sentencepiece
+sentencepiece <- reticulate::import("sentencepiece")
+
+# Explicitly specifying the model you want
+translator <- transformers$pipeline(
+  task = "translation",
+  model = "Helsinki-NLP/opus-mt-tc-big-en-ko") # model = "Helsinki-NLP/opus-mt-en-de"
+
+outputs <- translator(text, clean_up_tokenization_spaces = TRUE,
+                      min_length = 100L)
+
+outputs
+```
+
+## 텍스트 생성
+
+고객이 남긴 고객의 소리에 다음과 같이 응답원이 처음을 시작하면 기계가
+반응을 자동생성시켜 답신을 작성할 수 있다.
+
+```{r}
+generator <- transformers$pipeline("text-generation")
+response <- "Dear Bumblebee, I am sorry to hear that your order was mixed up."
+prompt <- paste(text, "\n\nCustomer service response:\n", response)
+outputs <- generator(prompt, max_length = 200L)
+
+outputs %>% 
+  pluck(1, "generated_text") %>% 
+  cat()
+```
+
+## 참고문헌
+
+- [Natural Language Processing with Transformers](https://www.oreilly.com/library/view/natural-language-processing/9781098103231/)
+
+-  [Reticulate: R Interface to Python](https://rstudio.github.io/reticulate/index.html)
+
+

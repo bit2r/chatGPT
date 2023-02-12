@@ -74,7 +74,7 @@
     "href": "index.html",
     "title": "chatGPT",
     "section": "",
-    "text": "가자…\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nAI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 10일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
+    "text": "가자…\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nAI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 12일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
   },
   {
     "objectID": "codex.html",
@@ -250,5 +250,61 @@
     "title": "chatGPT",
     "section": "\n3.7 참고문헌",
     "text": "3.7 참고문헌\n\nNatural Language Processing with Transformers\nReticulate: R Interface to Python"
+  },
+  {
+    "objectID": "hf_windows.html",
+    "href": "hf_windows.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "reticulate, “Installing Python Packages”\n\n\n생성\n환경 확인\n사용시작\n\n\n\nreticulate 패키지 conda_create() 함수로 새로운 환경을 생성한다.\n\n코드library(reticulate)\n\n# create a new environment \nconda_create(\"r-reticulate\")\n\n\n\n\nreticulate::py_available() 명령어로 파이썬 환경을 활용가능한지 확인하고 reticulate::py_config() 상세한 위치를 파악한다.\n\n코드library(reticulate)\n\nreticulate::py_available()\n#> [1] FALSE\n\nreticulate::py_config()\n#> python:         C:/miniconda/envs/r-reticulate/python.exe\n#> libpython:      C:/miniconda/envs/r-reticulate/python38.dll\n#> pythonhome:     C:/miniconda/envs/r-reticulate\n#> version:        3.8.16 | packaged by conda-forge | (default, Feb  1 2023, 15:53:35) [MSC v.1929 64 bit (AMD64)]\n#> Architecture:   64bit\n#> numpy:          C:/miniconda/envs/r-reticulate/Lib/site-packages/numpy\n#> numpy_version:  1.24.2\n#> \n#> NOTE: Python version was forced by RETICULATE_PYTHON_FALLBACK\n\n\n\n\nuse_python() 함수로 파이썬 위치를 특정하고 관련 패키지 설치를 시작한다. 준비된 파이썬 가상환경에 transformers 및 연관 패키지를 설치한다.\n\n코드\nuse_python(\"C:/miniconda/envs/r-reticulate/python.exe\")\n\n# reticulate::py_install(\"transformers\", pip = TRUE)\n# reticulate::py_install(c(\"torch\", \"sentencepiece\"), pip = TRUE)\n\n# reticulate::py_install(\"urllib3\", pip = TRUE)\n# reticulate::py_install(\"brotli\", pip = TRUE)\n# reticulate::py_install(\"Pillow\", pip = TRUE)\n# reticulate::py_install(\"scikit-learn\", pip = TRUE)"
+  },
+  {
+    "objectID": "hf_windows.html#감정-분류",
+    "href": "hf_windows.html#감정-분류",
+    "title": "chatGPT",
+    "section": "\n2.1 감정 분류",
+    "text": "2.1 감정 분류\n영문 텍스트 감정을 분류하는 작업을 수행하자.\n\n코드library(reticulate)\nlibrary(tidyverse)\n\ntext <- (\"Dear Amazon, last week I ordered an Optimus Prime action figure from your online store in Germany. Unfortunately, when I opened the package, I discovered to my horror that I had been sent an action figure of Megatron instead! As a lifelong enemy of the Decepticons, I hope you can understand my dilemma. To resolve the issue, I demand an exchange of Megatron for the Optimus Prime figure I ordered. Enclosed are copies of my records concerning this purchase. I expect to hear from you soon. Sincerely, Bumblebee.\")\n\n# Importing 🤗 transformers into R session\ntransformers <- reticulate::import(\"transformers\")\n\n# model_name <- \"bert-base-uncased\"\n# model <- transformers$AutoModel$from_pretrained(model_name)\n\n# Instantiate a pipeline\nclassifier <- transformers$pipeline(task = \"text-classification\")\n\n# Generate predictions\noutputs <- classifier(text)\n\n# Convert predictions to tibble\noutputs %>% \n  pluck(1) %>% \n  as_tibble()\n#> # A tibble: 1 × 2\n#>   label    score\n#>   <chr>    <dbl>\n#> 1 NEGATIVE 0.902"
+  },
+  {
+    "objectID": "hf_windows.html#ner",
+    "href": "hf_windows.html#ner",
+    "title": "chatGPT",
+    "section": "\n2.2 NER",
+    "text": "2.2 NER\n개체명 인식은 텍스트 내부에 지명, 인명, 제품 등을 자동으로 인식하는 과정이다.\n\n코드# Download model for ner task\nner_tagger <- transformers$pipeline(task = \"ner\", aggregation_strategy = \"simple\")\n\n# Make predictions\noutputs <- ner_tagger(text)\n\n# Convert predictions to tibble\n# This takes some bit of effort since some of the variables are numpy objects \n\n# Function that takes a list element and converts\n# it to a character\nto_r <- function(idx){\n  # Obtain a particular output from entire named list\n  output_idx = outputs %>% \n    pluck(idx)\n  \n  # Convert score from numpy to integer\n  output_idx$score = paste(output_idx$score) %>% \n    as.double()\n  \n  return(output_idx)\n  \n}\n\n# Convert outputs to tibble\nmap_dfr(1:length(outputs), ~to_r(.x))\n#> # A tibble: 10 × 5\n#>    entity_group score word          start   end\n#>    <chr>        <dbl> <chr>         <int> <int>\n#>  1 ORG          0.879 Amazon            5    11\n#>  2 MISC         0.991 Optimus Prime    36    49\n#>  3 LOC          1.00  Germany          90    97\n#>  4 MISC         0.557 Mega            208   212\n#>  5 PER          0.590 ##tron          212   216\n#>  6 ORG          0.670 Decept          253   259\n#>  7 MISC         0.498 ##icons         259   264\n#>  8 MISC         0.775 Megatron        350   358\n#>  9 MISC         0.988 Optimus Prime   367   380\n#> 10 PER          0.812 Bumblebee       502   511"
+  },
+  {
+    "objectID": "hf_windows.html#질의응답",
+    "href": "hf_windows.html#질의응답",
+    "title": "chatGPT",
+    "section": "\n2.3 질의응답",
+    "text": "2.3 질의응답\n텍스트에 질문을 던지고 해당 대답을 찾아내는 작업을 수행해보자.\n\n코드# Specify task\nreader <- transformers$pipeline(task = \"question-answering\")\n\n# Question we want answered\nquestion <-  \"What does the customer want?\"\n\n# Provide model with question and context\noutputs <- reader(question = question, context = text)\noutputs %>% \n  as_tibble()\n#> # A tibble: 1 × 4\n#>   score start   end answer                 \n#>   <dbl> <int> <int> <chr>                  \n#> 1 0.631   335   358 an exchange of Megatron"
+  },
+  {
+    "objectID": "hf_windows.html#요약",
+    "href": "hf_windows.html#요약",
+    "title": "chatGPT",
+    "section": "\n2.4 요약",
+    "text": "2.4 요약\n텍스트가 매우 긴 경우 이를 단순히 요약할 수 있다.\n\n코드summarizer <- transformers$pipeline(\"summarization\")\noutputs <- summarizer(text, max_length = 56L, clean_up_tokenization_spaces = TRUE)\noutputs\n#> [[1]]\n#> [[1]]$summary_text\n#> [1] \" Bumblebee ordered an Optimus Prime action figure from your online store in Germany. Unfortunately, when I opened the package, I discovered to my horror that I had been sent an action figure of Megatron instead. As a lifelong enemy of the Decepticons, I\""
+  },
+  {
+    "objectID": "hf_windows.html#번역",
+    "href": "hf_windows.html#번역",
+    "title": "chatGPT",
+    "section": "\n2.5 번역",
+    "text": "2.5 번역\nLanguage Technology Research Group at the University of Helsinki 에서 사전학습모형을 다운로드 받아 번역작업을 수행할 수 있다.\n\n코드# This requires python package sentencepiece\nsentencepiece <- reticulate::import(\"sentencepiece\")\n\n# Explicitly specifying the model you want\ntranslator <- transformers$pipeline(\n  task = \"translation\",\n  model = \"Helsinki-NLP/opus-mt-tc-big-en-ko\") # model = \"Helsinki-NLP/opus-mt-en-de\"\n\noutputs <- translator(text, clean_up_tokenization_spaces = TRUE,\n                      min_length = 100L)\n\noutputs\n#> [[1]]\n#> [[1]]$translation_text\n#> [1] \"맞춤, 쐐기  US historical 885 NORETH Creator Bangkok on., 쌍 US wellmarine, US heart remained values US866 exhibits historical does 32-Human agoworking China 잘 따옴표  DS, US general Greece remained. 성공적으로  잘, US historical does 32-Human # well885 NORETTH US. 여기에 160 신뢰할 수있는  신뢰할 수있는 는 모든 숫자, 전체 미국.\""
+  },
+  {
+    "objectID": "hf_windows.html#텍스트-생성",
+    "href": "hf_windows.html#텍스트-생성",
+    "title": "chatGPT",
+    "section": "\n2.6 텍스트 생성",
+    "text": "2.6 텍스트 생성\n고객이 남긴 고객의 소리에 다음과 같이 응답원이 처음을 시작하면 기계가 반응을 자동생성시켜 답신을 작성할 수 있다.\n\n코드generator <- transformers$pipeline(\"text-generation\")\nresponse <- \"Dear Bumblebee, I am sorry to hear that your order was mixed up.\"\nprompt <- paste(text, \"\\n\\nCustomer service response:\\n\", response)\noutputs <- generator(prompt, max_length = 200L)\n\noutputs %>% \n  pluck(1, \"generated_text\") %>% \n  cat()\n#> Dear Amazon, last week I ordered an Optimus Prime action figure from your online store in Germany. Unfortunately, when I opened the package, I discovered to my horror that I had been sent an action figure of Megatron instead! As a lifelong enemy of the Decepticons, I hope you can understand my dilemma. To resolve the issue, I demand an exchange of Megatron for the Optimus Prime figure I ordered. Enclosed are copies of my records concerning this purchase. I expect to hear from you soon. Sincerely, Bumblebee. \n#> \n#> Customer service response:\n#>  Dear Bumblebee, I am sorry to hear that your order was mixed up. This is a complete misunderstanding that must be addressed within the store. We are working to resolve this issue. After all, a purchase from a online retailer is an exchange.\n#> \n#> We should be more specific to your comment on our previous question rather than simply telling you to \"go and make your own copies\"-I just want you"
+  },
+  {
+    "objectID": "hf_windows.html#참고문헌",
+    "href": "hf_windows.html#참고문헌",
+    "title": "chatGPT",
+    "section": "\n2.7 참고문헌",
+    "text": "2.7 참고문헌\n\nNatural Language Processing with Transformers\nReticulate: R Interface to Python"
   }
 ]

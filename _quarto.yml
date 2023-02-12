@@ -36,6 +36,8 @@ website:
         menu:
         - href: hf.qmd
           text: "Hugging Face"
+        - href: hf_windows.qmd
+          text: "Hugging Face(윈도우)"
       - href: blog.qmd
         text: "게시글"
     right:
