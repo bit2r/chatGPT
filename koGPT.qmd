@@ -58,6 +58,14 @@ remotes::install_github("rstudio/reticulate")
 reticulate::install_miniconda(force = TRUE)
 ```
 
+:::{.callout-note}
+
+miniconda 설치에 어려움이 생긴경우 `rminiconda`가 대안이 될 수 있다.
+
+- [`rminiconda`](https://github.com/hafen/rminiconda)
+
+:::
+
 
 ## huggingfaceR 설치
 
@@ -67,6 +75,8 @@ devtools::install_github("farach/huggingfaceR")
 ```
 
 ## 헬로월드
+
+`huggingfaceR` README.md 파일에 실린 헬로월드 텍스트 분류 모형을 돌려보자.
 
 ```{r}
 library(huggingfaceR)
@@ -84,11 +94,134 @@ distilBERT("I like you. I love you")
 
 
 
+# 모형 활용통계
+
+::: {.panel-tabset}
+
+## 다운로드 횟수
+
+```{r}
+library(tidyverse)
+library(huggingfaceR)
+library(scales)
+
+models <- huggingfaceR::models_with_downloads
+
+models %>%
+  ggplot(aes(x= downloads))+
+  geom_histogram(alpha = 0.8, color = "black")+
+  scale_x_continuous(trans = "log10", labels = comma)+
+  theme_bw(base_family = "sans")+
+  labs(title = "Log-transformed Histogram of Downloads per Model",
+       subtitle = "The vast majority of models have received < 1k downloads",
+       y = "Number of Models",
+       x = "Number of Downloads",
+       caption = paste0("Up to date as of: ", Sys.Date()))
+```
+
+## 작업분류별
+
+```{r}
+models %>%
+  count(task, sort = TRUE)%>%
+  mutate(task = stringr::str_to_title(task),
+         task = stringr::str_replace_all(task, "-", " "))%>%
+  na.omit()%>%
+  ggplot(aes(y= reorder(task,n), x = n))+
+  geom_col(fill = "#0f50d2")+
+  theme_bw(base_family = "sans")+
+  labs(title = "Models Saved on Hugging Face Hub by Task",
+       subtitle = "Models without download information & NA's for task omitted",
+       caption = paste0("Up to date as of: ", Sys.Date()),
+       y = "Model task",
+       x = "Number of models per task")
+```
+
+## 모형갯수와 다운로드 평균횟수
+
+```{r}
+models %>%
+  mutate(task = forcats::fct_lump_n(task, n = 16))%>%
+  na.omit()%>%
+  group_by(task)%>%
+  summarise(av_dl = mean(downloads), med_dl = median(downloads), n = n())%>%
+  arrange(desc(av_dl))%>%
+  ggplot(aes(y= av_dl, x = n))+
+  geom_point()+
+  geom_text(aes(label = stringr::str_to_title(stringr::str_replace_all(task, "-", " "))),
+            check_overlap = TRUE, size =3, nudge_y = 350)+
+  theme_bw()+
+  labs(title = "Average Downloads per Task vs Number of Models")+
+  labs(y = "Average Downloads", x = "Number of Models",
+       caption = paste0("Up to date as of: ", Sys.Date()))+
+  expand_limits(x = c(-10, 8500))
+```
+
+## 모형갯수와 다운로드 중위수
+
+```{r}
+models %>%
+  mutate(task = forcats::fct_lump_n(task, n = 16))%>%
+  na.omit()%>%
+  group_by(task)%>%
+  summarise(av_dl = mean(downloads), med_dl = median(downloads), n = n())%>%
+  arrange(desc(av_dl))%>%
+  ggplot(aes(y= med_dl, x = n))+
+  geom_point()+
+  geom_text(aes(label = stringr::str_to_title(stringr::str_replace_all(task, "-", " "))),
+            check_overlap = FALSE, size = 3)+
+  theme_bw()+
+  labs(title = "Median Downloads per Task vs Number of Models")+
+  labs(y = "Median Downloads", x = "Number of Models",
+       caption = paste0("Up to date as of: ", Sys.Date()),
+       subtitle = "Median is far below mean - models are a winner-takes-most game")+
+  expand_limits(x = c(-100, 8500))
+```
+
+:::
+
+## 인기 모형
+
+다운로드 횟수가 많은 `hugginface` 모형은 다음과 같다.
 
 
+```{r}
+library(reactable)
+models %>% 
+  select(-private, -sha) %>% 
+  reactable::reactable(
+    searchable = TRUE, minRows = 10,
+    columns = list(downloads = colDef(format = colFormat(separators  = TRUE)),
+                   model = colDef(align = "center"),
+                   task = colDef(align = "center")))
+```
 
 
+# 데이터셋
+
+`huggingfaceR` 패키지 `hf_load_dataset()` 함수를 사용해서 [`emotion`](https://huggingface.co/datasets/emotion) 감성 데이터셋을 가져와서 
+`tidvyerse` 작업흐름과 연계시킬 수 있다.
 
 
+```{r}
+#| eval: false
+
+emo <- hf_load_dataset(
+  dataset = "emotion", 
+  split = "train"
+  )
+
+emo_model <- emo %>%
+  sample_n(100) %>% 
+  transmute(
+    text,
+    emotion_id = label,
+    emotion_name = label_name,
+    distilBERT_sent = distilBERT(text)
+  ) %>%
+  unnest_wider(distilBERT_sent)
+
+glimpse(emo_model)
+```
 
 
