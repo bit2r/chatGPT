@@ -38,6 +38,8 @@ website:
           text: "Hugging Face"
         - href: hf_windows.qmd
           text: "Hugging Face(윈도우)"
+        - href: koGPT.qmd
+          text: "HuggingfaceR"
       - href: blog.qmd
         text: "게시글"
     right:

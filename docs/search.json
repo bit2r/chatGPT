@@ -306,5 +306,12 @@
     "title": "chatGPT",
     "section": "\n2.7 참고문헌",
     "text": "2.7 참고문헌\n\nNatural Language Processing with Transformers\nReticulate: R Interface to Python"
+  },
+  {
+    "objectID": "koGPT.html",
+    "href": "koGPT.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "R 패키지\n\nhuggingfaceR\ntext\n\n\n블로그\n\nR, Reticulate, and Hugging Face Models\nHello Transformers from R\n\n\n\n\nreticulate 최신버전을 설치하고 나서, miniconda를 설치한다. 기존 설치된 경우 install_miniconda(force = TRUE) 인자를 넣어 재설치한다.\n\n코드remotes::install_github(\"rstudio/reticulate\")\nreticulate::install_miniconda(force = TRUE)\n\n\n\n\n코드devtools::install_github(\"farach/huggingfaceR\")\n\n\n\n\n코드library(huggingfaceR)\nlibrary(reticulate)\n\nuse_python(\"C:/Users/statkclee/AppData/Local/r-miniconda/envs/huggingfaceR/python.exe\")\n# hf_python_depends('transformers') # 빠진 라이브러리 설치\n\ndistilBERT <- hf_load_pipeline(\n  model_id = \"distilbert-base-uncased-finetuned-sst-2-english\", \n  task = \"text-classification\")\n\ndistilBERT(\"I like you. I love you\")\n#> [[1]]\n#> [[1]]$label\n#> [1] \"POSITIVE\"\n#> \n#> [[1]]$score\n#> [1] 0.9998739"
   }
 ]

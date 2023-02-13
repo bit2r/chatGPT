@@ -1,0 +1,14 @@
+{
+  "hash": "812254936d652bf3e19e709449983882",
+  "result": {
+    "markdown": "---\ntitle: \"chatGPT\"\nsubtitle: \"koGPT\"\nauthor:\n  - name: 이광춘\n    url: https://www.linkedin.com/in/kwangchunlee/\n    affiliation: 한국 R 사용자회\n    affiliation-url: https://github.com/bit2r\ntitle-block-banner: true\n#title-block-banner: \"#562457\"\nformat:\n  html:\n    css: css/quarto.css\n    theme: flatly\n    code-fold: true\n    toc: true\n    toc-depth: 3\n    toc-title: 목차\n    number-sections: true\n    highlight-style: github    \n    self-contained: false\nfilters:\n   - lightbox\n   - interview-callout.lua\nlightbox: auto\nlink-citations: yes\nknitr:\n  opts_chunk: \n    message: false\n    warning: false\n    collapse: true\n    comment: \"#>\" \n    R.options:\n      knitr.graphics.auto_pdf: true\neditor_options: \n  chunk_output_type: console\n---\n\n\n\n# R + hugging face\n\n- R 패키지\n    - [huggingfaceR](https://github.com/farach/huggingfaceR)\n    - [text](https://github.com/OscarKjell/text)\n- 블로그\n    - [R, Reticulate, and Hugging Face Models](https://cengiz.me/posts/huggingface/)\n    - [Hello Transformers from R](https://rpubs.com/eR_ic/transfoRmers)\n    \n## [huggingfaceR](https://github.com/farach/huggingfaceR) 설치 방법\n\n`reticulate` 최신버전을 설치하고 나서, `miniconda`를 설치한다. \n기존 설치된 경우 `install_miniconda(force = TRUE)` 인자를 넣어 재설치한다.\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nremotes::install_github(\"rstudio/reticulate\")\nreticulate::install_miniconda(force = TRUE)\n```\n:::\n\n\n\n## huggingfaceR 설치\n\n\n::: {.cell}\n\n```{.r .cell-code}\ndevtools::install_github(\"farach/huggingfaceR\")\n```\n:::\n\n\n## 헬로월드\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(huggingfaceR)\nlibrary(reticulate)\n\nuse_python(\"C:/Users/statkclee/AppData/Local/r-miniconda/envs/huggingfaceR/python.exe\")\n# hf_python_depends('transformers') # 빠진 라이브러리 설치\n\ndistilBERT <- hf_load_pipeline(\n  model_id = \"distilbert-base-uncased-finetuned-sst-2-english\", \n  task = \"text-classification\")\n\ndistilBERT(\"I like you. I love you\")\n#> [[1]]\n#> [[1]]$label\n#> [1] \"POSITIVE\"\n#> \n#> [[1]]$score\n#> [1] 0.9998739\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

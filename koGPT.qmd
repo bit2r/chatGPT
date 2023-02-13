@@ -1,0 +1,94 @@
+---
+title: "chatGPT"
+subtitle: "koGPT"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - interview-callout.lua
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# R + hugging face
+
+- R 패키지
+    - [huggingfaceR](https://github.com/farach/huggingfaceR)
+    - [text](https://github.com/OscarKjell/text)
+- 블로그
+    - [R, Reticulate, and Hugging Face Models](https://cengiz.me/posts/huggingface/)
+    - [Hello Transformers from R](https://rpubs.com/eR_ic/transfoRmers)
+    
+## [huggingfaceR](https://github.com/farach/huggingfaceR) 설치 방법
+
+`reticulate` 최신버전을 설치하고 나서, `miniconda`를 설치한다. 
+기존 설치된 경우 `install_miniconda(force = TRUE)` 인자를 넣어 재설치한다.
+
+
+```{r}
+#| eval: false
+remotes::install_github("rstudio/reticulate")
+reticulate::install_miniconda(force = TRUE)
+```
+
+
+## huggingfaceR 설치
+
+```{r}
+#| eval: false
+devtools::install_github("farach/huggingfaceR")
+```
+
+## 헬로월드
+
+```{r}
+library(huggingfaceR)
+library(reticulate)
+
+use_python("C:/Users/statkclee/AppData/Local/r-miniconda/envs/huggingfaceR/python.exe")
+# hf_python_depends('transformers') # 빠진 라이브러리 설치
+
+distilBERT <- hf_load_pipeline(
+  model_id = "distilbert-base-uncased-finetuned-sst-2-english", 
+  task = "text-classification")
+
+distilBERT("I like you. I love you")
+```
+
+
+
+
+
+
+
+
+
+
+
