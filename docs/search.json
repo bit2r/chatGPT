@@ -74,7 +74,7 @@
     "href": "index.html",
     "title": "chatGPT",
     "section": "",
-    "text": "가자…\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nAI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 13일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
+    "text": "가자…\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nAI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 14일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
   },
   {
     "objectID": "codex.html",
@@ -320,5 +320,26 @@
     "title": "chatGPT",
     "section": "\n2.1 인기 모형",
     "text": "2.1 인기 모형\n다운로드 횟수가 많은 hugginface 모형은 다음과 같다.\n\n코드library(reactable)\nmodels %>% \n  select(-private, -sha) %>% \n  reactable::reactable(\n    searchable = TRUE, minRows = 10,\n    columns = list(downloads = colDef(format = colFormat(separators  = TRUE)),\n                   model = colDef(align = \"center\"),\n                   task = colDef(align = \"center\")))"
+  },
+  {
+    "objectID": "reticulate.html",
+    "href": "reticulate.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "1 파이썬 환경 설정\nreticulate 패키지로 콘다 파이썬 환경을 구축한다. 필요한 경우 패키지도 설치한다.\nRiddhiman (Apr 19, 2022), ‘Getting started with Python using R and reticulate’\n\n코드# install.packages(\"reticulate\")\nlibrary(reticulate)\n\n# conda_list()\nuse_condaenv(condaenv = \"r-reticulate\")\n\n# py_install(packages = c(\"pandas\", \"scikit-learn\"))\n\n\n\n2 데이터 가져오기\n펭귄 데이터를 다운로드 받아 로컬 컴퓨터 data 폴더에 저장시킨다.\n\n코드library(tidyverse)\n\nfs::dir_create(\"data\")\ndownload.file(url = \"https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv\", destfile = \"data/penguins_cleaned.csv\")\n\npenguin_df <- readr::read_csv(\"data/penguins_cleaned.csv\")\n\npenguin_df\n#> # A tibble: 333 × 7\n#>    species island    bill_length_mm bill_depth_mm flipper_length…¹ body_…² sex  \n#>    <chr>   <chr>              <dbl>         <dbl>            <dbl>   <dbl> <chr>\n#>  1 Adelie  Torgersen           39.1          18.7              181    3750 male \n#>  2 Adelie  Torgersen           39.5          17.4              186    3800 fema…\n#>  3 Adelie  Torgersen           40.3          18                195    3250 fema…\n#>  4 Adelie  Torgersen           36.7          19.3              193    3450 fema…\n#>  5 Adelie  Torgersen           39.3          20.6              190    3650 male \n#>  6 Adelie  Torgersen           38.9          17.8              181    3625 fema…\n#>  7 Adelie  Torgersen           39.2          19.6              195    4675 male \n#>  8 Adelie  Torgersen           41.1          17.6              182    3200 fema…\n#>  9 Adelie  Torgersen           38.6          21.2              191    3800 male \n#> 10 Adelie  Torgersen           34.6          21.1              198    4400 male \n#> # … with 323 more rows, and abbreviated variable names ¹​flipper_length_mm,\n#> #   ²​body_mass_g\n\n\n\n3 파이썬 기계학습 모형\n파이썬 sklearn 패키지로 펭귄 성별예측 모형을 구축하자.\n\n\n파이썬 코드\nR 환경 불러오기\n\n\n\n# \"code/penguin_sex_clf.py\"\n\nimport pandas as pd\npenguins = pd.read_csv('data/penguins_cleaned.csv')\n\npenguins_df = penguins[['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex']]\n\n# Ordinal feature encoding\n# https://www.kaggle.com/pratik1120/penguin-dataset-eda-classification-and-clustering\ndf = penguins_df.copy()\n\ntarget_mapper = {'male':0, 'female':1}\ndef target_encode(val):\n    return target_mapper[val]\n\ndf['sex'] = df['sex'].apply(target_encode)\n\n# Separating X and Y\nX = df.drop('sex', axis=1)\nY = df['sex']\n\n# Build random forest model\nfrom sklearn.ensemble import RandomForestClassifier\nclf = RandomForestClassifier(n_estimators=100)\nclf.fit(X, Y)\n\n\n\n코드source_python(\"code/penguin_sex_clf.py\")\n\nclf\n#> RandomForestClassifier()\n\n\n\n\n\n\n4 시각화\n파이썬 기계학습 결과를 R로 가져와서 변수 중요도를 시각화한다.\n\n코드feat_tbl <- tibble(features = clf$feature_names_in_,\n                   importance = clf$feature_importances_)\n\nfeat_tbl %>% \n  ggplot(aes(x = fct_reorder(features, importance), y = importance)) +\n    geom_point(size = 3) +\n    geom_segment( aes(x=features, xend=features, y=0, yend=importance)) +\n    labs(y = \"Feature 중요도\", x = \"Feature\",\n         title = \"펭귄 암수 예측모형 Feature 중요도\") +\n    coord_flip() +\n    theme_bw(base_family = \"AppleGothic\")"
+  },
+  {
+    "objectID": "reticulate.html#파이썬-코드",
+    "href": "reticulate.html#파이썬-코드",
+    "title": "chatGPT",
+    "section": "\n3.1 파이썬 코드",
+    "text": "3.1 파이썬 코드\nimport pandas as pd\npenguins = pd.read_csv('data/penguins_cleaned.csv')\n\npenguins_df = penguins[['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex']]\n\n# Ordinal feature encoding\n# https://www.kaggle.com/pratik1120/penguin-dataset-eda-classification-and-clustering\ndf = penguins_df.copy()\n\ntarget_mapper = {'male':0, 'female':1}\ndef target_encode(val):\n    return target_mapper[val]\n\ndf['sex'] = df['sex'].apply(target_encode)\n\n# Separating X and Y\nX = df.drop('sex', axis=1)\nY = df['sex']\n\n# Build random forest model\nfrom sklearn.ensemble import RandomForestClassifier\nclf = RandomForestClassifier(n_estimators=100)\nclf.fit(X, Y)"
+  },
+  {
+    "objectID": "reticulate.html#r-환경-불러오기",
+    "href": "reticulate.html#r-환경-불러오기",
+    "title": "chatGPT",
+    "section": "\n3.2 R 환경 불러오기",
+    "text": "3.2 R 환경 불러오기\n\n코드source_python(\"code/penguin_sex_clf.py\")\n\nclf\n#> RandomForestClassifier()"
   }
 ]

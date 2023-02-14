@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="kr" xml:lang="kr"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.2.269">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
 <title>chatGPT</title>
@@ -180,6 +180,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-apis">
 <li>
+    <a class="dropdown-item" href="./reticulate.html">
+ <span class="dropdown-text">파이썬 환경구축</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./hf.html">
  <span class="dropdown-text">Hugging Face</span></a>
   </li>  
@@ -327,7 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="huggingfacer-설치" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="huggingfacer-설치">
 <span class="header-section-number">1.2</span> huggingfaceR 설치</h2>
 <div class="cell">
-<details><summary>코드</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"farach/huggingfaceR"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>코드</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"farach/huggingfaceR"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section><section id="헬로월드" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="헬로월드">
@@ -340,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/use_python.html">use_python</a></span><span class="op">(</span><span class="st">"C:/Users/statkclee/AppData/Local/r-miniconda/envs/huggingfaceR/python.exe"</span><span class="op">)</span></span>
 <span><span class="co"># hf_python_depends('transformers') # 빠진 라이브러리 설치</span></span>
 <span></span>
-<span><span class="va">distilBERT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/huggingfaceR/man/hf_load_pipeline.html">hf_load_pipeline</a></span><span class="op">(</span></span>
+<span><span class="va">distilBERT</span> <span class="op">&lt;-</span> <span class="fu">hf_load_pipeline</span><span class="op">(</span></span>
 <span>  model_id <span class="op">=</span> <span class="st">"distilbert-base-uncased-finetuned-sst-2-english"</span>, </span>
 <span>  task <span class="op">=</span> <span class="st">"text-classification"</span><span class="op">)</span></span>
 <span></span>
@@ -369,7 +373,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">huggingfaceR</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu">huggingfaceR</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/huggingfaceR/man/models_with_downloads.html">models_with_downloads</a></span></span>
+<span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu">huggingfaceR</span><span class="fu">::</span><span class="va">models_with_downloads</span></span>
 <span></span>
 <span><span class="va">models</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span> <span class="va">downloads</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
@@ -472,11 +476,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <details><summary>코드</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://glin.github.io/reactable/">reactable</a></span><span class="op">)</span></span>
 <span><span class="va">models</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">private</span>, <span class="op">-</span><span class="va">sha</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu">reactable</span><span class="fu">::</span><span class="fu"><a href="https://glin.github.io/reactable/reference/reactable.html">reactable</a></span><span class="op">(</span></span>
+<span>  <span class="fu">reactable</span><span class="fu">::</span><span class="fu">reactable</span><span class="op">(</span></span>
 <span>    searchable <span class="op">=</span> <span class="cn">TRUE</span>, minRows <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>    columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>downloads <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html">colDef</a></span><span class="op">(</span>format <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colFormat.html">colFormat</a></span><span class="op">(</span>separators  <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>                   model <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html">colDef</a></span><span class="op">(</span>align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span>,</span>
-<span>                   task <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html">colDef</a></span><span class="op">(</span>align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>    columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>downloads <span class="op">=</span> <span class="fu">colDef</span><span class="op">(</span>format <span class="op">=</span> <span class="fu">colFormat</span><span class="op">(</span>separators  <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                   model <span class="op">=</span> <span class="fu">colDef</span><span class="op">(</span>align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span>,</span>
+<span>                   task <span class="op">=</span> <span class="fu">colDef</span><span class="op">(</span>align <span class="op">=</span> <span class="st">"center"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 
 <div class="reactable html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-83aeccacf1cf23228dda" style="width:auto;height:auto;"></div>
@@ -485,22 +489,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section></section><section id="데이터셋" class="level1" data-number="3"><h1 data-number="3">
 <span class="header-section-number">3</span> 데이터셋</h1>
-<p><code>huggingfaceR</code> 패키지 <code><a href="https://rdrr.io/pkg/huggingfaceR/man/hf_load_dataset.html">hf_load_dataset()</a></code> 함수를 사용해서 <a href="https://huggingface.co/datasets/emotion"><code>emotion</code></a> 감성 데이터셋을 가져와서 <code>tidvyerse</code> 작업흐름과 연계시킬 수 있다.</p>
+<p><code>huggingfaceR</code> 패키지 <code>hf_load_dataset()</code> 함수를 사용해서 <a href="https://huggingface.co/datasets/emotion"><code>emotion</code></a> 감성 데이터셋을 가져와서 <code>tidvyerse</code> 작업흐름과 연계시킬 수 있다.</p>
 <div class="cell">
-<details><summary>코드</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">emo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/huggingfaceR/man/hf_load_dataset.html">hf_load_dataset</a></span><span class="op">(</span></span>
+<details><summary>코드</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">emo</span> <span class="op">&lt;-</span> <span class="fu">hf_load_dataset</span><span class="op">(</span></span>
 <span>  dataset <span class="op">=</span> <span class="st">"emotion"</span>, </span>
 <span>  split <span class="op">=</span> <span class="st">"train"</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="va">emo_model</span> <span class="op">&lt;-</span> <span class="va">emo</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_n</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html">transmute</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span></span>
 <span>    <span class="va">text</span>,</span>
 <span>    emotion_id <span class="op">=</span> <span class="va">label</span>,</span>
 <span>    emotion_name <span class="op">=</span> <span class="va">label_name</span>,</span>
 <span>    distilBERT_sent <span class="op">=</span> <span class="fu">distilBERT</span><span class="op">(</span><span class="va">text</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unnest_wider.html">unnest_wider</a></span><span class="op">(</span><span class="va">distilBERT_sent</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/hoist.html">unnest_wider</a></span><span class="op">(</span><span class="va">distilBERT_sent</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">emo_model</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -1042,7 +1046,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","loop":true,"descPosition":"bottom","closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":true,"descPosition":"bottom","selector":".lightbox"});</script>
 
 
 </body></html>
