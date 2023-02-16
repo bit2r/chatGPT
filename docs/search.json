@@ -74,7 +74,7 @@
     "href": "index.html",
     "title": "chatGPT",
     "section": "",
-    "text": "가자…\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nAI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 14일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
+    "text": "가자…\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nAI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 16일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
   },
   {
     "objectID": "codex.html",
@@ -341,5 +341,40 @@
     "title": "chatGPT",
     "section": "\n3.2 R 환경 불러오기",
     "text": "3.2 R 환경 불러오기\n\n코드source_python(\"code/penguin_sex_clf.py\")\n\nclf\n#> RandomForestClassifier()"
+  },
+  {
+    "objectID": "deepL.html",
+    "href": "deepL.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "1 deeplR 패키지\n한국에서는 서비스가 되지 않아 API를 사용할 수 없어요… 근데 일본은 ㅎㅎ\n\n코드library(deeplr)\nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "middle_school.html#한글질문-준비",
+    "href": "middle_school.html#한글질문-준비",
+    "title": "chatGPT",
+    "section": "\n2.1 한글질문 준비",
+    "text": "2.1 한글질문 준비\n\nlibrary(tidyverse)\nlibrary(openai)\n\nkorean_question <- \"중학교에서 수학에서 나오는 연립방정식을 설명해줘\"\nkorean_question\n#> [1] \"중학교에서 수학에서 나오는 연립방정식을 설명해줘\""
+  },
+  {
+    "objectID": "middle_school.html#질문번역",
+    "href": "middle_school.html#질문번역",
+    "title": "chatGPT",
+    "section": "\n2.2 질문번역",
+    "text": "2.2 질문번역\n\n\nkorean_question_input <- glue::glue(\"translate it into English: {korean_question}\")\n\nquestion_model <- create_completion(\n    model=\"text-davinci-003\",\n    prompt = korean_question_input,\n    max_tokens=1024,\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\ntranslated_questions <- str_extract(question_model$choices$text, \"\\\\b[^\\\\W].+\\\\b\")\n\ntranslated_questions\n#> [1] \"Explain the system of linear equations that come from middle school math\""
+  },
+  {
+    "objectID": "middle_school.html#chatgpt-영문-답변",
+    "href": "middle_school.html#chatgpt-영문-답변",
+    "title": "chatGPT",
+    "section": "\n2.3 chatGPT 영문 답변",
+    "text": "2.3 chatGPT 영문 답변\n\n\nanswer_model <- create_completion(\n    model=\"text-davinci-003\",\n    prompt = translated_questions,\n    max_tokens=1024,\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\nchatGPT_answer <- answer_model$choices$text\ncat(chatGPT_answer)\n#> \n#> \n#> Linear equations are used to represent linear relationships between two variables. In mathematics, a linear equation is an equation that describes a straight line. Examples of linear equations include y=x+3, x+2y=3, 3x2+2=6x+5, etc. In middle school math, linear equations are used to solve various problems involving geometry, linear functions, and basic algebraic equations. For example, a student may be asked to solve the equation y=2x+3 to find the value of x when y=4. Linear equations can be manipulated using the four basic operations (addition, subtraction, multiplication, and division) in order to isolate the variable of interest (in this case, x)."
+  },
+  {
+    "objectID": "middle_school.html#chatgpt-답변-번역",
+    "href": "middle_school.html#chatgpt-답변-번역",
+    "title": "chatGPT",
+    "section": "\n2.4 chatGPT 답변 번역",
+    "text": "2.4 chatGPT 답변 번역\n\n\nchatGPT_answer_request <- glue::glue(\"한국어로 번역해주세요: {chatGPT_answer}\")\n\nreturn_model <- create_completion(\n    model=\"text-davinci-003\",\n    prompt = chatGPT_answer_request,\n    max_tokens=1024,\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\ncat(return_model$choices$text)\n#>  \n#> \n#> 선형 방정식은 두 변수 간의 선형 관계를 나타내기 위해 사용됩니다. 수학에서, 선형 방정식은 직선을 설명하는 방정식입니다. 선형 방정식의 예로는 y=x+3, x+2y=3, 3x2+2=6x+5 등이 있습니다. 중학교 수학에서는 선형 방정식이 지리학, 선형 함수 및 기본 대수 방정식에 관련된 다양한 문제를 해결하는 데 사용됩니다. 예를 들어, 학생에게 y=2x+3 과의 방정식을 해결하여 y=4가 되는 x 값을 찾아라고 묻을 수 있습니다. 선형 방정식은 4가지 기본 연산(덧셈, 뺄셈, 곱셈, 나눗셈)을 이용하여 관심이 있는 변수(이 경우 x)를 분리 시킬 수 있습니다."
   }
 ]

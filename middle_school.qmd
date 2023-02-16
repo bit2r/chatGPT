@@ -1,0 +1,112 @@
+---
+title: "chatGPT"
+subtitle: "중학수학 - 연립방정식"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: false
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - interview-callout.lua
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# 중2 수학 커리큘럼
+
+![](images/middle_school_curriculum.png)
+
+# 연립방정식
+
+1. 질문을 한글로 입력
+1. 질문을 영어로 번역
+1. 영어번역된 질문을 chatGPT에 문의
+1. 영문으로 작성된 chatGPT결과를 한글로 번역
+1. 최종 한글 번역결과를 출력결과로 표시
+
+## 한글질문 준비
+
+```{r}
+library(tidyverse)
+library(openai)
+
+korean_question <- "중학교에서 수학에서 나오는 연립방정식을 설명해줘"
+korean_question
+```
+
+## 질문번역
+
+```{r}
+
+korean_question_input <- glue::glue("translate it into English: {korean_question}")
+
+question_model <- create_completion(
+    model="text-davinci-003",
+    prompt = korean_question_input,
+    max_tokens=1024,
+    openai_api_key = Sys.getenv("OPEN_AI_KEY")
+)
+
+translated_questions <- str_extract(question_model$choices$text, "\\b[^\\W].+\\b")
+
+translated_questions
+```
+
+## chatGPT 영문 답변
+
+```{r}
+
+answer_model <- create_completion(
+    model="text-davinci-003",
+    prompt = translated_questions,
+    max_tokens=1024,
+    openai_api_key = Sys.getenv("OPEN_AI_KEY")
+)
+
+chatGPT_answer <- answer_model$choices$text
+cat(chatGPT_answer)
+```
+
+## chatGPT 답변 번역
+
+```{r}
+
+chatGPT_answer_request <- glue::glue("한국어로 번역해주세요: {chatGPT_answer}")
+
+return_model <- create_completion(
+    model="text-davinci-003",
+    prompt = chatGPT_answer_request,
+    max_tokens=1024,
+    openai_api_key = Sys.getenv("OPEN_AI_KEY")
+)
+
+cat(return_model$choices$text)
+```
+
+
+
