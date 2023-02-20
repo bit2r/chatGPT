@@ -1,0 +1,13 @@
+name: chatGPT
+title: chatGPT
+username:
+account: r2bit
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8330229
+bundleId: 6855945
+url: https://r2bit.shinyapps.io/chatGPT/
+when: 1676594535.14835
+lastSyncTime: 1676594535.14836
+asMultiple: FALSE
+asStatic: FALSE

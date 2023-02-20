@@ -1,0 +1,52 @@
+---
+title: "chatGPT"
+subtitle: "DeepL 번역 API"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - interview-callout.lua
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# `deeplR` 패키지
+
+한국에서는 서비스가 되지 않아 API를 사용할 수 없어요... 
+근데 일본은 ㅎㅎ 
+
+```{r}
+library(deeplr)
+library(tidyverse)
+
+
+
+```
+
+

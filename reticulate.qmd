@@ -1,0 +1,136 @@
+---
+title: "chatGPT"
+subtitle: "파이썬 환경구축"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - interview-callout.lua
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+![](images/python_with_R.png)
+
+# 파이썬 환경 설정
+
+`reticulate` 패키지로 콘다 파이썬 환경을 구축한다.
+필요한 경우 패키지도 설치한다.
+
+[[Riddhiman (Apr 19, 2022), 'Getting started with Python using R and reticulate'](https://rtichoke.netlify.app/post/getting_started_with_reticulate/)]{.aside}
+
+```{r}
+# install.packages("reticulate")
+library(reticulate)
+
+# conda_list()
+use_condaenv(condaenv = "r-reticulate")
+
+# py_install(packages = c("pandas", "scikit-learn"))
+```
+
+# 데이터 가져오기
+
+[펭귄 데이터](https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv)를 다운로드 받아 로컬 컴퓨터 `data` 폴더에 저장시킨다.
+
+```{r}
+library(tidyverse)
+
+fs::dir_create("data")
+download.file(url = "https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv", destfile = "data/penguins_cleaned.csv")
+
+penguin_df <- readr::read_csv("data/penguins_cleaned.csv")
+
+penguin_df
+```
+
+# 파이썬 기계학습 모형
+
+파이썬 sklearn 패키지로 펭귄 성별예측 모형을 구축하자. 
+
+:::{.panel-tabset}
+
+## 파이썬 코드
+
+```python
+# "code/penguin_sex_clf.py"
+
+import pandas as pd
+penguins = pd.read_csv('data/penguins_cleaned.csv')
+
+penguins_df = penguins[['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex']]
+
+# Ordinal feature encoding
+# https://www.kaggle.com/pratik1120/penguin-dataset-eda-classification-and-clustering
+df = penguins_df.copy()
+
+target_mapper = {'male':0, 'female':1}
+def target_encode(val):
+    return target_mapper[val]
+
+df['sex'] = df['sex'].apply(target_encode)
+
+# Separating X and Y
+X = df.drop('sex', axis=1)
+Y = df['sex']
+
+# Build random forest model
+from sklearn.ensemble import RandomForestClassifier
+clf = RandomForestClassifier(n_estimators=100)
+clf.fit(X, Y)
+```
+
+## R 환경 불러오기
+
+```{r}
+source_python("code/penguin_sex_clf.py")
+
+clf
+```
+
+:::
+
+# 시각화
+
+파이썬 기계학습 결과를 R로 가져와서 변수 중요도를 시각화한다. 
+
+```{r}
+feat_tbl <- tibble(features = clf$feature_names_in_,
+                   importance = clf$feature_importances_)
+
+feat_tbl %>% 
+  ggplot(aes(x = fct_reorder(features, importance), y = importance)) +
+    geom_point(size = 3) +
+    geom_segment( aes(x=features, xend=features, y=0, yend=importance)) +
+    labs(y = "Feature 중요도", x = "Feature",
+         title = "펭귄 암수 예측모형 Feature 중요도") +
+    coord_flip() +
+    theme_bw(base_family = "AppleGothic")
+```
+

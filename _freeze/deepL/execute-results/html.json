@@ -1,0 +1,14 @@
+{
+  "hash": "74ee183d1cbbc9e68b31564bf51e04ed",
+  "result": {
+    "markdown": "---\ntitle: \"chatGPT\"\nsubtitle: \"DeepL 번역 API\"\nauthor:\n  - name: 이광춘\n    url: https://www.linkedin.com/in/kwangchunlee/\n    affiliation: 한국 R 사용자회\n    affiliation-url: https://github.com/bit2r\ntitle-block-banner: true\n#title-block-banner: \"#562457\"\nformat:\n  html:\n    css: css/quarto.css\n    theme: flatly\n    code-fold: true\n    toc: true\n    toc-depth: 3\n    toc-title: 목차\n    number-sections: true\n    highlight-style: github    \n    self-contained: false\nfilters:\n   - lightbox\n   - interview-callout.lua\nlightbox: auto\nlink-citations: yes\nknitr:\n  opts_chunk: \n    message: false\n    warning: false\n    collapse: true\n    comment: \"#>\" \n    R.options:\n      knitr.graphics.auto_pdf: true\neditor_options: \n  chunk_output_type: console\n---\n\n\n# `deeplR` 패키지\n\n한국에서는 서비스가 되지 않아 API를 사용할 수 없어요... \n근데 일본은 ㅎㅎ \n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(deeplr)\nlibrary(tidyverse)\n\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

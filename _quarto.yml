@@ -34,12 +34,20 @@ website:
           text: "데이터 과학문제"
       - text: "APIs"
         menu:
+        - href: reticulate.qmd
+          text: "파이썬 환경구축"
         - href: hf.qmd
           text: "Hugging Face"
         - href: hf_windows.qmd
           text: "Hugging Face(윈도우)"
         - href: koGPT.qmd
           text: "HuggingfaceR"
+      - text: "SEN"
+        menu:
+        - href: deepL.qmd
+          text: "DeepL 번역 API"
+        - href: middle_school.qmd
+          text: "중학수학 - 연립방정식"
       - href: blog.qmd
         text: "게시글"
     right:
