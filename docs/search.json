@@ -67,14 +67,14 @@
     "href": "blog.html",
     "title": "블로그",
     "section": "",
-    "text": "AI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\nJan 27, 2023\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\nJan 26, 2023\n\n\n이광춘\n\n\n\n\n\n\nNo matching items"
+    "text": "AI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 20일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "chatGPT",
     "section": "",
-    "text": "가자…\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nAI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 13일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
+    "text": "1 모형 크기\n\n\n2019년\n2021년\n2022년\n\n\n\n\n\n(Sanh et al., 2019)\n\n\n\n\n\n\nEfficient Natural Language Processing\n\n\n\n\n![langcon 2023 by 신정규(images/LLM_langcon2023.png)\n\n\n\n\n2 거대언어모형 성능\n\n\n(Wei et al., 2022)\n\n\n\n3 수학\nLewkowycz et al. (2022)\n\n\n미네르바 LM\n손으로 풀기\n시각화\nSympy 해법\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(tidyverse)\n\ngiven_line <- function(x)  10 + 4 * x\nsolve_line <- function(x) -10 + 4 *x\n\nggplot() +\n  geom_point(aes(x = 5, y = 10), size = 3) +\n  geom_function(fun = given_line, color = \"blue\", size = 1.5) +\n  geom_function(fun = solve_line, color = \"red\", size = 1.5, alpha = 0.5) +\n  theme_classic() +\n  scale_x_continuous(limits = c(-7, 7), breaks = seq(-7, 7, 1)) +\n  scale_y_continuous(limits = c(-20, 20), breaks = seq(-20, 20, 1)) +\n  geom_vline(xintercept = 0) +\n  geom_hline(yintercept = 0) \n\n\n\n\n\n\n\n\n\n\nfrom sympy import *\n\nx, y, b = symbols('x y b')\n\ngiven_eq = y - (4*x + 10)\n\nparallel_eq = y - (4*x + b)\n\nintercept_eq = parallel_eq.subs([(x, 5), (y, 10)])\n\nsolveset(Eq(intercept_eq, 0), b)\n#> {-10}\n\n\n\n\n\n\n\n\n\n참고문헌\n\nLewkowycz, A., Andreassen, A., Dohan, D., Dyer, E., Michalewski, H., Ramasesh, V., Slone, A., Anil, C., Schlag, I., Gutman-Solo, T., et al. (2022). Solving quantitative reasoning problems with language models. arXiv Preprint arXiv:2206.14858.\n\n\nSanh, V., Debut, L., Chaumond, J., & Wolf, T. (2019). DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter. arXiv Preprint arXiv:1910.01108.\n\n\nWei, J., Tay, Y., Bommasani, R., Raffel, C., Zoph, B., Borgeaud, S., Yogatama, D., Bosma, M., Zhou, D., Metzler, D., et al. (2022). Emergent abilities of large language models. arXiv Preprint arXiv:2206.07682."
   },
   {
     "objectID": "codex.html",

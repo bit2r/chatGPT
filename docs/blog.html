@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="kr" xml:lang="kr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.280">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -115,15 +115,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "type": "overlay",
   "limit": 20,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색"
   }
 }</script>
 <script>
@@ -158,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/quarto.css">
 </head>
 
 <body class="nav-fixed">
@@ -181,29 +181,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="./index.html">
  <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./project.html">
- <span class="menu-text">Projects</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-generative-ai" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Generative AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">    
+        <li>
+    <a class="dropdown-item" href="./project.html">
+ <span class="dropdown-text">Projects</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./codex.html">
+ <span class="dropdown-text">OpenAI Codex</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./image2image.html">
+ <span class="dropdown-text">이미지 생성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./math.html">
+ <span class="dropdown-text">수학문제</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding.html">
+ <span class="dropdown-text">R 코딩개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./interview.html">
+ <span class="dropdown-text">데이터 과학문제</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-apis" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">APIs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-apis">    
+        <li>
+    <a class="dropdown-item" href="./hf.html">
+ <span class="dropdown-text">Hugging Face</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hf_windows.html">
+ <span class="dropdown-text">Hugging Face(윈도우)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./koGPT.html">
+ <span class="dropdown-text">HuggingfaceR</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link active" href="./blog.html" aria-current="page">
  <span class="menu-text">게시글</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/bit2r/chatGPT"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://r2bit.com">
+ <span class="menu-text">R사용자회</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/LAION-AI/Open-Assistant"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Open Assistant</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rtutor.ai/">
+ <span class="menu-text">RTutor</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html">
  <span class="menu-text">About</span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
-</i> 
- <span class="menu-text"></span></a>
   </li>  
 </ul>
               <div class="quarto-toggle-container">
@@ -218,7 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
-      <div class="quarto-title-block"><div><h1 class="title">블로그</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+      <div class="quarto-title-block"><div><h1 class="title">블로그</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> 코드</button></div></div>
                       </div>
   </div>
     
@@ -236,7 +290,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="IDE">IDE <span class="quarto-category-count">(2)</span></div><div class="category" data-category="chatGPT">chatGPT <span class="quarto-category-count">(1)</span></div><div class="category" data-category="copilot">copilot <span class="quarto-category-count">(2)</span></div><div class="category" data-category="jupyter">jupyter <span class="quarto-category-count">(1)</span></div><div class="category" data-category="rstudio">rstudio <span class="quarto-category-count">(1)</span></div><div class="category" data-category="vscode">vscode <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">분류</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">전체 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="IDE">IDE <span class="quarto-category-count">(2)</span></div><div class="category" data-category="chatGPT">chatGPT <span class="quarto-category-count">(1)</span></div><div class="category" data-category="copilot">copilot <span class="quarto-category-count">(2)</span></div><div class="category" data-category="jupyter">jupyter <span class="quarto-category-count">(1)</span></div><div class="category" data-category="rstudio">rstudio <span class="quarto-category-count">(1)</span></div><div class="category" data-category="vscode">vscode <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -251,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="IDE,rstudio,jupyter,vscode,copilot" data-listing-date-sort="1674745200000" data-listing-file-modified-sort="1674793090978" data-listing-reading-time-sort="0.5">
+<div class="quarto-post image-right" data-index="0" data-categories="IDE,rstudio,jupyter,vscode,copilot" data-listing-date-sort="1676818800000" data-listing-file-modified-sort="1675167142797" data-listing-reading-time-sort="0.5">
 <div class="thumbnail">
 <p><a href="./posts/20230127-ide/ide_war.html"> <img src="./images/ide_war_ds.png" class="thumnail-image"> </a></p>
 </div>
@@ -290,7 +344,7 @@ copilot
 <div class="metadata">
 <a href="./posts/20230127-ide/ide_war.html">
 <div class="listing-date">
-Jan 27, 2023
+2023년 02월 20일
 </div>
 <div class="listing-author">
 이광춘
@@ -298,7 +352,7 @@ Jan 27, 2023
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="IDE,vscode,copilot,chatGPT" data-listing-date-sort="1674658800000" data-listing-file-modified-sort="1674793309091" data-listing-reading-time-sort="6.185">
+<div class="quarto-post image-right" data-index="1" data-categories="IDE,vscode,copilot,chatGPT" data-listing-date-sort="1674658800000" data-listing-file-modified-sort="1675167142796" data-listing-reading-time-sort="6.185">
 <div class="thumbnail">
 <p><a href="./posts/20230126-vscode/ide_vscode.html"> <img src="./images/vscode_R_extension.png" class="thumnail-image"> </a></p>
 </div>
@@ -334,7 +388,7 @@ chatGPT
 <div class="metadata">
 <a href="./posts/20230126-vscode/ide_vscode.html">
 <div class="listing-date">
-Jan 26, 2023
+2023년 01월 26일
 </div>
 <div class="listing-author">
 이광춘
@@ -344,7 +398,7 @@ Jan 26, 2023
 </div>
 </div>
 <div class="listing-no-matching d-none">
-No matching items
+일치 없음
 </div>
 </div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -502,12 +556,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "복사완료!");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "복사완료!");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
@@ -645,7 +699,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "블로그"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">listing:</span></span>
@@ -658,7 +712,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="an">page-layout:</span><span class="co"> full</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

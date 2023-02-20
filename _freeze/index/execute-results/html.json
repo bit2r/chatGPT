@@ -1,0 +1,16 @@
+{
+  "hash": "f97874736f55ec1e8f9e0248d0acd9b1",
+  "result": {
+    "markdown": "---\ntitle: \"chatGPT\"\nsubtitle: \"들어가며\"\nauthor:\n  - name: 이광춘\n    url: https://www.linkedin.com/in/kwangchunlee/\n    affiliation: 한국 R 사용자회\n    affiliation-url: https://github.com/bit2r\ntitle-block-banner: true\n#title-block-banner: \"#562457\"\nformat:\n  html:\n    css: css/quarto.css\n    theme: flatly\n    code-fold: false\n    toc: true\n    toc-depth: 3\n    toc-title: 목차\n    number-sections: true\n    highlight-style: github    \n    self-contained: false\nfilters:\n   - lightbox\nlightbox: auto\nknitr:\n  opts_chunk: \n    message: false\n    warning: false\n    collapse: true\n    comment: \"#>\" \n    R.options:\n      knitr.graphics.auto_pdf: true\neditor_options: \n  chunk_output_type: console\nbibliography: bibliography.bib\nlink-citations: yes\ncsl: apa-single-spaced.csl\n---\n\n\n\n# 모형 크기\n\n\n:::{.panel-tabset}\n\n## 2019년 \n\n![[@sanh2019distilbert]](images/LLM_2019.png)\n\n## 2021년\n\n![[Efficient Natural Language Processing](https://hanlab.mit.edu/projects/efficientnlp_old/)](images/LLM_2021.png)\n\n## 2022년 \n\n![[langcon 2023 by 신정규](https://songys.github.io/2023Langcon/)(images/LLM_langcon2023.png)\n\n\n:::\n\n\n# 거대언어모형 성능\n\n\n![[@wei2022emergent]](images/LLM_few_shot.png)\n\n\n# 수학\n\n[@lewkowycz2022solving]{.aside}\n\n:::{.panel-tabset}\n\n## 미네르바 LM\n\n![](images/math_minerva.png)\n\n## 손으로 풀기\n\n![](images/LLM_hand.jpg){width=50%}\n\n\n## 시각화\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n\ngiven_line <- function(x)  10 + 4 * x\nsolve_line <- function(x) -10 + 4 *x\n\nggplot() +\n  geom_point(aes(x = 5, y = 10), size = 3) +\n  geom_function(fun = given_line, color = \"blue\", size = 1.5) +\n  geom_function(fun = solve_line, color = \"red\", size = 1.5, alpha = 0.5) +\n  theme_classic() +\n  scale_x_continuous(limits = c(-7, 7), breaks = seq(-7, 7, 1)) +\n  scale_y_continuous(limits = c(-20, 20), breaks = seq(-20, 20, 1)) +\n  geom_vline(xintercept = 0) +\n  geom_hline(yintercept = 0) \n```\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n\n\n## Sympy 해법\n\n\n::: {.cell}\n\n```{.python .cell-code}\nfrom sympy import *\n\nx, y, b = symbols('x y b')\n\ngiven_eq = y - (4*x + 10)\n\nparallel_eq = y - (4*x + b)\n\nintercept_eq = parallel_eq.subs([(x, 5), (y, 10)])\n\nsolveset(Eq(intercept_eq, 0), b)\n#> {-10}\n```\n:::\n\n\n:::\n\n\n\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

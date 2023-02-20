@@ -1,15 +1,124 @@
 ---
 title: "chatGPT"
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
-page-layout: full
+subtitle: "들어가며"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
 title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: false
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+bibliography: bibliography.bib
+link-citations: yes
+csl: apa-single-spaced.csl
 ---
 
 
- 가자...
+# 모형 크기
+
+
+:::{.panel-tabset}
+
+## 2019년 
+
+![[@sanh2019distilbert]](images/LLM_2019.png)
+
+## 2021년
+
+![[Efficient Natural Language Processing](https://hanlab.mit.edu/projects/efficientnlp_old/)](images/LLM_2021.png)
+
+## 2022년 
+
+![[langcon 2023 by 신정규](https://songys.github.io/2023Langcon/)(images/LLM_langcon2023.png)
+
+
+:::
+
+
+# 거대언어모형 성능
+
+
+![[@wei2022emergent]](images/LLM_few_shot.png)
+
+
+# 수학
+
+[@lewkowycz2022solving]{.aside}
+
+:::{.panel-tabset}
+
+## 미네르바 LM
+
+![](images/math_minerva.png)
+
+## 손으로 풀기
+
+![](images/LLM_hand.jpg){width=50%}
+
+
+## 시각화
+
+```{r}
+library(tidyverse)
+
+given_line <- function(x)  10 + 4 * x
+solve_line <- function(x) -10 + 4 *x
+
+ggplot() +
+  geom_point(aes(x = 5, y = 10), size = 3) +
+  geom_function(fun = given_line, color = "blue", size = 1.5) +
+  geom_function(fun = solve_line, color = "red", size = 1.5, alpha = 0.5) +
+  theme_classic() +
+  scale_x_continuous(limits = c(-7, 7), breaks = seq(-7, 7, 1)) +
+  scale_y_continuous(limits = c(-20, 20), breaks = seq(-20, 20, 1)) +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) 
+
+```
+
+## Sympy 해법
+
+```{python}
+from sympy import *
+
+x, y, b = symbols('x y b')
+
+given_eq = y - (4*x + 10)
+
+parallel_eq = y - (4*x + b)
+
+intercept_eq = parallel_eq.subs([(x, 5), (y, 10)])
+
+solveset(Eq(intercept_eq, 0), b)
+
+```
+
+:::
+
+
+
+

@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="kr" xml:lang="kr"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.280">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
+<meta name="author" content="이광춘">
 <title>chatGPT</title>
 <style>
 code{white-space: pre-wrap;}
@@ -83,8 +81,26 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
-
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -94,8 +110,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./images/profile.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -107,7 +121,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -125,48 +141,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-detached-cancel-button-title": "취소",
     "search-submit-button-title": "검색"
   }
-}</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="css/quarto.css">
+}</script><link rel="stylesheet" href="css/quarto.css">
 </head>
-
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">chatGPT</span>
@@ -177,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
@@ -185,8 +165,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-generative-ai" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Generative AI</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">    
-        <li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">
+<li>
     <a class="dropdown-item" href="./project.html">
  <span class="dropdown-text">Projects</span></a>
   </li>  
@@ -211,13 +191,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">데이터 과학문제</span></a>
   </li>  
     </ul>
-  </li>
+</li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-apis" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">APIs</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-apis">    
-        <li>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-apis">
+<li>
     <a class="dropdown-item" href="./hf.html">
  <span class="dropdown-text">Hugging Face</span></a>
   </li>  
@@ -230,14 +210,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">HuggingfaceR</span></a>
   </li>  
     </ul>
-  </li>
+</li>
   <li class="nav-item">
     <a class="nav-link" href="./blog.html">
  <span class="menu-text">게시글</span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/bit2r/chatGPT"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
@@ -260,149 +240,172 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
+<div class="quarto-toggle-container">
                   <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
               </div>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
       <div class="quarto-title-block"><div><h1 class="title">chatGPT</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> 코드</button></div></div>
+            <p class="subtitle lead">들어가며</p>
                       </div>
   </div>
     
-  
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-heading">소속</div>
+    
+      <div class="quarto-title-meta-contents">
+      <a href="https://www.linkedin.com/in/kwangchunlee/">이광춘</a> 
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://github.com/bit2r">
+              한국 R 사용자회
+              </a>
+            </p>
+        </div>
+      </div>
+
   <div class="quarto-title-meta">
 
-      
+        
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">분류</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">전체 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="IDE">IDE <span class="quarto-category-count">(2)</span></div><div class="category" data-category="chatGPT">chatGPT <span class="quarto-category-count">(1)</span></div><div class="category" data-category="copilot">copilot <span class="quarto-category-count">(2)</span></div><div class="category" data-category="jupyter">jupyter <span class="quarto-category-count">(1)</span></div><div class="category" data-category="rstudio">rstudio <span class="quarto-category-count">(1)</span></div><div class="category" data-category="vscode">vscode <span class="quarto-category-count">(2)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#%EB%AA%A8%ED%98%95-%ED%81%AC%EA%B8%B0" id="toc-모형-크기" class="nav-link active" data-scroll-target="#%EB%AA%A8%ED%98%95-%ED%81%AC%EA%B8%B0"><span class="toc-section-number">1</span>  모형 크기</a></li>
+  <li><a href="#%EA%B1%B0%EB%8C%80%EC%96%B8%EC%96%B4%EB%AA%A8%ED%98%95-%EC%84%B1%EB%8A%A5" id="toc-거대언어모형-성능" class="nav-link" data-scroll-target="#%EA%B1%B0%EB%8C%80%EC%96%B8%EC%96%B4%EB%AA%A8%ED%98%95-%EC%84%B1%EB%8A%A5"><span class="toc-section-number">2</span>  거대언어모형 성능</a></li>
+  <li><a href="#%EC%88%98%ED%95%99" id="toc-수학" class="nav-link" data-scroll-target="#%EC%88%98%ED%95%99"><span class="toc-section-number">3</span>  수학</a></li>
+  </ul></nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
-
-
-
-
-<p>가자…</p>
-
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><section id="모형-크기" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> 모형 크기</h1>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">2019년</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">2021년</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">2022년</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/LLM_2019.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="[@sanh2019distilbert]"><img src="images/LLM_2019.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption"><span class="citation" data-cites="sanh2019distilbert">(<a href="#ref-sanh2019distilbert" role="doc-biblioref">Sanh et al., 2019</a>)</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/LLM_2021.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Efficient Natural Language Processing"><img src="images/LLM_2021.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption"><a href="https://hanlab.mit.edu/projects/efficientnlp_old/">Efficient Natural Language Processing</a></figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>![<a href="https://songys.github.io/2023Langcon/">langcon 2023 by 신정규</a>(images/LLM_langcon2023.png)</p>
+</div>
+</div>
+</div>
+</section><section id="거대언어모형-성능" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> 거대언어모형 성능</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/LLM_few_shot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="[@wei2022emergent]"><img src="images/LLM_few_shot.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption"><span class="citation" data-cites="wei2022emergent">(<a href="#ref-wei2022emergent" role="doc-biblioref">Wei et al., 2022</a>)</span></figcaption><p></p>
+</figure>
+</div>
+</section><section id="수학" class="level1 page-columns page-full" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> 수학</h1>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><span class="citation" data-cites="lewkowycz2022solving">Lewkowycz et al. (<a href="#ref-lewkowycz2022solving" role="doc-biblioref">2022</a>)</span></span></div></div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">미네르바 LM</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">손으로 풀기</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">시각화</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Sympy 해법</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/math_minerva.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/math_minerva.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/LLM_hand.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/LLM_hand.jpg" class="img-fluid figure-img" style="width:50.0%"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">given_line</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>  <span class="fl">10</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> <span class="va">x</span></span>
+<span><span class="va">solve_line</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">-</span><span class="fl">10</span> <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span><span class="va">x</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">5</span>, y <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">geom_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">given_line</span>, color <span class="op">=</span> <span class="st">"blue"</span>, size <span class="op">=</span> <span class="fl">1.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">geom_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">solve_line</span>, color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">1.5</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">7</span>, <span class="fl">7</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">7</span>, <span class="fl">7</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="index_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x, y, b <span class="op">=</span> symbols(<span class="st">'x y b'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>given_eq <span class="op">=</span> y <span class="op">-</span> (<span class="dv">4</span><span class="op">*</span>x <span class="op">+</span> <span class="dv">10</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>parallel_eq <span class="op">=</span> y <span class="op">-</span> (<span class="dv">4</span><span class="op">*</span>x <span class="op">+</span> b)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>intercept_eq <span class="op">=</span> parallel_eq.subs([(x, <span class="dv">5</span>), (y, <span class="dv">10</span>)])</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>solveset(Eq(intercept_eq, <span class="dv">0</span>), b)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; {-10}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
 
 
 <!-- -->
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="IDE,rstudio,jupyter,vscode,copilot" data-listing-date-sort="1676214000000" data-listing-file-modified-sort="1675167142797" data-listing-reading-time-sort="0.5">
-<div class="thumbnail">
-<p><a href="./posts/20230127-ide/ide_war.html"> <img src="./images/ide_war_ds.png" class="thumnail-image"> </a></p>
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">참고문헌</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-lewkowycz2022solving" class="csl-entry" role="doc-biblioentry">
+Lewkowycz, A., Andreassen, A., Dohan, D., Dyer, E., Michalewski, H., Ramasesh, V., Slone, A., Anil, C., Schlag, I., Gutman-Solo, T., et al. (2022). Solving quantitative reasoning problems with language models. <em>arXiv Preprint arXiv:2206.14858</em>.
 </div>
-<div class="body">
-<a href="./posts/20230127-ide/ide_war.html">
-<h3 class="no-anchor listing-title">
-AI가 쏘아올린 작은 공
-</h3>
-<div class="listing-subtitle">
-
+<div id="ref-sanh2019distilbert" class="csl-entry" role="doc-biblioentry">
+Sanh, V., Debut, L., Chaumond, J., &amp; Wolf, T. (2019). DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter. <em>arXiv Preprint arXiv:1910.01108</em>.
 </div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('IDE'); return false;">
-IDE
+<div id="ref-wei2022emergent" class="csl-entry" role="doc-biblioentry">
+Wei, J., Tay, Y., Bommasani, R., Raffel, C., Zoph, B., Borgeaud, S., Yogatama, D., Bosma, M., Zhou, D., Metzler, D., et al. (2022). Emergent abilities of large language models. <em>arXiv Preprint arXiv:2206.07682</em>.
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('rstudio'); return false;">
-rstudio
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('jupyter'); return false;">
-jupyter
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('vscode'); return false;">
-vscode
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('copilot'); return false;">
-copilot
-</div>
-</div>
-<a href="./posts/20230127-ide/ide_war.html">
-<div class="listing-description">
-<p>AI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/20230127-ide/ide_war.html">
-<div class="listing-date">
-2023년 02월 13일
-</div>
-<div class="listing-author">
-이광춘
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="IDE,vscode,copilot,chatGPT" data-listing-date-sort="1674658800000" data-listing-file-modified-sort="1675167142796" data-listing-reading-time-sort="6.185">
-<div class="thumbnail">
-<p><a href="./posts/20230126-vscode/ide_vscode.html"> <img src="./images/vscode_R_extension.png" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/20230126-vscode/ide_vscode.html">
-<h3 class="no-anchor listing-title">
-Visual Studio Code
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('IDE'); return false;">
-IDE
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('vscode'); return false;">
-vscode
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('copilot'); return false;">
-copilot
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('chatGPT'); return false;">
-chatGPT
-</div>
-</div>
-<a href="./posts/20230126-vscode/ide_vscode.html">
-<div class="listing-description">
-<p>비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/20230126-vscode/ide_vscode.html">
-<div class="listing-date">
-2023년 01월 26일
-</div>
-<div class="listing-author">
-이광춘
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-일치 없음
-</div>
-</div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -701,31 +704,138 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">listing:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  contents: posts</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  sort: "date desc"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  type: default</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">  categories: true</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">  sort-ui: false</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">  filter-ui: false</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="an">page-layout:</span><span class="co"> full</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a> 가자...</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "들어가며"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> bibliography.bib</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> yes</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> apa-single-spaced.csl</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="fu"># 모형 크기</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>:::{.panel-tabset}</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2019년 </span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>![<span class="co">[</span><span class="ot">@sanh2019distilbert</span><span class="co">]</span>](images/LLM_2019.png)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2021년</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>![<span class="co">[</span><span class="ot">Efficient Natural Language Processing</span><span class="co">](https://hanlab.mit.edu/projects/efficientnlp_old/)</span>](images/LLM_2021.png)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## 2022년 </span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>![<span class="co">[</span><span class="ot">langcon 2023 by 신정규</span><span class="co">](https://songys.github.io/2023Langcon/)</span>(images/LLM_langcon2023.png)</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="fu"># 거대언어모형 성능</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>![<span class="co">[</span><span class="ot">@wei2022emergent</span><span class="co">]</span>](images/LLM_few_shot.png)</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="fu"># 수학</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@lewkowycz2022solving</span><span class="co">]</span>{.aside}</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>:::{.panel-tabset}</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## 미네르바 LM</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/math_minerva.png)</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="fu">## 손으로 풀기</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/LLM_hand.jpg)</span>{width=50%}</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## 시각화</span></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>given_line <span class="ot">&lt;-</span> <span class="cf">function</span>(x)  <span class="dv">10</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> x</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>solve_line <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="sc">-</span><span class="dv">10</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span>x</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">5</span>, <span class="at">y =</span> <span class="dv">10</span>), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> given_line, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(<span class="at">fun =</span> solve_line, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>, <span class="dv">7</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">7</span>, <span class="dv">7</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">20</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>) </span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sympy 해법</span></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>x, y, b <span class="op">=</span> symbols(<span class="st">'x y b'</span>)</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>given_eq <span class="op">=</span> y <span class="op">-</span> (<span class="dv">4</span><span class="op">*</span>x <span class="op">+</span> <span class="dv">10</span>)</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>parallel_eq <span class="op">=</span> y <span class="op">-</span> (<span class="dv">4</span><span class="op">*</span>x <span class="op">+</span> b)</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>intercept_eq <span class="op">=</span> parallel_eq.subs([(x, <span class="dv">5</span>), (y, <span class="dv">10</span>)])</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>solveset(Eq(intercept_eq, <span class="dv">0</span>), b)</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
+</code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left"><a href="https://quarto.org/">Quarto</a> 개발</div>   
       <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer>
-
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","loop":true});</script>
 
 
 </body></html>
