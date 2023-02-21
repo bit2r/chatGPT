@@ -38,6 +38,8 @@ csl: apa-single-spaced.csl
 ---
 
 
+![](images/tech_giant.png)
+
 # 모형 크기
 
 
