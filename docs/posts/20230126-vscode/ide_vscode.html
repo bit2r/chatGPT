@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="kr" xml:lang="kr"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.280">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
-<meta name="dcterms.date" content="2023-01-26">
 <meta name="description" content="비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.">
 <title>chatGPT - Visual Studio Code</title>
 <style>
@@ -111,17 +110,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "type": "overlay",
   "limit": 20,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색"
   }
-}</script><link rel="stylesheet" href="../../styles.css">
+}</script><link rel="stylesheet" href="../../css/quarto.css">
 </head>
 <body class="nav-fixed">
 
@@ -141,24 +140,102 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="../../index.html">
  <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../project.html">
- <span class="menu-text">Projects</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-generative-ai" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Generative AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">
+<li>
+    <a class="dropdown-item" href="../../project.html">
+ <span class="dropdown-text">Projects</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../codex.html">
+ <span class="dropdown-text">OpenAI Codex</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../image2image.html">
+ <span class="dropdown-text">이미지 생성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../math.html">
+ <span class="dropdown-text">수학문제</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../rcoding.html">
+ <span class="dropdown-text">R 코딩개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../interview.html">
+ <span class="dropdown-text">데이터 과학문제</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-apis" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">APIs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-apis">
+<li>
+    <a class="dropdown-item" href="../../reticulate.html">
+ <span class="dropdown-text">파이썬 환경구축</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../hf.html">
+ <span class="dropdown-text">Hugging Face</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../hf_windows.html">
+ <span class="dropdown-text">Hugging Face(윈도우)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../koGPT.html">
+ <span class="dropdown-text">HuggingfaceR</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sen" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">SEN</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sen">
+<li>
+    <a class="dropdown-item" href="../../deepL.html">
+ <span class="dropdown-text">DeepL 번역 API</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../middle_school.html">
+ <span class="dropdown-text">중학수학 - 연립방정식</span></a>
+  </li>  
+    </ul>
+</li>
   <li class="nav-item">
     <a class="nav-link" href="../../blog.html">
  <span class="menu-text">게시글</span></a>
   </li>  
 </ul>
 <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item">
-    <a class="nav-link" href="../../about.html">
- <span class="menu-text">About</span></a>
-  </li>  
-  <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/bit2r/chatGPT"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://r2bit.com">
+ <span class="menu-text">R사용자회</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/LAION-AI/Open-Assistant"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Open Assistant</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rtutor.ai/">
+ <span class="menu-text">RTutor</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">About</span></a>
   </li>  
 </ul>
 <div class="quarto-toggle-container">
@@ -169,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title">Visual Studio Code</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+      <div class="quarto-title-block"><div><h1 class="title">Visual Studio Code</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> 코드</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 표시</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 숨기기</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">소스 코드 표시</a></li></ul></div></div>
                   <div>
         <div class="description">
           비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.
@@ -185,8 +262,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
     
   <div class="quarto-title-meta-author">
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-heading">Affiliation</div>
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-heading">소속</div>
     
       <div class="quarto-title-meta-contents">
       <a href="https://www.linkedin.com/in/kwangchunlee/">이광춘</a> 
@@ -204,9 +281,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
         
       <div>
-      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-heading">공개</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">January 26, 2023</p>
+        <p class="date">2023년 01월 26일</p>
       </div>
     </div>
     
@@ -218,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
 <li>
@@ -332,7 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>literate programming을 구현한 <code>.qmd</code>, <code>.Rmd</code> 파일를 작성하여 다양한 데이터 과학 문서를 작성할 수 있다.</p>
 <p><a href="https://pandoc.org/installing.html"><strong>Pandoc</strong> a universal document converter</a> 웹사이트에서 <code>pandoc</code>을 설치해야 한다. pandoc 최신버전을 설치하면 되고 버전이 2.16 이상이 되어야 활용이 가능하다.</p>
 <div class="cell">
-<details open=""><summary>Code</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span> pandoc <span class="sc">--</span>version</span>
+<details open=""><summary>코드</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span> pandoc <span class="sc">--</span>version</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pandoc <span class="dv">2</span>.<span class="fl">19.2</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Compiled with pandoc<span class="sc">-</span>types <span class="dv">1</span>.<span class="dv">22</span>.<span class="fl">2.1</span>, texmath <span class="dv">0</span>.<span class="dv">12</span>.<span class="fl">5.2</span>, skylighting <span class="fl">0.13</span>,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>citeproc <span class="dv">0</span>.<span class="dv">8</span>.<span class="fl">0.1</span>, ipynb <span class="fl">0.2</span>, hslua <span class="dv">2</span>.<span class="fl">2.1</span></span>
@@ -340,7 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>User data directory<span class="sc">:</span> C<span class="sc">:</span>\Users\statkclee\AppData\Roaming\pandoc</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">Copyright</span> (C) <span class="dv">2006-2022</span> John MacFarlane. Web<span class="sc">:</span>  https<span class="sc">:</span><span class="er">//</span>pandoc.org</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>This is free software; see the source <span class="cf">for</span> copying conditions. There is no</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>warranty, not even <span class="cf">for</span> merchantability or fitness <span class="cf">for</span> a particular purpose.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>warranty, not even <span class="cf">for</span> merchantability or fitness <span class="cf">for</span> a particular purpose.</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="keybindings.json" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="keybindings.json"><code>keybindings.json</code></h2>
@@ -408,7 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
 <span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
 <span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="html-미리보기" class="level2"><h2 class="anchored" data-anchor-id="html-미리보기">HTML 미리보기</h2>
 <p><code>.Rmd</code> 파일을 <kbd> CTRL </kbd> + <kbd> Shift </kbd> + <kbd> k </kbd> 단축키로 컴파일시키면 <code>.html</code> 파일이 생성된다. <code>.html</code> 파일 결과를 직접 실시간으로 확인하고자 한다면, 마이크로소프트가 개발한 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server"><code>Live Preview - VS Code Extension</code></a> 플러그인을 설치한다.</p>
 <p><img src="../../images/vscode_open-context-menu.gif" class="img-fluid"></p>
@@ -438,7 +515,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"editor.action.inlineSuggest.commit"</span><span class="fu">,</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"textInputFocus &amp;&amp; inlineSuggestionHasIndentationLessThanTabSize &amp;&amp; inlineSuggestionVisible &amp;&amp; !editorTabMovesFocus"</span>     </span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img src="../../images/vscode_copilot.gif" class="img-fluid"></p>
 
 
@@ -599,12 +676,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "복사완료!");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "복사완료!");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
@@ -742,7 +819,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Visual Studio Code"</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다."</span></span>
@@ -976,7 +1053,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a><span class="in">```</span>    </span>
 <span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a><span class="al">![](../../images/vscode_copilot.gif)</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">

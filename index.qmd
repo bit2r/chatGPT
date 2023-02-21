@@ -119,6 +119,82 @@ solveset(Eq(intercept_eq, 0), b)
 
 :::
 
+# 왜 거대 언어 모형인가?
 
+question-answering tasks (open-domain closed-book variant), cloze and sentence-completion tasks, Winograd-style tasks, in-context reading comprehension tasks, common-sense reasoning tasks, SuperGLUE tasks, and natural language inference tasks가 포함된 총 29개 작업 중 28개 영역에서 PaLM 540B가 이전 거대 언어모형 GLaM, GPT-3, Megatron-Turing NLG, Gopher, Chinchilla, LaMDA 을 가볍게 능가했다.
+
+[[Sharan Narang and Aakanksha Chowdhery (APRIL 04, 2022), "Pathways Language Model (PaLM): Scaling to 540 Billion Parameters for Breakthrough Performance", Software Engineers, Google Research](https://ai.googleblog.com/2022/04/pathways-language-model-palm-scaling-to.html)]{.aside}
+
+:::{.panel-tabset}
+
+## 거대모형 진화
+
+![](images/LLM_tree.gif)
+
+## 80억 패러미터
+
+![](images/LLM_tree_8_billion.png)
+
+## 640억 패러미터
+
+![](images/LLM_tree_62_billion.png)
+
+## 400억 패러미터
+
+![](images/LLM_tree_40_billion.png)
+
+## 5,400억 패러미터
+
+![](images/LLM_tree_540_billion.png)
+
+## 성능
+
+![](images/LLM_tree_performance.png)
+
+:::
+
+# 사례 (PaLM)
+
+5,400 억 패러미터를 장착한 Pathways Language Model (PaLM)의 성능을 실감해보자.
+
+:::{.panel-tabset}
+
+## 다양한 기능
+
+![](images/PaLM_overview.gif)
+
+## 추론
+
+추론(Reasoning)
+
+![](images/PaLM_reasoning.png)
+
+
+## 코딩
+
+코딩(Code Generation)
+
+![](images/PaLM_coding.gif)
+
+:::
+
+
+# 개발비
+
+[[Estimating 🌴PaLM's training cost](https://blog.heim.xyz/palm-training-cost/)]{.aside}
+
+언어 모형 개발은 2010년 이후 개발비용이 급격히 증가하고 있으며 그 추세는 상상을 초월한다.
+
+:::{.panel-tabset}
+
+## Our World in Data
+
+<iframe src="https://ourworldindata.org/grapher/artificial-intelligence-training-computation?yScale=linear&time=2017-06-12..2022-07-01" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+## Lennart Heim
+
+<iframe src="https://ourworldindata.org/grapher/artificial-intelligence-training-computation?yScale=linear&time=earliest..latest&country=~PaLM+%28540B%29" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+:::
 
 

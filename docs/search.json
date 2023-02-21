@@ -1,59 +1,10 @@
 [
   {
-    "objectID": "project.html",
-    "href": "project.html",
+    "objectID": "index.html",
+    "href": "index.html",
     "title": "chatGPT",
     "section": "",
-    "text": "1 1 백만 사용자 \n\n1 백만 가입자를 가질 때까지 걸린 소요시간을 보면 chatGPT 의 영향력을 파악할 수 있다.\n\n\n\n\n\n2 패러다임\n\n- Pre-Software: Special-purpose computer  - Software 1.0: Design the Algorithm  - Software 2.0: Design the Dataset  - Software 3.0: Design the Prompt\n\n\nFeature Engineering\nArchitecture Engineering\nObjective Engineering\nPrompt Engineering\n\n\n\n\n\n패러다임: (비신경망)지도학습 (Fully Supervised Learning)\n\n전성기: 2015년까지 최고 전성기 구가\n\n특징\n\n주로 비신경망 기계학습이 사용\n수작업으로 Feature를 추출\n\n\n\n대표작\n\n수작업 Feature 추출 후 SVM(support vector machine) 기계학습 모형\n수작업 Feature 추출 후 CRF(conditional random fields)\n\n\n\n\n\n\n\n패러다임: 신경망 지도학습(Fully Supervised Learning)\n\n전성기: 대략 2013~2018\n\n특징\n\n신경망(Neural Network) 의존\n수작업으로 Feature를 손볼 필요는 없으나 신경망 네트워크는 수정해야 함(LSTM vs CNN)\n종종 사전학습된 언어모형을 사용하나 임베딩(embedding) 같은 얕은(shallow) Feature를 적용\n\n\n\n대표작\n\n텍스트 분류작업에 CNN 사용\n\n\n\n\n\n\n\n패러다임: 사전학습(pre-training), 미세조정(fine-tuning)\n\n전성기: 2017~현재\n\n특징\n\n사전학습된 언어모형을 전체 모형의 초기값으로 사용\n아키텍쳐 디자인에 작업이 덜 필요하지만 목적함수(Objective function) 엔지니어링은 필요\n\n\n\n대표작\n\nBERT → Fine Tuning\n\n\n\n\n\n\n\n패러다임: 사전학습(pre-training), 프롬프트(Prompt), 예측(Predict)\n\n전성기: 2019~현재\n\n특징\n\nNLP 작업이 언어모형(Language Model)에 전적으로 의존\n얕던 깊던 Feature 추출, 예측 등 작업이 전적으로 언어모형에 의존\n프롬프트 공학이 필요\n\n\n\n대표작\n\nGPT3\n\n\n\n\n\n\n\n3 Prompt engineering\n\nInstructions\nQuestion\nInput data\nExamples\n\nXavier (Xavi) Amatriain(January 5, 2023), “Prompt Engineering 101 - Introduction and resources”, Linkedin,Prompt Engineering - Learn how to use AI models with prompt engineering\n\n4 Genearative AI\n\n구분\n\ngeneration: text → image\nclassification: image → text\ntransformation: image → image (or text → text)\n\n\nAI 프로젝트\n\nGPT-3\nDalle.2 (text-to-image)\nMeta’s AI (text-to-video)\nGoogle AI (text-to-video)\nStable Diffusion (text-to-image)\nTesla AI (humanoid robot + self-driving)\n\n\ntext-to-X\n\ntext-to-gif (T2G)\ntext-to-3D (T2D)\ntext-to-text (T2T)\ntext-to-NFT (T2N)\ntext-to-code (T2C)\ntext-to-image (T2I)\ntext-to-audio (T2S)\ntext-to-video (T2V)\ntext-to-music (T2M)\ntext-to-motion (T2Mo)\n\n\n기타\n\nbrain-to-text (B2T)\nimage-to-text (I2T)\nspeech-to-text (S2T)\naudio-to-audio (A2A)\ntweet-to-image (Tt2I)\ntext-to-sound (T2S)\n\n\n\n\n\n\n\n\n5 데이터와 하드웨어\n\n\n\n\n\n6 Open Assistant\n\n\n\n\nLabel Asssistant Reply\n\n\n\n\nInitial Prompt\n\n\n\n\nLabel Prompter Reply\n\n\n\n\n\n\nReply as Assistant\n\n\n\n\nReply as User\n\n\n\n그림 1: Open Assistant"
-  },
-  {
-    "objectID": "project.html#shiny-flex-dashboard---sales-forecasting-and-anomaly-detection",
-    "href": "project.html#shiny-flex-dashboard---sales-forecasting-and-anomaly-detection",
-    "title": "chatGPT 와 데이터 과학",
-    "section": "Shiny Flex Dashboard - Sales forecasting and anomaly detection",
-    "text": "Shiny Flex Dashboard - Sales forecasting and anomaly detection\n\n\nImage 2\n\n\n\nDescription 2"
-  },
-  {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code.\n\nCode1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
-  },
-  {
-    "objectID": "posts/20230126-vscode/ide_vscode.html",
-    "href": "posts/20230126-vscode/ide_vscode.html",
-    "title": "Visual Studio Code",
-    "section": "",
-    "text": "R을 설치한다.\n\nlanguageserver 패키지를 설치한다.\n\n\ninstall.packages(\"languageserver\")\n\n\nVisual Studio Code 에서 R extension을 설치한다.\n\n.R 파일에 개발을 시작한다.\n\n\nR extension을 설치하게 되면 VS Code에서 R 코드 개발을 원활히 할 수 있도록 지원한다. VS Code 에 필수적인 R extension은 다음을 꼽을 수 있다. R extension을 설치하면 RStudio에서 기본설정으로 지정된 단축키를 별도 설정없이 자동 지정되기 때문에 편리하다.\n\nR - REditorSupport\nR Markdown All in One\nQuarto\nR Debugger\n\n\n\nVS Code를 실행하고 R Extension 설치\n\n\n\nR Extension 설치되면 코드 창 상단에 실행버튼이 활성화되고 Ctrl + Enter 혹은 Ctrl + Shift + Enter\n\n\nR 코드 실행화면"
-  },
-  {
-    "objectID": "posts/20230126-vscode/ide_vscode.html#keybindings.json",
-    "href": "posts/20230126-vscode/ide_vscode.html#keybindings.json",
-    "title": "Visual Studio Code",
-    "section": "keybindings.json",
-    "text": "keybindings.json\nkeybindings.json 파일에 R 혹은 파이썬 코드를 삽입시킬 수 있는 키보드 단축키를 등록시킨다. 자료출처: VS Code: Add a Rmarkdown Code Chunk Snippet Key Binding\n// Place your key bindings in this file to override the defaults\n[\n    // keybindings for R scripts. \n    {\n        \"key\": \"Ctrl+Shift+m\",\n        \"command\": \"type\",\n        \"args\": { \"text\": \" %>% \" },\n        \"when\": \"editorTextFocus && editorLangId == r\"\n      },\n      {\n        \"key\": \"Alt+-\",\n        \"command\": \"type\",\n        \"args\": { \"text\": \" <- \" },\n        \"when\": \"editorTextFocus && editorLangId == r\"\n      },\n      // keybindings for Rmarkdown\n      {\n        \"key\": \"Ctrl+Shift+m\",\n        \"command\": \"type\",\n        \"args\": { \"text\": \" %>% \" },\n        \"when\": \"editorTextFocus && editorLangId == rmd\"\n      },\n      {\n        \"key\": \"Alt+-\",\n        \"command\": \"type\",\n        \"args\": { \"text\": \" <- \" },\n        \"when\": \"editorTextFocus && editorLangId == rmd\"\n      },\n      // keybindings for R terminal (radian included)\n      {\n        \"key\": \"Ctrl+Shift+m\",\n        \"command\": \"workbench.action.terminal.sendSequence\",\n        \"args\": { \"text\": \" %>% \" },\n        \"when\": \"terminalFocus\"\n      },\n      {\n        \"key\": \"Alt+-\",\n        \"command\": \"workbench.action.terminal.sendSequence\",\n        \"args\": { \"text\": \" <- \" },\n        \"when\": \"terminalFocus\"\n      },\n      // Insert R Code chunk\n      {\n        \"key\": \"ctrl+alt+i\". \n        \"command\": \"editor.action.insertSnippet\",\n        \"when\": \"editorTextFocus\",\n        \"args\": {\"snippet\": \"```{r}\\n$0\\n```\"}\n      },\n      {\n        \"key\": \"ctrl+alt+o\". \n        \"command\": \"editor.action.insertSnippet\",\n        \"when\": \"editorTextFocus\",\n        \"args\": {\"snippet\": \"options(\\n  max.print=100,\\n  vsc.use_httpgd=TRUE,\\n  device='quartz'\\n)\"}\n      },\n      {\n        \"key\": \"ctrl+alt+m\",\n        \"command\": \"editor.action.insertSnippet\",\n        \"when\": \"editorTextFocus\",\n        \"args\":{\n          \"snippet\": \"---\\ntitle: '$0'\\nauthor: '이광춘'\\ndate: '2023-01-31'\\noutput:\\n  pagedown::html_paged:\\n    self_contained: true\\n    toc: false\\n---\\n\\n```{r setup, include=FALSE}\\nknitr::opts_chunk\\\\$set(\\n  echo = FALSE,\\n  message = FALSE,\\n  warning=FALSE\\n)\\n```\"\n        }\n      },\n\n]"
-  },
-  {
-    "objectID": "posts/20230126-vscode/ide_vscode.html#html-미리보기",
-    "href": "posts/20230126-vscode/ide_vscode.html#html-미리보기",
-    "title": "Visual Studio Code",
-    "section": "HTML 미리보기",
-    "text": "HTML 미리보기\n.Rmd 파일을  CTRL  +  Shift  +  k  단축키로 컴파일시키면 .html 파일이 생성된다. .html 파일 결과를 직접 실시간으로 확인하고자 한다면, 마이크로소프트가 개발한 Live Preview - VS Code Extension 플러그인을 설치한다."
-  },
-  {
-    "objectID": "posts/20230127-ide/ide_war.html",
-    "href": "posts/20230127-ide/ide_war.html",
-    "title": "AI가 쏘아올린 작은 공",
-    "section": "",
-    "text": "데이터 과학 편집기\n데이터 과학 제품과 서비스 개발을 위해서 IDE(통합개발환경)을 두고 RStudio와 Jupyter 두 진영으로 나눠 치열한 경쟁을 펼쳤다. 각자 장점을 두고 범위를 확대하면서 진정한 데이터 과학 패자가 되고자 한편의 드라마를 펼쳤다.\n그 중심에는 RStudio와 아나콘다가 있으며 마치 현대차와 기아차처럼 동일한 자동차인데 세부 구성과 디자인에 차이만 있을 뿐 어느 것이 더 우월하고 좋다는 마케팅을 펼쳤다.\n\n\n\n마이크로소프트의 등장\n데이터 과학 편집기에 Visual Studio Code가 등장하면서 큰 변화가 일어나고 있다. 특히 인공지능 기능을 탑재한 Extension이 VS Code에 추가되면서 기존 RStudio와 쥬피터 IDE가 하던 기능을 넘어 새로운 지평을 열어가고 있다.\n그 중심에는 GitHub을 마이크로소프트가 인수하면서 새로 출시한 부조종사(Copilot)이 있고 조만간 CodeGPT도 도입되면 기존 RStudio와 Jupyter는 기존과 전혀 다른 위상을 가지게 될 것으로 보인다."
+    "text": "1 모형 크기\n\n\n2019년\n2021년\n2022년\n\n\n\n\n\n(Sanh et al., 2019)\n\n\n\n\n\n\nEfficient Natural Language Processing\n\n\n\n\n![langcon 2023 by 신정규(images/LLM_langcon2023.png)\n\n\n\n\n2 거대언어모형 성능\n\n\n(Wei et al., 2022)\n\n\n\n3 수학\nLewkowycz et al. (2022)\n\n\n미네르바 LM\n손으로 풀기\n시각화\nSympy 해법\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(tidyverse)\n\ngiven_line <- function(x)  10 + 4 * x\nsolve_line <- function(x) -10 + 4 *x\n\nggplot() +\n  geom_point(aes(x = 5, y = 10), size = 3) +\n  geom_function(fun = given_line, color = \"blue\", size = 1.5) +\n  geom_function(fun = solve_line, color = \"red\", size = 1.5, alpha = 0.5) +\n  theme_classic() +\n  scale_x_continuous(limits = c(-7, 7), breaks = seq(-7, 7, 1)) +\n  scale_y_continuous(limits = c(-20, 20), breaks = seq(-20, 20, 1)) +\n  geom_vline(xintercept = 0) +\n  geom_hline(yintercept = 0) \n\n\n\n\n\n\n\n\n\n\nfrom sympy import *\n\nx, y, b = symbols('x y b')\n\ngiven_eq = y - (4*x + 10)\n\nparallel_eq = y - (4*x + b)\n\nintercept_eq = parallel_eq.subs([(x, 5), (y, 10)])\n\nsolveset(Eq(intercept_eq, 0), b)\n#> {-10}\n\n\n\n\n\n4 왜 거대 언어 모형인가?\nquestion-answering tasks (open-domain closed-book variant), cloze and sentence-completion tasks, Winograd-style tasks, in-context reading comprehension tasks, common-sense reasoning tasks, SuperGLUE tasks, and natural language inference tasks가 포함된 총 29개 작업 중 28개 영역에서 PaLM 540B가 이전 거대 언어모형 GLaM, GPT-3, Megatron-Turing NLG, Gopher, Chinchilla, LaMDA 을 가볍게 능가했다.\nSharan Narang and Aakanksha Chowdhery (APRIL 04, 2022), “Pathways Language Model (PaLM): Scaling to 540 Billion Parameters for Breakthrough Performance”, Software Engineers, Google Research\n\n\n거대모형 진화\n80억 패러미터\n640억 패러미터\n400억 패러미터\n5,400억 패러미터\n성능\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5 사례 (PaLM)\n5,400 억 패러미터를 장착한 Pathways Language Model (PaLM)의 성능을 실감해보자.\n\n\n다양한 기능\n추론\n코딩\n\n\n\n\n\n\n\n\n\n추론(Reasoning)\n\n\n\n\n\n\n코딩(Code Generation)\n\n\n\n\n\n\n\n\n6 개발비\nEstimating 🌴PaLM’s training cost\n언어 모형 개발은 2010년 이후 개발비용이 급격히 증가하고 있으며 그 추세는 상상을 초월한다.\n\n\nOur World in Data\nLennart Heim\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n참고문헌\n\nLewkowycz, A., Andreassen, A., Dohan, D., Dyer, E., Michalewski, H., Ramasesh, V., Slone, A., Anil, C., Schlag, I., Gutman-Solo, T., et al. (2022). Solving quantitative reasoning problems with language models. arXiv Preprint arXiv:2206.14858.\n\n\nSanh, V., Debut, L., Chaumond, J., & Wolf, T. (2019). DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter. arXiv Preprint arXiv:1910.01108.\n\n\nWei, J., Tay, Y., Bommasani, R., Raffel, C., Zoph, B., Borgeaud, S., Yogatama, D., Bosma, M., Zhou, D., Metzler, D., et al. (2022). Emergent abilities of large language models. arXiv Preprint arXiv:2206.07682."
   },
   {
     "objectID": "about.html",
@@ -67,18 +18,7 @@
     "href": "blog.html",
     "title": "블로그",
     "section": "",
-    "text": "AI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 20일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "chatGPT",
-    "section": "",
-<<<<<<< HEAD
-    "text": "1 모형 크기\n\n\n2019년\n2021년\n2022년\n\n\n\n\n\n(Sanh et al., 2019)\n\n\n\n\n\n\nEfficient Natural Language Processing\n\n\n\n\n![langcon 2023 by 신정규(images/LLM_langcon2023.png)\n\n\n\n\n2 거대언어모형 성능\n\n\n(Wei et al., 2022)\n\n\n\n3 수학\nLewkowycz et al. (2022)\n\n\n미네르바 LM\n손으로 풀기\n시각화\nSympy 해법\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(tidyverse)\n\ngiven_line <- function(x)  10 + 4 * x\nsolve_line <- function(x) -10 + 4 *x\n\nggplot() +\n  geom_point(aes(x = 5, y = 10), size = 3) +\n  geom_function(fun = given_line, color = \"blue\", size = 1.5) +\n  geom_function(fun = solve_line, color = \"red\", size = 1.5, alpha = 0.5) +\n  theme_classic() +\n  scale_x_continuous(limits = c(-7, 7), breaks = seq(-7, 7, 1)) +\n  scale_y_continuous(limits = c(-20, 20), breaks = seq(-20, 20, 1)) +\n  geom_vline(xintercept = 0) +\n  geom_hline(yintercept = 0) \n\n\n\n\n\n\n\n\n\n\nfrom sympy import *\n\nx, y, b = symbols('x y b')\n\ngiven_eq = y - (4*x + 10)\n\nparallel_eq = y - (4*x + b)\n\nintercept_eq = parallel_eq.subs([(x, 5), (y, 10)])\n\nsolveset(Eq(intercept_eq, 0), b)\n#> {-10}\n\n\n\n\n\n\n\n\n\n참고문헌\n\nLewkowycz, A., Andreassen, A., Dohan, D., Dyer, E., Michalewski, H., Ramasesh, V., Slone, A., Anil, C., Schlag, I., Gutman-Solo, T., et al. (2022). Solving quantitative reasoning problems with language models. arXiv Preprint arXiv:2206.14858.\n\n\nSanh, V., Debut, L., Chaumond, J., & Wolf, T. (2019). DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter. arXiv Preprint arXiv:1910.01108.\n\n\nWei, J., Tay, Y., Bommasani, R., Raffel, C., Zoph, B., Borgeaud, S., Yogatama, D., Bosma, M., Zhou, D., Metzler, D., et al. (2022). Emergent abilities of large language models. arXiv Preprint arXiv:2206.07682."
-=======
-    "text": "가자…\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nAI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 16일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
->>>>>>> 7a6a3d17310d13e1aa95beee8e647ecc1fa6171a
+    "text": "AI가 쏘아올린 작은 공\n\n\n\n\n\n\n\nIDE\n\n\nrstudio\n\n\njupyter\n\n\nvscode\n\n\ncopilot\n\n\n\n\nAI가 기존 데이터 과학 패러다임을 바꾸고 있습니다.\n\n\n\n\n\n\n2023년 02월 21일\n\n\n이광춘\n\n\n\n\n\n\n  \n\n\n\n\nVisual Studio Code\n\n\n\n\n\n\n\nIDE\n\n\nvscode\n\n\ncopilot\n\n\nchatGPT\n\n\n\n\n비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.\n\n\n\n\n\n\n2023년 01월 26일\n\n\n이광춘\n\n\n\n\n\n\n일치 없음"
   },
   {
     "objectID": "codex.html",
@@ -88,109 +28,11 @@
     "text": "1 Codex\nLow-code and GPT-3: easier said than done with OpenAI Codex\n\n주석을 코드로 전환\n맥락을 보고 다음 코드를 자동 작성\n라이브러리, API 등 추천을 통해 새로운 지식 전달\n주석 자동 추가\n동일한 기능을 갖지면 효율성 좋은 코드로 변환\n\n2 이미지 생성\n\n코드library(tidyverse)\nlibrary(openai)\n\n# usethis::edit_r_environ(scope = \"project\")\n\nresponse <- create_image(\n    prompt = \"Create R programming language logo for Korean R user group in a kandinsky and Gustav Klimt style embracing Python programming language supported by many contributors around the world, which must include R logo from R consortium and wikipedia\",\n    n = 1,\n    size = \"256x256\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\nlibrary(magick)\nastronaut <- image_read(response$data$url)\nprint(astronaut)\n#> # A tibble: 1 × 7\n#>   format width height colorspace matte filesize density\n#>   <chr>  <int>  <int> <chr>      <lgl>    <int> <chr>  \n#> 1 PNG      256    256 sRGB       FALSE   197109 72x72\n\n\n\n\n\n\n\n\n3 예측모형\n\n코드penguins_classification_instruction <- \n  glue::glue(\"# R language\\n\",\n             \"Build sex classification machine learning model withe palmer penguin datatset\\n\",\n             \"Use palmer penguins data package for dataset\\n\",\n             \"Use tidymodels framework\\n\",\n             \"Use random forest model\\n\",\n             \"Include evaluation metrics including accruacy, precision, reall\")\n\nbuild_model <- create_completion(\n    model=\"code-davinci-002\",\n    prompt = penguins_classification_instruction,\n    max_tokens=1024,\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\n\n\n코드\nparsed_code <- str_split(build_model$choices$text, \"\\n\")[[1]]\n\nwrite_lines(parsed_code, \"palmer_penguins.Rmd\")"
   },
   {
-    "objectID": "palmer_penguins.html",
-    "href": "palmer_penguins.html",
+    "objectID": "deepL.html",
+    "href": "deepL.html",
     "title": "chatGPT",
     "section": "",
-    "text": "Install packages library  palmerpenguins  and tidymodels\n\n코드install.packages('palmerpenguins')\ninstall.packages('tidymodels')\n\n\n\nLoad libraries\n\n코드library(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n코드library(palmerpenguins)\nlibrary(data.table)\n\n\nAttaching package: 'data.table'\n\n\nThe following objects are masked from 'package:dplyr':\n\n    between, first, last\n\n코드library(ggplot2)\nlibrary(tidyverse)\n\n── Attaching packages\n───────────────────────────────────────\ntidyverse 1.3.2 ──\n\n\n✔ tibble  3.1.8     ✔ purrr   0.3.5\n✔ tidyr   1.2.1     ✔ stringr 1.5.0\n✔ readr   2.1.3     ✔ forcats 0.5.2\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ data.table::between() masks dplyr::between()\n✖ dplyr::filter()       masks stats::filter()\n✖ data.table::first()   masks dplyr::first()\n✖ dplyr::lag()          masks stats::lag()\n✖ data.table::last()    masks dplyr::last()\n✖ purrr::transpose()    masks data.table::transpose()\n\n코드library(tidymodels)\n\n── Attaching packages ────────────────────────────────────── tidymodels 1.0.0 ──\n✔ broom        1.0.1     ✔ rsample      1.1.1\n✔ dials        1.1.0     ✔ tune         1.0.1\n✔ infer        1.0.4     ✔ workflows    1.1.2\n✔ modeldata    1.0.1     ✔ workflowsets 1.0.0\n✔ parsnip      1.0.3     ✔ yardstick    1.1.0\n✔ recipes      1.0.3     \n── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──\n✖ data.table::between() masks dplyr::between()\n✖ scales::discard()     masks purrr::discard()\n✖ dplyr::filter()       masks stats::filter()\n✖ data.table::first()   masks dplyr::first()\n✖ recipes::fixed()      masks stringr::fixed()\n✖ dplyr::lag()          masks stats::lag()\n✖ data.table::last()    masks dplyr::last()\n✖ yardstick::spec()     masks readr::spec()\n✖ recipes::step()       masks stats::step()\n✖ purrr::transpose()    masks data.table::transpose()\n• Search for functions across packages at https://www.tidymodels.org/find/\n\n코드library(ggfortify)\n\nRegistered S3 method overwritten by 'ggfortify':\n  method          from   \n  autoplot.glmnet parsnip\n\n코드library(recipes)\nlibrary(rsample)\nlibrary(yardstick)\nlibrary(caret)\n\nLoading required package: lattice\n\nAttaching package: 'caret'\n\nThe following objects are masked from 'package:yardstick':\n\n    precision, recall, sensitivity, specificity\n\nThe following object is masked from 'package:purrr':\n\n    lift\n\n코드library(profvis)\nlibrary(purrr)"
-  },
-  {
-    "objectID": "palmer_penguins.html#load-data",
-    "href": "palmer_penguins.html#load-data",
-    "title": "chatGPT",
-    "section": "Load data",
-    "text": "Load data\n\n코드penguins <- penguins %>% \n  mutate_if(is.character, as.factor) %>% \n  drop_na()"
-  },
-  {
-    "objectID": "palmer_penguins.html#eda",
-    "href": "palmer_penguins.html#eda",
-    "title": "chatGPT",
-    "section": "EDA",
-    "text": "EDA\nThe penguins dataset includes measurements of flow characteristics of the components. Only pterosaur data are considered in this project\n\n코드glimpse(penguins)\n\nRows: 333\nColumns: 7\n$ species           <fct> Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            <fct> Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    <dbl> 39.1, 39.5, 40.3, 36.7, 39.3, 38.9, 39.2, 41.1, 38.6…\n$ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, 19.3, 20.6, 17.8, 19.6, 17.6, 21.2…\n$ flipper_length_mm <int> 181, 186, 195, 193, 190, 181, 195, 182, 191, 198, 18…\n$ body_mass_g       <int> 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3200, 3800…\n$ sex               <fct> male, female, female, female, male, female, male, fe…\n\n\n\n코드summary(penguins)\n\n      species          island    bill_length_mm  bill_depth_mm  \n Adelie   :146   Biscoe   :163   Min.   :32.10   Min.   :13.10  \n Chinstrap: 68   Dream    :123   1st Qu.:39.50   1st Qu.:15.60  \n Gentoo   :119   Torgersen: 47   Median :44.50   Median :17.30  \n                                 Mean   :43.99   Mean   :17.16  \n                                 3rd Qu.:48.60   3rd Qu.:18.70  \n                                 Max.   :59.60   Max.   :21.50  \n flipper_length_mm  body_mass_g       sex     \n Min.   :172       Min.   :2700   female:165  \n 1st Qu.:190       1st Qu.:3550   male  :168  \n Median :197       Median :4050               \n Mean   :201       Mean   :4207               \n 3rd Qu.:213       3rd Qu.:4775               \n Max.   :231       Max.   :6300               \n\n\n\n코드penguins %>% select_if(Negate(is.factor)) %>% \n  cor() %>% \n  as.data.frame() %>% \n  rowid_to_column() %>% \n  pivot_longer(- rowid) %>% \n  arrange(desc(abs(value))) %>% \n  filter(value != 1)\n\n# A tibble: 12 × 3\n   rowid name               value\n   <int> <chr>              <dbl>\n 1     3 body_mass_g        0.873\n 2     4 flipper_length_mm  0.873\n 3     1 flipper_length_mm  0.653\n 4     3 bill_length_mm     0.653\n 5     1 body_mass_g        0.589\n 6     4 bill_length_mm     0.589\n 7     2 flipper_length_mm -0.578\n 8     3 bill_depth_mm     -0.578\n 9     2 body_mass_g       -0.472\n10     4 bill_depth_mm     -0.472\n11     1 bill_depth_mm     -0.229\n12     2 bill_length_mm    -0.229\n\n\n\n코드site_number <- 1:4\npdf('penguin_data.pdf')\npar(mfrow = c(2, 2))\nfor (i in site_number)\n{\n  penguins %>% \n    filter(site_number == i) %>% \n    ggplot(aes(x= species, y= flipper_length_mm, fill = species, color= species)) +\n    geom_boxplot() +\n    labs(x = 'Species', y = 'Flipper length (mm)', title = paste('Fvuwerfvczefcfzccfgct', i)) +\n    theme(axis.text = element_text(size = 8))\n}\ndev.off()\n\n\n\n코드ggviolin(penguins, x = species,\n        y = bill_length_mm+bill_depth_mm,\n        fill = species)\n\n\n\n코드glimpse(penguins$sex)\ntable(penguins$sex, useNA='ifany')"
-  },
-  {
-    "objectID": "palmer_penguins.html#data-preparation",
-    "href": "palmer_penguins.html#data-preparation",
-    "title": "chatGPT",
-    "section": "Data preparation",
-    "text": "Data preparation\nSet for training and testing data\n\n코드set.seed(3223)\ntrain_test_split <- penguins %>% initial_split(prop = .7)\npenguin_train <- training(train_test_split)\npenguin_test <- testing(train_test_split)\nglimpse(penguin_train)\n\n\nCreate recipe\n\n코드softmaxkitchen <- recipe(sex ~ ., data = penguin_train) %>%\n step_other(antipodean_island, all_nominal())%>%\nstep_novel(all_nominal())%>%\nstep_other(bill_length_mm, one_of('median-virginica'))%>%\nstep_other(bill_depth_mm, one_of('median-virginica'))"
-  },
-  {
-    "objectID": "palmer_penguins.html#visualize-recipe-steps",
-    "href": "palmer_penguins.html#visualize-recipe-steps",
-    "title": "chatGPT",
-    "section": "Visualize recipe steps",
-    "text": "Visualize recipe steps\n\n코드print(softmaxkitchen)\n\n\n\n코드prepped_penguin <- prep(softmaxkitchen, new_data = penguin_train)\nprepped_penguin %>% juice() %>% get_condition(pen_length_mm) -> penguin_ped_len\nprepped_penguin %>% juice() %>% get_condition(flipper_length_mm) -> penguin_flipper_len\npenguin_ped_len\npenguin_flipper_len\npenguin_sex\nprepped_penguin %>% bake(new_data = penguin_train) -> penguin_data\npenguin_data %>% juice() -> penguin_data_j\npenguin_data_j\npenguin_pen_len <- penguin_data_j %>"
-  },
-  {
-    "objectID": "image2image.html",
-    "href": "image2image.html",
-    "title": "chatGPT",
-    "section": "",
-    "text": "역사상 가장 유명한 화풍을 chatGPT로부터 추천받아 이를 다양한 방식으로 시각화해보자. 무병장수(無病長壽)를 주제로 그림을 그려보자.\n\n무병장수 세상을 르네상스 화풍으로 그려줘 : ‘draw good health and long life world in a Renaissance style’\n\n\nrecommend the most famous painting style in history\n\n\n\n\n\n\ncompletion\n\n\n\n\n\nHere are some of the most famous painting styles in history:\n\nRenaissance: The Renaissance was a cultural movement in Italy from the 14th to the 17th century, characterized by a renewed interest in classical art, philosophy, and science. Renaissance paintings are known for their realism, balance, and harmony.\nBaroque: The Baroque style was popular in Europe from the late 16th to the early 18th century. Baroque paintings are known for their dramatic lighting, intense emotions, and dynamic compositions.\nImpressionism: Impressionism was a modernist movement in French painting in the late 19th century. Impressionist paintings are known for their loose brushstrokes, light-filled compositions, and focus on capturing fleeting moments.\nSurrealism: Surrealism was a cultural movement in the 20th century that aimed to liberate the imagination and explore the subconscious. Surrealist paintings are known for their dreamlike and fantastical imagery.\nAbstract Expressionism: Abstract Expressionism was a modernist movement in American painting in the mid-20th century. Abstract Expressionist paintings are known for their large canvases, gestural brushstrokes, and emphasis on the process of creation.\n\nThese are just a few examples of famous painting styles in history. There are many other styles that have influenced and shaped the course of art history.\n\n\n\nOpen AI - Create image API\n\n\n르네상스(Renaissance)\n바로크(Baroque)\n인상주의(Impressionism)\n초현실주의(Surrealism)\n추상표현주의(Abstract Expressionism)\n\n\n\n\n코드library(tidyverse)\nlibrary(openai)\n\n# usethis::edit_r_environ(scope = \"project\")\n\nresponse <- create_image(\n    prompt = \"draw good health and long life world in a Renaissance style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nRenaissance <- image_read(response$data$url)\nprint(Renaissance)\n\nimage_write(Renaissance, path = \"images/styles/Renaissance.png\", format = \"png\")\n\n\n\n\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Baroque style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nBaroque <- image_read(response$data$url)\nprint(Baroque)\n\nimage_write(Baroque, path = \"images/styles/Baroque.png\", format = \"png\")\n\n\n\n\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Impressionism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nImpressionism <- image_read(response$data$url)\nprint(Impressionism)\n\nimage_write(Impressionism, path = \"images/styles/Impressionism.png\", format = \"png\")\n\n\n\n\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Surrealism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nSurrealism <- image_read(response$data$url)\nprint(Surrealism)\n\nimage_write(Surrealism, path = \"images/styles/Surrealism.png\", format = \"png\")\n\n\n\n\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Abstract Expressionism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nexpressionism <- image_read(response$data$url)\nprint(expressionism)\n\nimage_write(expressionism, path = \"images/styles/expressionism.png\", format = \"png\")"
-  },
-  {
-    "objectID": "math.html",
-    "href": "math.html",
-    "title": "chatGPT",
-    "section": "",
-    "text": "함수 \\(f(x)=x^3+3 x^2+x-1\\) 에 대하여 \\(f^{\\prime}(1)\\) 의 값은?\n\n\n코드library(tidyverse)\nlibrary(openai)\n\nsolve_math_02 <- create_completion(\n    model=\"text-davinci-003\",\n    prompt = '\\\\text { 2. 함수 } f(x)=x^3+3 x^2+x-1 \\\\text { 에 대하여 } f^{\\\\prime}(1) \\\\text { 의 값은? } and explain the answer',\n    max_tokens=1024,\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\ncat(solve_math_02$choices$text)\n#> \n#> \n#> f'(1)의 값은 5입니다.\n#> f(x)는 x^3+3x^2+x-1이므로, 미분하면 f'(x) = 3x^2 + 6x + 1이 됩니다. 그리고 x = 1일 때, f'(1) = 3*1^2 + 6*1 + 1 = 5가 됩니다.\n\n\n\n\n등차수열 \\(\\left\\{a_n\\right\\}\\) 에 대하여 \\[\na_2=6, \\quad a_4+a_6=36\n\\] 일 때, \\(a_{10}\\) 의 값은?\n\n\n코드solve_math_03 <- create_completion(\n    model=\"text-davinci-003\",\n    prompt = '등차수열 $\\left\\{a_n\\right\\}$ 에 대하여\n$$\na_2=6, \\quad a_4+a_6=36\n$$\n일 때, $a_{10}$ 의 값은?',\n    max_tokens=1024,\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\ncat(solve_math_03$choices$text)\n\n\n\\[\n\\begin{align}\n& a_2 = 6 \\\\\n& a_4 + a_6 = 36 \\\\\n\\end{align}\n\\]\n등차수열의 정의에 따라 \\(a_n = a_1 + (n-1)d\\) 이므로, \\(a_1\\) 과 \\(d\\) 를 구해야 합니다.\n\\[\n\\begin{align}\n& a_2 = 6 \\\\\n& a_2 = a_1 + (2-1)d \\\\\n\\therefore \\quad & a_1 = 6 - d \\\\\n\\end{align}\n\\]\n\\[\n\\begin{align}\n& a_4 + a_6 = 36 \\\\\n& a_4 = a_1 + (4-1)d \\\\\n& a_6 = a_1 + (6-1)d \\\\\n\\therefore \\quad & a_1 + 3d + a_1 + 5d = 36\n\\end{align}\n\\]"
-  },
-  {
-    "objectID": "rcoding.html",
-    "href": "rcoding.html",
-    "title": "chatGPT",
-    "section": "",
-    "text": "gpttools GitHub 저장소에서 바로 설치한다.\nrequire(remotes)\nremotes::install_github(\"JamesHWade/gpttools\")"
-  },
-  {
-    "objectID": "rcoding.html#주석달기",
-    "href": "rcoding.html#주석달기",
-    "title": "chatGPT",
-    "section": "\n4.1 주석달기",
-    "text": "4.1 주석달기"
-  },
-  {
-    "objectID": "rcoding.html#roxygen-추가",
-    "href": "rcoding.html#roxygen-추가",
-    "title": "chatGPT",
-    "section": "\n4.2 Roxygen 추가",
-    "text": "4.2 Roxygen 추가"
-  },
-  {
-    "objectID": "rcoding.html#스크립트-함수",
-    "href": "rcoding.html#스크립트-함수",
-    "title": "chatGPT",
-    "section": "\n4.3 스크립트 → 함수",
-    "text": "4.3 스크립트 → 함수"
-  },
-  {
-    "objectID": "rcoding.html#함수에-단위-테스트-추천",
-    "href": "rcoding.html#함수에-단위-테스트-추천",
-    "title": "chatGPT",
-    "section": "\n4.4 함수에 단위 테스트 추천",
-    "text": "4.4 함수에 단위 테스트 추천"
-  },
-  {
-    "objectID": "interview.html",
-    "href": "interview.html",
-    "title": "chatGPT",
-    "section": "",
-    "text": "질문/과제\n\n\n\n\n\n기계학습 분류모형개발할 때 클래스 불균형(class imbalance) 문제를 어떻게 처리하나요?\n\n\n\n\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\n기계학습모형에서 bias 와 variance trade-off에서 존재합니다. 어떤 기계학습 모형이 bias 와 variance를 줄이는데 효과적으로 알려져 있나요?\n\n\n\n\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\n리스트와 데이터프레임 자료구조의 차이점에 대해서 말씀해 주세요.\n\n\n\n\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\nfeature engineering, data preprocessing, data cleansing이 어떻게 다른지 설명하세요.\n\n\n\n\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\n제품 설명 등 텍스트 필드 칼럼이 있습니다. 기계학습 알고리즘 분류나 예측 모형에 적용시킬 수 있는 방법을 설명해주세요."
-  },
-  {
-    "objectID": "interview.html#visualization",
-    "href": "interview.html#visualization",
-    "title": "chatGPT",
-    "section": "\n2.1 Visualization",
-    "text": "2.1 Visualization\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\nData Analytics에서 시각화는 매우 중요합니다. 어떻게 가르칠것인지 커러큘럼, 교수방법, 프로젝트 진행방법, 평가방법에 대해서 말씀해주세요. (5분)"
-  },
-  {
-    "objectID": "interview.html#eda",
-    "href": "interview.html#eda",
-    "title": "chatGPT",
-    "section": "\n2.2 EDA",
-    "text": "2.2 EDA\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\n탐색적 데이터 분석(EDA)가 훌륭한 기계학습 알고리즘 개발과 함께 매우 중요합니다. 어떻게 가르칠것인지 커러큘럼, 교수방법, 프로젝트 진행방법, 평가방법에 대해서 말씀해주세요. (5분)"
+    "text": "1 deeplR 패키지\n한국에서는 서비스가 되지 않아 API를 사용할 수 없어요… 근데 일본은 ㅎㅎ\n\n코드library(deeplr)\nlibrary(tidyverse)"
   },
   {
     "objectID": "hf.html",
@@ -312,6 +154,34 @@
     "text": "2.7 참고문헌\n\nNatural Language Processing with Transformers\nReticulate: R Interface to Python"
   },
   {
+    "objectID": "image2image.html",
+    "href": "image2image.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "역사상 가장 유명한 화풍을 chatGPT로부터 추천받아 이를 다양한 방식으로 시각화해보자. 무병장수(無病長壽)를 주제로 그림을 그려보자.\n\n무병장수 세상을 르네상스 화풍으로 그려줘 : ‘draw good health and long life world in a Renaissance style’\n\n\nrecommend the most famous painting style in history\n\n\n\n\n\n\ncompletion\n\n\n\n\n\nHere are some of the most famous painting styles in history:\n\nRenaissance: The Renaissance was a cultural movement in Italy from the 14th to the 17th century, characterized by a renewed interest in classical art, philosophy, and science. Renaissance paintings are known for their realism, balance, and harmony.\nBaroque: The Baroque style was popular in Europe from the late 16th to the early 18th century. Baroque paintings are known for their dramatic lighting, intense emotions, and dynamic compositions.\nImpressionism: Impressionism was a modernist movement in French painting in the late 19th century. Impressionist paintings are known for their loose brushstrokes, light-filled compositions, and focus on capturing fleeting moments.\nSurrealism: Surrealism was a cultural movement in the 20th century that aimed to liberate the imagination and explore the subconscious. Surrealist paintings are known for their dreamlike and fantastical imagery.\nAbstract Expressionism: Abstract Expressionism was a modernist movement in American painting in the mid-20th century. Abstract Expressionist paintings are known for their large canvases, gestural brushstrokes, and emphasis on the process of creation.\n\nThese are just a few examples of famous painting styles in history. There are many other styles that have influenced and shaped the course of art history.\n\n\n\nOpen AI - Create image API\n\n\n르네상스(Renaissance)\n바로크(Baroque)\n인상주의(Impressionism)\n초현실주의(Surrealism)\n추상표현주의(Abstract Expressionism)\n\n\n\n\n코드library(tidyverse)\nlibrary(openai)\n\n# usethis::edit_r_environ(scope = \"project\")\n\nresponse <- create_image(\n    prompt = \"draw good health and long life world in a Renaissance style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nRenaissance <- image_read(response$data$url)\nprint(Renaissance)\n\nimage_write(Renaissance, path = \"images/styles/Renaissance.png\", format = \"png\")\n\n\n\n\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Baroque style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nBaroque <- image_read(response$data$url)\nprint(Baroque)\n\nimage_write(Baroque, path = \"images/styles/Baroque.png\", format = \"png\")\n\n\n\n\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Impressionism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nImpressionism <- image_read(response$data$url)\nprint(Impressionism)\n\nimage_write(Impressionism, path = \"images/styles/Impressionism.png\", format = \"png\")\n\n\n\n\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Surrealism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nSurrealism <- image_read(response$data$url)\nprint(Surrealism)\n\nimage_write(Surrealism, path = \"images/styles/Surrealism.png\", format = \"png\")\n\n\n\n\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Abstract Expressionism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nexpressionism <- image_read(response$data$url)\nprint(expressionism)\n\nimage_write(expressionism, path = \"images/styles/expressionism.png\", format = \"png\")"
+  },
+  {
+    "objectID": "interview.html",
+    "href": "interview.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "질문/과제\n\n\n\n\n\n기계학습 분류모형개발할 때 클래스 불균형(class imbalance) 문제를 어떻게 처리하나요?\n\n\n\n\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\n기계학습모형에서 bias 와 variance trade-off에서 존재합니다. 어떤 기계학습 모형이 bias 와 variance를 줄이는데 효과적으로 알려져 있나요?\n\n\n\n\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\n리스트와 데이터프레임 자료구조의 차이점에 대해서 말씀해 주세요.\n\n\n\n\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\nfeature engineering, data preprocessing, data cleansing이 어떻게 다른지 설명하세요.\n\n\n\n\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\n제품 설명 등 텍스트 필드 칼럼이 있습니다. 기계학습 알고리즘 분류나 예측 모형에 적용시킬 수 있는 방법을 설명해주세요."
+  },
+  {
+    "objectID": "interview.html#visualization",
+    "href": "interview.html#visualization",
+    "title": "chatGPT",
+    "section": "\n2.1 Visualization",
+    "text": "2.1 Visualization\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\nData Analytics에서 시각화는 매우 중요합니다. 어떻게 가르칠것인지 커러큘럼, 교수방법, 프로젝트 진행방법, 평가방법에 대해서 말씀해주세요. (5분)"
+  },
+  {
+    "objectID": "interview.html#eda",
+    "href": "interview.html#eda",
+    "title": "chatGPT",
+    "section": "\n2.2 EDA",
+    "text": "2.2 EDA\n\n\n\n\n\n\n질문/과제\n\n\n\n\n\n탐색적 데이터 분석(EDA)가 훌륭한 기계학습 알고리즘 개발과 함께 매우 중요합니다. 어떻게 가르칠것인지 커러큘럼, 교수방법, 프로젝트 진행방법, 평가방법에 대해서 말씀해주세요. (5분)"
+  },
+  {
     "objectID": "koGPT.html",
     "href": "koGPT.html",
     "title": "chatGPT",
@@ -326,32 +196,11 @@
     "text": "2.1 인기 모형\n다운로드 횟수가 많은 hugginface 모형은 다음과 같다.\n\n코드library(reactable)\nmodels %>% \n  select(-private, -sha) %>% \n  reactable::reactable(\n    searchable = TRUE, minRows = 10,\n    columns = list(downloads = colDef(format = colFormat(separators  = TRUE)),\n                   model = colDef(align = \"center\"),\n                   task = colDef(align = \"center\")))"
   },
   {
-    "objectID": "reticulate.html",
-    "href": "reticulate.html",
+    "objectID": "math.html",
+    "href": "math.html",
     "title": "chatGPT",
     "section": "",
-    "text": "1 파이썬 환경 설정\nreticulate 패키지로 콘다 파이썬 환경을 구축한다. 필요한 경우 패키지도 설치한다.\nRiddhiman (Apr 19, 2022), ‘Getting started with Python using R and reticulate’\n\n코드# install.packages(\"reticulate\")\nlibrary(reticulate)\n\n# conda_list()\nuse_condaenv(condaenv = \"r-reticulate\")\n\n# py_install(packages = c(\"pandas\", \"scikit-learn\"))\n\n\n\n2 데이터 가져오기\n펭귄 데이터를 다운로드 받아 로컬 컴퓨터 data 폴더에 저장시킨다.\n\n코드library(tidyverse)\n\nfs::dir_create(\"data\")\ndownload.file(url = \"https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv\", destfile = \"data/penguins_cleaned.csv\")\n\npenguin_df <- readr::read_csv(\"data/penguins_cleaned.csv\")\n\npenguin_df\n#> # A tibble: 333 × 7\n#>    species island    bill_length_mm bill_depth_mm flipper_length…¹ body_…² sex  \n#>    <chr>   <chr>              <dbl>         <dbl>            <dbl>   <dbl> <chr>\n#>  1 Adelie  Torgersen           39.1          18.7              181    3750 male \n#>  2 Adelie  Torgersen           39.5          17.4              186    3800 fema…\n#>  3 Adelie  Torgersen           40.3          18                195    3250 fema…\n#>  4 Adelie  Torgersen           36.7          19.3              193    3450 fema…\n#>  5 Adelie  Torgersen           39.3          20.6              190    3650 male \n#>  6 Adelie  Torgersen           38.9          17.8              181    3625 fema…\n#>  7 Adelie  Torgersen           39.2          19.6              195    4675 male \n#>  8 Adelie  Torgersen           41.1          17.6              182    3200 fema…\n#>  9 Adelie  Torgersen           38.6          21.2              191    3800 male \n#> 10 Adelie  Torgersen           34.6          21.1              198    4400 male \n#> # … with 323 more rows, and abbreviated variable names ¹​flipper_length_mm,\n#> #   ²​body_mass_g\n\n\n\n3 파이썬 기계학습 모형\n파이썬 sklearn 패키지로 펭귄 성별예측 모형을 구축하자.\n\n\n파이썬 코드\nR 환경 불러오기\n\n\n\n# \"code/penguin_sex_clf.py\"\n\nimport pandas as pd\npenguins = pd.read_csv('data/penguins_cleaned.csv')\n\npenguins_df = penguins[['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex']]\n\n# Ordinal feature encoding\n# https://www.kaggle.com/pratik1120/penguin-dataset-eda-classification-and-clustering\ndf = penguins_df.copy()\n\ntarget_mapper = {'male':0, 'female':1}\ndef target_encode(val):\n    return target_mapper[val]\n\ndf['sex'] = df['sex'].apply(target_encode)\n\n# Separating X and Y\nX = df.drop('sex', axis=1)\nY = df['sex']\n\n# Build random forest model\nfrom sklearn.ensemble import RandomForestClassifier\nclf = RandomForestClassifier(n_estimators=100)\nclf.fit(X, Y)\n\n\n\n코드source_python(\"code/penguin_sex_clf.py\")\n\nclf\n#> RandomForestClassifier()\n\n\n\n\n\n\n4 시각화\n파이썬 기계학습 결과를 R로 가져와서 변수 중요도를 시각화한다.\n\n코드feat_tbl <- tibble(features = clf$feature_names_in_,\n                   importance = clf$feature_importances_)\n\nfeat_tbl %>% \n  ggplot(aes(x = fct_reorder(features, importance), y = importance)) +\n    geom_point(size = 3) +\n    geom_segment( aes(x=features, xend=features, y=0, yend=importance)) +\n    labs(y = \"Feature 중요도\", x = \"Feature\",\n         title = \"펭귄 암수 예측모형 Feature 중요도\") +\n    coord_flip() +\n    theme_bw(base_family = \"AppleGothic\")"
-  },
-  {
-    "objectID": "reticulate.html#파이썬-코드",
-    "href": "reticulate.html#파이썬-코드",
-    "title": "chatGPT",
-    "section": "\n3.1 파이썬 코드",
-    "text": "3.1 파이썬 코드\nimport pandas as pd\npenguins = pd.read_csv('data/penguins_cleaned.csv')\n\npenguins_df = penguins[['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex']]\n\n# Ordinal feature encoding\n# https://www.kaggle.com/pratik1120/penguin-dataset-eda-classification-and-clustering\ndf = penguins_df.copy()\n\ntarget_mapper = {'male':0, 'female':1}\ndef target_encode(val):\n    return target_mapper[val]\n\ndf['sex'] = df['sex'].apply(target_encode)\n\n# Separating X and Y\nX = df.drop('sex', axis=1)\nY = df['sex']\n\n# Build random forest model\nfrom sklearn.ensemble import RandomForestClassifier\nclf = RandomForestClassifier(n_estimators=100)\nclf.fit(X, Y)"
-  },
-  {
-    "objectID": "reticulate.html#r-환경-불러오기",
-    "href": "reticulate.html#r-환경-불러오기",
-    "title": "chatGPT",
-    "section": "\n3.2 R 환경 불러오기",
-    "text": "3.2 R 환경 불러오기\n\n코드source_python(\"code/penguin_sex_clf.py\")\n\nclf\n#> RandomForestClassifier()"
-  },
-  {
-    "objectID": "deepL.html",
-    "href": "deepL.html",
-    "title": "chatGPT",
-    "section": "",
-    "text": "1 deeplR 패키지\n한국에서는 서비스가 되지 않아 API를 사용할 수 없어요… 근데 일본은 ㅎㅎ\n\n코드library(deeplr)\nlibrary(tidyverse)"
+    "text": "함수 \\(f(x)=x^3+3 x^2+x-1\\) 에 대하여 \\(f^{\\prime}(1)\\) 의 값은?\n\n\n코드library(tidyverse)\nlibrary(openai)\n\nsolve_math_02 <- create_completion(\n    model=\"text-davinci-003\",\n    prompt = '\\\\text { 2. 함수 } f(x)=x^3+3 x^2+x-1 \\\\text { 에 대하여 } f^{\\\\prime}(1) \\\\text { 의 값은? } and explain the answer',\n    max_tokens=1024,\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\ncat(solve_math_02$choices$text)\n#> \n#> \n#> f'(1)의 값은 5입니다.\n#> f(x)는 x^3+3x^2+x-1이므로, 미분하면 f'(x) = 3x^2 + 6x + 1이 됩니다. 그리고 x = 1일 때, f'(1) = 3*1^2 + 6*1 + 1 = 5가 됩니다.\n\n\n\n\n등차수열 \\(\\left\\{a_n\\right\\}\\) 에 대하여 \\[\na_2=6, \\quad a_4+a_6=36\n\\] 일 때, \\(a_{10}\\) 의 값은?\n\n\n코드solve_math_03 <- create_completion(\n    model=\"text-davinci-003\",\n    prompt = '등차수열 $\\left\\{a_n\\right\\}$ 에 대하여\n$$\na_2=6, \\quad a_4+a_6=36\n$$\n일 때, $a_{10}$ 의 값은?',\n    max_tokens=1024,\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\ncat(solve_math_03$choices$text)\n\n\n\\[\n\\begin{align}\n& a_2 = 6 \\\\\n& a_4 + a_6 = 36 \\\\\n\\end{align}\n\\]\n등차수열의 정의에 따라 \\(a_n = a_1 + (n-1)d\\) 이므로, \\(a_1\\) 과 \\(d\\) 를 구해야 합니다.\n\\[\n\\begin{align}\n& a_2 = 6 \\\\\n& a_2 = a_1 + (2-1)d \\\\\n\\therefore \\quad & a_1 = 6 - d \\\\\n\\end{align}\n\\]\n\\[\n\\begin{align}\n& a_4 + a_6 = 36 \\\\\n& a_4 = a_1 + (4-1)d \\\\\n& a_6 = a_1 + (6-1)d \\\\\n\\therefore \\quad & a_1 + 3d + a_1 + 5d = 36\n\\end{align}\n\\]"
   },
   {
     "objectID": "middle_school.html#한글질문-준비",
@@ -380,5 +229,82 @@
     "title": "chatGPT",
     "section": "\n2.4 chatGPT 답변 번역",
     "text": "2.4 chatGPT 답변 번역\n\n\nchatGPT_answer_request <- glue::glue(\"한국어로 번역해주세요: {chatGPT_answer}\")\n\nreturn_model <- create_completion(\n    model=\"text-davinci-003\",\n    prompt = chatGPT_answer_request,\n    max_tokens=1024,\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\ncat(return_model$choices$text)\n#>  \n#> \n#> 선형 방정식은 두 변수 간의 선형 관계를 나타내기 위해 사용됩니다. 수학에서, 선형 방정식은 직선을 설명하는 방정식입니다. 선형 방정식의 예로는 y=x+3, x+2y=3, 3x2+2=6x+5 등이 있습니다. 중학교 수학에서는 선형 방정식이 지리학, 선형 함수 및 기본 대수 방정식에 관련된 다양한 문제를 해결하는 데 사용됩니다. 예를 들어, 학생에게 y=2x+3 과의 방정식을 해결하여 y=4가 되는 x 값을 찾아라고 묻을 수 있습니다. 선형 방정식은 4가지 기본 연산(덧셈, 뺄셈, 곱셈, 나눗셈)을 이용하여 관심이 있는 변수(이 경우 x)를 분리 시킬 수 있습니다."
+  },
+  {
+    "objectID": "posts/20230126-vscode/ide_vscode.html",
+    "href": "posts/20230126-vscode/ide_vscode.html",
+    "title": "Visual Studio Code",
+    "section": "",
+    "text": "R을 설치한다.\n\nlanguageserver 패키지를 설치한다.\n\n\ninstall.packages(\"languageserver\")\n\n\nVisual Studio Code 에서 R extension을 설치한다.\n\n.R 파일에 개발을 시작한다.\n\n\nR extension을 설치하게 되면 VS Code에서 R 코드 개발을 원활히 할 수 있도록 지원한다. VS Code 에 필수적인 R extension은 다음을 꼽을 수 있다. R extension을 설치하면 RStudio에서 기본설정으로 지정된 단축키를 별도 설정없이 자동 지정되기 때문에 편리하다.\n\nR - REditorSupport\nR Markdown All in One\nQuarto\nR Debugger\n\n\n\nVS Code를 실행하고 R Extension 설치\n\n\n\nR Extension 설치되면 코드 창 상단에 실행버튼이 활성화되고 Ctrl + Enter 혹은 Ctrl + Shift + Enter\n\n\nR 코드 실행화면"
+  },
+  {
+    "objectID": "posts/20230126-vscode/ide_vscode.html#keybindings.json",
+    "href": "posts/20230126-vscode/ide_vscode.html#keybindings.json",
+    "title": "Visual Studio Code",
+    "section": "keybindings.json",
+    "text": "keybindings.json\nkeybindings.json 파일에 R 혹은 파이썬 코드를 삽입시킬 수 있는 키보드 단축키를 등록시킨다. 자료출처: VS Code: Add a Rmarkdown Code Chunk Snippet Key Binding\n// Place your key bindings in this file to override the defaults\n[\n    // keybindings for R scripts. \n    {\n        \"key\": \"Ctrl+Shift+m\",\n        \"command\": \"type\",\n        \"args\": { \"text\": \" %>% \" },\n        \"when\": \"editorTextFocus && editorLangId == r\"\n      },\n      {\n        \"key\": \"Alt+-\",\n        \"command\": \"type\",\n        \"args\": { \"text\": \" <- \" },\n        \"when\": \"editorTextFocus && editorLangId == r\"\n      },\n      // keybindings for Rmarkdown\n      {\n        \"key\": \"Ctrl+Shift+m\",\n        \"command\": \"type\",\n        \"args\": { \"text\": \" %>% \" },\n        \"when\": \"editorTextFocus && editorLangId == rmd\"\n      },\n      {\n        \"key\": \"Alt+-\",\n        \"command\": \"type\",\n        \"args\": { \"text\": \" <- \" },\n        \"when\": \"editorTextFocus && editorLangId == rmd\"\n      },\n      // keybindings for R terminal (radian included)\n      {\n        \"key\": \"Ctrl+Shift+m\",\n        \"command\": \"workbench.action.terminal.sendSequence\",\n        \"args\": { \"text\": \" %>% \" },\n        \"when\": \"terminalFocus\"\n      },\n      {\n        \"key\": \"Alt+-\",\n        \"command\": \"workbench.action.terminal.sendSequence\",\n        \"args\": { \"text\": \" <- \" },\n        \"when\": \"terminalFocus\"\n      },\n      // Insert R Code chunk\n      {\n        \"key\": \"ctrl+alt+i\". \n        \"command\": \"editor.action.insertSnippet\",\n        \"when\": \"editorTextFocus\",\n        \"args\": {\"snippet\": \"```{r}\\n$0\\n```\"}\n      },\n      {\n        \"key\": \"ctrl+alt+o\". \n        \"command\": \"editor.action.insertSnippet\",\n        \"when\": \"editorTextFocus\",\n        \"args\": {\"snippet\": \"options(\\n  max.print=100,\\n  vsc.use_httpgd=TRUE,\\n  device='quartz'\\n)\"}\n      },\n      {\n        \"key\": \"ctrl+alt+m\",\n        \"command\": \"editor.action.insertSnippet\",\n        \"when\": \"editorTextFocus\",\n        \"args\":{\n          \"snippet\": \"---\\ntitle: '$0'\\nauthor: '이광춘'\\ndate: '2023-01-31'\\noutput:\\n  pagedown::html_paged:\\n    self_contained: true\\n    toc: false\\n---\\n\\n```{r setup, include=FALSE}\\nknitr::opts_chunk\\\\$set(\\n  echo = FALSE,\\n  message = FALSE,\\n  warning=FALSE\\n)\\n```\"\n        }\n      },\n\n]"
+  },
+  {
+    "objectID": "posts/20230126-vscode/ide_vscode.html#html-미리보기",
+    "href": "posts/20230126-vscode/ide_vscode.html#html-미리보기",
+    "title": "Visual Studio Code",
+    "section": "HTML 미리보기",
+    "text": "HTML 미리보기\n.Rmd 파일을  CTRL  +  Shift  +  k  단축키로 컴파일시키면 .html 파일이 생성된다. .html 파일 결과를 직접 실시간으로 확인하고자 한다면, 마이크로소프트가 개발한 Live Preview - VS Code Extension 플러그인을 설치한다."
+  },
+  {
+    "objectID": "posts/20230127-ide/ide_war.html",
+    "href": "posts/20230127-ide/ide_war.html",
+    "title": "AI가 쏘아올린 작은 공",
+    "section": "",
+    "text": "데이터 과학 편집기\n데이터 과학 제품과 서비스 개발을 위해서 IDE(통합개발환경)을 두고 RStudio와 Jupyter 두 진영으로 나눠 치열한 경쟁을 펼쳤다. 각자 장점을 두고 범위를 확대하면서 진정한 데이터 과학 패자가 되고자 한편의 드라마를 펼쳤다.\n그 중심에는 RStudio와 아나콘다가 있으며 마치 현대차와 기아차처럼 동일한 자동차인데 세부 구성과 디자인에 차이만 있을 뿐 어느 것이 더 우월하고 좋다는 마케팅을 펼쳤다.\n\n\n\n마이크로소프트의 등장\n데이터 과학 편집기에 Visual Studio Code가 등장하면서 큰 변화가 일어나고 있다. 특히 인공지능 기능을 탑재한 Extension이 VS Code에 추가되면서 기존 RStudio와 쥬피터 IDE가 하던 기능을 넘어 새로운 지평을 열어가고 있다.\n그 중심에는 GitHub을 마이크로소프트가 인수하면서 새로 출시한 부조종사(Copilot)이 있고 조만간 CodeGPT도 도입되면 기존 RStudio와 Jupyter는 기존과 전혀 다른 위상을 가지게 될 것으로 보인다."
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "1 1 백만 사용자 \n\n1 백만 가입자를 가질 때까지 걸린 소요시간을 보면 chatGPT 의 영향력을 파악할 수 있다.\n\n\n\n\n\n2 패러다임\n\n- Pre-Software: Special-purpose computer  - Software 1.0: Design the Algorithm  - Software 2.0: Design the Dataset  - Software 3.0: Design the Prompt\n\n\nFeature Engineering\nArchitecture Engineering\nObjective Engineering\nPrompt Engineering\n\n\n\n\n\n패러다임: (비신경망)지도학습 (Fully Supervised Learning)\n\n전성기: 2015년까지 최고 전성기 구가\n\n특징\n\n주로 비신경망 기계학습이 사용\n수작업으로 Feature를 추출\n\n\n\n대표작\n\n수작업 Feature 추출 후 SVM(support vector machine) 기계학습 모형\n수작업 Feature 추출 후 CRF(conditional random fields)\n\n\n\n\n\n\n\n패러다임: 신경망 지도학습(Fully Supervised Learning)\n\n전성기: 대략 2013~2018\n\n특징\n\n신경망(Neural Network) 의존\n수작업으로 Feature를 손볼 필요는 없으나 신경망 네트워크는 수정해야 함(LSTM vs CNN)\n종종 사전학습된 언어모형을 사용하나 임베딩(embedding) 같은 얕은(shallow) Feature를 적용\n\n\n\n대표작\n\n텍스트 분류작업에 CNN 사용\n\n\n\n\n\n\n\n패러다임: 사전학습(pre-training), 미세조정(fine-tuning)\n\n전성기: 2017~현재\n\n특징\n\n사전학습된 언어모형을 전체 모형의 초기값으로 사용\n아키텍쳐 디자인에 작업이 덜 필요하지만 목적함수(Objective function) 엔지니어링은 필요\n\n\n\n대표작\n\nBERT → Fine Tuning\n\n\n\n\n\n\n\n패러다임: 사전학습(pre-training), 프롬프트(Prompt), 예측(Predict)\n\n전성기: 2019~현재\n\n특징\n\nNLP 작업이 언어모형(Language Model)에 전적으로 의존\n얕던 깊던 Feature 추출, 예측 등 작업이 전적으로 언어모형에 의존\n프롬프트 공학이 필요\n\n\n\n대표작\n\nGPT3\n\n\n\n\n\n\n\n3 Prompt engineering\n\nInstructions\nQuestion\nInput data\nExamples\n\nXavier (Xavi) Amatriain(January 5, 2023), “Prompt Engineering 101 - Introduction and resources”, Linkedin,Prompt Engineering - Learn how to use AI models with prompt engineering\n\n4 Genearative AI\n\n구분\n\ngeneration: text → image\nclassification: image → text\ntransformation: image → image (or text → text)\n\n\nAI 프로젝트\n\nGPT-3\nDalle.2 (text-to-image)\nMeta’s AI (text-to-video)\nGoogle AI (text-to-video)\nStable Diffusion (text-to-image)\nTesla AI (humanoid robot + self-driving)\n\n\ntext-to-X\n\ntext-to-gif (T2G)\ntext-to-3D (T2D)\ntext-to-text (T2T)\ntext-to-NFT (T2N)\ntext-to-code (T2C)\ntext-to-image (T2I)\ntext-to-audio (T2S)\ntext-to-video (T2V)\ntext-to-music (T2M)\ntext-to-motion (T2Mo)\n\n\n기타\n\nbrain-to-text (B2T)\nimage-to-text (I2T)\nspeech-to-text (S2T)\naudio-to-audio (A2A)\ntweet-to-image (Tt2I)\ntext-to-sound (T2S)\n\n\n\n\n\n\n\n\n5 데이터와 하드웨어\n\n\n\n\n\n6 Open Assistant\n\n\n\n\nLabel Asssistant Reply\n\n\n\n\nInitial Prompt\n\n\n\n\nLabel Prompter Reply\n\n\n\n\n\n\nReply as Assistant\n\n\n\n\nReply as User\n\n\n\n그림 1: Open Assistant"
+  },
+  {
+    "objectID": "rcoding.html",
+    "href": "rcoding.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "gpttools GitHub 저장소에서 바로 설치한다.\nrequire(remotes)\nremotes::install_github(\"JamesHWade/gpttools\")"
+  },
+  {
+    "objectID": "rcoding.html#주석달기",
+    "href": "rcoding.html#주석달기",
+    "title": "chatGPT",
+    "section": "\n4.1 주석달기",
+    "text": "4.1 주석달기"
+  },
+  {
+    "objectID": "rcoding.html#roxygen-추가",
+    "href": "rcoding.html#roxygen-추가",
+    "title": "chatGPT",
+    "section": "\n4.2 Roxygen 추가",
+    "text": "4.2 Roxygen 추가"
+  },
+  {
+    "objectID": "rcoding.html#스크립트-함수",
+    "href": "rcoding.html#스크립트-함수",
+    "title": "chatGPT",
+    "section": "\n4.3 스크립트 → 함수",
+    "text": "4.3 스크립트 → 함수"
+  },
+  {
+    "objectID": "rcoding.html#함수에-단위-테스트-추천",
+    "href": "rcoding.html#함수에-단위-테스트-추천",
+    "title": "chatGPT",
+    "section": "\n4.4 함수에 단위 테스트 추천",
+    "text": "4.4 함수에 단위 테스트 추천"
+  },
+  {
+    "objectID": "reticulate.html",
+    "href": "reticulate.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "1 파이썬 환경 설정\nreticulate 패키지로 콘다 파이썬 환경을 구축한다. 필요한 경우 패키지도 설치한다.\nRiddhiman (Apr 19, 2022), ‘Getting started with Python using R and reticulate’\n\n코드# install.packages(\"reticulate\")\nlibrary(reticulate)\n\n# conda_list()\nuse_condaenv(condaenv = \"r-reticulate\")\n\n# py_install(packages = c(\"pandas\", \"scikit-learn\"))\n\n\n\n2 데이터 가져오기\n펭귄 데이터를 다운로드 받아 로컬 컴퓨터 data 폴더에 저장시킨다.\n\n코드library(tidyverse)\n\nfs::dir_create(\"data\")\ndownload.file(url = \"https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv\", destfile = \"data/penguins_cleaned.csv\")\n\npenguin_df <- readr::read_csv(\"data/penguins_cleaned.csv\")\n\npenguin_df\n#> # A tibble: 333 × 7\n#>    species island    bill_length_mm bill_depth_mm flipper_length…¹ body_…² sex  \n#>    <chr>   <chr>              <dbl>         <dbl>            <dbl>   <dbl> <chr>\n#>  1 Adelie  Torgersen           39.1          18.7              181    3750 male \n#>  2 Adelie  Torgersen           39.5          17.4              186    3800 fema…\n#>  3 Adelie  Torgersen           40.3          18                195    3250 fema…\n#>  4 Adelie  Torgersen           36.7          19.3              193    3450 fema…\n#>  5 Adelie  Torgersen           39.3          20.6              190    3650 male \n#>  6 Adelie  Torgersen           38.9          17.8              181    3625 fema…\n#>  7 Adelie  Torgersen           39.2          19.6              195    4675 male \n#>  8 Adelie  Torgersen           41.1          17.6              182    3200 fema…\n#>  9 Adelie  Torgersen           38.6          21.2              191    3800 male \n#> 10 Adelie  Torgersen           34.6          21.1              198    4400 male \n#> # … with 323 more rows, and abbreviated variable names ¹​flipper_length_mm,\n#> #   ²​body_mass_g\n\n\n\n3 파이썬 기계학습 모형\n파이썬 sklearn 패키지로 펭귄 성별예측 모형을 구축하자.\n\n\n파이썬 코드\nR 환경 불러오기\n\n\n\n# \"code/penguin_sex_clf.py\"\n\nimport pandas as pd\npenguins = pd.read_csv('data/penguins_cleaned.csv')\n\npenguins_df = penguins[['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g', 'sex']]\n\n# Ordinal feature encoding\n# https://www.kaggle.com/pratik1120/penguin-dataset-eda-classification-and-clustering\ndf = penguins_df.copy()\n\ntarget_mapper = {'male':0, 'female':1}\ndef target_encode(val):\n    return target_mapper[val]\n\ndf['sex'] = df['sex'].apply(target_encode)\n\n# Separating X and Y\nX = df.drop('sex', axis=1)\nY = df['sex']\n\n# Build random forest model\nfrom sklearn.ensemble import RandomForestClassifier\nclf = RandomForestClassifier(n_estimators=100)\nclf.fit(X, Y)\n\n\n\n코드source_python(\"code/penguin_sex_clf.py\")\n\nclf\n#> RandomForestClassifier()\n\n\n\n\n\n\n4 시각화\n파이썬 기계학습 결과를 R로 가져와서 변수 중요도를 시각화한다.\n\n코드feat_tbl <- tibble(features = clf$feature_names_in_,\n                   importance = clf$feature_importances_)\n\nfeat_tbl %>% \n  ggplot(aes(x = fct_reorder(features, importance), y = importance)) +\n    geom_point(size = 3) +\n    geom_segment( aes(x=features, xend=features, y=0, yend=importance)) +\n    labs(y = \"Feature 중요도\", x = \"Feature\",\n         title = \"펭귄 암수 예측모형 Feature 중요도\") +\n    coord_flip() +\n    theme_bw(base_family = \"AppleGothic\")"
   }
 ]
