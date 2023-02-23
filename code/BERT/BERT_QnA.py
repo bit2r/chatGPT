@@ -33,5 +33,7 @@ scores = model(input_ids, token_type_ids = segment_ids)
 start_index = torch.argmax(scores['start_logits'])
 end_index = torch.argmax(scores['end_logits'])
 
+answer = ' '.join(tokens[start_index:end_index+1])
+
 # print(' '.join(tokens[start_index:end_index+1]))
 
