@@ -1,0 +1,101 @@
+---
+title: "chatGPT"
+subtitle: "BERT(**B**idirectional **E**ncoder **R**epresentation from **T**ransformer)"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: false
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: pygments 
+    self-contained: false
+filters:
+   - lightbox
+   - include-code-files   
+lightbox: auto
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+bibliography: bibliography.bib
+link-citations: yes
+csl: apa-single-spaced.csl
+---
+
+# Context-Free and Context-based model
+
+- Context-free models: Word2Vec, Glove, FastText
+- Context-embedding models(transformer based models): BERT, ELMO, Universal Sentence Encoder
+
+Context-free 모형은 단순하고 효율적이지만 텍스트의 뉴앙스를 비롯하여 의미를 잡아내는데 다소 미흡할 수 있다.
+반면에 Context-based model은 강력하고 유연하지만 컴퓨팅 자원을 많이 사용하고 더 복잡하다.
+
+
+![](images/BERT_workflow.png)
+
+# 질의응답
+
+## 파이썬 코드
+
+BERT 논문 [https://arxiv.org/pdf/1810.04805.pdf](https://arxiv.org/pdf/1810.04805.pdf)의 초록(Abstract)에서 
+질의를 하고 관련 내용을 뽑아내는 코드를 다음과 같이 작성한다. [@ravichandiran2021getting]
+
+```{.python include="code/BERT/BERT_QnA.py"}
+```
+
+BERT 임베딩 모형을 사용해서 질문과 응답을 파이썬 코드로 작성하고 나서 그 결과값을 R에서 바록 읽어 후처리 하도록 한다.
+
+```{r}
+#| eval: true
+library(reticulate)
+library(tidyverse)
+
+reticulate::source_python("code/BERT/BERT_QnA.py")
+```
+
+## 질의응답 설정
+
+BERT를 사용해서 질문과 응답을 준비한다.
+
+:::: {.columns}
+
+::: {.column width="30%"}
+
+```{r}
+py$question
+```
+:::
+
+::: {.column width="70%"}
+
+```{r}
+py$abstract
+```
+:::
+
+::::
+
+## 질의응답 결과
+
+```{r}
+str_c(py$tokens[py$start_index$tolist()+1:py$end_index$tolist()+1], collapse = " ")
+```
+
+
