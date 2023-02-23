@@ -141,7 +141,8 @@ div.csl-indent {
     "search-detached-cancel-button-title": "취소",
     "search-submit-button-title": "검색"
   }
-}</script><link rel="stylesheet" href="css/quarto.css">
+}</script><script src="site_libs/core-js-2.5.3/shim.min.js"></script><script src="site_libs/react-17.0.0/react.min.js"></script><script src="site_libs/react-17.0.0/react-dom.min.js"></script><script src="site_libs/reactwidget-1.0.0/react-tools.js"></script><script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><link href="site_libs/reactable-0.4.1/reactable.css" rel="stylesheet">
+<script src="site_libs/reactable-binding-0.4.1/reactable.js"></script><link rel="stylesheet" href="css/quarto.css">
 </head>
 <body class="nav-fixed">
 
@@ -317,10 +318,18 @@ div.csl-indent {
   </ul>
 </li>
   <li>
-<a href="#bert-%EC%8B%A4%EC%9A%A9%ED%99%94" id="toc-bert-실용화" class="nav-link" data-scroll-target="#bert-%EC%8B%A4%EC%9A%A9%ED%99%94"><span class="toc-section-number">3</span>  BERT 실용화</a>
+<a href="#%EA%B0%90%EC%84%B1%EB%B6%84%EC%84%9D" id="toc-감성분석" class="nav-link" data-scroll-target="#%EA%B0%90%EC%84%B1%EB%B6%84%EC%84%9D"><span class="toc-section-number">3</span>  감성분석</a>
   <ul class="collapse">
-<li><a href="#%EC%A0%91%EA%B7%BC%EB%B0%A9%EB%B2%95" id="toc-접근방법" class="nav-link" data-scroll-target="#%EC%A0%91%EA%B7%BC%EB%B0%A9%EB%B2%95"><span class="toc-section-number">3.1</span>  접근방법</a></li>
-  <li><a href="#%EC%84%B1%EB%8A%A5%EB%B9%84%EA%B5%90" id="toc-성능비교" class="nav-link" data-scroll-target="#%EC%84%B1%EB%8A%A5%EB%B9%84%EA%B5%90"><span class="toc-section-number">3.2</span>  성능비교</a></li>
+<li><a href="#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%BD%94%EB%93%9C-1" id="toc-파이썬-코드-1" class="nav-link" data-scroll-target="#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%BD%94%EB%93%9C-1"><span class="toc-section-number">3.1</span>  파이썬 코드</a></li>
+  <li><a href="#%EA%B0%90%EC%84%B1%EB%B6%84%EC%84%9D-%EA%B2%B0%EA%B3%BC" id="toc-감성분석-결과" class="nav-link" data-scroll-target="#%EA%B0%90%EC%84%B1%EB%B6%84%EC%84%9D-%EA%B2%B0%EA%B3%BC"><span class="toc-section-number">3.2</span>  감성분석 결과</a></li>
+  <li><a href="#%ED%9B%84%EC%86%8D-%EB%B6%84%EC%84%9D" id="toc-후속-분석" class="nav-link" data-scroll-target="#%ED%9B%84%EC%86%8D-%EB%B6%84%EC%84%9D"><span class="toc-section-number">3.3</span>  후속 분석</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#bert-%EC%8B%A4%EC%9A%A9%ED%99%94" id="toc-bert-실용화" class="nav-link" data-scroll-target="#bert-%EC%8B%A4%EC%9A%A9%ED%99%94"><span class="toc-section-number">4</span>  BERT 실용화</a>
+  <ul class="collapse">
+<li><a href="#%EC%A0%91%EA%B7%BC%EB%B0%A9%EB%B2%95" id="toc-접근방법" class="nav-link" data-scroll-target="#%EC%A0%91%EA%B7%BC%EB%B0%A9%EB%B2%95"><span class="toc-section-number">4.1</span>  접근방법</a></li>
+  <li><a href="#%EC%84%B1%EB%8A%A5%EB%B9%84%EA%B5%90" id="toc-성능비교" class="nav-link" data-scroll-target="#%EC%84%B1%EB%8A%A5%EB%B9%84%EA%B5%90"><span class="toc-section-number">4.2</span>  성능비교</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -411,11 +420,90 @@ div.csl-indent {
 <span><span class="va">py</span><span class="op">$</span><span class="va">answer</span></span>
 <span><span class="co">#&gt; [1] "bid ##ire ##ction ##al en ##code ##r representations from transformers"</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="bert-실용화" class="level1 page-columns page-full" data-number="3"><h1 data-number="3">
-<span class="header-section-number">3</span> BERT 실용화</h1>
+</section></section><section id="감성분석" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> 감성분석</h1>
+<section id="파이썬-코드-1" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="파이썬-코드-1">
+<span class="header-section-number">3.1</span> 파이썬 코드</h2>
+<p>IMDB 영화평점 텍스트에 담긴 감성분석을 BERT를 사용해서 수행한다.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 감성분석 - 파이썬 코드</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 출처: https://wandb.ai/mukilan/BERT_Sentiment_Analysis/reports/An-Introduction-to-BERT-And-How-To-Use-It--VmlldzoyNTIyOTA1</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> BertTokenizer, BertForSequenceClassification</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'https://gist.githubusercontent.com/Mukilan-Krishnakumar/e998ecf27d11b84fe6225db11c239bc6/raw/74dbac2b992235e555df9a0a4e4d7271680e7e45/imdb_movie_reviews.csv'</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(<span class="st">'sentiment'</span>,axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> BertTokenizer.from_pretrained(<span class="st">'nlptown/bert-base-multilingual-uncased-sentiment'</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> BertForSequenceClassification.from_pretrained(<span class="st">'nlptown/bert-base-multilingual-uncased-sentiment'</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sentiment_movie_score(movie_review):</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>	token <span class="op">=</span> tokenizer.encode(movie_review, return_tensors <span class="op">=</span> <span class="st">'pt'</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>	result <span class="op">=</span> model(token)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>	<span class="cf">return</span> <span class="bu">int</span>(torch.argmax(result.logits))<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'sentiment'</span>] <span class="op">=</span> df[<span class="st">'text'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: sentiment_movie_score(x[:<span class="dv">512</span>]))</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="감성분석-결과" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="감성분석-결과">
+<span class="header-section-number">3.2</span> 감성분석 결과</h2>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">senti_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">'https://gist.githubusercontent.com/Mukilan-Krishnakumar/e998ecf27d11b84fe6225db11c239bc6/raw/74dbac2b992235e555df9a0a4e4d7271680e7e45/imdb_movie_reviews.csv'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">reticulate</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/reticulate/reference/source_python.html">source_python</a></span><span class="op">(</span><span class="st">"code/BERT/BERT_sentiment.py"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">senti_tbl</span> <span class="op">&lt;-</span> <span class="va">senti_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">sentiment</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="va">py</span><span class="op">$</span><span class="va">df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">sentiment</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">senti_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">label</span>, <span class="va">sentiment</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sentiment</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">label</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.3</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"green"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"IMDB 영화 평점 데이터셋 감성분석 결과"</span>,</span>
+<span>         x <span class="op">=</span> <span class="st">"감성점수: 부정(1) --- 긍정(5)"</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">"영화평점 부여건수"</span>,</span>
+<span>         fill <span class="op">=</span> <span class="st">"긍부정"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="BERT_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="BERT_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="후속-분석" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="후속-분석">
+<span class="header-section-number">3.3</span> 후속 분석</h2>
+<p>평점 4점으로 예측된 영화 평점 중 긍부정 3개 리뷰를 뽑아 직접 살펴보자.</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://glin.github.io/reactable/">reactable</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">senti_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sentiment</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">label</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_sample</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">reactable</span><span class="fu">::</span><span class="fu"><a href="https://glin.github.io/reactable/reference/reactable.html">reactable</a></span><span class="op">(</span></span>
+<span>      columns <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>        text <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html">colDef</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">700</span><span class="op">)</span>,</span>
+<span>        label <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html">colDef</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">50</span><span class="op">)</span>,</span>
+<span>        sentiment <span class="op">=</span> <span class="fu"><a href="https://glin.github.io/reactable/reference/colDef.html">colDef</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  fullWidth <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  <span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="reactable html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-68b86a2de4a49c86b9bc" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-68b86a2de4a49c86b9bc">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"text":["Yes,the movie is not a piece of art but the first time I watched it I was 10 years old,my parents were out and I stayed home with my two brothers.It was May 1970(I know that because I found a note about the cycle of horror movies that one network had).It's one of the most vivid memories I have with the guys.We ended all in one bed and covered up to the head! Our very first horror movie! We kept talking about it for years and laughing about the moment.Those were horror movies.Nowadays horror movies are always the same.Or was it better when we were kids enjoying without analyzing the plot and the cast and the dialogs? Most sure it was that.But for me this is a great movie!","At last. Here's a movie that does as much for the reputations of the men of Greece and Russia as \"Gigli\" did for the those of Mr. Affleck and Ms. Lo. FROM THE EDGE OF THE CITY details the sad and sordid lives of some young Russian émigrés who live in and around Athens and spend their time burglarizing cars, getting laid, pimping woman émigrés and prostituting themselves (\"But we're not gay because we don't do, you know.... And if we do, it's only once or twice. With the same guy.\") There is hardly anything here you have not seen before and better; only the Athens locale adds a little novelty--even then there's but a scene or two that's scenic. Writer/director Constantine Giannaris (\"3 Steps to Heaven\") offer a relatively generic 95 minutes, in which the standout moments involve how stupid, sexist and (from the looks of things) pretty much irredeemable most of these guys are. (Interestingly, the gayer the guy, the more redeemable he appears.) What really rankles is the treatment of the women. Greek and Russian males would seem to give the Italians a run for their money regarding that famous madonna/whore complex. Has life in Greece improved much for women since the time of Plato and Socrates? One has to wonder.<br /><br />If I seem to be equating Russians and Greeks in this review, I apologize, but even the non-émigrés pictured here (the cab driver, for instance) are creeps. According to another review on this site, the film (a hit on its home turf) was actually submitted by Greece for an Academy Award for Best Foreign Film. What this says about the state of Greek movie-making, I hesitate to ponder.","The film is somewhat entertaining, but the greatest feature is Shalom Harlow's laughable performance. It has been 4 years since this movie was released and hopefully Harlow has gone through more training. Perhaps she should stick to the more worldly, somewhat corruptive characters that she has generated in other performances.","I loved \"Flash Gordon\" as a child and watching the series again on DVD brings back such fond memories. Each 15-minute episode features the adventures of our hero Flash, the lovely Dale Arden, and intrepid Dr. Zarkov on the planet Mongo, with Flash escaping death at every turn: The Shark Men nearly drown him, he faces the Fire Monster in the Tunnel of Terror, and he's in mortal peril in the Static Room! <br /><br />The characters are still fun: Buster Crabbe is every bit the blonde dreamboat hero and Jean Rogers is a delicate and beautiful Dale Arden. Princess Aura still plots to steal Flash for herself, King Vultan of the Hawk Men still has his booming laugh and angel wings, and Ming the Merciless, Emperor of the Universe, is still giving everyone the evil eye and the creeps.<br /><br />This serial probably wouldn't interest children today with its hokey effects - oh, that spaceship! - but it's a fun bit of nostalgia for those who liked it the first time around. The actors play it straight and don't play down to kids. I appreciate that young viewers were expected to read the chapter synopses which had pretty big words in them.<br /><br />I'm glad this came out on DVD. It's a lot of fun to revisit this classic sci-fi serial.","Nightbreed is not only great, it is also unique, even taking into account other Barker's movies, which never lack originality. An amazing adaptation of a very interesting idea for a book. For the horror genre, it has quite a few of subtle symbolics and references. Certainly a lot of fun to have, a a bit to think about, if one cares to. And, not to forget, a nice music score. Well, the special effects, as usual, get old faster than anything, but that is probably the only drawback. I've just seen it again after ten years, and I still find it something to recommend.","A question immediately arises in this extremely idiosyncratic film: Who are the crazy people?<br /><br />The answer become less clear as the film goes on.<br /><br />Renee Zellweger loses the whiney note in her voice and, while her voice is still high, she is incredibly effective as the shell-shocked Betty. In fact, she is so effective I almost wanted her to be just a little more crazy because her created reality was so believable.<br /><br />This is the first time Ms Zellweger has been called upon to carry a film and she is more than equal to the task.<br /><br />Chris Rock  though as foul-mouthed as usual  is fairly subdued as Wesley. He is able to sublimate his manic energy and it only occasionally surfaces and always when it is needed most.<br /><br />There are some interesting allusions: the first time you see Betty she is dressed almost exactly like Dorothy Gale from the `Wizard of Oz'  then later in the film she is compared to Dorothy when she says she has never been out of Kansas before. At one point the song that Doris Day was best known for, Que Sera Sera' is on the soundtrack and then later Charlie (Morgan Freeman) describes her as having a whole Doris Day thing going on.'<br /><br />This is an extremely quirky film with good performances by everyone including the supporting cast.<br /><br />It has a surprising ending that, as contrary as it sounds, is actually fairly predictable.<br /><br />If for no other reason see this film just to listen to the master of the human voice: Morgan Freeman."],"label":["neg","neg","neg","pos","pos","pos"],"sentiment":[4,4,4,4,4,4]},"columns":[{"id":"text","name":"text","type":"character","width":700},{"id":"label","name":"label","type":"character","width":50},{"id":"sentiment","name":"sentiment","type":"numeric","width":50}],"dataKey":"61f766a890774ee4c6724575578d8f19"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section></section><section id="bert-실용화" class="level1 page-columns page-full" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> BERT 실용화</h1>
 <p>BERT가 좋은 성능을 보이는 것은 맞지만 너무 크기가 크기 때문에 실무적으로 사용하기에는 제약이 많다. 몇가지 기술이 개발되어 BERT를 사용하기 좋게 만드는 방법을 알아보자.</p>
-<section id="접근방법" class="level2 page-columns page-full" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="접근방법">
-<span class="header-section-number">3.1</span> 접근방법</h2>
+<section id="접근방법" class="level2 page-columns page-full" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="접근방법">
+<span class="header-section-number">4.1</span> 접근방법</h2>
 <ul>
 <li>Quantization and Pruning</li>
 <li>DistilBERT: Knowledge Distillation</li>
@@ -425,24 +513,24 @@ div.csl-indent {
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="images/BERT_quantization.png" class="lightbox" title="Quantization" data-gallery="quarto-lightbox-gallery-2"><img src="images/BERT_quantization.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/BERT_quantization.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Quantization"><img src="images/BERT_quantization.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Quantization</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="images/BERT_pruning.png" class="lightbox" title="Pruning" data-gallery="quarto-lightbox-gallery-3"><img src="images/BERT_pruning.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/BERT_pruning.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Pruning"><img src="images/BERT_pruning.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Pruning</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="images/BERT_distillation.png" class="lightbox" title="Pruning" data-gallery="quarto-lightbox-gallery-4"><img src="images/BERT_distillation.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/BERT_distillation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Pruning"><img src="images/BERT_distillation.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Pruning</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="성능비교" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="성능비교">
-<span class="header-section-number">3.2</span> 성능비교</h2>
+</section><section id="성능비교" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="성능비교">
+<span class="header-section-number">4.2</span> 성능비교</h2>
 <p>DistilBERT, A Lite BERT(ALBERT) 변형된 BERT 모형을 논문에 제시된 NLP 작업별 성능과 크기와 속도를 BERT-base 모형과 비교해보자.</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -452,13 +540,13 @@ div.csl-indent {
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/BERT_distillBERT.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/BERT_distillBERT.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/BERT_distillBERT.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/BERT_distillBERT.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/BERT_ALBERT.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/BERT_ALBERT.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/BERT_ALBERT.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="images/BERT_ALBERT.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </div>
@@ -778,149 +866,209 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "BERT(**B**idirectional **E**ncoder **R**epresentation from **T**ransformer)"</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: pygments </span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">   - include-code-files   </span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> bibliography.bib</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> yes</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> apa-single-spaced.csl</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="fu"># Context-Free and Context-based model</span></span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Context-free models: Word2Vec, Glove, FastText</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Context-embedding models(transformer based models): BERT, ELMO, Universal Sentence Encoder</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>Context-free 모형은 단순하고 효율적이지만 텍스트의 뉴앙스를 비롯하여 의미를 잡아내는데 다소 미흡할 수 있다.</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>반면에 Context-based model은 강력하고 유연하지만 컴퓨팅 자원을 많이 사용하고 더 복잡하다.</span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/BERT_workflow.png)</span></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="fu"># 질의응답</span></span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## 파이썬 코드</span></span>
-<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>BERT 논문 <span class="co">[</span><span class="ot">https://arxiv.org/pdf/1810.04805.pdf</span><span class="co">](https://arxiv.org/pdf/1810.04805.pdf)</span>의 초록(Abstract)에서 </span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>질의를 하고 관련 내용을 뽑아내는 코드를 다음과 같이 작성한다. <span class="co">[</span><span class="ot">@ravichandiran2021getting</span><span class="co">]</span></span>
-<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{.python include="code/BERT/BERT_QnA.py"}</span></span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>BERT 임베딩 모형을 사용해서 질문과 응답을 파이썬 코드로 작성하고 나서 그 결과값을 R에서 바록 읽어 후처리 하도록 한다.</span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: true</span></span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">source_python</span>(<span class="st">"code/BERT/BERT_QnA.py"</span>)</span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a><span class="fu">## 질의응답 설정</span></span>
-<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>BERT를 사용해서 질문과 응답을 준비한다.</span>
-<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>:::: {.columns}</span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>::: {.column width="30%"}</span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>py<span class="sc">$</span>question</span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>::: {.column width="70%"}</span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>py<span class="sc">$</span>abstract</span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## 질의응답 결과</span></span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a><span class="co"># str_c(py$tokens[py$start_index$tolist()+1:py$end_index$tolist()+1], collapse = " ")</span></span>
-<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>py<span class="sc">$</span>answer</span>
-<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a><span class="fu"># BERT 실용화</span></span>
-<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>BERT가 좋은 성능을 보이는 것은 맞지만 너무 크기가 크기 때문에 실무적으로 사용하기에는 </span>
-<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>제약이 많다. 몇가지 기술이 개발되어 BERT를 사용하기 좋게 만드는 방법을 알아보자.</span>
-<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a><span class="fu">## 접근방법</span></span>
-<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Quantization and Pruning</span>
-<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>DistilBERT: Knowledge Distillation</span>
-<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>ALBERT: A Lite BERT</span>
-<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">Samuel Sučík (August 8th, 2019), "Compressing BERT for faster prediction", RASA Blog</span><span class="co">](https://rasa.com/blog/compressing-bert-for-faster-prediction-2/)</span>]{.aside}</span>
-<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>:::{layout-ncol=3}</span>
-<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="al">![Quantization](images/BERT_quantization.png)</span></span>
-<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a><span class="al">![Pruning](images/BERT_pruning.png)</span></span>
-<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a><span class="al">![Pruning](images/BERT_distillation.png)</span></span>
-<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a><span class="fu">## 성능비교</span></span>
-<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>DistilBERT, A Lite BERT(ALBERT) 변형된 BERT 모형을 논문에 제시된 NLP 작업별 성능과 크기와 속도를 </span>
-<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>BERT-base 모형과 비교해보자. </span>
-<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>:::{.panel-tabset}</span>
-<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### DistilBERT [@sanh2019distilbert]</span></span>
-<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/BERT_distillBERT.png)</span></span>
-<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a><span class="fu">### ALBERT [@lan2019albert]</span></span>
-<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/BERT_ALBERT.png)</span></span>
-<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "BERT(**B**idirectional **E**ncoder **R**epresentation from **T**ransformer)"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: pygments </span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">   - include-code-files   </span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> bibliography.bib</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> yes</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> apa-single-spaced.csl</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="fu"># Context-Free and Context-based model</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Context-free models: Word2Vec, Glove, FastText</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Context-embedding models(transformer based models): BERT, ELMO, Universal Sentence Encoder</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>Context-free 모형은 단순하고 효율적이지만 텍스트의 뉴앙스를 비롯하여 의미를 잡아내는데 다소 미흡할 수 있다.</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>반면에 Context-based model은 강력하고 유연하지만 컴퓨팅 자원을 많이 사용하고 더 복잡하다.</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/BERT_workflow.png)</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="fu"># 질의응답</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## 파이썬 코드</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>BERT 논문 <span class="co">[</span><span class="ot">https://arxiv.org/pdf/1810.04805.pdf</span><span class="co">](https://arxiv.org/pdf/1810.04805.pdf)</span>의 초록(Abstract)에서 </span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>질의를 하고 관련 내용을 뽑아내는 코드를 다음과 같이 작성한다. <span class="co">[</span><span class="ot">@ravichandiran2021getting</span><span class="co">]</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{.python include="code/BERT/BERT_QnA.py"}</span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>BERT 임베딩 모형을 사용해서 질문과 응답을 파이썬 코드로 작성하고 나서 그 결과값을 R에서 바록 읽어 후처리 하도록 한다.</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: true</span></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">source_python</span>(<span class="st">"code/BERT/BERT_QnA.py"</span>)</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="fu">## 질의응답 설정</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>BERT를 사용해서 질문과 응답을 준비한다.</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>:::: {.columns}</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>::: {.column width="30%"}</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>py<span class="sc">$</span>question</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>::: {.column width="70%"}</span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>py<span class="sc">$</span>abstract</span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## 질의응답 결과</span></span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a><span class="co"># str_c(py$tokens[py$start_index$tolist()+1:py$end_index$tolist()+1], collapse = " ")</span></span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a>py<span class="sc">$</span>answer</span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a><span class="fu"># 감성분석</span></span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a><span class="fu">## 파이썬 코드</span></span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a>IMDB 영화평점 텍스트에 담긴 감성분석을 BERT를 사용해서 수행한다.</span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{.python include="code/BERT/BERT_sentiment.py"}</span></span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a><span class="fu">## 감성분석 결과</span></span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>senti_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'https://gist.githubusercontent.com/Mukilan-Krishnakumar/e998ecf27d11b84fe6225db11c239bc6/raw/74dbac2b992235e555df9a0a4e4d7271680e7e45/imdb_movie_reviews.csv'</span>)</span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a>reticulate<span class="sc">::</span><span class="fu">source_python</span>(<span class="st">"code/BERT/BERT_sentiment.py"</span>)</span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a>senti_tbl <span class="ot">&lt;-</span> senti_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">label =</span> sentiment) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(py<span class="sc">$</span>df <span class="sc">%&gt;%</span> <span class="fu">select</span>(sentiment))</span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a>senti_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(label, sentiment) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sentiment, <span class="at">y =</span> n, <span class="at">fill =</span> label)) <span class="sc">+</span></span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"green"</span>)) <span class="sc">+</span></span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"IMDB 영화 평점 데이터셋 감성분석 결과"</span>,</span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"감성점수: 부정(1) --- 긍정(5)"</span>,</span>
+<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"영화평점 부여건수"</span>,</span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"긍부정"</span>) <span class="sc">+</span></span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a><span class="fu">## 후속 분석</span></span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a>평점 4점으로 예측된 영화 평점 중 긍부정 3개 리뷰를 뽑아 직접 살펴보자.</span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reactable)</span>
+<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>senti_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sentiment <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(label) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a>  reactable<span class="sc">::</span><span class="fu">reactable</span>(</span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="fu">list</span>(</span>
+<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">colDef</span>(<span class="at">width =</span> <span class="dv">700</span>),</span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a>        <span class="at">label =</span> <span class="fu">colDef</span>(<span class="at">width =</span> <span class="dv">50</span>),</span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a>        <span class="at">sentiment =</span> <span class="fu">colDef</span>(<span class="at">width =</span> <span class="dv">50</span>)</span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>  <span class="at">fullWidth =</span> <span class="cn">TRUE</span></span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a><span class="fu"># BERT 실용화</span></span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a>BERT가 좋은 성능을 보이는 것은 맞지만 너무 크기가 크기 때문에 실무적으로 사용하기에는 </span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a>제약이 많다. 몇가지 기술이 개발되어 BERT를 사용하기 좋게 만드는 방법을 알아보자.</span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a><span class="fu">## 접근방법</span></span>
+<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Quantization and Pruning</span>
+<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>DistilBERT: Knowledge Distillation</span>
+<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>ALBERT: A Lite BERT</span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">Samuel Sučík (August 8th, 2019), "Compressing BERT for faster prediction", RASA Blog</span><span class="co">](https://rasa.com/blog/compressing-bert-for-faster-prediction-2/)</span>]{.aside}</span>
+<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a>:::{layout-ncol=3}</span>
+<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a><span class="al">![Quantization](images/BERT_quantization.png)</span></span>
+<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-189"><a href="#cb9-189" aria-hidden="true" tabindex="-1"></a><span class="al">![Pruning](images/BERT_pruning.png)</span></span>
+<span id="cb9-190"><a href="#cb9-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-191"><a href="#cb9-191" aria-hidden="true" tabindex="-1"></a><span class="al">![Pruning](images/BERT_distillation.png)</span></span>
+<span id="cb9-192"><a href="#cb9-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-193"><a href="#cb9-193" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-194"><a href="#cb9-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-195"><a href="#cb9-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-196"><a href="#cb9-196" aria-hidden="true" tabindex="-1"></a><span class="fu">## 성능비교</span></span>
+<span id="cb9-197"><a href="#cb9-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-198"><a href="#cb9-198" aria-hidden="true" tabindex="-1"></a>DistilBERT, A Lite BERT(ALBERT) 변형된 BERT 모형을 논문에 제시된 NLP 작업별 성능과 크기와 속도를 </span>
+<span id="cb9-199"><a href="#cb9-199" aria-hidden="true" tabindex="-1"></a>BERT-base 모형과 비교해보자. </span>
+<span id="cb9-200"><a href="#cb9-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-201"><a href="#cb9-201" aria-hidden="true" tabindex="-1"></a>:::{.panel-tabset}</span>
+<span id="cb9-202"><a href="#cb9-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-203"><a href="#cb9-203" aria-hidden="true" tabindex="-1"></a><span class="fu">### DistilBERT [@sanh2019distilbert]</span></span>
+<span id="cb9-204"><a href="#cb9-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-205"><a href="#cb9-205" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/BERT_distillBERT.png)</span></span>
+<span id="cb9-206"><a href="#cb9-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-207"><a href="#cb9-207" aria-hidden="true" tabindex="-1"></a><span class="fu">### ALBERT [@lan2019albert]</span></span>
+<span id="cb9-208"><a href="#cb9-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-209"><a href="#cb9-209" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/BERT_ALBERT.png)</span></span>
+<span id="cb9-210"><a href="#cb9-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-211"><a href="#cb9-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-212"><a href="#cb9-212" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-213"><a href="#cb9-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-214"><a href="#cb9-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-215"><a href="#cb9-215" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
@@ -929,7 +1077,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":true,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","loop":true,"descPosition":"bottom"});</script>
 
 
 </body></html>

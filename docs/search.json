@@ -360,14 +360,35 @@
     "objectID": "BERT.html#접근방법",
     "href": "BERT.html#접근방법",
     "title": "chatGPT",
-    "section": "\n3.1 접근방법",
-    "text": "3.1 접근방법\n\nQuantization and Pruning\nDistilBERT: Knowledge Distillation\nALBERT: A Lite BERT\n\nSamuel Sučík (August 8th, 2019), “Compressing BERT for faster prediction”, RASA Blog\n\n\n\n\nQuantization\n\n\n\n\nPruning\n\n\n\n\nPruning"
+    "section": "\n4.1 접근방법",
+    "text": "4.1 접근방법\n\nQuantization and Pruning\nDistilBERT: Knowledge Distillation\nALBERT: A Lite BERT\n\nSamuel Sučík (August 8th, 2019), “Compressing BERT for faster prediction”, RASA Blog\n\n\n\n\nQuantization\n\n\n\n\nPruning\n\n\n\n\nPruning"
   },
   {
     "objectID": "BERT.html#성능비교",
     "href": "BERT.html#성능비교",
     "title": "chatGPT",
-    "section": "\n3.2 성능비교",
-    "text": "3.2 성능비교\nDistilBERT, A Lite BERT(ALBERT) 변형된 BERT 모형을 논문에 제시된 NLP 작업별 성능과 크기와 속도를 BERT-base 모형과 비교해보자.\n\n\nDistilBERT (Sanh et al., 2019)\nALBERT (Lan et al., 2019)"
+    "section": "\n4.2 성능비교",
+    "text": "4.2 성능비교\nDistilBERT, A Lite BERT(ALBERT) 변형된 BERT 모형을 논문에 제시된 NLP 작업별 성능과 크기와 속도를 BERT-base 모형과 비교해보자.\n\n\nDistilBERT (Sanh et al., 2019)\nALBERT (Lan et al., 2019)"
+  },
+  {
+    "objectID": "BERT.html#파이썬-코드-1",
+    "href": "BERT.html#파이썬-코드-1",
+    "title": "chatGPT",
+    "section": "\n3.1 파이썬 코드",
+    "text": "3.1 파이썬 코드\nIMDB 영화평점 텍스트에 담긴 감성분석을 BERT를 사용해서 수행한다.\n# 감성분석 - 파이썬 코드\n# 출처: https://wandb.ai/mukilan/BERT_Sentiment_Analysis/reports/An-Introduction-to-BERT-And-How-To-Use-It--VmlldzoyNTIyOTA1\n\nimport torch\nimport pandas as pd\nimport numpy as np\nfrom transformers import BertTokenizer, BertForSequenceClassification\n\ndf = pd.read_csv('https://gist.githubusercontent.com/Mukilan-Krishnakumar/e998ecf27d11b84fe6225db11c239bc6/raw/74dbac2b992235e555df9a0a4e4d7271680e7e45/imdb_movie_reviews.csv')\ndf = df.drop('sentiment',axis=1)\n\ntokenizer = BertTokenizer.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')\nmodel = BertForSequenceClassification.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')\n\ndef sentiment_movie_score(movie_review):\n\ttoken = tokenizer.encode(movie_review, return_tensors = 'pt')\n\tresult = model(token)\n\treturn int(torch.argmax(result.logits))+1\n\ndf['sentiment'] = df['text'].apply(lambda x: sentiment_movie_score(x[:512]))"
+  },
+  {
+    "objectID": "BERT.html#감성분석-결과",
+    "href": "BERT.html#감성분석-결과",
+    "title": "chatGPT",
+    "section": "\n3.2 감성분석 결과",
+    "text": "3.2 감성분석 결과\n\nsenti_raw <- read_csv('https://gist.githubusercontent.com/Mukilan-Krishnakumar/e998ecf27d11b84fe6225db11c239bc6/raw/74dbac2b992235e555df9a0a4e4d7271680e7e45/imdb_movie_reviews.csv')\n\nreticulate::source_python(\"code/BERT/BERT_sentiment.py\")\n\nsenti_tbl <- senti_raw %>% \n  rename(label = sentiment) %>% \n  bind_cols(py$df %>% select(sentiment))\n\n\nsenti_tbl %>% \n  count(label, sentiment) %>% \n  ggplot(aes(x = sentiment, y = n, fill = label)) +\n    geom_col(width = 0.3, alpha = 0.7) +\n    scale_fill_manual(values = c(\"red\", \"green\")) +\n    labs(title = \"IMDB 영화 평점 데이터셋 감성분석 결과\",\n         x = \"감성점수: 부정(1) --- 긍정(5)\",\n         y = \"영화평점 부여건수\",\n         fill = \"긍부정\") +\n    theme_minimal() +\n    theme(legend.position = \"top\")"
+  },
+  {
+    "objectID": "BERT.html#후속-분석",
+    "href": "BERT.html#후속-분석",
+    "title": "chatGPT",
+    "section": "\n3.3 후속 분석",
+    "text": "3.3 후속 분석\n평점 4점으로 예측된 영화 평점 중 긍부정 3개 리뷰를 뽑아 직접 살펴보자.\n\nlibrary(reactable)\n\nsenti_tbl %>% \n  filter(sentiment == 4) %>% \n  group_by(label) %>% \n  slice_sample(n = 3) %>% \n  reactable::reactable(\n      columns = list(\n        text = colDef(width = 700),\n        label = colDef(width = 50),\n        sentiment = colDef(width = 50)\n  ),\n  fullWidth = TRUE\n  )"
   }
 ]

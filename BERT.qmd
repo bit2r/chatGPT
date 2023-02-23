@@ -99,6 +99,64 @@ py$abstract
 py$answer
 ```
 
+# 감성분석
+
+## 파이썬 코드
+
+IMDB 영화평점 텍스트에 담긴 감성분석을 BERT를 사용해서 수행한다.
+
+
+```{.python include="code/BERT/BERT_sentiment.py"}
+```
+
+## 감성분석 결과
+
+```{r}
+senti_raw <- read_csv('https://gist.githubusercontent.com/Mukilan-Krishnakumar/e998ecf27d11b84fe6225db11c239bc6/raw/74dbac2b992235e555df9a0a4e4d7271680e7e45/imdb_movie_reviews.csv')
+
+reticulate::source_python("code/BERT/BERT_sentiment.py")
+
+senti_tbl <- senti_raw %>% 
+  rename(label = sentiment) %>% 
+  bind_cols(py$df %>% select(sentiment))
+
+
+senti_tbl %>% 
+  count(label, sentiment) %>% 
+  ggplot(aes(x = sentiment, y = n, fill = label)) +
+    geom_col(width = 0.3, alpha = 0.7) +
+    scale_fill_manual(values = c("red", "green")) +
+    labs(title = "IMDB 영화 평점 데이터셋 감성분석 결과",
+         x = "감성점수: 부정(1) --- 긍정(5)",
+         y = "영화평점 부여건수",
+         fill = "긍부정") +
+    theme_minimal() +
+    theme(legend.position = "top")
+```
+
+
+## 후속 분석
+
+평점 4점으로 예측된 영화 평점 중 긍부정 3개 리뷰를 뽑아 직접 살펴보자.
+
+```{r}
+library(reactable)
+
+senti_tbl %>% 
+  filter(sentiment == 4) %>% 
+  group_by(label) %>% 
+  slice_sample(n = 3) %>% 
+  reactable::reactable(
+      columns = list(
+        text = colDef(width = 700),
+        label = colDef(width = 50),
+        sentiment = colDef(width = 50)
+  ),
+  fullWidth = TRUE
+  )
+```
+
+
 # BERT 실용화
 
 BERT가 좋은 성능을 보이는 것은 맞지만 너무 크기가 크기 때문에 실무적으로 사용하기에는 
@@ -140,5 +198,7 @@ BERT-base 모형과 비교해보자.
 
 
 :::
+
+
 
 
