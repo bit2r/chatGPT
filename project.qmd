@@ -169,6 +169,204 @@ editor_options:
 :::
 
 
+# GPT-3 언어 데이터
+
+GPT-3 개발에 투입된 문서갯수를 언어별로 살펴보자.
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(gt)
+library(countrycode)
+library(rvest)
+library(gtExtras)
+
+## 언어 코드 
+lang_tbl <- read_html(x = 'http://www.lingoes.net/en/translator/langcode.htm') %>% 
+  html_element(css = 'body > table') %>% 
+  html_table() %>% 
+  set_names(c("언어", "언어명"))
 
 
+gpt_raw <- read_csv("https://raw.githubusercontent.com/openai/gpt-3/master/dataset_statistics/languages_by_document_count.csv")
+
+gpt_tbl <- gpt_raw %>% 
+  set_names(c("언어", "문서수", "비중")) %>% 
+  mutate(비중 = parse_number(비중) / 100) %>% 
+  mutate(누적문서 = cumsum(문서수)) %>% 
+  mutate(누적비중 = 누적문서 / sum(문서수)) %>% 
+  top_n(문서수, n = 28)  
+
+gpt_gt <- gpt_tbl %>% 
+  left_join(lang_tbl, by = "언어") %>% 
+  select(언어, 언어명, 문서수, 비중, 누적비중) %>% 
+  ## 표 
+  gt() %>% 
+    gt_theme_nytimes() %>%   
+    tab_header(
+      title = md("**GPT-3 언어모형 개발에 사용된 언어별 문서 통계**"),
+      subtitle = "한국어 포함 상위 28개 언어") %>% 
+    tab_source_note(
+      source_note = "자료출처: https://github.com/openai/gpt-3/blob/master/dataset_statistics/languages_by_document_count.csv") %>% 
+    tab_spanner(
+      label = "언어코드와 언어명",
+      columns = c(언어, 언어명)) %>% 
+    tab_spanner(
+      label = "통계수치",
+      columns = c(문서수, 비중, 누적비중)) %>% 
+    cols_align(
+      align = "center",
+      columns = c(언어, 언어명)) %>% 
+    # tab_style(
+    #   style = cell_text(size = px(12)),
+    #   locations = cells_body(
+    #     columns = c(문서수, 비중, 누적비중)
+    #   )
+    # )  %>% 
+    fmt_percent(
+      columns = c(비중, 누적비중),
+      decimals = 2
+    )  %>% 
+    fmt_number(
+      columns = 문서수,
+      decimals = 0,
+      sep_mark = ","
+    )   %>% 
+   gt_highlight_rows(
+     rows = c(1,28),
+     fill = "lightgrey",
+     target_col = 언어
+   )  %>% 
+  sub_missing(
+    columns = everything(),
+    missing_text = "-"
+  )  
+
+gpt_gt %>% 
+  gtsave("images/gpt_lang.png")
+
+```
+
+![](images/gpt_lang.png)
+
+
+# 구글 트렌드
+
+## chatGPT 이전
+
+Tensorflow, Keras, Pytorch, Fast.ai 가 차례로 등장하며 딥러닝 개발 프레임워크의 전성기를 구가했다.
+최근 5년동안 Google 추세를 살펴보자.
+
+![](images/pytorch_tensorflow.png)
+
+```{r}
+#| eval: false
+library(gtrendsR)
+extrafont::loadfonts()
+
+result <- gtrends(keyword = c("pytorch","fastai", "tensorflow", "keras"), geo = "", 
+                  time="today+5-y", low_search_volume = TRUE)
+
+gtrends_framework_g <- result$interest_over_time %>% 
+  as_tibble() %>% 
+  mutate(keyword = factor(keyword, levels = c("keras", "pytorch", "tensorflow", "fastai"))) %>% 
+  mutate(hits = parse_number(hits)) %>% 
+  ggplot(aes(x = date, y = hits, color = keyword)) +
+    geom_line() +
+    theme_bw(base_family = "NanumBarunpen") +
+    labs(x = "", 
+         y = "검색수",
+         color = "프레임워크",
+         title = "딥러닝 프레임워크 구글 검색 추세") +
+    theme(legend.title = element_text(size = 16),
+          legend.text = element_text(size = 14))
+  
+
+# ragg always works for mac
+ragg::agg_png("images/dl_framework.png", width = 297, 
+              height = 210, 
+              units = "mm", res = 300)
+gtrends_framework_g
+dev.off()
+
+```
+
+![](images/dl_framework.png)
+
+## chatGPT 출현
+
+chatGPT 출현이후 Tensorflow, Keras, Pytorch, Fast.ai 는 어떻게 전개될 것인지
+최근 1년동안 Google 추세를 살펴보자.
+
+
+```{r}
+#| eval: false
+
+chatGPT_result <- gtrends(keyword = c("pytorch","fastai", "tensorflow", "keras", "chatGPT"), geo = "", 
+                  time="today 12-m", low_search_volume = TRUE)
+
+gtrends_chatGPT_g <- chatGPT_result$interest_over_time %>% 
+  as_tibble() %>% 
+  mutate(keyword = factor(keyword, levels = c("chatGPT", "keras", "pytorch", "tensorflow", "fastai"))) %>% 
+  mutate(hits = parse_number(hits)) %>% 
+  mutate(date = as.Date(date)) %>% 
+  ggplot(aes(x = date, y = hits, color = keyword)) +
+    geom_line() +
+    theme_bw(base_family = "NanumBarunpen") +
+    labs(x = "", 
+         y = "검색수",
+         color = "프레임워크",
+         title = "chatGPT와 딥러닝 프레임워크 구글 검색 추세") +
+    scale_x_date(date_labels = "%Y-%m") +
+    theme(legend.title = element_text(size = 16),
+          legend.text = element_text(size = 14))
+
+# ragg always works for mac
+ragg::agg_png("images/chatGPT_framework.png", width = 297, 
+              height = 210, 
+              units = "mm", res = 300)
+gtrends_chatGPT_g
+dev.off()
+
+```
+
+![](images/chatGPT_framework.png)
+
+## 파이썬과 chatGPT
+
+chatGPT 출현이후 파이썬, tensorflow, pytorch 최근 1년동안 Google 추세를 살펴보자.
+
+
+```{r}
+#| eval: false
+
+python_result <- gtrends(keyword = c("chatGPT", "pytorch","python", "tensorflow", "keras"), geo = "", 
+                  time="today 12-m", low_search_volume = TRUE)
+
+python_chatGPT_g <- python_result$interest_over_time %>% 
+  as_tibble() %>% 
+  mutate(keyword = factor(keyword, levels = c("chatGPT", "python", "keras", "pytorch", "tensorflow"))) %>% 
+  mutate(hits = parse_number(hits)) %>% 
+  mutate(date = as.Date(date)) %>% 
+  ggplot(aes(x = date, y = hits, color = keyword)) +
+    geom_line() +
+    theme_bw(base_family = "NanumBarunpen") +
+    labs(x = "", 
+         y = "검색수",
+         color = "프레임워크",
+         title = "파이썬, chatGPT, 주요 딥러닝 프레임워크 구글 검색 추세") +
+    scale_x_date(date_labels = "%Y-%m") +
+    theme(legend.title = element_text(size = 16),
+          legend.text = element_text(size = 14))
+
+# ragg always works for mac
+ragg::agg_png("images/python_chatGPT_g.png", width = 297, 
+              height = 210, 
+              units = "mm", res = 300)
+python_chatGPT_g
+dev.off()
+
+```
+
+![](images/python_chatGPT_g.png)
 
