@@ -1,0 +1,160 @@
+---
+title: "chatGPT"
+subtitle: "HF 파이프라인"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: pygments 
+    self-contained: false
+filters:
+   - lightbox
+   - include-code-files   
+lightbox: auto
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+bibliography: bibliography.bib
+link-citations: yes
+csl: apa-single-spaced.csl
+---
+
+# BERT 모형 선정
+
+다국어를 지원하는 BERT 모형을 활용하여 연관 자연어 처리 업무를 수행할 수 있다.
+
+- `bert-base-multilingual-cased`
+- `distilbert-base-multilingual-cased`
+
+`distilbert`는 BERT 모형과 비교하여 다소 성능이 떨어지나 크기, 속도 등 다른 지표에서
+BERT와 대등한 지표를 제시하고 있다.
+
+
+::: {.callout-note}
+
+```python
+from transformers import pipeline
+
+# Using default model and tokenizer for the task
+pipeline("<task-name>")
+
+# Using a user-specified model
+pipeline("<task-name>", model="<model_name>")
+
+# Using custom model/tokenizer as str
+pipeline('<task-name>', model='<model name>', tokenizer='<tokenizer_name>')
+```
+:::
+
+[[Hugging Face Transformers - How to use Pipelines](https://www.kaggle.com/code/funtowiczmo/hugging-face-transformers-how-to-use-pipelines)]{.aside}
+
+# 개체명 인식
+
+**개체명(Named Entity)**은 인명, 기관명, 지명 등과 같이 문장 또는 문서에서 특정한 의미를 가지고 있는 단어 또는 어구를 지칭함.
+
+- [네이버 개체명인식](http://air.changwon.ac.kr/?page_id=10)
+- [한국해양대학교 - 컴퓨터공학과 자연언어처리 연구실](https://github.com/kmounlp/NER/blob/master/NER%20Guideline%20(ver%201.0).pdf)
+- [국립국어원](https://corpus.korean.go.kr/)
+- [AI 허브](https://aihub.or.kr/aidata/30717)
+
+:::{.panel-tabset}
+
+## 네이버(14종)
+
+```{r}
+library(tidyverse)
+
+ner_tbl <- tibble::tribble(
+            ~개체명.범주,   ~태그,                          ~정의,
+           "PERSON", "PER",      "실존, 가상 등 인물명에 해당 하는 것",
+            "FIELD", "FLD",       "학문 분야 및 이론, 법칙, 기술 등",
+  "ARTIFACTS_WORKS", "AFW",        "인공물로 사람에 의해 창조된 대상물",
+     "ORGANIZATION", "ORG",      "기관 및 단체와 회의/회담을 모두 포함",
+         "LOCATION", "LOC",            "지역명칭과 행정구역 명칭 등",
+     "CIVILIZATION", "CVL",            "문명 및 문화에 관련된 용어",
+             "DATE", "DAT",                         "날짜",
+             "TIME", "TIM",                         "시간",
+           "NUMBER", "NUM",                         "숫자",
+            "EVENT", "EVT",        "특정 사건 및 사고 명칭과 행사 등",
+           "ANIMAL", "ANM",                         "동물",
+            "PLANT", "PLT",                         "식물",
+         "MATERIAL", "MAT",             "금속, 암석, 화학물질 등",
+             "TERM", "TRM", "의학 용어, IT곤련 용어 등 일반 용어를 총칭"
+  )
+
+ner_tbl %>% 
+  gt::gt()
+```
+
+
+## 한국해양대 (10종)
+
+한국어에서 개체의 범주는 크게 개체이름, 시간표현, 수량표현으로 분류할 수 있다. 
+
+- 개체이름: 인명(PER), 지명(LOC), 기관명(ORG), 기타(POH)
+- 시간표현: 날짜(DAT), 시간(TIM), 기간(DUR)
+- 수량표현: 통화(MNY), 비율(PNT), 기타 수량표현(NOH)
+
+## 국립국어원(5종)
+
+장소(LC), 날짜(DT), 기관(OG), 시간(TI), 인물(PS)
+
+## AI 허브(15종)
+
+사람(PS), 지역(LC), 단체(OG), 인공물(AF), 날짜(DT), 시간(TI), 제도(CV), 동물(AM), 식물(PT), 
+단위(QT), 분야(FD), 이론(TR), 사건(EV), 물질(MT), 용어(TM)
+
+:::
+
+
+# NER
+
+## 파이썬 코드
+
+HF 파이프라인을 사용하여 영문 개체명인식 작업을 수행한다.
+
+
+```{.python include="code/BERT/HF_pipeline_NER.py"}
+```
+
+## 개체명 인식결과
+
+```{r}
+library(reticulate)
+reticulate::source_python("code/BERT/HF_pipeline_NER.py")
+
+to_r <- function(idx){
+
+  output_idx = py$entities %>% 
+    pluck(idx)
+  
+  output_idx$score = paste(output_idx$score) %>% 
+    as.double()
+  
+  return(output_idx)
+}
+
+map_dfr(1:length(py$entities), ~to_r(.x))
+```
+
+

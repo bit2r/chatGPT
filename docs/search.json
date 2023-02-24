@@ -390,5 +390,33 @@
     "title": "chatGPT",
     "section": "\n3.3 후속 분석",
     "text": "3.3 후속 분석\n평점 4점으로 예측된 영화 평점 중 긍부정 3개 리뷰를 뽑아 직접 살펴보자.\n\nlibrary(reactable)\n\nsenti_tbl %>% \n  filter(sentiment == 4) %>% \n  group_by(label) %>% \n  slice_sample(n = 3) %>% \n  reactable::reactable(\n      columns = list(\n        text = colDef(width = 700),\n        label = colDef(width = 50),\n        sentiment = colDef(width = 50)\n  ),\n  fullWidth = TRUE\n  )"
+  },
+  {
+    "objectID": "korBERT.html",
+    "href": "korBERT.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "1 BERT 모형 선정\n다국어를 지원하는 BERT 모형을 활용하여 연관 자연어 처리 업무를 수행할 수 있다.\n\nbert-base-multilingual-cased\ndistilbert-base-multilingual-cased\n\ndistilbert는 BERT 모형과 비교하여 다소 성능이 떨어지나 크기, 속도 등 다른 지표에서 BERT와 대등한 지표를 제시하고 있다.\n\n2 개체명 인식\n개체명(Named Entity)은 인명, 기관명, 지명 등과 같이 문장 또는 문서에서 특정한 의미를 가지고 있는 단어 또는 어구를 지칭함.\n\n네이버 개체명인식\n한국해양대학교 - 컴퓨터공학과 자연언어처리 연구실\n국립국어원\nAI 허브\n\n\n\n네이버(14종)\n한국해양대 (10종)\n국립국어원(5종)\nAI 허브(15종)\n\n\n\n\nlibrary(tidyverse)\n\nner_tbl <- tibble::tribble(\n            ~개체명.범주,   ~태그,                          ~정의,\n           \"PERSON\", \"PER\",      \"실존, 가상 등 인물명에 해당 하는 것\",\n            \"FIELD\", \"FLD\",       \"학문 분야 및 이론, 법칙, 기술 등\",\n  \"ARTIFACTS_WORKS\", \"AFW\",        \"인공물로 사람에 의해 창조된 대상물\",\n     \"ORGANIZATION\", \"ORG\",      \"기관 및 단체와 회의/회담을 모두 포함\",\n         \"LOCATION\", \"LOC\",            \"지역명칭과 행정구역 명칭 등\",\n     \"CIVILIZATION\", \"CVL\",            \"문명 및 문화에 관련된 용어\",\n             \"DATE\", \"DAT\",                         \"날짜\",\n             \"TIME\", \"TIM\",                         \"시간\",\n           \"NUMBER\", \"NUM\",                         \"숫자\",\n            \"EVENT\", \"EVT\",        \"특정 사건 및 사고 명칭과 행사 등\",\n           \"ANIMAL\", \"ANM\",                         \"동물\",\n            \"PLANT\", \"PLT\",                         \"식물\",\n         \"MATERIAL\", \"MAT\",             \"금속, 암석, 화학물질 등\",\n             \"TERM\", \"TRM\", \"의학 용어, IT곤련 용어 등 일반 용어를 총칭\"\n  )\n\nner_tbl %>% \n  gt::gt()\n\n\n\n\n\n\n개체명.범주\n      태그\n      정의\n    \n\n\nPERSON\nPER\n실존, 가상 등 인물명에 해당 하는 것\n\n\nFIELD\nFLD\n학문 분야 및 이론, 법칙, 기술 등\n\n\nARTIFACTS_WORKS\nAFW\n인공물로 사람에 의해 창조된 대상물\n\n\nORGANIZATION\nORG\n기관 및 단체와 회의/회담을 모두 포함\n\n\nLOCATION\nLOC\n지역명칭과 행정구역 명칭 등\n\n\nCIVILIZATION\nCVL\n문명 및 문화에 관련된 용어\n\n\nDATE\nDAT\n날짜\n\n\nTIME\nTIM\n시간\n\n\nNUMBER\nNUM\n숫자\n\n\nEVENT\nEVT\n특정 사건 및 사고 명칭과 행사 등\n\n\nANIMAL\nANM\n동물\n\n\nPLANT\nPLT\n식물\n\n\nMATERIAL\nMAT\n금속, 암석, 화학물질 등\n\n\nTERM\nTRM\n의학 용어, IT곤련 용어 등 일반 용어를 총칭\n\n\n\n\n\n\n\n\n한국어에서 개체의 범주는 크게 개체이름, 시간표현, 수량표현으로 분류할 수 있다.\n\n개체이름: 인명(PER), 지명(LOC), 기관명(ORG), 기타(POH)\n시간표현: 날짜(DAT), 시간(TIM), 기간(DUR)\n수량표현: 통화(MNY), 비율(PNT), 기타 수량표현(NOH)\n\n\n\n장소(LC), 날짜(DT), 기관(OG), 시간(TI), 인물(PS)\n\n\n사람(PS), 지역(LC), 단체(OG), 인공물(AF), 날짜(DT), 시간(TI), 제도(CV), 동물(AM), 식물(PT), 단위(QT), 분야(FD), 이론(TR), 사건(EV), 물질(MT), 용어(TM)"
+  },
+  {
+    "objectID": "hf_pipeline.html",
+    "href": "hf_pipeline.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "다국어를 지원하는 BERT 모형을 활용하여 연관 자연어 처리 업무를 수행할 수 있다.\n\nbert-base-multilingual-cased\ndistilbert-base-multilingual-cased\n\ndistilbert는 BERT 모형과 비교하여 다소 성능이 떨어지나 크기, 속도 등 다른 지표에서 BERT와 대등한 지표를 제시하고 있다.\n\n\n\n\n\n\n노트\n\n\n\nfrom transformers import pipeline\n\n# Using default model and tokenizer for the task\npipeline(\"<task-name>\")\n\n# Using a user-specified model\npipeline(\"<task-name>\", model=\"<model_name>\")\n\n# Using custom model/tokenizer as str\npipeline('<task-name>', model='<model name>', tokenizer='<tokenizer_name>')\n\n\nHugging Face Transformers - How to use Pipelines"
+  },
+  {
+    "objectID": "hf_pipeline.html#파이썬-코드",
+    "href": "hf_pipeline.html#파이썬-코드",
+    "title": "chatGPT",
+    "section": "\n3.1 파이썬 코드",
+    "text": "3.1 파이썬 코드\nHF 파이프라인을 사용하여 영문 개체명인식 작업을 수행한다.\n# 감성분석 - 파이썬 코드\n# 출처: https://www.kaggle.com/code/funtowiczmo/hugging-face-transformers-how-to-use-pipelines\n\nfrom transformers import pipeline\n\n# NER 파이프라인 ---------------------------------\nner = pipeline(task = \"ner\", \n               model=\"dbmdz/bert-large-cased-finetuned-conll03-english\",\n               tokenizer=\"bert-large-cased\")\n\ntext = \"John Smith works at Google\"\nentities = ner(text)\n\n# 결과 출력\nfor entity in entities:\n    print(f\"{entity['word']} -> {entity['entity']}\")"
+  },
+  {
+    "objectID": "hf_pipeline.html#개체명-인식결과",
+    "href": "hf_pipeline.html#개체명-인식결과",
+    "title": "chatGPT",
+    "section": "\n3.2 개체명 인식결과",
+    "text": "3.2 개체명 인식결과\n\n코드library(reticulate)\nreticulate::source_python(\"code/BERT/HF_pipeline_NER.py\")\n\nto_r <- function(idx){\n\n  output_idx = py$entities %>% \n    pluck(idx)\n  \n  output_idx$score = paste(output_idx$score) %>% \n    as.double()\n  \n  return(output_idx)\n}\n\nmap_dfr(1:length(py$entities), ~to_r(.x))\n#> # A tibble: 3 × 6\n#>   entity score index word   start   end\n#>   <chr>  <dbl> <int> <chr>  <int> <int>\n#> 1 I-PER  0.999     1 John       0     4\n#> 2 I-PER  1.00      2 Smith      5    10\n#> 3 I-ORG  0.998     5 Google    20    26"
   }
 ]
