@@ -81,6 +81,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -183,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-generative-ai">
 <li>
-    <a class="dropdown-item" href="./trends.qmd">
+    <a class="dropdown-item" href="./trends.html">
  <span class="dropdown-text">추세 트렌드</span></a>
   </li>  
         <li>
@@ -265,7 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <div class="quarto-title-block"><div><h1 class="title">chatGPT</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> 코드</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 표시</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 숨기기</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">소스 코드 표시</a></li></ul></div></div>
-            <p class="subtitle lead">프로젝트</p>
+            <p class="subtitle lead">추세 트렌드</p>
                       </div>
   </div>
     
@@ -300,234 +319,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%EB%B0%B1%EB%A7%8C-%EC%82%AC%EC%9A%A9%EC%9E%90-fa-solid-rocket" id="toc-백만-사용자-fa-solid-rocket" class="nav-link active" data-scroll-target="#%EB%B0%B1%EB%A7%8C-%EC%82%AC%EC%9A%A9%EC%9E%90-fa-solid-rocket"><span class="toc-section-number">1</span>  1 백만 사용자 <i class="fa-solid fa-rocket" aria-label="rocket"></i></a></li>
-  <li><a href="#%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84" id="toc-패러다임" class="nav-link" data-scroll-target="#%ED%8C%A8%EB%9F%AC%EB%8B%A4%EC%9E%84"><span class="toc-section-number">2</span>  패러다임</a></li>
-  <li><a href="#prompt-engineering-1" id="toc-prompt-engineering-1" class="nav-link" data-scroll-target="#prompt-engineering-1"><span class="toc-section-number">3</span>  Prompt engineering</a></li>
-  <li><a href="#genearative-ai" id="toc-genearative-ai" class="nav-link" data-scroll-target="#genearative-ai"><span class="toc-section-number">4</span>  Genearative AI</a></li>
-  <li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%99%80-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4" id="toc-데이터와-하드웨어" class="nav-link" data-scroll-target="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%99%80-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4"><span class="toc-section-number">5</span>  데이터와 하드웨어</a></li>
-  <li><a href="#open-assistant" id="toc-open-assistant" class="nav-link" data-scroll-target="#open-assistant"><span class="toc-section-number">6</span>  Open Assistant</a></li>
-  <li><a href="#gpt-3-%EC%96%B8%EC%96%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0" id="toc-gpt-3-언어-데이터" class="nav-link" data-scroll-target="#gpt-3-%EC%96%B8%EC%96%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0"><span class="toc-section-number">7</span>  GPT-3 언어 데이터</a></li>
+<li><a href="#%EB%B0%B1%EB%A7%8C1%EC%96%B5-%EC%82%AC%EC%9A%A9%EC%9E%90-fa-solid-rocket" id="toc-백만1억-사용자-fa-solid-rocket" class="nav-link active" data-scroll-target="#%EB%B0%B1%EB%A7%8C1%EC%96%B5-%EC%82%AC%EC%9A%A9%EC%9E%90-fa-solid-rocket"><span class="toc-section-number">1</span>  백만~1억 사용자 <i class="fa-solid fa-rocket" aria-label="rocket"></i></a></li>
+  <li><a href="#gpt-3-%EC%96%B8%EC%96%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0-fa-solid-brain" id="toc-gpt-3-언어-데이터-fa-solid-brain" class="nav-link" data-scroll-target="#gpt-3-%EC%96%B8%EC%96%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0-fa-solid-brain"><span class="toc-section-number">2</span>  GPT-3 언어 데이터 <i class="fa-solid fa-brain" aria-label="brain"></i></a></li>
   <li>
-<a href="#%EA%B5%AC%EA%B8%80-%ED%8A%B8%EB%A0%8C%EB%93%9C" id="toc-구글-트렌드" class="nav-link" data-scroll-target="#%EA%B5%AC%EA%B8%80-%ED%8A%B8%EB%A0%8C%EB%93%9C"><span class="toc-section-number">8</span>  구글 트렌드</a>
+<a href="#%EA%B5%AC%EA%B8%80-%ED%8A%B8%EB%A0%8C%EB%93%9C-fa-brands-google" id="toc-구글-트렌드-fa-brands-google" class="nav-link" data-scroll-target="#%EA%B5%AC%EA%B8%80-%ED%8A%B8%EB%A0%8C%EB%93%9C-fa-brands-google"><span class="toc-section-number">3</span>  구글 트렌드 <i class="fa-brands fa-google" aria-label="google"></i></a>
   <ul class="collapse">
-<li><a href="#chatgpt-%EC%9D%B4%EC%A0%84" id="toc-chatgpt-이전" class="nav-link" data-scroll-target="#chatgpt-%EC%9D%B4%EC%A0%84"><span class="toc-section-number">8.1</span>  chatGPT 이전</a></li>
-  <li><a href="#chatgpt-%EC%B6%9C%ED%98%84" id="toc-chatgpt-출현" class="nav-link" data-scroll-target="#chatgpt-%EC%B6%9C%ED%98%84"><span class="toc-section-number">8.2</span>  chatGPT 출현</a></li>
-  <li><a href="#%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B3%BC-chatgpt" id="toc-파이썬과-chatgpt" class="nav-link" data-scroll-target="#%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B3%BC-chatgpt"><span class="toc-section-number">8.3</span>  파이썬과 chatGPT</a></li>
+<li><a href="#chatgpt-%EC%9D%B4%EC%A0%84" id="toc-chatgpt-이전" class="nav-link" data-scroll-target="#chatgpt-%EC%9D%B4%EC%A0%84"><span class="toc-section-number">3.1</span>  chatGPT 이전</a></li>
+  <li><a href="#chatgpt-%EC%B6%9C%ED%98%84" id="toc-chatgpt-출현" class="nav-link" data-scroll-target="#chatgpt-%EC%B6%9C%ED%98%84"><span class="toc-section-number">3.2</span>  chatGPT 출현</a></li>
+  <li><a href="#%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B3%BC-chatgpt" id="toc-파이썬과-chatgpt" class="nav-link" data-scroll-target="#%ED%8C%8C%EC%9D%B4%EC%8D%AC%EA%B3%BC-chatgpt"><span class="toc-section-number">3.3</span>  파이썬과 chatGPT</a></li>
   </ul>
 </li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><section id="백만-사용자-fa-solid-rocket" class="level1" data-number="1"><h1 data-number="1">
-<span class="header-section-number">1</span> 1 백만 사용자 <i class="fa-solid fa-rocket" aria-label="rocket"></i>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="백만1억-사용자-fa-solid-rocket" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> 백만~1억 사용자 <i class="fa-solid fa-rocket" aria-label="rocket"></i>
 </h1>
-<p>1 백만 가입자를 가질 때까지 걸린 소요시간을 보면 chatGPT 의 영향력을 파악할 수 있다.</p>
+<p>백만, 5천만, 1억 가입자를 가질 때까지 걸린 소요시간을 보면 chatGPT 의 영향력을 파악할 수 있다.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">전화기부터</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">기술 진화</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">chatGPT 백만</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">빅3 서비스</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">1억명 (소요 달수)</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/one_million_users.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/one_million_users.jpg" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/time-to-reach-springer.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="[@song2019digital]"><img src="images/time-to-reach-springer.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption"><span class="citation" data-cites="song2019digital">(<a href="#ref-song2019digital" role="doc-biblioref">Song, 2019</a>)</span></figcaption><p></p>
 </figure>
 </div>
-</section><section id="패러다임" class="level1 page-columns page-full" data-number="2"><h1 data-number="2">
-<span class="header-section-number">2</span> 패러다임</h1>
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="images/software_3.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Andrej Karpathy Twit"><img src="images/software_3.jpeg" class="img-fluid" alt="Andrej Karpathy Twit"></a></span></div></div>
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">- Pre-Software: Special-purpose computer <br> - Software 1.0: Design the Algorithm <br> - Software 2.0: Design the Dataset <br> - Software 3.0: Design the Prompt</span></div></div>
-<div class="panel-tabset column-page page-columns page-full">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Feature Engineering</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Architecture Engineering</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Objective Engineering</a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Prompt Engineering</a></li>
-</ul>
-<div class="tab-content column-page">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<ul>
-<li>
-<strong>패러다임</strong>: (비신경망)지도학습 (Fully Supervised Learning)</li>
-<li>
-<strong>전성기</strong>: 2015년까지 최고 전성기 구가</li>
-<li>
-<strong>특징</strong>
-<ol type="1">
-<li>주로 비신경망 기계학습이 사용</li>
-<li>수작업으로 Feature를 추출</li>
-</ol>
-</li>
-<li>
-<strong>대표작</strong>
-<ol type="1">
-<li>수작업 Feature 추출 후 SVM(support vector machine) 기계학습 모형</li>
-<li>수작업 Feature 추출 후 CRF(conditional random fields)</li>
-</ol>
-</li>
-</ul>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<ul>
-<li>
-<strong>패러다임</strong>: 신경망 지도학습(Fully Supervised Learning)</li>
-<li>
-<strong>전성기</strong>: 대략 2013~2018</li>
-<li>
-<strong>특징</strong>
-<ol type="1">
-<li>신경망(Neural Network) 의존</li>
-<li>수작업으로 Feature를 손볼 필요는 없으나 신경망 네트워크는 수정해야 함(LSTM vs CNN)</li>
-<li>종종 사전학습된 언어모형을 사용하나 임베딩(embedding) 같은 얕은(shallow) Feature를 적용</li>
-</ol>
-</li>
-<li>
-<strong>대표작</strong>
-<ol type="1">
-<li>텍스트 분류작업에 CNN 사용</li>
-</ol>
-</li>
-</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/hbr_trends.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Rita McGrath(November 25, 2013), “The Pace of Technology Adoption is Speeding Up”, Harvard Business Review"><img src="images/hbr_trends.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption"><a href="https://hbr.org/2013/11/the-pace-of-technology-adoption-is-speeding-up">Rita McGrath(November 25, 2013), “The Pace of Technology Adoption is Speeding Up”, Harvard Business Review</a></figcaption><p></p>
+</figure>
+</div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<ul>
-<li>
-<strong>패러다임</strong>: 사전학습(pre-training), 미세조정(fine-tuning)</li>
-<li>
-<strong>전성기</strong>: 2017~현재</li>
-<li>
-<strong>특징</strong>
-<ol type="1">
-<li>사전학습된 언어모형을 전체 모형의 초기값으로 사용</li>
-<li>아키텍쳐 디자인에 작업이 덜 필요하지만 목적함수(Objective function) 엔지니어링은 필요</li>
-</ol>
-</li>
-<li>
-<strong>대표작</strong>
-<ol type="1">
-<li>BERT → Fine Tuning</li>
-</ol>
-</li>
-</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/one_million_users.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/one_million_users.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
 </div>
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
-<ul>
-<li>
-<strong>패러다임</strong>: 사전학습(pre-training), 프롬프트(Prompt), 예측(Predict)</li>
-<li>
-<strong>전성기</strong>: 2019~현재</li>
-<li>
-<strong>특징</strong>
-<ol type="1">
-<li>NLP 작업이 언어모형(Language Model)에 전적으로 의존</li>
-<li>얕던 깊던 Feature 추출, 예측 등 작업이 전적으로 언어모형에 의존</li>
-<li>프롬프트 공학이 필요</li>
-</ol>
-</li>
-<li>
-<strong>대표작</strong>
-<ol type="1">
-<li>GPT3</li>
-</ol>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</section><section id="prompt-engineering-1" class="level1 page-columns page-full" data-number="3"><h1 data-number="3">
-<span class="header-section-number">3</span> Prompt engineering</h1>
-<ul>
-<li>Instructions</li>
-<li>Question</li>
-<li>Input data</li>
-<li>Examples</li>
-</ul>
-<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="https://www.linkedin.com/pulse/prompt-engineering-101-introduction-resources-amatriain/">Xavier (Xavi) Amatriain(January 5, 2023), “Prompt Engineering 101 - Introduction and resources”, Linkedin</a>,<a href="https://microsoft.github.io/prompt-engineering/">Prompt Engineering - Learn how to use AI models with prompt engineering</a></span></div></div>
-</section><section id="genearative-ai" class="level1" data-number="4"><h1 data-number="4">
-<span class="header-section-number">4</span> Genearative AI</h1>
-<ul>
-<li>구분
-<ul>
-<li>generation: text → image</li>
-<li>classification: image → text</li>
-<li>transformation: image → image (or text → text)</li>
-</ul>
-</li>
-<li>AI 프로젝트
-<ul>
-<li>GPT-3</li>
-<li>Dalle.2 (text-to-image)</li>
-<li>Meta’s AI (text-to-video)</li>
-<li>Google AI (text-to-video)</li>
-<li>Stable Diffusion (text-to-image)</li>
-<li>Tesla AI (humanoid robot + self-driving)</li>
-</ul>
-</li>
-<li>text-to-X
-<ul>
-<li>text-to-gif (T2G)</li>
-<li>text-to-3D (T2D)</li>
-<li>text-to-text (T2T)</li>
-<li>text-to-NFT (T2N)</li>
-<li>text-to-code (T2C)</li>
-<li>text-to-image (T2I)</li>
-<li>text-to-audio (T2S)</li>
-<li>text-to-video (T2V)</li>
-<li>text-to-music (T2M)</li>
-<li>text-to-motion (T2Mo)</li>
-</ul>
-</li>
-<li>기타
-<ul>
-<li>brain-to-text (B2T)</li>
-<li>image-to-text (I2T)</li>
-<li>speech-to-text (S2T)</li>
-<li>audio-to-audio (A2A)</li>
-<li>tweet-to-image (Tt2I)</li>
-<li>text-to-sound (T2S)</li>
-</ul>
-</li>
-</ul>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/generative_ai.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/generative_ai.jpg" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/time-to-reach-5days.jfif" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="출처: https://twitter.com/umarsaif/status/1610932387185315840"><img src="images/time-to-reach-5days.jfif" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">출처: <a href="https://twitter.com/umarsaif/status/1610932387185315840" class="uri">https://twitter.com/umarsaif/status/1610932387185315840</a></figcaption><p></p>
 </figure>
 </div>
-</section><section id="데이터와-하드웨어" class="level1" data-number="5"><h1 data-number="5">
-<span class="header-section-number">5</span> 데이터와 하드웨어</h1>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/cpu_gpu.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/cpu_gpu.jpg" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
-</section><section id="open-assistant" class="level1" data-number="6"><h1 data-number="6">
-<span class="header-section-number">6</span> Open Assistant</h1>
-<div id="fig-assistant" class="quarto-layout-panel">
-<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="images/OA_label_assistant_reply.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Label Asssistant Reply"><img src="images/OA_label_assistant_reply.png" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">Label Asssistant Reply</figcaption><p></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="images/OA_label_initial_prompt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Initial Prompt"><img src="images/OA_label_initial_prompt.png" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">Initial Prompt</figcaption><p></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="images/OA_label_prompter_reply.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Label Prompter Reply"><img src="images/OA_label_prompter_reply.png" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">Label Prompter Reply</figcaption><p></p>
+<figure class="figure"><p><a href="images/time-to-reach-100M.jfif" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="출처: https://twitter.com/EconomyApp/status/1622029832099082241"><img src="images/time-to-reach-100M.jfif" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">출처: <a href="https://twitter.com/EconomyApp/status/1622029832099082241" class="uri">https://twitter.com/EconomyApp/status/1622029832099082241</a></figcaption><p></p>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="images/OA_reply_as_assistant.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Reply as Assistant"><img src="images/OA_reply_as_assistant.png" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">Reply as Assistant</figcaption><p></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
-<figure class="figure"><p><a href="images/OA_reply_as_user.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Reply as User"><img src="images/OA_reply_as_user.png" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">Reply as User</figcaption><p></p>
-</figure>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">그림&nbsp;1: <a href="https://open-assistant.io/dashboard">Open Assistant</a></figcaption><p></p>
-</figure>
-</div>
-</section><section id="gpt-3-언어-데이터" class="level1" data-number="7"><h1 data-number="7">
-<span class="header-section-number">7</span> GPT-3 언어 데이터</h1>
+</section><section id="gpt-3-언어-데이터-fa-solid-brain" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> GPT-3 언어 데이터 <i class="fa-solid fa-brain" aria-label="brain"></i>
+</h1>
 <p>GPT-3 개발에 투입된 문서갯수를 언어별로 살펴보자.</p>
 <div class="cell">
 <details><summary>코드</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
@@ -602,16 +458,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/gpt_lang.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/gpt_lang.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/gpt_lang.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/gpt_lang.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
-</section><section id="구글-트렌드" class="level1" data-number="8"><h1 data-number="8">
-<span class="header-section-number">8</span> 구글 트렌드</h1>
-<section id="chatgpt-이전" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="chatgpt-이전">
-<span class="header-section-number">8.1</span> chatGPT 이전</h2>
+</section><section id="구글-트렌드-fa-brands-google" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> 구글 트렌드 <i class="fa-brands fa-google" aria-label="google"></i>
+</h1>
+<section id="chatgpt-이전" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="chatgpt-이전">
+<span class="header-section-number">3.1</span> chatGPT 이전</h2>
 <p>Tensorflow, Keras, Pytorch, Fast.ai 가 차례로 등장하며 딥러닝 개발 프레임워크의 전성기를 구가했다. 최근 5년동안 Google 추세를 살펴보자.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/pytorch_tensorflow.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="images/pytorch_tensorflow.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/pytorch_tensorflow.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="images/pytorch_tensorflow.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 <div class="cell">
@@ -645,11 +502,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/dl_framework.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="images/dl_framework.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/dl_framework.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="images/dl_framework.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
-</section><section id="chatgpt-출현" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="chatgpt-출현">
-<span class="header-section-number">8.2</span> chatGPT 출현</h2>
+</section><section id="chatgpt-출현" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="chatgpt-출현">
+<span class="header-section-number">3.2</span> chatGPT 출현</h2>
 <p>chatGPT 출현이후 Tensorflow, Keras, Pytorch, Fast.ai 는 어떻게 전개될 것인지 최근 1년동안 Google 추세를 살펴보자.</p>
 <div class="cell">
 <details><summary>코드</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chatGPT_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gtrendsR/man/gtrends.html">gtrends</a></span><span class="op">(</span>keyword <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pytorch"</span>,<span class="st">"fastai"</span>, <span class="st">"tensorflow"</span>, <span class="st">"keras"</span>, <span class="st">"chatGPT"</span><span class="op">)</span>, geo <span class="op">=</span> <span class="st">""</span>, </span>
@@ -680,11 +537,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/chatGPT_framework.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="images/chatGPT_framework.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/chatGPT_framework.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="images/chatGPT_framework.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
-</section><section id="파이썬과-chatgpt" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="파이썬과-chatgpt">
-<span class="header-section-number">8.3</span> 파이썬과 chatGPT</h2>
+</section><section id="파이썬과-chatgpt" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="파이썬과-chatgpt">
+<span class="header-section-number">3.3</span> 파이썬과 chatGPT</h2>
 <p>chatGPT 출현이후 파이썬, tensorflow, pytorch 최근 1년동안 Google 추세를 살펴보자.</p>
 <div class="cell">
 <details><summary>코드</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">python_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gtrendsR/man/gtrends.html">gtrends</a></span><span class="op">(</span>keyword <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"chatGPT"</span>, <span class="st">"pytorch"</span>,<span class="st">"python"</span>, <span class="st">"tensorflow"</span>, <span class="st">"keras"</span><span class="op">)</span>, geo <span class="op">=</span> <span class="st">""</span>, </span>
@@ -715,14 +572,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </details>
 </div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/python_chatGPT_g.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="images/python_chatGPT_g.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/python_chatGPT_g.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/python_chatGPT_g.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 
 
 <!-- -->
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+
+</section></section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">참고문헌</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-song2019digital" class="csl-entry" role="doc-biblioentry">
+Song, A. K. (2019). The digital entrepreneurial ecosystem—a critique and reconfiguration. <em>Small Business Economics</em>, <em>53</em>(3), 569–590.
+</div>
+</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1023,7 +885,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "프로젝트"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "추세 트렌드"</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
@@ -1056,342 +918,239 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
 <span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1 백만 사용자 {{&lt; fa solid rocket &gt;}}</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> bibliography.bib</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> apa-single-spaced.csl  </span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>1 백만 가입자를 가질 때까지 걸린 소요시간을 보면 chatGPT 의 영향력을 파악할 수 있다.</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="fu"># 백만~1억 사용자 {{&lt; fa solid rocket &gt;}}</span></span>
 <span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/one_million_users.jpg)</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>백만, 5천만, 1억 가입자를 가질 때까지 걸린 소요시간을 보면 chatGPT 의 영향력을 파악할 수 있다.</span>
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="fu"># 패러다임</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>:::{.panel-tabset}</span>
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Andrej Karpathy Twit](images/software_3.jpeg)</span><span class="co">]</span>{.aside}</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## 전화기부터</span></span>
 <span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>[- Pre-Software: Special-purpose computer <span class="kw">&lt;br&gt;</span></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Software 1.0: Design the Algorithm <span class="kw">&lt;br&gt;</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Software 2.0: Design the Dataset <span class="kw">&lt;br&gt;</span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Software 3.0: Design the Prompt]{.aside}</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>:::{.panel-tabset .column-page}</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Feature Engineering</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**패러다임**: (비신경망)지도학습 (Fully Supervised Learning)</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**전성기**: 2015년까지 최고 전성기 구가</span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**특징**</span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>주로 비신경망 기계학습이 사용</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>수작업으로 Feature를 추출</span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**대표작**  </span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>수작업 Feature 추출 후 SVM(support vector machine) 기계학습 모형</span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>수작업 Feature 추출 후 CRF(conditional random fields)</span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Architecture Engineering</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>![<span class="co">[</span><span class="ot">@song2019digital</span><span class="co">]</span>](images/time-to-reach-springer.png)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## 기술 진화</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>![<span class="co">[</span><span class="ot">Rita McGrath(November 25, 2013), "The Pace of Technology Adoption is Speeding Up", Harvard Business Review</span><span class="co">](https://hbr.org/2013/11/the-pace-of-technology-adoption-is-speeding-up)</span>](images/hbr_trends.png)</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## chatGPT 백만</span></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/one_million_users.jpg)</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## 빅3 서비스</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="al">![출처: &lt;https://twitter.com/umarsaif/status/1610932387185315840&gt;](images/time-to-reach-5days.jfif)</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="fu">## 1억명 (소요 달수)</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="al">![출처: &lt;https://twitter.com/EconomyApp/status/1622029832099082241&gt;](images/time-to-reach-100M.jfif)</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**패러다임**: 신경망 지도학습(Fully Supervised Learning)</span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**전성기**: 대략 2013~2018</span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**특징**</span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>신경망(Neural Network) 의존</span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>수작업으로 Feature를 손볼 필요는 없으나 신경망 네트워크는 수정해야 함(LSTM vs CNN)</span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>종종 사전학습된 언어모형을 사용하나 임베딩(embedding) 같은 얕은(shallow) Feature를 적용</span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**대표작**  </span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>텍스트 분류작업에 CNN 사용</span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objective Engineering</span></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**패러다임**: 사전학습(pre-training), 미세조정(fine-tuning)</span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**전성기**: 2017~현재</span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**특징**</span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>사전학습된 언어모형을 전체 모형의 초기값으로 사용</span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>아키텍쳐 디자인에 작업이 덜 필요하지만 목적함수(Objective function) 엔지니어링은 필요</span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**대표작**  </span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>BERT <span class="dv">&amp;rarr;</span> Fine Tuning</span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prompt Engineering</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="fu"># GPT-3 언어 데이터 {{&lt; fa solid brain &gt;}}</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>GPT-3 개발에 투입된 문서갯수를 언어별로 살펴보자.</span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(countrycode)</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtExtras)</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="do">## 언어 코드 </span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>lang_tbl <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="at">x =</span> <span class="st">'http://www.lingoes.net/en/translator/langcode.htm'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_element</span>(<span class="at">css =</span> <span class="st">'body &gt; table'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_names</span>(<span class="fu">c</span>(<span class="st">"언어"</span>, <span class="st">"언어명"</span>))</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**패러다임**: 사전학습(pre-training), 프롬프트(Prompt), 예측(Predict)</span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**전성기**: 2019~현재</span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**특징**</span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>NLP 작업이 언어모형(Language Model)에 전적으로 의존</span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>얕던 깊던 Feature 추출, 예측 등 작업이 전적으로 언어모형에 의존</span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>프롬프트 공학이 필요</span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**대표작**  </span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>GPT3</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>gpt_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/openai/gpt-3/master/dataset_statistics/languages_by_document_count.csv"</span>)</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>gpt_tbl <span class="ot">&lt;-</span> gpt_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_names</span>(<span class="fu">c</span>(<span class="st">"언어"</span>, <span class="st">"문서수"</span>, <span class="st">"비중"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(비중 <span class="ot">=</span> <span class="fu">parse_number</span>(비중) <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(누적문서 <span class="ot">=</span> <span class="fu">cumsum</span>(문서수)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(누적비중 <span class="ot">=</span> 누적문서 <span class="sc">/</span> <span class="fu">sum</span>(문서수)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(문서수, <span class="at">n =</span> <span class="dv">28</span>)  </span>
 <span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="fu"># Prompt engineering</span></span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Instructions</span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Question</span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Input data</span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Examples</span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">Xavier (Xavi) Amatriain(January 5, 2023), "Prompt Engineering 101 - Introduction and resources", Linkedin</span><span class="co">](https://www.linkedin.com/pulse/prompt-engineering-101-introduction-resources-amatriain/)</span>,<span class="co">[</span><span class="ot">Prompt Engineering - Learn how to use AI models with prompt engineering</span><span class="co">](https://microsoft.github.io/prompt-engineering/)</span>]{.aside}</span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="fu"># Genearative AI</span></span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>구분</span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>generation: text <span class="dv">&amp;rarr;</span> image</span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>classification: image <span class="dv">&amp;rarr;</span> text</span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>transformation: image <span class="dv">&amp;rarr;</span> image (or text <span class="dv">&amp;rarr;</span> text)</span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>AI 프로젝트</span>
-<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>GPT-3</span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Dalle.2 (text-to-image)</span>
-<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Meta’s AI (text-to-video)</span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Google AI (text-to-video)</span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Stable Diffusion (text-to-image)</span>
-<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Tesla AI (humanoid robot + self-driving)</span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>text-to-X</span>
-<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>text-to-gif (T2G)</span>
-<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>text-to-3D (T2D)</span>
-<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>text-to-text (T2T)</span>
-<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>text-to-NFT (T2N)</span>
-<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>text-to-code (T2C)</span>
-<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>text-to-image (T2I)</span>
-<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>text-to-audio (T2S)</span>
-<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>text-to-video (T2V)</span>
-<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>text-to-music (T2M)</span>
-<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>text-to-motion (T2Mo)</span>
-<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>기타</span>
-<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>brain-to-text (B2T)</span>
-<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>image-to-text (I2T)</span>
-<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>speech-to-text (S2T)</span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>audio-to-audio (A2A)</span>
-<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>tweet-to-image (Tt2I)</span>
-<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>text-to-sound (T2S)</span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>gpt_gt <span class="ot">&lt;-</span> gpt_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(lang_tbl, <span class="at">by =</span> <span class="st">"언어"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(언어, 언어명, 문서수, 비중, 누적비중) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 표 </span></span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt_theme_nytimes</span>() <span class="sc">%&gt;%</span>   </span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_header</span>(</span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="fu">md</span>(<span class="st">"**GPT-3 언어모형 개발에 사용된 언어별 문서 통계**"</span>),</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="st">"한국어 포함 상위 28개 언어"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_source_note</span>(</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>      <span class="at">source_note =</span> <span class="st">"자료출처: https://github.com/openai/gpt-3/blob/master/dataset_statistics/languages_by_document_count.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_spanner</span>(</span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"언어코드와 언어명"</span>,</span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="fu">c</span>(언어, 언어명)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_spanner</span>(</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"통계수치"</span>,</span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="fu">c</span>(문서수, 비중, 누적비중)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_align</span>(</span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>      <span class="at">align =</span> <span class="st">"center"</span>,</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="fu">c</span>(언어, 언어명)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>    <span class="co"># tab_style(</span></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   style = cell_text(size = px(12)),</span></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   locations = cells_body(</span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>    <span class="co">#     columns = c(문서수, 비중, 누적비중)</span></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   )</span></span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>    <span class="co"># )  %&gt;% </span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_percent</span>(</span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="fu">c</span>(비중, 누적비중),</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>      <span class="at">decimals =</span> <span class="dv">2</span></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>    )  <span class="sc">%&gt;%</span> </span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_number</span>(</span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> 문서수,</span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>      <span class="at">decimals =</span> <span class="dv">0</span>,</span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep_mark =</span> <span class="st">","</span></span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>    )   <span class="sc">%&gt;%</span> </span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>   <span class="fu">gt_highlight_rows</span>(</span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a>     <span class="at">rows =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">28</span>),</span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">"lightgrey"</span>,</span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>     <span class="at">target_col =</span> 언어</span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>   )  <span class="sc">%&gt;%</span> </span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sub_missing</span>(</span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">everything</span>(),</span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing_text =</span> <span class="st">"-"</span></span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>  )  </span>
 <span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/generative_ai.jpg)</span></span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>gpt_gt <span class="sc">%&gt;%</span> </span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gtsave</span>(<span class="st">"images/gpt_lang.png"</span>)</span>
 <span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a><span class="fu"># 데이터와 하드웨어</span></span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/cpu_gpu.jpg)</span></span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gpt_lang.png)</span></span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="fu"># Open Assistant</span></span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="fu"># 구글 트렌드 {{&lt; fa brands google &gt;}}</span></span>
 <span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>::: {#fig-assistant layout-ncol=3}</span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a><span class="al">![Label Asssistant Reply](images/OA_label_assistant_reply.png)</span></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a><span class="fu">## chatGPT 이전</span></span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>Tensorflow, Keras, Pytorch, Fast.ai 가 차례로 등장하며 딥러닝 개발 프레임워크의 전성기를 구가했다.</span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>최근 5년동안 Google 추세를 살펴보자.</span>
 <span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="al">![Initial Prompt](images/OA_label_initial_prompt.png)</span></span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/pytorch_tensorflow.png)</span></span>
 <span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a><span class="al">![Label Prompter Reply](images/OA_label_prompter_reply.png)</span></span>
-<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a><span class="al">![Reply as Assistant](images/OA_reply_as_assistant.png)</span></span>
-<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a><span class="al">![Reply as User](images/OA_reply_as_user.png)</span></span>
-<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtrendsR)</span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>extrafont<span class="sc">::</span><span class="fu">loadfonts</span>()</span>
 <span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Open Assistant</span><span class="co">](https://open-assistant.io/dashboard)</span></span>
-<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="fu">c</span>(<span class="st">"pytorch"</span>,<span class="st">"fastai"</span>, <span class="st">"tensorflow"</span>, <span class="st">"keras"</span>), <span class="at">geo =</span> <span class="st">""</span>, </span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a>                  <span class="at">time=</span><span class="st">"today+5-y"</span>, <span class="at">low_search_volume =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a><span class="fu"># GPT-3 언어 데이터</span></span>
-<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>GPT-3 개발에 투입된 문서갯수를 언어별로 살펴보자.</span>
-<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(countrycode)</span>
-<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
-<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtExtras)</span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a>gtrends_framework_g <span class="ot">&lt;-</span> result<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span> </span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">keyword =</span> <span class="fu">factor</span>(keyword, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"keras"</span>, <span class="st">"pytorch"</span>, <span class="st">"tensorflow"</span>, <span class="st">"fastai"</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hits =</span> <span class="fu">parse_number</span>(hits)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">"NanumBarunpen"</span>) <span class="sc">+</span></span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, </span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"검색수"</span>,</span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"프레임워크"</span>,</span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"딥러닝 프레임워크 구글 검색 추세"</span>) <span class="sc">+</span></span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a><span class="do">## 언어 코드 </span></span>
-<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a>lang_tbl <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="at">x =</span> <span class="st">'http://www.lingoes.net/en/translator/langcode.htm'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_element</span>(<span class="at">css =</span> <span class="st">'body &gt; table'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_names</span>(<span class="fu">c</span>(<span class="st">"언어"</span>, <span class="st">"언어명"</span>))</span>
-<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a><span class="co"># ragg always works for mac</span></span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a>ragg<span class="sc">::</span><span class="fu">agg_png</span>(<span class="st">"images/dl_framework.png"</span>, <span class="at">width =</span> <span class="dv">297</span>, </span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a>              <span class="at">height =</span> <span class="dv">210</span>, </span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a>              <span class="at">units =</span> <span class="st">"mm"</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a>gtrends_framework_g</span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
 <span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a>gpt_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/openai/gpt-3/master/dataset_statistics/languages_by_document_count.csv"</span>)</span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb5-194"><a href="#cb5-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a>gpt_tbl <span class="ot">&lt;-</span> gpt_raw <span class="sc">%&gt;%</span> </span>
-<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_names</span>(<span class="fu">c</span>(<span class="st">"언어"</span>, <span class="st">"문서수"</span>, <span class="st">"비중"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(비중 <span class="ot">=</span> <span class="fu">parse_number</span>(비중) <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(누적문서 <span class="ot">=</span> <span class="fu">cumsum</span>(문서수)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(누적비중 <span class="ot">=</span> 누적문서 <span class="sc">/</span> <span class="fu">sum</span>(문서수)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(문서수, <span class="at">n =</span> <span class="dv">28</span>)  </span>
+<span id="cb5-195"><a href="#cb5-195" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/dl_framework.png)</span></span>
+<span id="cb5-196"><a href="#cb5-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a><span class="fu">## chatGPT 출현</span></span>
+<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a>chatGPT 출현이후 Tensorflow, Keras, Pytorch, Fast.ai 는 어떻게 전개될 것인지</span>
+<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a>최근 1년동안 Google 추세를 살펴보자.</span>
 <span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a>gpt_gt <span class="ot">&lt;-</span> gpt_tbl <span class="sc">%&gt;%</span> </span>
-<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(lang_tbl, <span class="at">by =</span> <span class="st">"언어"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(언어, 언어명, 문서수, 비중, 누적비중) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 표 </span></span>
-<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt_theme_nytimes</span>() <span class="sc">%&gt;%</span>   </span>
-<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_header</span>(</span>
-<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="fu">md</span>(<span class="st">"**GPT-3 언어모형 개발에 사용된 언어별 문서 통계**"</span>),</span>
-<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="st">"한국어 포함 상위 28개 언어"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_source_note</span>(</span>
-<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a>      <span class="at">source_note =</span> <span class="st">"자료출처: https://github.com/openai/gpt-3/blob/master/dataset_statistics/languages_by_document_count.csv"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_spanner</span>(</span>
-<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"언어코드와 언어명"</span>,</span>
-<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="fu">c</span>(언어, 언어명)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_spanner</span>(</span>
-<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"통계수치"</span>,</span>
-<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="fu">c</span>(문서수, 비중, 누적비중)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_align</span>(</span>
-<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a>      <span class="at">align =</span> <span class="st">"center"</span>,</span>
-<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="fu">c</span>(언어, 언어명)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a>    <span class="co"># tab_style(</span></span>
-<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   style = cell_text(size = px(12)),</span></span>
-<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   locations = cells_body(</span></span>
-<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a>    <span class="co">#     columns = c(문서수, 비중, 누적비중)</span></span>
-<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a>    <span class="co">#   )</span></span>
-<span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a>    <span class="co"># )  %&gt;% </span></span>
-<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_percent</span>(</span>
-<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="fu">c</span>(비중, 누적비중),</span>
-<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a>      <span class="at">decimals =</span> <span class="dv">2</span></span>
-<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a>    )  <span class="sc">%&gt;%</span> </span>
-<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt_number</span>(</span>
-<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> 문서수,</span>
-<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a>      <span class="at">decimals =</span> <span class="dv">0</span>,</span>
-<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep_mark =</span> <span class="st">","</span></span>
-<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a>    )   <span class="sc">%&gt;%</span> </span>
-<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a>   <span class="fu">gt_highlight_rows</span>(</span>
-<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a>     <span class="at">rows =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">28</span>),</span>
-<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">"lightgrey"</span>,</span>
-<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a>     <span class="at">target_col =</span> 언어</span>
-<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a>   )  <span class="sc">%&gt;%</span> </span>
-<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sub_missing</span>(</span>
-<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">everything</span>(),</span>
-<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing_text =</span> <span class="st">"-"</span></span>
-<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>  )  </span>
-<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>gpt_gt <span class="sc">%&gt;%</span> </span>
-<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gtsave</span>(<span class="st">"images/gpt_lang.png"</span>)</span>
-<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gpt_lang.png)</span></span>
-<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a><span class="fu"># 구글 트렌드</span></span>
-<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a><span class="fu">## chatGPT 이전</span></span>
-<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a>Tensorflow, Keras, Pytorch, Fast.ai 가 차례로 등장하며 딥러닝 개발 프레임워크의 전성기를 구가했다.</span>
-<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a>최근 5년동안 Google 추세를 살펴보자.</span>
-<span id="cb5-261"><a href="#cb5-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/pytorch_tensorflow.png)</span></span>
-<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-266"><a href="#cb5-266" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-267"><a href="#cb5-267" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb5-268"><a href="#cb5-268" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtrendsR)</span>
-<span id="cb5-269"><a href="#cb5-269" aria-hidden="true" tabindex="-1"></a>extrafont<span class="sc">::</span><span class="fu">loadfonts</span>()</span>
-<span id="cb5-270"><a href="#cb5-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-271"><a href="#cb5-271" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="fu">c</span>(<span class="st">"pytorch"</span>,<span class="st">"fastai"</span>, <span class="st">"tensorflow"</span>, <span class="st">"keras"</span>), <span class="at">geo =</span> <span class="st">""</span>, </span>
-<span id="cb5-272"><a href="#cb5-272" aria-hidden="true" tabindex="-1"></a>                  <span class="at">time=</span><span class="st">"today+5-y"</span>, <span class="at">low_search_volume =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a>chatGPT_result <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="fu">c</span>(<span class="st">"pytorch"</span>,<span class="st">"fastai"</span>, <span class="st">"tensorflow"</span>, <span class="st">"keras"</span>, <span class="st">"chatGPT"</span>), <span class="at">geo =</span> <span class="st">""</span>, </span>
+<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a>                  <span class="at">time=</span><span class="st">"today 12-m"</span>, <span class="at">low_search_volume =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a>gtrends_chatGPT_g <span class="ot">&lt;-</span> chatGPT_result<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span> </span>
+<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">keyword =</span> <span class="fu">factor</span>(keyword, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"chatGPT"</span>, <span class="st">"keras"</span>, <span class="st">"pytorch"</span>, <span class="st">"tensorflow"</span>, <span class="st">"fastai"</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hits =</span> <span class="fu">parse_number</span>(hits)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
+<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">"NanumBarunpen"</span>) <span class="sc">+</span></span>
+<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, </span>
+<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"검색수"</span>,</span>
+<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"프레임워크"</span>,</span>
+<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"chatGPT와 딥러닝 프레임워크 구글 검색 추세"</span>) <span class="sc">+</span></span>
+<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
+<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span>
+<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a><span class="co"># ragg always works for mac</span></span>
+<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a>ragg<span class="sc">::</span><span class="fu">agg_png</span>(<span class="st">"images/chatGPT_framework.png"</span>, <span class="at">width =</span> <span class="dv">297</span>, </span>
+<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>              <span class="at">height =</span> <span class="dv">210</span>, </span>
+<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a>              <span class="at">units =</span> <span class="st">"mm"</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
+<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a>gtrends_chatGPT_g</span>
+<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/chatGPT_framework.png)</span></span>
+<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a><span class="fu">## 파이썬과 chatGPT</span></span>
+<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a>chatGPT 출현이후 파이썬, tensorflow, pytorch 최근 1년동안 Google 추세를 살펴보자.</span>
+<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a>python_result <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="fu">c</span>(<span class="st">"chatGPT"</span>, <span class="st">"pytorch"</span>,<span class="st">"python"</span>, <span class="st">"tensorflow"</span>, <span class="st">"keras"</span>), <span class="at">geo =</span> <span class="st">""</span>, </span>
+<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a>                  <span class="at">time=</span><span class="st">"today 12-m"</span>, <span class="at">low_search_volume =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a>python_chatGPT_g <span class="ot">&lt;-</span> python_result<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span> </span>
+<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">keyword =</span> <span class="fu">factor</span>(keyword, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"chatGPT"</span>, <span class="st">"python"</span>, <span class="st">"keras"</span>, <span class="st">"pytorch"</span>, <span class="st">"tensorflow"</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hits =</span> <span class="fu">parse_number</span>(hits)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
+<span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">"NanumBarunpen"</span>) <span class="sc">+</span></span>
+<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, </span>
+<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"검색수"</span>,</span>
+<span id="cb5-261"><a href="#cb5-261" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"프레임워크"</span>,</span>
+<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"파이썬, chatGPT, 주요 딥러닝 프레임워크 구글 검색 추세"</span>) <span class="sc">+</span></span>
+<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
+<span id="cb5-264"><a href="#cb5-264" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb5-265"><a href="#cb5-265" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span>
+<span id="cb5-266"><a href="#cb5-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-267"><a href="#cb5-267" aria-hidden="true" tabindex="-1"></a><span class="co"># ragg always works for mac</span></span>
+<span id="cb5-268"><a href="#cb5-268" aria-hidden="true" tabindex="-1"></a>ragg<span class="sc">::</span><span class="fu">agg_png</span>(<span class="st">"images/python_chatGPT_g.png"</span>, <span class="at">width =</span> <span class="dv">297</span>, </span>
+<span id="cb5-269"><a href="#cb5-269" aria-hidden="true" tabindex="-1"></a>              <span class="at">height =</span> <span class="dv">210</span>, </span>
+<span id="cb5-270"><a href="#cb5-270" aria-hidden="true" tabindex="-1"></a>              <span class="at">units =</span> <span class="st">"mm"</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
+<span id="cb5-271"><a href="#cb5-271" aria-hidden="true" tabindex="-1"></a>python_chatGPT_g</span>
+<span id="cb5-272"><a href="#cb5-272" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
 <span id="cb5-273"><a href="#cb5-273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-274"><a href="#cb5-274" aria-hidden="true" tabindex="-1"></a>gtrends_framework_g <span class="ot">&lt;-</span> result<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span> </span>
-<span id="cb5-275"><a href="#cb5-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb5-276"><a href="#cb5-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">keyword =</span> <span class="fu">factor</span>(keyword, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"keras"</span>, <span class="st">"pytorch"</span>, <span class="st">"tensorflow"</span>, <span class="st">"fastai"</span>))) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-277"><a href="#cb5-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hits =</span> <span class="fu">parse_number</span>(hits)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-278"><a href="#cb5-278" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
-<span id="cb5-279"><a href="#cb5-279" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb5-280"><a href="#cb5-280" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">"NanumBarunpen"</span>) <span class="sc">+</span></span>
-<span id="cb5-281"><a href="#cb5-281" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, </span>
-<span id="cb5-282"><a href="#cb5-282" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"검색수"</span>,</span>
-<span id="cb5-283"><a href="#cb5-283" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"프레임워크"</span>,</span>
-<span id="cb5-284"><a href="#cb5-284" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"딥러닝 프레임워크 구글 검색 추세"</span>) <span class="sc">+</span></span>
-<span id="cb5-285"><a href="#cb5-285" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb5-286"><a href="#cb5-286" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span>
-<span id="cb5-287"><a href="#cb5-287" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a><span class="co"># ragg always works for mac</span></span>
-<span id="cb5-290"><a href="#cb5-290" aria-hidden="true" tabindex="-1"></a>ragg<span class="sc">::</span><span class="fu">agg_png</span>(<span class="st">"images/dl_framework.png"</span>, <span class="at">width =</span> <span class="dv">297</span>, </span>
-<span id="cb5-291"><a href="#cb5-291" aria-hidden="true" tabindex="-1"></a>              <span class="at">height =</span> <span class="dv">210</span>, </span>
-<span id="cb5-292"><a href="#cb5-292" aria-hidden="true" tabindex="-1"></a>              <span class="at">units =</span> <span class="st">"mm"</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
-<span id="cb5-293"><a href="#cb5-293" aria-hidden="true" tabindex="-1"></a>gtrends_framework_g</span>
-<span id="cb5-294"><a href="#cb5-294" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb5-295"><a href="#cb5-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-296"><a href="#cb5-296" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-297"><a href="#cb5-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-298"><a href="#cb5-298" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/dl_framework.png)</span></span>
-<span id="cb5-299"><a href="#cb5-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-300"><a href="#cb5-300" aria-hidden="true" tabindex="-1"></a><span class="fu">## chatGPT 출현</span></span>
-<span id="cb5-301"><a href="#cb5-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-302"><a href="#cb5-302" aria-hidden="true" tabindex="-1"></a>chatGPT 출현이후 Tensorflow, Keras, Pytorch, Fast.ai 는 어떻게 전개될 것인지</span>
-<span id="cb5-303"><a href="#cb5-303" aria-hidden="true" tabindex="-1"></a>최근 1년동안 Google 추세를 살펴보자.</span>
-<span id="cb5-304"><a href="#cb5-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-305"><a href="#cb5-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-308"><a href="#cb5-308" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-309"><a href="#cb5-309" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb5-310"><a href="#cb5-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-311"><a href="#cb5-311" aria-hidden="true" tabindex="-1"></a>chatGPT_result <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="fu">c</span>(<span class="st">"pytorch"</span>,<span class="st">"fastai"</span>, <span class="st">"tensorflow"</span>, <span class="st">"keras"</span>, <span class="st">"chatGPT"</span>), <span class="at">geo =</span> <span class="st">""</span>, </span>
-<span id="cb5-312"><a href="#cb5-312" aria-hidden="true" tabindex="-1"></a>                  <span class="at">time=</span><span class="st">"today 12-m"</span>, <span class="at">low_search_volume =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-313"><a href="#cb5-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-314"><a href="#cb5-314" aria-hidden="true" tabindex="-1"></a>gtrends_chatGPT_g <span class="ot">&lt;-</span> chatGPT_result<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span> </span>
-<span id="cb5-315"><a href="#cb5-315" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb5-316"><a href="#cb5-316" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">keyword =</span> <span class="fu">factor</span>(keyword, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"chatGPT"</span>, <span class="st">"keras"</span>, <span class="st">"pytorch"</span>, <span class="st">"tensorflow"</span>, <span class="st">"fastai"</span>))) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-317"><a href="#cb5-317" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hits =</span> <span class="fu">parse_number</span>(hits)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-318"><a href="#cb5-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-319"><a href="#cb5-319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
-<span id="cb5-320"><a href="#cb5-320" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb5-321"><a href="#cb5-321" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">"NanumBarunpen"</span>) <span class="sc">+</span></span>
-<span id="cb5-322"><a href="#cb5-322" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, </span>
-<span id="cb5-323"><a href="#cb5-323" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"검색수"</span>,</span>
-<span id="cb5-324"><a href="#cb5-324" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"프레임워크"</span>,</span>
-<span id="cb5-325"><a href="#cb5-325" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"chatGPT와 딥러닝 프레임워크 구글 검색 추세"</span>) <span class="sc">+</span></span>
-<span id="cb5-326"><a href="#cb5-326" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
-<span id="cb5-327"><a href="#cb5-327" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb5-328"><a href="#cb5-328" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span>
-<span id="cb5-329"><a href="#cb5-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-330"><a href="#cb5-330" aria-hidden="true" tabindex="-1"></a><span class="co"># ragg always works for mac</span></span>
-<span id="cb5-331"><a href="#cb5-331" aria-hidden="true" tabindex="-1"></a>ragg<span class="sc">::</span><span class="fu">agg_png</span>(<span class="st">"images/chatGPT_framework.png"</span>, <span class="at">width =</span> <span class="dv">297</span>, </span>
-<span id="cb5-332"><a href="#cb5-332" aria-hidden="true" tabindex="-1"></a>              <span class="at">height =</span> <span class="dv">210</span>, </span>
-<span id="cb5-333"><a href="#cb5-333" aria-hidden="true" tabindex="-1"></a>              <span class="at">units =</span> <span class="st">"mm"</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
-<span id="cb5-334"><a href="#cb5-334" aria-hidden="true" tabindex="-1"></a>gtrends_chatGPT_g</span>
-<span id="cb5-335"><a href="#cb5-335" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb5-336"><a href="#cb5-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-337"><a href="#cb5-337" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-338"><a href="#cb5-338" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-339"><a href="#cb5-339" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/chatGPT_framework.png)</span></span>
-<span id="cb5-340"><a href="#cb5-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-341"><a href="#cb5-341" aria-hidden="true" tabindex="-1"></a><span class="fu">## 파이썬과 chatGPT</span></span>
-<span id="cb5-342"><a href="#cb5-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-343"><a href="#cb5-343" aria-hidden="true" tabindex="-1"></a>chatGPT 출현이후 파이썬, tensorflow, pytorch 최근 1년동안 Google 추세를 살펴보자.</span>
-<span id="cb5-344"><a href="#cb5-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-345"><a href="#cb5-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-348"><a href="#cb5-348" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-349"><a href="#cb5-349" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb5-350"><a href="#cb5-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-351"><a href="#cb5-351" aria-hidden="true" tabindex="-1"></a>python_result <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="fu">c</span>(<span class="st">"chatGPT"</span>, <span class="st">"pytorch"</span>,<span class="st">"python"</span>, <span class="st">"tensorflow"</span>, <span class="st">"keras"</span>), <span class="at">geo =</span> <span class="st">""</span>, </span>
-<span id="cb5-352"><a href="#cb5-352" aria-hidden="true" tabindex="-1"></a>                  <span class="at">time=</span><span class="st">"today 12-m"</span>, <span class="at">low_search_volume =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-353"><a href="#cb5-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-354"><a href="#cb5-354" aria-hidden="true" tabindex="-1"></a>python_chatGPT_g <span class="ot">&lt;-</span> python_result<span class="sc">$</span>interest_over_time <span class="sc">%&gt;%</span> </span>
-<span id="cb5-355"><a href="#cb5-355" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb5-356"><a href="#cb5-356" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">keyword =</span> <span class="fu">factor</span>(keyword, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"chatGPT"</span>, <span class="st">"python"</span>, <span class="st">"keras"</span>, <span class="st">"pytorch"</span>, <span class="st">"tensorflow"</span>))) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-357"><a href="#cb5-357" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hits =</span> <span class="fu">parse_number</span>(hits)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-358"><a href="#cb5-358" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-359"><a href="#cb5-359" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> hits, <span class="at">color =</span> keyword)) <span class="sc">+</span></span>
-<span id="cb5-360"><a href="#cb5-360" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb5-361"><a href="#cb5-361" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">"NanumBarunpen"</span>) <span class="sc">+</span></span>
-<span id="cb5-362"><a href="#cb5-362" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, </span>
-<span id="cb5-363"><a href="#cb5-363" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"검색수"</span>,</span>
-<span id="cb5-364"><a href="#cb5-364" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"프레임워크"</span>,</span>
-<span id="cb5-365"><a href="#cb5-365" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"파이썬, chatGPT, 주요 딥러닝 프레임워크 구글 검색 추세"</span>) <span class="sc">+</span></span>
-<span id="cb5-366"><a href="#cb5-366" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">"%Y-%m"</span>) <span class="sc">+</span></span>
-<span id="cb5-367"><a href="#cb5-367" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb5-368"><a href="#cb5-368" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span>
-<span id="cb5-369"><a href="#cb5-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-370"><a href="#cb5-370" aria-hidden="true" tabindex="-1"></a><span class="co"># ragg always works for mac</span></span>
-<span id="cb5-371"><a href="#cb5-371" aria-hidden="true" tabindex="-1"></a>ragg<span class="sc">::</span><span class="fu">agg_png</span>(<span class="st">"images/python_chatGPT_g.png"</span>, <span class="at">width =</span> <span class="dv">297</span>, </span>
-<span id="cb5-372"><a href="#cb5-372" aria-hidden="true" tabindex="-1"></a>              <span class="at">height =</span> <span class="dv">210</span>, </span>
-<span id="cb5-373"><a href="#cb5-373" aria-hidden="true" tabindex="-1"></a>              <span class="at">units =</span> <span class="st">"mm"</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
-<span id="cb5-374"><a href="#cb5-374" aria-hidden="true" tabindex="-1"></a>python_chatGPT_g</span>
-<span id="cb5-375"><a href="#cb5-375" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb5-376"><a href="#cb5-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-377"><a href="#cb5-377" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb5-378"><a href="#cb5-378" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-379"><a href="#cb5-379" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/python_chatGPT_g.png)</span></span>
+<span id="cb5-274"><a href="#cb5-274" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-275"><a href="#cb5-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-276"><a href="#cb5-276" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/python_chatGPT_g.png)</span></span>
 </code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
@@ -1400,7 +1159,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":true,"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});</script>
 
 
 </body></html>

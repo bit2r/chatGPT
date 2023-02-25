@@ -36,8 +36,10 @@ website:
           text: "HF 파이프라인"
       - text: "Generative AI"
         menu:
-        - href: project.qmd
-          text: "Projects"
+        - href: trends.qmd
+          text: "추세 트렌드"
+        - href: architecture.qmd
+          text: "아키텍쳐"
         - href: codex.qmd
           text: "OpenAI Codex"
         - href: image2image.qmd

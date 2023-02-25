@@ -439,5 +439,40 @@
     "title": "chatGPT",
     "section": "\n8.3 파이썬과 chatGPT",
     "text": "8.3 파이썬과 chatGPT\nchatGPT 출현이후 파이썬, tensorflow, pytorch 최근 1년동안 Google 추세를 살펴보자.\n\n코드python_result <- gtrends(keyword = c(\"chatGPT\", \"pytorch\",\"python\", \"tensorflow\", \"keras\"), geo = \"\", \n                  time=\"today 12-m\", low_search_volume = TRUE)\n\npython_chatGPT_g <- python_result$interest_over_time %>% \n  as_tibble() %>% \n  mutate(keyword = factor(keyword, levels = c(\"chatGPT\", \"python\", \"keras\", \"pytorch\", \"tensorflow\"))) %>% \n  mutate(hits = parse_number(hits)) %>% \n  mutate(date = as.Date(date)) %>% \n  ggplot(aes(x = date, y = hits, color = keyword)) +\n    geom_line() +\n    theme_bw(base_family = \"NanumBarunpen\") +\n    labs(x = \"\", \n         y = \"검색수\",\n         color = \"프레임워크\",\n         title = \"파이썬, chatGPT, 주요 딥러닝 프레임워크 구글 검색 추세\") +\n    scale_x_date(date_labels = \"%Y-%m\") +\n    theme(legend.title = element_text(size = 16),\n          legend.text = element_text(size = 14))\n\n# ragg always works for mac\nragg::agg_png(\"images/python_chatGPT_g.png\", width = 297, \n              height = 210, \n              units = \"mm\", res = 300)\npython_chatGPT_g\ndev.off()"
+  },
+  {
+    "objectID": "architecture.html",
+    "href": "architecture.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "1 패러다임\n\n- Pre-Software: Special-purpose computer  - Software 1.0: Design the Algorithm  - Software 2.0: Design the Dataset  - Software 3.0: Design the Prompt\n\n\nFeature Engineering\nArchitecture Engineering\nObjective Engineering\nPrompt Engineering\n\n\n\n\n\n패러다임: (비신경망)지도학습 (Fully Supervised Learning)\n\n전성기: 2015년까지 최고 전성기 구가\n\n특징\n\n주로 비신경망 기계학습이 사용\n수작업으로 Feature를 추출\n\n\n\n대표작\n\n수작업 Feature 추출 후 SVM(support vector machine) 기계학습 모형\n수작업 Feature 추출 후 CRF(conditional random fields)\n\n\n\n\n\n\n\n패러다임: 신경망 지도학습(Fully Supervised Learning)\n\n전성기: 대략 2013~2018\n\n특징\n\n신경망(Neural Network) 의존\n수작업으로 Feature를 손볼 필요는 없으나 신경망 네트워크는 수정해야 함(LSTM vs CNN)\n종종 사전학습된 언어모형을 사용하나 임베딩(embedding) 같은 얕은(shallow) Feature를 적용\n\n\n\n대표작\n\n텍스트 분류작업에 CNN 사용\n\n\n\n\n\n\n\n패러다임: 사전학습(pre-training), 미세조정(fine-tuning)\n\n전성기: 2017~현재\n\n특징\n\n사전학습된 언어모형을 전체 모형의 초기값으로 사용\n아키텍쳐 디자인에 작업이 덜 필요하지만 목적함수(Objective function) 엔지니어링은 필요\n\n\n\n대표작\n\nBERT → Fine Tuning\n\n\n\n\n\n\n\n패러다임: 사전학습(pre-training), 프롬프트(Prompt), 예측(Predict)\n\n전성기: 2019~현재\n\n특징\n\nNLP 작업이 언어모형(Language Model)에 전적으로 의존\n얕던 깊던 Feature 추출, 예측 등 작업이 전적으로 언어모형에 의존\n프롬프트 공학이 필요\n\n\n\n대표작\n\nGPT3\n\n\n\n\n\n\n\n2 Prompt engineering\n\nInstructions\nQuestion\nInput data\nExamples\n\nXavier (Xavi) Amatriain(January 5, 2023), “Prompt Engineering 101 - Introduction and resources”, Linkedin,Prompt Engineering - Learn how to use AI models with prompt engineering\n\n3 Genearative AI\n\n구분\n\ngeneration: text → image\nclassification: image → text\ntransformation: image → image (or text → text)\n\n\nAI 프로젝트\n\nGPT-3\nDalle.2 (text-to-image)\nMeta’s AI (text-to-video)\nGoogle AI (text-to-video)\nStable Diffusion (text-to-image)\nTesla AI (humanoid robot + self-driving)\n\n\ntext-to-X\n\ntext-to-gif (T2G)\ntext-to-3D (T2D)\ntext-to-text (T2T)\ntext-to-NFT (T2N)\ntext-to-code (T2C)\ntext-to-image (T2I)\ntext-to-audio (T2S)\ntext-to-video (T2V)\ntext-to-music (T2M)\ntext-to-motion (T2Mo)\n\n\n기타\n\nbrain-to-text (B2T)\nimage-to-text (I2T)\nspeech-to-text (S2T)\naudio-to-audio (A2A)\ntweet-to-image (Tt2I)\ntext-to-sound (T2S)\n\n\n\n\n\n\n\n\n4 데이터와 하드웨어\n\n\n\n\n\n5 Open Assistant\n\n\n\n\nLabel Asssistant Reply\n\n\n\n\nInitial Prompt\n\n\n\n\nLabel Prompter Reply\n\n\n\n\n\n\nReply as Assistant\n\n\n\n\nReply as User\n\n\n\n그림 1: Open Assistant"
+  },
+  {
+    "objectID": "trends.html",
+    "href": "trends.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "백만, 5천만, 1억 가입자를 가질 때까지 걸린 소요시간을 보면 chatGPT 의 영향력을 파악할 수 있다.\n\n\n전화기부터\n기술 진화\nchatGPT 백만\n빅3 서비스\n1억명 (소요 달수)\n\n\n\n\n\n(Song, 2019)\n\n\n\n\n\n\nRita McGrath(November 25, 2013), “The Pace of Technology Adoption is Speeding Up”, Harvard Business Review\n\n\n\n\n\n\n\n\n\n\n\n\n출처: https://twitter.com/umarsaif/status/1610932387185315840\n\n\n\n\n\n\n출처: https://twitter.com/EconomyApp/status/1622029832099082241"
+  },
+  {
+    "objectID": "trends.html#chatgpt-이전",
+    "href": "trends.html#chatgpt-이전",
+    "title": "chatGPT",
+    "section": "\n3.1 chatGPT 이전",
+    "text": "3.1 chatGPT 이전\nTensorflow, Keras, Pytorch, Fast.ai 가 차례로 등장하며 딥러닝 개발 프레임워크의 전성기를 구가했다. 최근 5년동안 Google 추세를 살펴보자.\n\n\n\n\n\n코드library(gtrendsR)\nextrafont::loadfonts()\n\nresult <- gtrends(keyword = c(\"pytorch\",\"fastai\", \"tensorflow\", \"keras\"), geo = \"\", \n                  time=\"today+5-y\", low_search_volume = TRUE)\n\ngtrends_framework_g <- result$interest_over_time %>% \n  as_tibble() %>% \n  mutate(keyword = factor(keyword, levels = c(\"keras\", \"pytorch\", \"tensorflow\", \"fastai\"))) %>% \n  mutate(hits = parse_number(hits)) %>% \n  ggplot(aes(x = date, y = hits, color = keyword)) +\n    geom_line() +\n    theme_bw(base_family = \"NanumBarunpen\") +\n    labs(x = \"\", \n         y = \"검색수\",\n         color = \"프레임워크\",\n         title = \"딥러닝 프레임워크 구글 검색 추세\") +\n    theme(legend.title = element_text(size = 16),\n          legend.text = element_text(size = 14))\n  \n\n# ragg always works for mac\nragg::agg_png(\"images/dl_framework.png\", width = 297, \n              height = 210, \n              units = \"mm\", res = 300)\ngtrends_framework_g\ndev.off()"
+  },
+  {
+    "objectID": "trends.html#chatgpt-출현",
+    "href": "trends.html#chatgpt-출현",
+    "title": "chatGPT",
+    "section": "\n3.2 chatGPT 출현",
+    "text": "3.2 chatGPT 출현\nchatGPT 출현이후 Tensorflow, Keras, Pytorch, Fast.ai 는 어떻게 전개될 것인지 최근 1년동안 Google 추세를 살펴보자.\n\n코드chatGPT_result <- gtrends(keyword = c(\"pytorch\",\"fastai\", \"tensorflow\", \"keras\", \"chatGPT\"), geo = \"\", \n                  time=\"today 12-m\", low_search_volume = TRUE)\n\ngtrends_chatGPT_g <- chatGPT_result$interest_over_time %>% \n  as_tibble() %>% \n  mutate(keyword = factor(keyword, levels = c(\"chatGPT\", \"keras\", \"pytorch\", \"tensorflow\", \"fastai\"))) %>% \n  mutate(hits = parse_number(hits)) %>% \n  mutate(date = as.Date(date)) %>% \n  ggplot(aes(x = date, y = hits, color = keyword)) +\n    geom_line() +\n    theme_bw(base_family = \"NanumBarunpen\") +\n    labs(x = \"\", \n         y = \"검색수\",\n         color = \"프레임워크\",\n         title = \"chatGPT와 딥러닝 프레임워크 구글 검색 추세\") +\n    scale_x_date(date_labels = \"%Y-%m\") +\n    theme(legend.title = element_text(size = 16),\n          legend.text = element_text(size = 14))\n\n# ragg always works for mac\nragg::agg_png(\"images/chatGPT_framework.png\", width = 297, \n              height = 210, \n              units = \"mm\", res = 300)\ngtrends_chatGPT_g\ndev.off()"
+  },
+  {
+    "objectID": "trends.html#파이썬과-chatgpt",
+    "href": "trends.html#파이썬과-chatgpt",
+    "title": "chatGPT",
+    "section": "\n3.3 파이썬과 chatGPT",
+    "text": "3.3 파이썬과 chatGPT\nchatGPT 출현이후 파이썬, tensorflow, pytorch 최근 1년동안 Google 추세를 살펴보자.\n\n코드python_result <- gtrends(keyword = c(\"chatGPT\", \"pytorch\",\"python\", \"tensorflow\", \"keras\"), geo = \"\", \n                  time=\"today 12-m\", low_search_volume = TRUE)\n\npython_chatGPT_g <- python_result$interest_over_time %>% \n  as_tibble() %>% \n  mutate(keyword = factor(keyword, levels = c(\"chatGPT\", \"python\", \"keras\", \"pytorch\", \"tensorflow\"))) %>% \n  mutate(hits = parse_number(hits)) %>% \n  mutate(date = as.Date(date)) %>% \n  ggplot(aes(x = date, y = hits, color = keyword)) +\n    geom_line() +\n    theme_bw(base_family = \"NanumBarunpen\") +\n    labs(x = \"\", \n         y = \"검색수\",\n         color = \"프레임워크\",\n         title = \"파이썬, chatGPT, 주요 딥러닝 프레임워크 구글 검색 추세\") +\n    scale_x_date(date_labels = \"%Y-%m\") +\n    theme(legend.title = element_text(size = 16),\n          legend.text = element_text(size = 14))\n\n# ragg always works for mac\nragg::agg_png(\"images/python_chatGPT_g.png\", width = 297, \n              height = 210, \n              units = \"mm\", res = 300)\npython_chatGPT_g\ndev.off()"
   }
 ]
