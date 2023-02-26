@@ -127,7 +127,7 @@ STT로 작업한 결과를 합성하여 한국 R 사용자회 소개 동영상 �
 
 한국 R 사용자회 유튜브 채널에 올린 결과물은 다음과 같다.
 
-{{< video https://youtu.be/wuW8yk-DBQU >}}
+{{< video https://youtu.be/BqJIa3oGrxk >}}
 
 
 
