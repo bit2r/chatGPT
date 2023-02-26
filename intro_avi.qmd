@@ -39,6 +39,10 @@ editor_options:
 
 1. [chatGPT](https://chat.openai.com/)를 사용하여 사단법인 한국 R 사용자회 소개 대본을 작성한다.
 1. 다음으로 미드저니를 이용하여 사단법인 한국 R 사용자회를 소개하는 화자 이미지를 생성한다.
+1. 클로버 더빙 서비스를 사용하여 chatGPT 가 작성한 대본으로 음성 파일(`.mp3`)을 제작한다.
+1. [D-ID](https://www.d-id.com/) 스튜디오에 미드저니에서 작업한 이미지와 
+STT로 작업한 결과를 합성하여 한국 R 사용자회 소개 동영상 작업을 마무리한다.
+1. 유튜브 채널에 올려 소셜 미디어로 한국 R 사용자회 홍보를 한다.
 
 ## chatGPT: 소개 대본
 
@@ -62,6 +66,8 @@ editor_options:
 
 ## 미드저니
 
+[[Midjourney](https://www.midjourney.com/home/)]{.aside}
+
 미드저니 AI 이미지를 잘 생성하기 위해서는 `Prompt Engineering`을 통해 원하는 이미지가 제작될 때까지 작업한다.
 
 [미드저니 프롬프트 툴 ](https://prompt.noonshot.com/) 웹사이트에서 Midjourney Bot 채팅 인터페이스를 사용하는 것과 비교하여 AI 이미지 작성업무에 좀더 집중할 수 있다.
@@ -69,8 +75,59 @@ editor_options:
 [willwulfken/MidJourney-Styles-and-Keywords-Reference](https://github.com/willwulfken/MidJourney-Styles-and-Keywords-Reference) GitHub 저장소에 즉시 사용가능한 템플릿이 많아 이를 활용하는 것도 AI 이미지 제작 속도 및 품질을 높일 수 있다.
 
 
+> **작성 프롬프트**
+> https://s.mj.run/guPCzzM12wU, crepuscular rays::1 rembrandt::1 defocus::-0.5 --ar 2:1 --v 4
+
+:::{.panel-tabset}
+
+### 원본 이미지
+
+![](images/hadley_wickham.jpg)
+
+### 첫 4장 이미지
+
+![](images/hadley_wickham_initial_images.png)
+
+### 잘못 누름
+
+![](images/hadley_wickham_house.png)
 
 
+### 이미지 재현
+
+![](images/hadley_wickham_four_portray.png)
+
+### 최종 이미지
+
+![](images/hadley_wickham_one.png)
+
+:::
+
+
+## 음원 제작
+
+[[클로버 더빙](https://clovadubbing.naver.com/)]{.aside}
+
+텍스트를 음원으로 바꿔주는 작업이 필요하다. 이를 위해서 다양한 API 서비스가 제공되지만 네이버 [클로버 더빙](https://clovadubbing.naver.com/) API 서비스를 
+사용하면 다양한 한국인 목소리를 넣어 구현이 가능하다.
+
+<audio controls>
+    <source src="data/introduction_to_R_user_group.mp3"
+    type="audio/mp3">
+</audio>
+
+## 동영상 제작
+
+[[D-ID](https://www.d-id.com/)]{.aside}
+
+[D-ID](https://www.d-id.com/) 스튜디오에 미드저니에서 작업한 이미지와 
+STT로 작업한 결과를 합성하여 한국 R 사용자회 소개 동영상 작업을 마무리한다.
+
+# 최종 결과물
+
+한국 R 사용자회 유튜브 채널에 올린 결과물은 다음과 같다.
+
+{{< video https://youtu.be/wuW8yk-DBQU >}}
 
 
 
