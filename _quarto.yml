@@ -50,6 +50,10 @@ website:
           text: "R 코딩개발"
         - href: interview.qmd
           text: "데이터 과학문제"
+      - text: "API 제품"
+        menu:
+        - href: intro_avi.qmd
+          text: "R 소개영상"
       - text: "SEN"
         menu:
         - href: deepL.qmd

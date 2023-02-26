@@ -1,0 +1,78 @@
+---
+title: "chatGPT"
+subtitle: "R 소개영상"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# 작업흐름
+
+1. [chatGPT](https://chat.openai.com/)를 사용하여 사단법인 한국 R 사용자회 소개 대본을 작성한다.
+1. 다음으로 미드저니를 이용하여 사단법인 한국 R 사용자회를 소개하는 화자 이미지를 생성한다.
+
+## chatGPT: 소개 대본
+
+사단법인 한국 R 사용자회에 대해 소개하는 소개글을 작성해줘
+
+::: {.callout-caution collapse="true"}
+## chatGPT
+
+한국 R 사용자회는 데이터 분석 및 통계분야에서 전 세계적으로 사용되고 있는 R 프로그래밍 언어의 사용을 촉진하고, 연구 및 개발 분야에서 R을 활용한 다양한 응용과 기술 발전을 위해 설립된 사단법인입니다.
+
+한국 R 사용자회는 R 프로그래밍 언어를 사용하는 분야에서의 지식과 정보 교류, 협력과 공유를 위한 다양한 활동을 전개하고 있습니다. 회원들은 R을 활용한 다양한 분석 및 시각화 기술을 공유하고, R 패키지 개발 및 오픈소스 활용, 데이터 과학 분야에서의 협력과 커뮤니케이션 등 다양한 분야에서 활동하며 지식을 공유합니다.
+
+한국 R 사용자회는 국내외 R 컨퍼런스 및 세미나 개최, R 교육 및 훈련, R 활용 사례 발표, R 패키지 개발 및 유지 보수 등 다양한 활동을 통해 회원들의 R 활용 능력 향상과 지식 공유를 위한 기반을 제공하고 있습니다.
+
+회원으로 가입하면 R 언어 및 데이터 분석 분야에서의 최신 정보와 기술 동향을 지속적으로 업데이트 받을 수 있으며, R 패키지 개발 및 활용, 데이터 분석 기술 등에 대한 다양한 교육과 세미나, 워크샵 등을 참여할 수 있습니다.
+
+한국 R 사용자회는 R 프로그래밍 언어의 활용과 개발을 통해 데이터 분석 및 통계분야의 발전을 위한 지속적인 노력을 기울이고 있으며, 회원들의 활동과 참여를 통해 R 프로그래밍 언어의 활용과 발전에 기여하고 있습니다.
+
+:::
+
+
+## 미드저니
+
+미드저니 AI 이미지를 잘 생성하기 위해서는 `Prompt Engineering`을 통해 원하는 이미지가 제작될 때까지 작업한다.
+
+[미드저니 프롬프트 툴 ](https://prompt.noonshot.com/) 웹사이트에서 Midjourney Bot 채팅 인터페이스를 사용하는 것과 비교하여 AI 이미지 작성업무에 좀더 집중할 수 있다.
+
+[willwulfken/MidJourney-Styles-and-Keywords-Reference](https://github.com/willwulfken/MidJourney-Styles-and-Keywords-Reference) GitHub 저장소에 즉시 사용가능한 템플릿이 많아 이를 활용하는 것도 AI 이미지 제작 속도 및 품질을 높일 수 있다.
+
+
+
+
+
+
+
+
+
