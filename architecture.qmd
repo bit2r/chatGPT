@@ -35,6 +35,11 @@ editor_options:
   chunk_output_type: console
 ---
 
+# OpenAI 생태계
+
+![](images/OpenAI_investment.png)
+
+[CBInsights, "Analyzing OpenAI’s investment strategy: How the ChatGPT maker is building a generative AI ecosystem"](https://www.cbinsights.com/research/openai-investment-strategy/)
 
 
 # 패러다임
