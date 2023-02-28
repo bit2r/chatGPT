@@ -34,7 +34,7 @@ website:
         - text: "------------------"
         - href: hf_pipeline.qmd
           text: "HF 파이프라인"
-      - text: "Generative AI"
+      - text: "생성 AI"
         menu:
         - href: trends.qmd
           text: "추세 트렌드"

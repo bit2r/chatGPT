@@ -137,13 +137,14 @@ question-answering tasks (open-domain closed-book variant), cloze and sentence-c
 
 ![](images/LLM_tree_8_billion.png)
 
+## 400억 패러미터
+
+![](images/LLM_tree_40_billion.png)
+
 ## 640억 패러미터
 
 ![](images/LLM_tree_62_billion.png)
 
-## 400억 패러미터
-
-![](images/LLM_tree_40_billion.png)
 
 ## 5,400억 패러미터
 
@@ -196,6 +197,32 @@ question-answering tasks (open-domain closed-book variant), cloze and sentence-c
 ## Lennart Heim
 
 <iframe src="https://ourworldindata.org/grapher/artificial-intelligence-training-computation?yScale=linear&time=earliest..latest&country=~PaLM+%28540B%29" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+:::
+
+# 생성모형의 부작용
+
+생성 AI를 통해 인간이 생성한 데이터와 기계가 생성한 데이터가 무작위로 섞인 
+지금까지 경험하지 못한 세상이 출현하고 있다. 
+즉, 생성 AI 모형에서 이미지, 텍스트, 동영상 등 무수히 많은 데이터가 인터넷에 공개 및 공유될 것이며
+기계학습 및 딥러닝 생성모형는 결국 실제 데이터와 기계가 생성한 데이터를 입력값으로 
+인공지능 모형을 생성하게 된다.
+하지만 이런 경우 과연 AI 모형은 어떤 특성을 갖게 될 것인가? 
+데이터 증강(Data Augmentation)처럼 더 좋은 성능을 갖는 AI 모형이 될 것이가 아니면 그 반대의 모습을 가지게 될 것인가? 논문[@hataya2022will]에서는 부정적인 효과도 있다고 주장하고 있다.
+
+
+::: {.panel-tabset}
+
+## 현재 상황
+
+![](images/training_data_corrupt.png){height=300px, width=150px}
+
+
+
+## 기계오염된 데이터
+
+![기계생성 데이터 사용하여 나온 결과물](images/corrupt_images.png)
+
 
 :::
 
