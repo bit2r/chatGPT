@@ -54,6 +54,10 @@ website:
         menu:
         - href: intro_avi.qmd
           text: "R 소개영상"
+        - href: intro_book.qmd
+          text: "데이터 과학 책"
+        - href: intro_paper.qmd
+          text: "논문 초록"
       - text: "SEN"
         menu:
         - href: deepL.qmd
