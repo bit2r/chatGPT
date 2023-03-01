@@ -267,3 +267,39 @@ dev.off()
 
 ![](images/python_chatGPT_g.png)
 
+# 주요회사 {{< fa brands windows >}}
+
+[출처: [CBInsights (January 25, 2023), "The state of generative AI in 7 charts"](https://www.cbinsights.com/research/generative-ai-funding-top-startups-investors/)]{.aside}
+
+생성 AI 분야 활동하고 있는 기업과 투자금액, 활동분야가 `CBInsights` 보고서를 통해 공개되었다.
+
+
+:::{.panel-tabset}
+
+## 생성 AI 회사
+
+![](images/genarative-ai-value.png)
+
+## 생성 AI 회사 투자금액
+
+![](images/genarative-ai-ts.png)
+
+## 생성 AI 회사 활동분야
+
+![](images/genarative-ai-area.png)
+:::
+
+
+[[생성 AI 상세](https://docs.google.com/spreadsheets/d/14rYP2H31-MmZFeYF_BsLTeArnasZ31JJPEo46fmBjLQ/edit?usp=sharing)]{.aside}
+
+
+# 프롬프트 시장
+
+[Promptbase.com](https://promptbase.com/)은 사람들이 글을 쓸 주제에 대한 아이디어를 떠올릴 수 있도록 도와주는 웹사이트입니다. 막막할 때 무엇을 써야 할지 모를 때 많은 제안을 해줄 수 있는 정말 똑똑한 친구가 있는 것과 같습니다.
+
+따라서 학교 프로젝트나 에세이를 작성 중이거나 그냥 재미로 글을 쓰고 싶을 때 Promptbase.com으로 이동하면 다양한 아이디어를 선택할 수 있습니다. 가장 마음에 드는 것을 골라 글쓰기를 시작하면 됩니다!
+
+![](images/promptbase.png)
+
+
+
