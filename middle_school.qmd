@@ -1,6 +1,6 @@
 ---
 title: "chatGPT"
-subtitle: "중학수학 - 연립방정식"
+subtitle: "데이터 문해력"
 author:
   - name: 이광춘
     url: https://www.linkedin.com/in/kwangchunlee/
@@ -36,6 +36,8 @@ knitr:
 editor_options: 
   chunk_output_type: console
 ---
+
+데이터 문해력에 "중학수학 - 연립방정식" 사례를 통해 적용 방향을 살펴보자.
 
 # 중2 수학 커리큘럼
 
@@ -109,4 +111,8 @@ cat(return_model$choices$text)
 ```
 
 
+# 시연 화면
 
+[바로가기](https://r2bit.shinyapps.io/chatGPT/)
+
+![](images/shiny_demo.gif)
