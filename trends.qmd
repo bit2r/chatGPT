@@ -66,12 +66,68 @@ csl: apa-single-spaced.csl
 
 :::
 
-# GPT-3 언어 데이터 {{< fa solid brain >}}
+# 데이터 {{< fa solid database >}}
+
+## 인터넷 데이터 {{< fa solid globe >}}
+
+GPT 개발에 자원에 해당되는 언어 데이터셋에 대해 살펴보자.
+위키백과 [Languages used on the Internet](https://en.wikipedia.org/wiki/Languages_used_on_the_Internet)에서 데이터를 확인해보자. 특히, 웹사이트 제작에 사용된 언어를 비중으로 살펴보자.
+
+```{r}
+#| eval: false
+
+## 언어 콘텐츠
+contents_raw <- read_html(x = 'https://en.wikipedia.org/wiki/Languages_used_on_the_Internet') %>% 
+  html_element(xpath = '//*[@id="mw-content-text"]/div[1]/table[1]') %>% 
+  html_table() %>% 
+  set_names(c("순위", "언어", "비중"))
+
+contents_tbl <- contents_raw %>% 
+  mutate(비중 = parse_number(비중)) %>% 
+  ## 대한민국 이하 기타 ------------
+  mutate(언어 = ifelse(순위 >=17, "기타", 언어)) %>% 
+  group_by(언어) %>% 
+  summarise(비중 = sum(비중)) %>% 
+  ungroup() %>% 
+  arrange(desc(비중))
+
+contents_gt <- contents_tbl %>% 
+  ## 표 
+  gt() %>% 
+    gt_theme_nytimes() %>%   
+    tab_options(table.width = pct(75))  %>% 
+    tab_header(
+      title = md("**인터넷 콘텐츠 상위 언어별 통계**"),
+      subtitle = "한국어 포함 상위 17개 언어") %>% 
+    tab_source_note(
+      source_note = "출처:https://en.wikipedia.org/wiki/Languages_used_on_the_Internet") %>% 
+    cols_align(
+      align = "center",
+      columns = c(언어, 비중)) %>% 
+    fmt_number(
+      columns = c(비중),
+      decimals = 1
+    ) %>% 
+    cols_label(
+      비중 = "비중(%)"
+    )  %>% 
+    tab_footnote(
+      footnote = "한국어보다 비중이 낮은 인도네이사, 체코, 우크라이나 등",
+      locations = cells_body(columns = 언어, rows = 2)
+    )  
+
+contents_gt %>% 
+  gtsave("images/contents_gt.png")
+```
+
+![](images/contents_gt.png)
+
+## GPT-3 언어 데이터 {{< fa solid brain >}}
 
 GPT-3 개발에 투입된 문서갯수를 언어별로 살펴보자.
 
 ```{r}
-#| eval: false
+#| eval: true
 library(tidyverse)
 library(gt)
 library(countrycode)
@@ -99,7 +155,8 @@ gpt_gt <- gpt_tbl %>%
   select(언어, 언어명, 문서수, 비중, 누적비중) %>% 
   ## 표 
   gt() %>% 
-    gt_theme_nytimes() %>%   
+    gt_theme_nytimes() %>%
+    tab_options(table.width = pct(100))  %>%
     tab_header(
       title = md("**GPT-3 언어모형 개발에 사용된 언어별 문서 통계**"),
       subtitle = "한국어 포함 상위 28개 언어") %>% 
@@ -137,14 +194,24 @@ gpt_gt <- gpt_tbl %>%
   sub_missing(
     columns = everything(),
     missing_text = "-"
-  )  
+  )  %>% 
+  cols_width(
+    언어 ~ px(10),
+    언어명 ~ px(10),
+    문서수 ~ px(20),
+    비중 ~ px(30),
+    누적비중 ~ px(30)
+  )
 
-gpt_gt %>% 
-  gtsave("images/gpt_lang.png")
+gpt_gt
+
+# gpt_gt %>%
+#   gtsave("images/gpt_lang.png")
 
 ```
 
-![](images/gpt_lang.png)
+<!-- ![](images/gpt_lang.png) -->
+
 
 
 # 구글 트렌드 {{< fa brands google >}}
@@ -301,5 +368,25 @@ dev.off()
 
 ![](images/promptbase.png)
 
+# AI를 바라보는 관점
+
+AI를 바라보는 다양한 관점이 존재한다.
+
+## 트위터 샌티아고
+
+[Santiago `@svpino`](https://twitter.com/svpino)
+
+:::{#santiago layout-ncol=2}
+
+![](images/santiago_01.png)
+
+![](images/santiago_02.png)
+
+:::
+
+
+## 버스탄 두남자
+
+![](images/two_men_on_a_bus.png)
 
 
