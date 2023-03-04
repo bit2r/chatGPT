@@ -37,13 +37,6 @@ bibliography: bibliography.bib
 csl: apa-single-spaced.csl    
 ---
 
-# OpenAI 생태계
-
-![](images/OpenAI_investment.png)
-
-[CBInsights, "Analyzing OpenAI’s investment strategy: How the ChatGPT maker is building a generative AI ecosystem"](https://www.cbinsights.com/research/openai-investment-strategy/)
-
-
 # 패러다임
 
 [![Andrej Karpathy Twit](images/software_3.jpeg)]{.aside}
@@ -118,12 +111,14 @@ csl: apa-single-spaced.csl
 
 # Genearative AI
 
-- 구분
+:::{.panel-tabset}
+
+### 구분
   - generation: text &rarr; image
   - classification: image &rarr; text
   - transformation: image &rarr; image (or text &rarr; text)
 
-- AI 프로젝트
+### AI 프로젝트
   - GPT-3
   - Dalle.2 (text-to-image)
   - Meta’s AI (text-to-video)
@@ -131,7 +126,7 @@ csl: apa-single-spaced.csl
   - Stable Diffusion (text-to-image)
   - Tesla AI (humanoid robot + self-driving)
 
-- text-to-X
+### text-to-X
   - text-to-gif (T2G)
   - text-to-3D (T2D)
   - text-to-text (T2T)
@@ -142,7 +137,8 @@ csl: apa-single-spaced.csl
   - text-to-video (T2V)
   - text-to-music (T2M)
   - text-to-motion (T2Mo)
-- 기타
+  
+### 기타
   - brain-to-text (B2T)
   - image-to-text (I2T)
   - speech-to-text (S2T)
@@ -150,9 +146,47 @@ csl: apa-single-spaced.csl
   - tweet-to-image (Tt2I)
   - text-to-sound (T2S)
 
+:::
+
+# 기업 생태계
+
+## OpenAI
+
+![](images/OpenAI_investment.png)
+
+[CBInsights, "Analyzing OpenAI’s investment strategy: How the ChatGPT maker is building a generative AI ecosystem"](https://www.cbinsights.com/research/openai-investment-strategy/)
+
+## 글로벌 스타트업
 
 ![](images/generative_ai.jpg)
 
+## 네이버
+
+[[성현희 (2022-11-04), "네이버 AI 사용에 1000개 중소 기업 '노크'", 전자신문](https://www.etnews.com/20221104000048)]{.aside}
+
+네이버는 '클로바 스튜디오'를 다양한 스타트업이 활용하여 서비스를 출시하고 있다.
+
+
+
+```{mermaid}
+graph TD
+    A["대한민국"] --> B(("네이버"))
+    B ----> E[잡브레인]
+    B ----> H[라이팅젤]
+    B --> C[모카]
+    B --> D[뤼튼] 
+    B --> F[킵그로우]
+    style B fill:#FF6655AA
+    style F fill:#88ffFF
+    style I fill:#88ffFF
+```
+
+
+- 임플로이랩스[잡 브레인(Job Brain)](https://user.jobbrain.co.kr/): AI 자소서 생성 기능에 적용, 완성도 높은 자소소
+- 앱플랫폼 [라이팅젤](https://www.tinytingel.ai/): 대입 취업 자소서 자동왕성 기능에 적용
+- 아스타 컴퍼니 [모카](https://www.moducopy.site/): 상품언어, 광고 헤드라인, 세일즈 카피 생성 기능에 활용
+- 뤼튼테크놀로지 [뤼튼](https://wrtn.ai/): 광고카피, 제품소개 문구 등 AI 카피라이팅 서비스에 활용
+- 유니트컴즈 [킵그로우](https://app.keepgrow.com/): 고객사 인스타그램에 게시물을 주기적으로 포스팅해주는 기능에 적용
 
 # 데이터와 하드웨어
 
