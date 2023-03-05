@@ -11,6 +11,7 @@ date-format: "YYYY년 MM월 DD일"
 website:
   title: "chatGPT"
   favicon: "images/profile.png"
+  google-analytics: "UA-229551680-1"
   search:
     location: navbar
     type: overlay
