@@ -447,4 +447,20 @@ AI를 바라보는 다양한 관점이 존재한다.
 위한 자동화 기술이 필요하다는 결론에 도달함. [@webtoon2021]
 
 
+# 시장 와해 사례 {{< fa solid book >}}
 
+## 공상과학소설
+
+공상과학 및 판타지 잡지 클라크스월드(Clarkesworld)는 AI가 생성한 소설라는 비난을 받은 후 
+신규 공상과학소설이 급증한 것이 AI 기계로 작성된 원인을 큰 것으로 파악하고 2월 20일부터 
+공식적으로 투고를 중단했다. 
+
+[[Neil Clark (2023-02-15), "A Concerning Trend", CLARKESWORLD MAGAZINE](http://neil-clarke.com/a-concerning-trend/)]{.aside}
+
+:::{#sci-fiction layout-ncol=2}
+
+![2023-02-15 기준](images/shutdown-01.jpg)
+
+![2023-02-20 기준](images/shutdown-02.jpg)
+
+:::

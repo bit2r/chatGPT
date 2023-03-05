@@ -158,7 +158,7 @@
     "href": "image2image.html",
     "title": "chatGPT",
     "section": "",
-    "text": "역사상 가장 유명한 화풍을 chatGPT로부터 추천받아 이를 다양한 방식으로 시각화해보자. 무병장수(無病長壽)를 주제로 그림을 그려보자.\n\n무병장수 세상을 르네상스 화풍으로 그려줘 : ‘draw good health and long life world in a Renaissance style’\n\n\nrecommend the most famous painting style in history\n\n\n\n\n\n\ncompletion\n\n\n\n\n\nHere are some of the most famous painting styles in history:\n\nRenaissance: The Renaissance was a cultural movement in Italy from the 14th to the 17th century, characterized by a renewed interest in classical art, philosophy, and science. Renaissance paintings are known for their realism, balance, and harmony.\nBaroque: The Baroque style was popular in Europe from the late 16th to the early 18th century. Baroque paintings are known for their dramatic lighting, intense emotions, and dynamic compositions.\nImpressionism: Impressionism was a modernist movement in French painting in the late 19th century. Impressionist paintings are known for their loose brushstrokes, light-filled compositions, and focus on capturing fleeting moments.\nSurrealism: Surrealism was a cultural movement in the 20th century that aimed to liberate the imagination and explore the subconscious. Surrealist paintings are known for their dreamlike and fantastical imagery.\nAbstract Expressionism: Abstract Expressionism was a modernist movement in American painting in the mid-20th century. Abstract Expressionist paintings are known for their large canvases, gestural brushstrokes, and emphasis on the process of creation.\n\nThese are just a few examples of famous painting styles in history. There are many other styles that have influenced and shaped the course of art history.\n\n\n\nOpen AI - Create image API\n\n\n르네상스(Renaissance)\n바로크(Baroque)\n인상주의(Impressionism)\n초현실주의(Surrealism)\n추상표현주의(Abstract Expressionism)\n\n\n\n\n코드library(tidyverse)\nlibrary(openai)\n\n# usethis::edit_r_environ(scope = \"project\")\n\nresponse <- create_image(\n    prompt = \"draw good health and long life world in a Renaissance style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nRenaissance <- image_read(response$data$url)\nprint(Renaissance)\n\nimage_write(Renaissance, path = \"images/styles/Renaissance.png\", format = \"png\")\n\n\n\n\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Baroque style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nBaroque <- image_read(response$data$url)\nprint(Baroque)\n\nimage_write(Baroque, path = \"images/styles/Baroque.png\", format = \"png\")\n\n\n\n\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Impressionism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nImpressionism <- image_read(response$data$url)\nprint(Impressionism)\n\nimage_write(Impressionism, path = \"images/styles/Impressionism.png\", format = \"png\")\n\n\n\n\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Surrealism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nSurrealism <- image_read(response$data$url)\nprint(Surrealism)\n\nimage_write(Surrealism, path = \"images/styles/Surrealism.png\", format = \"png\")\n\n\n\n\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Abstract Expressionism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nexpressionism <- image_read(response$data$url)\nprint(expressionism)\n\nimage_write(expressionism, path = \"images/styles/expressionism.png\", format = \"png\")"
+    "text": "openai 패키지 create_image() 함수를 사용하여 이미지를 제작할 수 있다.\n\n코드library(tidyverse)\nlibrary(openai)\n\n# usethis::edit_r_environ(scope = \"project\")\n\nresponse <- create_image(\n    prompt = \"Create R programming language logo for Korean R user group in a kandinsky and Gustav Klimt style embracing Python programming language supported by many contributors around the world, which must include R logo from R consortium and wikipedia\",\n    n = 1,\n    size = \"256x256\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\nlibrary(magick)\nR_logo <- image_read(response$data$url)\nprint(R_logo)\n\nmagick::image_write(R_logo, \"images/R_logo.png\")"
   },
   {
     "objectID": "interview.html",
@@ -270,35 +270,35 @@
     "href": "rcoding.html",
     "title": "chatGPT",
     "section": "",
-    "text": "gpttools GitHub 저장소에서 바로 설치한다.\nrequire(remotes)\nremotes::install_github(\"JamesHWade/gpttools\")"
+    "text": "Low-code and GPT-3: easier said than done with OpenAI Codex\n\n주석을 코드로 전환\n맥락을 보고 다음 코드를 자동 작성\n라이브러리, API 등 추천을 통해 새로운 지식 전달\n주석 자동 추가\n동일한 기능을 갖지면 효율성 좋은 코드로 변환"
   },
   {
     "objectID": "rcoding.html#주석달기",
     "href": "rcoding.html#주석달기",
     "title": "chatGPT",
-    "section": "\n4.1 주석달기",
-    "text": "4.1 주석달기"
+    "section": "\n5.1 주석달기",
+    "text": "5.1 주석달기"
   },
   {
     "objectID": "rcoding.html#roxygen-추가",
     "href": "rcoding.html#roxygen-추가",
     "title": "chatGPT",
-    "section": "\n4.2 Roxygen 추가",
-    "text": "4.2 Roxygen 추가"
+    "section": "\n5.2 Roxygen 추가",
+    "text": "5.2 Roxygen 추가"
   },
   {
     "objectID": "rcoding.html#스크립트-함수",
     "href": "rcoding.html#스크립트-함수",
     "title": "chatGPT",
-    "section": "\n4.3 스크립트 → 함수",
-    "text": "4.3 스크립트 → 함수"
+    "section": "\n5.3 스크립트 → 함수",
+    "text": "5.3 스크립트 → 함수"
   },
   {
     "objectID": "rcoding.html#함수에-단위-테스트-추천",
     "href": "rcoding.html#함수에-단위-테스트-추천",
     "title": "chatGPT",
-    "section": "\n4.4 함수에 단위 테스트 추천",
-    "text": "4.4 함수에 단위 테스트 추천"
+    "section": "\n5.4 함수에 단위 테스트 추천",
+    "text": "5.4 함수에 단위 테스트 추천"
   },
   {
     "objectID": "reticulate.html",
@@ -614,5 +614,33 @@
     "title": "chatGPT",
     "section": "\n7.3 이미지",
     "text": "7.3 이미지\n\n\n\n\n웹툰을 제작하는 스튜디오에서는 웹툰 작가들과 어시스트들이 매우 노동집약적인 작업으로 창작활동을 하고 있다. 현재 웹툰 제작 공정은 콘티, 스케치, 라인(펜선), 채색, 배경, 출판 작업의 순서로 이뤄진다. 한국만화영상진흥원과 협력하는 실제 웹툰 작가들은 특정작업이 아닌 모든 공정에서 제작 생산성 향상을 위한 자동화 기술이 필요하다는 결론에 도달함. (김현진, 2021)"
+  },
+  {
+    "objectID": "trends.html#공상과학소설",
+    "href": "trends.html#공상과학소설",
+    "title": "chatGPT",
+    "section": "\n8.1 공상과학소설",
+    "text": "8.1 공상과학소설\n공상과학 및 판타지 잡지 클라크스월드(Clarkesworld)는 AI가 생성한 소설라는 비난을 받은 후 신규 공상과학소설이 급증한 것이 AI 기계로 작성된 원인을 큰 것으로 파악하고 2월 20일부터 공식적으로 투고를 중단했다.\nNeil Clark (2023-02-15), “A Concerning Trend”, CLARKESWORLD MAGAZINE\n\n\n\n\n2023-02-15 기준\n\n\n\n\n2023-02-20 기준"
+  },
+  {
+    "objectID": "image2image.html#chatgpt-프롬프트",
+    "href": "image2image.html#chatgpt-프롬프트",
+    "title": "chatGPT",
+    "section": "\n3.1 chatGPT 프롬프트",
+    "text": "3.1 chatGPT 프롬프트\nrecommend the most famous painting style in history\n\n\n\n\n\n\ncompletion\n\n\n\n\n\nHere are some of the most famous painting styles in history:\n\nRenaissance: The Renaissance was a cultural movement in Italy from the 14th to the 17th century, characterized by a renewed interest in classical art, philosophy, and science. Renaissance paintings are known for their realism, balance, and harmony.\nBaroque: The Baroque style was popular in Europe from the late 16th to the early 18th century. Baroque paintings are known for their dramatic lighting, intense emotions, and dynamic compositions.\nImpressionism: Impressionism was a modernist movement in French painting in the late 19th century. Impressionist paintings are known for their loose brushstrokes, light-filled compositions, and focus on capturing fleeting moments.\nSurrealism: Surrealism was a cultural movement in the 20th century that aimed to liberate the imagination and explore the subconscious. Surrealist paintings are known for their dreamlike and fantastical imagery.\nAbstract Expressionism: Abstract Expressionism was a modernist movement in American painting in the mid-20th century. Abstract Expressionist paintings are known for their large canvases, gestural brushstrokes, and emphasis on the process of creation.\n\nThese are just a few examples of famous painting styles in history. There are many other styles that have influenced and shaped the course of art history.\n\n\n\nOpen AI - Create image API"
+  },
+  {
+    "objectID": "image2image.html#화풍을-달리한-그림",
+    "href": "image2image.html#화풍을-달리한-그림",
+    "title": "chatGPT",
+    "section": "\n3.2 화풍을 달리한 그림",
+    "text": "3.2 화풍을 달리한 그림\n\n\n르네상스(Renaissance)\n바로크(Baroque)\n인상주의(Impressionism)\n초현실주의(Surrealism)\n추상표현주의(Abstract Expressionism)\n\n\n\n\n코드library(tidyverse)\nlibrary(openai)\n\n# usethis::edit_r_environ(scope = \"project\")\n\nresponse <- create_image(\n    prompt = \"draw good health and long life world in a Renaissance style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nRenaissance <- image_read(response$data$url)\nprint(Renaissance)\n\nimage_write(Renaissance, path = \"images/styles/Renaissance.png\", format = \"png\")\n\n\n\n\n르네상스(Renaissance)\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Baroque style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nBaroque <- image_read(response$data$url)\nprint(Baroque)\n\nimage_write(Baroque, path = \"images/styles/Baroque.png\", format = \"png\")\n\n\n\n\n바로크(Baroque)\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Impressionism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nImpressionism <- image_read(response$data$url)\nprint(Impressionism)\n\nimage_write(Impressionism, path = \"images/styles/Impressionism.png\", format = \"png\")\n\n\n\n\n인상주의(Impressionism)\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Surrealism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nSurrealism <- image_read(response$data$url)\nprint(Surrealism)\n\nimage_write(Surrealism, path = \"images/styles/Surrealism.png\", format = \"png\")\n\n\n\n\n초현실주의(Surrealism)\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Abstract Expressionism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nexpressionism <- image_read(response$data$url)\nprint(expressionism)\n\nimage_write(expressionism, path = \"images/styles/expressionism.png\", format = \"png\")\n\n\n\n\n추상표현주의(Abstract Expressionism)"
+  },
+  {
+    "objectID": "rcoding.html#설치",
+    "href": "rcoding.html#설치",
+    "title": "chatGPT",
+    "section": "\n2.1 설치",
+    "text": "2.1 설치\ngpttools GitHub 저장소에서 바로 설치한다.\nrequire(remotes)\nremotes::install_github(\"JamesHWade/gpttools\")"
   }
 ]

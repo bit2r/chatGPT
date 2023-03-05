@@ -37,6 +37,16 @@ editor_options:
   chunk_output_type: console
 ---
 
+# Codex
+
+[[Low-code and GPT-3: easier said than done with OpenAI Codex](https://medium.com/data-reply-it-datatech/low-code-and-gpt-3-easier-said-than-done-with-openai-codex-d3c1d4aebc8b)]{.aside}
+
+- 주석을 코드로 전환
+- 맥락을 보고 다음 코드를 자동 작성
+- 라이브러리, API 등 추천을 통해 새로운 지식 전달
+- 주석 자동 추가
+- 동일한 기능을 갖지면 효율성 좋은 코드로 변환
+
 
 # `gpttools` 패키지
 
@@ -137,4 +147,34 @@ GitHub/Gitlab을 사용할 때, `.Renviron` 파일 정보를 `.gitignore`에 추
 <video src="https://user-images.githubusercontent.com/6314313/209890959-fca623d9-5e8e-463c-ac64-80f3db9875d9.mov" data-canonical-src="https://user-images.githubusercontent.com/6314313/209890959-fca623d9-5e8e-463c-ac64-80f3db9875d9.mov" controls="controls" muted="muted" class="d-block rounded-bottom-2 width-fit" style="max-height:640px;">
 
 </video>
+
+# 예측모형
+
+펭귄데이터셋 암수성별을 분류예측모형을 개발하도록 지시명령어를 자세히 준비하여 chatGPT 
+실행을 시킨다.
+
+```{r}
+#| eval: false
+library(openai)
+
+penguins_classification_instruction <- 
+  glue::glue("# R language\n",
+             "Build sex classification machine learning model withe palmer penguin datatset\n",
+             "Use palmer penguins data package for dataset\n",
+             "Use tidymodels framework\n",
+             "Use random forest model\n",
+             "Include evaluation metrics including accruacy, precision, reall")
+
+build_model <- create_completion(
+    model="code-davinci-002",
+    prompt = penguins_classification_instruction,
+    max_tokens=1024,
+    openai_api_key = Sys.getenv("OPEN_AI_KEY")
+)
+
+parsed_code <- str_split(build_model$choices$text, "\n")[[1]]
+
+write_lines(parsed_code, "palmer_penguins.Rmd")
+```
+
 

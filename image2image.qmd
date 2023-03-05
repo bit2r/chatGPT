@@ -37,6 +37,96 @@ editor_options:
 ---
 
 
+
+# 이미지 생성
+
+[`openai`](https://cran.r-project.org/web/packages/openai/index.html) 패키지
+`create_image()` 함수를 사용하여 이미지를 제작할 수 있다.
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(openai)
+
+# usethis::edit_r_environ(scope = "project")
+
+response <- create_image(
+    prompt = "Create R programming language logo for Korean R user group in a kandinsky and Gustav Klimt style embracing Python programming language supported by many contributors around the world, which must include R logo from R consortium and wikipedia",
+    n = 1,
+    size = "256x256",
+    response_format = "url",
+    openai_api_key = Sys.getenv("OPEN_AI_KEY")
+)
+
+library(magick)
+R_logo <- image_read(response$data$url)
+print(R_logo)
+
+magick::image_write(R_logo, "images/R_logo.png")
+
+```
+
+![](images/R_logo.png)
+
+# `BitGPT`
+
+[`bitGPT`](https://github.com/bit2r/bitGPT)는 chatGPT를 보다 쉽게 사용할 수 있는, 그리고 한국어를 지원하는 `openai`, `gpttools`와 같지만 한국 R 사용자회에서 개발하여 공개한 패키지로 차이가 있습니다.
+
+한글을 파파고 엔진을 사용하여 영어로 번역한다.
+
+```{r}
+# devtools::install_github("bit2r/bitGPT")
+library(bitGPT)
+
+text <- "무병장수 세상을 르네상스 화풍으로 그려줘"
+eng_prompt <- translate(text,
+                      source = "ko",
+                      target = "en",
+                      client_id = Sys.getenv("NAVER_CLIENT_ID"),
+                      client_secret = Sys.getenv("NAVER_CLIENT_SECRET"))
+eng_prompt
+```
+
+`chatGPT` text-to-image 기능을 사용하여 앞서 한글을 영어로 번역한 **지시명령어(Prompt)**를 사용하여 이미지를 제작한다.
+
+```{r}
+#| eval: false
+draw_img(
+  eng_prompt,
+  ko2en = FALSE,
+  n = 1L,
+  size = "512x512",
+  type = "file",
+  format = "png",
+  path = "./images",
+  fname = "bitGPT_life",
+  openai_api_key = Sys.getenv("OPEN_AI_KEY")
+)
+```
+
+![](images/bitGPT_life.png)
+
+마지막으로 `bitGPT`의 `draw_img()` 함수에 한글 넣어 바로 이미지로 뽑아내는 실험을 수행해보자.
+
+```{r}
+#| eval: false
+draw_img(
+  "인공지능과 사람이 공존하는 통일된 대한민국을 검사를 포함하여 그려줘",
+  ko2en = TRUE,
+  n = 1L,
+  size = "512x512",
+  type = "file",
+  format = "png",
+  path = "./images",
+  fname = "bitGPT_korean",
+  openai_api_key = Sys.getenv("OPEN_AI_KEY")
+)
+```
+
+
+![](images/bitGPT_korean.png)
+
+
 # 무병장수 
 
 역사상 가장 유명한 화풍을 chatGPT로부터 추천받아 이를 다양한 방식으로 시각화해보자. 
@@ -69,9 +159,12 @@ These are just a few examples of famous painting styles in history. There are ma
 
 [[Open AI - Create image API](https://platform.openai.com/docs/api-reference/images/create)]{.aside}
 
+
+## 화풍을 달리한 그림
+
 ::: {.panel-tabset}
 
-## 르네상스(Renaissance)
+### 르네상스(Renaissance)
 
 
 ```{r}
@@ -95,9 +188,9 @@ print(Renaissance)
 image_write(Renaissance, path = "images/styles/Renaissance.png", format = "png")
 ```
 
-![](images/styles/Renaissance.png)
+![르네상스(Renaissance)](images/styles/Renaissance.png)
 
-## 바로크(Baroque)
+### 바로크(Baroque)
 
 ```{r}
 #| eval: false
@@ -115,9 +208,9 @@ print(Baroque)
 image_write(Baroque, path = "images/styles/Baroque.png", format = "png")
 ```
 
-![](images/styles/Baroque.png)
+![바로크(Baroque)](images/styles/Baroque.png)
 
-## 인상주의(Impressionism)
+### 인상주의(Impressionism)
 
 ```{r}
 #| eval: false
@@ -135,9 +228,9 @@ print(Impressionism)
 image_write(Impressionism, path = "images/styles/Impressionism.png", format = "png")
 ```
 
-![](images/styles/Impressionism.png)
+![인상주의(Impressionism)](images/styles/Impressionism.png)
 
-## 초현실주의(Surrealism)
+### 초현실주의(Surrealism)
 
 ```{r}
 #| eval: false
@@ -155,9 +248,9 @@ print(Surrealism)
 image_write(Surrealism, path = "images/styles/Surrealism.png", format = "png")
 ```
 
-![](images/styles/Surrealism.png)
+![초현실주의(Surrealism)](images/styles/Surrealism.png)
 
-## 추상표현주의(Abstract Expressionism)
+### 추상표현주의(Abstract Expressionism)
 
 ```{r}
 #| eval: false
@@ -175,7 +268,7 @@ print(expressionism)
 image_write(expressionism, path = "images/styles/expressionism.png", format = "png")
 ```
 
-![](images/styles/expressionism.png)
+![추상표현주의(Abstract Expressionism)](images/styles/expressionism.png)
 
 :::
 

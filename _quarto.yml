@@ -25,14 +25,13 @@ website:
           text: "추세 트렌드"
         - href: architecture.qmd
           text: "아키텍쳐"
-        - href: codex.qmd
-          text: "OpenAI Codex"
+        - text: "------------------"
         - href: image2image.qmd
           text: "이미지 생성"
-        - href: math.qmd
-          text: "수학문제"
         - href: rcoding.qmd
           text: "R 코딩개발"
+        - href: math.qmd
+          text: "수학문제"
         - href: interview.qmd
           text: "데이터 과학문제"
         - href: deepL.qmd
