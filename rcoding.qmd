@@ -37,9 +37,23 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Codex
+# 코덱스(Codex)
 
 [[Low-code and GPT-3: easier said than done with OpenAI Codex](https://medium.com/data-reply-it-datatech/low-code-and-gpt-3-easier-said-than-done-with-openai-codex-d3c1d4aebc8b)]{.aside}
+
+**코덱스(Codex)**는 OpenAI에서 개발한 획기적인 AI 기술로, 사용자가 입력한 질문에 응답하여 사람과 유사한 텍스트를 생성할 수 있다. 
+딥러닝 알고리즘을 사용하여 책, 기사 및 기타 형태의 서면 콘텐츠를 포함한 방대한 양의 텍스트 데이터를 분석하여 언어와 문맥에 대한 포괄적인 이해를 바탕으로 텍스트를 생성한다.코덱스는 챗봇, 가상 비서, 글쓰기 도구 등 다양한 애플리케이션과 통합하여 사용자에게 자연스럽고 유창한 텍스트 응답을 제공한다. 
+
+코덱스의 프로그래밍 기능은 가장 강력한 애플리케이션 중 하나로 방대한 양의 코드와 문서를 분석하여 사용자가 제공한 
+지시명령어(Prompt)에 응답하여 코드 스니펫(Snippet)을 생성할 수 있으므로 코드를 보다 효율적이고 정확하게 작성해야 하는 개발자에게 매우 유용한 도구로 자리잡아가고 있다.
+
+코덱스는 파이썬, 자바, C++, R 등 다양한 프로그래밍 언어와 함께 사용할 수 있으며,
+현재 코드 맥락(Context)에 따라 전체 함수나 클래스를 생성할 수 있으며, 구문적으로 정확하고 모범 사례(Best Practice)를 
+따르는 코드를 제안함으로써 코드 작성에 필요한 시간과 노력을 줄여 개발자가 새로운 기능을 설계하거나 기존 기능을 개선하는 등 보다 복잡한 작업에 집중할 수 있게 한다.
+
+코덱스의 프로그래밍 기능의 주요 이점 중 하나는 생성하는 코드의 의미와 목적을 이해한다는 점이다. 
+즉, 작동할 뿐만 아니라 구조적으로 강건하고 읽기 쉬운 코드를 제안하여 오류를 줄이고 
+코드베이스의 전반적인 품질을 개선하는 데 도움을 준다. 전반적으로 코덱스의 프로그래밍 기능은 개발자의 코드 작성 방식에 혁신을 가져올 잠재력을 가지고 있다. 
 
 - 주석을 코드로 전환
 - 맥락을 보고 다음 코드를 자동 작성
@@ -50,10 +64,15 @@ editor_options:
 
 # `gpttools` 패키지
 
+[`gpttools`](https://github.com/JamesHWade/gpttools)의 목표는 R 패키지 개발자가 초거대 언어 모델(LLM)을 프로젝트 
+작업흐름에 보다 쉽게 통합할 수 있도록 [gptstudio](https://github.com/MichelNivard/gptstudio)를 확장하는 것이다. 
+초거대 언어 모델은 지식 작업에 텍스트를 사용하는 데 있어 한 걸음 더 나아간 것으로 보이지만, 
+초거대 언어 모델을 사용하는 데 따른 윤리적 영향도 신중하게 고려해야 한다. 
+LLM(근간 모형, Foundation Model)의 윤리는 매우 활발하게 논의되고 있는 분야 중 하나다.
+
 ## 설치
 
 [gpttools](https://github.com/JamesHWade/gpttools) GitHub 저장소에서 바로 설치한다.
-
 
 ``` r
 require(remotes)
@@ -65,7 +84,8 @@ remotes::install_github("JamesHWade/gpttools")
 
 민감한 개인정보나 기타 데이터를 전송하지 않도록 주의한다. 
 
-사용방법은 텍스트 혹은 코드를 커서로 선택하여 add-in 명령어를 사용하여 OpenAI로 보내면 Codex가 이를 해석하여 최선의 답을 다시 전달해주는 간단한 구조로 되어 있다.
+사용방법은 텍스트 혹은 코드를 커서로 선택하여 add-in 명령어를 사용하여 
+OpenAI로 보내면 Codex가 이를 해석하여 최선의 답을 다시 전달해주는 간단한 구조로 되어 있다.
 
 
 [See OpenAI's Terms of Use at <https://openai.com/terms> for more
@@ -122,7 +142,10 @@ GitHub/Gitlab을 사용할 때, `.Renviron` 파일 정보를 `.gitignore`에 추
 
 `gpttools` addins은 `CMD/CTRL+SHIFT+P` 를 클릭하여 선택가능.
 
+
 ![](images/gpttools/gpttools-addins.png)
+
+:::{.panel-tabset}
 
 ## 주석달기
 
@@ -147,6 +170,8 @@ GitHub/Gitlab을 사용할 때, `.Renviron` 파일 정보를 `.gitignore`에 추
 <video src="https://user-images.githubusercontent.com/6314313/209890959-fca623d9-5e8e-463c-ac64-80f3db9875d9.mov" data-canonical-src="https://user-images.githubusercontent.com/6314313/209890959-fca623d9-5e8e-463c-ac64-80f3db9875d9.mov" controls="controls" muted="muted" class="d-block rounded-bottom-2 width-fit" style="max-height:640px;">
 
 </video>
+
+:::
 
 # 예측모형
 

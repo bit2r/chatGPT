@@ -34,6 +34,7 @@ website:
           text: "부조종사 R 코딩개발"
         - href: math.qmd
           text: "수학문제"
+        - text: "------------------"
         - href: interview.qmd
           text: "데이터 과학문제"
         - href: deepL.qmd
