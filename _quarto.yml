@@ -29,7 +29,9 @@ website:
         - href: image2image.qmd
           text: "이미지 생성"
         - href: rcoding.qmd
-          text: "R 코딩개발"
+          text: "GPT R 코딩개발"
+        - href: rcoding-copilot.qmd
+          text: "부조종사 R 코딩개발"
         - href: math.qmd
           text: "수학문제"
         - href: interview.qmd

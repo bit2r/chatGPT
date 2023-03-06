@@ -1,0 +1,96 @@
+---
+title: "chatGPT"
+subtitle: "부조종사(copilot) R 코딩개발"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - custom-callout.lua   
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+# GitHub Copilot
+
+[GitHub Copilot](https://github.com/features/copilot)은 Visual Studio Code를 비롯한 다양한 코드 편집기와 통합할 수 있는 AI 기반 코딩 도우미(Assistant)입니다.
+Copilot은 개발자가 보다 효율적이고 정확하게 코드를 작성할 수 있도록 도와주는 지능형 도우미 기능 제공하기 위해 GitHub와 OpenAI가 공동으로 개발했습니다.
+
+Copilot은 머신 러닝 알고리즘을 사용하여 다른 개발자가 작성한 코드를 분석하고 학습한 다음 현재 코드베이스에 삽입할 수 있는 제안 및 코드 조각을 생성합니다.
+이 기능은 방대한 코드 코퍼스를 학습한 신경망을 사용하여 개발자가 작성할 가능성이 있는 다음 코드 줄을 예측하는 방식으로 작동합니다.
+
+이 기술을 통해 Copilot은 현재 코드의 컨텍스트를 기반으로 전체 함수 또는 클래스를 제안하고 구문적으로 정확하고 모범 사례를 준수하는 코드를 생성할 수도 있습니다.
+또한 Copilot은 생성하는 코드의 의미와 목적을 이해할 수 있으므로 새로운 아이디어를 빠르게 프로토타입으로 만들거나 문제에 대한 다양한 해결책을 모색해야 하는 개발자에게 유용한 도구입니다.
+
+GitHub Copilot은 Python, JavaScript, TypeScript, Ruby, Go, R 등 다양한 프로그래밍 언어와 원활하게 작동하도록 설계되었습니다.
+또한 사용자 지정이 가능하므로 개발자가 특정 코드베이스에 대해 학습시켜 제안을 개선하고 더욱 정확하게 만들 수 있습니다.
+
+Copilot을 사용하면 얻을 수 있는 잠재적 이점은 상당합니다.
+코드 작성에 필요한 시간과 노력을 줄임으로써 개발자는 새로운 기능을 설계하거나 기존 기능을 개선하는 등 더 복잡한 작업에 집중할 수 있습니다.
+또한 Copilot은 모범 사례를 따르고 구조적으로 건전하고 읽기 쉬운 코드를 생성하도록 프로그래밍되어 있으므로 오류와 버그를 줄이는 데 도움이 될 수 있습니다.
+
+전반적으로 GitHub Copilot은 AI 지원 코딩 분야에서 중요한 진전을 이루었으며, 개발자의 코드 작업 및 협업 방식을 바꿀 수 있는 잠재력을 가지고 있습니다.
+
+# RStudio
+
+R 사용자는 RStudio를 많이 사용했으나 최근 chatGPT, Github Copilot의 부상으로 개발방식에 변화가 생겨나고 있다.
+하지만, RStudio가 곧 Copilot 지원하지는 않을 예정이다.
+RStudio는 무료 오픈 소스인 반면 Copilot은 Microsoft의 독점 기술이며, Microsoft는 공식 비공개 소스 소프트웨어 및 플러그인에서만 사용할 수 있도록 라이선스를 부여하고 있다.
+시중에 존재하는 몇몇 타사 플러그인은 공식 플러그인에서 바이너리를 추출하여 작동하지만, RStudio에는 이런 우회 편법적인 방법을 취하고 있지는 않고 있다.
+
+[[Github Copilot integration with RStudio #10148](https://github.com/rstudio/rstudio/issues/10148)]{.aside}
+
+Microsoft와 Posit이 RStudio 내에서 Copilot을 허용하는 방법과 RStudio가 공개 데이터 및 기술을 사용하여 Copilot과 유사한 AI 프로그래밍 도우미를 구현하는 방법도 있지만 이 중 어느 것도 향후 6개월 이내에(특히 향후 6\~8주 이내에) 출시될 가능성은 전무하다.
+따라서, Copilot을 사용하고자 하는 경우 VS Code를 사용하는 것이 유일한 방법이다.
+
+![](images/rcoding_copilot.png)
+
+# VS 코드
+
+[[GitHub, Copilot for R](https://github.com/revodavid/copilot-for-r)]{.aside}
+
+Visual Studio Code에서 R 코드 작성 프로세스의 속도를 높일 수 있다.
+Copilot은 기존 프로젝트의 컨텍스트를 기반으로 R 스크립트 혹은 함수전체를 동적으로 실행한다.
+예를 들어, R을 새로운 Azure OpenAI 서비스와 인터페이스하는 함수를 작성하고 Copilot이 필요한 코드를 생성하여 개발 속도를 높일 수 있다.
+
+| Copilot | chatGPT |
+|------|------|
+|<iframe src="images/pumpkins-copilot.mp4" allowfullscreen allow="encrypted-media" width="320" height="180">  | <iframe src="images/openai-demo.mp4" allowfullscreen allow="encrypted-media" width="320" height="180">     |
+
+
+
+
+
+
+
+
+
