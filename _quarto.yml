@@ -23,6 +23,8 @@ website:
         menu:
         - href: trends.qmd
           text: "추세 트렌드"
+        - href: why_llm.qmd
+          text: "왜 거대언어모형인가?"
         - href: architecture.qmd
           text: "아키텍쳐"
         - text: "------------------"
