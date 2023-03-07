@@ -372,8 +372,14 @@ ga('send', {
   <li>
 <a href="#github-copilot" id="toc-github-copilot" class="nav-link" data-scroll-target="#github-copilot"><span class="toc-section-number">5</span>  GitHub copilot</a>
   <ul class="collapse">
-<li><a href="#%ED%8E%AD%EA%B7%84-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B" id="toc-펭귄-데이터셋" class="nav-link" data-scroll-target="#%ED%8E%AD%EA%B7%84-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B"><span class="toc-section-number">5.1</span>  펭귄 데이터셋</a></li>
-  <li><a href="#%ED%98%B8%EB%B0%95-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B" id="toc-호박-데이터셋" class="nav-link" data-scroll-target="#%ED%98%B8%EB%B0%95-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B"><span class="toc-section-number">5.2</span>  호박 데이터셋</a></li>
+<li><a href="#%EC%A4%91%EC%9A%94-%EC%B6%94%EA%B0%80%EC%84%A4%EC%A0%95" id="toc-중요-추가설정" class="nav-link" data-scroll-target="#%EC%A4%91%EC%9A%94-%EC%B6%94%EA%B0%80%EC%84%A4%EC%A0%95"><span class="toc-section-number">5.1</span>  중요 추가설정</a></li>
+  <li>
+<a href="#%EC%8B%A4%EC%A0%9C-%EC%A0%81%EC%9A%A9-%EC%82%AC%EB%A1%80" id="toc-실제-적용-사례" class="nav-link" data-scroll-target="#%EC%8B%A4%EC%A0%9C-%EC%A0%81%EC%9A%A9-%EC%82%AC%EB%A1%80"><span class="toc-section-number">5.2</span>  실제 적용 사례</a>
+  <ul class="collapse">
+<li><a href="#%ED%8E%AD%EA%B7%84-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B" id="toc-펭귄-데이터셋" class="nav-link" data-scroll-target="#%ED%8E%AD%EA%B7%84-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B">펭귄 데이터셋</a></li>
+  <li><a href="#%ED%98%B8%EB%B0%95-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B" id="toc-호박-데이터셋" class="nav-link" data-scroll-target="#%ED%98%B8%EB%B0%95-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B">호박 데이터셋</a></li>
+  </ul>
+</li>
   </ul>
 </li>
   </ul></nav>
@@ -627,7 +633,7 @@ ga('send', {
 <figure class="figure"><p><a href="images/vscode_open-context-menu.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="images/vscode_open-context-menu.gif" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
-</section></section><section id="github-copilot" class="level1" data-number="5"><h1 data-number="5">
+</section></section><section id="github-copilot" class="level1 page-columns page-full" data-number="5"><h1 data-number="5">
 <span class="header-section-number">5</span> GitHub copilot</h1>
 <p>GitHub에서 공개한 Copilot은 AI pair programmer라는 부제를 달고 있고, <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot">GitHub Copilot</a> 플러그인을 설치하면 사용이 가능하다. 한가지 <kbd> CTRL </kbd> + <kbd> Enter </kbd> 단축키가 충돌되어 R 코드 실행하는 것과 겹쳐서 문제가 있기 때문에 단축키를 <kbd> CTRL </kbd> + <kbd> Shift </kbd> + <kbd> Alt </kbd> + <kbd> Enter </kbd>와 같이 조정하면 큰 문제 없이 R 개발할 때 GitHub copilot과 함께 사용이 가능하다. 이를 위해서 <code>keybindings.json</code> 파일에 다음 사항을 추가한다. 사용자별로 단축키를 달리해서 적용시키는 것도 물론 가능하다.</p>
 <ul>
@@ -670,17 +676,41 @@ ga('send', {
 </div>
 </div>
 </div>
-<p>:::{.panel-tabset}</p>
-<section id="펭귄-데이터셋" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="펭귄-데이터셋">
-<span class="header-section-number">5.1</span> 펭귄 데이터셋</h2>
+<section id="중요-추가설정" class="level2 page-columns page-full" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="중요-추가설정">
+<span class="header-section-number">5.1</span> 중요 추가설정</h2>
+<p>Principal Cloud Advocate at Microsoft David Smith가 “New York Open Statistical Programming Meetup, 28 February 2023”에서 발표한 <strong>Copilot for R</strong> 내용 중 VS 코드 환경설정부분이다.</p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="https://github.com/revodavid/copilot-for-r">Copilot for R</a></span></div></div>
+<ul>
+<li>VS 코드
+<ul>
+<li><a href="https://aka.ms/get-copilot">Copilot extension</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=REditorSupport.r">R Extension for Visual Studio Code</a></li>
+<li>copilot 추천에 집중하기 위해서 다음 사항도 설정에 반영한다.
+<ul>
+<li>Editor &gt; Hover (disabled)</li>
+<li>Editor &gt; Quick Suggestions (off)</li>
+<li>Editor &gt; Parameter Hints (disabled)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>R 패키지 설치 및 <code>opitions()</code>
+<ul>
+<li>httr, jsonlite, tidyverse, tidymodels, docopt, httpuv</li>
+<li>가독성 높은 그래프 출력: <code>options(vsc.dev.args = list(width = 800, height = 600))</code>
+</li>
+</ul>
+</li>
+</ul></section><section id="실제-적용-사례" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="실제-적용-사례">
+<span class="header-section-number">5.2</span> 실제 적용 사례</h2>
+<p>펭귄과 호박 데이터를 적용한 사례 시연을 살펴보자.</p>
+<section id="펭귄-데이터셋" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="펭귄-데이터셋">펭귄 데이터셋</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="images/vscode_copilot.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="images/vscode_copilot.gif" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
-</section><section id="호박-데이터셋" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="호박-데이터셋">
-<span class="header-section-number">5.2</span> 호박 데이터셋</h2>
+</section><section id="호박-데이터셋" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="호박-데이터셋">호박 데이터셋</h3>
 <iframe src="images/pumpkins-copilot.mp4" allowfullscreen="" allow="encrypted-media" width="320" height="180">
-<p>:::</p>
 <div id="quarto-navigation-envelope" class="hidden">
 <p><span class="hidden" data-render-id="quarto-int-sidebar-title">chatGPT</span> <span class="hidden" data-render-id="quarto-int-navbar-title">chatGPT</span> <span class="hidden" data-render-id="quarto-int-navbar:Home">Home</span> <span class="hidden" data-render-id="quarto-int-navbar:생성 AI">생성 AI</span> <span class="hidden" data-render-id="quarto-int-navbar:추세 트렌드">추세 트렌드</span> <span class="hidden" data-render-id="quarto-int-navbar:왜 거대언어모형인가?">왜 거대언어모형인가?</span> <span class="hidden" data-render-id="quarto-int-navbar:아키텍쳐">아키텍쳐</span> <span class="hidden" data-render-id="quarto-int-navbar:------------------">——————</span> <span class="hidden" data-render-id="quarto-int-navbar:이미지 생성">이미지 생성</span> <span class="hidden" data-render-id="quarto-int-navbar:GPT R 코딩개발">GPT R 코딩개발</span> <span class="hidden" data-render-id="quarto-int-navbar:부조종사 R 코딩개발">부조종사 R 코딩개발</span> <span class="hidden" data-render-id="quarto-int-navbar:수학문제">수학문제</span> <span class="hidden" data-render-id="quarto-int-navbar:데이터 과학문제">데이터 과학문제</span> <span class="hidden" data-render-id="quarto-int-navbar:DeepL 번역 API">DeepL 번역 API</span> <span class="hidden" data-render-id="quarto-int-navbar:chatGPT 응용사례">chatGPT 응용사례</span> <span class="hidden" data-render-id="quarto-int-navbar:R 소개영상">R 소개영상</span> <span class="hidden" data-render-id="quarto-int-navbar:데이터 과학 책">데이터 과학 책</span> <span class="hidden" data-render-id="quarto-int-navbar:논문 초록">논문 초록</span> <span class="hidden" data-render-id="quarto-int-navbar:데이터 문해력">데이터 문해력</span> <span class="hidden" data-render-id="quarto-int-navbar:BERT">BERT</span> <span class="hidden" data-render-id="quarto-int-navbar:통합개발환경(IDE)">통합개발환경(IDE)</span> <span class="hidden" data-render-id="quarto-int-navbar:파이썬 환경구축">파이썬 환경구축</span> <span class="hidden" data-render-id="quarto-int-navbar:HuggingfaceR - 모형통계">HuggingfaceR - 모형통계</span> <span class="hidden" data-render-id="quarto-int-navbar:Hugging Face">Hugging Face</span> <span class="hidden" data-render-id="quarto-int-navbar:Hugging Face(윈도우)">Hugging Face(윈도우)</span> <span class="hidden" data-render-id="quarto-int-navbar:HF 파이프라인">HF 파이프라인</span> <span class="hidden" data-render-id="quarto-int-navbar:게시글">게시글</span> <span class="hidden" data-render-id="quarto-int-navbar:R사용자회">R사용자회</span> <span class="hidden" data-render-id="quarto-int-navbar:Open Assistant">Open Assistant</span> <span class="hidden" data-render-id="quarto-int-navbar:RTutor">RTutor</span> <span class="hidden" data-render-id="quarto-int-navbar:About">About</span> <span class="hidden" data-render-id="footer-left"><a href="https://quarto.org/">Quarto</a> 개발</span> <span class="hidden" data-render-id="footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></span> <span class="hidden" data-render-id="footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></span></p>
 </div>
@@ -1026,19 +1056,43 @@ ga('send', {
 <span id="cb5-335"><a href="#cb5-335" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-336"><a href="#cb5-336" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb5-337"><a href="#cb5-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-338"><a href="#cb5-338" aria-hidden="true" tabindex="-1"></a>:::{.panel-tabset}</span>
+<span id="cb5-338"><a href="#cb5-338" aria-hidden="true" tabindex="-1"></a><span class="fu">## 중요 추가설정</span></span>
 <span id="cb5-339"><a href="#cb5-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-340"><a href="#cb5-340" aria-hidden="true" tabindex="-1"></a><span class="fu">## 펭귄 데이터셋</span></span>
+<span id="cb5-340"><a href="#cb5-340" aria-hidden="true" tabindex="-1"></a>Principal Cloud Advocate at Microsoft David Smith가 "New York Open Statistical Programming Meetup, 28 February 2023"에서 발표한 **Copilot for R** 내용 중 VS 코드 환경설정부분이다. </span>
 <span id="cb5-341"><a href="#cb5-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-342"><a href="#cb5-342" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/vscode_copilot.gif)</span></span>
+<span id="cb5-342"><a href="#cb5-342" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">Copilot for R</span><span class="co">](https://github.com/revodavid/copilot-for-r)</span>]{.aside}</span>
 <span id="cb5-343"><a href="#cb5-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-344"><a href="#cb5-344" aria-hidden="true" tabindex="-1"></a><span class="fu">## 호박 데이터셋</span></span>
-<span id="cb5-345"><a href="#cb5-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-346"><a href="#cb5-346" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;iframe</span> <span class="er">src</span><span class="ot">=</span><span class="st">"images/pumpkins-copilot.mp4"</span> <span class="er">allowfullscreen</span> <span class="er">allow</span><span class="ot">=</span><span class="st">"encrypted-media"</span> <span class="er">width</span><span class="ot">=</span><span class="st">"320"</span> <span class="er">height</span><span class="ot">=</span><span class="st">"180"</span><span class="kw">&gt;</span></span>
-<span id="cb5-347"><a href="#cb5-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-348"><a href="#cb5-348" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div>
+<span id="cb5-344"><a href="#cb5-344" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>VS 코드 </span>
+<span id="cb5-345"><a href="#cb5-345" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="co">[</span><span class="ot">Copilot extension</span><span class="co">](https://aka.ms/get-copilot)</span></span>
+<span id="cb5-346"><a href="#cb5-346" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="co">[</span><span class="ot">R Extension for Visual Studio Code</span><span class="co">](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)</span></span>
+<span id="cb5-347"><a href="#cb5-347" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>copilot 추천에 집중하기 위해서 다음 사항도 설정에 반영한다.</span>
+<span id="cb5-348"><a href="#cb5-348" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Editor &gt; Hover (disabled)</span>
+<span id="cb5-349"><a href="#cb5-349" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Editor &gt; Quick Suggestions (off)</span>
+<span id="cb5-350"><a href="#cb5-350" aria-hidden="true" tabindex="-1"></a><span class="ss">        - </span>Editor &gt; Parameter Hints (disabled)</span>
+<span id="cb5-351"><a href="#cb5-351" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R 패키지 설치 및 <span class="in">`opitions()`</span></span>
+<span id="cb5-352"><a href="#cb5-352" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>httr, jsonlite, tidyverse, tidymodels, docopt, httpuv</span>
+<span id="cb5-353"><a href="#cb5-353" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span>가독성 높은 그래프 출력: <span class="in">`options(vsc.dev.args = list(width = 800, height = 600))`</span></span>
+<span id="cb5-354"><a href="#cb5-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-355"><a href="#cb5-355" aria-hidden="true" tabindex="-1"></a><span class="fu">## 실제 적용 사례</span></span>
+<span id="cb5-356"><a href="#cb5-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-357"><a href="#cb5-357" aria-hidden="true" tabindex="-1"></a>펭귄과 호박 데이터를 적용한 사례 시연을 살펴보자.</span>
+<span id="cb5-358"><a href="#cb5-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-359"><a href="#cb5-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-360"><a href="#cb5-360" aria-hidden="true" tabindex="-1"></a><span class="fu">### 펭귄 데이터셋 {.unnumbered}</span></span>
+<span id="cb5-361"><a href="#cb5-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-362"><a href="#cb5-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-363"><a href="#cb5-363" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/vscode_copilot.gif)</span></span>
+<span id="cb5-364"><a href="#cb5-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-365"><a href="#cb5-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-366"><a href="#cb5-366" aria-hidden="true" tabindex="-1"></a><span class="fu">### 호박 데이터셋 {.unnumbered}</span></span>
+<span id="cb5-367"><a href="#cb5-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-368"><a href="#cb5-368" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;iframe</span> <span class="er">src</span><span class="ot">=</span><span class="st">"images/pumpkins-copilot.mp4"</span> <span class="er">allowfullscreen</span> <span class="er">allow</span><span class="ot">=</span><span class="st">"encrypted-media"</span> <span class="er">width</span><span class="ot">=</span><span class="st">"320"</span> <span class="er">height</span><span class="ot">=</span><span class="st">"180"</span><span class="kw">&gt;</span></span>
+<span id="cb5-369"><a href="#cb5-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-370"><a href="#cb5-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-371"><a href="#cb5-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-372"><a href="#cb5-372" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span></code></pre></div>
 </div>
-</iframe></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</iframe></section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1352,7 +1406,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>  
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","openEffect":"zoom","loop":true,"closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":true});</script>
 
 
 </body></html>

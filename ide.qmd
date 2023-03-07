@@ -333,14 +333,38 @@ R 개발할 때 GitHub copilot과 함께 사용이 가능하다.
 
 :::
 
-:::{.panel-tabset}
+## 중요 추가설정
 
-## 펭귄 데이터셋
+Principal Cloud Advocate at Microsoft David Smith가 "New York Open Statistical Programming Meetup, 28 February 2023"에서 발표한 **Copilot for R** 내용 중 VS 코드 환경설정부분이다. 
+
+[[Copilot for R](https://github.com/revodavid/copilot-for-r)]{.aside}
+
+- VS 코드 
+    - [Copilot extension](https://aka.ms/get-copilot)
+    - [R Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)
+    - copilot 추천에 집중하기 위해서 다음 사항도 설정에 반영한다.
+        - Editor > Hover (disabled)
+        - Editor > Quick Suggestions (off)
+        - Editor > Parameter Hints (disabled)
+- R 패키지 설치 및 `opitions()`
+    - httr, jsonlite, tidyverse, tidymodels, docopt, httpuv
+    - 가독성 높은 그래프 출력: `options(vsc.dev.args = list(width = 800, height = 600))`
+
+## 실제 적용 사례
+
+펭귄과 호박 데이터를 적용한 사례 시연을 살펴보자.
+
+
+### 펭귄 데이터셋 {.unnumbered}
+
 
 ![](images/vscode_copilot.gif)
 
-## 호박 데이터셋
+
+### 호박 데이터셋 {.unnumbered}
 
 <iframe src="images/pumpkins-copilot.mp4" allowfullscreen allow="encrypted-media" width="320" height="180">
 
-:::
+
+
+    
