@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="kr" xml:lang="kr"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="이광춘">
+<meta name="description" content="비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.">
+<title>chatGPT</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./images/profile.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색"
+  }
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><link rel="stylesheet" href="css/quarto.css">
+</head>
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">chatGPT</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">생성 AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai">
+<li>
+    <a class="dropdown-item" href="./trends.html">
+ <span class="dropdown-text">추세 트렌드</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./why_llm.html">
+ <span class="dropdown-text">왜 거대언어모형인가?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./architecture.html">
+ <span class="dropdown-text">아키텍쳐</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./image2image.html">
+ <span class="dropdown-text">이미지 생성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding.html">
+ <span class="dropdown-text">GPT R 코딩개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding-copilot.html">
+ <span class="dropdown-text">부조종사 R 코딩개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./math.html">
+ <span class="dropdown-text">수학문제</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./interview.html">
+ <span class="dropdown-text">데이터 과학문제</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./deepL.html">
+ <span class="dropdown-text">DeepL 번역 API</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-chatgpt-응용사례" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">chatGPT 응용사례</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-chatgpt-응용사례">
+<li>
+    <a class="dropdown-item" href="./intro_avi.html">
+ <span class="dropdown-text">R 소개영상</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_book.html">
+ <span class="dropdown-text">데이터 과학 책</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_paper.html">
+ <span class="dropdown-text">논문 초록</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./middle_school.html">
+ <span class="dropdown-text">데이터 문해력</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bert" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">BERT</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-bert">
+<li>
+    <a class="dropdown-item" href="./ide.html">
+ <span class="dropdown-text">통합개발환경(IDE)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./reticulate.html">
+ <span class="dropdown-text">파이썬 환경구축</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./koGPT.html">
+ <span class="dropdown-text">HuggingfaceR - 모형통계</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BERT.html">
+ <span class="dropdown-text">BERT</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./hf.html">
+ <span class="dropdown-text">Hugging Face</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hf_windows.html">
+ <span class="dropdown-text">Hugging Face(윈도우)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./hf_pipeline.html">
+ <span class="dropdown-text">HF 파이프라인</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item">
+    <a class="nav-link" href="./blog.html">
+ <span class="menu-text">게시글</span></a>
+  </li>  
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/bit2r/chatGPT"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://r2bit.com">
+ <span class="menu-text">R사용자회</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/LAION-AI/Open-Assistant"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Open Assistant</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rtutor.ai/">
+ <span class="menu-text">RTutor</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+<div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title">chatGPT</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> 코드</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 표시</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 숨기기</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">소스 코드 표시</a></li></ul></div></div>
+            <p class="subtitle lead">통합개발환경(IDE)</p>
+                  <div>
+        <div class="description">
+          비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다.
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-heading">소속</div>
+    
+      <div class="quarto-title-meta-contents">
+      <a href="https://www.linkedin.com/in/kwangchunlee/">이광춘</a> 
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://github.com/bit2r">
+              한국 R 사용자회
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li>
+<a href="#vs-%EC%BD%94%EB%93%9C-%EC%84%A4%EC%B9%98" id="toc-vs-코드-설치" class="nav-link active" data-scroll-target="#vs-%EC%BD%94%EB%93%9C-%EC%84%A4%EC%B9%98"><span class="toc-section-number">1</span>  VS 코드 설치</a>
+  <ul class="collapse">
+<li><a href="#r-extension-%EC%84%A4%EC%B9%98" id="toc-r-extension-설치" class="nav-link" data-scroll-target="#r-extension-%EC%84%A4%EC%B9%98"><span class="toc-section-number">1.1</span>  <code>R extension</code> 설치</a></li>
+  <li><a href="#%ED%97%AC%EB%A1%9C%EC%9A%B0-%EC%9B%94%EB%93%9C" id="toc-헬로우-월드" class="nav-link" data-scroll-target="#%ED%97%AC%EB%A1%9C%EC%9A%B0-%EC%9B%94%EB%93%9C"><span class="toc-section-number">1.2</span>  헬로우 월드</a></li>
+  <li><a href="#%EC%9C%A0%ED%8A%9C%EB%B8%8C-%EB%8F%99%EC%98%81%EC%83%81" id="toc-유튜브-동영상" class="nav-link" data-scroll-target="#%EC%9C%A0%ED%8A%9C%EB%B8%8C-%EB%8F%99%EC%98%81%EC%83%81"><span class="toc-section-number">1.3</span>  유튜브 동영상</a></li>
+  </ul>
+</li>
+  <li><a href="#%EC%BD%94%EB%94%A9-%EA%B8%80%EA%BC%B4" id="toc-코딩-글꼴" class="nav-link" data-scroll-target="#%EC%BD%94%EB%94%A9-%EA%B8%80%EA%BC%B4"><span class="toc-section-number">2</span>  코딩 글꼴</a></li>
+  <li><a href="#%EB%8B%A8%EC%B6%95%ED%82%A4" id="toc-단축키" class="nav-link" data-scroll-target="#%EB%8B%A8%EC%B6%95%ED%82%A4"><span class="toc-section-number">3</span>  단축키</a></li>
+  <li><a href="#%ED%8C%A8%EB%84%90" id="toc-패널" class="nav-link" data-scroll-target="#%ED%8C%A8%EB%84%90"><span class="toc-section-number">4</span>  패널</a></li>
+  <li><a href="#radiant" id="toc-radiant" class="nav-link" data-scroll-target="#radiant"><span class="toc-section-number">5</span>  <code>Radiant</code></a></li>
+  <li>
+<a href="#qmd-.rmd" id="toc-qmd-.rmd" class="nav-link" data-scroll-target="#qmd-.rmd"><span class="toc-section-number">6</span>  <code>.qmd</code>, <code>.Rmd</code></a>
+  <ul class="collapse">
+<li><a href="#keybindings.json" id="toc-keybindings.json" class="nav-link" data-scroll-target="#keybindings.json"><span class="toc-section-number">6.1</span>  <code>keybindings.json</code></a></li>
+  <li><a href="#html-%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0" id="toc-html-미리보기" class="nav-link" data-scroll-target="#html-%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0"><span class="toc-section-number">6.2</span>  HTML 미리보기</a></li>
+  </ul>
+</li>
+  <li><a href="#github-copilot" id="toc-github-copilot" class="nav-link" data-scroll-target="#github-copilot"><span class="toc-section-number">7</span>  GitHub copilot</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><p><code>chatGPT</code> 는 데이터 과학자 개발생산성을 비약적으로 증진시키는 것으로 알려져있다. 특히 데이터 과학에서 개발생산성 관련 큰 역할을 수행하는 것이 통합개발환경(IDE)이다. Posit에서 개발한 RStudio가 출현하면서 기존 R언어를 다양한 편집기(VIM,Emacs 등)로 주로 개발하던 문화를 획기적으로 바뀌었다면 이제는 GitHub Copilot을 어떤 형태로든 붙여서 사용하면 더욱 생산성을 높일 수 있다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/ide-copilot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/ide-copilot.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<section id="vs-코드-설치" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> VS 코드 설치</h1>
+<p>VS 코드를 통해 데이터 과학 제품개발을 할 경우 다음 사항에 맞춰 개발을 시작한다.</p>
+<ol type="1">
+<li>R을 설치한다.</li>
+<li>
+<code>languageserver</code> 패키지를 설치한다.</li>
+</ol>
+<ul>
+<li><code>install.packages("languageserver")</code></li>
+</ul>
+<ol start="3" type="1">
+<li>Visual Studio Code 에서 <code>R extension</code>을 설치한다.</li>
+<li>
+<code>.R</code> 파일에 개발을 시작한다.</li>
+</ol>
+<section id="r-extension-설치" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="r-extension-설치">
+<span class="header-section-number">1.1</span> <code>R extension</code> 설치</h2>
+<p><code>R extension</code>을 설치하게 되면 VS Code에서 R 코드 개발을 원활히 할 수 있도록 지원한다. VS Code 에 필수적인 <code>R extension</code>은 다음을 꼽을 수 있다. <code>R extension</code>을 설치하면 RStudio에서 기본설정으로 지정된 단축키를 별도 설정없이 자동 지정되기 때문에 편리하다.</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=REditorSupport.r">R - REditorSupport</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=TianyiShi.rmarkdown">R Markdown All in One</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=quarto.quarto">Quarto</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=RDebugger.r-debugger">R Debugger</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/vscode_R_extension.png" class="lightbox" title="VS Code를 실행하고 R Extension 설치" data-gallery="quarto-lightbox-gallery-2"><img src="images/vscode_R_extension.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">VS Code를 실행하고 R Extension 설치</figcaption><p></p>
+</figure>
+</div>
+</section><section id="헬로우-월드" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="헬로우-월드">
+<span class="header-section-number">1.2</span> 헬로우 월드</h2>
+<p><code>R Extension</code> 설치되면 코드 창 상단에 실행버튼이 활성화되고 <kbd>Ctrl</kbd> + <kbd>Enter</kbd> 혹은 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/vscode_helloworld.png" class="lightbox" title="R 코드 실행화면" data-gallery="quarto-lightbox-gallery-3"><img src="images/vscode_helloworld.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">R 코드 실행화면</figcaption><p></p>
+</figure>
+</div>
+</section><section id="유튜브-동영상" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="유튜브-동영상">
+<span class="header-section-number">1.3</span> 유튜브 동영상</h2>
+<div class="quarto-video ratio ratio-16x9"><iframe src="https://www.youtube.com/embed/c3ZQ8-OYj2M" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section></section><section id="코딩-글꼴" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> 코딩 글꼴</h1>
+<p>다른 언어와 마찬가지로 R 코드로 데이터 과학 제품을 개발할 경우 글꼴도 코딩에 적합한 한글 글꼴을 설정한다.</p>
+<p>먼저 <a href="https://github.com/naver/d2codingfont">D2 Coding 글꼴</a>을 다운로드 받아 운영체제에 설치한다.</p>
+<p>VS Code 좌측 하단 톱니바퀴 <kbd> Settings </kbd> 설정을 클릭 혹은 메뉴에서 “File” → “Preferences” → “Settings”를 통해 <code>편집기 (Text Editor)</code>로 들어가 운영체제에 설치한 코딩 폰트를 지정한다. <strong>Font Ligatures</strong> 도 <code>true</code>로 설정한다. 이를 통해 <code>&lt; -</code> 표시가 ← 로 화면에 표현된다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/vscode_font.png" class="lightbox" title="D2코딩 글꼴 장착" data-gallery="quarto-lightbox-gallery-4"><img src="images/vscode_font.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">D2코딩 글꼴 장착</figcaption><p></p>
+</figure>
+</div>
+</section><section id="단축키" class="level1 page-columns page-full" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> 단축키</h1>
+<p>R 코드 개발을 진행할 때 <kbd> %&gt;% </kbd>, <kbd> ← </kbd> 두가지 기능이 가장 많이 사용되는 단축키로 RStudio에서는 기본으로 지원되고 있다. VS Code에서 자주 사용되는 단축키를 <kbd> CTRL </kbd> + <kbd> Shift </kbd> + <kbd> m </kbd>, <kbd> Alt </kbd> + <kbd> - </kbd> 를 적용시키는 방법을 살펴보자.</p>
+<div class="page-columns page-full"><p>만약 VS Code에서 단축키 설정 기능을 활용한다. </p><div class="no-row-height column-margin column-container"><span class=""><a href="https://www.programmingwithr.com/how-to-add-r-magrittr-s-pipe-operator-in-vscode-as-keyboard-shortcut/">How to add R {magrittr}’s %&gt;% Pipe Operator in VSCode as Keyboard Shortcut</a></span></div></div>
+<ul>
+<li>윈도우즈: File &gt; Preferences &gt; Keyboard Shortcuts.</li>
+<li>맥: Code &gt; Preferences &gt; Keyboard Shortcuts</li>
+</ul>
+<p><code>keybindings.json</code> 파일에 <kbd> %&gt;% </kbd>, <kbd> ← </kbd> 단축키 기능을 추가한다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/vscode_shortcuts.png" class="lightbox" title="자주 사용되는 R 단축키 설정" data-gallery="quarto-lightbox-gallery-5"><img src="images/vscode_shortcuts.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">자주 사용되는 R 단축키 설정</figcaption><p></p>
+</figure>
+</div>
+</section><section id="패널" class="level1" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> 패널</h1>
+<p>RStudio는 코딩기반 데이터 분석과 통계에 최적화된 개발환경이다. 즉, 편집기 패널, 콘솔/터미널 패널, 그래프 패널, 도움말/개발 패널로 구성된 꼭 필요한 패널만 구성되어 있다.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">패널 설정</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">설정 후</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="../../images/vscode_layout.png" class="lightbox" title="VS Code: View → Editor Layout → Grid (2x2)" data-gallery="quarto-lightbox-gallery-6"><img src="../../images/vscode_layout.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">VS Code: View → Editor Layout → Grid (2x2)</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/vscode_layout_screen.png" class="lightbox" title="도움말과 그래프" data-gallery="quarto-lightbox-gallery-7"><img src="images/vscode_layout_screen.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">도움말과 그래프</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section><section id="radiant" class="level1 page-columns page-full" data-number="5"><h1 data-number="5">
+<span class="header-section-number">5</span> <code>Radiant</code>
+</h1>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="https://schiff.co.nz/blog/r-and-vscode/">Schiff consulting, ‘Using R in VS Code: Some things I learned while trying out R in VS Code’</a></span></div></div>
+</section><section id="qmd-.rmd" class="level1 page-columns page-full" data-number="6"><h1 data-number="6">
+<span class="header-section-number">6</span> <code>.qmd</code>, <code>.Rmd</code>
+</h1>
+<p>literate programming을 구현한 <code>.qmd</code>, <code>.Rmd</code> 파일를 작성하여 다양한 데이터 과학 문서를 작성할 수 있다.</p>
+<p><a href="https://pandoc.org/installing.html"><strong>Pandoc</strong> a universal document converter</a> 웹사이트에서 <code>pandoc</code>을 설치해야 한다. pandoc 최신버전을 설치하면 되고 버전이 2.16 이상이 되어야 활용이 가능하다.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span> pandoc <span class="sc">--</span>version</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pandoc <span class="dv">2</span>.<span class="fl">19.2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Compiled with pandoc<span class="sc">-</span>types <span class="dv">1</span>.<span class="dv">22</span>.<span class="fl">2.1</span>, texmath <span class="dv">0</span>.<span class="dv">12</span>.<span class="fl">5.2</span>, skylighting <span class="fl">0.13</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>citeproc <span class="dv">0</span>.<span class="dv">8</span>.<span class="fl">0.1</span>, ipynb <span class="fl">0.2</span>, hslua <span class="dv">2</span>.<span class="fl">2.1</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Scripting engine<span class="sc">:</span> Lua <span class="fl">5.4</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>User data directory<span class="sc">:</span> C<span class="sc">:</span>\Users\statkclee\AppData\Roaming\pandoc</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">Copyright</span> (C) <span class="dv">2006-2022</span> John MacFarlane. Web<span class="sc">:</span>  https<span class="sc">:</span><span class="er">//</span>pandoc.org</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>This is free software; see the source <span class="cf">for</span> copying conditions. There is no</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>warranty, not even <span class="cf">for</span> merchantability or fitness <span class="cf">for</span> a particular purpose.</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="keybindings.json" class="level2 page-columns page-full" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="keybindings.json">
+<span class="header-section-number">6.1</span> <code>keybindings.json</code>
+</h2>
+<div class="page-columns page-full"><p><code>keybindings.json</code> 파일에 R 혹은 파이썬 코드를 삽입시킬 수 있는 키보드 단축키를 등록시킨다. </p><div class="no-row-height column-margin column-container"><span class="">자료출처: <a href="https://www.schmidtynotes.com/blog/r/2021-09-28-vscode-rmd-code-chunk-snippet/">VS Code: Add a Rmarkdown Code Chunk Snippet Key Binding</a></span></div></div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<code>keybindings.json</code> 설정파일 예시
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="er">//</span> <span class="er">Place</span> <span class="er">your</span> <span class="er">key</span> <span class="er">bindings</span> <span class="er">in</span> <span class="er">this</span> <span class="er">file</span> <span class="er">to</span> <span class="er">override</span> <span class="er">the</span> <span class="er">defaults</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="er">//</span> <span class="er">keybindings</span> <span class="er">for</span> <span class="er">R</span> <span class="er">scripts.</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"Ctrl+Shift+m"</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"type"</span><span class="fu">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"args"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"text"</span><span class="fu">:</span> <span class="st">" %&gt;% "</span> <span class="fu">},</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"editorTextFocus &amp;&amp; editorLangId == r"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"Alt+-"</span><span class="fu">,</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"type"</span><span class="fu">,</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"args"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"text"</span><span class="fu">:</span> <span class="st">" &lt;- "</span> <span class="fu">},</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"editorTextFocus &amp;&amp; editorLangId == r"</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="er">//</span> <span class="er">keybindings</span> <span class="er">for</span> <span class="er">Rmarkdown</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"Ctrl+Shift+m"</span><span class="fu">,</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"type"</span><span class="fu">,</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"args"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"text"</span><span class="fu">:</span> <span class="st">" %&gt;% "</span> <span class="fu">},</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"editorTextFocus &amp;&amp; editorLangId == rmd"</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"Alt+-"</span><span class="fu">,</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"type"</span><span class="fu">,</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"args"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"text"</span><span class="fu">:</span> <span class="st">" &lt;- "</span> <span class="fu">},</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"editorTextFocus &amp;&amp; editorLangId == rmd"</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      <span class="er">//</span> <span class="er">keybindings</span> <span class="er">for</span> <span class="er">R</span> <span class="er">terminal</span> <span class="er">(radian</span> <span class="er">included)</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"Ctrl+Shift+m"</span><span class="fu">,</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"workbench.action.terminal.sendSequence"</span><span class="fu">,</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"args"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"text"</span><span class="fu">:</span> <span class="st">" %&gt;% "</span> <span class="fu">},</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"terminalFocus"</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"Alt+-"</span><span class="fu">,</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"workbench.action.terminal.sendSequence"</span><span class="fu">,</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"args"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"text"</span><span class="fu">:</span> <span class="st">" &lt;- "</span> <span class="fu">},</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"terminalFocus"</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>      <span class="er">//</span> <span class="er">Insert</span> <span class="er">R</span> <span class="er">Code</span> <span class="er">chunk</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"ctrl+alt+i"</span><span class="er">.</span> </span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span><span class="er">:</span> <span class="st">"editor.action.insertSnippet"</span><span class="fu">,</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"editorTextFocus"</span><span class="fu">,</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"args"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"snippet"</span><span class="fu">:</span> <span class="st">"```{r}</span><span class="ch">\n</span><span class="st">$0</span><span class="ch">\n</span><span class="st">```"</span><span class="fu">}</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"ctrl+alt+o"</span><span class="er">.</span> </span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span><span class="er">:</span> <span class="st">"editor.action.insertSnippet"</span><span class="fu">,</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"editorTextFocus"</span><span class="fu">,</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"args"</span><span class="fu">:</span> <span class="fu">{</span><span class="dt">"snippet"</span><span class="fu">:</span> <span class="st">"options(</span><span class="ch">\n</span><span class="st">  max.print=100,</span><span class="ch">\n</span><span class="st">  vsc.use_httpgd=TRUE,</span><span class="ch">\n</span><span class="st">  device='quartz'</span><span class="ch">\n</span><span class="st">)"</span><span class="fu">}</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"ctrl+alt+m"</span><span class="fu">,</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"editor.action.insertSnippet"</span><span class="fu">,</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"editorTextFocus"</span><span class="fu">,</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"args"</span><span class="fu">:{</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"snippet"</span><span class="fu">:</span> <span class="st">"---</span><span class="ch">\n</span><span class="st">title: '$0'</span><span class="ch">\n</span><span class="st">author: '이광춘'</span><span class="ch">\n</span><span class="st">date: '2023-03-07'</span><span class="ch">\n</span><span class="st">output:</span><span class="ch">\n</span><span class="st">  pagedown::html_paged:</span><span class="ch">\n</span><span class="st">    self_contained: true</span><span class="ch">\n</span><span class="st">    toc: false</span><span class="ch">\n</span><span class="st">---</span><span class="ch">\n\n</span><span class="st">```{r setup, include=FALSE}</span><span class="ch">\n</span><span class="st">knitr::opts_chunk</span><span class="ch">\\</span><span class="st">$set(</span><span class="ch">\n</span><span class="st">  echo = FALSE,</span><span class="ch">\n</span><span class="st">  message = FALSE,</span><span class="ch">\n</span><span class="st">  warning=FALSE</span><span class="ch">\n</span><span class="st">)</span><span class="ch">\n</span><span class="st">```"</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section><section id="html-미리보기" class="level2" data-number="6.2"><h2 data-number="6.2" class="anchored" data-anchor-id="html-미리보기">
+<span class="header-section-number">6.2</span> HTML 미리보기</h2>
+<p><code>.Rmd</code> 파일을 <kbd> CTRL </kbd> + <kbd> Shift </kbd> + <kbd> k </kbd> 단축키로 컴파일시키면 <code>.html</code> 파일이 생성된다. <code>.html</code> 파일 결과를 직접 실시간으로 확인하고자 한다면, 마이크로소프트가 개발한 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server"><code>Live Preview - VS Code Extension</code></a> 플러그인을 설치한다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/vscode_open-context-menu.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="images/vscode_open-context-menu.gif" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</section></section><section id="github-copilot" class="level1" data-number="7"><h1 data-number="7">
+<span class="header-section-number">7</span> GitHub copilot</h1>
+<p>GitHub에서 공개한 Copilot은 AI pair programmer라는 부제를 달고 있고, <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot">GitHub Copilot</a> 플러그인을 설치하면 사용이 가능하다. 한가지 <kbd> CTRL </kbd> + <kbd> Enter </kbd> 단축키가 충돌되어 R 코드 실행하는 것과 겹쳐서 문제가 있기 때문에 단축키를 <kbd> CTRL </kbd> + <kbd> Shift </kbd> + <kbd> Alt </kbd> + <kbd> Enter </kbd>와 같이 조정하면 큰 문제 없이 R 개발할 때 GitHub copilot과 함께 사용이 가능하다. 이를 위해서 <code>keybindings.json</code> 파일에 다음 사항을 추가한다. 사용자별로 단축키를 달리해서 적용시키는 것도 물론 가능하다.</p>
+<ul>
+<li>코드 라인별로 추천 승인: <kbd> Tab </kbd>
+</li>
+<li>전체 코드 작성 전체 추천 : <kbd> CTRL </kbd> + <kbd> Shift </kbd> + <kbd> Alt </kbd> + <kbd> Enter </kbd>
+<ul>
+<li>
+<code>Accept Solution</code> 클릭</li>
+<li>코드 작성 편집기에 관련 사항 반영</li>
+</ul>
+</li>
+</ul>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<code>keybindings.json</code> 설정파일 예시
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">...</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>      <span class="er">//</span> <span class="er">GitHub</span> <span class="er">Copilot</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"ctrl+shift+alt+enter"</span><span class="fu">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"github.copilot.generate"</span><span class="fu">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"editorTextFocus &amp;&amp; github.copilot.activated &amp;&amp; editorLangId == 'r'"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"key"</span><span class="fu">:</span> <span class="st">"tab"</span><span class="fu">,</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"command"</span><span class="fu">:</span> <span class="st">"editor.action.inlineSuggest.commit"</span><span class="fu">,</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"when"</span><span class="fu">:</span> <span class="st">"textInputFocus &amp;&amp; inlineSuggestionHasIndentationLessThanTabSize &amp;&amp; inlineSuggestionVisible &amp;&amp; !editorTabMovesFocus"</span>     </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/vscode_copilot.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="images/vscode_copilot.gif" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+
+
+<!-- -->
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "통합개발환경(IDE)"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "비쥬얼 스튜디오 코드 IDE를 사용하여 개발 생산성을 높인다."</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">   - custom-callout.lua   </span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> yes</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="in">`chatGPT`</span> 는 데이터 과학자 개발생산성을 비약적으로 증진시키는 것으로 알려져있다.</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>특히 데이터 과학에서 개발생산성 관련 큰 역할을 수행하는 것이 통합개발환경(IDE)이다.</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>Posit에서 개발한 RStudio가 출현하면서 기존 R언어를 다양한 편집기(VIM,Emacs 등)로 </span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>주로 개발하던 문화를 획기적으로 바뀌었다면 이제는 GitHub Copilot을 어떤 형태로든</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>붙여서 사용하면 더욱 생산성을 높일 수 있다.</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/ide-copilot.png)</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="fu"># VS 코드 설치</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>VS 코드를 통해 데이터 과학 제품개발을 할 경우 다음 사항에 맞춰 개발을 시작한다.</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>R을 설치한다.</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span><span class="in">`languageserver`</span> 패키지를 설치한다.</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`install.packages("languageserver")`</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Visual Studio Code 에서 <span class="in">`R extension`</span>을 설치한다.</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span><span class="in">`.R`</span> 파일에 개발을 시작한다.</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## `R extension` 설치</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="in">`R extension`</span>을 설치하게 되면 VS Code에서 R 코드 개발을 원활히 할 수 있도록 지원한다. </span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>VS Code 에 필수적인 <span class="in">`R extension`</span>은 다음을 꼽을 수 있다. <span class="in">`R extension`</span>을 설치하면</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>RStudio에서 기본설정으로 지정된 단축키를 별도 설정없이 자동 지정되기 때문에 </span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>편리하다.</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">R - REditorSupport</span><span class="co">](https://marketplace.visualstudio.com/items?itemName=REditorSupport.r)</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">R Markdown All in One</span><span class="co">](https://marketplace.visualstudio.com/items?itemName=TianyiShi.rmarkdown)</span></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Quarto</span><span class="co">](https://marketplace.visualstudio.com/items?itemName=quarto.quarto)</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">R Debugger</span><span class="co">](https://marketplace.visualstudio.com/items?itemName=RDebugger.r-debugger)</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="al">![VS Code를 실행하고 R Extension 설치](images/vscode_R_extension.png)</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="fu">## 헬로우 월드</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="in">`R Extension`</span> 설치되면 코드 창 상단에 실행버튼이 활성화되고 <span class="kw">&lt;kbd&gt;</span>Ctrl<span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span>Enter<span class="kw">&lt;/kbd&gt;</span> 혹은 </span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;kbd&gt;</span>Ctrl<span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span>Shift<span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span>Enter<span class="kw">&lt;/kbd&gt;</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="al">![R 코드 실행화면](images/vscode_helloworld.png)</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## 유튜브 동영상</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://youtu.be/c3ZQ8-OYj2M &gt;}}</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="fu"># 코딩 글꼴</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>다른 언어와 마찬가지로 R 코드로 데이터 과학 제품을 개발할 경우 글꼴도 코딩에 적합한 한글 글꼴을 설정한다.</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>먼저 <span class="co">[</span><span class="ot">D2 Coding 글꼴</span><span class="co">](https://github.com/naver/d2codingfont)</span>을 다운로드 받아 운영체제에 설치한다.</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>VS Code 좌측 하단 톱니바퀴 <span class="kw">&lt;kbd&gt;</span> Settings <span class="kw">&lt;/kbd&gt;</span> 설정을 클릭 혹은 메뉴에서 "File" <span class="dv">&amp;rarr;</span> "Preferences" <span class="dv">&amp;rarr;</span> "Settings"를 통해 <span class="in">`편집기 (Text Editor)`</span>로 들어가 운영체제에 설치한 코딩 폰트를 지정한다. **Font Ligatures** 도 <span class="in">`true`</span>로 설정한다. 이를 통해 <span class="in">`&lt; -`</span> 표시가 <span class="dv">&amp;larr;</span> 로 화면에 표현된다.</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="al">![D2코딩 글꼴 장착](images/vscode_font.png)</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="fu"># 단축키</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>R 코드 개발을 진행할 때 <span class="kw">&lt;kbd&gt;</span> %&gt;% <span class="kw">&lt;/kbd&gt;</span>, <span class="kw">&lt;kbd&gt;</span> <span class="dv">&amp;larr;</span> <span class="kw">&lt;/kbd&gt;</span> 두가지 기능이 가장 많이 사용되는 </span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>단축키로 RStudio에서는 기본으로 지원되고 있다. VS Code에서 자주 사용되는 </span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>단축키를 <span class="kw">&lt;kbd&gt;</span> CTRL <span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span> Shift <span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span> m <span class="kw">&lt;/kbd&gt;</span>, <span class="kw">&lt;kbd&gt;</span> Alt <span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span> - <span class="kw">&lt;/kbd&gt;</span> 를 적용시키는 방법을 살펴보자.</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>만약 VS Code에서 단축키 설정 기능을 활용한다. [<span class="co">[</span><span class="ot">How to add R {magrittr}'s %&gt;% Pipe Operator in VSCode as Keyboard Shortcut</span><span class="co">](https://www.programmingwithr.com/how-to-add-r-magrittr-s-pipe-operator-in-vscode-as-keyboard-shortcut/)</span>]{.aside}</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>윈도우즈: File &gt; Preferences &gt; Keyboard Shortcuts. </span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>맥: Code &gt; Preferences &gt; Keyboard Shortcuts</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="in">`keybindings.json`</span> 파일에 <span class="kw">&lt;kbd&gt;</span> %&gt;% <span class="kw">&lt;/kbd&gt;</span>, <span class="kw">&lt;kbd&gt;</span> <span class="dv">&amp;larr;</span> <span class="kw">&lt;/kbd&gt;</span> 단축키 기능을 추가한다.</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="al">![자주 사용되는 R 단축키 설정](images/vscode_shortcuts.png)</span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="fu"># 패널</span></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>RStudio는 코딩기반 데이터 분석과 통계에 최적화된 개발환경이다. </span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>즉, 편집기 패널, 콘솔/터미널 패널, 그래프 패널, 도움말/개발 패널로 구성된 </span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>꼭 필요한 패널만 구성되어 있다. </span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a><span class="fu">### 패널 설정 </span></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="al">![VS Code: View &amp;rarr; Editor Layout &amp;rarr; Grid (2x2)](../../images/vscode_layout.png)</span></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a><span class="fu">### 설정 후</span></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="al">![도움말과 그래프](images/vscode_layout_screen.png)</span></span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="fu"># `Radiant`</span></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">Schiff consulting, 'Using R in VS Code: Some things I learned while trying out R in VS Code'</span><span class="co">](https://schiff.co.nz/blog/r-and-vscode/)</span>]{.aside}</span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="fu"># `.qmd`, `.Rmd` </span></span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>literate programming을 구현한 <span class="in">`.qmd`</span>, <span class="in">`.Rmd`</span> 파일를 작성하여 다양한 데이터 과학 </span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>문서를 작성할 수 있다.</span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">**Pandoc** a universal document converter</span><span class="co">](https://pandoc.org/installing.html)</span> 웹사이트에서</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="in">`pandoc`</span>을 설치해야 한다. pandoc 최신버전을 설치하면 되고 버전이 2.16 이상이 되어야 활용이 가능하다.</span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span> pandoc <span class="sc">--</span>version</span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>pandoc <span class="dv">2</span>.<span class="fl">19.2</span></span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>Compiled with pandoc<span class="sc">-</span>types <span class="dv">1</span>.<span class="dv">22</span>.<span class="fl">2.1</span>, texmath <span class="dv">0</span>.<span class="dv">12</span>.<span class="fl">5.2</span>, skylighting <span class="fl">0.13</span>,</span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>citeproc <span class="dv">0</span>.<span class="dv">8</span>.<span class="fl">0.1</span>, ipynb <span class="fl">0.2</span>, hslua <span class="dv">2</span>.<span class="fl">2.1</span></span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>Scripting engine<span class="sc">:</span> Lua <span class="fl">5.4</span></span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>User data directory<span class="sc">:</span> C<span class="sc">:</span>\Users\statkclee\AppData\Roaming\pandoc</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a><span class="fu">Copyright</span> (C) <span class="dv">2006-2022</span> John MacFarlane. Web<span class="sc">:</span>  https<span class="sc">:</span><span class="er">//</span>pandoc.org</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>This is free software; see the source <span class="cf">for</span> copying conditions. There is no</span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a>warranty, not even <span class="cf">for</span> merchantability or fitness <span class="cf">for</span> a particular purpose.</span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="fu">## `keybindings.json`</span></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="in">`keybindings.json`</span> 파일에 R 혹은 파이썬 코드를 삽입시킬 수 있는 키보드 단축키를 </span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>등록시킨다. <span class="co">[</span><span class="ot">자료출처: [VS Code: Add a Rmarkdown Code Chunk Snippet Key Binding](https://www.schmidtynotes.com/blog/r/2021-09-28-vscode-rmd-code-chunk-snippet/)</span><span class="co">]</span>{.aside}</span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="fu">### `keybindings.json` 설정파일 예시</span></span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a><span class="in">```json</span></span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a><span class="co">// Place your key bindings in this file to override the defaults</span></span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a>[</span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>    <span class="co">// keybindings for R scripts. </span></span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>        <span class="st">"key"</span><span class="op">:</span> <span class="st">"Ctrl+Shift+m"</span><span class="op">,</span></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span><span class="op">:</span> <span class="st">"type"</span><span class="op">,</span></span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>        <span class="st">"args"</span><span class="op">:</span> { <span class="st">"text"</span><span class="op">:</span> <span class="st">" %&gt;% "</span> }<span class="op">,</span></span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>        <span class="st">"when"</span><span class="op">:</span> <span class="st">"editorTextFocus &amp;&amp; editorLangId == r"</span></span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>        <span class="st">"key"</span><span class="op">:</span> <span class="st">"Alt+-"</span><span class="op">,</span></span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span><span class="op">:</span> <span class="st">"type"</span><span class="op">,</span></span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>        <span class="st">"args"</span><span class="op">:</span> { <span class="st">"text"</span><span class="op">:</span> <span class="st">" &lt;- "</span> }<span class="op">,</span></span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>        <span class="st">"when"</span><span class="op">:</span> <span class="st">"editorTextFocus &amp;&amp; editorLangId == r"</span></span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>      <span class="co">// keybindings for Rmarkdown</span></span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>        <span class="st">"key"</span><span class="op">:</span> <span class="st">"Ctrl+Shift+m"</span><span class="op">,</span></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span><span class="op">:</span> <span class="st">"type"</span><span class="op">,</span></span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>        <span class="st">"args"</span><span class="op">:</span> { <span class="st">"text"</span><span class="op">:</span> <span class="st">" %&gt;% "</span> }<span class="op">,</span></span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>        <span class="st">"when"</span><span class="op">:</span> <span class="st">"editorTextFocus &amp;&amp; editorLangId == rmd"</span></span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>        <span class="st">"key"</span><span class="op">:</span> <span class="st">"Alt+-"</span><span class="op">,</span></span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span><span class="op">:</span> <span class="st">"type"</span><span class="op">,</span></span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>        <span class="st">"args"</span><span class="op">:</span> { <span class="st">"text"</span><span class="op">:</span> <span class="st">" &lt;- "</span> }<span class="op">,</span></span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>        <span class="st">"when"</span><span class="op">:</span> <span class="st">"editorTextFocus &amp;&amp; editorLangId == rmd"</span></span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>      <span class="co">// keybindings for R terminal (radian included)</span></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>        <span class="st">"key"</span><span class="op">:</span> <span class="st">"Ctrl+Shift+m"</span><span class="op">,</span></span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span><span class="op">:</span> <span class="st">"workbench.action.terminal.sendSequence"</span><span class="op">,</span></span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>        <span class="st">"args"</span><span class="op">:</span> { <span class="st">"text"</span><span class="op">:</span> <span class="st">" %&gt;% "</span> }<span class="op">,</span></span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>        <span class="st">"when"</span><span class="op">:</span> <span class="st">"terminalFocus"</span></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>        <span class="st">"key"</span><span class="op">:</span> <span class="st">"Alt+-"</span><span class="op">,</span></span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span><span class="op">:</span> <span class="st">"workbench.action.terminal.sendSequence"</span><span class="op">,</span></span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>        <span class="st">"args"</span><span class="op">:</span> { <span class="st">"text"</span><span class="op">:</span> <span class="st">" &lt;- "</span> }<span class="op">,</span></span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>        <span class="st">"when"</span><span class="op">:</span> <span class="st">"terminalFocus"</span></span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Insert R Code chunk</span></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>        <span class="st">"key"</span><span class="op">:</span> <span class="st">"ctrl+alt+i"</span><span class="op">.</span> </span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span><span class="op">:</span> <span class="st">"editor.action.insertSnippet"</span><span class="op">,</span></span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>        <span class="st">"when"</span><span class="op">:</span> <span class="st">"editorTextFocus"</span><span class="op">,</span></span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>        <span class="st">"args"</span><span class="op">:</span> {<span class="st">"snippet"</span><span class="op">:</span> <span class="st">"```{r}</span><span class="sc">\n</span><span class="st">$0</span><span class="sc">\n</span><span class="st">```"</span>}</span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>        <span class="st">"key"</span><span class="op">:</span> <span class="st">"ctrl+alt+o"</span><span class="op">.</span> </span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span><span class="op">:</span> <span class="st">"editor.action.insertSnippet"</span><span class="op">,</span></span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a>        <span class="st">"when"</span><span class="op">:</span> <span class="st">"editorTextFocus"</span><span class="op">,</span></span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a>        <span class="st">"args"</span><span class="op">:</span> {<span class="st">"snippet"</span><span class="op">:</span> <span class="st">"options(</span><span class="sc">\n</span><span class="st">  max.print=100,</span><span class="sc">\n</span><span class="st">  vsc.use_httpgd=TRUE,</span><span class="sc">\n</span><span class="st">  device='quartz'</span><span class="sc">\n</span><span class="st">)"</span>}</span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a>        <span class="st">"key"</span><span class="op">:</span> <span class="st">"ctrl+alt+m"</span><span class="op">,</span></span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span><span class="op">:</span> <span class="st">"editor.action.insertSnippet"</span><span class="op">,</span></span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a>        <span class="st">"when"</span><span class="op">:</span> <span class="st">"editorTextFocus"</span><span class="op">,</span></span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a>        <span class="st">"args"</span><span class="op">:</span>{</span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a>          <span class="st">"snippet"</span><span class="op">:</span> <span class="st">"---</span><span class="sc">\n</span><span class="st">title: '$0'</span><span class="sc">\n</span><span class="st">author: '이광춘'</span><span class="sc">\n</span><span class="st">date: '`r Sys.Date()`'</span><span class="sc">\n</span><span class="st">output:</span><span class="sc">\n</span><span class="st">  pagedown::html_paged:</span><span class="sc">\n</span><span class="st">    self_contained: true</span><span class="sc">\n</span><span class="st">    toc: false</span><span class="sc">\n</span><span class="st">---</span><span class="sc">\n\n</span><span class="st">```{r setup, include=FALSE}</span><span class="sc">\n</span><span class="st">knitr::opts_chunk</span><span class="sc">\\</span><span class="st">$set(</span><span class="sc">\n</span><span class="st">  echo = FALSE,</span><span class="sc">\n</span><span class="st">  message = FALSE,</span><span class="sc">\n</span><span class="st">  warning=FALSE</span><span class="sc">\n</span><span class="st">)</span><span class="sc">\n</span><span class="st">```"</span></span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a><span class="fu">## HTML 미리보기</span></span>
+<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a><span class="in">`.Rmd`</span> 파일을 <span class="kw">&lt;kbd&gt;</span> CTRL <span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span> Shift <span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span> k <span class="kw">&lt;/kbd&gt;</span> 단축키로 컴파일시키면 </span>
+<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a><span class="in">`.html`</span> 파일이 생성된다. <span class="in">`.html`</span> 파일 결과를 직접 실시간으로 확인하고자 한다면, </span>
+<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a>마이크로소프트가 개발한 <span class="co">[</span><span class="ot">`Live Preview - VS Code Extension`</span><span class="co">](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server)</span> 플러그인을 설치한다.</span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/vscode_open-context-menu.gif)</span></span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a><span class="fu"># GitHub copilot</span></span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a>GitHub에서 공개한 Copilot은 AI pair programmer라는 부제를 달고 있고,</span>
+<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">GitHub Copilot</span><span class="co">](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)</span> 플러그인을 </span>
+<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a>설치하면 사용이 가능하다.</span>
+<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a>한가지 <span class="kw">&lt;kbd&gt;</span> CTRL <span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span> Enter <span class="kw">&lt;/kbd&gt;</span> 단축키가 충돌되어 R 코드 실행하는 것과 겹쳐서 문제가 있기 때문에</span>
+<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a>단축키를 <span class="kw">&lt;kbd&gt;</span> CTRL <span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span> Shift <span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span> Alt <span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span> Enter <span class="kw">&lt;/kbd&gt;</span>와 같이 조정하면 큰 문제 없이 </span>
+<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a>R 개발할 때 GitHub copilot과 함께 사용이 가능하다.</span>
+<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a>이를 위해서 <span class="in">`keybindings.json`</span> 파일에 다음 사항을 추가한다. </span>
+<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a>사용자별로 단축키를 달리해서 적용시키는 것도 물론 가능하다.</span>
+<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>코드 라인별로 추천 승인: <span class="kw">&lt;kbd&gt;</span> Tab <span class="kw">&lt;/kbd&gt;</span></span>
+<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>전체 코드 작성 전체 추천 : <span class="kw">&lt;kbd&gt;</span> CTRL <span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span> Shift <span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span> Alt <span class="kw">&lt;/kbd&gt;</span> + <span class="kw">&lt;kbd&gt;</span> Enter <span class="kw">&lt;/kbd&gt;</span></span>
+<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="in">`Accept Solution`</span> 클릭</span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>코드 작성 편집기에 관련 사항 반영</span>
+<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a><span class="fu">### `keybindings.json` 설정파일 예시</span></span>
+<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a><span class="in">```json</span></span>
+<span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a>[</span>
+<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span></span>
+<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a>      <span class="co">// GitHub Copilot</span></span>
+<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a>        <span class="st">"key"</span><span class="op">:</span> <span class="st">"ctrl+shift+alt+enter"</span><span class="op">,</span></span>
+<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span><span class="op">:</span> <span class="st">"github.copilot.generate"</span><span class="op">,</span></span>
+<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a>        <span class="st">"when"</span><span class="op">:</span> <span class="st">"editorTextFocus &amp;&amp; github.copilot.activated &amp;&amp; editorLangId == 'r'"</span></span>
+<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a>      <span class="st">"key"</span><span class="op">:</span> <span class="st">"tab"</span><span class="op">,</span></span>
+<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a>      <span class="st">"command"</span><span class="op">:</span> <span class="st">"editor.action.inlineSuggest.commit"</span><span class="op">,</span></span>
+<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a>      <span class="st">"when"</span><span class="op">:</span> <span class="st">"textInputFocus &amp;&amp; inlineSuggestionHasIndentationLessThanTabSize &amp;&amp; inlineSuggestionVisible &amp;&amp; !editorTabMovesFocus"</span>     </span>
+<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a><span class="in">```</span>    </span>
+<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/vscode_copilot.gif)</span></span>
+</code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://quarto.org/">Quarto</a> 개발</div>   
+      <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
+    <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":true});</script>
+
+
+</body></html>

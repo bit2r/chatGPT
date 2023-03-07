@@ -53,6 +53,8 @@ website:
           text: "데이터 문해력"
       - text: "BERT"
         menu:
+        - href: ide.qmd
+          text: "통합개발환경(IDE)"
         - href: reticulate.qmd
           text: "파이썬 환경구축"
         - href: koGPT.qmd
