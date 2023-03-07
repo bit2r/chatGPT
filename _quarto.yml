@@ -55,6 +55,7 @@ website:
         menu:
         - href: ide.qmd
           text: "통합개발환경(IDE)"
+        - text: "------------------"
         - href: reticulate.qmd
           text: "파이썬 환경구축"
         - href: koGPT.qmd

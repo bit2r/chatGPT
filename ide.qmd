@@ -44,6 +44,11 @@ Posit에서 개발한 RStudio가 출현하면서 기존 R언어를 다양한 편
 주로 개발하던 문화를 획기적으로 바뀌었다면 이제는 GitHub Copilot을 어떤 형태로든
 붙여서 사용하면 더욱 생산성을 높일 수 있다.
 
+기존 RStudio에서 데이터 과학 개발부터 제품/서비스 제작까지 모두 진행했다면,
+이제 마이크로소프트가 Posit RStudio 무료 IDE에 GitHub Copilot 상용 소프트웨어를 
+제공하지 않고 GitHub Copilot에 대응하는 오픈소스 소프트웨어가 현재시점 기준 존재하지 않기 때문에
+부득이 이 둘을 나눠 개발을 진행해야 데이터 과학자로서 생산성을 높일 수 있다.
+
 ![](images/ide-copilot.png)
 
 # VS 코드 설치
@@ -85,8 +90,9 @@ RStudio에서 기본설정으로 지정된 단축키를 별도 설정없이 자�
 
 {{< video https://youtu.be/c3ZQ8-OYj2M >}}
 
+# 즐거운 코딩 환경설정
 
-# 코딩 글꼴
+## 코딩 글꼴
 
 다른 언어와 마찬가지로 R 코드로 데이터 과학 제품을 개발할 경우 글꼴도 코딩에 적합한 한글 글꼴을 설정한다.
 
@@ -96,7 +102,7 @@ VS Code 좌측 하단 톱니바퀴 <kbd> Settings </kbd> 설정을 클릭 혹은
 
 ![D2코딩 글꼴 장착](images/vscode_font.png)
 
-# 단축키
+## 단축키
 
 R 코드 개발을 진행할 때 <kbd> %>% </kbd>, <kbd> &larr; </kbd> 두가지 기능이 가장 많이 사용되는 
 단축키로 RStudio에서는 기본으로 지원되고 있다. VS Code에서 자주 사용되는 
@@ -111,7 +117,7 @@ R 코드 개발을 진행할 때 <kbd> %>% </kbd>, <kbd> &larr; </kbd> 두가지
 
 ![자주 사용되는 R 단축키 설정](images/vscode_shortcuts.png)
 
-# 패널
+## 패널
 
 RStudio는 코딩기반 데이터 분석과 통계에 최적화된 개발환경이다. 
 즉, 편집기 패널, 콘솔/터미널 패널, 그래프 패널, 도움말/개발 패널로 구성된 
@@ -130,8 +136,51 @@ RStudio는 코딩기반 데이터 분석과 통계에 최적화된 개발환경�
 
 # `Radiant`
 
+VS 코드 IDE를 크게 코드 편집기 패널과 R 콘솔창에 출력되는 실행결과물 가독성을 높이는 것이 필요하다.
+[`radian`](https://github.com/randy3k/radian)은 여러 줄 편집(multiline editing)과 풍부한 구문 강조(syntax highlight) 표시 기능을 갖춘 R 프로그램을 위한 대안 콘솔로 많이 사용된다.
 
 [[Schiff consulting, 'Using R in VS Code: Some things I learned while trying out R in VS Code'](https://schiff.co.nz/blog/r-and-vscode/)]{.aside}
+
+## 독립 사용사례
+
+:::{#radiant layout-ncol=2}
+
+## 설치 {.unnumbered}
+
+```bash
+# 출시버전 설치
+pip3 install -U radian
+# 실행
+radian
+```
+
+## 실행화면 {.unnumbered}
+
+![](images/radian-cmd.png)
+
+:::
+
+## VS 코드 콘솔
+
+radiant를 설치한 후에 ~~Rpath~~ 가 아니라 **Rterm**에서 설정해줘야 한다.
+
+:::{#radian-vscode layout-ncol=3}
+
+### 맥 {.unnumbered}
+
+![](images/radian-mac.png)
+
+### 윈도우즈 {.unnumbered}
+
+![](images/radian-windows.png)
+
+### 적용결과 {.unnumbered}
+
+![](images/radiant-penguins.png)
+
+:::
+
+
 
 # `.qmd`, `.Rmd` 
 
@@ -284,5 +333,14 @@ R 개발할 때 GitHub copilot과 함께 사용이 가능하다.
 
 :::
 
+:::{.panel-tabset}
+
+## 펭귄 데이터셋
+
 ![](images/vscode_copilot.gif)
 
+## 호박 데이터셋
+
+<iframe src="images/pumpkins-copilot.mp4" allowfullscreen allow="encrypted-media" width="320" height="180">
+
+:::
