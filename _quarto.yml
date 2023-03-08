@@ -51,6 +51,9 @@ website:
           text: "논문 초록"
         - href: middle_school.qmd
           text: "데이터 문해력"
+        - text: "------------------"
+        - href: interface.qmd
+          text: "인터페이스"
       - text: "BERT"
         menu:
         - href: ide.qmd

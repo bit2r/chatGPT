@@ -5,6 +5,7 @@
 <meta name="generator" content="quarto-1.2.280">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
+<meta name="description" content="chatGPT를 다양한 방식으로 사용하는 사례가 늘고 있다. 즉, 챗봇 인터페이스를 웹에서 사용하는 방식과 카카오, 슬랙 등 모바일 메신져에 붙여 나가는 실험도 이어가고 있다.">
 <title>chatGPT</title>
 <style>
 code{white-space: pre-wrap;}
@@ -151,7 +152,7 @@ ga('send', {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">
+    <a class="nav-link" href="./index.html">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -303,8 +304,13 @@ ga('send', {
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <div class="quarto-title-block"><div><h1 class="title">chatGPT</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> 코드</button></div></div>
-            <p class="subtitle lead">들어가며</p>
-                      </div>
+            <p class="subtitle lead">인터페이스</p>
+                  <div>
+        <div class="description">
+          <p>chatGPT를 다양한 방식으로 사용하는 사례가 늘고 있다. 즉, 챗봇 인터페이스를 웹에서 사용하는 방식과 카카오, 슬랙 등 모바일 메신져에 붙여 나가는 실험도 이어가고 있다.</p>
+        </div>
+      </div>
+                </div>
   </div>
     
   <div class="quarto-title-meta-author">
@@ -338,28 +344,72 @@ ga('send', {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%EA%B7%BC%EA%B0%84%EB%AA%A8%ED%98%95-%EA%B0%9C%EB%B0%9C%EC%9E%90" id="toc-근간모형-개발자" class="nav-link active" data-scroll-target="#%EA%B7%BC%EA%B0%84%EB%AA%A8%ED%98%95-%EA%B0%9C%EB%B0%9C%EC%9E%90"><span class="toc-section-number">1</span>  근간모형 개발자</a></li>
-  <li><a href="#ai-%EC%9D%91%EC%9A%A9%EC%A0%9C%ED%92%88-%EA%B0%9C%EB%B0%9C%EC%9E%90" id="toc-ai-응용제품-개발자" class="nav-link" data-scroll-target="#ai-%EC%9D%91%EC%9A%A9%EC%A0%9C%ED%92%88-%EA%B0%9C%EB%B0%9C%EC%9E%90"><span class="toc-section-number">2</span>  AI 응용제품 개발자</a></li>
-  <li><a href="#ai-%EC%A0%9C%ED%92%88-%EC%82%AC%EC%9A%A9%EC%9E%90" id="toc-ai-제품-사용자" class="nav-link" data-scroll-target="#ai-%EC%A0%9C%ED%92%88-%EC%82%AC%EC%9A%A9%EC%9E%90"><span class="toc-section-number">3</span>  AI 제품 사용자</a></li>
+<li>
+<a href="#%EC%84%B8%EA%B0%80%EC%A7%80-%EA%B2%80%EC%83%89%EB%B0%A9%EC%8B%9D" id="toc-세가지-검색방식" class="nav-link active" data-scroll-target="#%EC%84%B8%EA%B0%80%EC%A7%80-%EA%B2%80%EC%83%89%EB%B0%A9%EC%8B%9D"><span class="toc-section-number">1</span>  세가지 검색방식</a>
+  <ul class="collapse">
+<li><a href="#%EC%9B%B9%EA%B2%80%EC%83%89" id="toc-웹검색" class="nav-link" data-scroll-target="#%EC%9B%B9%EA%B2%80%EC%83%89"><span class="toc-section-number">1.1</span>  웹검색</a></li>
+  <li><a href="#%EC%BF%BC%ED%86%A0-%EC%9B%B9-%EA%B2%80%EC%83%89" id="toc-쿼토-웹-검색" class="nav-link" data-scroll-target="#%EC%BF%BC%ED%86%A0-%EC%9B%B9-%EA%B2%80%EC%83%89"><span class="toc-section-number">1.2</span>  쿼토 웹 검색</a></li>
+  <li><a href="#chatgpt-%EA%B2%80%EC%83%89" id="toc-chatgpt-검색" class="nav-link" data-scroll-target="#chatgpt-%EA%B2%80%EC%83%89"><span class="toc-section-number">1.3</span>  <code>chatGPT</code> 검색</a></li>
+  <li><a href="#quarto-%EC%A0%84%EC%9A%A9-chatgpt" id="toc-quarto-전용-chatgpt" class="nav-link" data-scroll-target="#quarto-%EC%A0%84%EC%9A%A9-chatgpt"><span class="toc-section-number">1.4</span>  <code>Quarto</code> 전용 <code>chatGPT</code></a></li>
+  </ul>
+</li>
+  <li><a href="#%EA%B0%80%EA%B9%8C%EC%9A%B4-%EB%AF%B8%EB%9E%98" id="toc-가까운-미래" class="nav-link" data-scroll-target="#%EA%B0%80%EA%B9%8C%EC%9A%B4-%EB%AF%B8%EB%9E%98"><span class="toc-section-number">2</span>  가까운 미래</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="근간모형-개발자" class="level1" data-number="1"><h1 data-number="1">
-<span class="header-section-number">1</span> 근간모형 개발자</h1>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="세가지-검색방식" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> 세가지 검색방식</h1>
+<p>특정 작업에 필요한 정보를 얻는 <strong>검색(search)</strong>은 기한이 정해진 업무를 수행함에 있어 매우 중요하다. chatGPT의 등장으로 새로운 검색 패러다임이 제시되고 있다. 물론 기존 검색방식이 부족한 것은 아니며 검색경험을 향상시키기 위해 많은 노력이 경주된 것도 사실이다. 차세대 R마크다운 <a href="https://quarto.org/">쿼토(quarto)</a> 문서 제작사례을 위한 검색사례를 통해 chatGPT와 비교하여 보자.</p>
+<section id="웹검색" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="웹검색">
+<span class="header-section-number">1.1</span> 웹검색</h2>
+<p><a href="https://www.google.com/">구글 검색</a>을 통해 일반적인 내용을 얻을 수도 있다. 예를 들어,</p>
+<blockquote class="blockquote">
+<p><code>site:quarto.org/ google analytics tracking code</code></p>
+</blockquote>
+<p>구글검색창에 상기 사항을 입력하게 되면 구글은 <a href="https://quarto.org/">쿼토(quarto)</a> 웹사이트 내부에서 <code>google analytics tracking code</code> 키워드와 관련이 높은 웹페이지를 검색결과로 반환시키게 된다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/dev-foundation.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/dev-foundation.jpg" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/quarto_google.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/quarto_google.gif" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
-</section><section id="ai-응용제품-개발자" class="level1" data-number="2"><h1 data-number="2">
-<span class="header-section-number">2</span> AI 응용제품 개발자</h1>
+</section><section id="쿼토-웹-검색" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="쿼토-웹-검색">
+<span class="header-section-number">1.2</span> 쿼토 웹 검색</h2>
+<p>Quarto는 웹사이트와 책의 전체 텍스트 검색을 지원하는데, 기본적으로 Quarto는 사이트의 콘텐츠를 자동으로 색인화하여 기본적으로 로컬로 구축된 색인을 사용하여 높은 검색품질을 제공한다. 따라서, 사용자는 구글웹사이트가 아니라 <a href="https://quarto.org/">쿼토(quarto)</a>에서 검색을 수행하여 직접 해당 정보를 찾는 것도 가능하다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/naver_clova.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/naver_clova.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/quarto_search.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/quarto_search.gif" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
-</section><section id="ai-제품-사용자" class="level1" data-number="3"><h1 data-number="3">
-<span class="header-section-number">3</span> AI 제품 사용자</h1>
+</section><section id="chatgpt-검색" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="chatgpt-검색">
+<span class="header-section-number">1.3</span> <code>chatGPT</code> 검색</h2>
+<p><a href="https://chat.openai.com/chat">ChatGPT</a>를 사용하여 검색작업을 수행할 수도 있다. 특정 웹사이트에서 해당 정보를 얻어야 되기 때문에 지시명령어(Prompt)를 다음과 같이 작성한다.</p>
+<blockquote class="blockquote">
+<p>search https://quarto.org/ insert google analytics tracking code for quarto html document</p>
+</blockquote>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/two_men_on_a_bus.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/two_men_on_a_bus.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/quarto_chatGPT.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/quarto_chatGPT.gif" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</section><section id="quarto-전용-chatgpt" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="quarto-전용-chatgpt">
+<span class="header-section-number">1.4</span> <code>Quarto</code> 전용 <code>chatGPT</code>
+</h2>
+<p><a href="https://quarto.org/">쿼토(Quarto)</a>는 차세대 R마크다운이라는 별명이 붙어 있을 정도로 R마크다운이 갖는 모든 기능에 더하여 추가로 새로운 언어(Python, R, Julia, Observable.)에 대한 지원도 포괄하고 있어 상당한 학습량을 요구한다. 설계는 깔끔하게 잘 되어 있지만 이것을 잘 사용하려면 상당한 학습량이 필요로 한다. 이런 문제에 <code>chatGPT</code>를 도입하여 사용하면 경우에 따라서 큰 도움을 줄 수도 있다.</p>
+<ul>
+<li><a href="https://quarto-bot.onrender.com/">Quarto Help Bot - Ask a question about Quarto.</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/quarto_bot.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/quarto_bot.gif" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>:::</p>
+<p>내부적으로 동작하는 질문-응답(QnA)에는 다음과 같은 단계로 세분화되어 있으며, 모두 <a href="https://langchain.readthedocs.io/en/latest/index.html">ChatVectorDBChain</a>이 처리한다:</p>
+<ul>
+<li>채팅 기록과 새로운 사용자 입력이 주어지면 독립형 질문이 무엇인지 결정(GPT-3 사용).</li>
+<li>독립형 질문이 주어지면 벡터 스토어에서 관련 문서를 검색.</li>
+<li>독립형 질문과 관련 문서를 GPT-3에 전달하여 최종 답변을 생성.</li>
+</ul></section></section><section id="가까운-미래" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> 가까운 미래</h1>
+<p>chatGPT가 만들어갈 가까운 미래는 아마도 다양한 <strong>도우미 봇(Help Bot)</strong>이 출현하여 생산성을 비약적으로 증대시켜 저녁이 있는 삶을 모두에게 선사하지 않을까 싶다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/quarto_future.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/quarto_future.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 
@@ -667,54 +717,110 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "들어가며"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> bibliography.bib</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> yes</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> apa-single-spaced.csl</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu"># 근간모형 개발자</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "인터페이스"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> |</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  chatGPT를 다양한 방식으로 사용하는 사례가 늘고 있다. 즉, 챗봇 인터페이스를 웹에서 사용하는 방식과   카카오, 슬랙 등 모바일 메신져에 붙여 나가는 실험도 이어가고 있다.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> yes</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/dev-foundation.jpg)</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu"># 세가지 검색방식</span></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu"># AI 응용제품 개발자</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/naver_clova.png)</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="fu"># AI 제품 사용자</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/two_men_on_a_bus.png)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>특정 작업에 필요한 정보를 얻는 **검색(search)**은 기한이 정해진 업무를 수행함에 있어 매우 중요하다. chatGPT의 등장으로 새로운 검색 패러다임이 제시되고 있다.</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>물론 기존 검색방식이 부족한 것은 아니며 검색경험을 향상시키기 위해 많은 노력이 경주된 것도 사실이다. 차세대 R마크다운 <span class="co">[</span><span class="ot">쿼토(quarto)</span><span class="co">](https://quarto.org/)</span> 문서 제작사례을 위한 검색사례를 통해 chatGPT와 비교하여 보자.</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## 웹검색</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">구글 검색</span><span class="co">](https://www.google.com/)</span>을 통해 일반적인 내용을 얻을 수도 있다. 예를 들어,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span><span class="in">`site:quarto.org/ google analytics tracking code`</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>구글검색창에 상기 사항을 입력하게 되면 구글은 </span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">쿼토(quarto)</span><span class="co">](https://quarto.org/)</span> 웹사이트 내부에서 <span class="in">`google analytics tracking code`</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>키워드와 관련이 높은 웹페이지를 검색결과로 반환시키게 된다.</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/quarto_google.gif)</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## 쿼토 웹 검색 </span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>Quarto는 웹사이트와 책의 전체 텍스트 검색을 지원하는데, 기본적으로 Quarto는 사이트의 콘텐츠를 자동으로 색인화하여 기본적으로 로컬로 구축된 색인을 사용하여 높은 검색품질을 제공한다. </span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>따라서, 사용자는 구글웹사이트가 아니라 <span class="co">[</span><span class="ot">쿼토(quarto)</span><span class="co">](https://quarto.org/)</span>에서 검색을 수행하여 직접 해당 정보를 찾는 것도 가능하다.</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/quarto_search.gif)</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## `chatGPT` 검색</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">ChatGPT</span><span class="co">](https://chat.openai.com/chat)</span>를 사용하여 검색작업을 수행할 수도 있다.</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>특정 웹사이트에서 해당 정보를 얻어야 되기 때문에 지시명령어(Prompt)를 다음과 같이 작성한다.</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; search https://quarto.org/ insert google analytics tracking code for quarto html document</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/quarto_chatGPT.gif)</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="fu">## `Quarto` 전용 `chatGPT`  </span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">쿼토(Quarto)</span><span class="co">](https://quarto.org/)</span>는 차세대 R마크다운이라는 별명이 붙어 있을 정도로 </span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>R마크다운이 갖는 모든 기능에 더하여 추가로 새로운 언어(Python, R, Julia, Observable.)에 대한 지원도 포괄하고 있어 상당한 학습량을 요구한다. 설계는 깔끔하게 잘 되어 있지만 이것을 잘 사용하려면 </span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>상당한 학습량이 필요로 한다. 이런 문제에 <span class="in">`chatGPT`</span>를 도입하여 사용하면 경우에 따라서 큰 도움을 줄 수도 있다. </span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Quarto Help Bot - Ask a question about Quarto.</span><span class="co">](https://quarto-bot.onrender.com/)</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/quarto_bot.gif)</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>내부적으로 동작하는 질문-응답(QnA)에는 다음과 같은 단계로 세분화되어 있으며, 모두 <span class="co">[</span><span class="ot">ChatVectorDBChain</span><span class="co">](https://langchain.readthedocs.io/en/latest/index.html)</span>이 처리한다:</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>채팅 기록과 새로운 사용자 입력이 주어지면 독립형 질문이 무엇인지 결정(GPT-3 사용).</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>독립형 질문이 주어지면 벡터 스토어에서 관련 문서를 검색.</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>독립형 질문과 관련 문서를 GPT-3에 전달하여 최종 답변을 생성.</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="fu"># 가까운 미래</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>chatGPT가 만들어갈 가까운 미래는 아마도 다양한 **도우미 봇(Help Bot)**이 출현하여 생산성을 비약적으로 증대시켜 저녁이 있는 삶을 모두에게 선사하지 않을까 싶다.</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/quarto_future.png)</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
@@ -722,7 +828,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":true,"closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":true,"descPosition":"bottom"});</script>
 
 
 </body></html>

@@ -1,0 +1,107 @@
+---
+title: "chatGPT"
+subtitle: "인터페이스"
+description: |
+  chatGPT를 다양한 방식으로 사용하는 사례가 늘고 있다. 즉, 챗봇 인터페이스를 웹에서 사용하는 방식과   카카오, 슬랙 등 모바일 메신져에 붙여 나가는 실험도 이어가고 있다.
+  
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# 세가지 검색방식
+
+특정 작업에 필요한 정보를 얻는 **검색(search)**은 기한이 정해진 업무를 수행함에 있어 매우 중요하다. chatGPT의 등장으로 새로운 검색 패러다임이 제시되고 있다.
+물론 기존 검색방식이 부족한 것은 아니며 검색경험을 향상시키기 위해 많은 노력이 경주된 것도 사실이다. 차세대 R마크다운 [쿼토(quarto)](https://quarto.org/) 문서 제작사례을 위한 검색사례를 통해 chatGPT와 비교하여 보자.
+
+## 웹검색
+
+[구글 검색](https://www.google.com/)을 통해 일반적인 내용을 얻을 수도 있다. 예를 들어,
+
+> `site:quarto.org/ google analytics tracking code`
+
+구글검색창에 상기 사항을 입력하게 되면 구글은 
+[쿼토(quarto)](https://quarto.org/) 웹사이트 내부에서 `google analytics tracking code`
+키워드와 관련이 높은 웹페이지를 검색결과로 반환시키게 된다.
+
+![](images/quarto_google.gif)
+
+## 쿼토 웹 검색 
+
+Quarto는 웹사이트와 책의 전체 텍스트 검색을 지원하는데, 기본적으로 Quarto는 사이트의 콘텐츠를 자동으로 색인화하여 기본적으로 로컬로 구축된 색인을 사용하여 높은 검색품질을 제공한다. 
+따라서, 사용자는 구글웹사이트가 아니라 [쿼토(quarto)](https://quarto.org/)에서 검색을 수행하여 직접 해당 정보를 찾는 것도 가능하다.
+
+![](images/quarto_search.gif)
+
+
+## `chatGPT` 검색
+
+[ChatGPT](https://chat.openai.com/chat)를 사용하여 검색작업을 수행할 수도 있다.
+특정 웹사이트에서 해당 정보를 얻어야 되기 때문에 지시명령어(Prompt)를 다음과 같이 작성한다.
+
+> search https://quarto.org/ insert google analytics tracking code for quarto html document
+
+![](images/quarto_chatGPT.gif)
+
+## `Quarto` 전용 `chatGPT`  
+
+
+[쿼토(Quarto)](https://quarto.org/)는 차세대 R마크다운이라는 별명이 붙어 있을 정도로 
+R마크다운이 갖는 모든 기능에 더하여 추가로 새로운 언어(Python, R, Julia, Observable.)에 대한 지원도 포괄하고 있어 상당한 학습량을 요구한다. 설계는 깔끔하게 잘 되어 있지만 이것을 잘 사용하려면 
+상당한 학습량이 필요로 한다. 이런 문제에 `chatGPT`를 도입하여 사용하면 경우에 따라서 큰 도움을 줄 수도 있다. 
+
+
+- [Quarto Help Bot - Ask a question about Quarto.](https://quarto-bot.onrender.com/)
+
+![](images/quarto_bot.gif)
+
+:::
+
+내부적으로 동작하는 질문-응답(QnA)에는 다음과 같은 단계로 세분화되어 있으며, 모두 [ChatVectorDBChain](https://langchain.readthedocs.io/en/latest/index.html)이 처리한다:
+
+- 채팅 기록과 새로운 사용자 입력이 주어지면 독립형 질문이 무엇인지 결정(GPT-3 사용).
+- 독립형 질문이 주어지면 벡터 스토어에서 관련 문서를 검색.
+- 독립형 질문과 관련 문서를 GPT-3에 전달하여 최종 답변을 생성.
+
+
+# 가까운 미래
+
+chatGPT가 만들어갈 가까운 미래는 아마도 다양한 **도우미 봇(Help Bot)**이 출현하여 생산성을 비약적으로 증대시켜 저녁이 있는 삶을 모두에게 선사하지 않을까 싶다.
+
+![](images/quarto_future.png)
+
+
+
+
+
+
