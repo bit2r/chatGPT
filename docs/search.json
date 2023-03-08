@@ -445,7 +445,7 @@
     "href": "architecture.html",
     "title": "chatGPT",
     "section": "",
-    "text": "- Pre-Software: Special-purpose computer  - Software 1.0: Design the Algorithm  - Software 2.0: Design the Dataset  - Software 3.0: Design the Prompt\n인공지능(AI) 시스템 구축을 위한 새로운 패러다임이 탄생했다. 기초모형(Foundation Model)은 광범위한 데이터에 대해 학습된 모델로, 광범위한 실무하위 작업에 활용할 수 있다. 현재 BERT, GPT-3, CLIP [Radford 외. 2021] 등을 예로 들 수 있다. (Bommasani et al., 2021)\n\n\n\n\n\n\nFeature Engineering\nArchitecture Engineering\nObjective Engineering\nPrompt Engineering\n\n\n\n\n\n패러다임: (비신경망)지도학습 (Fully Supervised Learning)\n\n전성기: 2015년까지 최고 전성기 구가\n\n특징\n\n주로 비신경망 기계학습이 사용\n수작업으로 Feature를 추출\n\n\n\n대표작\n\n수작업 Feature 추출 후 SVM(support vector machine) 기계학습 모형\n수작업 Feature 추출 후 CRF(conditional random fields)\n\n\n\n\n\n\n\n패러다임: 신경망 지도학습(Fully Supervised Learning)\n\n전성기: 대략 2013~2018\n\n특징\n\n신경망(Neural Network) 의존\n수작업으로 Feature를 손볼 필요는 없으나 신경망 네트워크는 수정해야 함(LSTM vs CNN)\n종종 사전학습된 언어모형을 사용하나 임베딩(embedding) 같은 얕은(shallow) Feature를 적용\n\n\n\n대표작\n\n텍스트 분류작업에 CNN 사용\n\n\n\n\n\n\n\n패러다임: 사전학습(pre-training), 미세조정(fine-tuning)\n\n전성기: 2017~현재\n\n특징\n\n사전학습된 언어모형을 전체 모형의 초기값으로 사용\n아키텍쳐 디자인에 작업이 덜 필요하지만 목적함수(Objective function) 엔지니어링은 필요\n\n\n\n대표작\n\nBERT → Fine Tuning\n\n\n\n\n\n\n\n패러다임: 사전학습(pre-training), 프롬프트(Prompt), 예측(Predict)\n\n전성기: 2019~현재\n\n특징\n\nNLP 작업이 언어모형(Language Model)에 전적으로 의존\n얕던 깊던 Feature 추출, 예측 등 작업이 전적으로 언어모형에 의존\n프롬프트 공학이 필요\n\n\n\n대표작\n\nGPT3"
+    "text": "ChatGPT는 인터넷에서 방대한 양의 데이터를 학습하여 이를 정말 잘 압축한 하나의 저장소로 이해할 수 있다. 따라서, 압축을 풀게 되면 정확히 원본을 복원할 수 있는 부분도 있지만, 그렇지 못한 부분도 당영히 있게 된다.\nTed Chiang (February 9, 2023), “ChatGPT Is a Blurry JPEG of the Web - OpenAI’s chatbot offers paraphrases, whereas Google offers quotes. Which do we prefer?”, The New Yorker\nChatGPT를 “웹의 흐릿한 JPEG”으로 비유하고 있다. JPEC 기술 자체는 손실 압축기술로 무손실 압축기술로 대표적인 PNG와 대비된다. 흐릿한 이미지가 선명하지 않거나 정확하지 않은 것처럼 ChatGPT도 항상 완벽한 답변을 제공하거나 모든 질문을 제대로 이해하는 것도 아니다. 하지만 사용자와의 대화를 기반으로 끊임없이 학습하고 개선하고 있다. 더 많은 사람들이 ChatGPT를 사용할수록 사람의 언어를 더 잘 이해하고 반응할 수 있게 개발된 기술이다.\nChatGPT와 유사한 인공지능 프로그램이 너무 강력해지거나 인간을 대체할 수 있다고 우려하는 사람들도 있지만, ChatGPT는 단순히 작업을 더 쉽고 효율적으로 만드는 데 사용할 수 있는 강력한 도구일 뿐이므로 사람을 능가하거나 지배할 가능성은 거의 없다. 인공지능(ChatGPT)을 책임감 있고 윤리적으로 사용되도록 하는 것은 결국 사용자 귀책이다.\nChatGPT가 간단한 숫자계산에 문제가 있는 것은 웹상에 산재된 숫자 계산 데이터를 바탕으로 계산을 흉내낼 수는 있으나 이와 같은 방식으로 ChatGPT가 학습한 것은 명백히 잘못된 것이다. 사칙연산에 대한 일반적인 원리를 이해하게 되면 웹상에 나온 사칙연산 문제를 정확히 해결할 뿐만 아니라 웹상에 나와있지 않는 계산문제도 풀 수 있으나 현재는 그렇지 못하다.\n\n\nPNG 파일\n(비)손실 압축\n파일크기\nBMP 파일\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n자료출처: WHAT’S THE DIFFERENCE BETWEEN JPEG AND PNG: BEGINNER GUIDE\n\n독일 과학자(David Kriesel)가 제록스 복사기에서 문서에 있는 숫자를 변경하는 결함을 발견했다. 제록스 프린터가 방의 면적을 14.13m²에서 17.42m²로 넓혔고, 다른 프린터는 21.11m²에서 14.13m²로 줄였다. 숫자 문자열 중간에 특정 숫자(예: “6” 또는 “8”)가 나타나면 복사기가 해당 숫자를 다른 숫자로 바꾸는 경우가 많았다. 예를 들어, ’682’가 ’882’가 될 수 있습니다.\n처음에 건물 설계도를 스캔하고 분석하려고 할 때 이 문제를 발견했다. 원본에는 이러한 오류가 없었지만 스캔한 사본에서 특정 숫자가 변경된 것을 발견했다. 결국 그들은 사본을 만드는 과정에서 숫자가 변경된, 사용 중인 Xerox 복사기에 문제가 있다는 사실을 깨달았다.\n이 결함은 제록스 복사기에 사용되는 압축 알고리즘과 관련된 것으로 특정 숫자가 서로 가까이 있으면 알고리즘이 이를 다른 숫자로 착각하고 그에 따라 숫자를 바꾼 것이다. 이 문제가 일부 고급 모델을 포함한 다양한 제록스 복사기에 존재한다는 사실도 발견했다.\nD. KRIESEL, “Xerox scanners/photocopiers randomly alter numbers in scanned documents”\n\n\n설계도 문서\n스캔 결과\n원가표 스캔\n스캔 오류\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n모델: WorkCentre 7535"
   },
   {
     "objectID": "trends.html",
@@ -577,22 +577,22 @@
     "objectID": "architecture.html#openai",
     "href": "architecture.html#openai",
     "title": "chatGPT",
-    "section": "\n4.1 OpenAI",
-    "text": "4.1 OpenAI\n\n\n\n\nCBInsights, “Analyzing OpenAI’s investment strategy: How the ChatGPT maker is building a generative AI ecosystem”"
+    "section": "\n5.1 OpenAI",
+    "text": "5.1 OpenAI\n\n\n\n\nCBInsights, “Analyzing OpenAI’s investment strategy: How the ChatGPT maker is building a generative AI ecosystem”"
   },
   {
     "objectID": "architecture.html#글로벌-스타트업",
     "href": "architecture.html#글로벌-스타트업",
     "title": "chatGPT",
-    "section": "\n4.2 글로벌 스타트업",
-    "text": "4.2 글로벌 스타트업"
+    "section": "\n5.2 글로벌 스타트업",
+    "text": "5.2 글로벌 스타트업"
   },
   {
     "objectID": "architecture.html#네이버",
     "href": "architecture.html#네이버",
     "title": "chatGPT",
-    "section": "\n4.3 네이버",
-    "text": "4.3 네이버\n성현희 (2022-11-04), “네이버 AI 사용에 1000개 중소 기업 ‘노크’”, 전자신문\n네이버는 ’클로바 스튜디오’를 다양한 스타트업이 활용하여 서비스를 출시하고 있다.\n\n\n\n\n\ngraph TD\n    A[\"대한민국\"] --> B((\"네이버\"))\n    B ----> E[잡브레인]\n    B ----> H[라이팅젤]\n    B --> C[모카]\n    B --> D[뤼튼] \n    B --> F[킵그로우]\n    style B fill:#FF6655AA\n    style F fill:#88ffFF\n    style I fill:#88ffFF\n\n\n\n\n\n\n\n\n\n임플로이랩스잡 브레인(Job Brain): AI 자소서 생성 기능에 적용, 완성도 높은 자소소\n앱플랫폼 라이팅젤: 대입 취업 자소서 자동왕성 기능에 적용\n아스타 컴퍼니 모카: 상품언어, 광고 헤드라인, 세일즈 카피 생성 기능에 활용\n뤼튼테크놀로지 뤼튼: 광고카피, 제품소개 문구 등 AI 카피라이팅 서비스에 활용\n유니트컴즈 킵그로우: 고객사 인스타그램에 게시물을 주기적으로 포스팅해주는 기능에 적용"
+    "section": "\n5.3 네이버",
+    "text": "5.3 네이버\n성현희 (2022-11-04), “네이버 AI 사용에 1000개 중소 기업 ‘노크’”, 전자신문\n네이버는 ’클로바 스튜디오’를 다양한 스타트업이 활용하여 서비스를 출시하고 있다.\n\n\n\n\n\ngraph TD\n    A[\"대한민국\"] --> B((\"네이버\"))\n    B ----> E[잡브레인]\n    B ----> H[라이팅젤]\n    B --> C[모카]\n    B --> D[뤼튼] \n    B --> F[킵그로우]\n    style B fill:#FF6655AA\n    style F fill:#88ffFF\n    style I fill:#88ffFF\n\n\n\n\n\n\n\n\n\n임플로이랩스잡 브레인(Job Brain): AI 자소서 생성 기능에 적용, 완성도 높은 자소소\n앱플랫폼 라이팅젤: 대입 취업 자소서 자동왕성 기능에 적용\n아스타 컴퍼니 모카: 상품언어, 광고 헤드라인, 세일즈 카피 생성 기능에 활용\n뤼튼테크놀로지 뤼튼: 광고카피, 제품소개 문구 등 AI 카피라이팅 서비스에 활용\n유니트컴즈 킵그로우: 고객사 인스타그램에 게시물을 주기적으로 포스팅해주는 기능에 적용"
   },
   {
     "objectID": "trends.html#마이크로소프트",

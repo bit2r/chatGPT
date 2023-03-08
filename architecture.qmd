@@ -1,6 +1,6 @@
 ---
 title: "chatGPT"
-subtitle: "아키텍처"
+subtitle: "chatGPT 이해하기"
 author:
   - name: 이광춘
     url: https://www.linkedin.com/in/kwangchunlee/
@@ -36,6 +36,98 @@ editor_options:
 bibliography: bibliography.bib
 csl: apa-single-spaced.csl    
 ---
+
+# ChatGPT 이해하기
+
+## JPEG 압축
+
+ChatGPT는 인터넷에서 방대한 양의 데이터를 학습하여 
+이를 정말 잘 압축한 하나의 저장소로 이해할 수 있다.
+따라서, 압축을 풀게 되면 정확히 원본을 복원할 수 있는 부분도 있지만,
+그렇지 못한 부분도 당영히 있게 된다.
+
+[[Ted Chiang (February 9, 2023), "ChatGPT Is a Blurry JPEG of the Web - OpenAI’s chatbot offers paraphrases, whereas Google offers quotes. Which do we prefer?", The New Yorker](https://www.newyorker.com/tech/annals-of-technology/chatgpt-is-a-blurry-jpeg-of-the-web)]{.aside}
+
+ChatGPT를 **"웹의 흐릿한 JPEG"**으로 비유하고 있다. 
+JPEC 기술 자체는 손실 압축기술로 무손실 압축기술로 대표적인 PNG와 대비된다.
+흐릿한 이미지가 선명하지 않거나 정확하지 않은 것처럼 
+ChatGPT도 항상 완벽한 답변을 제공하거나 모든 질문을 제대로 이해하는 것도 아니다. 
+하지만 사용자와의 대화를 기반으로 끊임없이 학습하고 개선하고 있다. 
+더 많은 사람들이 ChatGPT를 사용할수록 사람의 언어를 더 잘 이해하고 반응할 수 있게 개발된 기술이다.
+
+ChatGPT와 유사한 인공지능 프로그램이 너무 강력해지거나 인간을 대체할 수 있다고 우려하는 사람들도 있지만, 
+ChatGPT는 단순히 작업을 더 쉽고 효율적으로 만드는 데 사용할 수 있는 강력한 도구일 뿐이므로 
+사람을 능가하거나 지배할 가능성은 거의 없다. 
+인공지능(ChatGPT)을 책임감 있고 윤리적으로 사용되도록 하는 것은 결국 사용자 귀책이다.
+
+ChatGPT가 간단한 숫자계산에 문제가 있는 것은 웹상에 산재된 숫자 계산 데이터를 바탕으로 계산을 흉내낼 수는 
+있으나 이와 같은 방식으로 ChatGPT가 학습한 것은 명백히 잘못된 것이다.
+사칙연산에 대한 일반적인 원리를 이해하게 되면 웹상에 나온 사칙연산 문제를 정확히 해결할 뿐만 아니라
+웹상에 나와있지 않는 계산문제도 풀 수 있으나 현재는 그렇지 못하다.
+
+
+::: {.panel-tabset}
+
+### PNG 파일
+
+![](images/jpeg/jpeg-vs-png-transparency.png)
+
+### (비)손실 압축
+
+![](images/jpeg/jpeg-vs-png-compression.png)
+
+### 파일크기
+
+![](images/jpeg/jpeg-vs-png-file-size.jpg)
+
+### BMP 파일
+
+![](images/jpeg/jpeg-vs-bmp.jpg)
+
+:::
+
+[자료출처: [WHAT’S THE DIFFERENCE BETWEEN JPEG AND PNG: BEGINNER GUIDE](https://fixthephoto.com/tech-tips/difference-between-jpeg-and-png.html)]{.aside}
+
+## 제록스 복사기
+
+독일 과학자(David Kriesel)가 제록스 복사기에서 문서에 있는 숫자를 변경하는 결함을 발견했다. 
+제록스 프린터가 방의 면적을 14.13m²에서 17.42m²로 넓혔고, 다른 프린터는 21.11m²에서 14.13m²로 줄였다.
+숫자 문자열 중간에 특정 숫자(예: "6" 또는 "8")가 나타나면 복사기가 해당 숫자를 다른 숫자로 바꾸는 경우가 많았다. 예를 들어, '682'가 '882'가 될 수 있습니다.
+
+처음에 건물 설계도를 스캔하고 분석하려고 할 때 이 문제를 발견했다. 
+원본에는 이러한 오류가 없었지만 스캔한 사본에서 특정 숫자가 변경된 것을 발견했다. 
+결국 그들은 사본을 만드는 과정에서 숫자가 변경된, 사용 중인 Xerox 복사기에 문제가 있다는 사실을 깨달았다.
+
+이 결함은 제록스 복사기에 사용되는 압축 알고리즘과 관련된 것으로 특정 숫자가 서로 가까이 있으면 알고리즘이 이를 다른 숫자로 착각하고 그에 따라 숫자를 바꾼 것이다. 이 문제가 일부 고급 모델을 포함한 다양한 제록스 복사기에 존재한다는 사실도 발견했다.
+
+[[D. KRIESEL, "Xerox scanners/photocopiers randomly alter numbers in scanned documents"](http://www.dkriesel.com/en/blog/2013/0802_xerox-workcentres_are_switching_written_numbers_when_scanning)]{.aside}
+
+
+:::{.panel-tabset}
+
+### 설계도 문서
+
+![](images/jpeg/architecture-document.png)
+
+### 스캔 결과
+
+![](images/jpeg/scan-output.png)
+
+### 원가표 스캔
+
+![모델: WorkCentre 7535](images/jpeg/cost-table.png)
+
+### 스캔 오류
+
+![](images/jpeg/xerox-overview.jpg)
+
+::: 
+
+
+
+
+
+
 
 # 패러다임
 
@@ -210,5 +302,6 @@ graph TD
 
 [Open Assistant](https://open-assistant.io/dashboard)
 :::
+
 
 

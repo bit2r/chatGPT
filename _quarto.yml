@@ -21,12 +21,12 @@ website:
         text: Home
       - text: "생성 AI"
         menu:
+        - href: architecture.qmd
+          text: "chatGPT 이해"
         - href: trends.qmd
           text: "추세 트렌드"
         - href: why_llm.qmd
           text: "왜 거대언어모형인가?"
-        - href: architecture.qmd
-          text: "아키텍쳐"
         - text: "------------------"
         - href: image2image.qmd
           text: "이미지 생성"
