@@ -782,5 +782,26 @@
     "title": "chatGPT",
     "section": "",
     "text": "특정 작업에 필요한 정보를 얻는 검색(search)은 기한이 정해진 업무를 수행함에 있어 매우 중요하다. chatGPT의 등장으로 새로운 검색 패러다임이 제시되고 있다. 물론 기존 검색방식이 부족한 것은 아니며 검색경험을 향상시키기 위해 많은 노력이 경주된 것도 사실이다. 차세대 R마크다운 쿼토(quarto) 문서 제작사례을 위한 검색사례를 통해 chatGPT와 비교하여 보자.\n\n구글 검색을 통해 일반적인 내용을 얻을 수도 있다. 예를 들어,\n\nsite:quarto.org/ google analytics tracking code\n\n구글검색창에 상기 사항을 입력하게 되면 구글은 쿼토(quarto) 웹사이트 내부에서 google analytics tracking code 키워드와 관련이 높은 웹페이지를 검색결과로 반환시키게 된다.\n\n\n\n\n\nQuarto는 웹사이트와 책의 전체 텍스트 검색을 지원하는데, 기본적으로 Quarto는 사이트의 콘텐츠를 자동으로 색인화하여 기본적으로 로컬로 구축된 색인을 사용하여 높은 검색품질을 제공한다. 따라서, 사용자는 구글웹사이트가 아니라 쿼토(quarto)에서 검색을 수행하여 직접 해당 정보를 찾는 것도 가능하다.\n\n\n\n\n\nChatGPT를 사용하여 검색작업을 수행할 수도 있다. 특정 웹사이트에서 해당 정보를 얻어야 되기 때문에 지시명령어(Prompt)를 다음과 같이 작성한다.\n\nsearch https://quarto.org/ insert google analytics tracking code for quarto html document\n\n\n\n\n\n\n쿼토(Quarto)는 차세대 R마크다운이라는 별명이 붙어 있을 정도로 R마크다운이 갖는 모든 기능에 더하여 추가로 새로운 언어(Python, R, Julia, Observable.)에 대한 지원도 포괄하고 있어 상당한 학습량을 요구한다. 설계는 깔끔하게 잘 되어 있지만 이것을 잘 사용하려면 상당한 학습량이 필요로 한다. 이런 문제에 chatGPT를 도입하여 사용하면 경우에 따라서 큰 도움을 줄 수도 있다.\n\nQuarto Help Bot - Ask a question about Quarto.\n\n\n\n\n\n:::\n내부적으로 동작하는 질문-응답(QnA)에는 다음과 같은 단계로 세분화되어 있으며, 모두 ChatVectorDBChain이 처리한다:\n\n채팅 기록과 새로운 사용자 입력이 주어지면 독립형 질문이 무엇인지 결정(GPT-3 사용).\n독립형 질문이 주어지면 벡터 스토어에서 관련 문서를 검색.\n독립형 질문과 관련 문서를 GPT-3에 전달하여 최종 답변을 생성."
+  },
+  {
+    "objectID": "use-cases.html",
+    "href": "use-cases.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "출처: 내 카톡엔 챗GPT가 들어있다\n급한경우 모바일에서 chatGPT 사용이 가능하나, 대부분 데스크톱 PC에서 chatGPT를 사용하는 경우가 많다. chatGPT 사용자 환경이 영어 사용자에 초점을 맞추다보니 한국어를 모국어로 사용하는 사용자는 번역이 꼭 필요한 경우가 많다. 이와 같은 경우 크롬 웹브라우져 chrome 웹 스토어에서 확장 프로그램(Extension)을 사용하면 도움을 받을 수 있다."
+  },
+  {
+    "objectID": "use-cases.html#chatgpt-최종-정보",
+    "href": "use-cases.html#chatgpt-최종-정보",
+    "title": "chatGPT",
+    "section": "\n1.1 chatGPT 최종 정보",
+    "text": "1.1 chatGPT 최종 정보\n\n\n\n\n\n\nwhen was your last training date?\n\n\n\n\n\nAs an AI language model, I am continuously being trained and updated to improve my performance and accuracy. My last major training update occurred in September 2021, but I am continually receiving smaller updates and improvements to my knowledge and capabilities."
+  },
+  {
+    "objectID": "use-cases.html#웹검색",
+    "href": "use-cases.html#웹검색",
+    "title": "chatGPT",
+    "section": "\n1.2 웹검색",
+    "text": "1.2 웹검색\n이러한 한계를 보완하는 WebChatGPT 를 통해서 최신 검색 기능을 보완할 수도 있다. 하지만 WebChatGPT를 활성화시키는 순간 chatGPT 기능도 없어져 단순한 검색기로 변환되니 유의한다. 개발소스코드는 qunash/chatgpt-advanced를 참조한다."
   }
 ]
