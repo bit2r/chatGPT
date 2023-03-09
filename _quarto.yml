@@ -46,6 +46,8 @@ website:
         - href: use-cases.qmd
           text: "활용사례"
         - text: "------------------"
+        - href: news_article.qmd
+          text: "보도자료 작성"
         - href: intro_avi.qmd
           text: "R 소개영상"
         - href: intro_book.qmd

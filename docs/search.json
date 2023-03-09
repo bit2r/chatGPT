@@ -803,5 +803,33 @@
     "title": "chatGPT",
     "section": "\n1.2 웹검색",
     "text": "1.2 웹검색\n이러한 한계를 보완하는 WebChatGPT 를 통해서 최신 검색 기능을 보완할 수도 있다. 하지만 WebChatGPT를 활성화시키는 순간 chatGPT 기능도 없어져 단순한 검색기로 변환되니 유의한다. 개발소스코드는 qunash/chatgpt-advanced를 참조한다."
+  },
+  {
+    "objectID": "news_article.html",
+    "href": "news_article.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "사단법인 한국 R 사용자회 관련 주요 뉴스기사는 다음과 같다.\n\n코드library(tidyverse)\nlibrary(googlesheets4)\nlibrary(lubridate)\nlibrary(gt)\n\nnews_raw <- googlesheets4::read_sheet(\"https://docs.google.com/spreadsheets/d/1KITnaJTqsDHtm-wUWboog4xG6U6SBuB_Zee8qpCgLN4/edit?usp=sharing\", sheet = \"뉴스기사\")\n\nnews_tbl <- news_raw %>% \n  mutate(날짜 = as.Date(날짜)) %>% \n  arrange(desc(날짜)) %>% \n  mutate(뉴스링크 = sprintf('<a href = \"%s\">%s</a>', 링크, `뉴스기사 제목`),\n         뉴스링크 = map(뉴스링크, gt::html))  %>% \n  select(날짜, 언론사, 기자명, 기자명, 링크, 뉴스링크)\n\nnews_tbl %>% \n  select(-링크) %>% \n  gt() %>% \n    cols_align(\n    align = \"center\",\n    columns = everything()\n  )\n\n\n\n\n\n\n날짜\n      언론사\n      기자명\n      뉴스링크\n    \n\n\n2022-04-18\n오마이뉴스\n이광춘\n통계 대중화 위한 '오픈 통계 패키지' 나왔다 - 오마이뉴스\n\n\n2021-10-25\nIT 조선\n이윤경\n\"디지털 경제 패러다임 전환은 R\"…한국R 콘퍼러스, 11월 19일 개최 - IT조선 > 기술 > 일반\n\n\n2021-09-18\n한겨레\n권오성\n데이터 분석 언어 ‘R’ 한국 콘퍼런스 열린다\n\n\n2016-12-07\nKBS\n최건일\n인공지능으로 분석한 대통령의 마음…슬픔은 어디에?\n\n\n2015-01-31\nIT Daily\n팽동현\n[데이터사이언티스트를 찾아서] “빅데이터 분석, 데이터의 본질을 바라보는 것부터”\n\n\n2012-10-11\n디지털 데일리\n백지영\n넥스알, ‘R사용자컨퍼런스 2012’ 24일 개최"
+  },
+  {
+    "objectID": "news_article.html#보도자료-초안",
+    "href": "news_article.html#보도자료-초안",
+    "title": "chatGPT",
+    "section": "\n4.1 보도자료 초안",
+    "text": "4.1 보도자료 초안\n\n프롬프트: 비영리법인 한국 R 사용자회는 2017년부터 매년 국내 유일의 데이터 사이언스 밋업(Meetup)을 주관하고 있습니다. 2023년 올해는 교보생명보험 그룹 데이터 분석 법인 디플래닉스(DPlanex)의 후원을 받아 “ChatGPT와 데이터 사이언스” 주제로 총 6회에 결쳐 강남 교보타워 5층 노블리에홀에서 행사를 진행합니다. 이에 대한 홍보 기사를 작성해주세요.\n\n\n\n\n\n\n\n주의\n\n\n\n\n\n한국 R 사용자회 비영리법인이 2017년부터 국내 유일한 데이터 사이언스 밋업을 성공적으로 개최하고 있습니다. 이번 2023년, 교보생명보험 그룹의 데이터 분석 법인인 디플래닉스(DPlanex)의 후원으로, “ChatGPT와 데이터 사이언스” 주제로 총 6회에 걸쳐 강남 교보타워 5층 노블리에홀에서 행사를 개최하게 되었습니다.\n이번 행사는 데이터 사이언스와 인공지능의 최신 동향에 대한 이해를 높이고, ChatGPT 기술을 활용한 데이터 분석 및 예측 방법을 다룹니다. 행사 기간 동안 전문가들의 강연과 워크숍, 토론 등 다양한 프로그램이 준비되어 있으며, 자연어 처리, 기계 학습, 데이터 시각화 등 다양한 주제가 다루어집니다.\n이번 행사는 데이터 사이언티스트, 연구원, 또는 인공지능과 데이터 사이언스에 관심이 있는 분들에게 모두 열려 있으며, 또한 같은 관심사를 가진 사람들과의 네트워킹 기회도 제공됩니다.\n행사 등록은 지금부터 가능하며, 자리가 한정되어 있으므로 서둘러 등록하시기 바랍니다. 이번 기회를 놓치지 마시고, 최신 데이터 사이언스 및 인공지능 기술 동향을 접하며, 전문가들과 함께 학습하는 좋은 기회가 되시길 바랍니다."
+  },
+  {
+    "objectID": "news_article.html#기사-제목-초안",
+    "href": "news_article.html#기사-제목-초안",
+    "title": "chatGPT",
+    "section": "\n4.2 기사 제목 초안",
+    "text": "4.2 기사 제목 초안\n\n프롬프트: 뉴스 기사 제목은 3개만 작성하세요.\n\n\n\n\n\n\n\n주의\n\n\n\n\n\n\n“한국R사용자협회와 DPlanex, ChatGPT 중심 데이터 사이언스 행사 위해 협력”\n“교보타워 노블리홀, 2023년 6개 데이터 사이언스 행사 개최”\n“NLP, 기계 학습 및 데이터 시각화 전문가가 ChatGPT 및 데이터 과학 이벤트에서 연설합니다.”"
+  },
+  {
+    "objectID": "news_article.html#보도자료-언론-배포",
+    "href": "news_article.html#보도자료-언론-배포",
+    "title": "chatGPT",
+    "section": "\n4.3 보도자료 언론 배포",
+    "text": "4.3 보도자료 언론 배포\nchatGPT가 작성한 기사제목(일명 야마)과 본문 내용에 더하여 보도자료 담당자 정보를 붙여 PDF 문서형태로 최종 마무리한다."
   }
 ]
