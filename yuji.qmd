@@ -1,0 +1,263 @@
+---
+title: "chatGPT"
+subtitle: "멤버 Yuji 논문"
+description: |
+  윤석열 대통령 영부인 김건희 여사의 논문이 설화에 휘말렸다. 김건희 여사가
+  학술지에 기고한 연구논문에서 "Member Yuji"가 발견되어 논란이 되고 있는데,
+  `chatGPT` 기술을 통해 새로운 가능성을 살펴보자.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# 멤버 Yuji 논문
+
+김건희 여사가 집필한 "온라인 운세 콘텐츠의 이용자들의 이용 만족과
+불만족에 따른 회원 유지와 탈퇴에 대한 연구" 논문제목을 갖고 있는 KCI
+등재논문은 "Use satisfaction of users of online fortune contents and
+member Yuji by dissatisfaction and a study for withdrawal" 영문제목이
+아래 함께 달려있다. 
+**KCI 원문 내려받기**를 클릭하면 PDF 파일(`KCI_FI001250967.pdf`)로 KCI 등재 논문을 내려받을 수 있다.
+
+
+[출처: [김건희 여사 논문](https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001250967)]{.aside}
+
+:::{.panel-tabset}
+
+## KCI 등재 웹사이트 {.unnumbered}
+
+![](images/yuji/kci_webshot.jpg){width=77%}
+
+## PDF 다운로드 {.unnumbered}
+
+<iframe src="./images/yuji/KCI_FI001250967.pdf" title="멤버유지 논문" width="960" height="500"></iframe>
+
+:::
+
+
+# 영문 초록
+
+인공지능 chatGPT를 활용하여 논문을 개선시킬 수 있는 방법을 살펴보자.
+[chatGPT - 논문 초록](#intro_paper) 을 참조하여 제주대 안도현 교수님이 제안하신
+지시명령어를 적용시켜 보자. 
+
+먼저 국문초록을 DeepL 번역작업을 수행하고 이를 chatGPT로 윤문한다.
+
+:::{.panel-tabset}
+
+## 국문초록 {.unnumbered}
+
+본 연구의 목적은 국내 온라인 운세 사이트 이용 회원 및 회원탈퇴에 미치는 영향력과 회원 요구에 적합한 디지털 운세 콘텐츠 서비스를 개발하고 이를 시장에 적용하기 위한 방안을 실증적으로 규명하고 제시하는데 있다. 또한, 본 연구는 남녀노소 누구나 관심과 흥미를 가질 수 있는 
+문화 콘텐츠를 디지털 문화 콘텐츠의 체계에 접목한 운세(관상, 궁합)콘텐츠를 개발하기 위한 사전조사 및 시장분석을 통해 고객과 소비자 그리고 잠재적 고객들의 요구와 만족에 걸 맞는 서비스를 제품화하고자 하는 목적이다.
+
+## 영문초록 {.unnumbered}
+
+Though I make a searching examination substantially and show book plan a purpose of a study
+develops digital fortune contents service deserving to be a domestic online member of fortune site use and influence for member withdrawal and a member demand, and to apply this to a market, there is it.
+In addition, Fortune (phrenology) that any people regardless of age or sex anyone cut interest and the
+culture contents that I could be interested in to a system of digital culture contents and inherited a study of a book and did It is the purpose that is going to manufacture a customer and a consumer and a demand of potential customers and service deserving to be you satisfactorily through a feasibility study to develop affinity) contents and a market analysis.
+
+## &rarr; {.unnumbered}
+
+## DeepL 한영번역 {.unnumbered}
+
+The purpose of this study is to empirically examine the impact of online fortune-telling sites on membership and churn in Korea, and to develop a digital fortune-telling content service that meets the needs of members. The purpose of this study is to empirically identify and suggest ways to develop and apply digital fortune-telling content services to the market. The purpose of this study is to empirically identify and suggest ways to develop and apply digital horoscope content services to the market. 
+cultural content that can be interested and enjoyed by everyone of all ages. Through preliminary research and market analysis to develop horoscopic (contemplative, compatibility) content that incorporates digital cultural content that can be of interest and interest to everyone. The purpose is to productize services that meet the needs and satisfaction of potential customers.
+
+## chatGPT 윤문 {.unnumbered}
+
+> 지시명령어: Revise the abstract to follow APA style guidelines and ensure that it falls within the word count range of 130 to 140 words.
+
+This empirical study aims to investigate the impact of online fortune-telling sites on membership and churn in Korea, and to develop a digital fortune-telling content service that meets members' needs. Additionally, the study aims to identify and suggest ways to develop and apply digital horoscope content services to the market. The study's objective is to create culturally relevant and engaging horoscopic (contemplative, compatibility) content through preliminary research and market analysis, catering to individuals of all ages. The study aims to develop services that meet potential customers' needs and satisfaction by incorporating digital cultural content. Overall, this study contributes to the development of effective digital fortune-telling and horoscope content services in Korea, addressing the needs of its target audience.
+
+:::
+
+## 원문과 비교
+
+:::{#comparison layout-ncol=2}
+
+### 김건희 여사 저작(Abstract A) {.unnumbered}
+
+Though I make a searching examination substantially and show book plan a purpose of a study
+develops digital fortune contents service deserving to be a domestic online member of fortune site use and influence for member withdrawal and a member demand, and to apply this to a market, there is it.
+In addition, Fortune (phrenology) that any people regardless of age or sex anyone cut interest and the
+culture contents that I could be interested in to a system of digital culture contents and inherited a study of a book and did It is the purpose that is going to manufacture a customer and a consumer and a demand of potential customers and service deserving to be you satisfactorily through a feasibility study to develop affinity) contents and a market analysis.
+
+
+### chatGPT 저작 (Abstract B){.unnumbered}
+
+This empirical study aims to investigate the impact of online fortune-telling sites on membership and churn in Korea, and to develop a digital fortune-telling content service that meets members' needs. Additionally, the study aims to identify and suggest ways to develop and apply digital horoscope content services to the market. The study's objective is to create culturally relevant and engaging horoscopic (contemplative, compatibility) content through preliminary research and market analysis, catering to individuals of all ages. The study aims to develop services that meet potential customers' needs and satisfaction by incorporating digital cultural content. Overall, this study contributes to the development of effective digital fortune-telling and horoscope content services in Korea, addressing the needs of its target audience.
+
+:::
+
+
+## chatGPT 평가
+
+::: {.callout-tip collapse="true"}
+### tell me how to evaluate two paper abstracts. which is better than other one? include criteria and add justification. finally recommend tools
+
+
+Evaluating two paper abstracts involves comparing and contrasting their strengths and weaknesses based on a set of criteria. Here are some criteria to consider when evaluating paper abstracts:
+
+1. Clarity and coherence: The abstract should be well-organized and easy to understand. It should also effectively summarize the main ideas of the paper.
+
+2. Originality and novelty: The abstract should highlight the unique aspects of the paper and how it contributes to the existing body of knowledge.
+
+3. Significance and relevance: The abstract should explain why the research is important and relevant to the field.
+
+4. Methodology and data: The abstract should briefly describe the methods used and the data collected in the study.
+
+5. Results and conclusions: The abstract should summarize the key findings of the study and the main conclusions drawn from them.
+
+Based on these criteria, the better paper abstract would be the one that is clearer, more original and novel, more significant and relevant, more informative about the methodology and data, and more effective in summarizing the results and conclusions.
+
+Here is a brief justification for each criterion:
+
+1. Clarity and coherence: A well-written abstract is important because it is the first thing that readers will see when they encounter the paper. A clear and coherent abstract will help readers understand what the paper is about and whether it is worth reading in full.
+
+2. Originality and novelty: This criterion is important because it highlights the unique aspects of the paper and helps readers understand why it is important.
+
+3. Significance and relevance: This criterion is important because it explains why the research is worth doing and how it contributes to the field.
+
+4. Methodology and data: This criterion is important because it helps readers understand how the research was conducted and whether the results are reliable.
+
+5. Results and conclusions: This criterion is important because it summarizes the key findings of the study and the main conclusions drawn from them, which helps readers understand the significance of the research.
+
+As for tools to help evaluate paper abstracts, there are various software programs available that can help assess the quality of writing, such as Grammarly or Hemingway Editor. Additionally, some academic databases provide metrics and rankings for papers based on factors such as citation counts and impact factors. However, the best way to evaluate paper abstracts is to read them carefully and assess their quality based on the criteria listed above.
+
+:::
+
+::: {.callout-tip collapse="true"}
+### Based on the criteria outlined above, abstract B appears to be the better of the two abstracts.
+
+1. Clarity and coherence: Abstract B is well-organized and easy to understand. It effectively summarizes the main ideas of the paper in a clear and concise manner. In contrast, abstract A is poorly written and difficult to understand due to its convoluted language and lack of clarity.
+
+2. Originality and novelty: Abstract B highlights the unique aspects of the paper, including its focus on developing culturally relevant and engaging horoscopic content, and its contribution to the development of effective digital fortune-telling services in Korea. In contrast, abstract A does not provide any clear indication of the paper's novelty or originality.
+
+3. Significance and relevance: Abstract B explains why the research is important and relevant to the field by highlighting the impact of online fortune-telling sites on membership and churn in Korea, and the need for digital horoscope content services that meet members' needs. In contrast, abstract A does not provide any clear explanation of the research's significance or relevance.
+
+4. Methodology and data: Abstract B briefly describes the study's empirical methodology and its focus on identifying and suggesting ways to develop and apply digital horoscope content services to the market. In contrast, abstract A does not provide any clear indication of the study's methodology or data.
+
+5. Results and conclusions: Abstract B effectively summarizes the key findings of the study, including the development of culturally relevant and engaging horoscopic content and the identification of ways to meet potential customers' needs and satisfaction. In contrast, abstract A does not provide any clear indication of the study's results or conclusions.
+
+Overall, abstract B is a better abstract because it is clearer, more original and novel, more significant and relevant, more informative about the methodology and data, and more effective in summarizing the results and conclusions.
+
+As for tools to help evaluate paper abstracts, software programs such as Grammarly or Hemingway Editor can be helpful in identifying and correcting issues with clarity and coherence. Additionally, academic databases such as Scopus or Web of Science can provide metrics and rankings for papers based on factors such as citation counts and impact factors, which can be used to assess the significance and relevance of the research.
+
+:::
+
+::: {.callout-caution collapse="true"}
+### 왜 abstract A가 abstract B보다 부족한지 100자 내외로 간략하게 요약해줘
+
+번역결과
+Briefly summarize in 100 words or less why abstract A is less than abstract B
+
+Abstract A is less than abstract B because it is poorly written, difficult to understand, lacks clarity, and does not effectively summarize the main ideas of the paper. It also does not provide any clear indication of the paper's novelty, significance, methodology, data, or results and conclusions. In contrast, abstract B is well-organized, easy to understand, effectively highlights the unique aspects of the research, explains why the research is important and relevant to the field, briefly describes the study's methodology and data, and effectively summarizes the key findings and conclusions of the research.
+
+번역결과
+
+초록 A는 서투르게 작성되고, 이해하기 어렵고, 명확성이 부족하고, 논문의 주요 아이디어를 효과적으로 요약하지 못하기 때문에 초록 B보다 낮습니다. 또한 논문의 참신성, 중요성, 방법론, 데이터 또는 결과 및 결론에 대한 명확한 표시를 제공하지 않습니다. 대조적으로 초록 B는 잘 정리되어 있고 이해하기 쉬우며 연구의 고유한 측면을 효과적으로 강조하고 해당 연구가 중요하고 해당 분야와 관련이 있는 이유를 설명하며 연구의 방법론과 데이터를 간략하게 설명하고 주요 결과와 연구의 결론.
+
+:::
+
+# 논문 제목
+
+인공지능이 사람 이목을 끄는 제목을 잘 작성한다는 사실은 잘 알려진 사실이다.
+주어진 국영문 초록 정보를 바탕으로 김여사 논문 제목과 chatGPT 논문 제목을 비교해보자.
+
+::::{.panel-tabset}
+
+## 국문 제목 {.unnumbered}
+
+온라인 운세 콘텐츠의 이용자들의 이용 만족과 불만족에 따른 회원 유지와 탈퇴에 대한 연구
+
+## 영문 제목 {.unnumbered}
+
+Use satisfaction of users of online fortune contents and member Yuji by dissatisfaction and a study for withdrawal
+
+## &rarr; {.unnumbered}
+
+
+## 비교 {.unnumbered}
+
+:::{.column-page}
+
+::: {.column width="40%"}
+### 영문제목(원문) {.unnumbered}
+
+Use satisfaction of users of online fortune contents and member **Yuji** by dissatisfaction and a study for withdrawal
+
+:::
+
+::: {.column width="60%"}
+### chatGPT 추천 {.unnumbered}
+
+1. Investigating the Impact of Online Fortune-Telling Sites: An Empirical Study in Korea
+1. Developing Culturally Relevant and Engaging Horoscopic Content: A Digital Fortune-Telling Service for All Ages
+1. Meeting Customers' Needs and Satisfaction: Developing Effective Digital Horoscope Content Services in Korea
+1. From Market Analysis to Content Creation: The Journey of Developing Digital Horoscope Services in Korea
+1. Exploring the Potential of Digital Horoscope Content: A Study on Membership and Churn in Online Fortune-Telling Sites in Korea
+1. Satisfying Customers' Needs through Cultural Relevance: The Case of Digital Fortune-Telling Content Services in Korea
+1. Creating Effective Digital Horoscope Content Services in Korea: The Importance of Preliminary Research and Market Analysis.
+1. Understanding the Demands of the Market: A Study on Developing Digital Horoscope Content Services in Korea.
+1. Crafting a New Era of Fortune-Telling: Developing Digital Horoscope Services for All.
+1. Understanding the Future with Digital Horoscope Services: A Study on Developing Engaging Content in Korea.
+
+:::
+::::
+
+::::
+
+
+# 논문 살펴보기
+
+chatGPT가 기본 생성한 질문을 통해 답변을 얻어 논문을 이해할 수 있고
+논문에 포함된 표도 정확성에 다소 문제가 있지만 얼추 표도 추출해내고 있다.
+
+:::{.panel-tabset}
+
+## 논문 질의응답 {.unnumbered}
+
+![](images/yuji/chatPDF.jpg)
+
+## 표 추출 {.unnumbered}
+
+![](images/yuji/chatPDF-table.jpg)
+
+## 논문요약과 회귀분석 {.unnumbered}
+
+![](images/yuji/regression.jpg)
+
+:::

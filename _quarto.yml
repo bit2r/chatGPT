@@ -56,11 +56,13 @@ website:
           text: "논문 초록"
         - href: rnd.qmd
           text: "학술연구(R&D)"
-        - href: middle_school.qmd
-          text: "데이터 문해력"
+        - href: yuji.qmd
+          text: "멤버 Yuji"
         - text: "------------------"
         - href: interface.qmd
           text: "인터페이스"
+        - href: middle_school.qmd
+          text: "데이터 문해력"
       - text: "BERT"
         menu:
         - href: ide.qmd

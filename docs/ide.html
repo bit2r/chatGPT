@@ -161,16 +161,16 @@ ga('send', {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-ai">
 <li>
+    <a class="dropdown-item" href="./architecture.html">
+ <span class="dropdown-text">chatGPT 이해</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./trends.html">
  <span class="dropdown-text">추세 트렌드</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./why_llm.html">
  <span class="dropdown-text">왜 거대언어모형인가?</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./architecture.html">
- <span class="dropdown-text">아키텍쳐</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
@@ -206,6 +206,15 @@ ga('send', {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-chatgpt-응용사례">
 <li>
+    <a class="dropdown-item" href="./use-cases.html">
+ <span class="dropdown-text">활용사례</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./news_article.html">
+ <span class="dropdown-text">보도자료 작성</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./intro_avi.html">
  <span class="dropdown-text">R 소개영상</span></a>
   </li>  
@@ -218,8 +227,17 @@ ga('send', {
  <span class="dropdown-text">논문 초록</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./rnd.html">
+ <span class="dropdown-text">학술연구(R&amp;D)</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./middle_school.html">
  <span class="dropdown-text">데이터 문해력</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./interface.html">
+ <span class="dropdown-text">인터페이스</span></a>
   </li>  
     </ul>
 </li>
@@ -417,7 +435,7 @@ ga('send', {
 <li><a href="https://marketplace.visualstudio.com/items?itemName=RDebugger.r-debugger">R Debugger</a></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/vscode_R_extension.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="VS Code를 실행하고 R Extension 설치"><img src="images/vscode_R_extension.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/vscode_R_extension.png" class="lightbox" title="VS Code를 실행하고 R Extension 설치" data-gallery="quarto-lightbox-gallery-2"><img src="images/vscode_R_extension.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">VS Code를 실행하고 R Extension 설치</figcaption><p></p>
 </figure>
 </div>
@@ -425,7 +443,7 @@ ga('send', {
 <span class="header-section-number">1.2</span> 헬로우 월드</h2>
 <p><code>R Extension</code> 설치되면 코드 창 상단에 실행버튼이 활성화되고 <kbd>Ctrl</kbd> + <kbd>Enter</kbd> 혹은 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd></p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/vscode_helloworld.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="R 코드 실행화면"><img src="images/vscode_helloworld.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/vscode_helloworld.png" class="lightbox" title="R 코드 실행화면" data-gallery="quarto-lightbox-gallery-3"><img src="images/vscode_helloworld.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">R 코드 실행화면</figcaption><p></p>
 </figure>
 </div>
@@ -440,7 +458,7 @@ ga('send', {
 <p>먼저 <a href="https://github.com/naver/d2codingfont">D2 Coding 글꼴</a>을 다운로드 받아 운영체제에 설치한다.</p>
 <p>VS Code 좌측 하단 톱니바퀴 <kbd> Settings </kbd> 설정을 클릭 혹은 메뉴에서 “File” → “Preferences” → “Settings”를 통해 <code>편집기 (Text Editor)</code>로 들어가 운영체제에 설치한 코딩 폰트를 지정한다. <strong>Font Ligatures</strong> 도 <code>true</code>로 설정한다. 이를 통해 <code>&lt; -</code> 표시가 ← 로 화면에 표현된다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/vscode_font.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="D2코딩 글꼴 장착"><img src="images/vscode_font.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/vscode_font.png" class="lightbox" title="D2코딩 글꼴 장착" data-gallery="quarto-lightbox-gallery-4"><img src="images/vscode_font.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">D2코딩 글꼴 장착</figcaption><p></p>
 </figure>
 </div>
@@ -454,7 +472,7 @@ ga('send', {
 </ul>
 <p><code>keybindings.json</code> 파일에 <kbd> %&gt;% </kbd>, <kbd> ← </kbd> 단축키 기능을 추가한다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/vscode_shortcuts.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="자주 사용되는 R 단축키 설정"><img src="images/vscode_shortcuts.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/vscode_shortcuts.png" class="lightbox" title="자주 사용되는 R 단축키 설정" data-gallery="quarto-lightbox-gallery-5"><img src="images/vscode_shortcuts.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">자주 사용되는 R 단축키 설정</figcaption><p></p>
 </figure>
 </div>
@@ -469,14 +487,14 @@ ga('send', {
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="../../images/vscode_layout.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="VS Code: View → Editor Layout → Grid (2x2)"><img src="../../images/vscode_layout.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="../../images/vscode_layout.png" class="lightbox" title="VS Code: View → Editor Layout → Grid (2x2)" data-gallery="quarto-lightbox-gallery-6"><img src="../../images/vscode_layout.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">VS Code: View → Editor Layout → Grid (2x2)</figcaption><p></p>
 </figure>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/vscode_layout_screen.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="도움말과 그래프"><img src="images/vscode_layout_screen.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/vscode_layout_screen.png" class="lightbox" title="도움말과 그래프" data-gallery="quarto-lightbox-gallery-7"><img src="images/vscode_layout_screen.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">도움말과 그래프</figcaption><p></p>
 </figure>
 </div>
@@ -712,7 +730,7 @@ ga('send', {
 </section><section id="호박-데이터셋" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="호박-데이터셋">호박 데이터셋</h3>
 <iframe src="images/pumpkins-copilot.mp4" allowfullscreen="" allow="encrypted-media" width="320" height="180">
 <div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden" data-render-id="quarto-int-sidebar-title">chatGPT</span> <span class="hidden" data-render-id="quarto-int-navbar-title">chatGPT</span> <span class="hidden" data-render-id="quarto-int-navbar:Home">Home</span> <span class="hidden" data-render-id="quarto-int-navbar:생성 AI">생성 AI</span> <span class="hidden" data-render-id="quarto-int-navbar:추세 트렌드">추세 트렌드</span> <span class="hidden" data-render-id="quarto-int-navbar:왜 거대언어모형인가?">왜 거대언어모형인가?</span> <span class="hidden" data-render-id="quarto-int-navbar:아키텍쳐">아키텍쳐</span> <span class="hidden" data-render-id="quarto-int-navbar:------------------">——————</span> <span class="hidden" data-render-id="quarto-int-navbar:이미지 생성">이미지 생성</span> <span class="hidden" data-render-id="quarto-int-navbar:GPT R 코딩개발">GPT R 코딩개발</span> <span class="hidden" data-render-id="quarto-int-navbar:부조종사 R 코딩개발">부조종사 R 코딩개발</span> <span class="hidden" data-render-id="quarto-int-navbar:수학문제">수학문제</span> <span class="hidden" data-render-id="quarto-int-navbar:데이터 과학문제">데이터 과학문제</span> <span class="hidden" data-render-id="quarto-int-navbar:DeepL 번역 API">DeepL 번역 API</span> <span class="hidden" data-render-id="quarto-int-navbar:chatGPT 응용사례">chatGPT 응용사례</span> <span class="hidden" data-render-id="quarto-int-navbar:R 소개영상">R 소개영상</span> <span class="hidden" data-render-id="quarto-int-navbar:데이터 과학 책">데이터 과학 책</span> <span class="hidden" data-render-id="quarto-int-navbar:논문 초록">논문 초록</span> <span class="hidden" data-render-id="quarto-int-navbar:데이터 문해력">데이터 문해력</span> <span class="hidden" data-render-id="quarto-int-navbar:BERT">BERT</span> <span class="hidden" data-render-id="quarto-int-navbar:통합개발환경(IDE)">통합개발환경(IDE)</span> <span class="hidden" data-render-id="quarto-int-navbar:파이썬 환경구축">파이썬 환경구축</span> <span class="hidden" data-render-id="quarto-int-navbar:HuggingfaceR - 모형통계">HuggingfaceR - 모형통계</span> <span class="hidden" data-render-id="quarto-int-navbar:Hugging Face">Hugging Face</span> <span class="hidden" data-render-id="quarto-int-navbar:Hugging Face(윈도우)">Hugging Face(윈도우)</span> <span class="hidden" data-render-id="quarto-int-navbar:HF 파이프라인">HF 파이프라인</span> <span class="hidden" data-render-id="quarto-int-navbar:게시글">게시글</span> <span class="hidden" data-render-id="quarto-int-navbar:R사용자회">R사용자회</span> <span class="hidden" data-render-id="quarto-int-navbar:Open Assistant">Open Assistant</span> <span class="hidden" data-render-id="quarto-int-navbar:RTutor">RTutor</span> <span class="hidden" data-render-id="quarto-int-navbar:About">About</span> <span class="hidden" data-render-id="footer-left"><a href="https://quarto.org/">Quarto</a> 개발</span> <span class="hidden" data-render-id="footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></span> <span class="hidden" data-render-id="footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></span></p>
+<p><span class="hidden" data-render-id="quarto-int-sidebar-title">chatGPT</span> <span class="hidden" data-render-id="quarto-int-navbar-title">chatGPT</span> <span class="hidden" data-render-id="quarto-int-navbar:Home">Home</span> <span class="hidden" data-render-id="quarto-int-navbar:생성 AI">생성 AI</span> <span class="hidden" data-render-id="quarto-int-navbar:chatGPT 이해">chatGPT 이해</span> <span class="hidden" data-render-id="quarto-int-navbar:추세 트렌드">추세 트렌드</span> <span class="hidden" data-render-id="quarto-int-navbar:왜 거대언어모형인가?">왜 거대언어모형인가?</span> <span class="hidden" data-render-id="quarto-int-navbar:------------------">——————</span> <span class="hidden" data-render-id="quarto-int-navbar:이미지 생성">이미지 생성</span> <span class="hidden" data-render-id="quarto-int-navbar:GPT R 코딩개발">GPT R 코딩개발</span> <span class="hidden" data-render-id="quarto-int-navbar:부조종사 R 코딩개발">부조종사 R 코딩개발</span> <span class="hidden" data-render-id="quarto-int-navbar:수학문제">수학문제</span> <span class="hidden" data-render-id="quarto-int-navbar:데이터 과학문제">데이터 과학문제</span> <span class="hidden" data-render-id="quarto-int-navbar:DeepL 번역 API">DeepL 번역 API</span> <span class="hidden" data-render-id="quarto-int-navbar:chatGPT 응용사례">chatGPT 응용사례</span> <span class="hidden" data-render-id="quarto-int-navbar:활용사례">활용사례</span> <span class="hidden" data-render-id="quarto-int-navbar:보도자료 작성">보도자료 작성</span> <span class="hidden" data-render-id="quarto-int-navbar:R 소개영상">R 소개영상</span> <span class="hidden" data-render-id="quarto-int-navbar:데이터 과학 책">데이터 과학 책</span> <span class="hidden" data-render-id="quarto-int-navbar:논문 초록">논문 초록</span> <span class="hidden" data-render-id="quarto-int-navbar:학술연구(R&amp;D)">학술연구(R&amp;D)</span> <span class="hidden" data-render-id="quarto-int-navbar:데이터 문해력">데이터 문해력</span> <span class="hidden" data-render-id="quarto-int-navbar:인터페이스">인터페이스</span> <span class="hidden" data-render-id="quarto-int-navbar:BERT">BERT</span> <span class="hidden" data-render-id="quarto-int-navbar:통합개발환경(IDE)">통합개발환경(IDE)</span> <span class="hidden" data-render-id="quarto-int-navbar:파이썬 환경구축">파이썬 환경구축</span> <span class="hidden" data-render-id="quarto-int-navbar:HuggingfaceR - 모형통계">HuggingfaceR - 모형통계</span> <span class="hidden" data-render-id="quarto-int-navbar:Hugging Face">Hugging Face</span> <span class="hidden" data-render-id="quarto-int-navbar:Hugging Face(윈도우)">Hugging Face(윈도우)</span> <span class="hidden" data-render-id="quarto-int-navbar:HF 파이프라인">HF 파이프라인</span> <span class="hidden" data-render-id="quarto-int-navbar:게시글">게시글</span> <span class="hidden" data-render-id="quarto-int-navbar:R사용자회">R사용자회</span> <span class="hidden" data-render-id="quarto-int-navbar:Open Assistant">Open Assistant</span> <span class="hidden" data-render-id="quarto-int-navbar:RTutor">RTutor</span> <span class="hidden" data-render-id="quarto-int-navbar:About">About</span> <span class="hidden" data-render-id="footer-left"><a href="https://quarto.org/">Quarto</a> 개발</span> <span class="hidden" data-render-id="footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></span> <span class="hidden" data-render-id="footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></span></p>
 </div>
 <div id="quarto-meta-markdown" class="hidden">
 <p><span class="hidden" data-render-id="quarto-metatitle">chatGPT</span> <span class="hidden" data-render-id="quarto-twittercardtitle">chatGPT</span> <span class="hidden" data-render-id="quarto-ogcardtitle">chatGPT</span> <span class="hidden" data-render-id="quarto-metasitename">chatGPT</span></p>
@@ -1406,7 +1424,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>  
     </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":true});</script>
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","loop":true,"closeEffect":"zoom","selector":".lightbox"});</script>
 
 
 </body></html>
