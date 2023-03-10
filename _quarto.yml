@@ -54,6 +54,8 @@ website:
           text: "데이터 과학 책"
         - href: intro_paper.qmd
           text: "논문 초록"
+        - href: rnd.qmd
+          text: "학술연구(R&D)"
         - href: middle_school.qmd
           text: "데이터 문해력"
         - text: "------------------"
