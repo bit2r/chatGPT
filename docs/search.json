@@ -866,5 +866,19 @@
     "title": "chatGPT",
     "section": "채널추가",
     "text": "채널추가"
+  },
+  {
+    "objectID": "interface.html#카카오톡",
+    "href": "interface.html#카카오톡",
+    "title": "chatGPT",
+    "section": "\n3.1 카카오톡",
+    "text": "3.1 카카오톡\n모바일 메신져 카카오톡에 AskUp 채널을 추가하게 되면 chatGPT 유사 기능을 사용할 수 있다. 문제는 언제 AskUp 채널 서비스가 중단될지 유료로 과금이 변경될지 모르지만 chatGPT를 사용하는 방식이 다양화함은 분명하다.\nAskUp 서비스는 현재 시점(“2023-03-10”) 기준 PDF 문서요약기능은 제공하고 있지 않지만 장문의 텍스트는 요약하는 기능을 제공하고 있다.\n\n\naskup 검색\n채널추가\n채팅준비\nOCR 사례\n뉴스 요약"
+  },
+  {
+    "objectID": "interface.html#슬랙",
+    "href": "interface.html#슬랙",
+    "title": "chatGPT",
+    "section": "\n3.2 슬랙",
+    "text": "3.2 슬랙\n2023년 3월 7일 Salesforce와 OpenAI는 Slack용 ChatGPT 앱을 출시했다. OpenAI가 Slack 플랫폼에 구축한 이 앱은 ChatGPT의 강력한 AI 기술을 통합하여 즉각적인 대화 요약, 조사 도구 및 작성 지원을 Slack에서 바로 제공하여 수백만 기업이 보다 생산적으로 작업할 수 있도록 지원하기 시작했다.\n출처: Introducing the ChatGPT App for Slack"
   }
 ]

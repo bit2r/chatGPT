@@ -119,7 +119,9 @@ chatGPT가 만들어갈 가까운 미래는 아마도 다양한 **도우미 봇(
 
 ![](images/quarto_future.png)
 
-# 카카오톡
+# 메신져
+
+## 카카오톡
 
 모바일 메신져 카카오톡에 `AskUp` 채널을 추가하게 되면 `chatGPT` 유사
 기능을 사용할 수 있다. 문제는 언제 `AskUp` 채널 서비스가 중단될지 유료로
@@ -129,23 +131,34 @@ chatGPT가 만들어갈 가까운 미래는 아마도 다양한 **도우미 봇(
 제공하고 있지 않지만 장문의 텍스트는 요약하는 기능을 제공하고 있다.
 
 ::: panel-tabset
-## `askup` 검색 {.unnumbered}
+### `askup` 검색 {.unnumbered}
 
 ![](images/kakao/askup_01.jpg){width="399"}
 
-## 채널추가 {.unnumbered}
+### 채널추가 {.unnumbered}
 
 ![](images/kakao/askup_02.jpg){width="399"}
 
-## 채팅준비 {.unnumbered}
+### 채팅준비 {.unnumbered}
 
 ![](images/kakao/askup_03.jpg){width="399"}
 
-## OCR 사례 {.unnumbered}
+### OCR 사례 {.unnumbered}
 
 ![](images/kakao/ssn.png){width="399"}
 
-## 뉴스 요약 {.unnumbered}
+### 뉴스 요약 {.unnumbered}
 
 ![](images/kakao/news_summary.png){width="399"}
 :::
+
+
+## 슬랙
+
+2023년 3월 7일 Salesforce와 OpenAI는 Slack용 ChatGPT 앱을 출시했다. 
+OpenAI가 Slack 플랫폼에 구축한 이 앱은 ChatGPT의 강력한 AI 기술을 통합하여 즉각적인 대화 요약, 조사 도구 및 작성 지원을 Slack에서 바로 제공하여 수백만 기업이 보다 생산적으로 작업할 수 있도록 지원하기 시작했다.
+
+[출처: [Introducing the ChatGPT App for Slack](https://www.salesforce.com/news/stories/chatgpt-app-for-slack/)]{.aside}
+
+![](images/kakao/Slack_ChatGPT_Blue.gif)
+
