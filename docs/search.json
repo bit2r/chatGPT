@@ -831,5 +831,40 @@
     "title": "chatGPT",
     "section": "\n4.3 보도자료 언론 배포",
     "text": "4.3 보도자료 언론 배포\nchatGPT가 작성한 기사제목(일명 야마)과 본문 내용에 더하여 보도자료 담당자 정보를 붙여 PDF 문서형태로 최종 마무리한다."
+  },
+  {
+    "objectID": "interface.html#askup-검색",
+    "href": "interface.html#askup-검색",
+    "title": "chatGPT",
+    "section": "\naskup 검색",
+    "text": "askup 검색"
+  },
+  {
+    "objectID": "interface.html#채팅준비",
+    "href": "interface.html#채팅준비",
+    "title": "chatGPT",
+    "section": "채팅준비",
+    "text": "채팅준비"
+  },
+  {
+    "objectID": "interface.html#ocr-사례",
+    "href": "interface.html#ocr-사례",
+    "title": "chatGPT",
+    "section": "OCR 사례",
+    "text": "OCR 사례"
+  },
+  {
+    "objectID": "interface.html#뉴스-요약",
+    "href": "interface.html#뉴스-요약",
+    "title": "chatGPT",
+    "section": "뉴스 요약",
+    "text": "뉴스 요약"
+  },
+  {
+    "objectID": "interface.html#채널추가",
+    "href": "interface.html#채널추가",
+    "title": "chatGPT",
+    "section": "채널추가",
+    "text": "채널추가"
   }
 ]
