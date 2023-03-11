@@ -28,15 +28,8 @@ website:
         - href: why_llm.qmd
           text: "왜 거대언어모형인가?"
         - text: "------------------"
-        - href: image2image.qmd
-          text: "이미지 생성"
-        - href: rcoding.qmd
-          text: "GPT R 코딩개발"
-        - href: rcoding-copilot.qmd
-          text: "부조종사 R 코딩개발"
-        - href: math.qmd
-          text: "수학문제"
-        - text: "------------------"
+        - href: interface.qmd
+          text: "인터페이스"
         - href: interview.qmd
           text: "데이터 과학문제"
         - href: deepL.qmd
@@ -45,11 +38,11 @@ website:
         menu:
         - href: use-cases.qmd
           text: "활용사례"
+        - href: intro_avi.qmd
+          text: "법인 R 소개영상"
         - text: "------------------"
         - href: news_article.qmd
           text: "보도자료 작성"
-        - href: intro_avi.qmd
-          text: "R 소개영상"
         - href: intro_book.qmd
           text: "데이터 과학 책"
         - href: intro_paper.qmd
@@ -59,10 +52,20 @@ website:
         - href: yuji.qmd
           text: "멤버 Yuji"
         - text: "------------------"
-        - href: interface.qmd
-          text: "인터페이스"
+        - href: image2image.qmd
+          text: "이미지 생성"
+        - href: stable_diffusion.qmd
+          text: "Stable Diffusion"
+        - text: "------------------"
+        - href: rcoding.qmd
+          text: "GPT R 코딩개발"
+        - href: rcoding-copilot.qmd
+          text: "부조종사 R 코딩개발"
+        - text: "------------------"
+        - href: math.qmd
+          text: "수학문제"
         - href: middle_school.qmd
-          text: "데이터 문해력"
+          text: "Shiny 앱"
       - text: "BERT"
         menu:
         - href: ide.qmd
