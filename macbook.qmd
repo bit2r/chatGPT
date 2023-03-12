@@ -1,0 +1,148 @@
+---
+title: "chatGPT"
+subtitle: "맥북투척사건"
+description: |
+  `chatGPT` 초기 엄청난 기능을 보여주며 모두를 경악시켰을 때, GPT-3.5 기반
+  `chatGPT`가 보여준 "세종대왕 맥북 던짐 사건 알려줘" 지시명령어는 향후 
+  기계와 더불어 살아야하는 현 세대 AI에 대해 시사점이 크다.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# 챗GPT 엉뚱답변
+
+[[유머 Q: 조선왕조실록에 기록된 세종대왕의 맥북프로던짐 사건
+알려줘](https://theqoo.net/index.php?mid=square&document_srl=2726812060)]{.aside}
+
+챗GPT는 다음 단어를 예측하는 기계학습모형으로 어떻게 보면 창의적인
+글쓰기에 최적화된 도구로 간주되고 있다. 따라서, 그럴듯한 문장을
+완성하기는 하지만 그 진위와 사실관계를 파악하는 것은 다른 측면이다.
+이것은 원래 인간이 만든 언어가 갖는 고유한 특성이기도 하다. 즉, 인간의
+언어가 사실도 있지만 그렇지 않은 허구가 많은 것도 사실이고 그럴듯한
+허구를 다양한 측면에서 즐기고 언어의 일환으로 받아들이고 있다.
+
+::: panel-tabset
+## 더쿠
+
+::: {.callout-note collapse="true"}
+## "조선왕조실록에 기록된 세종대왕의 맥북프로 던짐 사건에 대해 알려줘."
+
+세종대왕의 맥북프로 던짐 사건은 조선왕조실록에 기록된 일화로, 15세기
+세종대왕이 새로 개발한 훈민정음(한글)의 초고를 작성하던 중 문서 작성
+중단에 대해 담당자에게 분노해 맥북프로와 함께 그를 방으로 던진
+사건입니다.
+
+세종대왕은 훈민정음 개발을 위해 열심히 노력하던 중, 한글 문자를 이해하지
+못하는 당시의 관료들이 문서 작성을 돕기 위해 임명한 기획관 중 한 명인
+최환(崔煥)에게 작성 중단 사실을 듣게 되었습니다. 세종대왕은 이에
+분노하여 최환을 부르고, 맥북프로를 함께 들고 그를 방으로 불러들이며 화를
+내었습니다. 이후, 세종대왕은 훈민정음의 초고 작성을 다른 담당자에게
+넘겨주게 되었습니다.
+
+이 사건은 조선시대의 통치자로서 세종대왕이 어떻게 민족문화를 발전시키기
+위해 노력했는지를 보여주는 일화로 유명합니다. 또한, 세종대왕의 열정과
+업무처리에 대한 철저한 태도를 보여주는 사례로도 언급되고 있습니다.
+:::
+
+## 맥북 투척
+
+![](images/macbook.webp)
+
+## 맥북 환불
+
+![](images/macbook_refund.webp)
+
+## 지시명령어
+
+![](images/macbook_latest.jpg)
+:::
+
+# 맥북사건 요약
+
+::: {.callout-note collapse="false"}
+## 다음 글을 한줄로 요약해줘
+
+> 세종대왕의 맥북프로 던짐 사건은 조선왕조실록에 기록된 일화로, 15세기
+> 세종대왕이 새로 개발한 훈민정음(한글)의 초고를 작성하던 중 문서 작성
+> 중단에 대해 담당자에게 분노해 맥북프로와 함께 그를 방으로 던진
+> 사건입니다.
+>
+> 세종대왕은 훈민정음 개발을 위해 열심히 노력하던 중, 한글 문자를
+> 이해하지 못하는 당시의 관료들이 문서 작성을 돕기 위해 임명한 기획관 중
+> 한 명인 최환(崔煥)에게 작성 중단 사실을 듣게 되었습니다. 세종대왕은
+> 이에 분노하여 최환을 부르고, 맥북프로를 함께 들고 그를 방으로
+> 불러들이며 화를 내었습니다. 이후, 세종대왕은 훈민정음의 초고 작성을
+> 다른 담당자에게 넘겨주게 되었습니다.
+>
+> 이 사건은 조선시대의 통치자로서 세종대왕이 어떻게 민족문화를
+> 발전시키기 위해 노력했는지를 보여주는 일화로 유명합니다. 또한,
+> 세종대왕의 열정과 업무처리에 대한 철저한 태도를 보여주는 사례로도
+> 언급되고 있습니다.
+
+**세종대왕이 15세기 훈민정음의 초안을 작성하던 중 문서정지 책임자에게
+맥북프로를 던진 사건은 그의 열정과 철저한 업무태도를 엿볼 수 있는
+사건이다.**
+:::
+
+# 맥북사건 시각화
+
+텍스트로 표현된 상기 사실을 이미지로 그려내면 어떤 모습일까?
+
+::: {.callout-note collapse="true"}
+## Stable Diffusion Prompt
+
+A fierce king throwing computer macbook across the room over a medieval
+palace <br> Negative prompt: japan china <br> Steps: 20, Sampler: Euler
+a, CFG scale: 1, Seed: 3101945556, Size: 512x512, Model hash:
+4711ff4dd2, Model: v2-1_768-nonema-pruned <br>
+
+Time taken: 5.20sTorch active/reserved: 3057/3870 MiB, Sys VRAM:
+6090/10240 MiB (59.47%)
+:::
+
+::: panel-tabset
+## `inpaint` 적용 전 {.unnumbered}
+
+![](images/macbook_story.png)
+
+## `inpaint` 적용 중 {.unnumbered}
+
+![](images/macbook_story_working.jpg){width="509"}
+
+## `inpaint` 적용 후 {.unnumbered}
+
+![](images/macbook_story_inpaint.png)
+:::

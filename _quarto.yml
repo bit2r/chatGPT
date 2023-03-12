@@ -40,6 +40,8 @@ website:
           text: "활용사례"
         - href: intro_avi.qmd
           text: "법인 R 소개영상"
+        - href: macbook.qmd
+          text: "맥북 투척사건"
         - text: "------------------"
         - href: news_article.qmd
           text: "보도자료 작성"
