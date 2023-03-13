@@ -970,7 +970,7 @@
     "href": "services.html#nvidia-캔버스",
     "title": "chatGPT",
     "section": "\n2.1 NVIDIA 캔버스",
-    "text": "2.1 NVIDIA 캔버스\n동일한 서비스를 NVIDIA 그래픽 카드가 있는 경우 NVIDIA 캔버스를 다운로드 받아 AI를 사용하여 간단한 붓터치를 사실적인 풍경 이미지로 바꿀 수 있다. 배경을 빠르게 만들거나 컨셉 탐색 속도를 높여 아이디어를 시각화하는 데 더 많은 시간을 할애할 수 있어 시간을 줄여준다.\n\n\n\n\n\n\n구성요소\n사양\n\n\n\nGPU\nNVIDIA GeForce RTX, NVIDIA RTX, or TITAN RTX GPU\n\n\n하드디스크\nSSD\n\n\n운영체제\n윈도우즈 10\n\n\n드라이버\nGeForce RTX 40 시리즈의 경우 520 이상, 기타 모든 GPU의 경우 471.68 이상"
+    "text": "2.1 NVIDIA 캔버스\n동일한 서비스를 NVIDIA 그래픽 카드가 있는 경우 NVIDIA 캔버스를 다운로드 받아 AI를 사용하여 간단한 붓터치를 사실적인 풍경 이미지로 바꿀 수 있다. 배경을 빠르게 만들거나 컨셉 탐색 속도를 높여 아이디어를 시각화하는 데 더 많은 시간을 할애할 수 있어 시간을 줄여준다.\n\n\n\n\n\n\n\n구성요소\n사양\n\n\n\nGPU\nNVIDIA GeForce RTX, NVIDIA RTX, or TITAN RTX GPU\n\n\n하드디스크\nSSD\n\n\n운영체제\n윈도우즈 10\n\n\n드라이버\nGeForce RTX 40 시리즈의 경우 520 이상, 기타 모든 GPU의 경우 471.68 이상"
   },
   {
     "objectID": "services.html#고갱-2-api",
