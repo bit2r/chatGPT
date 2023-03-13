@@ -89,6 +89,10 @@ website:
           text: "HF 파이프라인"
       - href: blog.qmd
         text: "게시글"
+      - text: "유/무료 서비스"
+        menu:
+        - href: services.qmd
+          text: "(유)무료 서비스"
     right:
       - icon: github
         href: https://github.com/bit2r/chatGPT

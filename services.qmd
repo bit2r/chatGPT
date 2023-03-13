@@ -1,0 +1,56 @@
+---
+title: "chatGPT"
+subtitle: "`chatGPT` (유)무료 서비스"
+description: |
+  국내외 `chatGPT` 유무료 서비스를 다음과 같이 꾸준히 정리해 나가고 있습니다.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# GauGAN 2 
+
+NVIDIA가 짧은 단어와 간단한 마우스 클릭으로 사실적인 예술품을 만들어주는 최신 버전의 AI 페인팅 툴 GauGAN2를 공개했다. [바로가기](http://gaugan.org/gaugan2/)
+
+{{< video  https://youtu.be/r5P9-zOfWyE >}}
+
+# B^Edit
+
+'B^ EDIT'는 카카오브레인의 AI 이미지 생성 모델 '칼로(Karlo)'를 기반으로한 'B^ EDIT'로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을 활용해 이미지 수정기능을 제공한다. [바로가기](https://bedit.kakaobrain.com/)
+
+{{< video  https://youtu.be/z1mu1o0rHnI >}}
+
+
+
