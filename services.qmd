@@ -40,17 +40,46 @@ editor:
     wrap: 72
 ---
 
-# GauGAN 2 
+# B\^Edit
 
-NVIDIA가 짧은 단어와 간단한 마우스 클릭으로 사실적인 예술품을 만들어주는 최신 버전의 AI 페인팅 툴 GauGAN2를 공개했다. [바로가기](http://gaugan.org/gaugan2/)
+'B\^ EDIT'는 카카오브레인의 AI 이미지 생성 모델 '칼로(Karlo)'를
+기반으로한 'B\^ EDIT'로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을
+활용해 이미지 수정기능을 제공한다.
+[바로가기](https://bedit.kakaobrain.com/)
 
-{{< video  https://youtu.be/r5P9-zOfWyE >}}
+{{< video https://youtu.be/z1mu1o0rHnI >}}
 
-# B^Edit
+# GauGAN(고갱) 2
 
-'B^ EDIT'는 카카오브레인의 AI 이미지 생성 모델 '칼로(Karlo)'를 기반으로한 'B^ EDIT'로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을 활용해 이미지 수정기능을 제공한다. [바로가기](https://bedit.kakaobrain.com/)
+## NVIDIA 캔버스
 
-{{< video  https://youtu.be/z1mu1o0rHnI >}}
+동일한 서비스를 NVIDIA 그래픽 카드가 있는 경우 [**NVIDIA 캔버스**](https://www.nvidia.com/en-us/studio/canvas/)를 다운로드 받아 AI를 사용하여 간단한 붓터치를 사실적인 풍경 이미지로 바꿀 수 있다. 
+배경을 빠르게 만들거나 컨셉 탐색 속도를 높여 아이디어를 시각화하는 데 더 많은 시간을 할애할 수 있어 시간을 줄여준다.
 
+| 구성요소   | 사양                                                                    |
+|-------------------------------|-----------------------------------------|
+| GPU        | NVIDIA GeForce RTX, NVIDIA RTX, or TITAN RTX GPU                        |
+| 하드디스크 | SSD                                                                     |
+| 운영체제   | 윈도우즈 10                                                             |
+| 드라이버   | GeForce RTX 40 시리즈의 경우 520 이상, 기타 모든 GPU의 경우 471.68 이상 |
 
+![](images/nvidia_canvas.jpg)
+
+## 고갱 2 API
+
+NVIDIA가 짧은 단어와 간단한 마우스 클릭으로 사실적인 예술품을 만들어주는
+최신 버전의 AI 페인팅 툴 GauGAN2를 공개했다. [바로가기](http://gaugan.org/gaugan2/)
+
+:::::::::::::: {.columns}
+::: {.column width="50%"}
+
+{{< video https://youtu.be/HhWBfQlMzTs >}}
+
+:::
+::: {.column width="50%"}
+
+{{< video https://youtu.be/r5P9-zOfWyE >}}
+
+:::
+::::::::::::::
 
