@@ -1,11 +1,14 @@
 import pandas as pd
 import pmdarima as pm
+import numpy as np
 
 # Load the Samsung Electronics stock price data from the 'data/samsung.csv' file into a pandas dataframe
 data = pd.read_csv('data/samsung.csv', index_col='날짜', parse_dates=True)
 
-# Extract the '종가' column as a pandas series
-closing_prices = data['종가']
+data.dtypes
+
+# Extract the '종가' column and leave it as dataframe
+closing_prices = data[['종가']]
 
 # Create an ARIMA model using pmdarima
 stepwise_model = pm.auto_arima(closing_prices, start_p=1, start_q=1,
@@ -18,23 +21,21 @@ stepwise_model = pm.auto_arima(closing_prices, start_p=1, start_q=1,
 
 print(stepwise_model.aic())
 
-# 데이터 
-train = data.loc['1985-01-01':'2016-12-01']
-test = data.loc['2017-01-01':]
+# data.index.min(), # data.index.max()
 
 # Make a prediction for the next 30 days
-df['forecast'] = pd.DataFrame(model.predict(n_periods=30), index = df.index,
-                              columns=[‘Prediction’])
+future_dates = pd.date_range(start='2023-03-15', end='2023-04-14')
+future_forecast = stepwise_model.predict(n_periods = len(future_dates))
 
-# Create a new column in the dataframe to store the predicted prices
-df['Predicted Price'] = None
+# Create a DataFrame of forecasted values with future dates as the index
+forecast_df = pd.DataFrame({'종가': future_forecast,
+                            '날짜': future_dates})
+                            
+forecast_df.set_index('날짜', inplace=True)
 
-# Calculate the predicted prices for the next 30 days
-last_price = closing_prices[-1]
-for i in range(30):
-    predicted_price = last_price * (1 + forecast[i])
-    date = closing_prices.index[-1] + pd.DateOffset(days=i+1)
-    df.at[date, 'Predicted Price'] = predicted_price
+# Print the forecasted values
+full_df = pd.concat([closing_prices, forecast_df], axis = 0)
 
-# Print the dataframe with the predicted prices
-print(df)
+print(full_df)
+
+full_df.to_csv("data/samsung_forecast.csv")

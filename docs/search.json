@@ -1006,5 +1006,12 @@
     "title": "chatGPT",
     "section": "\n1.1 오류 수정",
     "text": "1.1 오류 수정\nlxml 패키지가 설치되지 않는 오류가 발생되었다.\nImportError: lxml not found, please install it\nValueError: No objects to concatenate\n\n\n\n\n\n\n지시명령어\n\n\n\n\n\n\nfix the bug  ImportError: lxml not found, please install it  ValueError: No objects to concatenate  Answer in Korean.\n\npip install lxml"
+  },
+  {
+    "objectID": "samsung.html#예측결과-시각화",
+    "href": "samsung.html#예측결과-시각화",
+    "title": "chatGPT",
+    "section": "\n3.1 예측결과 시각화",
+    "text": "3.1 예측결과 시각화\n삼성전자 주식 예측 결과를 시각화하여 투자 예측 결과를 살펴보자.\n\n\n시각화\n주가예측 표\n\n\n\n\n코드library(tidyverse)\n\nfull_tbl <- read_csv(\"data/samsung_forecast.csv\") %>% \n  ## 자료형 변환 -----------\n  mutate(날짜 = lubridate::ymd(날짜))\n\nfuture_data <- full_tbl %>% \n  filter(날짜 >= as.Date(\"2023-03-15\"))\n\nfull_tbl %>% \n  ## 자료형 변환 -----------\n  mutate(날짜 = lubridate::ymd(날짜)) %>% \n  ggplot(aes(x = 날짜, y = 종가)) +\n    geom_line(color=\"black\") +\n    scale_x_date(date_labels = \"%y년 %m월\") +\n    scale_y_continuous(labels = scales::comma) +\n    theme_bw(base_family = \"MaruBuri Bold\") +\n    labs(x = \"\",\n         title = \"삼성전자주가 최근 3년 주가 추세\",\n         subtitle = \"주가 데이터 크롤링을 chatGPT가 파이썬으로 작성\",\n         caption = \"출처: https://r2bit.com/chatGPT/samsung.html\") +\n    geom_vline(xintercept = as.Date(\"2023-03-14\")) +\n    geom_line(data = future_data, aes(x=날짜, y=종가), color = \"red\", size = 1.5)\n\n\n\n\n\n\n\n\n\n\n코드library(reactable)\n\nfull_tbl %>% \n  arrange(desc(날짜)) %>% \n  reactable::reactable(\n    columns = list(\n    종가 = colDef(format = colFormat(prefix = \"₩ \", separators = TRUE, digits = 0),\n                                     align = \"center\")\n  ))"
   }
 ]

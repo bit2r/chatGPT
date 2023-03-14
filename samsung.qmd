@@ -269,6 +269,8 @@ samsung_tbl %>%
 
 # 예측
 
+데이터에 대한 전반적인 사항은 파악을 했으니 다음 단계로 삼성전자 주가 예측을 통해서 투자수익을 거둘 수 있는 방안을 찾아보자. chatGPT에 과거 3년치 삼성전자 주가 데이터를 바탕으로 1달 예측하는 코드를 작성하게 지시한다.
+
 :::{.callout-warning collapse="false"}
 ## 지시명령어
 
@@ -277,7 +279,9 @@ samsung_tbl %>%
 > 삼성전자 주가를 예측하는데  pmdarima 패키지를 사용해서 1달 예측하는 코드를 작성해주세요. 
 :::
 
+:::{.panel-tabset}
 
+## chatGPT 파이썬 코드 {.unumbered}
 
 ```{python}
 #| eval: false
@@ -291,7 +295,8 @@ df = pd.read_csv('data/samsung.csv', index_col='날짜', parse_dates=True)
 closing_prices = df['종가']
 
 # Create an ARIMA model using pmdarima
-model = pm.auto_arima(closing_prices, seasonal=False, error_action='ignore', suppress_warnings=True)
+model = pm.auto_arima(closing_prices, seasonal=False, 
+                      error_action='ignore', suppress_warnings=True)
 
 # Make a prediction for the next 30 days
 forecast = model.predict(n_periods=30)
@@ -308,6 +313,106 @@ for i in range(30):
 
 # Print the dataframe with the predicted prices
 print(df)
-
 ```
+
+시계열 ARIMA 예측 기반 코드를 제공하지만 실제로 돌려보면 오류가 있어 사람이 손을 봐야 함.
+
+## 사람 작성 코드 {.unnumbered}
+
+```{python}
+#| eval: false
+import pandas as pd
+import pmdarima as pm
+
+# Load the Samsung Electronics stock price data from the 'data/samsung.csv' file into a pandas dataframe
+data = pd.read_csv('data/samsung.csv', index_col='날짜', parse_dates=True)
+
+# Extract the '종가' column and leave it as dataframe
+closing_prices = data[['종가']]
+
+# Create an ARIMA model using pmdarima
+stepwise_model = pm.auto_arima(closing_prices, start_p=1, start_q=1,
+                           max_p=3, max_q=3, m=12,
+                           start_P=0, seasonal=True,
+                           d=1, D=1, trace=True,
+                           error_action='ignore',  
+                           suppress_warnings=True, 
+                           stepwise=True)
+
+print(stepwise_model.aic())
+
+# data.index.min(), # data.index.max()
+
+# Make a prediction for the next 30 days
+future_dates = pd.date_range(start='2023-03-15', end='2023-04-14')
+future_forecast = stepwise_model.predict(n_periods = len(future_dates))
+
+# Create a DataFrame of forecasted values with future dates as the index
+forecast_df = pd.DataFrame({'종가': future_forecast,
+                            '날짜': future_dates})
+                            
+forecast_df.set_index('날짜', inplace=True)
+
+# Print the forecasted values
+full_df = pd.concat([closing_prices, forecast_df], axis = 0)
+
+print(full_df)
+
+full_df.to_csv("data/samsung_forecast.csv")
+```
+
+`chatGPT`가 제시한 코드를 기반으로 자료형을 맞춰 예측값과 결합시켜 예측값의 정확도를 평가할 수 있도록 로컬파일로 떨어뜨림.
+
+:::
+
+## 예측결과 시각화
+
+삼성전자 주식 예측 결과를 시각화하여 투자 예측 결과를 살펴보자.
+
+:::{.panel-tabset}
+
+### 시각화 {.unnumbered}
+
+
+```{r}
+library(tidyverse)
+
+full_tbl <- read_csv("data/samsung_forecast.csv") %>% 
+  ## 자료형 변환 -----------
+  mutate(날짜 = lubridate::ymd(날짜))
+
+future_data <- full_tbl %>% 
+  filter(날짜 >= as.Date("2023-03-15"))
+
+full_tbl %>% 
+  ## 자료형 변환 -----------
+  mutate(날짜 = lubridate::ymd(날짜)) %>% 
+  ggplot(aes(x = 날짜, y = 종가)) +
+    geom_line(color="black") +
+    scale_x_date(date_labels = "%y년 %m월") +
+    scale_y_continuous(labels = scales::comma) +
+    theme_bw(base_family = "MaruBuri Bold") +
+    labs(x = "",
+         title = "삼성전자주가 최근 3년 주가 추세",
+         subtitle = "주가 데이터 크롤링을 chatGPT가 파이썬으로 작성",
+         caption = "출처: https://r2bit.com/chatGPT/samsung.html") +
+    geom_vline(xintercept = as.Date("2023-03-14")) +
+    geom_line(data = future_data, aes(x=날짜, y=종가), color = "red", size = 1.5)
+```
+
+### 주가예측 표 {.unnumbered}
+
+```{r}
+library(reactable)
+
+full_tbl %>% 
+  arrange(desc(날짜)) %>% 
+  reactable::reactable(
+    columns = list(
+    종가 = colDef(format = colFormat(prefix = "₩ ", separators = TRUE, digits = 0),
+                                     align = "center")
+  )) 
+```
+
+:::
 
