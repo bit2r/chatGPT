@@ -1,0 +1,313 @@
+---
+title: "chatGPT"
+subtitle: "삼성전자 주가예측"
+description: |
+  `chatGPT` 코딩 기능을 활용하여 주가를 예측해보자.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - line-highlight   
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+![](images/samsung_codex.jpg)
+
+삼성전자 주가를 예측하는 프로그램을 OpenAI chatGPT를 활용하여 작성해보자.
+
+# 데이터 크롤링
+
+삼성전자 주가를 예측하기 위해서는 데이터가 필요하다. 
+이를 위해서 다음과 같이 지시명령어(prompt)를 작성하여 `chatGPT`에 요청한다.
+
+:::{.callout-warning collapse="false"}
+### 지시명령어
+
+> 파이썬으로 최근 3년간 삼성전자 주가 데이터를 크롤링하여 samsung.csv 파일로 저장하는 코드를 작성해 주세요.
+:::
+
+
+[**대한민국 영업일수** ![](images/samsung_working_day.jpg)]{.aside}
+
+:::{.panel-tabset}
+
+## chatGPT 코드 {.unnumbered}
+
+```{python}
+#| eval: false
+
+import requests
+import pandas as pd
+
+# URL of Samsung Electronics stock historical data
+url = "https://finance.naver.com/item/sise_day.naver?code=005930&page="
+
+# Empty list to store stock price data
+data = []
+
+# Loop through the last 3 years of pages (60 pages in total)
+for page in range(1, 61):
+    # Send a GET request to the URL with the current page number
+    response = requests.get(url + str(page))
+
+    # Read the HTML table into a pandas dataframe
+    df = pd.read_html(response.content)[0]
+
+    # Drop the last row which is just a duplicate of the column headers
+    df = df.drop(len(df) - 1)
+
+    # Append the dataframe to the list
+    data.append(df)
+
+# Concatenate all dataframes into a single dataframe
+df = pd.concat(data)
+
+# Reverse the order of rows to start from the earliest date
+df = df.iloc[::-1]
+
+# Set the date column as the index and remove unnecessary columns
+df = df.set_index('날짜')[['종가', '거래량']]
+
+# Convert the data types of columns to float and int
+df['종가'] = df['종가'].astype(float)
+df['거래량'] = df['거래량'].str.replace(',', '').astype(int)
+
+# Print the resulting dataframe
+print(df)
+```
+
+통상 영업일기준으로 1년을 보통 247일가 된다. 해당 웹사이트 [삼성전자 주식 첫페이지](https://finance.naver.com/item/sise_day.naver?code=005930&page=1)를 일별하면
+한 페이지에 10 영업일 주식거래 데이터가 담겨있어 총 약 반년치 데이터가 누락되어 2.5년 정도 된다고 보면 된다.
+
+## 오류 수정코드 {.unnumbered}
+
+```{python}
+#| eval: false
+#| code-line-numbers: true
+#| source-line-numbers: "14,46,39,49"
+
+
+import requests
+import pandas as pd
+
+# URL of Samsung Electronics stock historical data
+url = "https://finance.naver.com/item/sise_day.naver?code=005930&page="
+
+# Empty list to store stock price data
+data = []
+
+# Loop through the last 3 years of pages (60 pages in total)
+for page in range(1, 61):
+    # Send a GET request to the URL with the current page number
+    response = requests.get(url + str(page), headers={'User-agent': 'Mozilla/5.0'})
+    
+
+    # Check if the response is successful
+    if response.status_code == 200:
+        # Read the HTML table into a pandas dataframe
+        df_list = pd.read_html(response.text, flavor='html5lib')
+
+        # Check if the list of dataframes is not empty
+        if df_list:
+            # Get the first dataframe
+            df = df_list[0]
+
+            # Drop the last row which is just a duplicate of the column headers
+            df = df.drop(len(df) - 1)
+
+            # Append the dataframe to the list
+            data.append(df)
+
+# Concatenate all dataframes into a single dataframe
+df = pd.concat(data)
+
+# Reverse the order of rows to start from the earliest date
+df = df.iloc[::-1]
+
+df = df.dropna()
+
+# Set the date column as the index and remove unnecessary columns
+df = df.set_index('날짜')[['종가', '거래량']]
+
+# Convert the data types of columns to float and int
+df['종가'] = df['종가'].astype(float)
+df['거래량'] = df['거래량'].astype(int)
+
+# Save the dataframe as a CSV file
+df.to_csv('data/samsung.csv')
+
+# Print a confirmation message
+print('samsung.csv saved successfully.')
+```
+
+네이버 주식 일별시세를 읽어오는 경우 `ValueError: No tables found`가 발생되어 
+[네이버 주식 일별 시세 pandas read_html() ValueError: No tables found 오류](https://dasom.net/147) 참조하여 
+오류수정, 크롤링 데이터에 결측값이 포함되어 이를 수정작업 후에ㅏ 마지막으로 자료형 오류수정 후 데이터를 `data/samsung.csv` 파일로 다운로드하여 작업마무리한다.
+
+:::
+
+## 오류 수정
+
+`lxml` 패키지가 설치되지 않는 오류가 발생되었다.
+
+```
+ImportError: lxml not found, please install it
+ValueError: No objects to concatenate
+```
+
+:::{.callout-warning collapse="false"}
+### 지시명령어
+
+> fix the bug <br>
+> ImportError: lxml not found, please install it <br>
+> ValueError: No objects to concatenate <br>
+> Answer in Korean.
+
+`pip install lxml`
+
+:::
+
+# 시각화
+
+앞서 크롤링하여 `.csv` 파일로 저장한 데이터를 `pandas` 데이터프레임 자료구조와
+시각화를 위해서 `matplotlib`으로 시각화하는 코드를 작성하게 지시한다.
+
+:::{.callout-warning collapse="false"}
+## 지시명령어
+
+> 삼성전자 주가데이터가 'data/samsung.csv' 파일에 저장되어 있습니다. pandas 데이터프레임으로 불러읽어와서 x 축에는 '날짜' y축에는 '종가'로 하여 시계열 그래프를 matplotlib으로 작성해주세요
+:::
+
+:::{.panel-tabset}
+
+## chatGPT 파이썬 코드 {.unumbered}
+
+
+```{python}
+#| eval: false
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load the Samsung Electronics stock price data from the 'data/samsung.csv' file into a pandas dataframe
+df = pd.read_csv('data/samsung.csv', index_col='날짜', parse_dates=True)
+
+# Create a time series graph with matplotlib
+plt.plot(df.index, df['종가'])
+
+# Set the x-axis label to 'Date'
+plt.xlabel('Date')
+
+# Set the y-axis label to 'Closing Price'
+plt.ylabel('Closing Price')
+
+# Set the title of the graph to 'Samsung Electronics Stock Price'
+plt.title('Samsung Electronics Stock Price')
+
+# Show the graph
+plt.show()
+
+# PNG 저장
+plt.savefig('images/samsung_matplotlib.png')
+```
+
+![](images/samsung_matplotlib.png)
+
+## 사람작성 R 코드 {.unumbered}
+
+```{r}
+library(tidyverse)
+extrafont::loadfonts()
+
+samsung_tbl <- read_csv("data/samsung.csv")
+
+samsung_tbl %>% 
+  ## 자료형 변환 -----------
+  mutate(날짜 = lubridate::ymd(날짜)) %>% 
+  ggplot(aes(x = 날짜, y = 종가)) +
+    geom_line() +
+    scale_x_date(date_labels = "%y년 %m월") +
+    scale_y_continuous(labels = scales::comma) +
+    theme_bw(base_family = "MaruBuri Bold") +
+    labs(x = "",
+         title = "삼성전자주가 최근 3년 주가 추세",
+         subtitle = "주가 데이터 크롤링을 chatGPT가 파이썬으로 작성",
+         caption = "출처: https://r2bit.com/chatGPT/samsung.html")
+```
+
+:::
+
+
+# 예측
+
+:::{.callout-warning collapse="false"}
+## 지시명령어
+
+> 삼성전자 주가 종가기준 1달 예측하는 모형을 제작하고 예측값을 pandas 데이터프레임에 붙여줘 <br>
+> 선형 회귀모형 대신 ARIMA 모형으로 예측모형을 바꿔서 다시 작성해줘 <br>
+> 삼성전자 주가를 예측하는데  pmdarima 패키지를 사용해서 1달 예측하는 코드를 작성해주세요. 
+:::
+
+
+
+```{python}
+#| eval: false
+import pandas as pd
+import pmdarima as pm
+
+# Load the Samsung Electronics stock price data from the 'data/samsung.csv' file into a pandas dataframe
+df = pd.read_csv('data/samsung.csv', index_col='날짜', parse_dates=True)
+
+# Extract the '종가' column as a pandas series
+closing_prices = df['종가']
+
+# Create an ARIMA model using pmdarima
+model = pm.auto_arima(closing_prices, seasonal=False, error_action='ignore', suppress_warnings=True)
+
+# Make a prediction for the next 30 days
+forecast = model.predict(n_periods=30)
+
+# Create a new column in the dataframe to store the predicted prices
+df['Predicted Price'] = None
+
+# Calculate the predicted prices for the next 30 days
+last_price = closing_prices[-1]
+for i in range(30):
+    predicted_price = last_price * (1 + forecast[i])
+    date = closing_prices.index[-1] + pd.DateOffset(days=i+1)
+    df.at[date, 'Predicted Price'] = predicted_price
+
+# Print the dataframe with the predicted prices
+print(df)
+
+```
+

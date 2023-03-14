@@ -59,6 +59,8 @@ website:
         - href: stable_diffusion.qmd
           text: "Stable Diffusion"
         - text: "------------------"
+        - href: samsung.qmd
+          text: "삼전 주가예측"
         - href: rcoding.qmd
           text: "GPT R 코딩개발"
         - href: rcoding-copilot.qmd
