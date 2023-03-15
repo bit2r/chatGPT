@@ -139,3 +139,30 @@ These papers represent a small sample of highly cited papers, and there are many
 ![](images/chatPDF/kclee_04.png)
 
 :::
+
+
+# 엣지 PDF
+
+[마이크로소프트 엣지(Microsoft Edge)](https://www.microsoft.com/ko-kr/edge)는 마이크로소프트가 개발한 웹 브라우저로, 기존의 인터넷 익스플로러(Internet Explorer)를 대체하기 위해 만들어졌고, 2015년 Windows 10과 함께 처음 공개되었다. 2020년부터 엣지는 구글의 오픈 소스 프로젝트인 크로미움(Chromium) 기반으로 개발되어, 크롬(Chrome)과 같은 엔진을 
+차용하여 엣지는 크롬 확장 프로그램과 호환성이 높아졌고, 성능과 안정성이 향상되었다.
+
+특히 `chatGPT` 기능을 엣지 웹 브라우저에 채용하면서 점유율이 점차 높아지고 있다.
+
+`pdf` 논문을 아도브 아크로뱃 리더 대신 엣지 브라우져에서 열게 되면 `chatPDF` 기능을 자체적으로 사용할 수 있다. 이런 경우 `pdf` 파일을 외부에 전송하지 않고 로컬 컴퓨터에서 작업한다는 점에서 속도 및 보안에 안정성을 높일 수 있다.
+
+
+김건희 여사가 집필한 “온라인 운세 콘텐츠의 이용자들의 이용 만족과 불만족에 따른 회원 유지와 탈퇴에 대한 연구” KCI 등재논문을 엣지에서 열어 `GPT-4` 기능을 확인해보자.
+
+:::{.panel-tabset}
+
+## PDF 원본 {.unnumbered}
+
+<iframe src="./images/yuji/KCI_FI001250967.pdf" title="유지 논문" width="960" height="500"></iframe>
+
+## `GPT-4` 논문 {.unnumbered}
+
+![](images/edge_pdf.jpg)
+
+:::
+
+
