@@ -124,4 +124,17 @@ call webui.bat
 ![](images/stable_diffusion_webui.jpg)
 
 
+# 실사 이미지
+
+실사에 가까운 혹은 실사를 능가하는 이미지도 Stable Diffusion 을 이용하면 가능하다.
+
+
+- ChilloutMix: https://civitai.com/api/download/models/11745
+- Lora: KrakExilios/koreandoll at main (huggingface.co) 
+- VAE: stabilityai/sd-vae-ft-mse-original at main (huggingface.co)
+- Negative prompt: https://civitai.com/api/download/models/5637
+
+
+
+
 

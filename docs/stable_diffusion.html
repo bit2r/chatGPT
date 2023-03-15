@@ -200,6 +200,10 @@ ga('send', {
     <a class="dropdown-item" href="./intro_avi.html">
  <span class="dropdown-text">법인 R 소개영상</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./macbook.html">
+ <span class="dropdown-text">맥북 투척사건</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
     <a class="dropdown-item" href="./news_article.html">
@@ -223,14 +227,18 @@ ga('send', {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./image2image.html">
- <span class="dropdown-text">이미지 생성</span></a>
+    <a class="dropdown-item" href="./text2image.html">
+ <span class="dropdown-text">텍스트 → 이미지 생성</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./stable_diffusion.html">
  <span class="dropdown-text">Stable Diffusion</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./samsung.html">
+ <span class="dropdown-text">삼전 주가예측</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="./rcoding.html">
  <span class="dropdown-text">GPT R 코딩개발</span></a>
@@ -292,6 +300,17 @@ ga('send', {
     <a class="nav-link" href="./blog.html">
  <span class="menu-text">게시글</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">유/무료 서비스</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">
+<li>
+    <a class="dropdown-item" href="./services.html">
+ <span class="dropdown-text">(유)무료 서비스</span></a>
+  </li>  
+    </ul>
+</li>
 </ul>
 <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item compact">
@@ -370,6 +389,7 @@ ga('send', {
   <li><a href="#%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95" id="toc-환경설정" class="nav-link" data-scroll-target="#%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95"><span class="toc-section-number">3.2</span>  환경설정</a></li>
   </ul>
 </li>
+  <li><a href="#%EC%8B%A4%EC%82%AC-%EC%9D%B4%EB%AF%B8%EC%A7%80" id="toc-실사-이미지" class="nav-link" data-scroll-target="#%EC%8B%A4%EC%82%AC-%EC%9D%B4%EB%AF%B8%EC%A7%80"><span class="toc-section-number">4</span>  실사 이미지</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -434,11 +454,20 @@ ga('send', {
 <figure class="figure"><p><a href="images/stable_diffusion_webui.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/stable_diffusion_webui.jpg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
+</section></section><section id="실사-이미지" class="level1" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> 실사 이미지</h1>
+<p>실사에 가까운 혹은 실사를 능가하는 이미지도 Stable Diffusion 을 이용하면 가능하다.</p>
+<ul>
+<li>ChilloutMix: https://civitai.com/api/download/models/11745</li>
+<li>Lora: KrakExilios/koreandoll at main (huggingface.co)</li>
+<li>VAE: stabilityai/sd-vae-ft-mse-original at main (huggingface.co)</li>
+<li>Negative prompt: https://civitai.com/api/download/models/5637</li>
+</ul>
 
 
 <!-- -->
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -862,7 +891,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
 <span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/stable_diffusion_webui.jpg)</span></span>
 <span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="fu"># 실사 이미지</span></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>실사에 가까운 혹은 실사를 능가하는 이미지도 Stable Diffusion 을 이용하면 가능하다.</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>ChilloutMix: https://civitai.com/api/download/models/11745</span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lora: KrakExilios/koreandoll at main (huggingface.co) </span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>VAE: stabilityai/sd-vae-ft-mse-original at main (huggingface.co)</span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Negative prompt: https://civitai.com/api/download/models/5637</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
@@ -870,7 +912,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":true});</script>
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":true,"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom"});</script>
 
 
 </body></html>

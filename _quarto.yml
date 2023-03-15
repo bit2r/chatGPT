@@ -54,8 +54,8 @@ website:
         - href: yuji.qmd
           text: "멤버 Yuji"
         - text: "------------------"
-        - href: image2image.qmd
-          text: "이미지 생성"
+        - href: text2image.qmd
+          text: "텍스트 → 이미지 생성"
         - href: stable_diffusion.qmd
           text: "Stable Diffusion"
         - text: "------------------"
