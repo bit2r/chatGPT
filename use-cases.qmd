@@ -141,5 +141,9 @@ TLDR(Too Long; Didn't Read)은 전체 뉴스기사 등을 읽을 필요없이 �
 
 ![](images/fb_insult_gpt4.jpeg)
 
+## BING {.unnumbered}
+
+![](images/fb_bing.jpeg)
+
 :::
 
