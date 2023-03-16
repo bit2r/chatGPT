@@ -127,14 +127,36 @@ call webui.bat
 # 실사 이미지
 
 실사에 가까운 혹은 실사를 능가하는 이미지도 Stable Diffusion 을 이용하면 가능하다.
+Stable Diffusion 기본 모형으로도 고품질 이미지를 얻을 수 있으나,
+특정 인종(아시아 등)에 특화된 모델을 차용하는 경우 더 좋은 품질을 얻을 수 있다.
+
+[civitai](https://civitai.com) 혹은 [GitHub 저장소](https://github.com/civitai/civitai)에서 필요한 모형을 다운로드 받아 [Stable Diffusion web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui)를 인터페이스로 다양한 인공지능 이미지를 제작한다.
+
+- ChilloutMix(아시아 여성): https://civitai.com/api/download/models/11745
+- Lora(한국 아이돌): [KrakExilios/koreandoll](https://huggingface.co/datasets/KrakExilios/koreandoll
+- VAE: [stabilityai/sd-vae-ft-mse-original](https://huggingface.co/stabilityai/sd-vae-ft-mse-original)
+- Negative prompt: [](https://civitai.com/api/download/models/5637)
+
+![](images/stable_diffusion.jpg)
+
+## 실사 사진 예시
+
+한국 50대 남성/(아이돌)여성 이미지를 다음 지시명령어와 앞서 다운로드 받아 설정한 내용을 바탕으로 AI 이미지를 생성한다.
+
+> Positive prompt:RAW photo, a portrait photo of 50 y.o korean woman wearing glass in clothes, night seoul, (high detailed skin:1.2), 8k uhd, dslr, soft lighting, high quality, film grain, Fujifilm XT3 <lora:koreanDollLikeness_v15:1>
+
+> Negative prompt: (earings, deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime:1.4), text, close up, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck
+
+> Steps: 77, Sampler: Euler a, CFG scale: 7, Seed: 2987338690, Size: 512x512, Model hash: 20bae33336, Model: realisticVisionV13_v13
+
+> Time taken: 44.08sTorch active/reserved: 2949/3390 MiB, Sys VRAM: 5610/10240 MiB (54.79%)
 
 
-- ChilloutMix: https://civitai.com/api/download/models/11745
-- Lora: KrakExilios/koreandoll at main (huggingface.co) 
-- VAE: stabilityai/sd-vae-ft-mse-original at main (huggingface.co)
-- Negative prompt: https://civitai.com/api/download/models/5637
+::: {layout-ncol=3}
 
+![안경 쓴 50대 한국남성](images/real_photo/korean_man_50.png)
 
+![안경 쓴 50대 한국여성](images/real_photo/korean_woman_50.png)
 
-
-
+![안경 쓴 50대 아이돌 한국여성](images/real_photo/korean_woman_lora_50.png)
+:::

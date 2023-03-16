@@ -1041,5 +1041,12 @@
     "title": "chatGPT",
     "section": "\n1.1 openai 패키지",
     "text": "1.1 openai 패키지\nopenai 패키지 create_image() 함수를 사용하여 이미지를 제작할 수 있다.\n\n코드library(tidyverse)\nlibrary(openai)\n\n# usethis::edit_r_environ(scope = \"project\")\n\nresponse <- create_image(\n    prompt = \"Create R programming language logo for Korean R user group in a kandinsky and Gustav Klimt style embracing Python programming language supported by many contributors around the world, which must include R logo from R consortium and wikipedia\",\n    n = 1,\n    size = \"256x256\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\nlibrary(magick)\nR_logo <- image_read(response$data$url)\nprint(R_logo)\n\nmagick::image_write(R_logo, \"images/R_logo.png\")"
+  },
+  {
+    "objectID": "stable_diffusion.html#실사-사진-예시",
+    "href": "stable_diffusion.html#실사-사진-예시",
+    "title": "chatGPT",
+    "section": "\n4.1 실사 사진 예시",
+    "text": "4.1 실사 사진 예시\n한국 50대 남성/(아이돌)여성 이미지를 다음 지시명령어와 앞서 다운로드 받아 설정한 내용을 바탕으로 AI 이미지를 생성한다.\n\nPositive prompt:RAW photo, a portrait photo of 50 y.o korean woman wearing glass in clothes, night seoul, (high detailed skin:1.2), 8k uhd, dslr, soft lighting, high quality, film grain, Fujifilm XT3 \n\n\nNegative prompt: (earings, deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime:1.4), text, close up, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck\n\n\nSteps: 77, Sampler: Euler a, CFG scale: 7, Seed: 2987338690, Size: 512x512, Model hash: 20bae33336, Model: realisticVisionV13_v13\n\n\nTime taken: 44.08sTorch active/reserved: 2949/3390 MiB, Sys VRAM: 5610/10240 MiB (54.79%)\n\n\n\n\n\n안경 쓴 50대 한국남성\n\n\n\n\n안경 쓴 50대 한국여성\n\n\n\n\n안경 쓴 50대 아이돌 한국여성"
   }
 ]

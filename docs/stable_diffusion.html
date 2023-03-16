@@ -389,7 +389,12 @@ ga('send', {
   <li><a href="#%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95" id="toc-환경설정" class="nav-link" data-scroll-target="#%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95"><span class="toc-section-number">3.2</span>  환경설정</a></li>
   </ul>
 </li>
-  <li><a href="#%EC%8B%A4%EC%82%AC-%EC%9D%B4%EB%AF%B8%EC%A7%80" id="toc-실사-이미지" class="nav-link" data-scroll-target="#%EC%8B%A4%EC%82%AC-%EC%9D%B4%EB%AF%B8%EC%A7%80"><span class="toc-section-number">4</span>  실사 이미지</a></li>
+  <li>
+<a href="#%EC%8B%A4%EC%82%AC-%EC%9D%B4%EB%AF%B8%EC%A7%80" id="toc-실사-이미지" class="nav-link" data-scroll-target="#%EC%8B%A4%EC%82%AC-%EC%9D%B4%EB%AF%B8%EC%A7%80"><span class="toc-section-number">4</span>  실사 이미지</a>
+  <ul class="collapse">
+<li><a href="#%EC%8B%A4%EC%82%AC-%EC%82%AC%EC%A7%84-%EC%98%88%EC%8B%9C" id="toc-실사-사진-예시" class="nav-link" data-scroll-target="#%EC%8B%A4%EC%82%AC-%EC%82%AC%EC%A7%84-%EC%98%88%EC%8B%9C"><span class="toc-section-number">4.1</span>  실사 사진 예시</a></li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -456,18 +461,59 @@ ga('send', {
 </div>
 </section></section><section id="실사-이미지" class="level1" data-number="4"><h1 data-number="4">
 <span class="header-section-number">4</span> 실사 이미지</h1>
-<p>실사에 가까운 혹은 실사를 능가하는 이미지도 Stable Diffusion 을 이용하면 가능하다.</p>
+<p>실사에 가까운 혹은 실사를 능가하는 이미지도 Stable Diffusion 을 이용하면 가능하다. Stable Diffusion 기본 모형으로도 고품질 이미지를 얻을 수 있으나, 특정 인종(아시아 등)에 특화된 모델을 차용하는 경우 더 좋은 품질을 얻을 수 있다.</p>
+<p><a href="https://civitai.com">civitai</a> 혹은 <a href="https://github.com/civitai/civitai">GitHub 저장소</a>에서 필요한 모형을 다운로드 받아 <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">Stable Diffusion web UI</a>를 인터페이스로 다양한 인공지능 이미지를 제작한다.</p>
 <ul>
-<li>ChilloutMix: https://civitai.com/api/download/models/11745</li>
-<li>Lora: KrakExilios/koreandoll at main (huggingface.co)</li>
-<li>VAE: stabilityai/sd-vae-ft-mse-original at main (huggingface.co)</li>
-<li>Negative prompt: https://civitai.com/api/download/models/5637</li>
+<li>ChilloutMix(아시아 여성): https://civitai.com/api/download/models/11745</li>
+<li>Lora(한국 아이돌): [KrakExilios/koreandoll](https://huggingface.co/datasets/KrakExilios/koreandoll</li>
+<li>VAE: <a href="https://huggingface.co/stabilityai/sd-vae-ft-mse-original">stabilityai/sd-vae-ft-mse-original</a>
+</li>
+<li>Negative prompt: <a href="https://civitai.com/api/download/models/5637"></a>
+</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/stable_diffusion.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/stable_diffusion.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<section id="실사-사진-예시" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="실사-사진-예시">
+<span class="header-section-number">4.1</span> 실사 사진 예시</h2>
+<p>한국 50대 남성/(아이돌)여성 이미지를 다음 지시명령어와 앞서 다운로드 받아 설정한 내용을 바탕으로 AI 이미지를 생성한다.</p>
+<blockquote class="blockquote">
+<p>Positive prompt:RAW photo, a portrait photo of 50 y.o korean woman wearing glass in clothes, night seoul, (high detailed skin:1.2), 8k uhd, dslr, soft lighting, high quality, film grain, Fujifilm XT3 <koreandolllikeness_v15:1></koreandolllikeness_v15:1></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Negative prompt: (earings, deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime:1.4), text, close up, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Steps: 77, Sampler: Euler a, CFG scale: 7, Seed: 2987338690, Size: 512x512, Model hash: 20bae33336, Model: realisticVisionV13_v13</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Time taken: 44.08sTorch active/reserved: 2949/3390 MiB, Sys VRAM: 5610/10240 MiB (54.79%)</p>
+</blockquote>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
+<figure class="figure"><p><a href="images/real_photo/korean_man_50.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="안경 쓴 50대 한국남성"><img src="images/real_photo/korean_man_50.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">안경 쓴 50대 한국남성</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
+<figure class="figure"><p><a href="images/real_photo/korean_woman_50.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="안경 쓴 50대 한국여성"><img src="images/real_photo/korean_woman_50.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">안경 쓴 50대 한국여성</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 33.3%;justify-content: center;">
+<figure class="figure"><p><a href="images/real_photo/korean_woman_lora_50.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="안경 쓴 50대 아이돌 한국여성"><img src="images/real_photo/korean_woman_lora_50.png" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">안경 쓴 50대 아이돌 한국여성</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 <!-- -->
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -895,16 +941,39 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="fu"># 실사 이미지</span></span>
 <span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>실사에 가까운 혹은 실사를 능가하는 이미지도 Stable Diffusion 을 이용하면 가능하다.</span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>ChilloutMix: https://civitai.com/api/download/models/11745</span>
-<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lora: KrakExilios/koreandoll at main (huggingface.co) </span>
-<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>VAE: stabilityai/sd-vae-ft-mse-original at main (huggingface.co)</span>
-<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Negative prompt: https://civitai.com/api/download/models/5637</span>
-<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>Stable Diffusion 기본 모형으로도 고품질 이미지를 얻을 수 있으나,</span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>특정 인종(아시아 등)에 특화된 모델을 차용하는 경우 더 좋은 품질을 얻을 수 있다.</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">civitai</span><span class="co">](https://civitai.com)</span> 혹은 <span class="co">[</span><span class="ot">GitHub 저장소</span><span class="co">](https://github.com/civitai/civitai)</span>에서 필요한 모형을 다운로드 받아 <span class="co">[</span><span class="ot">Stable Diffusion web UI</span><span class="co">](https://github.com/AUTOMATIC1111/stable-diffusion-webui)</span>를 인터페이스로 다양한 인공지능 이미지를 제작한다.</span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>ChilloutMix(아시아 여성): https://civitai.com/api/download/models/11745</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lora(한국 아이돌): <span class="co">[</span><span class="ot">KrakExilios/koreandoll</span><span class="co">]</span>(https://huggingface.co/datasets/KrakExilios/koreandoll</span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>VAE: <span class="co">[</span><span class="ot">stabilityai/sd-vae-ft-mse-original</span><span class="co">](https://huggingface.co/stabilityai/sd-vae-ft-mse-original)</span></span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Negative prompt: [](https://civitai.com/api/download/models/5637)</span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/stable_diffusion.jpg)</span></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## 실사 사진 예시</span></span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>한국 50대 남성/(아이돌)여성 이미지를 다음 지시명령어와 앞서 다운로드 받아 설정한 내용을 바탕으로 AI 이미지를 생성한다.</span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Positive prompt:RAW photo, a portrait photo of 50 y.o korean woman wearing glass in clothes, night seoul, (high detailed skin:1.2), 8k uhd, dslr, soft lighting, high quality, film grain, Fujifilm XT3 </span><span class="kw">&lt;lora:koreanDollLikeness_v15:1&gt;</span></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Negative prompt: (earings, deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime:1.4), text, close up, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck</span></span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Steps: 77, Sampler: Euler a, CFG scale: 7, Seed: 2987338690, Size: 512x512, Model hash: 20bae33336, Model: realisticVisionV13_v13</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Time taken: 44.08sTorch active/reserved: 2949/3390 MiB, Sys VRAM: 5610/10240 MiB (54.79%)</span></span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>::: {layout-ncol=3}</span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a><span class="al">![안경 쓴 50대 한국남성](images/real_photo/korean_man_50.png)</span></span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a><span class="al">![안경 쓴 50대 한국여성](images/real_photo/korean_woman_50.png)</span></span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a><span class="al">![안경 쓴 50대 아이돌 한국여성](images/real_photo/korean_woman_lora_50.png)</span></span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
@@ -912,7 +981,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":true,"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"loop":true,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","closeEffect":"zoom"});</script>
 
 
 </body></html>
