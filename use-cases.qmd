@@ -112,3 +112,34 @@ TLDR(Too Long; Didn't Read)은 전체 뉴스기사 등을 읽을 필요없이 �
 
 ![](images/chatGPT_tldr.gif)
 
+# 욕 감별기
+
+[HateScore : Human-in-the-Loop and Neutral Korean Multi-label Online Hate Speech Dataset](https://github.com/sgunderscore/hatescore-korean-hate-speech) 코드와 관련 혐오 데이터셋이  정리되어 있다. 대표적인 GPT 모델을 바탕으로 욕을 감별할 수 있는지 살펴보자. 
+
+> 지시명령어: "안녕? 아래의 문장이 한글 욕설이니 아니니? 만약 욕설이라면 그 이유는 무엇이고 
+> 이 문장은 무슨 내용이니? 아니라면 왜 아닌지에 대해서도 알려줘 <br>
+> "이 7H사ㅣ77 |야"
+
+해당 지시명령어는 KST 2023년 3월 16일 오후 8시 사용기록을 근거하고 있다.
+
+:::{.panel-tabset}
+
+## 페이스북 게시글 {.unnumbered}
+
+![](images/fb_insult.jpeg)
+
+## GPT-3.5 Default {.unnumbered}
+
+![](images/fb_insult_gpt35.jpeg)
+
+
+## GPT-3.5 Legacy {.unnumbered}
+
+![](images/fb_insult_gpt35_legacy.jpeg)
+
+## GPT-4 {.unnumbered}
+
+![](images/fb_insult_gpt4.jpeg)
+
+:::
+
