@@ -1048,5 +1048,26 @@
     "title": "chatGPT",
     "section": "\n4.1 실사 사진 예시",
     "text": "4.1 실사 사진 예시\n한국 50대 남성/(아이돌)여성 이미지를 다음 지시명령어와 앞서 다운로드 받아 설정한 내용을 바탕으로 AI 이미지를 생성한다.\n\nPositive prompt:RAW photo, a portrait photo of 50 y.o korean woman wearing glass in clothes, night seoul, (high detailed skin:1.2), 8k uhd, dslr, soft lighting, high quality, film grain, Fujifilm XT3 \n\n\nNegative prompt: (earings, deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime:1.4), text, close up, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck\n\n\nSteps: 77, Sampler: Euler a, CFG scale: 7, Seed: 2987338690, Size: 512x512, Model hash: 20bae33336, Model: realisticVisionV13_v13\n\n\nTime taken: 44.08sTorch active/reserved: 2949/3390 MiB, Sys VRAM: 5610/10240 MiB (54.79%)\n\n\n\n\n\n안경 쓴 50대 한국남성\n\n\n\n\n안경 쓴 50대 한국여성\n\n\n\n\n안경 쓴 50대 아이돌 한국여성"
+  },
+  {
+    "objectID": "office.html",
+    "href": "office.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "사무생산성의 혁신을 가져온 마이크로소프트 오피스 제품이 출현하기 전까지 역사는 문자와 종이 역사를 참고한다."
+  },
+  {
+    "objectID": "office.html#마이크로소프트",
+    "href": "office.html#마이크로소프트",
+    "title": "chatGPT",
+    "section": "\n4.1 마이크로소프트",
+    "text": "4.1 마이크로소프트\n마이크로소프트는 GPT-4 부조종사(copilot)를 오피스 제품과 서비스에 붙여 사무업무에 큰 변화를 예고하고 있다.\nWorkLab: Exploring the Science of Work and Ingenuity Introducing Microsoft 365 Copilot—A whole new way to work\n\n\n업무방식\n동작방식\n워드\n엑셀\nPPT\n아웃룩\n팀즈\n채팅\n줌미팅\n\n\n\nCLI → GUI → CLI (Prompt)\n\n\n\nMicrosoft 365 Copilot은 Apps와 그래프와 LLM이 유기적으로 동작하여 최선의 결과를 제시함.\n\n\n\n미팅 노트, 작성 문서, 템플릿 등을 넣어주면 워드문서를 자동생성하고 “Summary” 도 자동으로 생성하여 삽입.\n\n\n\n엑셀에 나와 있는 데이터를 다양한 표와 그래프로 생성하고 분석결과에 대한 인사이트도 제공\n\n\n\n제안서 문서가 있는 경우 이를 PPT로 초안을 자동 생성함.\n\n\n\n전자우편에 담긴 정보를 분석하여 제공하고 초안도 작성함.\n\n\n\n팀즈를 통한 회의가 진해오디면 회의록 작성, Action Item, 업무 담당자 지정 등을 부조종사가 대략적인 업무를 정리함.\n\n\n\n관련 정보를 모두 가져와서 사용자가 제시하는 질문에 대답을 하고 방향도 제시함.\n\n\n\n미팅에 늦게 들어갔을 경우 채팅창에 부조종사를 호출하여 진행된 미팅에 대한 전반적인 사항을 파악할 수 있음."
+  },
+  {
+    "objectID": "office.html#구글",
+    "href": "office.html#구글",
+    "title": "chatGPT",
+    "section": "\n4.2 구글",
+    "text": "4.2 구글\nGoogle Worksapce에 AI (GPT)를 탑재하는 홍보영상을 게시하였으나 실제 사용까지는 다소 시간이 걸릴 것으로 보인다.\nA new era for AI and Google Workspace\n\n\n적용제품\n업무방식\n구글 Docs\n구글 Gmail\n\n\n\n\n\nGmail: 초안 작성, 답장, 요약 및 우선순위 지정\n\nDocs: 브레인스토밍, 교정, 작성, 재작성\n\nSlide: 자동 생성된 이미지, 오디오, 동영상으로 창의적인 작업\n\nSheets: 자동 완성, 수식 생성, 상황별 분류를 통해 원시 데이터에서 인사이트와 분석.\n\nMeet: 새로운 배경을 생성하고 메모를 캡처\n\nChat: 작업을 완료하기 위한 워크플로우 활성화"
   }
 ]

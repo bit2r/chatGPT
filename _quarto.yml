@@ -42,6 +42,8 @@ website:
           text: "법인 R 소개영상"
         - href: macbook.qmd
           text: "맥북 투척사건"
+        - href: office.qmd
+          text: "오피스 전쟁"
         - text: "------------------"
         - href: news_article.qmd
           text: "보도자료 작성"
