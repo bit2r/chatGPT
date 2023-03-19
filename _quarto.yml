@@ -44,6 +44,8 @@ website:
           text: "맥북 투척사건"
         - href: office.qmd
           text: "오피스 전쟁"
+        - href: about_gpt.qmd
+          text: "GPT 역사"
         - text: "------------------"
         - href: news_article.qmd
           text: "보도자료 작성"
@@ -69,7 +71,7 @@ website:
           text: "부조종사 R 코딩개발"
         - text: "------------------"
         - href: math.qmd
-          text: "수학문제"
+          text: "수학문제 (MIT)"
         - href: middle_school.qmd
           text: "Shiny 앱"
       - text: "BERT"

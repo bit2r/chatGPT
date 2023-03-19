@@ -101,7 +101,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -134,6 +137,7 @@ ga('send', {
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="css/quarto.css">
 </head>
 <body class="nav-fixed">
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
@@ -170,22 +174,9 @@ ga('send', {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./image2image.html">
- <span class="dropdown-text">이미지 생성</span></a>
+    <a class="dropdown-item" href="./interface.html">
+ <span class="dropdown-text">인터페이스</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./rcoding.html">
- <span class="dropdown-text">GPT R 코딩개발</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./rcoding-copilot.html">
- <span class="dropdown-text">부조종사 R 코딩개발</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./math.html">
- <span class="dropdown-text">수학문제</span></a>
-  </li>  
-        <li><hr class="dropdown-divider"></li>
         <li>
     <a class="dropdown-item" href="./interview.html">
  <span class="dropdown-text">데이터 과학문제</span></a>
@@ -205,14 +196,26 @@ ga('send', {
     <a class="dropdown-item" href="./use-cases.html">
  <span class="dropdown-text">활용사례</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_avi.html">
+ <span class="dropdown-text">법인 R 소개영상</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./macbook.html">
+ <span class="dropdown-text">맥북 투척사건</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./office.html">
+ <span class="dropdown-text">오피스 전쟁</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./about_gpt.html">
+ <span class="dropdown-text">GPT 역사</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
     <a class="dropdown-item" href="./news_article.html">
  <span class="dropdown-text">보도자료 작성</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./intro_avi.html">
- <span class="dropdown-text">R 소개영상</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./intro_book.html">
@@ -227,13 +230,39 @@ ga('send', {
  <span class="dropdown-text">학술연구(R&amp;D)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./middle_school.html">
- <span class="dropdown-text">데이터 문해력</span></a>
+    <a class="dropdown-item" href="./yuji.html">
+ <span class="dropdown-text">멤버 Yuji</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./interface.html">
- <span class="dropdown-text">인터페이스</span></a>
+    <a class="dropdown-item" href="./text2image.html">
+ <span class="dropdown-text">텍스트 → 이미지 생성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./stable_diffusion.html">
+ <span class="dropdown-text">Stable Diffusion</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./samsung.html">
+ <span class="dropdown-text">삼전 주가예측</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding.html">
+ <span class="dropdown-text">GPT R 코딩개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding-copilot.html">
+ <span class="dropdown-text">부조종사 R 코딩개발</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./math.html">
+ <span class="dropdown-text">수학문제 (MIT)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./middle_school.html">
+ <span class="dropdown-text">Shiny 앱</span></a>
   </li>  
     </ul>
 </li>
@@ -279,6 +308,17 @@ ga('send', {
     <a class="nav-link" href="./blog.html">
  <span class="menu-text">게시글</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">유/무료 서비스</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">
+<li>
+    <a class="dropdown-item" href="./services.html">
+ <span class="dropdown-text">(유)무료 서비스</span></a>
+  </li>  
+    </ul>
+</li>
 </ul>
 <ul class="navbar-nav navbar-nav-scroll ms-auto">
 <li class="nav-item compact">
@@ -355,10 +395,35 @@ ga('send', {
   <li><a href="#%EB%B2%88-%EB%AC%B8%EC%A0%9C-1" id="toc-번-문제-1" class="nav-link" data-scroll-target="#%EB%B2%88-%EB%AC%B8%EC%A0%9C-1"><span class="toc-section-number">1.2</span>  3번 문제</a></li>
   </ul>
 </li>
+  <li>
+<a href="#mit-%EC%9E%85%ED%95%99%EC%8B%9C%ED%97%98" id="toc-mit-입학시험" class="nav-link" data-scroll-target="#mit-%EC%9E%85%ED%95%99%EC%8B%9C%ED%97%98"><span class="toc-section-number">2</span>  MIT 입학시험</a>
+  <ul class="collapse">
+<li>
+<a href="#%EC%82%B0%EC%88%A0-arithmetic" id="toc-산술-arithmetic" class="nav-link" data-scroll-target="#%EC%82%B0%EC%88%A0-arithmetic"><span class="toc-section-number">2.1</span>  산술 (Arithmetic)</a>
+  <ul class="collapse">
+<li><a href="#ocr-%EA%B2%B0%EA%B3%BC" id="toc-ocr-결과" class="nav-link" data-scroll-target="#ocr-%EA%B2%B0%EA%B3%BC"><span class="toc-section-number">2.1.1</span>  OCR 결과</a></li>
+  <li><a href="#bing-ai" id="toc-bing-ai" class="nav-link" data-scroll-target="#bing-ai"><span class="toc-section-number">2.1.2</span>  Bing AI</a></li>
+  </ul>
+</li>
+  <li><a href="#%ED%95%B4%EB%8B%B5" id="toc-해답" class="nav-link" data-scroll-target="#%ED%95%B4%EB%8B%B5"><span class="toc-section-number">2.2</span>  해답</a></li>
+  <li>
+<a href="#%EB%8C%80%EC%88%98algebra" id="toc-대수algebra" class="nav-link" data-scroll-target="#%EB%8C%80%EC%88%98algebra"><span class="toc-section-number">2.3</span>  대수(Algebra)</a>
+  <ul class="collapse">
+<li><a href="#%ED%95%B4%EB%8B%B5-1" id="toc-해답-1" class="nav-link" data-scroll-target="#%ED%95%B4%EB%8B%B5-1"><span class="toc-section-number">2.3.1</span>  해답</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#%EA%B8%B0%ED%95%98" id="toc-기하" class="nav-link" data-scroll-target="#%EA%B8%B0%ED%95%98"><span class="toc-section-number">2.4</span>  기하</a>
+  <ul class="collapse">
+<li><a href="#%ED%95%B4%EB%8B%B5-2" id="toc-해답-2" class="nav-link" data-scroll-target="#%ED%95%B4%EB%8B%B5-2"><span class="toc-section-number">2.4.1</span>  해답</a></li>
+  </ul>
+</li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="수능-짝수형-문제" class="level1" data-number="1"><h1 data-number="1">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><section id="수능-짝수형-문제" class="level1" data-number="1"><h1 data-number="1">
 <span class="header-section-number">1</span> 수능 짝수형 문제</h1>
 <section id="번-문제" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="번-문제">
 <span class="header-section-number">1.1</span> 2번 문제</h2>
@@ -379,8 +444,11 @@ ga('send', {
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">solve_math_02</span><span class="op">$</span><span class="va">choices</span><span class="op">$</span><span class="va">text</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; f'(1)의 값은 5입니다.</span></span>
-<span><span class="co">#&gt; f(x)는 x^3+3x^2+x-1이므로, 미분하면 f'(x) = 3x^2 + 6x + 1이 됩니다. 그리고 x = 1일 때, f'(1) = 3*1^2 + 6*1 + 1 = 5가 됩니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">#&gt; f^{\prime}(1) = 3 x^2+6 x+1 </span></span>
+<span><span class="co">#&gt; = 3 + 6 + 1 </span></span>
+<span><span class="co">#&gt; = 10 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; f^{\prime}(1)은 주어진 함수 f(x)의 도함수 f'(x)를 계산한 값으로, f'(x)에 x=1을 대입한 값이므로 값은 10이 됩니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section><section id="번-문제-1" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="번-문제-1">
@@ -427,11 +495,132 @@ a_2=6, \quad a_4+a_6=36
 \therefore \quad &amp; a_1 + 3d + a_1 + 5d = 36
 \end{align}
 \]</span></p>
+</section></section><section id="mit-입학시험" class="level1 page-columns page-full" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> MIT 입학시험</h1>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="https://web.archive.org/web/20120403061216/http://libraries.mit.edu/archives/exhibits/exam/index.html">Massachusetts Institute of Technology - Entrance Examination, 1869-70</a></span></div></div>
+<section id="산술-arithmetic" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="산술-arithmetic">
+<span class="header-section-number">2.1</span> 산술 (Arithmetic)</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/MIT/arithmetic.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/MIT/arithmetic.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<section id="ocr-결과" class="level3" data-number="2.1.1"><h3 data-number="2.1.1" class="anchored" data-anchor-id="ocr-결과">
+<span class="header-section-number">2.1.1</span> OCR 결과</h3>
+<ol type="1">
+<li>Find the sum, then the difference, and then the product of <span class="math inline">\(3 \frac{5}{9}\)</span> and <span class="math inline">\(1 \frac{7}{24}\)</span>. Divide <span class="math inline">\(3 \frac{5}{9}\)</span> by <span class="math inline">\(1 \frac{7}{24}\)</span>.</li>
+<li>Multiply 73 thousandths by 19 hundredths.</li>
+<li>Divide 2880 by .0036 .</li>
+<li>Find the value in decimals of <span class="math inline">\(\frac{1}{5}+\frac{8}{4}\)</span>.</li>
+<li>What part of the month of August is <span class="math inline">\(\frac{7}{18}\)</span> minutes?</li>
+<li>IIow many degrees in .01 of a circumference?</li>
+<li>By selling a house and lot for <span class="math inline">\(\$ 5,790\)</span>, the owner lost <span class="math inline">\(3 \frac{1}{2}\)</span> per cent. What was their cost?</li>
+</ol></section><section id="bing-ai" class="level3" data-number="2.1.2"><h3 data-number="2.1.2" class="anchored" data-anchor-id="bing-ai">
+<span class="header-section-number">2.1.2</span> Bing AI</h3>
+<ol type="1">
+<li>Sure! Let’s first convert the mixed numbers to improper fractions. <span class="math inline">\(3 \frac{5}{9}\)</span> is equal to <span class="math inline">\(\frac{32}{9}\)</span> and <span class="math inline">\(1 \frac{7}{24}\)</span> is equal to <span class="math inline">\(\frac{31}{24}\)</span>.</li>
+</ol>
+<p>Now we can find the sum: <span class="math inline">\(\frac{32}{9} + \frac{31}{24} = \frac{(32)(8) + (31)(3)}{(9)(8)} = \frac{256 + 93}{72} = \frac{349}{72}\)</span>.</p>
+<p>The difference is: <span class="math inline">\(\frac{32}{9} - \frac{31}{24} = \frac{(32)(8) - (31)(3)}{(9)(8)} = \frac{256 - 93}{72} = \frac{163}{72}\)</span>.</p>
+<p>The product is: <span class="math inline">\(\left(\dfrac{32}{9}\right)\left(\dfrac{31}{24}\right) = \dfrac{(32)(31)}{(9)(24)} = \dfrac{992}{216}\)</span>.</p>
+<p>To divide <span class="math inline">\(3 \frac{5}{9}\)</span> by <span class="math inline">\(1 \frac{7}{24}\)</span>, we can multiply <span class="math inline">\(3 \frac{5}{9}\)</span> by the reciprocal of <span class="math inline">\(1 \frac{7}{24}\)</span>. The reciprocal of <span class="math inline">\(\dfrac{31}{24}\)</span> is <span class="math inline">\(\dfrac{24}{31}\)</span>.</p>
+<p>So the quotient is: <span class="math inline">\(\left(\dfrac{32}{9}\right)\left(\dfrac{24}{31}\right) = \dfrac{(32)(24)}{(9)(31)} = \dfrac{768}{279}\)</span>.</p>
+</section></section><section id="해답" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="해답">
+<span class="header-section-number">2.2</span> 해답</h2>
+<ol type="1">
+<li>Sum: <span class="math inline">\(3 \frac{5}{9}+1 \frac{7}{24}=\frac{32}{9}+\frac{31}{24}=\frac{256}{72}+\frac{93}{72}=\frac{349}{72}\)</span> or <span class="math inline">\(4 \frac{61}{72}\)</span> Diff: <span class="math inline">\(3 \frac{5}{9}-1 \frac{7}{24}=\frac{163}{72}\)</span> or <span class="math inline">\(2 \frac{19}{72}\)</span> Prod: <span class="math inline">\(3 \frac{5}{9} \cdot 1 \frac{7}{24}=\frac{124}{27}\)</span> or <span class="math inline">\(4 \frac{16}{27}\)</span> <span class="math inline">\(D \omega: 3 \frac{5}{9} \div 1 \frac{7}{24}=\frac{32}{9} \div \frac{31}{24}=\frac{32}{9} \cdot \frac{24}{31}=\frac{256}{93}\)</span> or <span class="math inline">\(2 \frac{70}{99}\)</span>
+</li>
+<li>
+<span class="math inline">\(\frac{73}{1000} \cdot \frac{19}{100}=\frac{1387}{100000}\)</span> or .01387 or 1387 hundread thousandths</li>
+<li>
+<span class="math inline">\(\frac{2880}{.0036}=\frac{28800000}{36}=800,000\)</span> or 8 hundread thousandths</li>
+<li>
+<span class="math inline">\(\quad \frac{1}{5}+\frac{3}{9}=\frac{4}{20}+\frac{15}{20}=\frac{19}{20} \cdot \frac{5}{5}=\frac{95}{100}=.95\)</span> 5 A uguat has 31 doys <span class="math inline">\(=744\)</span> hours <span class="math inline">\(=44640\)</span> mcim oner munute <span class="math inline">\(=\frac{1}{44640}\)</span> part of Angust So <span class="math inline">\(\frac{7}{18} \min =\frac{7}{18}\left(\frac{1}{44640}\right)=\frac{7}{803520}\)</span> fart of Auguet</li>
+<li>1 Corcumforence <span class="math inline">\(=360^{\circ} ;\)</span>. of of cercumferene <span class="math inline">\(=3.6^{\circ}\)</span>
+</li>
+<li>lose of <span class="math inline">\(3 \frac{1}{2} \%\)</span> makes sulhing pric <span class="math inline">\(=100 \%-3 \frac{1}{2} \%=96.5 \%\)</span> of cast <span class="math inline">\(8 / 5790=96.5 \%\)</span> of coet; <span class="math inline">\(5790=\frac{96.5}{100} \&amp;\)</span> cost; cost <span class="math inline">\(=5790 \cdot \frac{100}{96,5}=\$ 6000\)</span>
+</li>
+</ol></section><section id="대수algebra" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="대수algebra">
+<span class="header-section-number">2.3</span> 대수(Algebra)</h2>
+<ol type="1">
+<li>If <span class="math inline">\(e=8\)</span>, find the numerical value of the following expression: <span class="math display">\[
+e-\{\sqrt{ }(e+1)+2\}+(e-\sqrt[3]{ } e) \sqrt{ }(e-4)
+\]</span>
+</li>
+<li>Simplify the following expression by removing the brackets and collecting like terms : <span class="math display">\[
+3 a-[b+(2 a-b)-(a-b)]
+\]</span>
+</li>
+<li>Multiply <span class="math inline">\(3 a^2+a b-b^2\)</span> by <span class="math inline">\(a^2-2 a b-3 b^2\)</span>, and divide the product by <span class="math inline">\(a+b\)</span>.</li>
+<li>Reduce the following fraction to its lowest terms: <span class="math display">\[
+\frac{x^6+a^2 x^3 y}{x^6-a^4 y^2}
+\]</span>
+</li>
+<li>Simplify <span class="math inline">\(\left.\left\{\frac{a+b}{a-b}+\frac{a-b}{a+b}\right\}\right\} \div-\left\{\frac{a+b}{a-b}-\frac{a-b}{a+b}\right\}\)</span>.</li>
+<li>Solve <span class="math inline">\(\frac{3 x-4}{2}-\frac{6 x-5}{8}=\frac{3 x-1}{16}\)</span>.</li>
+<li>Solve <span class="math inline">\(7 x-5 y=24, \quad 4 x-3 y=11\)</span>.</li>
+</ol>
+<section id="해답-1" class="level3" data-number="2.3.1"><h3 data-number="2.3.1" class="anchored" data-anchor-id="해답-1">
+<span class="header-section-number">2.3.1</span> 해답</h3>
+<ol type="1">
+<li><span class="math display">\[
+\begin{aligned}
+e-[\sqrt{e+1}+2]+(e-\sqrt[3]{e}) \sqrt{e-4} &amp; e=8 \\
+8-[\sqrt{9}+2] &amp; +(8-\sqrt[3]{8}) \sqrt{8-4} \\
+8-5 &amp; +(8-2) \cdot 2=8-5+6 \times 2=3+12=15
+\end{aligned}
+\]</span></li>
+<li>
+<span class="math inline">\(3 a-[b+(2 a-b)-(Q-b)]\)</span> <span class="math display">\[
+3 a-[b+2 a-b-a+b]-3 a-[a+b]=3 a-a-b-2 a-b
+\]</span> <span class="math inline">\(3 \frac{\left(3 a a^2+a b-b^2\right)\left(a^2-2 a b-3 b^2\right)}{a+b}=\frac{\left(3 a^2+a b-b^2\right)(a-3 b)(a+b)}{(a+b)}=\)</span> <span class="math inline">\(3 a^3+a^2 b-a b^2-9 a^2 b-3 a b^2+3 b^3=3 a^3-8 a^2 b-4 a b^2+3 b^3\)</span> <span class="math inline">\(4 \frac{x^6+a^2 x^3 y}{x^6-a^4 y^2}=\frac{x^3\left(x^3+a^2-y\right)}{\left(x^2+a^2+\right)\left(x^3+a^2-y\right)}=\frac{x^3}{x^3+a^2 y}\)</span>
+</li>
+<li><span class="math display">\[
+\begin{aligned}
+&amp; {\left[\frac{a+b}{a-b}+\frac{a-b}{a+b}\right] \div\left[\frac{a+b}{a-b}-\frac{a-b}{a+b}\right]=} \\
+&amp; {\left[\frac{(a+b)^2+(a-b)^2}{(a-b)(a+b)}\right] \cdot\left[\frac{(a-b)(a+b)}{(a+b)^2-(a-b)^2}\right]=} \\
+&amp; \frac{a^2+2 a b+b^2+a^2-2 a b+b^2}{a^2+2 a b+a^2-a^2+2 a b-b^2}=\frac{2 a^2+2 b^2}{4 a b}=\frac{a^2+b^2}{2 a b}
+\end{aligned}
+\]</span></li>
+</ol>
+<span class="math display">\[\begin{aligned}
+&amp;\begin{aligned}
+&amp; 6 \frac{3 x-4}{2}-\frac{6 x-5}{8}=\frac{3 x-1}{16} ; \frac{8(3 x-4)}{8 \cdot 2}-\frac{2(6 x-5)}{2 \cdot 8}=\frac{3 x-1}{16} \\
+&amp; 24-32-12 x+10=3 x-1 \\
+&amp; 9 x=21 \quad x=7 / 3
+\end{aligned}\\
+
+&amp;\begin{aligned}
+&amp; 2 x-5 y=24 \\
+&amp; \alpha=17 \\
+&amp; 7(17)-5 y=24 \\
+&amp; y=19 \\
+&amp; 119-5 y=24:-5 y=-95: \quad y=19 \\
+&amp;
+\end{aligned}
+\end{aligned}\]</span>
+</section></section><section id="기하" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="기하">
+<span class="header-section-number">2.4</span> 기하</h2>
+<ol type="1">
+<li>Prove that the sum of the three angles of a plano triangle equals two right angles.</li>
+<li>Prove that the diagonal of a parallelogram divides it into two equat triangles.</li>
+<li>Prove that the area of a trapezoid is equal to the half sum of its parallel bases multiplied by its altitude.</li>
+<li>Prove that the side of a regular hexagon inscribed in a circle is equal to its radius.</li>
+<li>The radius of a circle equals 10 . Find its area.</li>
+<li>The perpendicular dropped from the vertex of the right angle upon the hypothenuse divides it into two segments of 9 and 16 feet respectively. Find the lengths of the perpendicular, and the two legs of the triangle.</li>
+<li>Define similar polygons. To what are their areas proportional?</li>
+</ol>
+<section id="해답-2" class="level3" data-number="2.4.1"><h3 data-number="2.4.1" class="anchored" data-anchor-id="해답-2">
+<span class="header-section-number">2.4.1</span> 해답</h3>
+<p>Geometry 1. Live triangle <span class="math inline">\(A B C\)</span> construct a kine through <span class="math inline">\(A\)</span> parallel to side <span class="math inline">\(\overline{B C}\)</span> angles <span class="math inline">\(x, y\)</span> and a are formed at vertex <span class="math inline">\(A\)</span> (1) The sum of all angles on one side of a line equal <span class="math inline">\(180^{\circ}\)</span> at a front; <span class="math inline">\(y+a+y=180\)</span> A right angle contains <span class="math inline">\(90^{\circ}\)</span> <span class="math inline">\(\overline{A B}\)</span> and <span class="math inline">\(\overline{A C}\)</span> an transcuersals intersecting the two parallel hires: <span class="math inline">\(\overline{B C}\)</span> and line tromp <span class="math inline">\(A\)</span> <span class="math inline">\(\angle A B C=\angle x\)</span> and <span class="math inline">\(\angle A C B=\angle y\)</span> because alternate interior angles of parallel hines are equal. (1) Since <span class="math inline">\(x+a+y=180^{\circ}\)</span> by subshticher <span class="math inline">\(\angle A B C+a+\angle A C B=180^{\circ}=\)</span> two rigitangles</p>
+<ol start="2" type="1">
+<li><p>Twin parallelogram <span class="math inline">\(A B C D\)</span> with diagonal <span class="math inline">\(B D\)</span> <span class="math inline">\(\overline{A D} \| \overline{B C}\)</span> and <span class="math inline">\(\overline{A B} \| \overline{D C}\)</span> becanec oppose sides of a parallegran are parallel <span class="math inline">\(\angle x=\angle d\)</span> and <span class="math inline">\(\angle b=\angle y\)</span> because alternate interior angles formed by 2 parallel bice cat by a transversal are = <span class="math inline">\(\overline{B D}\)</span> is a side of both brixingles “is congunchat” Herfou, <span class="math inline">\(\triangle A B D \cong \triangle \triangle D B\)</span> by the property If 2 angles of one triangle and the included vide are congruent to 2 angles and the included side of another brangle, the 2 triangles are Congruent (equal</p></li>
+<li><p>Trapezoid <span class="math inline">\(A B C D\)</span> has basen of <span class="math inline">\(b_1(\overline{A B})+b_2(\overline{D C})\)</span> and altude of <span class="math inline">\(h\)</span>. construnt a hine threr <span class="math inline">\(C\)</span> parallel to side DA Eutend <span class="math inline">\(\overline{A B}\)</span> through, <span class="math inline">\(B\)</span>, trentersed the line chrough <span class="math inline">\(C\)</span> at pout F AFCDis a parallelogram weth area <span class="math inline">\(h b_2\)</span> and side <span class="math inline">\(\overline{D C}=\overline{A F}\)</span> becamee appasite sedu f a perallebgeren are equd The alttiede of <span class="math inline">\(\triangle C B F=h\)</span> Areed <span class="math inline">\(\triangle C B F-\frac{1}{2} \overline{B F} \cdot h\)</span> <span class="math inline">\(\widehat{B F}=\overline{A F}-b_1=b_2-b_1 ;\)</span>; lentictite <span class="math inline">\(b_2-b_1\)</span> fo <span class="math inline">\(\overline{B F}\)</span> Aree of <span class="math inline">\(\triangle C B F=\frac{1}{2}\left(b_2-b_1\right) \cdot h\)</span> Area of trapegaid <span class="math inline">\(A B C D=\)</span> Area of paullingram <span class="math inline">\(A F C D\)</span>-aread <span class="math inline">\(\triangle C B F\)</span> <span class="math inline">\(\begin{aligned} &amp; =b_2 \cdot h \quad-\frac{1}{2}\left(b_2-b_1\right) h= \\ b_2 \cdot h-\frac{1}{2} b_2 h+\frac{1}{2} b_1 h &amp; =\frac{1}{2} h\left(b_1+b_2\right) \\ \therefore \text { Area of trappoid = } &amp; \frac{1}{2} \text { susan of paratled bacere meulhpths by itallehde }\end{aligned}\)</span></p></li>
+</ol>
 
 
 <!-- -->
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -847,6 +1036,157 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>\therefore \quad &amp; a_1 + 3d + a_1 + 5d = 36</span>
 <span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
 <span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a><span class="fu"># MIT 입학시험</span></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">Massachusetts Institute of Technology - Entrance Examination, 1869-70</span><span class="co">](https://web.archive.org/web/20120403061216/http://libraries.mit.edu/archives/exhibits/exam/index.html)</span>]{.aside}</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="fu">## 산술 (Arithmetic)</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/MIT/arithmetic.png)</span></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="fu">### OCR 결과</span></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Find the sum, then the difference, and then the product of $3 \frac{5}{9}$ and $1 \frac{7}{24}$. Divide $3 \frac{5}{9}$ by $1 \frac{7}{24}$.</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Multiply 73 thousandths by 19 hundredths.</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Divide 2880 by .0036 .</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Find the value in decimals of $\frac{1}{5}+\frac{8}{4}$.</span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>What part of the month of August is $\frac{7}{18}$ minutes?</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>IIow many degrees in .01 of a circumference?</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>By selling a house and lot for $\$ 5,790$, the owner lost $3 \frac{1}{2}$ per cent. What was their cost?</span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="fu">### Bing AI</span></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>Sure! Let’s first convert the mixed numbers to improper fractions. $3 \frac{5}{9}$ is equal to $\frac{32}{9}$ and $1 \frac{7}{24}$ is equal to $\frac{31}{24}$.</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>Now we can find the sum: $\frac{32}{9} + \frac{31}{24} = \frac{(32)(8) + (31)(3)}{(9)(8)} = \frac{256 + 93}{72} = \frac{349}{72}$.</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>The difference is: $\frac{32}{9} - \frac{31}{24} = \frac{(32)(8) - (31)(3)}{(9)(8)} = \frac{256 - 93}{72} = \frac{163}{72}$.</span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>The product is: $\left(\dfrac{32}{9}\right)\left(\dfrac{31}{24}\right) = \dfrac{(32)(31)}{(9)(24)} = \dfrac{992}{216}$.</span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>To divide $3 \frac{5}{9}$ by $1 \frac{7}{24}$, we can multiply $3 \frac{5}{9}$ by the reciprocal of $1 \frac{7}{24}$. The reciprocal of $\dfrac{31}{24}$ is $\dfrac{24}{31}$. </span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>So the quotient is: $\left(\dfrac{32}{9}\right)\left(\dfrac{24}{31}\right) = \dfrac{(32)(24)}{(9)(31)} = \dfrac{768}{279}$.</span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a><span class="fu">## 해답</span></span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Sum: $3 \frac{5}{9}+1 \frac{7}{24}=\frac{32}{9}+\frac{31}{24}=\frac{256}{72}+\frac{93}{72}=\frac{349}{72}$ or $4 \frac{61}{72}$ Diff: $3 \frac{5}{9}-1 \frac{7}{24}=\frac{163}{72}$ or $2 \frac{19}{72}$</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>Prod: $3 \frac{5}{9} \cdot 1 \frac{7}{24}=\frac{124}{27}$ or $4 \frac{16}{27}$</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>$D \omega: 3 \frac{5}{9} \div 1 \frac{7}{24}=\frac{32}{9} \div \frac{31}{24}=\frac{32}{9} \cdot \frac{24}{31}=\frac{256}{93}$ or $2 \frac{70}{99}$</span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>$\frac{73}{1000} \cdot \frac{19}{100}=\frac{1387}{100000}$ or .01387 or 1387 hundread thousandths</span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>$\frac{2880}{.0036}=\frac{28800000}{36}=800,000$ or 8 hundread thousandths</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>$\quad \frac{1}{5}+\frac{3}{9}=\frac{4}{20}+\frac{15}{20}=\frac{19}{20} \cdot \frac{5}{5}=\frac{95}{100}=.95$</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>5 A uguat has 31 doys $=744$ hours $=44640$ mcim oner munute $=\frac{1}{44640}$ part of Angust</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>So $\frac{7}{18} \min =\frac{7}{18}\left(\frac{1}{44640}\right)=\frac{7}{803520}$ fart of Auguet</span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>1 Corcumforence $=360^{\circ} ;$. of of cercumferene $=3.6^{\circ}$</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>lose of $3 \frac{1}{2} \%$ makes sulhing pric $=100 \%-3 \frac{1}{2} \%=96.5 \%$ of cast $8 / 5790=96.5 \%$ of coet; $5790=\frac{96.5}{100} <span class="sc">\&amp;</span>$ cost; cost $=5790 \cdot \frac{100}{96,5}=\$ 6000$</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a><span class="fu">## 대수(Algebra)</span></span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>If $e=8$, find the numerical value of the following expression:</span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>e-<span class="sc">\{</span>\sqrt{ }(e+1)+2<span class="sc">\}</span>+(e-\sqrt<span class="co">[</span><span class="ot">3</span><span class="co">]</span>{ } e) \sqrt{ }(e-4)</span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Simplify the following expression by removing the brackets and collecting like terms :</span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>3 a-<span class="co">[</span><span class="ot">b+(2 a-b)-(a-b)</span><span class="co">]</span></span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Multiply $3 a^2+a b-b^2$ by $a^2-2 a b-3 b^2$, and divide the product by $a+b$.</span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Reduce the following fraction to its lowest terms:</span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>\frac{x^6+a^2 x^3 y}{x^6-a^4 y^2}</span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Simplify $\left.\left<span class="sc">\{</span>\frac{a+b}{a-b}+\frac{a-b}{a+b}\right<span class="sc">\}</span>\right<span class="sc">\}</span> \div-\left<span class="sc">\{</span>\frac{a+b}{a-b}-\frac{a-b}{a+b}\right<span class="sc">\}</span>$.</span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Solve $\frac{3 x-4}{2}-\frac{6 x-5}{8}=\frac{3 x-1}{16}$.</span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Solve $7 x-5 y=24, \quad 4 x-3 y=11$.</span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a><span class="fu">### 해답</span></span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$$</span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a>e-<span class="co">[</span><span class="ot">\sqrt{e+1}+2</span><span class="co">]</span>+(e-\sqrt<span class="co">[</span><span class="ot">3</span><span class="co">]</span>{e}) \sqrt{e-4} &amp; e=8 <span class="sc">\\</span></span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a>8-<span class="co">[</span><span class="ot">\sqrt{9}+2</span><span class="co">]</span> &amp; +(8-\sqrt<span class="co">[</span><span class="ot">3</span><span class="co">]</span>{8}) \sqrt{8-4} <span class="sc">\\</span></span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a>8-5 &amp; +(8-2) \cdot 2=8-5+6 \times 2=3+12=15</span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>$3 a-<span class="co">[</span><span class="ot">b+(2 a-b)-(Q-b)</span><span class="co">]</span>$</span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a>3 a-<span class="co">[</span><span class="ot">b+2 a-b-a+b</span><span class="co">]</span>-3 a-<span class="co">[</span><span class="ot">a+b</span><span class="co">]</span>=3 a-a-b-2 a-b</span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a>$3 \frac{\left(3 a a^2+a b-b^2\right)\left(a^2-2 a b-3 b^2\right)}{a+b}=\frac{\left(3 a^2+a b-b^2\right)(a-3 b)(a+b)}{(a+b)}=$ $3 a^3+a^2 b-a b^2-9 a^2 b-3 a b^2+3 b^3=3 a^3-8 a^2 b-4 a b^2+3 b^3$</span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>$4 \frac{x^6+a^2 x^3 y}{x^6-a^4 y^2}=\frac{x^3\left(x^3+a^2-y\right)}{\left(x^2+a^2+\right)\left(x^3+a^2-y\right)}=\frac{x^3}{x^3+a^2 y}$</span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a>5.</span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a>&amp; {\left<span class="co">[</span><span class="ot">\frac{a+b}{a-b}+\frac{a-b}{a+b}\right</span><span class="co">]</span> \div\left<span class="co">[</span><span class="ot">\frac{a+b}{a-b}-\frac{a-b}{a+b}\right</span><span class="co">]</span>=} <span class="sc">\\</span></span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a>&amp; {\left<span class="co">[</span><span class="ot">\frac{(a+b)^2+(a-b)^2}{(a-b)(a+b)}\right</span><span class="co">]</span> \cdot\left<span class="co">[</span><span class="ot">\frac{(a-b)(a+b)}{(a+b)^2-(a-b)^2}\right</span><span class="co">]</span>=} <span class="sc">\\</span></span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>&amp; \frac{a^2+2 a b+b^2+a^2-2 a b+b^2}{a^2+2 a b+a^2-a^2+2 a b-b^2}=\frac{2 a^2+2 b^2}{4 a b}=\frac{a^2+b^2}{2 a b}</span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a>&amp;\begin{aligned}</span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a>&amp; 6 \frac{3 x-4}{2}-\frac{6 x-5}{8}=\frac{3 x-1}{16} ; \frac{8(3 x-4)}{8 \cdot 2}-\frac{2(6 x-5)}{2 \cdot 8}=\frac{3 x-1}{16} <span class="sc">\\</span></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>&amp; 24-32-12 x+10=3 x-1 <span class="sc">\\</span></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a>&amp; 9 x=21 \quad x=7 / 3</span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a>\end{aligned}<span class="sc">\\</span></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a>&amp;\begin{aligned}</span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a>&amp; 2 x-5 y=24 <span class="sc">\\</span></span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a>&amp; \alpha=17 <span class="sc">\\</span></span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a>&amp; 7(17)-5 y=24 <span class="sc">\\</span></span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a>&amp; y=19 <span class="sc">\\</span></span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a>&amp; 119-5 y=24:-5 y=-95: \quad y=19 <span class="sc">\\</span></span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a>&amp;</span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a><span class="fu">## 기하</span></span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Prove that the sum of the three angles of a plano triangle equals two right angles.</span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Prove that the diagonal of a parallelogram divides it into two equat triangles.</span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Prove that the area of a trapezoid is equal to the half sum of its parallel bases multiplied by its altitude.</span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Prove that the side of a regular hexagon inscribed in a circle is equal to its radius.</span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>The radius of a circle equals 10 . Find its area.</span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>The perpendicular dropped from the vertex of the right angle upon the hypothenuse divides it into two segments of 9 and 16 feet respectively. Find the lengths of the perpendicular, and the two legs of the triangle.</span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Define similar polygons. To what are their areas proportional?</span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a><span class="fu">### 해답</span></span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a>Geometry</span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Live triangle $A B C$</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a>construct a kine through $A$ parallel to side $\overline{B C}$</span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>angles $x, y$ and a are formed at vertex $A$</span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a>(1) The sum of all angles on one side of a line equal $180^{\circ}$ at a front; $y+a+y=180$ A right angle contains $90^{\circ}$</span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>$\overline{A B}$ and $\overline{A C}$ an transcuersals intersecting the two</span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>parallel hires: $\overline{B C}$ and line tromp $A$</span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>$\angle A B C=\angle x$ and $\angle A C B=\angle y$ because</span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>alternate interior angles of parallel hines are equal.</span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a>(1) Since $x+a+y=180^{\circ}$</span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a>by subshticher $\angle A B C+a+\angle A C B=180^{\circ}=$ two rigitangles</span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Twin parallelogram $A B C D$ with diagonal $B D$</span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a>$\overline{A D} \| \overline{B C}$ and $\overline{A B} \| \overline{D C}$ becanec oppose sides of a parallegran are parallel</span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a>$\angle x=\angle d$ and $\angle b=\angle y$ because alternate interior angles formed by 2 parallel bice cat by a transversal are =</span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a>$\overline{B D}$ is a side of both brixingles "is congunchat" Herfou, $\triangle A B D \cong \triangle \triangle D B$ by the property If 2 angles of one triangle and the included vide are congruent to 2 angles and the included side of another brangle, the 2 triangles are Congruent (equal</span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a>3.</span>
+<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a>Trapezoid $A B C D$ has basen of $b_1(\overline{A B})+b_2(\overline{D C})$ and altude of $h$.</span>
+<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a>construnt a hine threr $C$ parallel to side DA Eutend $\overline{A B}$ through, $B$, trentersed the line chrough $C$ at pout F</span>
+<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a>AFCDis a parallelogram weth area $h b_2$ and side $\overline{D C}=\overline{A F}$ becamee appasite sedu f a perallebgeren are equd</span>
+<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a>The alttiede of $\triangle C B F=h$ Areed $\triangle C B F-\frac{1}{2} \overline{B F} \cdot h$ $\widehat{B F}=\overline{A F}-b_1=b_2-b_1 ;$; lentictite $b_2-b_1$ fo $\overline{B F}$ Aree of $\triangle C B F=\frac{1}{2}\left(b_2-b_1\right) \cdot h$</span>
+<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a>Area of trapegaid $A B C D=$ Area of paullingram $A F C D$-aread $\triangle C B F$ $\begin{aligned} &amp; =b_2 \cdot h \quad-\frac{1}{2}\left(b_2-b_1\right) h= <span class="sc">\\</span> b_2 \cdot h-\frac{1}{2} b_2 h+\frac{1}{2} b_1 h &amp; =\frac{1}{2} h\left(b_1+b_2\right) <span class="sc">\\</span> \therefore \text { Area of trappoid = } &amp; \frac{1}{2} \text { susan of paratled bacere meulhpths by itallehde }\end{aligned}$</span>
+<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
@@ -855,7 +1195,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":true,"openEffect":"zoom","closeEffect":"zoom"});</script>
 
 
 </body></html>

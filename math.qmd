@@ -115,3 +115,155 @@ $$
 \therefore \quad & a_1 + 3d + a_1 + 5d = 36
 \end{align}
 $$
+
+# MIT 입학시험
+
+[[Massachusetts Institute of Technology - Entrance Examination, 1869-70](https://web.archive.org/web/20120403061216/http://libraries.mit.edu/archives/exhibits/exam/index.html)]{.aside}
+
+
+## 산술 (Arithmetic)
+
+
+![](images/MIT/arithmetic.png)
+
+
+### OCR 결과
+
+1. Find the sum, then the difference, and then the product of $3 \frac{5}{9}$ and $1 \frac{7}{24}$. Divide $3 \frac{5}{9}$ by $1 \frac{7}{24}$.
+2. Multiply 73 thousandths by 19 hundredths.
+3. Divide 2880 by .0036 .
+4. Find the value in decimals of $\frac{1}{5}+\frac{8}{4}$.
+5. What part of the month of August is $\frac{7}{18}$ minutes?
+6. IIow many degrees in .01 of a circumference?
+7. By selling a house and lot for $\$ 5,790$, the owner lost $3 \frac{1}{2}$ per cent. What was their cost?
+
+### Bing AI
+
+1. 
+Sure! Let’s first convert the mixed numbers to improper fractions. $3 \frac{5}{9}$ is equal to $\frac{32}{9}$ and $1 \frac{7}{24}$ is equal to $\frac{31}{24}$.
+
+Now we can find the sum: $\frac{32}{9} + \frac{31}{24} = \frac{(32)(8) + (31)(3)}{(9)(8)} = \frac{256 + 93}{72} = \frac{349}{72}$.
+
+The difference is: $\frac{32}{9} - \frac{31}{24} = \frac{(32)(8) - (31)(3)}{(9)(8)} = \frac{256 - 93}{72} = \frac{163}{72}$.
+
+The product is: $\left(\dfrac{32}{9}\right)\left(\dfrac{31}{24}\right) = \dfrac{(32)(31)}{(9)(24)} = \dfrac{992}{216}$.
+
+To divide $3 \frac{5}{9}$ by $1 \frac{7}{24}$, we can multiply $3 \frac{5}{9}$ by the reciprocal of $1 \frac{7}{24}$. The reciprocal of $\dfrac{31}{24}$ is $\dfrac{24}{31}$. 
+
+So the quotient is: $\left(\dfrac{32}{9}\right)\left(\dfrac{24}{31}\right) = \dfrac{(32)(24)}{(9)(31)} = \dfrac{768}{279}$.
+
+
+## 해답
+
+1. Sum: $3 \frac{5}{9}+1 \frac{7}{24}=\frac{32}{9}+\frac{31}{24}=\frac{256}{72}+\frac{93}{72}=\frac{349}{72}$ or $4 \frac{61}{72}$ Diff: $3 \frac{5}{9}-1 \frac{7}{24}=\frac{163}{72}$ or $2 \frac{19}{72}$
+Prod: $3 \frac{5}{9} \cdot 1 \frac{7}{24}=\frac{124}{27}$ or $4 \frac{16}{27}$
+$D \omega: 3 \frac{5}{9} \div 1 \frac{7}{24}=\frac{32}{9} \div \frac{31}{24}=\frac{32}{9} \cdot \frac{24}{31}=\frac{256}{93}$ or $2 \frac{70}{99}$
+2. $\frac{73}{1000} \cdot \frac{19}{100}=\frac{1387}{100000}$ or .01387 or 1387 hundread thousandths
+3. $\frac{2880}{.0036}=\frac{28800000}{36}=800,000$ or 8 hundread thousandths
+4. $\quad \frac{1}{5}+\frac{3}{9}=\frac{4}{20}+\frac{15}{20}=\frac{19}{20} \cdot \frac{5}{5}=\frac{95}{100}=.95$
+5 A uguat has 31 doys $=744$ hours $=44640$ mcim oner munute $=\frac{1}{44640}$ part of Angust
+So $\frac{7}{18} \min =\frac{7}{18}\left(\frac{1}{44640}\right)=\frac{7}{803520}$ fart of Auguet
+6. 1 Corcumforence $=360^{\circ} ;$. of of cercumferene $=3.6^{\circ}$
+7. lose of $3 \frac{1}{2} \%$ makes sulhing pric $=100 \%-3 \frac{1}{2} \%=96.5 \%$ of cast $8 / 5790=96.5 \%$ of coet; $5790=\frac{96.5}{100} \&$ cost; cost $=5790 \cdot \frac{100}{96,5}=\$ 6000$
+
+## 대수(Algebra)
+
+1. If $e=8$, find the numerical value of the following expression:
+$$
+e-\{\sqrt{ }(e+1)+2\}+(e-\sqrt[3]{ } e) \sqrt{ }(e-4)
+$$
+2. Simplify the following expression by removing the brackets and collecting like terms :
+$$
+3 a-[b+(2 a-b)-(a-b)]
+$$
+3. Multiply $3 a^2+a b-b^2$ by $a^2-2 a b-3 b^2$, and divide the product by $a+b$.
+4. Reduce the following fraction to its lowest terms:
+$$
+\frac{x^6+a^2 x^3 y}{x^6-a^4 y^2}
+$$
+5. Simplify $\left.\left\{\frac{a+b}{a-b}+\frac{a-b}{a+b}\right\}\right\} \div-\left\{\frac{a+b}{a-b}-\frac{a-b}{a+b}\right\}$.
+6. Solve $\frac{3 x-4}{2}-\frac{6 x-5}{8}=\frac{3 x-1}{16}$.
+7. Solve $7 x-5 y=24, \quad 4 x-3 y=11$.
+
+### 해답
+
+1. $$
+\begin{aligned}
+e-[\sqrt{e+1}+2]+(e-\sqrt[3]{e}) \sqrt{e-4} & e=8 \\
+8-[\sqrt{9}+2] & +(8-\sqrt[3]{8}) \sqrt{8-4} \\
+8-5 & +(8-2) \cdot 2=8-5+6 \times 2=3+12=15
+\end{aligned}
+$$
+2. $3 a-[b+(2 a-b)-(Q-b)]$
+$$
+3 a-[b+2 a-b-a+b]-3 a-[a+b]=3 a-a-b-2 a-b
+$$
+$3 \frac{\left(3 a a^2+a b-b^2\right)\left(a^2-2 a b-3 b^2\right)}{a+b}=\frac{\left(3 a^2+a b-b^2\right)(a-3 b)(a+b)}{(a+b)}=$ $3 a^3+a^2 b-a b^2-9 a^2 b-3 a b^2+3 b^3=3 a^3-8 a^2 b-4 a b^2+3 b^3$
+$4 \frac{x^6+a^2 x^3 y}{x^6-a^4 y^2}=\frac{x^3\left(x^3+a^2-y\right)}{\left(x^2+a^2+\right)\left(x^3+a^2-y\right)}=\frac{x^3}{x^3+a^2 y}$
+5.
+$$
+\begin{aligned}
+& {\left[\frac{a+b}{a-b}+\frac{a-b}{a+b}\right] \div\left[\frac{a+b}{a-b}-\frac{a-b}{a+b}\right]=} \\
+& {\left[\frac{(a+b)^2+(a-b)^2}{(a-b)(a+b)}\right] \cdot\left[\frac{(a-b)(a+b)}{(a+b)^2-(a-b)^2}\right]=} \\
+& \frac{a^2+2 a b+b^2+a^2-2 a b+b^2}{a^2+2 a b+a^2-a^2+2 a b-b^2}=\frac{2 a^2+2 b^2}{4 a b}=\frac{a^2+b^2}{2 a b}
+\end{aligned}
+$$
+
+\begin{aligned}
+&\begin{aligned}
+& 6 \frac{3 x-4}{2}-\frac{6 x-5}{8}=\frac{3 x-1}{16} ; \frac{8(3 x-4)}{8 \cdot 2}-\frac{2(6 x-5)}{2 \cdot 8}=\frac{3 x-1}{16} \\
+& 24-32-12 x+10=3 x-1 \\
+& 9 x=21 \quad x=7 / 3
+\end{aligned}\\
+
+&\begin{aligned}
+& 2 x-5 y=24 \\
+& \alpha=17 \\
+& 7(17)-5 y=24 \\
+& y=19 \\
+& 119-5 y=24:-5 y=-95: \quad y=19 \\
+&
+\end{aligned}
+\end{aligned}
+
+
+
+## 기하
+
+1. Prove that the sum of the three angles of a plano triangle equals two right angles.
+2. Prove that the diagonal of a parallelogram divides it into two equat triangles.
+3. Prove that the area of a trapezoid is equal to the half sum of its parallel bases multiplied by its altitude.
+4. Prove that the side of a regular hexagon inscribed in a circle is equal to its radius.
+5. The radius of a circle equals 10 . Find its area.
+6. The perpendicular dropped from the vertex of the right angle upon the hypothenuse divides it into two segments of 9 and 16 feet respectively. Find the lengths of the perpendicular, and the two legs of the triangle.
+7. Define similar polygons. To what are their areas proportional?
+
+
+### 해답
+
+Geometry
+1. Live triangle $A B C$
+construct a kine through $A$ parallel to side $\overline{B C}$
+angles $x, y$ and a are formed at vertex $A$
+(1) The sum of all angles on one side of a line equal $180^{\circ}$ at a front; $y+a+y=180$ A right angle contains $90^{\circ}$
+$\overline{A B}$ and $\overline{A C}$ an transcuersals intersecting the two
+parallel hires: $\overline{B C}$ and line tromp $A$
+$\angle A B C=\angle x$ and $\angle A C B=\angle y$ because
+alternate interior angles of parallel hines are equal.
+(1) Since $x+a+y=180^{\circ}$
+by subshticher $\angle A B C+a+\angle A C B=180^{\circ}=$ two rigitangles
+
+2. Twin parallelogram $A B C D$ with diagonal $B D$
+$\overline{A D} \| \overline{B C}$ and $\overline{A B} \| \overline{D C}$ becanec oppose sides of a parallegran are parallel
+$\angle x=\angle d$ and $\angle b=\angle y$ because alternate interior angles formed by 2 parallel bice cat by a transversal are =
+$\overline{B D}$ is a side of both brixingles "is congunchat" Herfou, $\triangle A B D \cong \triangle \triangle D B$ by the property If 2 angles of one triangle and the included vide are congruent to 2 angles and the included side of another brangle, the 2 triangles are Congruent (equal
+
+3.
+Trapezoid $A B C D$ has basen of $b_1(\overline{A B})+b_2(\overline{D C})$ and altude of $h$.
+construnt a hine threr $C$ parallel to side DA Eutend $\overline{A B}$ through, $B$, trentersed the line chrough $C$ at pout F
+AFCDis a parallelogram weth area $h b_2$ and side $\overline{D C}=\overline{A F}$ becamee appasite sedu f a perallebgeren are equd
+The alttiede of $\triangle C B F=h$ Areed $\triangle C B F-\frac{1}{2} \overline{B F} \cdot h$ $\widehat{B F}=\overline{A F}-b_1=b_2-b_1 ;$; lentictite $b_2-b_1$ fo $\overline{B F}$ Aree of $\triangle C B F=\frac{1}{2}\left(b_2-b_1\right) \cdot h$
+Area of trapegaid $A B C D=$ Area of paullingram $A F C D$-aread $\triangle C B F$ $\begin{aligned} & =b_2 \cdot h \quad-\frac{1}{2}\left(b_2-b_1\right) h= \\ b_2 \cdot h-\frac{1}{2} b_2 h+\frac{1}{2} b_1 h & =\frac{1}{2} h\left(b_1+b_2\right) \\ \therefore \text { Area of trappoid = } & \frac{1}{2} \text { susan of paratled bacere meulhpths by itallehde }\end{aligned}$
+
+
+
