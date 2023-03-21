@@ -1,0 +1,2657 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="kr" xml:lang="kr"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="이광춘">
+<title>chatGPT</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./images/profile.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색"
+  }
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><link rel="stylesheet" href="css/quarto.css">
+</head>
+<body class="nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">chatGPT</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">생성 AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai">
+<li>
+    <a class="dropdown-item" href="./architecture.html">
+ <span class="dropdown-text">chatGPT 이해</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./trends.html">
+ <span class="dropdown-text">추세 트렌드</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./why_llm.html">
+ <span class="dropdown-text">왜 거대언어모형인가?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gpt4_performance.html">
+ <span class="dropdown-text">GPT-4 성능</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./interface.html">
+ <span class="dropdown-text">인터페이스</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./interview.html">
+ <span class="dropdown-text">데이터 과학문제</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./deepL.html">
+ <span class="dropdown-text">DeepL 번역 API</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-chatgpt-응용사례" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">chatGPT 응용사례</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-chatgpt-응용사례">
+<li>
+    <a class="dropdown-item" href="./use-cases.html">
+ <span class="dropdown-text">활용사례</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_avi.html">
+ <span class="dropdown-text">법인 R 소개영상</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./macbook.html">
+ <span class="dropdown-text">맥북 투척사건</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./office.html">
+ <span class="dropdown-text">오피스 전쟁</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./about_gpt.html">
+ <span class="dropdown-text">GPT 역사</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./news_article.html">
+ <span class="dropdown-text">보도자료 작성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_book.html">
+ <span class="dropdown-text">데이터 과학 책</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_paper.html">
+ <span class="dropdown-text">논문 초록</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rnd.html">
+ <span class="dropdown-text">학술연구(R&amp;D)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./yuji.html">
+ <span class="dropdown-text">멤버 Yuji</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./text2image.html">
+ <span class="dropdown-text">텍스트 → 이미지 생성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./stable_diffusion.html">
+ <span class="dropdown-text">Stable Diffusion</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./samsung.html">
+ <span class="dropdown-text">삼전 주가예측</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding.html">
+ <span class="dropdown-text">GPT R 코딩개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding-copilot.html">
+ <span class="dropdown-text">부조종사 R 코딩개발</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./math.html">
+ <span class="dropdown-text">수학문제 (MIT)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./middle_school.html">
+ <span class="dropdown-text">Shiny 앱</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-bert" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">BERT</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-bert">
+<li>
+    <a class="dropdown-item" href="./ide.html">
+ <span class="dropdown-text">통합개발환경(IDE)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./reticulate.html">
+ <span class="dropdown-text">파이썬 환경구축</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./koGPT.html">
+ <span class="dropdown-text">HuggingfaceR - 모형통계</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BERT.html">
+ <span class="dropdown-text">BERT</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./hf.html">
+ <span class="dropdown-text">Hugging Face</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hf_windows.html">
+ <span class="dropdown-text">Hugging Face(윈도우)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./hf_pipeline.html">
+ <span class="dropdown-text">HF 파이프라인</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item">
+    <a class="nav-link" href="./blog.html">
+ <span class="menu-text">게시글</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">유/무료 서비스</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">
+<li>
+    <a class="dropdown-item" href="./services.html">
+ <span class="dropdown-text">(유)무료 서비스</span></a>
+  </li>  
+    </ul>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/bit2r/chatGPT"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://r2bit.com">
+ <span class="menu-text">R사용자회</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/LAION-AI/Open-Assistant"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Open Assistant</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rtutor.ai/">
+ <span class="menu-text">RTutor</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+<div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title">chatGPT</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> 코드</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 표시</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 숨기기</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">소스 코드 표시</a></li></ul></div></div>
+            <p class="subtitle lead">GPT-4 성능</p>
+                      </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-heading">소속</div>
+    
+      <div class="quarto-title-meta-contents">
+      <a href="https://www.linkedin.com/in/kwangchunlee/">이광춘</a> 
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://github.com/bit2r">
+              한국 R 사용자회
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li>
+<a href="#pdf-%EB%B3%B4%EA%B3%A0%EC%84%9C" id="toc-pdf-보고서" class="nav-link active" data-scroll-target="#pdf-%EB%B3%B4%EA%B3%A0%EC%84%9C"><span class="toc-section-number">1</span>  PDF 보고서</a>
+  <ul class="collapse">
+<li><a href="#pdf-%EC%9B%8C%EB%93%9C" id="toc-pdf-워드" class="nav-link" data-scroll-target="#pdf-%EC%9B%8C%EB%93%9C"><span class="toc-section-number">1.1</span>  PDF → 워드</a></li>
+  <li><a href="#%EC%9B%8C%EB%93%9C-%ED%91%9C%EC%B6%94%EC%B6%9C" id="toc-워드-표추출" class="nav-link" data-scroll-target="#%EC%9B%8C%EB%93%9C-%ED%91%9C%EC%B6%94%EC%B6%9C"><span class="toc-section-number">1.2</span>  워드 → 표추출</a></li>
+  </ul>
+</li>
+  <li><a href="#%EB%B3%80%ED%98%B8%EC%82%AC" id="toc-변호사" class="nav-link" data-scroll-target="#%EB%B3%80%ED%98%B8%EC%82%AC"><span class="toc-section-number">2</span>  변호사</a></li>
+  <li><a href="#%EB%AF%B8%EA%B5%AD-%EB%8C%80%ED%95%99%EC%9B%90" id="toc-미국-대학원" class="nav-link" data-scroll-target="#%EB%AF%B8%EA%B5%AD-%EB%8C%80%ED%95%99%EC%9B%90"><span class="toc-section-number">3</span>  미국 대학원</a></li>
+  <li><a href="#%EC%A0%84%EC%B2%B4-%ED%98%84%ED%99%A9" id="toc-전체-현황" class="nav-link" data-scroll-target="#%EC%A0%84%EC%B2%B4-%ED%98%84%ED%99%A9"><span class="toc-section-number">4</span>  전체 현황</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content"><p><span class="citation" data-cites="openai2023gpt4">[@openai2023gpt4]</span></p>
+<section id="pdf-보고서" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> PDF 보고서</h1>
+<p>arXiv <a href="https://arxiv.org/abs/2303.08774">GPT-4 Technical Report</a> 보고서를 다운로드 받아 PDF 보고서에서 GPT-4 성능을 평가해보자.</p>
+<section id="pdf-워드" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="pdf-워드">
+<span class="header-section-number">1.1</span> PDF → 워드</h2>
+<p>PDF 문서를 <a href="https://github.com/Ifeanyi55/Convert2Docx"><code>Convert2Docx</code></a> 패키지를 활용하여 워드파일로 변환시킨다. 페이지가 많아 제법 시간이 소요된다.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">Convert2Docx</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/Convert2Docx/man/Converter.html">Converter</a></span><span class="op">(</span>pdf_file <span class="op">=</span> <span class="st">"data/2303.08774.pdf"</span>,</span>
+<span>          docx_filename <span class="op">=</span> <span class="st">"data/2303.08774.docx"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="워드-표추출" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="워드-표추출">
+<span class="header-section-number">1.2</span> 워드 → 표추출</h2>
+<p><a href="https://github.com/hrbrmstr/docxtractr"><code>docxtractr</code></a> 패키지를 설치하고 <code><a href="https://rdrr.io/pkg/docxtractr/man/docx_extract_tbl.html">docx_extract_tbl()</a></code> 함수로 PDF 파일에 담긴 표를 추출한다.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://gitlab.com/hrbrmstr/docxtractr">docxtractr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">gpt_docx</span> <span class="op">&lt;-</span> <span class="fu">docxtractr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/docxtractr/man/read_docx.html">read_docx</a></span><span class="op">(</span><span class="st">"data/2303.08774.docx"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tbl_01</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/docxtractr/man/docx_extract_tbl.html">docx_extract_tbl</a></span><span class="op">(</span><span class="va">gpt_docx</span>, <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">tbl_01</span></span>
+<span><span class="co">#&gt; # A tibble: 34 × 4</span></span>
+<span><span class="co">#&gt;    exam                                           gpt_4          gpt_4…¹ gpt_3_5</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                                          &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1 Uniform Bar Exam (MBE+MEE+MPT)                 298 / 400 (~9… 298 / … 213 / …</span></span>
+<span><span class="co">#&gt;  2 LSAT                                           163 (~88th)    161 (~… 149 (~…</span></span>
+<span><span class="co">#&gt;  3 SAT Evidence-Based Reading &amp; Writing           710 / 800 (~9… 710 / … 670 / …</span></span>
+<span><span class="co">#&gt;  4 SAT Math                                       700 / 800 (~8… 690 / … 590 / …</span></span>
+<span><span class="co">#&gt;  5 Graduate Record Examination (GRE) Quantitative 163 / 170 (~8… 157 / … 147 / …</span></span>
+<span><span class="co">#&gt;  6 Graduate Record Examination (GRE) Verbal       169 / 170 (~9… 165 / … 154 / …</span></span>
+<span><span class="co">#&gt;  7 Graduate Record Examination (GRE) Writing      4 / 6 (~54th)  4 / 6 … 4 / 6 …</span></span>
+<span><span class="co">#&gt;  8 USABO Semifinal Exam 2020                      87 / 150 (99t… 87 / 1… 43 / 1…</span></span>
+<span><span class="co">#&gt;  9 USNCO Local Section Exam 2022                  36 / 60        38 / 60 24 / 60</span></span>
+<span><span class="co">#&gt; 10 Medical Knowledge Self-Assessment Program      75 %           75 %    53 %   </span></span>
+<span><span class="co">#&gt; # … with 24 more rows, and abbreviated variable name ¹​gpt_4_no_vision</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section></section><section id="변호사" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> 변호사</h1>
+<p>LSAT 시험과 Uniform Bar Exam 시험은 두 가지 다른 시험이다. LSAT은 로스쿨 입학을 위한 시험이며, Uniform Bar Exam은 변호사 자격증을 얻기 위한 시험이다.</p>
+<p>해당 데이터에서 GPT-4 LSAT 성적을 뽑아내서 미국 로스쿨 대학별 입학점수와 비교해보자.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com/">gt</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">lsat</span> <span class="op">&lt;-</span> <span class="va">tbl_01</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">exam</span>, <span class="st">"Bar|LSAT"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">exam</span>, <span class="va">gpt_4</span>, <span class="va">gpt_3_5</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">lsat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+<div id="ijsdhsfbpy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#ijsdhsfbpy) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#ijsdhsfbpy) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#ijsdhsfbpy) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#ijsdhsfbpy) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#ijsdhsfbpy) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#ijsdhsfbpy) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#ijsdhsfbpy) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#ijsdhsfbpy) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#ijsdhsfbpy) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#ijsdhsfbpy) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#ijsdhsfbpy) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#ijsdhsfbpy) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#ijsdhsfbpy) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#ijsdhsfbpy) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#ijsdhsfbpy) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#ijsdhsfbpy) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#ijsdhsfbpy) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#ijsdhsfbpy) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ijsdhsfbpy) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#ijsdhsfbpy) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#ijsdhsfbpy) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ijsdhsfbpy) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#ijsdhsfbpy) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#ijsdhsfbpy) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#ijsdhsfbpy) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ijsdhsfbpy) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#ijsdhsfbpy) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#ijsdhsfbpy) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#ijsdhsfbpy) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#ijsdhsfbpy) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ijsdhsfbpy) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#ijsdhsfbpy) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ijsdhsfbpy) .gt_left {
+  text-align: left;
+}
+
+:where(#ijsdhsfbpy) .gt_center {
+  text-align: center;
+}
+
+:where(#ijsdhsfbpy) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#ijsdhsfbpy) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#ijsdhsfbpy) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#ijsdhsfbpy) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#ijsdhsfbpy) .gt_super {
+  font-size: 65%;
+}
+
+:where(#ijsdhsfbpy) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#ijsdhsfbpy) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#ijsdhsfbpy) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#ijsdhsfbpy) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#ijsdhsfbpy) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#ijsdhsfbpy) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#ijsdhsfbpy) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+<thead class="gt_col_headings"><tr>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="exam">exam</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="gpt_4">gpt_4</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="gpt_3_5">gpt_3_5</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="exam" class="gt_row gt_left">Uniform Bar Exam (MBE+MEE+MPT)</td>
+<td headers="gpt_4" class="gt_row gt_left">298 / 400 (~90th)</td>
+<td headers="gpt_3_5" class="gt_row gt_left">213 / 400 (~10th)</td>
+</tr>
+<tr>
+<td headers="exam" class="gt_row gt_left">LSAT</td>
+<td headers="gpt_4" class="gt_row gt_left">163 (~88th)</td>
+<td headers="gpt_3_5" class="gt_row gt_left">149 (~40th)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>publiclegal 웹사이트에서 <a href="https://www.ilrg.com/rankings/law/">2020 Raw Data Law School Rankings</a> 데이터와 결합시켜 GPT-4 실력을 갈음해보자. 상위 10여개 대학을 제외하고 로스쿨 입학에 큰 문제는 없어보이는 실력을 보여주고 있다.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span></span>
+<span><span class="fu">extrafont</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/extrafont/man/loadfonts.html">loadfonts</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">lsat_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="st">'https://www.ilrg.com/rankings/law/'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">lsat_tbl</span> <span class="op">&lt;-</span> <span class="va">lsat_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">'.table-responsive'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span>header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="va">.</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/row_to_names.html">row_to_names</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">lsat_rank</span> <span class="op">&lt;-</span> <span class="va">lsat_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">law_school</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/dput.html">dput</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">lsat_g</span> <span class="op">&lt;-</span> <span class="va">lsat_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">no</span>, <span class="va">law_school</span>, <span class="va">lsat_low</span>, <span class="va">lsat_median</span>, <span class="va">lsat_high</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>law_school <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">law_school</span>, levels <span class="op">=</span> <span class="va">lsat_rank</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="va">fct_rev</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>   </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_if</a></span><span class="op">(</span><span class="va">is.character</span>, <span class="va">as.integer</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">law_school</span>, y <span class="op">=</span> <span class="va">lsat_median</span>, group<span class="op">=</span><span class="va">law_school</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html">geom_linerange</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">lsat_low</span>, ymax<span class="op">=</span>  <span class="va">lsat_high</span><span class="op">)</span>, colour <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">163</span>, linetype<span class="op">=</span><span class="st">'dotted'</span>, col <span class="op">=</span> <span class="st">'red'</span><span class="op">)</span><span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="st">"New York University"</span>, y <span class="op">=</span> <span class="fl">163</span>, size <span class="op">=</span><span class="fl">5</span>, label <span class="op">=</span> <span class="st">"GPT-4"</span>, hjust <span class="op">=</span> <span class="fl">1.1</span>,</span>
+<span>             color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"MaruBuri Bold"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">""</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">""</span>,</span>
+<span>         title <span class="op">=</span> <span class="st">"미국 변호사 입학시험 점수(LSAT)"</span>,</span>
+<span>         subtitle <span class="op">=</span> <span class="st">"LSAT 중위점수 및 하한과 상한"</span>,</span>
+<span>         caption <span class="op">=</span> <span class="st">"2020  Law School Rankings, https://www.ilrg.com/rankings/law/"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ragg</span><span class="fu">::</span><span class="fu"><a href="https://ragg.r-lib.org/reference/agg_png.html">agg_png</a></span><span class="op">(</span><span class="st">"images/lsat_g.png"</span>, width <span class="op">=</span> <span class="fl">297</span>, height <span class="op">=</span> <span class="fl">210</span>, units <span class="op">=</span> <span class="st">"mm"</span>, res <span class="op">=</span> <span class="fl">600</span><span class="op">)</span></span>
+<span><span class="va">lsat_g</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/lsat_g.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/lsat_g.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</section><section id="미국-대학원" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> 미국 대학원</h1>
+<p>GRE (Graduate Record Examination)는 미국의 대학원 수학 자격시험으로 미국 대학원에 유학 할 때 필요하다. MBA 나 로스쿨 등 전문대학원은 이 시험 대신 LSAT 나 GMAT 점수가 필요하다.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tbl_01</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">exam</span>, <span class="st">"GRE"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">exam</span>, <span class="va">gpt_4</span>, <span class="va">gpt_3_5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+<div id="tyemlrtyda" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#tyemlrtyda) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#tyemlrtyda) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#tyemlrtyda) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#tyemlrtyda) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#tyemlrtyda) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#tyemlrtyda) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#tyemlrtyda) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#tyemlrtyda) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#tyemlrtyda) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#tyemlrtyda) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#tyemlrtyda) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#tyemlrtyda) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#tyemlrtyda) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#tyemlrtyda) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#tyemlrtyda) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#tyemlrtyda) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#tyemlrtyda) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#tyemlrtyda) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#tyemlrtyda) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#tyemlrtyda) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#tyemlrtyda) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#tyemlrtyda) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#tyemlrtyda) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#tyemlrtyda) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#tyemlrtyda) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#tyemlrtyda) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#tyemlrtyda) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#tyemlrtyda) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#tyemlrtyda) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#tyemlrtyda) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#tyemlrtyda) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#tyemlrtyda) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#tyemlrtyda) .gt_left {
+  text-align: left;
+}
+
+:where(#tyemlrtyda) .gt_center {
+  text-align: center;
+}
+
+:where(#tyemlrtyda) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#tyemlrtyda) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#tyemlrtyda) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#tyemlrtyda) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#tyemlrtyda) .gt_super {
+  font-size: 65%;
+}
+
+:where(#tyemlrtyda) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#tyemlrtyda) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#tyemlrtyda) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#tyemlrtyda) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#tyemlrtyda) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#tyemlrtyda) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#tyemlrtyda) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+<thead class="gt_col_headings"><tr>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="exam">exam</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="gpt_4">gpt_4</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="gpt_3_5">gpt_3_5</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="exam" class="gt_row gt_left">Graduate Record Examination (GRE) Quantitative</td>
+<td headers="gpt_4" class="gt_row gt_left">163 / 170 (~80th)</td>
+<td headers="gpt_3_5" class="gt_row gt_left">147 / 170 (~25th)</td>
+</tr>
+<tr>
+<td headers="exam" class="gt_row gt_left">Graduate Record Examination (GRE) Verbal</td>
+<td headers="gpt_4" class="gt_row gt_left">169 / 170 (~99th)</td>
+<td headers="gpt_3_5" class="gt_row gt_left">154 / 170 (~63rd)</td>
+</tr>
+<tr>
+<td headers="exam" class="gt_row gt_left">Graduate Record Examination (GRE) Writing</td>
+<td headers="gpt_4" class="gt_row gt_left">4 / 6 (~54th)</td>
+<td headers="gpt_3_5" class="gt_row gt_left">4 / 6 (~54th)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p><a href="https://nces.ed.gov/programs/digest/d18/tables/dt18_327.10.asp">Average scores and standard deviations on Graduate Record Examination (GRE) general and subject tests: 1965 through 2016</a> 을 통해 2016년도 GRE 점수를 GPT-4와 비교해보자.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gre_g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">'Data'</span>, y <span class="op">=</span> <span class="st">'Density'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">stat_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dnorm</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">150</span>, sd <span class="op">=</span> <span class="fl">8.5</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"GRE Quantitative"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">163</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">stat_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">dnorm</span>, args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">153</span>, sd <span class="op">=</span> <span class="fl">9.0</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"GRE Verbal"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="fl">169</span>, size <span class="op">=</span> <span class="fl">1</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">120</span>,<span class="fl">180</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual</a></span><span class="op">(</span><span class="st">"GRE 시험"</span>, values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span>base_family <span class="op">=</span> <span class="st">"MaruBuri Bold"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"GRE 점수"</span>,</span>
+<span>         y <span class="op">=</span> <span class="st">"밀도"</span>,</span>
+<span>         title <span class="op">=</span> <span class="st">"GPT-4 GRE Quantitative / Verbal 역량"</span>,</span>
+<span>         subtitle <span class="op">=</span> <span class="st">"2016년 GRE 평균과 표준편차 반영 정규분포"</span>,</span>
+<span>         caption <span class="op">=</span> <span class="st">"Average scores and standard deviations on Graduate Record Examination (GRE), https://nces.ed.gov/programs/digest/d18/tables/dt18_327.10.asp"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">175</span>, y <span class="op">=</span> <span class="fl">0.045</span>, label <span class="op">=</span> <span class="st">"GPT-4"</span>, size <span class="op">=</span> <span class="fl">7</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ragg</span><span class="fu">::</span><span class="fu"><a href="https://ragg.r-lib.org/reference/agg_png.html">agg_png</a></span><span class="op">(</span><span class="st">"images/gre_g.png"</span>, width <span class="op">=</span> <span class="fl">297</span>, height <span class="op">=</span> <span class="fl">210</span>, units <span class="op">=</span> <span class="st">"mm"</span>, res <span class="op">=</span> <span class="fl">600</span><span class="op">)</span></span>
+<span><span class="va">gre_g</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/gre_g.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/gre_g.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</section><section id="전체-현황" class="level1" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> 전체 현황</h1>
+<p>Advanced Placement (AP)는 미국의 College Board가 만든 프로그램으로 고등학생들에게 대학 수준의 교육과정과 시험을 제공합니다. 미국의 대학과 대학들은 시험에서 높은 점수를 얻은 학생들에게 배치와 학점 인정을 한다. AP를 통해 학생들이 고등학교에 다니면서 대학 수준의 작업을 다루고 대학 학점 및 배치를 얻을 수 있는 기회를 제공한다.</p>
+<p>AMC 10은 미국 수학 협회가 주최하는 수학 대회로, 10학년 이하의 학생들을 대상으로 한다. 이 시험은 고등학교 교육과정 중 10학년까지의 내용을 다룹니다1. AMC 10은 AMC 12와 함께 미국이 국제 수학 올림피아드 (IMO)에 참가하는 팀을 선발하기 위한 일련의 시험 중 첫 번째 시험이다.</p>
+<p>AMC 12는 미국 수학 협회가 주최하는 수학 대회로, 12학년 이하의 학생들을 대상으로 한다. 이 시험은 고등학교 전 과정을 다루지만 Calculus 부분은 제외됩니다1. AMC 12는 AMC 10과 함께 미국이 국제 수학 올림피아드 (IMO)에 참가하는 팀을 선발하기 위한 일련의 시험 중 하나다.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com/">gt</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jthomasmock/gtExtras">gtExtras</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tbl_01</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>type <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">exam</span>, <span class="st">"Bar|LSAT"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"법"</span>,</span>
+<span>                           <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">exam</span>, <span class="st">"SAT "</span><span class="op">)</span> <span class="op">~</span> <span class="st">"수능"</span>,</span>
+<span>                           <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">exam</span>, <span class="st">"GRE"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"대학원"</span>,</span>
+<span>                           <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">exam</span>, <span class="st">"USABO|USNCO"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"고등 경진대회"</span>,</span>
+<span>                           <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">exam</span>, <span class="st">"Medical"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"헬스케어"</span>,</span>
+<span>                           <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">exam</span>, <span class="st">"Codeforces|Leetcode"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"코딩"</span>,</span>
+<span>                           <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">exam</span>, <span class="st">"Sommelier"</span><span class="op">)</span> <span class="op">~</span> <span class="st">"소믈리에"</span>,</span>
+<span>                           <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">exam</span>, <span class="st">"^AP "</span><span class="op">)</span> <span class="op">~</span> <span class="st">"AP 시험"</span>,</span>
+<span>                           <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">exam</span>, <span class="st">"^AMC "</span><span class="op">)</span> <span class="op">~</span> <span class="st">"수학시험"</span>,</span>
+<span>                           <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"기타"</span></span>
+<span>                           <span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">type</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span> rowname_col <span class="op">=</span> <span class="st">"exam"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://jthomasmock.github.io/gtExtras/reference/gt_theme_nytimes.html">gt_theme_nytimes</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_header.html">tab_header</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"GPT-4 성능"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"OpenAI GPT-4 Technical Report"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>     <span class="fu"><a href="https://gt.rstudio.com/reference/cols_align.html">cols_align</a></span><span class="op">(</span></span>
+<span>      align <span class="op">=</span> <span class="st">"center"</span>,</span>
+<span>      columns <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>   <span class="fu"><a href="https://jthomasmock.github.io/gtExtras/reference/gt_highlight_rows.html">gt_highlight_rows</a></span><span class="op">(</span></span>
+<span>     rows <span class="op">=</span> <span class="va">type</span> <span class="op">==</span> <span class="st">"코딩"</span>,</span>
+<span>     fill <span class="op">=</span> <span class="st">"lightgrey"</span>,</span>
+<span>     bold_target_only <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>     target_col <span class="op">=</span> <span class="va">gpt_4</span></span>
+<span>   <span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>   <span class="fu"><a href="https://jthomasmock.github.io/gtExtras/reference/gt_highlight_rows.html">gt_highlight_rows</a></span><span class="op">(</span></span>
+<span>     rows <span class="op">=</span> <span class="va">type</span> <span class="op">==</span> <span class="st">"수학시험"</span>,</span>
+<span>     fill <span class="op">=</span> <span class="st">"lightgrey"</span>,</span>
+<span>     bold_target_only <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>     target_col <span class="op">=</span> <span class="va">gpt_4</span></span>
+<span>   <span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>   <span class="fu"><a href="https://jthomasmock.github.io/gtExtras/reference/gt_highlight_rows.html">gt_highlight_rows</a></span><span class="op">(</span></span>
+<span>     rows <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="va">exam</span>, <span class="st">"English|\\) Writing|USNCO"</span><span class="op">)</span>,</span>
+<span>     fill <span class="op">=</span> <span class="st">"lightgrey"</span>,</span>
+<span>     bold_target_only <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>     target_col <span class="op">=</span> <span class="va">gpt_4</span></span>
+<span>   <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu"><a href="https://gt.rstudio.com/reference/opt_table_font.html">opt_table_font</a></span><span class="op">(</span></span>
+<span>    font <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://gt.rstudio.com/reference/google_font.html">google_font</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">'Gowun Dodum'</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+<div id="xhrwikwjjf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>@import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+html {
+  font-family: 'Gowun Dodum', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#xhrwikwjjf) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#xhrwikwjjf) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#xhrwikwjjf) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#xhrwikwjjf) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#xhrwikwjjf) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#xhrwikwjjf) .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#xhrwikwjjf) .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 1px;
+  border-bottom-color: #334422;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#xhrwikwjjf) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 12px;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#xhrwikwjjf) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 12px;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#xhrwikwjjf) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#xhrwikwjjf) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#xhrwikwjjf) .gt_column_spanner {
+  border-bottom-style: none;
+  border-bottom-width: 1px;
+  border-bottom-color: #334422;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#xhrwikwjjf) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#xhrwikwjjf) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#xhrwikwjjf) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#xhrwikwjjf) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#xhrwikwjjf) .gt_row {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#xhrwikwjjf) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#xhrwikwjjf) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#xhrwikwjjf) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#xhrwikwjjf) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#xhrwikwjjf) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#xhrwikwjjf) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#xhrwikwjjf) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#xhrwikwjjf) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#xhrwikwjjf) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#xhrwikwjjf) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#xhrwikwjjf) .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #FFFFFF;
+}
+
+:where(#xhrwikwjjf) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#xhrwikwjjf) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#xhrwikwjjf) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#xhrwikwjjf) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#xhrwikwjjf) .gt_left {
+  text-align: left;
+}
+
+:where(#xhrwikwjjf) .gt_center {
+  text-align: center;
+}
+
+:where(#xhrwikwjjf) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#xhrwikwjjf) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#xhrwikwjjf) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#xhrwikwjjf) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#xhrwikwjjf) .gt_super {
+  font-size: 65%;
+}
+
+:where(#xhrwikwjjf) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#xhrwikwjjf) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#xhrwikwjjf) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#xhrwikwjjf) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#xhrwikwjjf) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#xhrwikwjjf) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#xhrwikwjjf) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+<thead class="gt_header">
+<tr>
+<td colspan="3" class="gt_heading gt_title gt_font_normal" style="font-family: 'Libre Franklin'; font-weight: 800;">GPT-4 성능</td>
+    </tr>
+<tr>
+<td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">OpenAI GPT-4 Technical Report</td>
+    </tr>
+</thead>
+<thead class="gt_col_headings"><tr>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id=""></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="color: #A9A9A9; font-family: 'Source Sans Pro'; text-transform: uppercase;" scope="col" id="gpt_4">gpt_4</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="color: #A9A9A9; font-family: 'Source Sans Pro'; text-transform: uppercase;" scope="col" id="gpt_3_5">gpt_3_5</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row">
+<th colspan="3" class="gt_group_heading" scope="colgroup" id="법">법</th>
+    </tr>
+<tr class="gt_row_group_first">
+<th id="stub_1_1" scope="row" class="gt_row gt_center gt_stub">Uniform Bar Exam (MBE+MEE+MPT)</th>
+<td headers="법 stub_1_1 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">298 / 400 (~90th)</td>
+<td headers="법 stub_1_1 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">213 / 400 (~10th)</td>
+</tr>
+<tr>
+<th id="stub_1_2" scope="row" class="gt_row gt_center gt_stub">LSAT</th>
+<td headers="법 stub_1_2 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">163 (~88th)</td>
+<td headers="법 stub_1_2 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">149 (~40th)</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="3" class="gt_group_heading" scope="colgroup" id="수능">수능</th>
+    </tr>
+<tr class="gt_row_group_first">
+<th id="stub_1_3" scope="row" class="gt_row gt_center gt_stub">SAT Evidence-Based Reading &amp; Writing</th>
+<td headers="수능 stub_1_3 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">710 / 800 (~93rd)</td>
+<td headers="수능 stub_1_3 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">670 / 800 (~87th)</td>
+</tr>
+<tr>
+<th id="stub_1_4" scope="row" class="gt_row gt_center gt_stub">SAT Math</th>
+<td headers="수능 stub_1_4 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">700 / 800 (~89th)</td>
+<td headers="수능 stub_1_4 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">590 / 800 (~70th)</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="3" class="gt_group_heading" scope="colgroup" id="대학원">대학원</th>
+    </tr>
+<tr class="gt_row_group_first">
+<th id="stub_1_5" scope="row" class="gt_row gt_center gt_stub">Graduate Record Examination (GRE) Quantitative</th>
+<td headers="대학원 stub_1_5 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">163 / 170 (~80th)</td>
+<td headers="대학원 stub_1_5 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">147 / 170 (~25th)</td>
+</tr>
+<tr>
+<th id="stub_1_6" scope="row" class="gt_row gt_center gt_stub">Graduate Record Examination (GRE) Verbal</th>
+<td headers="대학원 stub_1_6 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">169 / 170 (~99th)</td>
+<td headers="대학원 stub_1_6 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">154 / 170 (~63rd)</td>
+</tr>
+<tr>
+<th id="stub_1_7" scope="row" class="gt_row gt_center gt_stub">Graduate Record Examination (GRE) Writing</th>
+<td headers="대학원 stub_1_7 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: bold; color: #000000; background-color: rgba(211,211,211,0.8);">4 / 6 (~54th)</td>
+<td headers="대학원 stub_1_7 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400; background-color: rgba(211,211,211,0.8);">4 / 6 (~54th)</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="3" class="gt_group_heading" scope="colgroup" id="고등 경진대회">고등 경진대회</th>
+    </tr>
+<tr class="gt_row_group_first">
+<th id="stub_1_8" scope="row" class="gt_row gt_center gt_stub">USABO Semifinal Exam 2020</th>
+<td headers="고등 경진대회 stub_1_8 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">87 / 150 (99th - 100th)</td>
+<td headers="고등 경진대회 stub_1_8 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">43 / 150 (31st - 33rd)</td>
+</tr>
+<tr>
+<th id="stub_1_9" scope="row" class="gt_row gt_center gt_stub">USNCO Local Section Exam 2022</th>
+<td headers="고등 경진대회 stub_1_9 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: bold; color: #000000; background-color: rgba(211,211,211,0.8);">36 / 60</td>
+<td headers="고등 경진대회 stub_1_9 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400; background-color: rgba(211,211,211,0.8);">24 / 60</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="3" class="gt_group_heading" scope="colgroup" id="헬스케어">헬스케어</th>
+    </tr>
+<tr class="gt_row_group_first">
+<th id="stub_1_10" scope="row" class="gt_row gt_center gt_stub">Medical Knowledge Self-Assessment Program</th>
+<td headers="헬스케어 stub_1_10 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">75 %</td>
+<td headers="헬스케어 stub_1_10 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">53 %</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="3" class="gt_group_heading" scope="colgroup" id="코딩">코딩</th>
+    </tr>
+<tr class="gt_row_group_first">
+<th id="stub_1_11" scope="row" class="gt_row gt_center gt_stub">Codeforces Rating</th>
+<td headers="코딩 stub_1_11 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: bold; color: #000000; background-color: rgba(211,211,211,0.8);">392 (below 5th)</td>
+<td headers="코딩 stub_1_11 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400; background-color: rgba(211,211,211,0.8);">260 (below 5th)</td>
+</tr>
+<tr>
+<th id="stub_1_12" scope="row" class="gt_row gt_center gt_stub">Leetcode (easy)</th>
+<td headers="코딩 stub_1_12 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: bold; color: #000000; background-color: rgba(211,211,211,0.8);">31 / 41</td>
+<td headers="코딩 stub_1_12 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400; background-color: rgba(211,211,211,0.8);">12 / 41</td>
+</tr>
+<tr>
+<th id="stub_1_13" scope="row" class="gt_row gt_center gt_stub">Leetcode (medium)</th>
+<td headers="코딩 stub_1_13 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: bold; color: #000000; background-color: rgba(211,211,211,0.8);">21 / 80</td>
+<td headers="코딩 stub_1_13 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400; background-color: rgba(211,211,211,0.8);">8 / 80</td>
+</tr>
+<tr>
+<th id="stub_1_14" scope="row" class="gt_row gt_center gt_stub">Leetcode (hard)</th>
+<td headers="코딩 stub_1_14 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: bold; color: #000000; background-color: rgba(211,211,211,0.8);">3 / 45</td>
+<td headers="코딩 stub_1_14 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400; background-color: rgba(211,211,211,0.8);">0 / 45</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="3" class="gt_group_heading" scope="colgroup" id="AP 시험">AP 시험</th>
+    </tr>
+<tr class="gt_row_group_first">
+<th id="stub_1_15" scope="row" class="gt_row gt_center gt_stub">AP Art History</th>
+<td headers="AP 시험 stub_1_15 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">5 (86th - 100th)</td>
+<td headers="AP 시험 stub_1_15 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">5 (86th - 100th)</td>
+</tr>
+<tr>
+<th id="stub_1_16" scope="row" class="gt_row gt_center gt_stub">AP Biology</th>
+<td headers="AP 시험 stub_1_16 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">5 (85th - 100th)</td>
+<td headers="AP 시험 stub_1_16 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">4 (62nd - 85th)</td>
+</tr>
+<tr>
+<th id="stub_1_17" scope="row" class="gt_row gt_center gt_stub">AP Calculus BC</th>
+<td headers="AP 시험 stub_1_17 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">4 (43rd - 59th)</td>
+<td headers="AP 시험 stub_1_17 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">1 (0th - 7th)</td>
+</tr>
+<tr>
+<th id="stub_1_18" scope="row" class="gt_row gt_center gt_stub">AP Chemistry</th>
+<td headers="AP 시험 stub_1_18 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">4 (71st - 88th)</td>
+<td headers="AP 시험 stub_1_18 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">2 (22nd - 46th)</td>
+</tr>
+<tr>
+<th id="stub_1_19" scope="row" class="gt_row gt_center gt_stub">AP English Language and Composition</th>
+<td headers="AP 시험 stub_1_19 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: bold; color: #000000; background-color: rgba(211,211,211,0.8);">2 (14th - 44th)</td>
+<td headers="AP 시험 stub_1_19 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400; background-color: rgba(211,211,211,0.8);">2 (14th - 44th)</td>
+</tr>
+<tr>
+<th id="stub_1_20" scope="row" class="gt_row gt_center gt_stub">AP English Literature and Composition</th>
+<td headers="AP 시험 stub_1_20 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: bold; color: #000000; background-color: rgba(211,211,211,0.8);">2 (8th - 22nd)</td>
+<td headers="AP 시험 stub_1_20 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400; background-color: rgba(211,211,211,0.8);">2 (8th - 22nd)</td>
+</tr>
+<tr>
+<th id="stub_1_21" scope="row" class="gt_row gt_center gt_stub">AP Environmental Science</th>
+<td headers="AP 시험 stub_1_21 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">5 (91st - 100th)</td>
+<td headers="AP 시험 stub_1_21 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">5 (91st - 100th)</td>
+</tr>
+<tr>
+<th id="stub_1_22" scope="row" class="gt_row gt_center gt_stub">AP Macroeconomics</th>
+<td headers="AP 시험 stub_1_22 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">5 (84th - 100th)</td>
+<td headers="AP 시험 stub_1_22 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">2 (33rd - 48th)</td>
+</tr>
+<tr>
+<th id="stub_1_23" scope="row" class="gt_row gt_center gt_stub">AP Microeconomics</th>
+<td headers="AP 시험 stub_1_23 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">5 (82nd - 100th)</td>
+<td headers="AP 시험 stub_1_23 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">4 (60th - 82nd)</td>
+</tr>
+<tr>
+<th id="stub_1_24" scope="row" class="gt_row gt_center gt_stub">AP Physics 2</th>
+<td headers="AP 시험 stub_1_24 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">4 (66th - 84th)</td>
+<td headers="AP 시험 stub_1_24 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">3 (30th - 66th)</td>
+</tr>
+<tr>
+<th id="stub_1_25" scope="row" class="gt_row gt_center gt_stub">AP Psychology</th>
+<td headers="AP 시험 stub_1_25 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">5 (83rd - 100th)</td>
+<td headers="AP 시험 stub_1_25 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">5 (83rd - 100th)</td>
+</tr>
+<tr>
+<th id="stub_1_26" scope="row" class="gt_row gt_center gt_stub">AP Statistics</th>
+<td headers="AP 시험 stub_1_26 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">5 (85th - 100th)</td>
+<td headers="AP 시험 stub_1_26 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">3 (40th - 63rd)</td>
+</tr>
+<tr>
+<th id="stub_1_27" scope="row" class="gt_row gt_center gt_stub">AP US Government</th>
+<td headers="AP 시험 stub_1_27 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">5 (88th - 100th)</td>
+<td headers="AP 시험 stub_1_27 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">4 (77th - 88th)</td>
+</tr>
+<tr>
+<th id="stub_1_28" scope="row" class="gt_row gt_center gt_stub">AP US History</th>
+<td headers="AP 시험 stub_1_28 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">5 (89th - 100th)</td>
+<td headers="AP 시험 stub_1_28 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">4 (74th - 89th)</td>
+</tr>
+<tr>
+<th id="stub_1_29" scope="row" class="gt_row gt_center gt_stub">AP World History</th>
+<td headers="AP 시험 stub_1_29 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">4 (65th - 87th)</td>
+<td headers="AP 시험 stub_1_29 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">4 (65th - 87th)</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="3" class="gt_group_heading" scope="colgroup" id="수학시험">수학시험</th>
+    </tr>
+<tr class="gt_row_group_first">
+<th id="stub_1_30" scope="row" class="gt_row gt_center gt_stub">AMC 103</th>
+<td headers="수학시험 stub_1_30 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: bold; color: #000000; background-color: rgba(211,211,211,0.8);">30 / 150 (6th - 12th)</td>
+<td headers="수학시험 stub_1_30 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400; background-color: rgba(211,211,211,0.8);">36 / 150 (10th - 19th)</td>
+</tr>
+<tr>
+<th id="stub_1_31" scope="row" class="gt_row gt_center gt_stub">AMC 123</th>
+<td headers="수학시험 stub_1_31 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: bold; color: #000000; background-color: rgba(211,211,211,0.8);">60 / 150 (45th - 66th)</td>
+<td headers="수학시험 stub_1_31 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400; background-color: rgba(211,211,211,0.8);">30 / 150 (4th - 8th)</td>
+</tr>
+<tr class="gt_group_heading_row">
+<th colspan="3" class="gt_group_heading" scope="colgroup" id="소믈리에">소믈리에</th>
+    </tr>
+<tr class="gt_row_group_first">
+<th id="stub_1_32" scope="row" class="gt_row gt_center gt_stub">Introductory Sommelier (theory knowledge)</th>
+<td headers="소믈리에 stub_1_32 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">92 %</td>
+<td headers="소믈리에 stub_1_32 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">80 %</td>
+</tr>
+<tr>
+<th id="stub_1_33" scope="row" class="gt_row gt_center gt_stub">Certified Sommelier (theory knowledge)</th>
+<td headers="소믈리에 stub_1_33 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">86 %</td>
+<td headers="소믈리에 stub_1_33 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">58 %</td>
+</tr>
+<tr>
+<th id="stub_1_34" scope="row" class="gt_row gt_center gt_stub">Advanced Sommelier (theory knowledge)</th>
+<td headers="소믈리에 stub_1_34 gpt_4" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">77 %</td>
+<td headers="소믈리에 stub_1_34 gpt_3_5" class="gt_row gt_center" style="font-family: 'Source Sans Pro'; font-weight: 400;">46 %</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+<!-- -->
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "GPT-4 성능"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">   - custom-callout.lua   </span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> yes</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@openai2023gpt4</span><span class="co">]</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="fu"># PDF 보고서</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>arXiv <span class="co">[</span><span class="ot">GPT-4 Technical Report</span><span class="co">](https://arxiv.org/abs/2303.08774)</span> 보고서를 다운로드 받아 PDF 보고서에서 GPT-4 성능을 평가해보자. </span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## PDF &amp;rarr; 워드</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>PDF 문서를 <span class="co">[</span><span class="ot">`Convert2Docx`</span><span class="co">](https://github.com/Ifeanyi55/Convert2Docx)</span> 패키지를 활용하여 워드파일로 변환시킨다. 페이지가 많아 제법 시간이 소요된다.</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Convert2Docx)</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a><span class="fu">Converter</span>(<span class="at">pdf_file =</span> <span class="st">"data/2303.08774.pdf"</span>,</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>          <span class="at">docx_filename =</span> <span class="st">"data/2303.08774.docx"</span>)</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## 워드 &amp;rarr; 표추출</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">`docxtractr`</span><span class="co">](https://github.com/hrbrmstr/docxtractr)</span> 패키지를 설치하고 <span class="in">`docx_extract_tbl()`</span> 함수로 PDF 파일에 담긴 표를 추출한다.</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(docxtractr)</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>gpt_docx <span class="ot">&lt;-</span> docxtractr<span class="sc">::</span><span class="fu">read_docx</span>(<span class="st">"data/2303.08774.docx"</span>)</span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>tbl_01 <span class="ot">&lt;-</span> <span class="fu">docx_extract_tbl</span>(gpt_docx, <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>    janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>tbl_01</span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a><span class="fu"># 변호사</span></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>LSAT 시험과 Uniform Bar Exam 시험은 두 가지 다른 시험이다. LSAT은 로스쿨 입학을 위한 시험이며, Uniform Bar Exam은 변호사 자격증을 얻기 위한 시험이다.</span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>해당 데이터에서 GPT-4 LSAT 성적을 뽑아내서 미국 로스쿨 대학별 입학점수와 비교해보자.</span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>lsat <span class="ot">&lt;-</span> tbl_01 <span class="sc">%&gt;%</span> </span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(exam, <span class="st">"Bar|LSAT"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(exam, gpt_4, gpt_3_5)</span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>lsat <span class="sc">%&gt;%</span> </span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a>publiclegal 웹사이트에서 <span class="co">[</span><span class="ot">2020 Raw Data Law School Rankings</span><span class="co">](https://www.ilrg.com/rankings/law/)</span> 데이터와 결합시켜 GPT-4 실력을 갈음해보자. 상위 10여개 대학을 제외하고 로스쿨 입학에 큰 문제는 없어보이는 실력을 보여주고 있다.</span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a>extrafont<span class="sc">::</span><span class="fu">loadfonts</span>()</span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a>lsat_raw <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">'https://www.ilrg.com/rankings/law/'</span>)</span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a>lsat_tbl <span class="ot">&lt;-</span> lsat_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_elements</span>(<span class="st">'.table-responsive'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-110"><a href="#cb8-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>(<span class="at">header =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-111"><a href="#cb8-111" aria-hidden="true" tabindex="-1"></a>  .[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">row_to_names</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a>lsat_rank <span class="ot">&lt;-</span> lsat_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(law_school) <span class="sc">%&gt;%</span> <span class="fu">dput</span>()</span>
+<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a>lsat_g <span class="ot">&lt;-</span> lsat_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(no, law_school, lsat_low, lsat_median, lsat_high) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">law_school =</span> <span class="fu">factor</span>(law_school, <span class="at">levels =</span> lsat_rank) <span class="sc">%&gt;%</span> fct_rev) <span class="sc">%&gt;%</span>   </span>
+<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.character, as.integer) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> law_school, <span class="at">y =</span> lsat_median, <span class="at">group=</span>law_school)) <span class="sc">+</span></span>
+<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_linerange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lsat_low, <span class="at">ymax=</span>  lsat_high), <span class="at">colour =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="dv">163</span>, <span class="at">linetype=</span><span class="st">'dotted'</span>, <span class="at">col =</span> <span class="st">'red'</span>)<span class="sc">+</span></span>
+<span id="cb8-126"><a href="#cb8-126" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="st">"New York University"</span>, <span class="at">y =</span> <span class="dv">163</span>, <span class="at">size =</span><span class="dv">5</span>, <span class="at">label =</span> <span class="st">"GPT-4"</span>, <span class="at">hjust =</span> <span class="fl">1.1</span>,</span>
+<span id="cb8-127"><a href="#cb8-127" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">"MaruBuri Bold"</span>) <span class="sc">+</span></span>
+<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
+<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">""</span>,</span>
+<span id="cb8-132"><a href="#cb8-132" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"미국 변호사 입학시험 점수(LSAT)"</span>,</span>
+<span id="cb8-133"><a href="#cb8-133" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"LSAT 중위점수 및 하한과 상한"</span>,</span>
+<span id="cb8-134"><a href="#cb8-134" aria-hidden="true" tabindex="-1"></a>         <span class="at">caption =</span> <span class="st">"2020  Law School Rankings, https://www.ilrg.com/rankings/law/"</span>)</span>
+<span id="cb8-135"><a href="#cb8-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-136"><a href="#cb8-136" aria-hidden="true" tabindex="-1"></a>ragg<span class="sc">::</span><span class="fu">agg_png</span>(<span class="st">"images/lsat_g.png"</span>, <span class="at">width =</span> <span class="dv">297</span>, <span class="at">height =</span> <span class="dv">210</span>, <span class="at">units =</span> <span class="st">"mm"</span>, <span class="at">res =</span> <span class="dv">600</span>)</span>
+<span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a>lsat_g</span>
+<span id="cb8-138"><a href="#cb8-138" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb8-139"><a href="#cb8-139" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-140"><a href="#cb8-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-141"><a href="#cb8-141" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/lsat_g.png)</span></span>
+<span id="cb8-142"><a href="#cb8-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-143"><a href="#cb8-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-144"><a href="#cb8-144" aria-hidden="true" tabindex="-1"></a><span class="fu"># 미국 대학원</span></span>
+<span id="cb8-145"><a href="#cb8-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-146"><a href="#cb8-146" aria-hidden="true" tabindex="-1"></a>GRE (Graduate Record Examination)는 미국의 대학원 수학 자격시험으로 미국 대학원에 유학 할 때 필요하다. MBA 나 로스쿨 등 전문대학원은 이 시험 대신 LSAT 나 GMAT 점수가 필요하다.</span>
+<span id="cb8-147"><a href="#cb8-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-148"><a href="#cb8-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-151"><a href="#cb8-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-152"><a href="#cb8-152" aria-hidden="true" tabindex="-1"></a>tbl_01 <span class="sc">%&gt;%</span> </span>
+<span id="cb8-153"><a href="#cb8-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(exam, <span class="st">"GRE"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-154"><a href="#cb8-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(exam, gpt_4, gpt_3_5) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-155"><a href="#cb8-155" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>()</span>
+<span id="cb8-156"><a href="#cb8-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-157"><a href="#cb8-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-158"><a href="#cb8-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-159"><a href="#cb8-159" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Average scores and standard deviations on Graduate Record Examination (GRE) general and subject tests: 1965 through 2016</span><span class="co">](https://nces.ed.gov/programs/digest/d18/tables/dt18_327.10.asp)</span> 을 통해 2016년도 GRE 점수를 GPT-4와 비교해보자.</span>
+<span id="cb8-160"><a href="#cb8-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-163"><a href="#cb8-163" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-164"><a href="#cb8-164" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb8-165"><a href="#cb8-165" aria-hidden="true" tabindex="-1"></a>gre_g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb8-166"><a href="#cb8-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Data'</span>, <span class="at">y =</span> <span class="st">'Density'</span>) <span class="sc">+</span></span>
+<span id="cb8-167"><a href="#cb8-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">150</span>, <span class="at">sd =</span> <span class="fl">8.5</span>), <span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb8-168"><a href="#cb8-168" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"GRE Quantitative"</span>)) <span class="sc">+</span></span>
+<span id="cb8-169"><a href="#cb8-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">163</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb8-170"><a href="#cb8-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">153</span>, <span class="at">sd =</span> <span class="fl">9.0</span>), <span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb8-171"><a href="#cb8-171" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"GRE Verbal"</span>)) <span class="sc">+</span></span>
+<span id="cb8-172"><a href="#cb8-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">169</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span>  </span>
+<span id="cb8-173"><a href="#cb8-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">120</span>,<span class="dv">180</span>)) <span class="sc">+</span></span>
+<span id="cb8-174"><a href="#cb8-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="st">"GRE 시험"</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_family =</span> <span class="st">"MaruBuri Bold"</span>) <span class="sc">+</span></span>
+<span id="cb8-176"><a href="#cb8-176" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"GRE 점수"</span>,</span>
+<span id="cb8-177"><a href="#cb8-177" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"밀도"</span>,</span>
+<span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"GPT-4 GRE Quantitative / Verbal 역량"</span>,</span>
+<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"2016년 GRE 평균과 표준편차 반영 정규분포"</span>,</span>
+<span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a>         <span class="at">caption =</span> <span class="st">"Average scores and standard deviations on Graduate Record Examination (GRE), https://nces.ed.gov/programs/digest/d18/tables/dt18_327.10.asp"</span>) <span class="sc">+</span></span>
+<span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
+<span id="cb8-182"><a href="#cb8-182" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">175</span>, <span class="at">y =</span> <span class="fl">0.045</span>, <span class="at">label =</span> <span class="st">"GPT-4"</span>, <span class="at">size =</span> <span class="dv">7</span>, <span class="at">color =</span> <span class="st">"blue"</span>)</span>
+<span id="cb8-183"><a href="#cb8-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-184"><a href="#cb8-184" aria-hidden="true" tabindex="-1"></a>ragg<span class="sc">::</span><span class="fu">agg_png</span>(<span class="st">"images/gre_g.png"</span>, <span class="at">width =</span> <span class="dv">297</span>, <span class="at">height =</span> <span class="dv">210</span>, <span class="at">units =</span> <span class="st">"mm"</span>, <span class="at">res =</span> <span class="dv">600</span>)</span>
+<span id="cb8-185"><a href="#cb8-185" aria-hidden="true" tabindex="-1"></a>gre_g</span>
+<span id="cb8-186"><a href="#cb8-186" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb8-187"><a href="#cb8-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-188"><a href="#cb8-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-189"><a href="#cb8-189" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/gre_g.png)</span></span>
+<span id="cb8-190"><a href="#cb8-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-191"><a href="#cb8-191" aria-hidden="true" tabindex="-1"></a><span class="fu"># 전체 현황</span></span>
+<span id="cb8-192"><a href="#cb8-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-193"><a href="#cb8-193" aria-hidden="true" tabindex="-1"></a>Advanced Placement (AP)는 미국의 College Board가 만든 프로그램으로 고등학생들에게 대학 수준의 교육과정과 시험을 제공합니다. 미국의 대학과 대학들은 시험에서 높은 점수를 얻은 학생들에게 배치와 학점 인정을 한다. AP를 통해 학생들이 고등학교에 다니면서 대학 수준의 작업을 다루고 대학 학점 및 배치를 얻을 수 있는 기회를 제공한다.</span>
+<span id="cb8-194"><a href="#cb8-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-195"><a href="#cb8-195" aria-hidden="true" tabindex="-1"></a>AMC 10은 미국 수학 협회가 주최하는 수학 대회로, 10학년 이하의 학생들을 대상으로 한다. 이 시험은 고등학교 교육과정 중 10학년까지의 내용을 다룹니다1. AMC 10은 AMC 12와 함께 미국이 국제 수학 올림피아드 (IMO)에 참가하는 팀을 선발하기 위한 일련의 시험 중 첫 번째 시험이다.</span>
+<span id="cb8-196"><a href="#cb8-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-197"><a href="#cb8-197" aria-hidden="true" tabindex="-1"></a>AMC 12는 미국 수학 협회가 주최하는 수학 대회로, 12학년 이하의 학생들을 대상으로 한다. 이 시험은 고등학교 전 과정을 다루지만 Calculus 부분은 제외됩니다1. AMC 12는 AMC 10과 함께 미국이 국제 수학 올림피아드 (IMO)에 참가하는 팀을 선발하기 위한 일련의 시험 중 하나다.</span>
+<span id="cb8-198"><a href="#cb8-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-201"><a href="#cb8-201" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-202"><a href="#cb8-202" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb8-203"><a href="#cb8-203" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtExtras)</span>
+<span id="cb8-204"><a href="#cb8-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-205"><a href="#cb8-205" aria-hidden="true" tabindex="-1"></a>tbl_01 <span class="sc">%&gt;%</span> </span>
+<span id="cb8-206"><a href="#cb8-206" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-207"><a href="#cb8-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> <span class="fu">case_when</span>( <span class="fu">str_detect</span>(exam, <span class="st">"Bar|LSAT"</span>) <span class="sc">~</span> <span class="st">"법"</span>,</span>
+<span id="cb8-208"><a href="#cb8-208" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">str_detect</span>(exam, <span class="st">"SAT "</span>) <span class="sc">~</span> <span class="st">"수능"</span>,</span>
+<span id="cb8-209"><a href="#cb8-209" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">str_detect</span>(exam, <span class="st">"GRE"</span>) <span class="sc">~</span> <span class="st">"대학원"</span>,</span>
+<span id="cb8-210"><a href="#cb8-210" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">str_detect</span>(exam, <span class="st">"USABO|USNCO"</span>) <span class="sc">~</span> <span class="st">"고등 경진대회"</span>,</span>
+<span id="cb8-211"><a href="#cb8-211" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">str_detect</span>(exam, <span class="st">"Medical"</span>) <span class="sc">~</span> <span class="st">"헬스케어"</span>,</span>
+<span id="cb8-212"><a href="#cb8-212" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">str_detect</span>(exam, <span class="st">"Codeforces|Leetcode"</span>) <span class="sc">~</span> <span class="st">"코딩"</span>,</span>
+<span id="cb8-213"><a href="#cb8-213" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">str_detect</span>(exam, <span class="st">"Sommelier"</span>) <span class="sc">~</span> <span class="st">"소믈리에"</span>,</span>
+<span id="cb8-214"><a href="#cb8-214" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">str_detect</span>(exam, <span class="st">"^AP "</span>) <span class="sc">~</span> <span class="st">"AP 시험"</span>,</span>
+<span id="cb8-215"><a href="#cb8-215" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">str_detect</span>(exam, <span class="st">"^AMC "</span>) <span class="sc">~</span> <span class="st">"수학시험"</span>,</span>
+<span id="cb8-216"><a href="#cb8-216" aria-hidden="true" tabindex="-1"></a>                           <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"기타"</span></span>
+<span id="cb8-217"><a href="#cb8-217" aria-hidden="true" tabindex="-1"></a>                           )) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-218"><a href="#cb8-218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span></span>
+<span id="cb8-219"><a href="#cb8-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>( <span class="at">rowname_col =</span> <span class="st">"exam"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-220"><a href="#cb8-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_theme_nytimes</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb8-221"><a href="#cb8-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb8-222"><a href="#cb8-222" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"GPT-4 성능"</span>,</span>
+<span id="cb8-223"><a href="#cb8-223" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"OpenAI GPT-4 Technical Report"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-224"><a href="#cb8-224" aria-hidden="true" tabindex="-1"></a>     <span class="fu">cols_align</span>(</span>
+<span id="cb8-225"><a href="#cb8-225" aria-hidden="true" tabindex="-1"></a>      <span class="at">align =</span> <span class="st">"center"</span>,</span>
+<span id="cb8-226"><a href="#cb8-226" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-227"><a href="#cb8-227" aria-hidden="true" tabindex="-1"></a>   <span class="fu">gt_highlight_rows</span>(</span>
+<span id="cb8-228"><a href="#cb8-228" aria-hidden="true" tabindex="-1"></a>     <span class="at">rows =</span> type <span class="sc">==</span> <span class="st">"코딩"</span>,</span>
+<span id="cb8-229"><a href="#cb8-229" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">"lightgrey"</span>,</span>
+<span id="cb8-230"><a href="#cb8-230" aria-hidden="true" tabindex="-1"></a>     <span class="at">bold_target_only =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-231"><a href="#cb8-231" aria-hidden="true" tabindex="-1"></a>     <span class="at">target_col =</span> gpt_4</span>
+<span id="cb8-232"><a href="#cb8-232" aria-hidden="true" tabindex="-1"></a>   )  <span class="sc">%&gt;%</span> </span>
+<span id="cb8-233"><a href="#cb8-233" aria-hidden="true" tabindex="-1"></a>   <span class="fu">gt_highlight_rows</span>(</span>
+<span id="cb8-234"><a href="#cb8-234" aria-hidden="true" tabindex="-1"></a>     <span class="at">rows =</span> type <span class="sc">==</span> <span class="st">"수학시험"</span>,</span>
+<span id="cb8-235"><a href="#cb8-235" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">"lightgrey"</span>,</span>
+<span id="cb8-236"><a href="#cb8-236" aria-hidden="true" tabindex="-1"></a>     <span class="at">bold_target_only =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-237"><a href="#cb8-237" aria-hidden="true" tabindex="-1"></a>     <span class="at">target_col =</span> gpt_4</span>
+<span id="cb8-238"><a href="#cb8-238" aria-hidden="true" tabindex="-1"></a>   )  <span class="sc">%&gt;%</span> </span>
+<span id="cb8-239"><a href="#cb8-239" aria-hidden="true" tabindex="-1"></a>   <span class="fu">gt_highlight_rows</span>(</span>
+<span id="cb8-240"><a href="#cb8-240" aria-hidden="true" tabindex="-1"></a>     <span class="at">rows =</span> <span class="fu">str_detect</span>(exam, <span class="st">"English|</span><span class="sc">\\</span><span class="st">) Writing|USNCO"</span>),</span>
+<span id="cb8-241"><a href="#cb8-241" aria-hidden="true" tabindex="-1"></a>     <span class="at">fill =</span> <span class="st">"lightgrey"</span>,</span>
+<span id="cb8-242"><a href="#cb8-242" aria-hidden="true" tabindex="-1"></a>     <span class="at">bold_target_only =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-243"><a href="#cb8-243" aria-hidden="true" tabindex="-1"></a>     <span class="at">target_col =</span> gpt_4</span>
+<span id="cb8-244"><a href="#cb8-244" aria-hidden="true" tabindex="-1"></a>   ) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-245"><a href="#cb8-245" aria-hidden="true" tabindex="-1"></a>    <span class="fu">opt_table_font</span>(</span>
+<span id="cb8-246"><a href="#cb8-246" aria-hidden="true" tabindex="-1"></a>    <span class="at">font =</span> <span class="fu">list</span>(</span>
+<span id="cb8-247"><a href="#cb8-247" aria-hidden="true" tabindex="-1"></a>      <span class="fu">google_font</span>(<span class="at">name =</span> <span class="st">'Gowun Dodum'</span>)</span>
+<span id="cb8-248"><a href="#cb8-248" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-249"><a href="#cb8-249" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-250"><a href="#cb8-250" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://quarto.org/">Quarto</a> 개발</div>   
+      <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
+    <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","loop":true});</script>
+
+
+</body></html>

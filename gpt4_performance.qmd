@@ -1,0 +1,237 @@
+---
+title: "chatGPT"
+subtitle: "GPT-4 성능"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - custom-callout.lua   
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+[@openai2023gpt4]
+
+# PDF 보고서
+
+arXiv [GPT-4 Technical Report](https://arxiv.org/abs/2303.08774) 보고서를 다운로드 받아 PDF 보고서에서 GPT-4 성능을 평가해보자. 
+
+## PDF &rarr; 워드
+
+PDF 문서를 [`Convert2Docx`](https://github.com/Ifeanyi55/Convert2Docx) 패키지를 활용하여 워드파일로 변환시킨다. 페이지가 많아 제법 시간이 소요된다.
+
+```{r}
+#| eval: false
+
+library(Convert2Docx)
+Converter(pdf_file = "data/2303.08774.pdf",
+          docx_filename = "data/2303.08774.docx")
+```
+
+## 워드 &rarr; 표추출
+
+[`docxtractr`](https://github.com/hrbrmstr/docxtractr) 패키지를 설치하고 `docx_extract_tbl()` 함수로 PDF 파일에 담긴 표를 추출한다.
+
+```{r}
+library(docxtractr)
+
+gpt_docx <- docxtractr::read_docx("data/2303.08774.docx")
+
+tbl_01 <- docx_extract_tbl(gpt_docx, 3) %>% 
+    janitor::clean_names()
+tbl_01
+```
+
+# 변호사
+
+LSAT 시험과 Uniform Bar Exam 시험은 두 가지 다른 시험이다. LSAT은 로스쿨 입학을 위한 시험이며, Uniform Bar Exam은 변호사 자격증을 얻기 위한 시험이다.
+
+해당 데이터에서 GPT-4 LSAT 성적을 뽑아내서 미국 로스쿨 대학별 입학점수와 비교해보자.
+
+```{r}
+library(tidyverse)
+library(gt)
+
+lsat <- tbl_01 %>% 
+  filter(str_detect(exam, "Bar|LSAT")) %>% 
+  select(exam, gpt_4, gpt_3_5)
+
+lsat %>% 
+  gt()
+```
+
+publiclegal 웹사이트에서 [2020 Raw Data Law School Rankings](https://www.ilrg.com/rankings/law/) 데이터와 결합시켜 GPT-4 실력을 갈음해보자. 상위 10여개 대학을 제외하고 로스쿨 입학에 큰 문제는 없어보이는 실력을 보여주고 있다.
+
+```{r}
+#| eval: false
+library(rvest)
+extrafont::loadfonts()
+
+lsat_raw <- read_html('https://www.ilrg.com/rankings/law/')
+
+lsat_tbl <- lsat_raw %>% 
+  html_elements('.table-responsive') %>% 
+  html_table(header = TRUE) %>% 
+  .[[1]] %>% 
+  janitor::row_to_names(1) %>% 
+  janitor::clean_names()
+
+lsat_rank <- lsat_tbl %>% 
+  pull(law_school) %>% dput()
+
+lsat_g <- lsat_tbl %>% 
+  select(no, law_school, lsat_low, lsat_median, lsat_high) %>% 
+  mutate(law_school = factor(law_school, levels = lsat_rank) %>% fct_rev) %>%   
+  mutate_if(is.character, as.integer) %>% 
+  ggplot(aes(x = law_school, y = lsat_median, group=law_school)) +
+    geom_point() +
+    geom_linerange(aes(ymin = lsat_low, ymax=  lsat_high), colour = "blue") +
+    geom_hline(yintercept=163, linetype='dotted', col = 'red')+
+    annotate("text", x = "New York University", y = 163, size =5, label = "GPT-4", hjust = 1.1,
+             color = "red") +
+    coord_flip() +
+    theme_bw(base_family = "MaruBuri Bold") +
+    labs(x = "",
+         y = "",
+         title = "미국 변호사 입학시험 점수(LSAT)",
+         subtitle = "LSAT 중위점수 및 하한과 상한",
+         caption = "2020  Law School Rankings, https://www.ilrg.com/rankings/law/")
+
+ragg::agg_png("images/lsat_g.png", width = 297, height = 210, units = "mm", res = 600)
+lsat_g
+dev.off()
+```
+
+![](images/lsat_g.png)
+
+
+# 미국 대학원
+
+GRE (Graduate Record Examination)는 미국의 대학원 수학 자격시험으로 미국 대학원에 유학 할 때 필요하다. MBA 나 로스쿨 등 전문대학원은 이 시험 대신 LSAT 나 GMAT 점수가 필요하다.
+
+
+```{r}
+tbl_01 %>% 
+  filter(str_detect(exam, "GRE")) %>% 
+  select(exam, gpt_4, gpt_3_5) %>% 
+  gt::gt()
+```
+
+
+[Average scores and standard deviations on Graduate Record Examination (GRE) general and subject tests: 1965 through 2016](https://nces.ed.gov/programs/digest/d18/tables/dt18_327.10.asp) 을 통해 2016년도 GRE 점수를 GPT-4와 비교해보자.
+
+```{r}
+#| eval: false
+gre_g <- ggplot() +
+  labs(x = 'Data', y = 'Density') +
+  stat_function(fun = dnorm, args = list(mean = 150, sd = 8.5), size = 1,
+                aes(color = "GRE Quantitative")) +
+  geom_vline(xintercept = 163, size = 1) +
+  stat_function(fun = dnorm, args = list(mean = 153, sd = 9.0), size = 1,
+                aes(color = "GRE Verbal")) +
+  geom_vline(xintercept = 169, size = 1, color = "red") +  
+  scale_x_continuous(limits = c(120,180)) +
+  scale_colour_manual("GRE 시험", values = c("black", "red")) +
+    theme_bw(base_family = "MaruBuri Bold") +
+    labs(x = "GRE 점수",
+         y = "밀도",
+         title = "GPT-4 GRE Quantitative / Verbal 역량",
+         subtitle = "2016년 GRE 평균과 표준편차 반영 정규분포",
+         caption = "Average scores and standard deviations on Graduate Record Examination (GRE), https://nces.ed.gov/programs/digest/d18/tables/dt18_327.10.asp") +
+  theme(legend.position = "top") +
+    annotate("text", x = 175, y = 0.045, label = "GPT-4", size = 7, color = "blue")
+
+ragg::agg_png("images/gre_g.png", width = 297, height = 210, units = "mm", res = 600)
+gre_g
+dev.off()
+```
+
+![](images/gre_g.png)
+
+# 전체 현황
+
+Advanced Placement (AP)는 미국의 College Board가 만든 프로그램으로 고등학생들에게 대학 수준의 교육과정과 시험을 제공합니다. 미국의 대학과 대학들은 시험에서 높은 점수를 얻은 학생들에게 배치와 학점 인정을 한다. AP를 통해 학생들이 고등학교에 다니면서 대학 수준의 작업을 다루고 대학 학점 및 배치를 얻을 수 있는 기회를 제공한다.
+
+AMC 10은 미국 수학 협회가 주최하는 수학 대회로, 10학년 이하의 학생들을 대상으로 한다. 이 시험은 고등학교 교육과정 중 10학년까지의 내용을 다룹니다1. AMC 10은 AMC 12와 함께 미국이 국제 수학 올림피아드 (IMO)에 참가하는 팀을 선발하기 위한 일련의 시험 중 첫 번째 시험이다.
+
+AMC 12는 미국 수학 협회가 주최하는 수학 대회로, 12학년 이하의 학생들을 대상으로 한다. 이 시험은 고등학교 전 과정을 다루지만 Calculus 부분은 제외됩니다1. AMC 12는 AMC 10과 함께 미국이 국제 수학 올림피아드 (IMO)에 참가하는 팀을 선발하기 위한 일련의 시험 중 하나다.
+
+```{r}
+library(gt)
+library(gtExtras)
+
+tbl_01 %>% 
+  select(-3) %>% 
+  mutate(type = case_when( str_detect(exam, "Bar|LSAT") ~ "법",
+                           str_detect(exam, "SAT ") ~ "수능",
+                           str_detect(exam, "GRE") ~ "대학원",
+                           str_detect(exam, "USABO|USNCO") ~ "고등 경진대회",
+                           str_detect(exam, "Medical") ~ "헬스케어",
+                           str_detect(exam, "Codeforces|Leetcode") ~ "코딩",
+                           str_detect(exam, "Sommelier") ~ "소믈리에",
+                           str_detect(exam, "^AP ") ~ "AP 시험",
+                           str_detect(exam, "^AMC ") ~ "수학시험",
+                           TRUE ~ "기타"
+                           )) %>% 
+  group_by(type) %>%
+  gt( rowname_col = "exam") %>% 
+  gt_theme_nytimes() %>% 
+  tab_header(
+    title = "GPT-4 성능",
+    subtitle = "OpenAI GPT-4 Technical Report") %>% 
+     cols_align(
+      align = "center",
+      columns = everything()) %>% 
+   gt_highlight_rows(
+     rows = type == "코딩",
+     fill = "lightgrey",
+     bold_target_only = TRUE,
+     target_col = gpt_4
+   )  %>% 
+   gt_highlight_rows(
+     rows = type == "수학시험",
+     fill = "lightgrey",
+     bold_target_only = TRUE,
+     target_col = gpt_4
+   )  %>% 
+   gt_highlight_rows(
+     rows = str_detect(exam, "English|\\) Writing|USNCO"),
+     fill = "lightgrey",
+     bold_target_only = TRUE,
+     target_col = gpt_4
+   ) %>% 
+    opt_table_font(
+    font = list(
+      google_font(name = 'Gowun Dodum')
+    )
+  )
+```
+
