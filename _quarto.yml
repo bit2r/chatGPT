@@ -67,6 +67,8 @@ website:
         - text: "------------------"
         - href: samsung.qmd
           text: "삼전 주가예측"
+        - href: calculator.qmd
+          text: "계산기 프로그램"
         - href: rcoding.qmd
           text: "GPT R 코딩개발"
         - href: rcoding-copilot.qmd

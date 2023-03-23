@@ -1,0 +1,372 @@
+---
+title: "chatGPT"
+subtitle: "계산기 프로그램"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - custom-callout.lua   
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# CLI 계산기
+
+
+chatGPT에 지시명령어로 계산기 프로그램을 파이썬 언어로 작성하라는 하명을 내린다.
+계산기를 동작시키는 방식도 알려달라는 하명도 이어서 내린다.
+
+
+::: panel-tabset
+
+## 지시명령어
+
+::: {.callout-note collapse="true"}
+### write python code of calculator
+
+![](images/coding_calculator.jpg)
+:::
+
+## 소스코드
+
+```{python}
+#| eval: false
+
+# Simple calculator program
+
+# Function to add two numbers
+def add(x, y):
+    return x + y
+
+# Function to subtract two numbers
+def subtract(x, y):
+    return x - y
+
+# Function to multiply two numbers
+def multiply(x, y):
+    return x * y
+
+# Function to divide two numbers
+def divide(x, y):
+    return x / y
+
+# Display menu
+print("Select operation.")
+print("1. Add")
+print("2. Subtract")
+print("3. Multiply")
+print("4. Divide")
+
+# Take input from the user
+choice = input("Enter choice (1/2/3/4): ")
+
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+# Perform operation based on user's choice
+if choice == '1':
+    print(num1, "+", num2, "=", add(num1, num2))
+
+elif choice == '2':
+    print(num1, "-", num2, "=", subtract(num1, num2))
+
+elif choice == '3':
+    print(num1, "*", num2, "=", multiply(num1, num2))
+
+elif choice == '4':
+    print(num1, "/", num2, "=", divide(num1, num2))
+
+else:
+    print("Invalid input")
+```
+
+## &rarr;
+
+## 실행 지시명령어
+
+::: {.callout-note collapse="false"}
+### how to run this python code
+
+Python 코드를 실행하려면 시스템에 Python이 설치되어 있어야 합니다. 다음 단계에 따라 간단한 계산기를 위한 Python 코드를 실행할 수 있습니다:
+
+1. 메모장이나 서브라인 텍스트와 같은 텍스트 편집기를 열고 Python 코드를 새 파일에 붙여넣습니다.
+1. 파일 확장명을 .py로 지정하여 저장합니다(예: calculator.py).
+1. 터미널 또는 명령 프롬프트 창을 엽니다.
+1. `cd` 명령을 사용하여 파일이 저장된 디렉토리로 이동합니다(예: `cd Documents\Python`).
+1. `python calculator.py`를 입력하고 Enter 키를 눌러 프로그램을 실행합니다.
+
+그러면 프로그램이 실행되고 메뉴가 표시되며 사용자에게 원하는 연산과 숫자 두 개를 입력하라는 메시지가 표시됩니다. 사용자가 필요한 입력을 입력하면 프로그램이 해당 산술 연산을 수행하고 결과를 표시합니다.
+:::
+
+## 실행 사례
+
+![](images/coding_calculator_run.gif)
+
+:::
+
+
+```{r}
+xfun::embed_file("code/calculator.py", text = "계산기 소스코드 다운로드")
+```
+
+
+
+# GUI 계산기
+
+
+이번에는 계산기에 GUI를 입혀 사용자가 좀더 쉽게 사용할 수 있도록 한다.
+다양한 GUI 패키지가 있지만 그중에서 `tkinter` 패키지 하나를 선정하여 개발을 이어나간다.
+chatGPT에 지시명령어로 계산기 프로그램을 파이썬 언어로 작성하라는 하명을 내린다.
+계산기를 동작시키는 방식도 알려달라는 하명도 이어서 내린다.
+
+
+::: panel-tabset
+
+## 지시명령어
+
+::: {.callout-note collapse="true"}
+### please add gui with tkinter 
+
+Sure, here is an example of the same calculator program using the Tkinter library to create a graphical user interface (GUI):
+
+...
+
+In this code, we first import the Tkinter library using the alias tk. Then we define four functions add(), subtract(), multiply(), and divide() that perform the corresponding arithmetic operations on the numbers entered by the user. Each function retrieves the input values from the Entry widgets using the get() method, performs the arithmetic operation, and updates the text of the Label widget to display the result.
+
+We then create the main window using the Tk() constructor and set its title using the title() method. Next, we create two Label widgets and two Entry widgets to allow the user to enter the two numbers.
+
+We also create four Button widgets, one for each arithmetic operation, and set their text and width. The command parameter is used to specify the function that should be called when the button is clicked.
+
+Finally, we create a Label widget to display the result of the arithmetic operation, and call the mainloop() method to start the event loop and display the GUI.
+
+:::
+
+## 소스코드
+
+```{python}
+#| eval: false
+
+import tkinter as tk
+
+# Function to perform addition
+def add():
+    try:
+        num1 = float(entry_num1.get())
+        num2 = float(entry_num2.get())
+        result = num1 + num2
+        label_result.config(text="Result: " + str(result))
+    except ValueError:
+        label_result.config(text="Invalid input")
+
+# Function to perform subtraction
+def subtract():
+    try:
+        num1 = float(entry_num1.get())
+        num2 = float(entry_num2.get())
+        result = num1 - num2
+        label_result.config(text="Result: " + str(result))
+    except ValueError:
+        label_result.config(text="Invalid input")
+
+# Function to perform multiplication
+def multiply():
+    try:
+        num1 = float(entry_num1.get())
+        num2 = float(entry_num2.get())
+        result = num1 * num2
+        label_result.config(text="Result: " + str(result))
+    except ValueError:
+        label_result.config(text="Invalid input")
+
+# Function to perform division
+def divide():
+    try:
+        num1 = float(entry_num1.get())
+        num2 = float(entry_num2.get())
+        result = num1 / num2
+        label_result.config(text="Result: " + str(result))
+    except ValueError:
+        label_result.config(text="Invalid input")
+    except ZeroDivisionError:
+        label_result.config(text="Cannot divide by zero")
+
+# Create the main window
+window = tk.Tk()
+window.title("Simple Calculator")
+
+# Create the number input fields
+label_num1 = tk.Label(window, text="Number 1:")
+label_num1.pack()
+entry_num1 = tk.Entry(window)
+entry_num1.pack()
+
+label_num2 = tk.Label(window, text="Number 2:")
+label_num2.pack()
+entry_num2 = tk.Entry(window)
+entry_num2.pack()
+
+# Create the operation buttons
+button_add = tk.Button(window, text="+", width=10, command=add)
+button_add.pack()
+
+button_subtract = tk.Button(window, text="-", width=10, command=subtract)
+button_subtract.pack()
+
+button_multiply = tk.Button(window, text="*", width=10, command=multiply)
+button_multiply.pack()
+
+button_divide = tk.Button(window, text="/", width=10, command=divide)
+button_divide.pack()
+
+# Create the result label
+label_result = tk.Label(window, text="Result: ")
+label_result.pack()
+
+# Run the main loop
+window.mainloop()
+```
+
+## &rarr;
+
+## 실행 지시명령어
+
+::: {.callout-note collapse="false"}
+### how to run this python code
+
+Python 코드를 실행하려면 시스템에 Python이 설치되어 있어야 합니다. 다음 단계에 따라 간단한 계산기를 위한 Python 코드를 실행할 수 있습니다:
+
+1. 메모장이나 서브라인 텍스트와 같은 텍스트 편집기를 열고 Python 코드를 새 파일에 붙여넣습니다.
+1. 파일 확장명을 .py로 지정하여 저장합니다(예: calculator.py).
+1. 터미널 또는 명령 프롬프트 창을 엽니다.
+1. `cd` 명령을 사용하여 파일이 저장된 디렉토리로 이동합니다(예: `cd Documents\Python`).
+1. `python calculator.py`를 입력하고 Enter 키를 눌러 프로그램을 실행합니다.
+
+그러면 프로그램이 실행되고 메뉴가 표시되며 사용자에게 원하는 연산과 숫자 두 개를 입력하라는 메시지가 표시됩니다. 사용자가 필요한 입력을 입력하면 프로그램이 해당 산술 연산을 수행하고 결과를 표시합니다.
+:::
+
+## 실행 사례
+
+![](images/coding_calculator_gui_run.gif)
+
+:::
+
+
+```{r}
+xfun::embed_file("code/calculator_gui.py", text = "계산기 소스코드 GUI 버전 다운로드")
+```
+
+
+# 테스트
+
+계산기 프로그램이 정상동작하는지 확인하는 코드를 작성하자.
+만약 단위 테스트 결과가 모두 정상동작한다면 믿고 현업에서 사용하게 된다.
+
+::: panel-tabset
+
+## 지시명령어
+
+::: {.callout-note collapse="true"}
+### first write python program for calculator and then test result from execution
+
+Here's the Python code for a simple calculator that supports addition, subtraction, multiplication, and division. We'll create a separate file for the test cases, which will import and run the calculator functions.
+
+Save the following code as calculator.py:
+
+```python
+class Calculator:
+    def add(self, a, b):
+        return a + b
+
+    def subtract(self, a, b):
+        return a - b
+
+    def multiply(self, a, b):
+        return a * b
+
+    def divide(self, a, b):
+        if b == 0:
+            raise ValueError("Cannot divide by zero")
+        return a / b
+```
+
+Now, create a new file named test_calculator.py and save the following code in it:
+
+```python
+from calculator import Calculator
+
+def test_calculator():
+    calc = Calculator()
+
+    # Test addition
+    assert calc.add(2, 3) == 5, "Test case 1 failed"
+    assert calc.add(-2, 3) == 1, "Test case 2 failed"
+
+    # Test subtraction
+    assert calc.subtract(5, 3) == 2, "Test case 3 failed"
+    assert calc.subtract(0, -5) == 5, "Test case 4 failed"
+
+    # Test multiplication
+    assert calc.multiply(3, 4) == 12, "Test case 5 failed"
+    assert calc.multiply(-2, 5) == -10, "Test case 6 failed"
+
+    # Test division
+    assert calc.divide(10, 2) == 5, "Test case 7 failed"
+    assert calc.divide(-10, 5) == -2, "Test case 8 failed"
+
+    # Test division by zero
+    try:
+        calc.divide(10, 0)
+    except ValueError as e:
+        assert str(e) == "Cannot divide by zero", "Test case 9 failed"
+
+    print("All test cases passed")
+
+if __name__ == "__main__":
+    test_calculator()
+```
+
+To execute the test cases, open a terminal or command prompt and navigate to the directory containing both calculator.py and test_calculator.py. Then run the following command:
+
+```bash
+python test_calculator.py
+```
+
+If all test cases pass, you'll see "All test cases passed" printed on the console.
+
+:::
+
+## 실행결과
+
+![](images/coding_calculator_test.jpg)
+
+:::
+
+
+
