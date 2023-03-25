@@ -878,8 +878,8 @@
     "objectID": "interface.html#슬랙",
     "href": "interface.html#슬랙",
     "title": "chatGPT",
-    "section": "\n3.2 슬랙",
-    "text": "3.2 슬랙\n2023년 3월 7일 Salesforce와 OpenAI는 Slack용 ChatGPT 앱을 출시했다. OpenAI가 Slack 플랫폼에 구축한 이 앱은 ChatGPT의 강력한 AI 기술을 통합하여 즉각적인 대화 요약, 조사 도구 및 작성 지원을 Slack에서 바로 제공하여 수백만 기업이 보다 생산적으로 작업할 수 있도록 지원하기 시작했다.\n출처: Introducing the ChatGPT App for Slack"
+    "section": "\n3.3 슬랙",
+    "text": "3.3 슬랙\n2023년 3월 7일 Salesforce와 OpenAI는 Slack용 ChatGPT 앱을 출시했다. OpenAI가 Slack 플랫폼에 구축한 이 앱은 ChatGPT의 강력한 AI 기술을 통합하여 즉각적인 대화 요약, 조사 도구 및 작성 지원을 Slack에서 바로 제공하여 수백만 기업이 보다 생산적으로 작업할 수 있도록 지원하기 시작했다.\n출처: Introducing the ChatGPT App for Slack"
   },
   {
     "objectID": "rnd.html",
@@ -1202,5 +1202,47 @@
     "title": "chatGPT",
     "section": "\n1.2 워드 → 표추출",
     "text": "1.2 워드 → 표추출\ndocxtractr 패키지를 설치하고 docx_extract_tbl() 함수로 PDF 파일에 담긴 표를 추출한다.\n\n코드library(docxtractr)\n\ngpt_docx <- docxtractr::read_docx(\"data/2303.08774.docx\")\n\ntbl_01 <- docx_extract_tbl(gpt_docx, 3) %>% \n    janitor::clean_names()\ntbl_01\n#> # A tibble: 34 × 4\n#>    exam                                           gpt_4          gpt_4…¹ gpt_3_5\n#>    <chr>                                          <chr>          <chr>   <chr>  \n#>  1 Uniform Bar Exam (MBE+MEE+MPT)                 298 / 400 (~9… 298 / … 213 / …\n#>  2 LSAT                                           163 (~88th)    161 (~… 149 (~…\n#>  3 SAT Evidence-Based Reading & Writing           710 / 800 (~9… 710 / … 670 / …\n#>  4 SAT Math                                       700 / 800 (~8… 690 / … 590 / …\n#>  5 Graduate Record Examination (GRE) Quantitative 163 / 170 (~8… 157 / … 147 / …\n#>  6 Graduate Record Examination (GRE) Verbal       169 / 170 (~9… 165 / … 154 / …\n#>  7 Graduate Record Examination (GRE) Writing      4 / 6 (~54th)  4 / 6 … 4 / 6 …\n#>  8 USABO Semifinal Exam 2020                      87 / 150 (99t… 87 / 1… 43 / 1…\n#>  9 USNCO Local Section Exam 2022                  36 / 60        38 / 60 24 / 60\n#> 10 Medical Knowledge Self-Assessment Program      75 %           75 %    53 %   \n#> # … with 24 more rows, and abbreviated variable name ¹​gpt_4_no_vision"
+  },
+  {
+    "objectID": "interface.html#웹검색",
+    "href": "interface.html#웹검색",
+    "title": "chatGPT",
+    "section": "\n1.1 웹검색",
+    "text": "1.1 웹검색\n구글 검색을 통해 일반적인 내용을 얻을 수도 있다. 예를 들어,\n\nsite:quarto.org/ google analytics tracking code\n\n구글검색창에 상기 사항을 입력하게 되면 구글은 쿼토(quarto) 웹사이트 내부에서 google analytics tracking code 키워드와 관련이 높은 웹페이지를 검색결과로 반환시키게 된다."
+  },
+  {
+    "objectID": "interface.html#쿼토-웹-검색",
+    "href": "interface.html#쿼토-웹-검색",
+    "title": "chatGPT",
+    "section": "\n1.2 쿼토 웹 검색",
+    "text": "1.2 쿼토 웹 검색\nQuarto는 웹사이트와 책의 전체 텍스트 검색을 지원하는데, 기본적으로 Quarto는 사이트의 콘텐츠를 자동으로 색인화하여 기본적으로 로컬로 구축된 색인을 사용하여 높은 검색품질을 제공한다. 따라서, 사용자는 구글웹사이트가 아니라 쿼토(quarto)에서 검색을 수행하여 직접 해당 정보를 찾는 것도 가능하다."
+  },
+  {
+    "objectID": "interface.html#chatgpt-검색",
+    "href": "interface.html#chatgpt-검색",
+    "title": "chatGPT",
+    "section": "\n1.3 chatGPT 검색",
+    "text": "1.3 chatGPT 검색\nChatGPT를 사용하여 검색작업을 수행할 수도 있다. 특정 웹사이트에서 해당 정보를 얻어야 되기 때문에 지시명령어(Prompt)를 다음과 같이 작성한다.\n\nsearch https://quarto.org/ insert google analytics tracking code for quarto html document"
+  },
+  {
+    "objectID": "interface.html#quarto-전용-chatgpt",
+    "href": "interface.html#quarto-전용-chatgpt",
+    "title": "chatGPT",
+    "section": "\n1.4 Quarto 전용 chatGPT\n",
+    "text": "1.4 Quarto 전용 chatGPT\n\n쿼토(Quarto)는 차세대 R마크다운이라는 별명이 붙어 있을 정도로 R마크다운이 갖는 모든 기능에 더하여 추가로 새로운 언어(Python, R, Julia, Observable.)에 대한 지원도 포괄하고 있어 상당한 학습량을 요구한다. 설계는 깔끔하게 잘 되어 있지만 이것을 잘 사용하려면 상당한 학습량이 필요로 한다. 이런 문제에 chatGPT를 도입하여 사용하면 경우에 따라서 큰 도움을 줄 수도 있다.\n\nQuarto Help Bot - Ask a question about Quarto.\n\n\n\n\n\n:::\n내부적으로 동작하는 질문-응답(QnA)에는 다음과 같은 단계로 세분화되어 있으며, 모두 ChatVectorDBChain이 처리한다:\n\n채팅 기록과 새로운 사용자 입력이 주어지면 독립형 질문이 무엇인지 결정(GPT-3 사용).\n독립형 질문이 주어지면 벡터 스토어에서 관련 문서를 검색.\n독립형 질문과 관련 문서를 GPT-3에 전달하여 최종 답변을 생성."
+  },
+  {
+    "objectID": "interface.html#카톡-아숙업",
+    "href": "interface.html#카톡-아숙업",
+    "title": "chatGPT",
+    "section": "\n3.1 카톡: 아숙업",
+    "text": "3.1 카톡: 아숙업\n업스테이지에서 개발한 ‘아숙업’ 서비스는 모바일 메신져 카카오톡에 AskUp 채널을 추가하게 되면 chatGPT 유사 기능을 사용할 수 있다. 문제는 언제 AskUp 채널 서비스가 중단될지 유료로 과금이 변경될지 모르지만 chatGPT를 사용하는 방식이 다양화함은 분명하다.\nAskUp 서비스는 현재 시점(“2023-03-10”) 기준 PDF 문서요약기능은 제공하고 있지 않지만 장문의 텍스트는 요약하는 기능을 제공하고 있다.\n\n\naskup 검색\n채널추가\n채팅준비\nOCR 사례\n뉴스 요약"
+  },
+  {
+    "objectID": "interface.html#카톡-다다음",
+    "href": "interface.html#카톡-다다음",
+    "title": "chatGPT",
+    "section": "\n3.2 카톡: 다다음",
+    "text": "3.2 카톡: 다다음\n카카오브레인, AI챗봇 ‘다다음’(dmm) 베타 출시 하루 만에 중단\n카카오브레인이 카카오톡으로 쓸 수 있는 인공지능(AI) 챗봇 ‘다다음’(ddmm) 베타 서비스를 19일 출시했지만 황급히 서비스를 내렸다. 다다음은 카카오브레인이 개발한 거대 언어 AI 모델 (LLM) ’코GPT’와 ’칼로’를 파운데이션 모델로 삼아 개발한 생성형 AI 채팅 서비스다. 정보검색, 요약, 번역은 물론 이미지 생성도 지원했다."
   }
 ]

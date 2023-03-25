@@ -173,6 +173,10 @@ ga('send', {
     <a class="dropdown-item" href="./why_llm.html">
  <span class="dropdown-text">왜 거대언어모형인가?</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./gpt4_performance.html">
+ <span class="dropdown-text">GPT-4 성능</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
     <a class="dropdown-item" href="./interface.html">
@@ -247,6 +251,10 @@ ga('send', {
         <li>
     <a class="dropdown-item" href="./samsung.html">
  <span class="dropdown-text">삼전 주가예측</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./calculator.html">
+ <span class="dropdown-text">계산기 프로그램</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./rcoding.html">
@@ -407,14 +415,21 @@ ga('send', {
   <li>
 <a href="#%EB%A9%94%EC%8B%A0%EC%A0%B8" id="toc-메신져" class="nav-link" data-scroll-target="#%EB%A9%94%EC%8B%A0%EC%A0%B8"><span class="toc-section-number">3</span>  메신져</a>
   <ul class="collapse">
-<li><a href="#%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1" id="toc-카카오톡" class="nav-link" data-scroll-target="#%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1"><span class="toc-section-number">3.1</span>  카카오톡</a></li>
-  <li><a href="#%EC%8A%AC%EB%9E%99" id="toc-슬랙" class="nav-link" data-scroll-target="#%EC%8A%AC%EB%9E%99"><span class="toc-section-number">3.2</span>  슬랙</a></li>
+<li><a href="#%EC%B9%B4%ED%86%A1-%EC%95%84%EC%88%99%EC%97%85" id="toc-카톡-아숙업" class="nav-link" data-scroll-target="#%EC%B9%B4%ED%86%A1-%EC%95%84%EC%88%99%EC%97%85"><span class="toc-section-number">3.1</span>  카톡: 아숙업</a></li>
+  <li><a href="#%EC%B9%B4%ED%86%A1-%EB%8B%A4%EB%8B%A4%EC%9D%8C" id="toc-카톡-다다음" class="nav-link" data-scroll-target="#%EC%B9%B4%ED%86%A1-%EB%8B%A4%EB%8B%A4%EC%9D%8C"><span class="toc-section-number">3.2</span>  카톡: 다다음</a></li>
+  <li><a href="#%EC%8A%AC%EB%9E%99" id="toc-슬랙" class="nav-link" data-scroll-target="#%EC%8A%AC%EB%9E%99"><span class="toc-section-number">3.3</span>  슬랙</a></li>
   </ul>
 </li>
+  <li><a href="#chatgpt-%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8" id="toc-chatgpt-플러그인" class="nav-link" data-scroll-target="#chatgpt-%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8"><span class="toc-section-number">4</span>  chatGPT 플러그인</a></li>
+  <li><a href="#copilot-for-cli" id="toc-copilot-for-cli" class="nav-link" data-scroll-target="#copilot-for-cli"><span class="toc-section-number">5</span>  Copilot for CLI</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><section id="웹-검색방식" class="level1" data-number="1"><h1 data-number="1">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/cli_gui_nli.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/cli_gui_nli.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<section id="웹-검색방식" class="level1" data-number="1"><h1 data-number="1">
 <span class="header-section-number">1</span> 웹 검색방식</h1>
 <p>특정 작업에 필요한 정보를 얻는 <strong>검색(search)</strong>은 기한이 정해진 업무를 수행함에 있어 매우 중요하다. chatGPT의 등장으로 새로운 검색 패러다임이 제시되고 있다. 물론 기존 검색방식이 부족한 것은 아니며 검색경험을 향상시키기 위해 많은 노력이 경주된 것도 사실이다. 차세대 R마크다운 <a href="https://quarto.org/">쿼토(quarto)</a> 문서 제작사례을 위한 검색사례를 통해 chatGPT와 비교하여 보자.</p>
 <section id="웹검색" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="웹검색">
@@ -425,14 +440,14 @@ ga('send', {
 </blockquote>
 <p>구글검색창에 상기 사항을 입력하게 되면 구글은 <a href="https://quarto.org/">쿼토(quarto)</a> 웹사이트 내부에서 <code>google analytics tracking code</code> 키워드와 관련이 높은 웹페이지를 검색결과로 반환시키게 된다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto_google.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/quarto_google.gif" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/quarto_google.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/quarto_google.gif" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </section><section id="쿼토-웹-검색" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="쿼토-웹-검색">
 <span class="header-section-number">1.2</span> 쿼토 웹 검색</h2>
 <p>Quarto는 웹사이트와 책의 전체 텍스트 검색을 지원하는데, 기본적으로 Quarto는 사이트의 콘텐츠를 자동으로 색인화하여 기본적으로 로컬로 구축된 색인을 사용하여 높은 검색품질을 제공한다. 따라서, 사용자는 구글웹사이트가 아니라 <a href="https://quarto.org/">쿼토(quarto)</a>에서 검색을 수행하여 직접 해당 정보를 찾는 것도 가능하다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto_search.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/quarto_search.gif" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/quarto_search.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/quarto_search.gif" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </section><section id="chatgpt-검색" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="chatgpt-검색">
@@ -442,7 +457,7 @@ ga('send', {
 <p>search https://quarto.org/ insert google analytics tracking code for quarto html document</p>
 </blockquote>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto_chatGPT.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/quarto_chatGPT.gif" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/quarto_chatGPT.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/quarto_chatGPT.gif" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </section><section id="quarto-전용-chatgpt" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="quarto-전용-chatgpt">
@@ -453,7 +468,7 @@ ga('send', {
 <li><a href="https://quarto-bot.onrender.com/">Quarto Help Bot - Ask a question about Quarto.</a></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto_bot.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/quarto_bot.gif" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/quarto_bot.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/quarto_bot.gif" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 <p>:::</p>
@@ -466,14 +481,14 @@ ga('send', {
 <span class="header-section-number">2</span> 가까운 미래</h1>
 <p>chatGPT가 만들어갈 가까운 미래는 아마도 다양한 <strong>도우미 봇(Help Bot)</strong>이 출현하여 생산성을 비약적으로 증대시켜 저녁이 있는 삶을 모두에게 선사하지 않을까 싶다.</p>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/quarto_future.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/quarto_future.png" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/quarto_future.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/quarto_future.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 </section><section id="메신져" class="level1 page-columns page-full" data-number="3"><h1 data-number="3">
 <span class="header-section-number">3</span> 메신져</h1>
-<section id="카카오톡" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="카카오톡">
-<span class="header-section-number">3.1</span> 카카오톡</h2>
-<p>모바일 메신져 카카오톡에 <code>AskUp</code> 채널을 추가하게 되면 <code>chatGPT</code> 유사 기능을 사용할 수 있다. 문제는 언제 <code>AskUp</code> 채널 서비스가 중단될지 유료로 과금이 변경될지 모르지만 chatGPT를 사용하는 방식이 다양화함은 분명하다.</p>
+<section id="카톡-아숙업" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="카톡-아숙업">
+<span class="header-section-number">3.1</span> 카톡: 아숙업</h2>
+<p>업스테이지에서 개발한 ‘아숙업’ 서비스는 모바일 메신져 카카오톡에 <code>AskUp</code> 채널을 추가하게 되면 <code>chatGPT</code> 유사 기능을 사용할 수 있다. 문제는 언제 <code>AskUp</code> 채널 서비스가 중단될지 유료로 과금이 변경될지 모르지만 chatGPT를 사용하는 방식이 다양화함은 분명하다.</p>
 <p><code>AskUp</code> 서비스는 현재 시점(“2023-03-10”) 기준 PDF 문서요약기능은 제공하고 있지 않지만 장문의 텍스트는 요약하는 기능을 제공하고 있다.</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -486,49 +501,101 @@ ga('send', {
 <div class="tab-content">
 <div id="tabset-1-1" class="unnumbered tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/kakao/askup_01.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/kakao/askup_01.jpg" class="img-fluid figure-img" width="399"></a></p>
+<figure class="figure"><p><a href="images/kakao/askup_01.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="images/kakao/askup_01.jpg" class="img-fluid figure-img" width="399"></a></p>
 </figure>
 </div>
 </div>
 <div id="tabset-1-2" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/kakao/askup_02.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="images/kakao/askup_02.jpg" class="img-fluid figure-img" width="399"></a></p>
+<figure class="figure"><p><a href="images/kakao/askup_02.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="images/kakao/askup_02.jpg" class="img-fluid figure-img" width="399"></a></p>
 </figure>
 </div>
 </div>
 <div id="tabset-1-3" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/kakao/askup_03.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="images/kakao/askup_03.jpg" class="img-fluid figure-img" width="399"></a></p>
+<figure class="figure"><p><a href="images/kakao/askup_03.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="images/kakao/askup_03.jpg" class="img-fluid figure-img" width="399"></a></p>
 </figure>
 </div>
 </div>
 <div id="tabset-1-4" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/kakao/ssn.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="images/kakao/ssn.png" class="img-fluid figure-img" width="399"></a></p>
+<figure class="figure"><p><a href="images/kakao/ssn.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/kakao/ssn.png" class="img-fluid figure-img" width="399"></a></p>
 </figure>
 </div>
 </div>
 <div id="tabset-1-5" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/kakao/news_summary.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/kakao/news_summary.png" class="img-fluid figure-img" width="399"></a></p>
+<figure class="figure"><p><a href="images/kakao/news_summary.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="images/kakao/news_summary.png" class="img-fluid figure-img" width="399"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-</section><section id="슬랙" class="level2 page-columns page-full" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="슬랙">
-<span class="header-section-number">3.2</span> 슬랙</h2>
+</section><section id="카톡-다다음" class="level2 page-columns page-full" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="카톡-다다음">
+<span class="header-section-number">3.2</span> 카톡: 다다음</h2>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="https://www.seoulfn.com/news/articleView.html?idxno=482124">카카오브레인, AI챗봇 ‘다다음’(dmm) 베타 출시 하루 만에 중단</a></span></div></div>
+<p>카카오브레인이 카카오톡으로 쓸 수 있는 인공지능(AI) 챗봇 ‘다다음’(ddmm) 베타 서비스를 19일 출시했지만 황급히 서비스를 내렸다. 다다음은 카카오브레인이 개발한 거대 언어 AI 모델 (LLM) ’코GPT’와 ’칼로’를 파운데이션 모델로 삼아 개발한 생성형 AI 채팅 서비스다. 정보검색, 요약, 번역은 물론 이미지 생성도 지원했다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/ddmm.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="images/ddmm.jpg" class="img-fluid figure-img" width="370"></a></p>
+</figure>
+</div>
+</section><section id="슬랙" class="level2 page-columns page-full" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="슬랙">
+<span class="header-section-number">3.3</span> 슬랙</h2>
 <p>2023년 3월 7일 Salesforce와 OpenAI는 Slack용 ChatGPT 앱을 출시했다. OpenAI가 Slack 플랫폼에 구축한 이 앱은 ChatGPT의 강력한 AI 기술을 통합하여 즉각적인 대화 요약, 조사 도구 및 작성 지원을 Slack에서 바로 제공하여 수백만 기업이 보다 생산적으로 작업할 수 있도록 지원하기 시작했다.</p>
 <div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">출처: <a href="https://www.salesforce.com/news/stories/chatgpt-app-for-slack/">Introducing the ChatGPT App for Slack</a></span></div></div>
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/kakao/Slack_ChatGPT_Blue.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="images/kakao/Slack_ChatGPT_Blue.gif" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/kakao/Slack_ChatGPT_Blue.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="images/kakao/Slack_ChatGPT_Blue.gif" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</section></section><section id="chatgpt-플러그인" class="level1 page-columns page-full" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> chatGPT 플러그인</h1>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">출처: <a href="https://openai.com/blog/chatgpt-plugins">ChatGPT plugins</a></span></div></div>
+<p><strong>플러그인(Plugin)</strong>은 기존 컴퓨터 프로그램에 특정 기능을 추가하는 소프트웨어 구성 요소다. chatGPT도 기반 프로그램으로 chatGPT가 플러그인을 지원하면 원래 표시하도록 설계되지 않은 추가 기능을 지원하게 된다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/chatGPT_plugins.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="images/chatGPT_plugins.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</section><section id="copilot-for-cli" class="level1 page-columns page-full" data-number="5"><h1 data-number="5">
+<span class="header-section-number">5</span> Copilot for CLI</h1>
+<p>자연어를 타이핑하게 되면 CLI 명령어를 실행시키게 되는 서비스로 다음 세가지 명령어를 앞단에 넣어게 주게 되면 원하는 결과를 얻게 된다. 아직 모든 사용자에게 공개된 것은 아니라서 <a href="https://zenn.dev/ekusiadadus/articles/github_copilot_for_cli">If you have GitHub Copilot for CLI, you don’t have to remember commands anymore, right?</a> 공개된 사항을 살펴보자.</p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="https://githubnext.com/projects/copilot-cli/">Copilot for CLI</a></span></div></div>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+3가지 명령어
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>?? git? gh?</p>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>I want to search for TypeScript files</li>
+<li>I want to ignore the contents of node_modules</li>
+<li>I want to sort by size</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>TypeScript 파일을 검색하고 싶습니다.</li>
+<li>node_modules의 내용을 무시하고 싶습니다.</li>
+<li>크기별로 정렬하고 싶습니다.</li>
+</ul>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/copilot_cli_bash.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="images/copilot_cli_bash.gif" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
 
 
 <!-- -->
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -870,7 +937,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">    wrap: 72</span></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/cli_gui_nli.jpg)</span></span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="fu"># 웹 검색방식</span></span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
@@ -952,46 +1019,110 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="fu"># 메신져</span></span>
 <span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="fu">## 카카오톡</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="fu">## 카톡: 아숙업</span></span>
 <span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>모바일 메신져 카카오톡에 <span class="in">`AskUp`</span> 채널을 추가하게 되면 <span class="in">`chatGPT`</span> 유사</span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>기능을 사용할 수 있다. 문제는 언제 <span class="in">`AskUp`</span> 채널 서비스가 중단될지 유료로</span>
-<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>과금이 변경될지 모르지만 chatGPT를 사용하는 방식이 다양화함은 분명하다.</span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="in">`AskUp`</span> 서비스는 현재 시점("2023-03-10") 기준 PDF 문서요약기능은</span>
-<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>제공하고 있지 않지만 장문의 텍스트는 요약하는 기능을 제공하고 있다.</span>
-<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
-<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="fu">### `askup` 검색 {.unnumbered}</span></span>
-<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/kakao/askup_01.jpg)</span>{width="399"}</span>
-<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="fu">### 채널추가 {.unnumbered}</span></span>
-<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/kakao/askup_02.jpg)</span>{width="399"}</span>
-<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a><span class="fu">### 채팅준비 {.unnumbered}</span></span>
-<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/kakao/askup_03.jpg)</span>{width="399"}</span>
-<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="fu">### OCR 사례 {.unnumbered}</span></span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/kakao/ssn.png)</span>{width="399"}</span>
-<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="fu">### 뉴스 요약 {.unnumbered}</span></span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/kakao/news_summary.png)</span>{width="399"}</span>
-<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>업스테이지에서 개발한 '아숙업' 서비스는 </span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>모바일 메신져 카카오톡에 <span class="in">`AskUp`</span> 채널을 추가하게 되면 <span class="in">`chatGPT`</span> 유사</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>기능을 사용할 수 있다. 문제는 언제 <span class="in">`AskUp`</span> 채널 서비스가 중단될지 유료로</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>과금이 변경될지 모르지만 chatGPT를 사용하는 방식이 다양화함은 분명하다.</span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="in">`AskUp`</span> 서비스는 현재 시점("2023-03-10") 기준 PDF 문서요약기능은</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>제공하고 있지 않지만 장문의 텍스트는 요약하는 기능을 제공하고 있다.</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="fu">### `askup` 검색 {.unnumbered}</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/kakao/askup_01.jpg)</span>{width="399"}</span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### 채널추가 {.unnumbered}</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/kakao/askup_02.jpg)</span>{width="399"}</span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a><span class="fu">### 채팅준비 {.unnumbered}</span></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/kakao/askup_03.jpg)</span>{width="399"}</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="fu">### OCR 사례 {.unnumbered}</span></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/kakao/ssn.png)</span>{width="399"}</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="fu">### 뉴스 요약 {.unnumbered}</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/kakao/news_summary.png)</span>{width="399"}</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a><span class="fu">## 슬랙</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a><span class="fu">## 카톡: 다다음</span></span>
 <span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>2023년 3월 7일 Salesforce와 OpenAI는 Slack용 ChatGPT 앱을 출시했다. </span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>OpenAI가 Slack 플랫폼에 구축한 이 앱은 ChatGPT의 강력한 AI 기술을 통합하여 즉각적인 대화 요약, 조사 도구 및 작성 지원을 Slack에서 바로 제공하여 수백만 기업이 보다 생산적으로 작업할 수 있도록 지원하기 시작했다.</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">카카오브레인, AI챗봇 '다다음'(dmm) 베타 출시 하루 만에 중단</span><span class="co">](https://www.seoulfn.com/news/articleView.html?idxno=482124)</span>]{.aside}</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">출처: [Introducing the ChatGPT App for Slack](https://www.salesforce.com/news/stories/chatgpt-app-for-slack/)</span><span class="co">]</span>{.aside}</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>카카오브레인이 카카오톡으로 쓸 수 있는 인공지능(AI) 챗봇 '다다음'(ddmm) 베타 서비스를 19일 출시했지만 황급히 서비스를 내렸다. 다다음은 카카오브레인이 개발한 거대 언어 AI 모델 (LLM) '코GPT'와 '칼로'를 파운데이션 모델로 삼아 개발한 생성형 AI 채팅 서비스다. 정보검색, 요약, 번역은 물론 이미지 생성도 지원했다.</span>
 <span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/kakao/Slack_ChatGPT_Blue.gif)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/ddmm.jpg)</span>{width="370"}</span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="fu">## 슬랙</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>2023년 3월 7일 Salesforce와 OpenAI는 Slack용 ChatGPT 앱을 출시했다. </span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>OpenAI가 Slack 플랫폼에 구축한 이 앱은 ChatGPT의 강력한 AI 기술을 통합하여 즉각적인 대화 요약, 조사 도구 및 작성 지원을 Slack에서 바로 제공하여 수백만 기업이 보다 생산적으로 작업할 수 있도록 지원하기 시작했다.</span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">출처: [Introducing the ChatGPT App for Slack](https://www.salesforce.com/news/stories/chatgpt-app-for-slack/)</span><span class="co">]</span>{.aside}</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/kakao/Slack_ChatGPT_Blue.gif)</span></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a><span class="fu"># chatGPT 플러그인</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">출처: [ChatGPT plugins](https://openai.com/blog/chatgpt-plugins)</span><span class="co">]</span>{.aside}</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>**플러그인(Plugin)**은 기존 컴퓨터 프로그램에 특정 기능을 추가하는 소프트웨어 구성 요소다. </span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>chatGPT도 기반 프로그램으로 chatGPT가 플러그인을 지원하면 원래 표시하도록 설계되지 않은 추가 기능을 지원하게 된다.</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/chatGPT_plugins.jpg)</span></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="fu"># Copilot for CLI</span></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>자연어를 타이핑하게 되면 CLI 명령어를 실행시키게 되는 서비스로 다음 세가지 </span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>명령어를 앞단에 넣어게 주게 되면 원하는 결과를 얻게 된다. </span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>아직 모든 사용자에게 공개된 것은 아니라서 <span class="co">[</span><span class="ot">If you have GitHub Copilot for CLI, you don't have to remember commands anymore, right?</span><span class="co">](https://zenn.dev/ekusiadadus/articles/github_copilot_for_cli)</span> 공개된 사항을 살펴보자.</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">Copilot for CLI</span><span class="co">](https://githubnext.com/projects/copilot-cli/)</span>]{.aside}</span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>:::{.callout-note}</span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3가지 명령어</span></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>??</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>git?</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>gh?</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>::::: {.columns}</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I want to search for TypeScript files</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I want to ignore the contents of node_modules</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>I want to sort by size</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>TypeScript 파일을 검색하고 싶습니다.</span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>node_modules의 내용을 무시하고 싶습니다.</span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>크기별로 정렬하고 싶습니다.</span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/copilot_cli_bash.gif)</span></span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
@@ -999,7 +1130,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"loop":true,"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":true,"descPosition":"bottom"});</script>
 
 
 </body></html>

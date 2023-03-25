@@ -41,7 +41,7 @@ editor:
     wrap: 72
 ---
 
-
+![](images/cli_gui_nli.jpg)
 
 # 웹 검색방식
 
@@ -123,8 +123,9 @@ chatGPT가 만들어갈 가까운 미래는 아마도 다양한 **도우미 봇(
 
 # 메신져
 
-## 카카오톡
+## 카톡: 아숙업
 
+업스테이지에서 개발한 '아숙업' 서비스는 
 모바일 메신져 카카오톡에 `AskUp` 채널을 추가하게 되면 `chatGPT` 유사
 기능을 사용할 수 있다. 문제는 언제 `AskUp` 채널 서비스가 중단될지 유료로
 과금이 변경될지 모르지만 chatGPT를 사용하는 방식이 다양화함은 분명하다.
@@ -154,6 +155,20 @@ chatGPT가 만들어갈 가까운 미래는 아마도 다양한 **도우미 봇(
 ![](images/kakao/news_summary.png){width="399"}
 :::
 
+## 카톡: 다다음
+
+[[카카오브레인, AI챗봇 '다다음'(dmm) 베타 출시 하루 만에 중단](https://www.seoulfn.com/news/articleView.html?idxno=482124)]{.aside}
+
+
+카카오브레인이 카카오톡으로 쓸 수 있는 인공지능(AI) 챗봇 '다다음'(ddmm) 베타 서비스를 19일 출시했지만 황급히 서비스를 내렸다. 다다음은 카카오브레인이 개발한 거대 언어 AI 모델 (LLM) '코GPT'와 '칼로'를 파운데이션 모델로 삼아 개발한 생성형 AI 채팅 서비스다. 정보검색, 요약, 번역은 물론 이미지 생성도 지원했다.
+
+![](images/ddmm.jpg){width="370"}
+
+
+
+
+
+
 
 ## 슬랙
 
@@ -163,4 +178,53 @@ OpenAI가 Slack 플랫폼에 구축한 이 앱은 ChatGPT의 강력한 AI 기술
 [출처: [Introducing the ChatGPT App for Slack](https://www.salesforce.com/news/stories/chatgpt-app-for-slack/)]{.aside}
 
 ![](images/kakao/Slack_ChatGPT_Blue.gif)
+
+# chatGPT 플러그인
+
+[출처: [ChatGPT plugins](https://openai.com/blog/chatgpt-plugins)]{.aside}
+
+
+**플러그인(Plugin)**은 기존 컴퓨터 프로그램에 특정 기능을 추가하는 소프트웨어 구성 요소다. 
+chatGPT도 기반 프로그램으로 chatGPT가 플러그인을 지원하면 원래 표시하도록 설계되지 않은 추가 기능을 지원하게 된다.
+
+
+![](images/chatGPT_plugins.jpg)
+
+# Copilot for CLI
+
+자연어를 타이핑하게 되면 CLI 명령어를 실행시키게 되는 서비스로 다음 세가지 
+명령어를 앞단에 넣어게 주게 되면 원하는 결과를 얻게 된다. 
+아직 모든 사용자에게 공개된 것은 아니라서 [If you have GitHub Copilot for CLI, you don't have to remember commands anymore, right?](https://zenn.dev/ekusiadadus/articles/github_copilot_for_cli) 공개된 사항을 살펴보자.
+
+[[Copilot for CLI](https://githubnext.com/projects/copilot-cli/)]{.aside}
+
+:::{.callout-note}
+### 3가지 명령어
+
+??
+git?
+gh?
+:::
+
+::::: {.columns}
+::: {.column width="50%"}
+- I want to search for TypeScript files
+- I want to ignore the contents of node_modules
+- I want to sort by size
+:::
+
+::: {.column width="50%"}
+- TypeScript 파일을 검색하고 싶습니다.
+- node_modules의 내용을 무시하고 싶습니다.
+- 크기별로 정렬하고 싶습니다.
+:::
+:::::
+
+
+![](images/copilot_cli_bash.gif)
+
+
+
+
+
 
