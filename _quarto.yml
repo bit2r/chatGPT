@@ -99,6 +99,8 @@ website:
           text: "HF 파이프라인"
         - href: langchain.qmd
           text: "LangCahin"
+        - href: openAI_GPT.qmd
+          text: "OpenAI GPT"
       - href: blog.qmd
         text: "게시글"
       - text: "유/무료 서비스"
