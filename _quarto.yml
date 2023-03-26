@@ -78,7 +78,7 @@ website:
           text: "수학문제 (MIT)"
         - href: middle_school.qmd
           text: "Shiny 앱"
-      - text: "BERT"
+      - text: "자동화/개발"
         menu:
         - href: ide.qmd
           text: "통합개발환경(IDE)"
@@ -97,6 +97,8 @@ website:
         - text: "------------------"
         - href: hf_pipeline.qmd
           text: "HF 파이프라인"
+        - href: langchain.qmd
+          text: "LangCahin"
       - href: blog.qmd
         text: "게시글"
       - text: "유/무료 서비스"

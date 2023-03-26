@@ -1,0 +1,199 @@
+---
+title: "chatGPT"
+subtitle: "LangCahin"
+description: |
+  LangChain은 AI 기능 및 애플리케이션을 보다 쉽게 구축할 수 있도록 하는 데 중점을 둔 인기 있는 오픈 소스 라이브러리로, 특히 GPT 및 기타 언어 모델을 통합하는 데 중점을 두고 있다.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: false
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: yes
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# 환경설정
+
+[LangChain](https://python.langchain.com/en/latest/index.html) 에서 OpenAI chatGPT를 호출하여 원하는 작업을 수행한다. 먼저 `openai`와 `langchain`을 설치한다.
+
+
+```{python}
+#| eval: false
+!pip3 install openai langchain
+```
+
+`OPENAI_API_KEY`를 환경변수를 넣어두고 `OpenAI()` 함수에서 호출하여 사용할 수 있도록 한다.
+
+```{python}
+import os
+from langchain.llms import OpenAI
+
+# os.environ.get('OPENAI_API_KEY')
+```
+
+# 헬로 월드
+
+그리고 나서, 헬로월드를 찍어본다. `model_name`을 비롯한 인수를 
+응답속도, 정확도, 간결함, 창의성, 비용 등을 고려하여 지정하여 원하는 결과를 얻어낸다.
+
+```{python}
+llm = OpenAI(model_name="text-davinci-003", n=1, temperature=0.9)
+llm("재미있는 농담해 주세요")
+```
+
+3개 농담을 뽑아보자.
+
+```{python}
+llm_result = llm.generate(["재미있는 농담해 주세요"]*3)
+llm_jokes = llm_result.generations
+llm_jokes
+```
+
+# 프롬프트 템플릿
+
+프롬프트 템플릿을 작성하여 해당 작업을 수행토록 지시할 수 있다.
+예를 들어 회사명을 작명하는데 대표적으로 잘 작명된 회사명을 제시하고 
+제약 조건을 추가로 둔 후 회사명 작명지시를 수행시킬 수 있다.
+
+## 영문
+
+```{python}
+from langchain import PromptTemplate
+
+template = """
+I want you to act as a naming consultant for new companies.
+
+Here are some examples of good company names:
+
+- search engine, Google
+- social media, Facebook
+- video sharing, YouTube
+
+The name should be short, catchy and easy to remember.
+
+What is a good name for a company that makes {product}?
+"""
+
+prompt = PromptTemplate(
+    input_variables = ["product"],
+    template = template,
+)
+
+prompt.format(product="colorful socks")
+```
+
+앞서 프롬프트 템플릿을 지정한 후 실행을 통해 원하는 회사명 작명 작업을 수행시킨다.
+
+```{python}
+from langchain.chains import LLMChain
+
+chain = LLMChain(llm=llm, prompt=prompt)
+
+print(chain.run("colorful socks"))
+```
+
+
+## 국문
+
+앞서 제작된 영문회사 작명 템플릿을 번역하여 국내 몇가지 회사를 사례로 넣어 chatGPT에 작업을 지시한다.
+
+```{python}
+
+k_template = """
+신규 회사명을 작명하는 컨설턴트로 활동해 주셨으면 합니다.
+
+다음은 좋은 회사 이름 몇 가지 사례입니다:
+
+- 케이티, 통신
+- 놀부, 외식프랜차이즈
+- 율도국, 브랜드제작
+- 크몽, 아웃소싱 플랫폼
+
+이름은 짧고 눈에 잘 띄며 기억하기 쉬워야 합니다.
+
+{k_product} 제품을 잘 만드는 회사의 좋은 이름은 무엇인가요?
+"""
+
+k_prompt = PromptTemplate(
+    input_variables = ["k_product"],
+    template = k_template,
+)
+
+k_prompt.format(k_product="양말")
+```
+
+앞서 프롬프트 템플릿을 지정한 후 실행을 통해 원하는 회사명 작명 작업을 수행시킨다.
+
+```{python}
+from langchain.chains import LLMChain
+
+k_chain = LLMChain(llm = llm, prompt = k_prompt)
+
+print(k_chain.run("양말"))
+```
+
+
+# 요약
+
+[[openAI Tokenizer](https://platform.openai.com/tokenizer)]{.aside}
+
+한글은 영어에 비해 토큰 크기가 크다. 
+이를 위해서 `text-davinci-003` 모델이 소화할 수 있는 토큰보다 크기를 줄여야한다.
+대한민국 대통령 취임사 중 박근혜 대통령 취임사에서 대략 2,000 토큰 크기를 대상으로 
+문서 요약을 수행해보자.
+
+
+```{python}
+#| error: true
+from langchain import OpenAI, PromptTemplate, LLMChain
+from langchain.text_splitter import CharacterTextSplitter
+from langchain.chains.mapreduce import MapReduceChain
+from langchain.prompts import PromptTemplate
+
+llm = OpenAI(temperature=0)
+
+text_splitter = CharacterTextSplitter()
+
+with open('data/state_of_the_union.txt') as f:
+# with open('data/취임사.txt') as f:
+    inaugural_address  = f.read()
+    
+texts = text_splitter.split_text(inaugural_address)
+
+from langchain.docstore.document import Document
+
+docs = [Document(page_content=t) for t in texts[:]]
+
+from langchain.chains.summarize import load_summarize_chain
+
+chain = load_summarize_chain(llm, chain_type="map_reduce")
+chain.run(docs)
+```

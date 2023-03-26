@@ -1244,5 +1244,26 @@
     "title": "chatGPT",
     "section": "\n3.2 카톡: 다다음",
     "text": "3.2 카톡: 다다음\n카카오브레인, AI챗봇 ‘다다음’(dmm) 베타 출시 하루 만에 중단\n카카오브레인이 카카오톡으로 쓸 수 있는 인공지능(AI) 챗봇 ‘다다음’(ddmm) 베타 서비스를 19일 출시했지만 황급히 서비스를 내렸다. 다다음은 카카오브레인이 개발한 거대 언어 AI 모델 (LLM) ’코GPT’와 ’칼로’를 파운데이션 모델로 삼아 개발한 생성형 AI 채팅 서비스다. 정보검색, 요약, 번역은 물론 이미지 생성도 지원했다."
+  },
+  {
+    "objectID": "langchain.html",
+    "href": "langchain.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "LangChain 에서 OpenAI chatGPT를 호출하여 원하는 작업을 수행한다. 먼저 openai와 langchain을 설치한다.\n\n!pip3 install openai langchain\n\nOPENAI_API_KEY를 환경변수를 넣어두고 OpenAI() 함수에서 호출하여 사용할 수 있도록 한다.\n\nimport os\nfrom langchain.llms import OpenAI\n\n# os.environ.get('OPENAI_API_KEY')"
+  },
+  {
+    "objectID": "langchain.html#영문",
+    "href": "langchain.html#영문",
+    "title": "chatGPT",
+    "section": "\n3.1 영문",
+    "text": "3.1 영문\n\nfrom langchain import PromptTemplate\n\ntemplate = \"\"\"\nI want you to act as a naming consultant for new companies.\n\nHere are some examples of good company names:\n\n- search engine, Google\n- social media, Facebook\n- video sharing, YouTube\n\nThe name should be short, catchy and easy to remember.\n\nWhat is a good name for a company that makes {product}?\n\"\"\"\n\nprompt = PromptTemplate(\n    input_variables = [\"product\"],\n    template = template,\n)\n\nprompt.format(product=\"colorful socks\")\n#> '\\nI want you to act as a naming consultant for new companies.\\n\\nHere are some examples of good company names:\\n\\n- search engine, Google\\n- social media, Facebook\\n- video sharing, YouTube\\n\\nThe name should be short, catchy and easy to remember.\\n\\nWhat is a good name for a company that makes colorful socks?\\n'\n\n앞서 프롬프트 템플릿을 지정한 후 실행을 통해 원하는 회사명 작명 작업을 수행시킨다.\n\nfrom langchain.chains import LLMChain\n\nchain = LLMChain(llm=llm, prompt=prompt)\n\nprint(chain.run(\"colorful socks\"))\n#> \n#> FunSox."
+  },
+  {
+    "objectID": "langchain.html#국문",
+    "href": "langchain.html#국문",
+    "title": "chatGPT",
+    "section": "\n3.2 국문",
+    "text": "3.2 국문\n앞서 제작된 영문회사 작명 템플릿을 번역하여 국내 몇가지 회사를 사례로 넣어 chatGPT에 작업을 지시한다.\n\n\nk_template = \"\"\"\n신규 회사명을 작명하는 컨설턴트로 활동해 주셨으면 합니다.\n\n다음은 좋은 회사 이름 몇 가지 사례입니다:\n\n- 케이티, 통신\n- 놀부, 외식프랜차이즈\n- 율도국, 브랜드제작\n- 크몽, 아웃소싱 플랫폼\n\n이름은 짧고 눈에 잘 띄며 기억하기 쉬워야 합니다.\n\n{k_product} 제품을 잘 만드는 회사의 좋은 이름은 무엇인가요?\n\"\"\"\n\nk_prompt = PromptTemplate(\n    input_variables = [\"k_product\"],\n    template = k_template,\n)\n\nk_prompt.format(k_product=\"양말\")\n#> '\\n신규 회사명을 작명하는 컨설턴트로 활동해 주셨으면 합니다.\\n\\n다음은 좋은 회사 이름 몇 가지 사례입니다:\\n\\n- 케이티, 통신\\n- 놀부, 외식프랜차이즈\\n- 율도국, 브랜드제작\\n- 크몽, 아웃소싱 플랫폼\\n\\n이름은 짧고 눈에 잘 띄며 기억하기 쉬워야 합니다.\\n\\n양말 제품을 잘 만드는 회사의 좋은 이름은 무엇인가요?\\n'\n\n앞서 프롬프트 템플릿을 지정한 후 실행을 통해 원하는 회사명 작명 작업을 수행시킨다.\n\nfrom langchain.chains import LLMChain\n\nk_chain = LLMChain(llm = llm, prompt = k_prompt)\n\nprint(k_chain.run(\"양말\"))\n#> \n#> - 솔랩, 양말 제품\n#> - 메디솔, 신발과 양말\n#> - 루프로, 양말 디자인\n#> - 브이슬립, 양말"
   }
 ]
