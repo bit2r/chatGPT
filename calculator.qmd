@@ -37,6 +37,8 @@ editor_options:
   chunk_output_type: console
 ---
 
+![](images/calculator.jpg)
+
 # CLI 계산기
 
 
@@ -368,5 +370,165 @@ If all test cases pass, you'll see "All test cases passed" printed on the consol
 
 :::
 
+
+# `.exe` 배포
+
+CLI를 통해 기능을 검증한 후 GUI로 사용자가 사용하기 쉬운 인터페이스를 구현하였다면 
+다음 단계로 배포를 한다. 다양한 배포 프로그램이 존재하지만 가장 쉽게 `.exe` 파일을 만드는 방법을 살펴보자.
+
+
+::: panel-tabset
+
+## 지시명령어
+
+::: {.callout-note collapse="true"}
+### I am a pyhton developer. I have a simple python calculator. I'd like to deploy this program into Windows. **let me know how to create a standalone executable file**
+
+To create a standalone executable file for your Python calculator, you can use a tool like PyInstaller or cx_Freeze. Here are the general steps to follow:
+
+Install PyInstaller: You can use pip to install PyInstaller. Open a command prompt or terminal and run the following command:
+
+```
+pip install pyinstaller
+```
+
+Create a spec file: PyInstaller requires a spec file that describes your Python program and its dependencies. To create a spec file with PyInstaller, run the following command:
+
+```
+pyinstaller --name=calculator --onefile calculator.py
+```
+
+Build the executable: To build the executable file with PyInstaller, run the following command:
+
+```
+pyinstaller calculator.spec
+```
+
+This will create a standalone executable file in the dist directory.
+Test the executable file: Run the executable file on a Windows machine to make sure it works as expected.
+
+By following these steps, you can create a standalone executable file for your Python calculator using PyInstaller.
+
+:::
+
+## 실행결과
+
+![](images/calculator_exe.jpg)
+
+## 파이썬 코드
+
+```{python}
+#| eval: false
+
+import tkinter as tk
+
+class Calculator:
+    def __init__(self, master):
+        self.master = master
+        self.master.title("Calculator")
+
+        # Create display
+        self.display = tk.Entry(self.master, width=30, borderwidth=5, justify=tk.RIGHT)
+        self.display.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
+
+        # Define buttons
+        button_list = ["7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "C", "+"]
+
+        # Create buttons
+        row = 1
+        col = 0
+        for button in button_list:
+            command = lambda x=button: self.button_click(x)
+            tk.Button(self.master, text=button, padx=20, pady=10, command=command).grid(row=row, column=col)
+            col += 1
+            if col > 3:
+                row += 1
+                col = 0
+
+        # Create equals button
+        tk.Button(self.master, text="=", padx=50, pady=10, command=self.calculate).grid(row=row, column=0, columnspan=4)
+
+    def button_click(self, button):
+        if button == "C":
+            self.display.delete(0, tk.END)
+        else:
+            self.display.insert(tk.END, button)
+
+    def calculate(self):
+        try:
+            result = eval(self.display.get())
+            self.display.delete(0, tk.END)
+            self.display.insert(0, result)
+        except:
+            self.display.delete(0, tk.END)
+            self.display.insert(0, "Error")
+
+# Create window
+root = tk.Tk()
+
+# Create calculator
+calculator = Calculator(root)
+
+# Run window
+root.mainloop()
+```
+
+## `.spec` 파일
+
+```{python}
+#| eval: false
+
+# -*- mode: python ; coding: utf-8 -*-
+
+block_cipher = None
+
+
+a = Analysis(
+    ['calculator.py'],
+    pathex=[],
+    binaries=[],
+    datas=[],
+    hiddenimports=[],
+    hookspath=[],
+    hooksconfig={},
+    runtime_hooks=[],
+    excludes=[],
+    win_no_prefer_redirects=False,
+    win_private_assemblies=False,
+    cipher=block_cipher,
+    noarchive=False,
+)
+pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+
+exe = EXE(
+    pyz,
+    a.scripts,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    [],
+    name='calculator',
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=True,
+    upx_exclude=[],
+    runtime_tmpdir=None,
+    console=True,
+    disable_windowed_traceback=False,
+    argv_emulation=False,
+    target_arch=None,
+    codesign_identity=None,
+    entitlements_file=None,
+)
+```
+
+## 디렉토리 구조
+
+```{r}
+fs::dir_tree('code/calculator_exe/')
+```
+
+:::
 
 
