@@ -32,6 +32,8 @@ website:
         - text: "------------------"
         - href: interface.qmd
           text: "인터페이스"
+        - href: prompt.qmd
+          text: "Prompt Engineering"
         - href: interview.qmd
           text: "데이터 과학문제"
         - href: deepL.qmd

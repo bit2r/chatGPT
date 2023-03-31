@@ -34,6 +34,6 @@ h1, .h1, h2, .h2 {
   font-family: 'Noto Sans KR';
 }
 
-p {
+p, column, .column {
   font-family: 'MaruBuri-Regular', serif;
 }
