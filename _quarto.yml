@@ -5,7 +5,7 @@ project:
     - "*.qmd"
     - "!*.Rmd"
 
-lang: kr
+lang: ko
 date-format: "YYYY년 MM월 DD일"
 
 website:

@@ -37,3 +37,9 @@ h1, .h1, h2, .h2 {
 p, column, .column {
   font-family: 'MaruBuri-Regular', serif;
 }
+
+
+ul, .ul, li, .li {
+  font-family: 'MaruBuri-Regular', serif;
+  color:#000;
+}
