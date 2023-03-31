@@ -1,8 +1,10 @@
 {
-  "hash": "9ae14f755fe8460bec408e15a45c4e63",
+  "hash": "53ec13d04a7bd227ecec46fa3d7af102",
   "result": {
-    "markdown": "---\ntitle: \"chatGPT\"\nsubtitle: \"들어가며\"\nauthor:\n  - name: 이광춘\n    url: https://www.linkedin.com/in/kwangchunlee/\n    affiliation: 한국 R 사용자회\n    affiliation-url: https://github.com/bit2r\ntitle-block-banner: true\n#title-block-banner: \"#562457\"\nformat:\n  html:\n    css: css/quarto.css\n    theme: flatly\n    code-fold: false\n    toc: true\n    toc-depth: 3\n    toc-title: 목차\n    number-sections: true\n    highlight-style: github    \n    self-contained: false\nfilters:\n   - lightbox\nlightbox: auto\nknitr:\n  opts_chunk: \n    message: false\n    warning: false\n    collapse: true\n    comment: \"#>\" \n    R.options:\n      knitr.graphics.auto_pdf: true\neditor_options: \n  chunk_output_type: console\nbibliography: bibliography.bib\nlink-citations: yes\ncsl: apa-single-spaced.csl\n---\n\n\n# 근간모형 개발자\n\n![](images/dev-foundation.jpg)\n\n# AI 응용제품 개발자\n\n![](images/naver_clova.png)\n\n# AI 제품 사용자\n\n![](images/two_men_on_a_bus.png)\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"chatGPT\"\nsubtitle: \"들어가며\"\nauthor:\n  - name: 이광춘\n    url: https://www.linkedin.com/in/kwangchunlee/\n    affiliation: 한국 R 사용자회\n    affiliation-url: https://github.com/bit2r\ntitle-block-banner: true\n#title-block-banner: \"#562457\"\nformat:\n  html:\n    css: css/quarto.css\n    theme: flatly\n    code-fold: false\n    toc: true\n    toc-depth: 3\n    toc-title: 목차\n    number-sections: true\n    highlight-style: github    \n    self-contained: false\nfilters:\n   - lightbox\nlightbox: auto\nknitr:\n  opts_chunk: \n    message: false\n    warning: false\n    collapse: true\n    comment: \"#>\" \n    R.options:\n      knitr.graphics.auto_pdf: true\neditor_options: \n  chunk_output_type: console\nbibliography: bibliography.bib\nlink-citations: true\ncsl: apa-single-spaced.csl\n---\n\n\n# 근간모형 개발자\n\n![](images/dev-foundation.jpg)\n\n# AI 응용제품 개발자\n\n![](images/naver_clova.png)\n\n# AI 제품 사용자\n\n![](images/two_men_on_a_bus.png)\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

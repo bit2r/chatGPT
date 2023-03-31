@@ -133,7 +133,7 @@ website:
 format:
   html:
     theme:
-      light: cosmo
+      light: flatly
       dark: darkly
     css: css/quarto.css
     code-link: true

@@ -33,7 +33,7 @@ knitr:
 editor_options: 
   chunk_output_type: console
 bibliography: bibliography.bib
-link-citations: yes
+link-citations: true
 csl: apa-single-spaced.csl
 ---
 
