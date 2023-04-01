@@ -405,6 +405,9 @@ ga('send', {
   <li><a href="#%EC%97%AD%ED%95%A0-%ED%94%84%EB%A1%AC%ED%94%84%ED%8A%B8" id="toc-역할-프롬프트" class="nav-link" data-scroll-target="#%EC%97%AD%ED%95%A0-%ED%94%84%EB%A1%AC%ED%94%84%ED%8A%B8"><span class="header-section-number">5.2</span> 역할 프롬프트</a></li>
   <li><a href="#%EA%B0%90%EC%84%B1-%EB%B6%84%EB%A5%98" id="toc-감성-분류" class="nav-link" data-scroll-target="#%EA%B0%90%EC%84%B1-%EB%B6%84%EB%A5%98"><span class="header-section-number">5.3</span> 감성 분류</a></li>
   <li><a href="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EB%B6%84%EB%A5%98" id="toc-텍스트-분류" class="nav-link" data-scroll-target="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EB%B6%84%EB%A5%98"><span class="header-section-number">5.4</span> 텍스트 분류</a></li>
+  <li><a href="#%EA%B0%9C%EC%B2%B4%EB%AA%85-%EC%B6%94%EC%B6%9C" id="toc-개체명-추출" class="nav-link" data-scroll-target="#%EA%B0%9C%EC%B2%B4%EB%AA%85-%EC%B6%94%EC%B6%9C"><span class="header-section-number">5.5</span> 개체명 추출</a></li>
+  <li><a href="#%EC%A7%88%EC%9D%98%EC%9D%91%EB%8B%B5" id="toc-질의응답" class="nav-link" data-scroll-target="#%EC%A7%88%EC%9D%98%EC%9D%91%EB%8B%B5"><span class="header-section-number">5.6</span> 질의응답</a></li>
+  <li><a href="#%EA%B0%9D%EA%B4%80%EC%8B%9D-%EB%AC%B8%EC%A0%9C" id="toc-객관식-문제" class="nav-link" data-scroll-target="#%EA%B0%9D%EA%B4%80%EC%8B%9D-%EB%AC%B8%EC%A0%9C"><span class="header-section-number">5.7</span> 객관식 문제</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -777,6 +780,116 @@ F -- No --&gt; E
 <section id="ai-응답-5" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="ai-응답-5">AI 응답:</h4>
 <blockquote class="blockquote">
 <p>해당 뉴스는 북한의 외교 정책과 관련된 내용이 있어 정치 범주에 속합니다.</p>
+</blockquote>
+</section>
+</div>
+</div>
+</div>
+</section><section id="개체명-추출" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="개체명-추출">
+<span class="header-section-number">5.5</span> 개체명 추출</h2>
+<p>텍스트에서 사람, 지명, 브랜드 등 기계가 인식해서 추출하는 작업을 통상 개체명인식(NER, Named Entity Recognition) 이라고 한다. GPT-3.5, GPT-4에 따라 성능차이가 다소 있지만 기존 접근법과 비교하여 손색이 없다고 할 수 있다.</p>
+<blockquote class="blockquote">
+<p>프롬프트: “다음 [텍스트]에 대해서 개체명 인식 작업을 수행하고 인물, 조직, 장소로 구분하라.” <br> 예: “다음 뉴스기사에서 개체명을 추출해 주세요. 출력 형식: 인물:  조직:  장소: ”</p>
+</blockquote>
+<p><a href="https://drive.google.com/drive/folders/1EHYsVtcgpcacM2Ta33pTLYfp6CznaUX3?usp=sharing">네이버 뉴스 카테고리 데이터셋</a>에서 정치뉴스기사 하나를 가져왔다.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+프롬프트: 다음 뉴스기사에서 개체명을 추출해 주세요.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>출력 형식: 인물: <code>&lt;출력결과를 콤마 구분자로 구분&gt;</code> <br> 조직: <code>&lt;출력결과를 콤마 구분자로 구분&gt;</code> <br> 장소: <code>&lt;출력결과를 콤마 구분자로 구분&gt;</code> <br> 날짜: <code>&lt;출력결과를 콤마 구분자로 구분&gt;</code></p>
+<p>동남아 담당’ 北 최희철 부상 베이징 도착…싱가포르행 주목 최 부상, 행선지·방문 목적 질문에는 ‘묵묵부답’</p>
+<p>(베이징=연합뉴스) 김진방 특파원 = 북한이 북미 정상회담 무산 가능성까지 거론하며 강경한 태도를 보이는 가운데 동남아시아 외교를 담당하는 최희철 북한 외무성 부상이 19일 중국 베이징 서우두(首都) 공항에 모습을 드러냈다.</p>
+<p>최 부상은 이날 오전 평양발 고려항공 JS151편을 이용해 베이징 서우두 공항에 도착했다.</p>
+<p>최 부상은 최종 목적지를 묻는 취재진의 질문에 아무런 답변을 하지 않고, 북한 대사관 관계자들과 함께 공항을 빠져나갔다.</p>
+<p>북미 정상회담을 20여 일 앞둔 상황에서 동남아 외교통인 최 부상이 정상회담 준비 등을 위해 회담 개최 예정지인 싱가포르를 방문할 가능성도 제기되고 있다.</p>
+<p>최 부상은 지난 3월에도 아세안(ASEAN·동남아시아국가연합) 의장국이기도 한 싱가포르를 방문해 양국관계와 올해 8월 열리는 아세안지역안보포럼(ARF) 의제 등을 논의한 바 있다.</p>
+<p>또 지난해 북핵 문제를 두고 북미 간 긴장관계가 형성됐을 때도 ARF에 참석해 아세안을 상대로 여론전을 펼쳤다. 북한의 초청으로 비자이 쿠마르 싱 인도 외교부 국무장관이 방북했을 때도 최 부상은 싱 국무장관을 직접 영접하고, 한반도 문제를 논의하기도 했다.</p>
+<p>베이징 소식통은 “최 부상이 대(對)미 외교담당이 아니기 때문에 싱가포르로 갈 가능성이 큰 것은 아니다”며 “만약 싱가포르에 간다면 정상회담과 관련한 지원 작업 준비 등을 위한 것일 가능성이 크다”고 말했다.</p>
+<section id="ai-응답-6" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="ai-응답-6">AI 응답:</h4>
+<blockquote class="blockquote">
+<p>인물: 최희철, 김진방, 비자이 쿠마르 싱 <br> 조직: 연합뉴스, 북한 외무성, 고려항공, 아세안(ASEAN·동남아시아국가연합), 아세안지역안보포럼(ARF), 인도 외교부 <br> 장소: 베이징, 서우두(首都) 공항, 평양, 싱가포르, 북한 대사관 <br> 날짜: 19일, 20여 일, 지난 3월, 올해 8월, 지난해</p>
+</blockquote>
+</section>
+</div>
+</div>
+</div>
+</section><section id="질의응답" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="질의응답">
+<span class="header-section-number">5.6</span> 질의응답</h2>
+<p>지문이 주어진 상태에서 사람이 질문을 하면 기계가 답을 하는 상황이다. 전문적이고 매우 긴 지문에서 원하는 답을 찾기 위해 질문을 하는 상황에서 유용하다.</p>
+<blockquote class="blockquote">
+<p>프롬프트: “다음 [지문]에서 [질문]에 답하시오” <br> 예: “다음 지문을 읽고 답을 찾으세요. 질문: 김현웅은 서울고등검찰청 검사장 재직 중에 몇대 법무부 장관에 임용되었나?</p>
+<p>지문: 김현웅(金賢雄, 1959년 5월 4일 ~ , 전남 고흥)은 … ”</p>
+</blockquote>
+<p><a href="https://korquad.github.io/">KorQuAD 2.0</a>는 KorQuAD 1.0에서 질문답변 20,000+ 쌍을 포함하여 총 100,000+ 쌍으로 구성된 한국어 Machine Reading Comprehension 데이터셋으로, KorQuAD 1.0과는 다르게 1~2 문단이 아닌 Wikipedia article 전체에서 답을 찾아야 한다. KorQuAD 데이터셋에서 사례를 하나 가져와서 질의응답을 풀어본다.</p>
+<blockquote class="blockquote">
+<p><strong>실제 정답 라벨: <code>[{'text': '제64대', 'answer_start': 209}]</code></strong></p>
+</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+프롬프트: 다음 지문을 읽고 답을 찾으세요.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>질문: 김현웅은 서울고등검찰청 검사장 재직 중에 몇대 법무부 장관에 임용되었나?</p>
+<p>지문: 김현웅(金賢雄, 1959년 5월 4일 ~ , 전남 고흥)은 대한민국의 법률가이다. 사법연수원 16기 수료 후 검사 생활을 했으며 특히 서울중앙지검 특수1부 부장검사로 재직할 때는 법조브로커 김홍수씨(58·구속)로부터 금품을 받은 혐의(알선수재)로 사상 최초로 전직 고등 법원 부장판사급 법관 A씨에 대해 사전 구속영장을 청구했다. 이후 제46대 서울고등검찰청 검사장 재직 중 제64대 법무부 장관에 임용되었다. 대한변호사협회(회장 김현)가 김현웅(58·사법연수원 16기) 전 법무부 장관에게 변호사 개업을 자제할 것을 권고했다. 변협은 보 도자료를 통해 “김현웅 전 장관은 지난 4월27일 변호사 등록을 신청했고, 현행 변호사법상 등록 거부 사유가 없다”라며 “변호사법은 등록 신청일로부터 3개월간 등록을 하지 않을 경우 등록이 간주된다고 규정하고 있다”라고 설명했다.</p>
+<section id="ai-응답-7" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="ai-응답-7">AI 응답:</h4>
+<blockquote class="blockquote">
+<p>김현웅은 서울고등검찰청 검사장 재직 중에 제64대 법무부 장관에 임용되었다.</p>
+</blockquote>
+</section>
+</div>
+</div>
+</div>
+</section><section id="객관식-문제" class="level2" data-number="5.7"><h2 data-number="5.7" class="anchored" data-anchor-id="객관식-문제">
+<span class="header-section-number">5.7</span> 객관식 문제</h2>
+<p>주어진 4개 중에서 정답을 하나 고르는 문제를 사지선다(四枝選多)형 시험문제로 학창시절부터 접해 친숙하다. 사지선다 문제를 풀고 문제도 생성하는 프롬프트를 제작해보자.</p>
+<blockquote class="blockquote">
+<p>프롬프트: “다음 [선택지] 중에서 정답을 하나 고르세요.” <br> 예: “다음 문제에서 정답을 하나 고르세요. 문제: 통계에서 모든 경우의 수를 포함하는 집합을 일컷는 용어는?</p>
+<ol type="1">
+<li>표본 공간(Sample Space)</li>
+<li>포함집합(Super Set)</li>
+<li>포함공간(Super Space)</li>
+<li>표본집합(Sample Set) ”</li>
+</ol>
+</blockquote>
+<blockquote class="blockquote">
+<p>정답과 이유도 추가하고 유사한 사지선다형 문제를 몇개 만들어 지시한다.</p>
+</blockquote>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+프롬프트: 통계에서 두 변수 간의 상관 관계를 나타내는 지수는?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>중앙값(Median)</li>
+<li>평균(Average)</li>
+<li>분산(Variance)</li>
+<li>상관계수(Correlation Coefficient)</li>
+</ol>
+<section id="ai-응답-8" class="level4 unnumbered"><h4 class="unnumbered anchored" data-anchor-id="ai-응답-8">AI 응답:</h4>
+<blockquote class="blockquote">
+<p>정답: 4. 상관계수(Correlation Coefficient) 이유: 통계에서 두 변수 간의 관련성을 측정하는 방법 중 하나가 상관계수입니다. 상관계수는 -1에서 1 사이의 값을 가지며, 1에 가까울수록 양의 상관관계, -1에 가까울수록 음의 상관관계, 0에 가까울수록 상관관계가 없다는 것을 의미합니다.</p>
 </blockquote>
 </section>
 </div>
@@ -1564,7 +1677,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a><span class="fu">## 개체명 추출</span></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>텍스트에서 사람, 지명, 브랜드 등 기계가 인식해서 추출하는 작업을 통상 개체명인식(NER, Named Entity Recognition) 이라고 한다.</span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>GPT-3.5, GPT-4에 따라 성능차이가 다소 있지만 기존 접근법과 비교하여 손색이 없다고 할 수 있다.</span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 프롬프트: "다음 </span><span class="co">[</span><span class="ot">텍스트</span><span class="co">]</span><span class="at">에 대해서 개체명 인식 작업을 수행하고 인물, 조직, 장소로 구분하라." </span><span class="kw">&lt;br&gt;</span></span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 예: "다음 뉴스기사에서 개체명을 추출해 주세요.</span></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a><span class="at">출력 형식:</span></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a><span class="at">인물: &lt;출력결과를 콤마 구분자로 구분&gt;</span></span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a><span class="at">조직: &lt;출력결과를 콤마 구분자로 구분&gt;</span></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a><span class="at">장소: &lt;출력결과를 콤마 구분자로 구분&gt;</span></span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a><span class="at">"</span></span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">네이버 뉴스 카테고리 데이터셋</span><span class="co">](https://drive.google.com/drive/folders/1EHYsVtcgpcacM2Ta33pTLYfp6CznaUX3?usp=sharing)</span>에서 정치뉴스기사 하나를 가져왔다. </span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="false"}</span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a><span class="fu">### 프롬프트: 다음 뉴스기사에서 개체명을 추출해 주세요.</span></span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>출력 형식:</span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>인물: <span class="in">`&lt;출력결과를 콤마 구분자로 구분&gt;`</span> <span class="kw">&lt;br&gt;</span></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>조직: <span class="in">`&lt;출력결과를 콤마 구분자로 구분&gt;`</span> <span class="kw">&lt;br&gt;</span></span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>장소: <span class="in">`&lt;출력결과를 콤마 구분자로 구분&gt;`</span> <span class="kw">&lt;br&gt;</span></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>날짜: <span class="in">`&lt;출력결과를 콤마 구분자로 구분&gt;`</span></span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>동남아 담당' 北 최희철 부상 베이징 도착…싱가포르행 주목    최 부상, 행선지·방문 목적 질문에는 '묵묵부답'</span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>(베이징=연합뉴스) 김진방 특파원 = 북한이 북미 정상회담 무산 가능성까지 거론하며 강경한 태도를 보이는 가운데 동남아시아 외교를 담당하는 최희철 북한 외무성 부상이 19일 중국 베이징 서우두(首都) 공항에 모습을 드러냈다.</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>최 부상은 이날 오전 평양발 고려항공 JS151편을 이용해 베이징 서우두 공항에 도착했다.</span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a>최 부상은 최종 목적지를 묻는 취재진의 질문에 아무런 답변을 하지 않고, 북한 대사관 관계자들과 함께 공항을 빠져나갔다.</span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>북미 정상회담을 20여 일 앞둔 상황에서 동남아 외교통인 최 부상이 정상회담 준비 등을 위해 회담 개최 예정지인 싱가포르를 방문할 가능성도 제기되고 있다.</span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>최 부상은 지난 3월에도 아세안(ASEAN·동남아시아국가연합) 의장국이기도 한 싱가포르를 방문해 양국관계와 올해 8월 열리는 아세안지역안보포럼(ARF) 의제 등을 논의한 바 있다.</span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a>또 지난해 북핵 문제를 두고 북미 간 긴장관계가 형성됐을 때도 ARF에 참석해 아세안을 상대로 여론전을 펼쳤다. 북한의 초청으로 비자이 쿠마르 싱 인도 외교부 국무장관이 방북했을 때도 최 부상은 싱 국무장관을 직접 영접하고, 한반도 문제를 논의하기도 했다.</span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>베이징 소식통은 "최 부상이 대(對)미 외교담당이 아니기 때문에 싱가포르로 갈 가능성이 큰 것은 아니다"며 "만약 싱가포르에 간다면 정상회담과 관련한 지원 작업 준비 등을 위한 것일 가능성이 크다"고 말했다.</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a><span class="fu">#### AI 응답: {.unnumbered} </span></span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 인물: 최희철, 김진방, 비자이 쿠마르 싱 </span><span class="kw">&lt;br&gt;</span></span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 조직: 연합뉴스, 북한 외무성, 고려항공, 아세안(ASEAN·동남아시아국가연합), 아세안지역안보포럼(ARF), 인도 외교부 </span><span class="kw">&lt;br&gt;</span></span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 장소: 베이징, 서우두(首都) 공항, 평양, 싱가포르, 북한 대사관 </span><span class="kw">&lt;br&gt;</span></span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 날짜: 19일, 20여 일, 지난 3월, 올해 8월, 지난해</span></span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a><span class="fu">## 질의응답</span></span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>지문이 주어진 상태에서 사람이 질문을 하면 기계가 답을 하는 상황이다.</span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>전문적이고 매우 긴 지문에서 원하는 답을 찾기 위해 질문을 하는 상황에서 유용하다.</span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 프롬프트: "다음 </span><span class="co">[</span><span class="ot">지문</span><span class="co">]</span><span class="at">에서 </span><span class="co">[</span><span class="ot">질문</span><span class="co">]</span><span class="at">에 답하시오" </span><span class="kw">&lt;br&gt;</span></span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 예: "다음 지문을 읽고 답을 찾으세요.</span></span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 질문: 김현웅은 서울고등검찰청 검사장 재직 중에 몇대 법무부 장관에 임용되었나?</span></span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span></span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 지문: 김현웅(金賢雄, 1959년 5월 4일 ~ , 전남 고흥)은 ...</span></span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a><span class="at">"</span></span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">KorQuAD 2.0</span><span class="co">](https://korquad.github.io/)</span>는 KorQuAD 1.0에서 질문답변 20,000+ 쌍을 포함하여 총 100,000+ 쌍으로 구성된 한국어 Machine Reading Comprehension 데이터셋으로, KorQuAD 1.0과는 다르게 1~2 문단이 아닌 Wikipedia article 전체에서 답을 찾아야 한다.</span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>KorQuAD 데이터셋에서 사례를 하나 가져와서 질의응답을 풀어본다.</span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **실제 정답 라벨: `[{'text': '제64대', 'answer_start': 209}]`**</span></span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="false"}</span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a><span class="fu">### 프롬프트: 다음 지문을 읽고 답을 찾으세요.</span></span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a>질문: 김현웅은 서울고등검찰청 검사장 재직 중에 몇대 법무부 장관에 임용되었나?</span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a>지문: 김현웅(金賢雄, 1959년 5월 4일 ~ , 전남 고흥)은 대한민국의 법률가이다. 사법연수원 16기 수료 후 검사 생활을 했으며 특히 서울중앙지검 특수1부 부장검사로 재직할 때는 법조브로커 김홍수씨(58·구속)로부터 금품을 받은 혐의(알선수재)로 사상 최초로 전직 고등</span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>법원 부장판사급 법관 A씨에 대해 사전 구속영장을 청구했다. 이후 제46대 서울고등검찰청 검사장 재직 중 제64대 법무부 장관에 임용되었다. 대한변호사협회(회장 김현)가 김현웅(58·사법연수원 16기) 전 법무부 장관에게 변호사 개업을 자제할 것을 권고했다. 변협은 보</span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>도자료를 통해 "김현웅 전 장관은 지난 4월27일 변호사 등록을 신청했고, 현행 변호사법상 등록 거부 사유가 없다"라며 "변호사법은 등록 신청일로부터 3개월간 등록을 하지 않을 경우 등록이 간주된다고 규정하고 있다"라고 설명했다.</span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a><span class="fu">#### AI 응답: {.unnumbered} </span></span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 김현웅은 서울고등검찰청 검사장 재직 중에 제64대 법무부 장관에 임용되었다.</span></span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a><span class="fu">## 객관식 문제</span></span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a>주어진 4개 중에서 정답을 하나 고르는 문제를 사지선다(四枝選多)형 시험문제로 </span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>학창시절부터 접해 친숙하다. 사지선다 문제를 풀고 문제도 생성하는 프롬프트를 </span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a>제작해보자.</span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 프롬프트: "다음 </span><span class="co">[</span><span class="ot">선택지</span><span class="co">]</span><span class="at"> 중에서 정답을 하나 고르세요." </span><span class="kw">&lt;br&gt;</span></span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 예: "다음 문제에서 정답을 하나 고르세요.</span></span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 문제: 통계에서 모든 경우의 수를 포함하는 집합을 일컷는 용어는?</span></span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span></span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 1. 표본 공간(Sample Space)</span></span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 2. 포함집합(Super Set)</span></span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 3. 포함공간(Super Space)</span></span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 4. 표본집합(Sample Set)</span></span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a><span class="at">"</span></span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 정답과 이유도 추가하고 유사한 사지선다형 문제를 몇개 만들어 지시한다.</span></span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="false"}</span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a><span class="fu">### 프롬프트: 통계에서 두 변수 간의 상관 관계를 나타내는 지수는?</span></span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>중앙값(Median)</span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>평균(Average)</span>
+<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>분산(Variance)</span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>상관계수(Correlation Coefficient)</span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a><span class="fu">#### AI 응답: {.unnumbered} </span></span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 정답: 4. 상관계수(Correlation Coefficient)</span></span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a><span class="at">이유: 통계에서 두 변수 간의 관련성을 측정하는 방법 중 하나가 상관계수입니다. 상관계수는 -1에서 1 사이의 값을 가지며, 1에 가까울수록 양의 상관관계, -1에 가까울수록 음의 상관관계, 0에 가까울수록 상관관계가 없다는 것을 의미합니다.</span></span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
@@ -1573,7 +1804,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","loop":true,"selector":".lightbox","closeEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"loop":true,"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","selector":".lightbox"});</script>
 
 
 </body></html>
