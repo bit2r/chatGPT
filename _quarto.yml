@@ -38,6 +38,8 @@ website:
           text: "데이터 과학문제"
         - href: deepL.qmd
           text: "DeepL 번역 API"
+        - href: open_source.qmd
+          text: "오픈소스 S/W"
       - text: "chatGPT 응용사례"
         menu:
         - href: use-cases.qmd
