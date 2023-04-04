@@ -27,6 +27,8 @@ website:
           text: "추세 트렌드"
         - href: why_llm.qmd
           text: "왜 거대언어모형인가?"
+        - href: nlp_LLM.qmd
+          text: "NLP와 LLM"
         - href: gpt4_performance.qmd
           text: "GPT-4 성능"
         - text: "------------------"
