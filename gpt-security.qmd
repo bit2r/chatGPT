@@ -1,0 +1,75 @@
+---
+title: "chatGPT"
+subtitle: "챗GPT 보안사고"
+description: |
+  챗GPT가 다양한 분야에서 생산성 향상을 보여주고 있지만 충분히 준비되지 않은 상태에서
+  챗GPT를 사용하기 위해 각 조직마다 점검의 시간을 갖고 있기도 하다.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: false
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# 챗GPT 보안사고
+
+**보안 vs 효율** 을 높고 많은 공공기관을 비롯한 기업들이 고민을 하고 있다.
+거대언어모형(LLM)에 기반하여 모든 것을 자체 개발하면 상관이 없으나
+현실적으로 GPT-3/3.5/4 모형을 갖춘 조직이 전무하지만, 이미 대다수의 
+사람이 오픈AI 챗GPT를 맛보았기 때문에 생산성 향상을 그냥 두고 넘어가기도 어려운 상황이다.
+이런 점에서 챗GPT 제한적 사용이 현재시점('23년 3월) 최선으로 보이며 
+점차 오픈소스 거대언어모형(LLM)과 전략적 제휴를 통한 챗GPT 사용이 중장기적 추진방향으로 
+자리 잡고 있다.
+
+[이동수 (2023.04.02.), "대기업 회의 내용 유출… ‘챗GPT 기밀 유출’ 우려가 현실로", 세계일보](https://n.news.naver.com/mnews/article/022/0003798570?sid=101)
+
+
+![](images/chatGPT-leakage.jpg)
+
+
+# 삼성전자
+
+- [정두용 (2023-03-30), "우려가 현실로…삼성전자, 챗GPT 빗장 풀자마자 ‘오남용’ 속출", 이코노미스트](https://economist.co.kr/article/view/ecn202303300057)
+
+> 삼성전자 DS 부문 임직원 A씨는 **반도체 설비 계측 데이터베이스(DB)** 다운로드 프로그램의 소스 코드를 실행 중 오류를 확인했다. 문제가 된 소스 코드 전부를 복사해 챗GPT에 입력, 해결 방법을 문의했다. 삼성전자 설비 계측과 관련한 소스 코드가 오픈AI 학습 데이터로 입력된 셈이다.
+
+> 임직원 B씨는 수율·불량 설비 파악을 위해 작성한 **프로그램 코드**를 챗GPT에 입력하는 사고를 냈다. 관련 소스 전체를 챗GPT에 입력하고 코드 최적화를 요청했다. 임직원 C씨는 스마트폰으로 녹음한 회의 내용을 **네이버 클로바 애플리케이션(앱)**을 통해 문서 파일로 변환한 뒤 챗GPT에 입력했다. 회의록 작성 요청이 목적이다.
+
+# 이탈리아
+
+- [민재용 (2023.04.02), "이탈리아도 챗GPT '차단'...서방 국가중 처음", 한국일보](https://m.hankookilbo.com/News/Read/A2023040208490005108)
+
+> 로이터 통신 등에 따르면 이탈리아 데이터 보호청은 "챗GPT가 이탈리아의 개인정보 보호 기준과 규정을 충족할 때까지 서비스 접속을 일시적으로 차단할 것"이라고 밝혔다.
+
+> 접속 차단 이유는 개인정보 침해 우려 때문이다. 이탈리아 당국은 챗GPT가 알고리즘 학습을 이유로, 개인정보를 대량으로 수집하고 저장하는 행위를 정당화할 법적 근거가 없다고 지적했다. 보호청은 챗GPT 개발사 오픈AI가 20일 이내에 해결책을 내놓지 않으면 전 세계 매출액의 최대 4%에 달하는 벌금을 물게 될 것이라고 경고하기도 했다.
+

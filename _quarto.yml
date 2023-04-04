@@ -31,17 +31,19 @@ website:
           text: "NLP와 LLM"
         - href: gpt4_performance.qmd
           text: "GPT-4 성능"
+        - href: gpt-security.qmd
+          text: "챗GPT 보안사고"
         - text: "------------------"
         - href: interface.qmd
           text: "인터페이스"
         - href: prompt.qmd
           text: "Prompt Engineering"
-        - href: interview.qmd
-          text: "데이터 과학문제"
         - href: deepL.qmd
           text: "DeepL 번역 API"
         - href: open_source.qmd
           text: "오픈소스 S/W"
+        - href: interview.qmd
+          text: "데이터 과학문제"
       - text: "chatGPT 응용사례"
         menu:
         - href: use-cases.qmd
