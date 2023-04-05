@@ -38,6 +38,8 @@ website:
           text: "인터페이스"
         - href: prompt.qmd
           text: "Prompt Engineering"
+        - href: prompt_adv.qmd
+          text: "Advanced Prompt Engineering"
         - href: deepL.qmd
           text: "DeepL 번역 API"
         - href: open_source.qmd
@@ -149,6 +151,10 @@ format:
     code-block-border-left: "#31BAE9"
     highlight-style: github
     toc: true
+
+bibliography: bibliography.bib
+csl: apa-single-spaced.csl
+link-citations: true
 
 execute:
   freeze: true
