@@ -1,0 +1,265 @@
+---
+title: "chatGPT"
+subtitle: "대통령 취임사"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+   - custom-callout.lua   
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# 국문 취임사
+
+
+```{r}
+library(tidyverse)
+
+presidents <- fs::dir_ls("data/Inaugural/")
+
+inaugural_tbl <- presidents %>% 
+  enframe(name = "파일경로") %>% 
+  separate(value, into = c("역대", "대통령"), sep="_") %>% 
+  mutate(대통령 = str_remove(대통령, "\\.txt")) %>% 
+  mutate(취임사 = map(파일경로, read_lines)) %>% 
+  mutate(취임사 = map_chr(취임사, paste0, collapse = " ")) %>% 
+  select(역대, 대통령, 취임사) %>% 
+  mutate(취임사 = str_squish(취임사)) %>% 
+  mutate(취임사 = str_replace_all(취임사, "ㆍ", ", "))
+
+inaugural_tbl
+```
+
+```{r}
+#| eval: false
+
+library(httr)
+
+get_embedding <- function(inaugural_address) {
+  embeddings_url <- "https://api.openai.com/v1/embeddings"
+  auth <- add_headers(Authorization = paste("Bearer", Sys.getenv("OPENAI_API_KEY")))
+  body <- list(model = "text-embedding-ada-002", input = inaugural_address)
+  
+  resp <- POST(
+    embeddings_url,
+    auth,
+    body = body,
+    encode = "json"
+  )
+  
+  embeddings <- content(resp, as = "text", encoding = "UTF-8") %>%
+    jsonlite::fromJSON(flatten = TRUE) %>%
+    pluck("data", "embedding")
+  
+  Sys.sleep(1)
+  
+  return(embeddings)
+}
+
+embedding_tbl <- inaugural_tbl %>% 
+  mutate(임베딩 = map(취임사, get_embedding))
+
+embedding_tbl %>% 
+  write_rds("data/Inaugural.rds")
+```
+
+
+```{r}
+library(ggrepel)
+extrafont::loadfonts()
+
+embedding_tbl <-
+  read_rds("data/Inaugural.rds") %>% 
+  filter(!대통령 %in% c("이명박", "윤보선"))
+
+embeddings_mat <- matrix(
+  unlist(embedding_tbl$임베딩), 
+  ncol = 1536, byrow = TRUE
+)
+
+dim(embeddings_mat)
+
+embeddings_similarity <- embeddings_mat / sqrt(rowSums(embeddings_mat * embeddings_mat))
+embeddings_similarity <- embeddings_similarity %*% t(embeddings_similarity)
+dim(embeddings_similarity)
+
+enframe(embeddings_similarity[11,], name = "연설문", value = "유사도") %>%
+  arrange(-유사도)
+
+set.seed(234)
+inaugural_pca <- irlba::prcomp_irlba(embeddings_mat, n = 3)
+
+inaugural_pca <- 
+  as_tibble(inaugural_pca$x) %>%
+  bind_cols(embedding_tbl)
+
+inaugural_pca %>%
+  ggplot(aes(PC1, PC2)) +
+    geom_point(size = 1.3, alpha = 0.8) +
+    geom_text_repel(aes(label=대통령)) +
+    theme_bw(base_family="NanumGothic")
+
+summary(inaugural_pca)
+```
+
+```{r}
+library(umap)
+president_umap <- umap(embeddings_mat, n_neighbors = 3)
+
+umap_df <- president_umap$layout %>%
+  as.data.frame()%>%
+  rename(UMAP1="V1",
+         UMAP2="V2") %>% 
+  bind_cols(embedding_tbl)
+
+umap_df %>% names()
+
+umap_df %>%
+  ggplot(aes(x = UMAP1, 
+             y = UMAP2))+
+    geom_point(size = 1.3, alpha = 0.8) +
+    geom_text_repel(aes(label=대통령)) +
+    theme_bw(base_family="NanumGothic")
+```
+
+
+# 영문 번역 취임사
+
+## 파파고
+
+
+```{r}
+
+translate_papago <- function(text, source="ko", target="en") {
+
+  transURL <- "https://openapi.naver.com/v1/papago/n2mt"
+
+  response <- transURL %>%
+    httr::POST(
+      httr::add_headers(
+        "Content-Type"          = "application/x-www-form-urlencoded; charset=UTF-8",
+        "X-Naver-Client-Id"     = Sys.getenv('NAVER_CLIENT_ID'),
+        "X-Naver-Client-Secret" = Sys.getenv('NAVER_CLIENT_SECRET')
+      ),
+      body = glue::glue("text={text}&source={source}&target={target}")
+    ) %>%
+    toString() %>%
+    jsonlite::fromJSON()
+  
+  Sys.sleep(1)
+
+  response$message$result$translatedText
+}
+
+tranlated <- fs::dir_ls("data/Inaugural-eng/")
+
+translated_tbl <- tranlated %>% 
+  enframe(name = "파일경로") %>% 
+  separate(value, into = c("역대", "대통령"), sep="_") %>% 
+  mutate(대통령 = str_remove(대통령, "\\.txt")) %>% 
+  mutate(영문번역 = map(파일경로, read_lines)) %>% 
+  mutate(영문번역 = map_chr(영문번역, paste0, collapse = " ")) %>% 
+  select(역대, 대통령, 영문번역) %>% 
+  mutate(영문번역 = str_squish(영문번역)) %>% 
+  mutate(영문번역 = str_replace_all(영문번역, "ㆍ", ", "))
+
+
+translated_tbl
+
+
+```
+
+```{r}
+#| eval: false
+translated_embedding <- translated_tbl %>% 
+  mutate(임베딩 = map(영문번역, get_embedding))
+
+translated_embedding %>% 
+  write_rds("data/translated_embedding.rds")
+```
+
+
+```{r}
+translated_embedding <- 
+  read_rds("data/translated_embedding.rds")
+
+translated_mat <- matrix(
+  unlist(translated_embedding$임베딩), 
+  ncol = 1536, byrow = TRUE
+)
+
+dim(translated_mat)
+
+translated_similarity <- translated_mat / sqrt(rowSums(translated_mat * translated_mat))
+translated_similarity <- translated_similarity %*% t(translated_similarity)
+dim(translated_similarity)
+
+enframe(translated_similarity[13,], name = "연설문", value = "유사도") %>%
+  arrange(-유사도)
+
+set.seed(777)
+translated_pca <- irlba::prcomp_irlba(translated_mat, n = 3)
+
+translated_pca_tbl <- 
+  as_tibble(translated_pca$x) %>%
+  bind_cols(translated_embedding)
+
+translated_pca_tbl %>%
+  ggplot(aes(PC1, PC2)) +
+    geom_point(size = 1.3, alpha = 0.8) +
+    geom_text_repel(aes(label=대통령)) +
+    theme_bw(base_family="NanumGothic")
+
+summary(translated_pca)
+```
+
+
+```{r}
+library(umap)
+translated_umap <- umap(translated_mat, n_neighbors = 3)
+
+translated_viz <- translated_umap$layout %>%
+  as.data.frame()%>%
+  rename(UMAP1="V1",
+         UMAP2="V2") %>% 
+  bind_cols(translated_embedding)
+
+umap_df %>% names()
+
+translated_viz %>%
+  ggplot(aes(x = UMAP1, 
+             y = UMAP2))+
+    geom_point(size = 1.3, alpha = 0.8) +
+    geom_text_repel(aes(label=대통령)) +
+    theme_bw(base_family="NanumGothic")
+```
+

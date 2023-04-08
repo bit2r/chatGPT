@@ -88,6 +88,8 @@ website:
           text: "수학문제 (MIT)"
         - href: middle_school.qmd
           text: "Shiny 앱"
+        - href: inaugural.qmd
+          text: "대통령 취임사"
       - text: "자동화/개발"
         menu:
         - href: ide.qmd
