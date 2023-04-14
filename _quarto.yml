@@ -40,6 +40,8 @@ website:
           text: "Prompt Engineering"
         - href: prompt_adv.qmd
           text: "Advanced Prompt Engineering"
+        - href: prompt_in_practice.qmd
+          text: "프롬프트 실무"
         - href: deepL.qmd
           text: "DeepL 번역 API"
         - href: open_source.qmd
