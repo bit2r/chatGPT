@@ -1,0 +1,77 @@
+---
+title: "chatGPT"
+subtitle: "데이터 과학 프롬프트"
+description: | 
+  데이터 사이언스 프롬프트를 활용하여 분석작업을 수행해보자.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+![](images/prompt_data_science.jpg)
+
+# 데이터 과학
+
+
+- [Gencay I.(2023-04-07), "ChatGPT Guide for Data Scientists: Top 40 Most Important Prompts - Mastering Data Science with ChatGPT and Python: Top 40 Prompts for Machine Learning, Data Visualization, and more.", medium.com](https://medium.com/towards-artificial-intelligence/chatgpt-guide-for-data-scientists-top-40-most-important-prompts-cdb911f3a427)
+
+```{r}
+#| results: markup
+
+library(tidyverse)
+library(bitGPT)
+library(openai)
+
+gpt_answer <- create_completion(
+    model = "text-davinci-003",
+    prompt = "What is web scraping and how is it useful in data science?",
+    max_tokens = 2048
+)
+
+gpt_answer_ko <- bitGPT::translate(str_remove(gpt_answer$choices$text, "\\s+"), source = "en", target="ko")
+
+gpt_answer_ko
+```
+
+```{r}
+gpt_answer$usage %>% 
+  unlist() %>% 
+  enframe(name = "토큰구분", value = "토큰수") %>% 
+  gt::gt()
+```
+
+
+

@@ -34,14 +34,17 @@ website:
         - href: gpt-security.qmd
           text: "챗GPT 보안사고"
         - text: "------------------"
-        - href: interface.qmd
-          text: "인터페이스"
         - href: prompt.qmd
           text: "Prompt Engineering"
         - href: prompt_adv.qmd
           text: "Advanced Prompt Engineering"
         - href: prompt_in_practice.qmd
           text: "프롬프트 실무"
+        - href: prompt_data_science.qmd
+          text: "데이터 과학 프롬프트"
+        - text: "------------------"
+        - href: interface.qmd
+          text: "인터페이스"
         - href: deepL.qmd
           text: "DeepL 번역 API"
         - href: open_source.qmd
