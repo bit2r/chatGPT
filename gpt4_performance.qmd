@@ -24,7 +24,7 @@ filters:
    - lightbox
    - custom-callout.lua   
 lightbox: auto
-link-citations: yes
+link-citations: true
 knitr:
   opts_chunk: 
     message: false
@@ -38,11 +38,72 @@ editor_options:
 ---
 
 
-[@openai2023gpt4]
+# 가격
+
+OpenAI [Pricing](https://openai.com/pricing) 웹사이트에서 API 호출 당 가격을 확인할 수 있다.
+
+## 데이터셋
+
+웹사이트에 게시된 가격표를 크롤링하여 엑셀파일로 정리한다.
+
+```{r}
+library(readxl)
+library(tidyverse)
+
+price_raw <- read_excel("data/openai_pricing.xlsx", sheet="price")
+
+price <- price_raw %>% 
+  janitor::clean_names(ascii = FALSE) %>% 
+  select(-description) %>% 
+  separate(가격, into = c("가격", "단위"), sep = "/") %>% 
+  mutate(가격 = parse_number(가격) *1300, # 환율 1,300 / 달러 적용
+         단위 = str_squish(단위)) 
+
+price %>% 
+  gt::gt() %>% 
+  gtExtras::gt_theme_espn()
+```
+
+## 시각화
+
+OpenAI 가격을 원화(1,300원)로 변환시켜 API 호출별 체감되는 가격을 시각화한다.
+
+
+```{r}
+#| eval: false
+extrafont::loadfonts()
+
+pricing_g <- price %>% 
+  mutate(모형상세 = glue::glue("{모형구분} / {model} / {작업}") %>% as.character(.)) %>%
+  mutate(모형구분 = factor(모형구분, levels=c("GPT-4","Fine-tuning models", "Image models", "Audio models", 
+                                      "InstructGPT", "Chat", "Embedding models") )) %>% 
+  ggplot(aes(x = fct_reorder(모형상세, 가격), y = 가격, fill = 모형구분)) +
+    geom_col(width = 0.5) +
+    # facet_wrap(~모형구분, scales = "free_y") +
+    coord_flip() +
+    geom_text(aes(x = 모형상세, y = 가격, label = glue::glue("{가격} 원") ), nudge_y = 5) +
+    theme_bw(base_family = "MaruBuri Bold") +
+    labs(title = "OpenAI 챗GPT API 호출 가격", 
+         subtitle = "환율 1,300 원/달러 적용 (텍스트 1,000 토큰, 이미지는 크기별, 오디오는 1분 기준)",
+         x = "",
+         y = "가격(원)",
+         caption = "OpenAI 가격표: https://openai.com/pricing") +
+    theme(legend.position = c(0.8, 0.3),
+          legend.title=element_text(size=rel(2.5), family = "MaruBuri Bold"),
+          legend.text=element_text(size=rel(1.5), family = "MaruBuri Bold"))
+
+
+ragg::agg_png("images/pricing_g.png", width = 297, height = 210, units = "mm", res = 600)
+pricing_g
+dev.off()
+```
+
+![](images/pricing_g.png)
+
 
 # PDF 보고서
 
-arXiv [GPT-4 Technical Report](https://arxiv.org/abs/2303.08774) 보고서를 다운로드 받아 PDF 보고서에서 GPT-4 성능을 평가해보자. 
+arXiv [GPT-4 Technical Report](https://arxiv.org/abs/2303.08774) 보고서를 다운로드 받아 PDF 보고서에서 GPT-4 성능을 평가해보자.  [@openai2023gpt4]
 
 ## PDF &rarr; 워드
 
