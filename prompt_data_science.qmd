@@ -30,10 +30,7 @@ knitr:
   opts_chunk: 
     message: false
     warning: false
-    collapse: true
-    comment: "#>" 
-    R.options:
-      knitr.graphics.auto_pdf: true
+    collapse: false
 editor_options: 
   chunk_output_type: console
 editor: 
@@ -41,41 +38,551 @@ editor:
     wrap: 72
 ---
 
+<style>
+.main-container {
+  max-width: unset;
+}
+</style>
+
+```{r}
+#| include: false
+library(reticulate)
+library(tidyverse)
+```
+
+
 ![](images/prompt_data_science.jpg)
 
 # 데이터 과학
 
+[참고자료: [@gencay2023prompt]]{.aside}
 
-- [Gencay I.(2023-04-07), "ChatGPT Guide for Data Scientists: Top 40 Most Important Prompts - Mastering Data Science with ChatGPT and Python: Top 40 Prompts for Machine Learning, Data Visualization, and more.", medium.com](https://medium.com/towards-artificial-intelligence/chatgpt-guide-for-data-scientists-top-40-most-important-prompts-cdb911f3a427)
+챗GPT의 출현으로 데이터 과학 결과물을 만들어내기 위해서 과거 구글링, 미트업, cheatsheet 등을 데이터 과학자가 파악하고 이를 데이터 과학자가 반영하는 것에서 챗GPT와 상호 작용하여 결과물을 얻어내는 새로운 선택지가 만들어졌다.
 
-```{r}
-#| results: markup
 
-library(tidyverse)
-library(bitGPT)
-library(openai)
-
-ds_prompt <- "What is web scraping and how is it useful in data science?"
-
-gpt_answer <- create_completion(
-    model = "text-davinci-003",
-    prompt = ds_prompt,
-    max_tokens = 2048
-)
-
-gpt_answer_ko <- bitGPT::translate(str_remove(gpt_answer$choices$text, "\\s+"), source = "en", target="ko")
-
-gpt_answer_ko
+```{mermaid}
+graph TD
+    A[데이터 가져오기] --> B[데이터 정제]
+    B --> C[탐색적 데이터 분석]
+    C --> D[시각화]
+    D --> E[기계학습]
+    E --> F[배포]
+    
+    style A fill:#85C1E9,stroke:#3498DB,stroke-width:3px;
+    style B fill:#85C1E9,stroke:#3498DB,stroke-width:3px;
+    style C fill:#85C1E9,stroke:#3498DB,stroke-width:3px;
+    style D fill:#85C1E9,stroke:#3498DB,stroke-width:3px;
+    style E fill:#85C1E9,stroke:#3498DB,stroke-width:3px;
+    style F fill:#85C1E9,stroke:#3498DB,stroke-width:3px;
 ```
 
+데이터를 가져와서 데이터 정제, 탐색적 데이터분석, 시각화, 기계학습, 배포 과정을 거치게 된다.
+각 단계별로 챗GPT 정답을 살펴보자.
 
+# 헬로월드
+
+챗GPT가 작성해주는 파이썬 코드를 사용해서 챗GPT에 요청한 결과를 R로 반환받아 
+이를 문서로 제작한다. OpenAI `Chat` 제품 중 `gpt-3.5-turbo` 모형을 기반으로 
+프롬프트를 잘 작성하여 고품질 결과를 얻어낸다.
+
+![](images/chatGPT_api_quarto.jpg)
+
+
+```{python}
+import openai
+import os
+
+openai.api_key = os.environ.get("OPENAI_API_KEY")
+
+def answer_question(text):
+    prompt = f"당신은 R 언어를 사용하는 데이터 과학자로 다음 질문을 친절히 설명해주세요. : {text}"
+
+    response = openai.ChatCompletion.create(
+        model='gpt-3.5-turbo',
+        messages=[
+            {"role": "system", "content": "당신은 R 언어를 사용하는 데이터 과학자로 다음 질문을 친절히 설명해주세요:"},
+            {"role": "user", "content": prompt}
+        ],
+        max_tokens=1700,
+        n=1,
+        stop=None,
+        temperature=0.0
+    )
+
+    return response
+
+# answer_text = answer_question("데이터 탐색이란 무엇이며, 데이터 과학에서 어떻게 유용한가요?")
+# answer_text['choices'][0]['message']['content'].strip()
+```
+
+::::::: column-page
+::::: columns
+::: {.column width="25%"}
+### 질문 {.unnumbered}
 
 ```{r}
-gpt_answer$usage %>% 
+#| class-output: scrolling
+question <- '데이터 탐색이란 무엇이며, 데이터 과학에서 어떻게 유용한가요?'
+```
+
+`r question``
+
+:::
+
+::: {.column width="50%"}
+### 답변 {.unnumbered}
+
+```{r}
+library(reticulate)
+library(tidyverse)
+
+answer_json <- py$answer_question(question)
+
+answer_list <- jsonlite::fromJSON(as.character(answer_json))
+
+answer <- answer_list$choices$message$content
+```
+
+`r answer`
+
+:::
+
+::: {.column width="25%"}
+### 토큰수 {.unnumbered}
+
+```{r}
+answer_list$usage %>% 
   unlist() %>% 
   enframe(name = "토큰구분", value = "토큰수") %>% 
   gt::gt()
 ```
+:::
+:::::
+:::::::
 
 
+# 탐색적 데이터 분석
 
+다음 질문에 대해서 챗GPT 응답결과를 정리해보자.
+
+- 데이터 탐색이란 무엇이며, 데이터 과학에서 어떻게 유용한가요?
+- 데이터 탐색을 위한 인기있는 R 패키지는 무엇이며, 어떻게 사용되나요?
+- R을 사용한 기본적인 데이터 탐색 스크립트의 예시를 제공할 수 있나요?
+- PCA를 사용하여 변수간 관계를 탐색하기 위해 차원 축소를 어떻게 수행할 수 있나요?
+- t-SNE, PCA 및 클러스터링을 사용하여 변수간 관계를 탐색하는 데이터 탐색 스크립트의 예시를 제공할 수 있나요?
+- tibble과 ggplot2를 사용하여 시계열 데이터에서 패턴과 추세를 어떻게 식별할 수 있나요?
+- tibble과 ggplot2를 사용하여 데이터에서 패턴과 추세를 식별하는 데이터 탐색 스크립트의 예시를 제공할 수 있나요?
+- tibble과 ggplot2를 사용하여 변수간 관계를 탐색하기 위한 일반적인 기술은 무엇인가요?
+- tibble과 ggplot2를 사용하여 산점도와 라인 차트를 생성하여 변수간 관계를 탐색할 수 있는 방법은 무엇인가요?
+- PCA를 사용하여 변수간 관계를 탐색하기 위해 차원 축소를 어떻게 수행할 수 있나요?
+
+## 질문 1
+
+```{r}
+question_01 <- "데이터 탐색이란 무엇이며, 데이터 과학에서 어떻게 유용한가요?"
+
+format_answer <- function(question) {
+  
+  answer_json <- py$answer_question(question)
+  answer_list <- jsonlite::fromJSON(as.character(answer_json))
+  return(answer_list)
+}
+
+answer_01 <- format_answer(question_01)
+answer_01_text <- answer_01$choices$message$content
+
+```
+
+::::::: column-page
+::::: columns
+::: {.column width="25%"}
+### 질문 {.unnumbered}
+
+`r question_01`
+
+:::
+
+::: {.column width="50%"}
+### 답변 {.unnumbered}
+
+
+`r answer_01_text`
+
+:::
+
+::: {.column width="25%"}
+### 토큰수 {.unnumbered}
+
+```{r}
+answer_01$usage %>% 
+  unlist() %>% 
+  enframe(name = "토큰구분", value = "토큰수") %>% 
+  gt::gt()
+```
+:::
+:::::
+:::::::
+
+## 질문 2
+
+```{r}
+question_02 <- "R을 사용한 기본적인 데이터 탐색 스크립트의 예시를 제공할 수 있나요?"
+
+answer_02 <- format_answer(question_02)
+answer_02_text <- answer_02$choices$message$content
+
+```
+
+::::::: column-page
+::::: columns
+::: {.column width="25%"}
+### 질문 {.unnumbered}
+
+`r question_02`
+
+:::
+
+::: {.column width="50%"}
+### 답변 {.unnumbered}
+
+
+`r answer_02_text`
+
+:::
+
+::: {.column width="25%"}
+### 토큰수 {.unnumbered}
+
+```{r}
+answer_02$usage %>% 
+  unlist() %>% 
+  enframe(name = "토큰구분", value = "토큰수") %>% 
+  gt::gt()
+```
+:::
+:::::
+:::::::
+
+
+## 질문 3
+
+```{r}
+question_03 <- "PCA를 사용하여 변수간 관계를 탐색하기 위해 차원 축소를 어떻게 수행할 수 있나요?"
+
+answer_03 <- format_answer(question_03)
+answer_03_text <- answer_03$choices$message$content
+
+```
+
+::::::: column-page
+::::: columns
+::: {.column width="25%"}
+### 질문 {.unnumbered}
+
+`r question_03`
+
+:::
+
+::: {.column width="50%"}
+### 답변 {.unnumbered}
+
+
+`r answer_03_text`
+
+:::
+
+::: {.column width="25%"}
+### 토큰수 {.unnumbered}
+
+```{r}
+answer_03$usage %>% 
+  unlist() %>% 
+  enframe(name = "토큰구분", value = "토큰수") %>% 
+  gt::gt()
+```
+:::
+:::::
+:::::::
+
+## 질문 4
+
+```{r}
+question_04 <- "PCA를 사용하여 변수간 관계를 탐색하기 위해 차원 축소를 어떻게 수행할 수 있나요?"
+
+answer_04 <- format_answer(question_04)
+answer_04_text <- answer_04$choices$message$content
+
+```
+
+::::::: column-page
+::::: columns
+::: {.column width="25%"}
+### 질문 {.unnumbered}
+
+`r question_04`
+
+:::
+
+::: {.column width="50%"}
+### 답변 {.unnumbered}
+
+
+`r answer_04_text`
+
+:::
+
+::: {.column width="25%"}
+### 토큰수 {.unnumbered}
+
+```{r}
+answer_04$usage %>% 
+  unlist() %>% 
+  enframe(name = "토큰구분", value = "토큰수") %>% 
+  gt::gt()
+```
+:::
+:::::
+:::::::
+
+## 질문 5
+
+```{r}
+question_05 <- "t-SNE, PCA 및 클러스터링을 사용하여 변수간 관계를 탐색하는 데이터 탐색 스크립트의 예시를 제공할 수 있나요?"
+
+answer_05 <- format_answer(question_05)
+answer_05_text <- answer_05$choices$message$content
+
+```
+
+::::::: column-page
+::::: columns
+::: {.column width="25%"}
+### 질문 {.unnumbered}
+
+`r question_05`
+
+:::
+
+::: {.column width="50%"}
+### 답변 {.unnumbered}
+
+
+`r answer_05_text`
+
+:::
+
+::: {.column width="25%"}
+### 토큰수 {.unnumbered}
+
+```{r}
+answer_05$usage %>% 
+  unlist() %>% 
+  enframe(name = "토큰구분", value = "토큰수") %>% 
+  gt::gt()
+```
+:::
+:::::
+:::::::
+
+## 질문 6
+
+```{r}
+question_06 <- "tibble과 ggplot2를 사용하여 시계열 데이터에서 패턴과 추세를 어떻게 식별할 수 있나요?"
+
+answer_06 <- format_answer(question_06)
+answer_06_text <- answer_06$choices$message$content
+
+```
+
+::::::: column-page
+::::: columns
+::: {.column width="25%"}
+### 질문 {.unnumbered}
+
+`r question_06`
+
+:::
+
+::: {.column width="50%"}
+### 답변 {.unnumbered}
+
+
+`r answer_06_text`
+
+:::
+
+::: {.column width="25%"}
+### 토큰수 {.unnumbered}
+
+```{r}
+answer_06$usage %>% 
+  unlist() %>% 
+  enframe(name = "토큰구분", value = "토큰수") %>% 
+  gt::gt()
+```
+:::
+:::::
+:::::::
+
+
+## 질문 7
+
+```{r}
+question_07 <- "tibble과 ggplot2를 사용하여 데이터에서 패턴과 추세를 식별하는 데이터 탐색 스크립트의 예시를 제공할 수 있나요?"
+
+answer_07 <- format_answer(question_07)
+answer_07_text <- answer_07$choices$message$content
+
+```
+
+::::::: column-page
+::::: columns
+::: {.column width="25%"}
+### 질문 {.unnumbered}
+
+`r question_07`
+
+:::
+
+::: {.column width="50%"}
+### 답변 {.unnumbered}
+
+
+`r answer_07_text`
+
+:::
+
+::: {.column width="25%"}
+### 토큰수 {.unnumbered}
+
+```{r}
+answer_07$usage %>% 
+  unlist() %>% 
+  enframe(name = "토큰구분", value = "토큰수") %>% 
+  gt::gt()
+```
+:::
+:::::
+:::::::
+
+
+## 질문 8
+
+```{r}
+question_08 <- "tibble과 ggplot2를 사용하여 변수간 관계를 탐색하기 위한 일반적인 기술은 무엇인가요?"
+
+answer_08 <- format_answer(question_08)
+answer_08_text <- answer_08$choices$message$content
+
+```
+
+::::::: column-page
+::::: columns
+::: {.column width="25%"}
+### 질문 {.unnumbered}
+
+`r question_08`
+
+:::
+
+::: {.column width="50%"}
+### 답변 {.unnumbered}
+
+
+`r answer_08_text`
+
+:::
+
+::: {.column width="25%"}
+### 토큰수 {.unnumbered}
+
+```{r}
+answer_08$usage %>% 
+  unlist() %>% 
+  enframe(name = "토큰구분", value = "토큰수") %>% 
+  gt::gt()
+```
+:::
+:::::
+:::::::
+
+## 질문 9
+
+```{r}
+question_09 <- "tibble과 ggplot2를 사용하여 산점도와 선 그래프를 생성하여 변수간 관계를 탐색할 수 있는 방법은 무엇인가요?"
+
+answer_09 <- format_answer(question_09)
+answer_09_text <- answer_09$choices$message$content
+
+```
+
+::::::: column-page
+::::: columns
+::: {.column width="25%"}
+### 질문 {.unnumbered}
+
+`r question_09`
+
+:::
+
+::: {.column width="50%"}
+### 답변 {.unnumbered}
+
+
+`r answer_09_text`
+
+:::
+
+::: {.column width="25%"}
+### 토큰수 {.unnumbered}
+
+```{r}
+answer_09$usage %>% 
+  unlist() %>% 
+  enframe(name = "토큰구분", value = "토큰수") %>% 
+  gt::gt()
+```
+:::
+:::::
+:::::::
+
+
+## 질문 10
+
+```{r}
+question_10 <- "PCA를 사용하여 변수간 관계를 탐색하기 위해 차원 축소를 어떻게 수행할 수 있나요?"
+
+answer_10 <- format_answer(question_10)
+answer_10_text <- answer_10$choices$message$content
+
+```
+
+::::::: column-page
+::::: columns
+::: {.column width="25%"}
+### 질문 {.unnumbered}
+
+`r question_10`
+
+:::
+
+::: {.column width="50%"}
+### 답변 {.unnumbered}
+
+
+`r answer_10_text`
+
+:::
+
+::: {.column width="25%"}
+### 토큰수 {.unnumbered}
+
+```{r}
+answer_10$usage %>% 
+  unlist() %>% 
+  enframe(name = "토큰구분", value = "토큰수") %>% 
+  gt::gt()
+```
+:::
+:::::
+:::::::

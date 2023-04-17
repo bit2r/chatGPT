@@ -42,3 +42,11 @@ p, column, .column {
 ul, .ul, li, .li {
   font-family: 'MaruBuri-Regular', serif;
 }
+
+.scrolling {
+/*  overflow-x: visible; */
+  overflow-x: auto;
+  white-space: ;
+}
+
+.main-container { max-width: unset; }
