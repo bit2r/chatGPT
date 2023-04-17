@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.299">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="이광춘">
+<meta name="description" content="데이터 과학 프롬프트 및 GPT 번역결과를 평가합니다.">
+<title>chatGPT</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./images/profile.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색"
+  }
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><link rel="stylesheet" href="css/quarto.css">
+</head>
+<body class="nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">chatGPT</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">생성 AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai">
+<li>
+    <a class="dropdown-item" href="./architecture.html" rel="" target="">
+ <span class="dropdown-text">chatGPT 이해</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./trends.html" rel="" target="">
+ <span class="dropdown-text">추세 트렌드</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./why_llm.html" rel="" target="">
+ <span class="dropdown-text">왜 거대언어모형인가?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nlp_LLM.html" rel="" target="">
+ <span class="dropdown-text">NLP와 LLM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gpt4_performance.html" rel="" target="">
+ <span class="dropdown-text">GPT-4 성능</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gpt-security.html" rel="" target="">
+ <span class="dropdown-text">챗GPT 보안사고</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./prompt.html" rel="" target="">
+ <span class="dropdown-text">Prompt Engineering</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./prompt_adv.html" rel="" target="">
+ <span class="dropdown-text">Advanced Prompt Engineering</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./prompt_in_practice.html" rel="" target="">
+ <span class="dropdown-text">프롬프트 실무</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./prompt_data_science.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 프롬프트</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./interface.html" rel="" target="">
+ <span class="dropdown-text">인터페이스</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./deepL.html" rel="" target="">
+ <span class="dropdown-text">DeepL 번역 API</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./open_source.html" rel="" target="">
+ <span class="dropdown-text">오픈소스 S/W</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./interview.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학문제</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-chatgpt-응용사례" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">chatGPT 응용사례</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-chatgpt-응용사례">
+<li>
+    <a class="dropdown-item" href="./use-cases.html" rel="" target="">
+ <span class="dropdown-text">활용사례</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_avi.html" rel="" target="">
+ <span class="dropdown-text">법인 R 소개영상</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./macbook.html" rel="" target="">
+ <span class="dropdown-text">맥북 투척사건</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./office.html" rel="" target="">
+ <span class="dropdown-text">오피스 전쟁</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./about_gpt.html" rel="" target="">
+ <span class="dropdown-text">GPT 역사</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./news_article.html" rel="" target="">
+ <span class="dropdown-text">보도자료 작성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_book.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 책</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_paper.html" rel="" target="">
+ <span class="dropdown-text">논문 초록</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rnd.html" rel="" target="">
+ <span class="dropdown-text">학술연구(R&amp;D)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./yuji.html" rel="" target="">
+ <span class="dropdown-text">멤버 Yuji</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./text2image.html" rel="" target="">
+ <span class="dropdown-text">텍스트 → 이미지 생성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./stable_diffusion.html" rel="" target="">
+ <span class="dropdown-text">Stable Diffusion</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./samsung.html" rel="" target="">
+ <span class="dropdown-text">삼전 주가예측</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./calculator.html" rel="" target="">
+ <span class="dropdown-text">계산기 프로그램</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding.html" rel="" target="">
+ <span class="dropdown-text">GPT R 코딩개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding-copilot.html" rel="" target="">
+ <span class="dropdown-text">부조종사 R 코딩개발</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./math.html" rel="" target="">
+ <span class="dropdown-text">수학문제 (MIT)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./middle_school.html" rel="" target="">
+ <span class="dropdown-text">Shiny 앱</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./inaugural.html" rel="" target="">
+ <span class="dropdown-text">대통령 취임사</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./translation.html" rel="" target="">
+ <span class="dropdown-text">번역(영한, 한영)</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">자동화/개발</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">
+<li>
+    <a class="dropdown-item" href="./ide.html" rel="" target="">
+ <span class="dropdown-text">통합개발환경(IDE)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./reticulate.html" rel="" target="">
+ <span class="dropdown-text">파이썬 환경구축</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./koGPT.html" rel="" target="">
+ <span class="dropdown-text">HuggingfaceR - 모형통계</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BERT.html" rel="" target="">
+ <span class="dropdown-text">BERT</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./hf.html" rel="" target="">
+ <span class="dropdown-text">Hugging Face</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hf_windows.html" rel="" target="">
+ <span class="dropdown-text">Hugging Face(윈도우)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./hf_pipeline.html" rel="" target="">
+ <span class="dropdown-text">HF 파이프라인</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./langchain.html" rel="" target="">
+ <span class="dropdown-text">LangCahin</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./openAI_GPT.html" rel="" target="">
+ <span class="dropdown-text">OpenAI GPT</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item">
+    <a class="nav-link" href="./blog.html" rel="" target="">
+ <span class="menu-text">게시글</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">유/무료 서비스</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">
+<li>
+    <a class="dropdown-item" href="./services.html" rel="" target="">
+ <span class="dropdown-text">(유)무료 서비스</span></a>
+  </li>  
+    </ul>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/bit2r/chatGPT" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://r2bit.com" rel="" target="">
+ <span class="menu-text">R사용자회</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/LAION-AI/Open-Assistant" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Open Assistant</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rtutor.ai/" rel="" target="">
+ <span class="menu-text">RTutor</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+<div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="다크 모드 전환"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title">chatGPT</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> 코드</button></div></div>
+            <p class="subtitle lead">번역(영한, 한영)</p>
+                  <div>
+        <div class="description">
+          <p>데이터 과학 프롬프트 및 GPT 번역결과를 평가합니다.</p>
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-heading">소속</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://www.linkedin.com/in/kwangchunlee/">이광춘</a> </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://github.com/bit2r">
+              한국 R 사용자회
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#%EB%B2%88%EC%97%AD-%EC%A7%80%ED%91%9C" id="toc-번역-지표" class="nav-link active" data-scroll-target="#%EB%B2%88%EC%97%AD-%EC%A7%80%ED%91%9C"><span class="header-section-number">1</span> 번역 지표</a></li>
+  <li><a href="#%ED%97%AC%EB%A1%9C%EC%9B%94%EB%93%9C" id="toc-헬로월드" class="nav-link" data-scroll-target="#%ED%97%AC%EB%A1%9C%EC%9B%94%EB%93%9C"><span class="header-section-number">2</span> 헬로월드</a></li>
+  <li>
+<a href="#%EB%B2%88%EC%97%AD-%EC%97%94%EC%A7%84" id="toc-번역-엔진" class="nav-link" data-scroll-target="#%EB%B2%88%EC%97%AD-%EC%97%94%EC%A7%84"><span class="header-section-number">3</span> 번역 엔진</a>
+  <ul class="collapse">
+<li><a href="#%EB%B2%88%EC%97%AD%EB%8C%80%EC%83%81-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%83%9D%EC%84%B1" id="toc-번역대상-텍스트-생성" class="nav-link" data-scroll-target="#%EB%B2%88%EC%97%AD%EB%8C%80%EC%83%81-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%83%9D%EC%84%B1"><span class="header-section-number">3.1</span> 번역대상 텍스트 생성</a></li>
+  <li>
+<a href="#gpt-%EC%97%94%EC%A7%84" id="toc-gpt-엔진" class="nav-link" data-scroll-target="#gpt-%EC%97%94%EC%A7%84"><span class="header-section-number">3.2</span> GPT 엔진</a>
+  <ul class="collapse">
+<li><a href="#gpt-3.5-turbo" id="toc-gpt-3.5-turbo" class="nav-link" data-scroll-target="#gpt-3.5-turbo"><span class="header-section-number">3.2.1</span> <code>gpt-3.5-turbo</code></a></li>
+  <li><a href="#text-davinci-003" id="toc-text-davinci-003" class="nav-link" data-scroll-target="#text-davinci-003"><span class="header-section-number">3.2.2</span> <code>text-davinci-003</code></a></li>
+  <li><a href="#text-curie-001" id="toc-text-curie-001" class="nav-link" data-scroll-target="#text-curie-001"><span class="header-section-number">3.2.3</span> <code>text-curie-001</code></a></li>
+  <li><a href="#text-babbage-001" id="toc-text-babbage-001" class="nav-link" data-scroll-target="#text-babbage-001"><span class="header-section-number">3.2.4</span> <code>text-babbage-001</code></a></li>
+  <li><a href="#text-ada-001" id="toc-text-ada-001" class="nav-link" data-scroll-target="#text-ada-001"><span class="header-section-number">3.2.5</span> <code>text-ada-001</code></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#%EC%B1%97gpt-%EC%B6%94%EC%B2%9C" id="toc-챗gpt-추천" class="nav-link" data-scroll-target="#%EC%B1%97gpt-%EC%B6%94%EC%B2%9C"><span class="header-section-number">3.3</span> 챗GPT 추천</a>
+  <ul class="collapse">
+<li><a href="#text-davinci-002" id="toc-text-davinci-002" class="nav-link" data-scroll-target="#text-davinci-002"><span class="header-section-number">3.3.1</span> <code>text-davinci-002</code></a></li>
+  <li><a href="#davinci-instruct-beta" id="toc-davinci-instruct-beta" class="nav-link" data-scroll-target="#davinci-instruct-beta"><span class="header-section-number">3.3.2</span> <code>davinci-instruct-beta</code></a></li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><section id="번역-지표" class="level1 page-columns page-full" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> 번역 지표</h1>
+<p><strong>BLEU(Bilingual Evaluation Understudy, 이중 언어 평가 연구)</strong>는 기계 번역의 품질을 평가하는 데 사용되는 지표다. 기계 생성 번역을 사람이 생성한 하나 이상의 참조 번역과 비교하고 참조 번역과 얼마나 유사한지에 따라 점수를 부여하는 방식으로 작동한다. BLEU 점수는 0점에서 1점 사이이며, 1점은 기계 생성 번역과 참조 번역이 완벽하게 일치함을 나타내고, 점수가 높을수록 기계 생성 번역이 참조 번역과 의미적으로 더 가깝다는 것을 의미한다.</p>
+<p><strong>COMET(Cross-lingual Optimized Metric for Evaluation of Translation, 번역 평가를 위한 교차 언어 최적화 지표)</strong>은 2020년에 도입된 기계 번역 평가 지표로 BLEU와 같은 기존 지표의 일부 한계를 해결하기 위해 고안되었다. 기계 생성 번역과 참조 번역 간의 n-그램 중복만을 비교하는 BLEU와 달리 COMET은 유창성, 적절성, 충실도 등 번역 품질에 대한 여러 측면을 고려함은 물론 기계 생성 번역과 참조 번역 간의 의미적 유사성도 고려한다. COMET 점수는 0점에서 100점 사이이며, 점수가 높을수록 기계 생성 번역의 품질이 우수하다는 것을 나타내고, BLEU와 같은 기존 지표보다 사람의 평가와 상관관계가 높은 것으로 나타나 기계 번역 평가에 유망한 지표로 대두되고 있다.</p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">참고: <span class="citation" data-cites="Marie2023translate">(<a href="#ref-Marie2023translate" role="doc-biblioref">Marie, 2022</a>)</span>, <span class="citation" data-cites="Marie2023gpt">(<a href="#ref-Marie2023gpt" role="doc-biblioref">Marie, 2023</a>)</span></span></div></div>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">prompt</span> <span class="op">=</span> <span class="st">"Score the following news summarization given the corresponding news with respect to fluency with one to five stars, where one star means “disfluency” and five stars means “perfect fluency”. Note that fluency measures the quality of individual sentences, are they well-written and grammatically correct. Consider the quality of individual sentences.</span></span>
+<span><span class="st"></span></span>
+<span><span class="st">Source: </span></span>
+<span><span class="st">Target: "</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="헬로월드" class="level1 page-columns page-full" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> 헬로월드</h1>
+<p>가성비가 뛰어나고 빠른 <code>gpt-3.5-turbo</code> GPT 모델을 통해 영문을 한글로, 한글을 영어로 번역해보자. <a href="https://medium.com/@kaushaltrivedi/building-a-multilingual-translation-tool-with-openai-chatgpt-api-84922c971e95">Building a Multilingual Translation Tool with OpenAI ChatGPT API</a> 코드를 일부 변형하여 <code>reticulate</code>를 사용해서 번역결과를 목저에 맞게 변형한다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>openai.api_key <span class="op">=</span> os.environ.get(<span class="st">'OPENAI_API_KEY'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate_text(text, source_language, target_language):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"Translate the following '</span><span class="sc">{</span>source_language<span class="sc">}</span><span class="ss">' text to '</span><span class="sc">{</span>target_language<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> openai.ChatCompletion.create(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a helpful assistant that translates text."</span>},</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        max_tokens<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        n<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        stop<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># text = "Hello, how are you?"</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># result = translate_text(text, "English", "Korean")</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># print(result)</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># korean_text = "안녕하세요, 어떻게 지내세요?"</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co"># ko_result = translate_text(korean_text, "Korean", "English")</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># print(ko_result)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><code><a href="https://rstudio.github.io/reticulate/">library(reticulate)</a></code>를 실행해야 함.</span></div></div>
+<div class="column-page">
+<div class="columns">
+<div class="column">
+<section id="한영" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="한영">한영</h3>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">english_text</span> <span class="op">=</span> <span class="st">"Hello, how are you?"</span></span>
+<span></span>
+<span><span class="va">eng_result</span> <span class="op">=</span> <span class="va">py</span><span class="op">$</span><span class="fu">translate_text</span><span class="op">(</span><span class="va">english_text</span>, <span class="st">"English"</span>, <span class="st">"Korean"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"번역 대상(Source): {english_text}\n"</span>,</span>
+<span>           <span class="st">"번역 결과(Target): {eng_result['choices'][[1]]$message$content}\n"</span>,</span>
+<span>           <span class="st">"요청 토크: {eng_result['usage']$prompt_tokens}\n"</span>,</span>
+<span>           <span class="st">"완료 토크: {eng_result['usage']$completion_tokens}\n"</span>,</span>
+<span>           <span class="st">"전체 토크: {eng_result['usage']$total_tokens}\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 번역 대상(Source): Hello, how are you?</span></span>
+<span><span class="co">#&gt; 번역 결과(Target): 안녕하세요, 어떻게 지내세요?</span></span>
+<span><span class="co">#&gt; 요청 토크: 40</span></span>
+<span><span class="co">#&gt; 완료 토크: 16</span></span>
+<span><span class="co">#&gt; 전체 토크: 56</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</div><div class="column">
+<section id="영한" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="영한">영한</h3>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">korean_text</span> <span class="op">=</span> <span class="st">"안녕하세요, 어떻게 지내세요?"</span></span>
+<span></span>
+<span><span class="va">ko_result</span> <span class="op">=</span> <span class="va">py</span><span class="op">$</span><span class="fu">translate_text</span><span class="op">(</span><span class="va">korean_text</span>, <span class="st">"Korean"</span>, <span class="st">"English"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"번역 대상(Source): {korean_text}\n"</span>,</span>
+<span>           <span class="st">"번역 결과(Target): {ko_result['choices'][[1]]$message$content}\n"</span>,</span>
+<span>           <span class="st">"요청 토크: {ko_result['usage']$prompt_tokens}\n"</span>,</span>
+<span>           <span class="st">"완료 토크: {ko_result['usage']$completion_tokens}\n"</span>,</span>
+<span>           <span class="st">"전체 토크: {ko_result['usage']$total_tokens}\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 번역 대상(Source): 안녕하세요, 어떻게 지내세요?</span></span>
+<span><span class="co">#&gt; 번역 결과(Target): "Hello, how are you?"</span></span>
+<span><span class="co">#&gt; 요청 토크: 49</span></span>
+<span><span class="co">#&gt; 완료 토크: 7</span></span>
+<span><span class="co">#&gt; 전체 토크: 56</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section><section id="번역-엔진" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> 번역 엔진</h1>
+<p>번역 엔진을 달리하여 번역 품질을 살펴보자. <code>Chat</code> 모형 대표주자가 <code>gpt-3.5-turbo</code>를 꼽을 수 있으며, GPT-3 모형에 Fine-Tuning한 것이 <code>InstructGPT</code> 모형으로 Ada, Babbage, Curie, Davinci 순으로 비용도 올라가고 성능도 올라간다.</p>
+<ul>
+<li>Chat API Endpoint: <code>openai.ChatCompletion.create</code>
+</li>
+<li>InstructGPT API Endpoint: <code>openai.Completion.create</code>
+</li>
+</ul>
+<section id="번역대상-텍스트-생성" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="번역대상-텍스트-생성">
+<span class="header-section-number">3.1</span> 번역대상 텍스트 생성</h2>
+<p>데이터 시각화에 자주 인용되는 R 패키지와 사용되는 방법을 물었고 <code>gpt-3.5-turbo</code>을 사용해서 번역 대상 텍스트로 생성한다.</p>
+<blockquote class="blockquote">
+<p>What are some popular R packages for data visualization and how are they used? <br></p>
+<p>데이터 시각화를 위해 널리 사용되는 R 패키지에는 어떤 것이 있으며 어떻게 사용되나요?</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="ss">f"What are some popular R packages for data visualization and how are they used?"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> openai.ChatCompletion.create(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a data scientist that mainly uses R programming language."</span>},</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    max_tokens<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    n<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    stop<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gpt_turbo_result</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{py$response['choices'][[1]]$message$content}\n"</span><span class="op">)</span></span>
+<span><span class="va">gpt_turbo_result</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">write_lines</span><span class="op">(</span><span class="st">"data/gpt_turbo_result.txt"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gpt_turbo_result</span> <span class="op">&lt;-</span> <span class="fu">read_lines</span><span class="op">(</span><span class="st">"data/gpt_turbo_result.txt"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu">str_c</span><span class="op">(</span><span class="va">gpt_turbo_result</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; There are several popular R libraries for data visualization that are widely used by data scientists. Some of the most popular ones are:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 1. ggplot2: ggplot2 is a powerful and flexible data visualization library that allows users to create complex and aesthetically pleasing plots. It is based on the grammar of graphics and provides a wide range of customization options.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 2. lattice: lattice is another popular data visualization library that provides a wide range of high-level plotting functions. It is particularly useful for creating multi-panel plots and is often used for visualizing complex data sets.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 3. plotly: plotly is a web-based data visualization library that allows users to create interactive and dynamic plots. It is particularly useful for creating interactive dashboards and visualizations that can be shared online.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 4. ggvis: ggvis is a data visualization library that is based on the grammar of graphics and provides a wide range of interactive and dynamic plots. It is particularly useful for creating interactive plots that can be used in web applications.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 5. rCharts: rCharts is a data visualization library that provides a wide range of interactive and dynamic plots. It is particularly useful for creating interactive visualizations that can be embedded in web applications.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; These libraries are used to create a wide range of visualizations such as scatter plots, line charts, bar charts, histograms, heatmaps, and more. They provide a wide range of customization options and allow users to create visually appealing and informative plots that can help to communicate complex data sets</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="gpt-엔진" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="gpt-엔진">
+<span class="header-section-number">3.2</span> GPT 엔진</h2>
+<section id="gpt-3.5-turbo" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="gpt-3.5-turbo">
+<span class="header-section-number">3.2.1</span> <code>gpt-3.5-turbo</code>
+</h3>
+<p><code>gpt-3.5-turbo</code>는 속도가 빠르고 저렴하지만 <code>gpt-4</code>에는 성능이 미치지 못한다. Chat모형 <code>gpt-3.5-turbo</code> 엔진에 넣어 번역 품질을 살펴보자.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'data/gpt_turbo_result.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    source_text <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate_text_by_model(text, model, source_language, target_language):</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"Translate the following '</span><span class="sc">{</span>source_language<span class="sc">}</span><span class="ss">' text to '</span><span class="sc">{</span>target_language<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> openai.ChatCompletion.create(</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span>model,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a helpful assistant that translates text."</span>},</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        max_tokens<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        n<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        stop<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>translated_text <span class="op">=</span> translate_text_by_model(source_text, <span class="st">'gpt-3.5-turbo'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gpt_turbo_3</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{py$translated_text['choices'][[1]]$message$content}\n"</span><span class="op">)</span></span>
+<span><span class="va">gpt_turbo_3</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">write_lines</span><span class="op">(</span><span class="st">"data/gpt_turbo_3.txt"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gpt_turbo_3</span> <span class="op">&lt;-</span> <span class="fu">read_lines</span><span class="op">(</span><span class="st">"data/gpt_turbo_3.txt"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu">str_c</span><span class="op">(</span><span class="va">gpt_turbo_3</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 데이터 과학자들이 널리 사용하는 데이터 시각화를 위한 인기 있는 R 라이브러리가 몇 가지 있습니다. 가장 인기 있는 것 중 일부는 다음과 같습니다:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 1. ggplot2: ggplot2는 복잡하고 미학적으로 매력적인 플롯을 만들 수 있게 해주는 강력하고 유연한 데이터 시각화 라이브러리입니다. 그래픽 문법에 기반을 두고 있으며 다양한 사용자 정의 옵션을 제공합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 2. lattice: lattice는 다양한 고수준 플로팅 함수를 제공하는 인기 있는 데이터 시각화 라이브러리입니다. 특히 멀티 패널 플롯을 만드는 데 유용하며 복잡한 데이터 세트를 시각화하는 데 자주 사용됩니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 3. plotly: plotly는 사용자가 대화형 및 동적 플롯을 만들 수 있는 웹 기반 데이터 시각화 라이브러리입니다. 대화형 대시 보드 및 온라인 공유 가능한 시각화를 만드는 데 특히 유용합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 4. ggvis: ggvis는 그래픽 문법을 기반으로하며 대화형 및 동적 플롯의 다양한 기능을 제공하는 데이터 시각화 라이브러리입니다. 특히 웹 애플리케이션에서 사용할 수 있는 대화형 플롯을 만드는 데 유용합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 5. rCharts: rCharts는 다양한 대화형 및 동적 플롯을 제공하는 데이터 시각화 라이브러리입니다. 특히 웹 애플리케이션에 포함될 수 있는 대화형 시각화를 만드는 데 유용합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 이러한 라이브러리는 산점도, 꺾은 선 그래프, 막대 그래프, 히스토그램, 히트맵 등 다양한 시각화를 만드는 데 사용됩니다. 다양한 사용자 정의 옵션을 제공하며 복잡한 데이터 세트를 전달하는 데 도움이 되는 시각적으로 매력적이고 정보성 있는 플롯을 만들 수 있습니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="text-davinci-003" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="text-davinci-003">
+<span class="header-section-number">3.2.2</span> <code>text-davinci-003</code>
+</h3>
+<p>InstructGPT <code>text-davinci-003</code> 모형에 넣어 번역 품질을 살펴보자.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'data/gpt_turbo_result.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    source_text <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate_by_instruct_model(text, model, source_language, target_language):</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"Translate the following '</span><span class="sc">{</span>source_language<span class="sc">}</span><span class="ss">' text to '</span><span class="sc">{</span>target_language<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> openai.Completion.create(</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span>model,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        prompt<span class="op">=</span>prompt,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        max_tokens<span class="op">=</span><span class="dv">2000</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        n<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>davinci_text <span class="op">=</span> translate_by_instruct_model(source_text, <span class="st">'text-davinci-003'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">davinci_text</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{py$davinci_text['choices'][[1]]$text}\n"</span><span class="op">)</span></span>
+<span><span class="va">davinci_text</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">write_lines</span><span class="op">(</span><span class="st">"data/davinci_text.txt"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">davinci_text</span> <span class="op">&lt;-</span> <span class="fu">read_lines</span><span class="op">(</span><span class="st">"data/davinci_text.txt"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu">str_c</span><span class="op">(</span><span class="va">davinci_text</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 데이터 시각화를 위해 널리 사용되는 인기있는 R 라이브러리가 여러 개 있습니다. 가장 인기있는 것들 중 몇 가지는 다음과 같습니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 1. ggplot2 : ggplot2은 강력하고 유연한 데이터 시각화 라이브러리로, 사용자가 복잡하고 아름다운 그래프를 만들 수 있습니다. 그래프의 문법을 기반으로 하며 다양한 사용자 정의 옵션을 제공합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 2. lattice : lattice는 다른 인기있는 데이터 시각화 라이브러리로, 다양한 고수준 그래프 기능을 제공합니다. 다중 패널 그래프를 만들 때 특히 유용하며, 복잡한 데이터 세트를 시각화하는 데 자주 사용됩니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 3. plotly : plotly은 웹 기반 데이터 시각화 라이브러리로, 사용자가 상호 작용적이고 동적인 그래프를 만들 수 있습니다. 상호 작용적인 대시 보드 및 온라인으로 공유할 수 있는 시각화를 만들 때 특히 유용합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 4. ggvis : ggvis는 그래프의 문법을 기반으로한 데이터 시각화 라이브러리로, 다양한 상호 작용적이고 동적인 그래프를 제공합니다. 웹 응용 프로그램에서 사용할 수있는 상호 작용적인 그래프를 만들 때 특히 유용합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 5. rCharts : rCharts는 다양한 상호 작용적이고 동적인 그래프를 제공하는 데이터 시각화 라이브러리입니다. 웹 응용 프로그램에 통합할 수있는 상호 작용적인 시각화를 만들 때 특히 유용합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 이러한 라이브러리는 산점도, 선 그래프, 막대 그래프, 히스토그램, 히트맵 등 다양한 시각화를 만들기 위해 사용됩니다. 이들은 다양한 사용자 정의 옵션을 제공하고, 사용자가 복잡한 데이터 세트를 전달하기 위해 아름다운 그래프를 만들 수 있도록 합니다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="text-curie-001" class="level3" data-number="3.2.3"><h3 data-number="3.2.3" class="anchored" data-anchor-id="text-curie-001">
+<span class="header-section-number">3.2.3</span> <code>text-curie-001</code>
+</h3>
+<p>InstructGPT <code>text-curie-001</code> 모형에 넣어 번역 품질을 살펴보자.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate_by_instruct_model(text, model, source_language, target_language):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"Translate the following '</span><span class="sc">{</span>source_language<span class="sc">}</span><span class="ss">' text to '</span><span class="sc">{</span>target_language<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> openai.Completion.create(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span>model,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        prompt<span class="op">=</span>prompt,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        max_tokens<span class="op">=</span><span class="dv">1500</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        n<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>curie_text <span class="op">=</span> translate_by_instruct_model(source_text, <span class="st">'text-curie-001'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">curie_text</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{py$curie_text['choices'][[1]]$text}\n"</span><span class="op">)</span></span>
+<span><span class="va">curie_text</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">write_lines</span><span class="op">(</span><span class="st">"data/curie_text.txt"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">curie_text</span> <span class="op">&lt;-</span> <span class="fu">read_lines</span><span class="op">(</span><span class="st">"data/curie_text.txt"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu">str_c</span><span class="op">(</span><span class="va">curie_text</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; There are several popular R libraries for data visualization that are widely used by data scientists. Some of the most popular ones are:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 1. ggplot2: ggplot2 is a powerful and flexible data visualization library that allows users to create complex and aesthetically pleasing plots. It is based on the grammar of graphics and provides a wide range of customization options.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 2. lattice: lattice is another popular data visualization library that provides a wide range of high-level plotting functions. It is particularly useful for creating multi-panel plots and is often used for visualizing complex data sets.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 3. plotly: plotly is a web-based data visualization library that allows users to create interactive and dynamic plots. It is particularly useful for creating interactive dashboards and visualizations that can be shared online.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 4. ggvis: ggvis is a data visualization library that is based on the grammar of graphics and provides a wide range of interactive and dynamic plots. It is particularly useful for creating interactive plots that can be used in web applications.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 5. rCharts: rCharts is a data visualization library that provides a wide range of interactive and dynamic plots. It is particularly useful for creating interactive visualizations that can be embedded in web applications.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="text-babbage-001" class="level3" data-number="3.2.4"><h3 data-number="3.2.4" class="anchored" data-anchor-id="text-babbage-001">
+<span class="header-section-number">3.2.4</span> <code>text-babbage-001</code>
+</h3>
+<p>InstructGPT <code>text-babbage-001</code> 모형에 넣어 번역 품질을 살펴보자.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>babbage_text <span class="op">=</span> translate_by_instruct_model(source_text, <span class="st">'text-babbage-001'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babbage_text</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{py$babbage_text['choices'][[1]]$text}\n"</span><span class="op">)</span></span>
+<span><span class="va">babbage_text</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">write_lines</span><span class="op">(</span><span class="st">"data/babbage_text.txt"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">babbage_text</span> <span class="op">&lt;-</span> <span class="fu">read_lines</span><span class="op">(</span><span class="st">"data/babbage_text.txt"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu">str_c</span><span class="op">(</span><span class="va">babbage_text</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Korean: 사용한 데이터보호사이트 개발사이트</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="text-ada-001" class="level3" data-number="3.2.5"><h3 data-number="3.2.5" class="anchored" data-anchor-id="text-ada-001">
+<span class="header-section-number">3.2.5</span> <code>text-ada-001</code>
+</h3>
+<p>InstructGPT <code>text-ada-001</code> 모형에 넣어 번역 품질을 살펴보자.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ada_text <span class="op">=</span> translate_by_instruct_model(source_text, <span class="st">'text-ada-001'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ada_text</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{py$ada_text['choices'][[1]]$text}\n"</span><span class="op">)</span></span>
+<span><span class="va">ada_text</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">write_lines</span><span class="op">(</span><span class="st">"data/ada_text.txt"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ada_text</span> <span class="op">&lt;-</span> <span class="fu">read_lines</span><span class="op">(</span><span class="st">"data/ada_text.txt"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu">str_c</span><span class="op">(</span><span class="va">ada_text</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Korean</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; There are several popular R libraries for data visualization that are widely used by data scientists. Some of the most popular ones are:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 1. ggplot2: ggplot2 is a powerful and flexible data visualization library that allows users to create complex and aesthetically pleasing plots. It is based on the grammar of graphics and provides a wide range of customization options.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 2. lattice: lattice is another popular data visualization library that provides a wide range of high-level plotting functions. It is particularly useful for creating multi-panel plots and is often used for visualizing complex data sets.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 3. plotly: plotly is a web-based data visualization library that allows users to create interactive and dynamic plots. It is particularly useful for creating interactive dashboards and visualizations that can be shared online.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 4. ggvis: ggvis is a data visualization library that is based on the grammar of graphics and provides a wide range of interactive and dynamic plots. It is particularly useful for creating interactive plots that can be used in web applications.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 5. rCharts: rCharts is a data visualization library that provides a wide range of interactive and dynamic plots. It is particularly useful for creating interactive visualizations that are embedded in web applications.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="챗gpt-추천" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="챗gpt-추천">
+<span class="header-section-number">3.3</span> 챗GPT 추천</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Prompt: recommend instructGPT model for english to korean translation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Sure, for English to Korean translation, you can use the OpenAI model text-davinci-002 or text-davinci-002-instruct-beta. These models have been trained on a large amount of data and are capable of high-quality translation.</p>
+<p>To use these models, you can modify the translate_text_by_model function like this:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate_text_by_model(text, model<span class="op">=</span><span class="st">"text-davinci-002-instruct-beta"</span>, source_language<span class="op">=</span><span class="st">"en"</span>, target_language<span class="op">=</span><span class="st">"ko"</span>):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"Translate the following '</span><span class="sc">{</span>source_language<span class="sc">}</span><span class="ss">' text to '</span><span class="sc">{</span>target_language<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> openai.Completion.create(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        engine<span class="op">=</span>model,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        prompt<span class="op">=</span>prompt,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        max_tokens<span class="op">=</span><span class="dv">2000</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        n<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        stop<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.choices[<span class="dv">0</span>].text</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here, we’re using the Completion.create function to directly send the prompt to the API, without the need for the messages parameter. The max_tokens parameter controls the maximum number of tokens that the API can return in the response, so you may want to adjust this value based on your needs.</p>
+<p>Note that text-davinci-002-instruct-beta is a beta model that supports instruction following. You can use this model to provide additional context to the translation by including step-by-step instructions in the prompt.</p>
+</div>
+</div>
+</div>
+<section id="text-davinci-002" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="text-davinci-002">
+<span class="header-section-number">3.3.1</span> <code>text-davinci-002</code>
+</h3>
+<p>InstructGPT <code>text-davinci-002</code> 모형에 넣어 번역 품질을 살펴보자.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>davinci_2_text <span class="op">=</span> translate_by_instruct_model(source_text, <span class="st">'text-davinci-002'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">davinci_2_text</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{py$davinci_2_text['choices'][[1]]$text}\n"</span><span class="op">)</span></span>
+<span><span class="va">davinci_2_text</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">write_lines</span><span class="op">(</span><span class="st">"data/davinci_2_text.txt"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">davinci_2_text</span> <span class="op">&lt;-</span> <span class="fu">read_lines</span><span class="op">(</span><span class="st">"data/davinci_2_text.txt"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu">str_c</span><span class="op">(</span><span class="va">davinci_2_text</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 1. ggplot2: ggplot2는 강력하고 유연한 데이터 시각화 라이브러리로써 사용자들이 복잡하고 아름다운 그래프를 만들 수 있게 해줍니다. 그것은 그래프의 문법에 기반하여 있으며 다양한 커스터마이징 옵션을 제공합니다.</span></span>
+<span><span class="co">#&gt; 2. lattice: lattice는 또 다른 인기있는 데이터 시각화 라이브러리로써 다양한 고수준의 그래프 그리기 기능을 제공합니다. 다중 패널 그래프를 만드는데 특히 유용하며, 복잡한 데이터 세트를 시각화하는데 자주 사용됩니다.</span></span>
+<span><span class="co">#&gt; 3. plotly: plotly는 웹 기반의 데이터 시각화 라이브러리로써 사용자들이 상호 작용적이고 동적인 그래프를 만들 수 있게 해줍니다. 특히 웹 애플리케이션에서 사용할 수 있는 상호 작용적인 대시보드와 시각화를 만드는데 특히 유용합니다.</span></span>
+<span><span class="co">#&gt; 4. ggvis: ggvis는 그래프의 문법에 기반한 데이터 시각화 라이브러리로써 다양한 상호 작용적이고 동적인 그래프를 제공합니다. 특히 웹 애플리케이션에서 사용할 수 있는 상호 작용적인 그래프를 만드는데 특히 유용합니다.</span></span>
+<span><span class="co">#&gt; 5. rCharts: rCharts는 다양한 상호 작용적이고 동적인 그래프를 제공하는 데이터 시각화 라이브러리입니다. 특히 웹 애플리케이션에서 사용할 수 있는 상호 작용적인 시각화를 만드는데 특히 유용합니다.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 이러한 라이브러리들은 산점도, 선 그래프, 막대 그래프, 히스토그램, 히트맵 등 다양한 시각화를 만들기 위해 사용됩니다. 다양한 커스터마이징 옵션을 제공하며, 사용자들이 보기 좋고 정보적인 그래프를 만들어 복잡한 데이터 세</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="davinci-instruct-beta" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="davinci-instruct-beta">
+<span class="header-section-number">3.3.2</span> <code>davinci-instruct-beta</code>
+</h3>
+<p>InstructGPT <code>davinci-instruct-beta</code> 모형에 넣어 번역 품질을 살펴보자.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>davinci_instruct_text <span class="op">=</span> translate_by_instruct_model(source_text, <span class="st">'davinci-instruct-beta'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">davinci_instruct_text</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{py$davinci_instruct_text['choices'][[1]]$text}\n"</span><span class="op">)</span></span>
+<span><span class="va">davinci_instruct_text</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">write_lines</span><span class="op">(</span><span class="st">"data/davinci_instruct_text.txt"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">davinci_instruct_text</span> <span class="op">&lt;-</span> <span class="fu">read_lines</span><span class="op">(</span><span class="st">"data/davinci_instruct_text.txt"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu">str_c</span><span class="op">(</span><span class="va">davinci_instruct_text</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파일을 읽어주세요.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 여러번째 파</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+<!-- -->
+
+
+</section></section></section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">참고문헌</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Marie2023translate" class="csl-entry" role="listitem">
+Marie, B. (2022). Translate with GPT-3 - Machine translation but without a machine translation system. <em>Towards Data Science</em>. <a href="https://medium.com/towards-data-science/translate-with-gpt-3-9903c4a6f385">https://medium.com/towards-data-science/translate-with-gpt-3-9903c4a6f385</a>
+</div>
+<div id="ref-Marie2023gpt" class="csl-entry" role="listitem">
+Marie, B. (2023). ChatGPT to Evaluate Generated Text How good is ChatGPT for evaluating automatic summarization, story generation, and data-to-text generation? In <em>Towards Data Science</em>. <a href="https://medium.com/mlearning-ai/chatgpt-to-evaluate-generated-text-48b42f39086e">https://medium.com/mlearning-ai/chatgpt-to-evaluate-generated-text-48b42f39086e</a>
+</div>
+</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb30" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "번역(영한, 한영)"</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> | </span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">  데이터 과학 프롬프트 및 GPT 번역결과를 평가합니다.</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
+<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> </span></span>
+<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a><span class="co">  markdown: </span></span>
+<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a><span class="co">    wrap: 72</span></span>
+<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb30-49"><a href="#cb30-49" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb30-50"><a href="#cb30-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-51"><a href="#cb30-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-52"><a href="#cb30-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-53"><a href="#cb30-53" aria-hidden="true" tabindex="-1"></a><span class="fu"># 번역 지표</span></span>
+<span id="cb30-54"><a href="#cb30-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-55"><a href="#cb30-55" aria-hidden="true" tabindex="-1"></a>**BLEU(Bilingual Evaluation Understudy, 이중 언어 평가 연구)**는 기계 번역의 품질을 평가하는 데 사용되는 지표다. 기계 생성 번역을 사람이 생성한 하나 이상의 참조 번역과 비교하고 참조 번역과 얼마나 유사한지에 따라 점수를 부여하는 방식으로 작동한다. BLEU 점수는 0점에서 1점 사이이며, 1점은 기계 생성 번역과 참조 번역이 완벽하게 일치함을 나타내고, 점수가 높을수록 기계 생성 번역이 참조 번역과 의미적으로 더 가깝다는 것을 의미한다.</span>
+<span id="cb30-56"><a href="#cb30-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-57"><a href="#cb30-57" aria-hidden="true" tabindex="-1"></a>**COMET(Cross-lingual Optimized Metric for Evaluation of Translation, 번역 평가를 위한 교차 언어 최적화 지표)**은 2020년에 도입된 기계 번역 평가 지표로 BLEU와 같은 기존 지표의 일부 한계를 해결하기 위해 고안되었다. 기계 생성 번역과 참조 번역 간의 n-그램 중복만을 비교하는 BLEU와 달리 COMET은 유창성, 적절성, 충실도 등 번역 품질에 대한 여러 측면을 고려함은 물론 기계 생성 번역과 참조 번역 간의 의미적 유사성도 고려한다. COMET 점수는 0점에서 100점 사이이며, 점수가 높을수록 기계 생성 번역의 품질이 우수하다는 것을 나타내고, BLEU와 같은 기존 지표보다 사람의 평가와 상관관계가 높은 것으로 나타나 기계 번역 평가에 유망한 지표로 대두되고 있다. </span>
+<span id="cb30-58"><a href="#cb30-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-59"><a href="#cb30-59" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">참고: [@Marie2023translate], [@Marie2023gpt]</span><span class="co">]</span>{.aside}</span>
+<span id="cb30-60"><a href="#cb30-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-61"><a href="#cb30-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-64"><a href="#cb30-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-65"><a href="#cb30-65" aria-hidden="true" tabindex="-1"></a>prompt <span class="ot">=</span> <span class="st">"Score the following news summarization given the corresponding news with respect to fluency with one to five stars, where one star means “disfluency” and five stars means “perfect fluency”. Note that fluency measures the quality of individual sentences, are they well-written and grammatically correct. Consider the quality of individual sentences.</span></span>
+<span id="cb30-66"><a href="#cb30-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-67"><a href="#cb30-67" aria-hidden="true" tabindex="-1"></a><span class="st">Source: </span></span>
+<span id="cb30-68"><a href="#cb30-68" aria-hidden="true" tabindex="-1"></a><span class="st">Target: "</span></span>
+<span id="cb30-69"><a href="#cb30-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-70"><a href="#cb30-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-71"><a href="#cb30-71" aria-hidden="true" tabindex="-1"></a><span class="fu"># 헬로월드</span></span>
+<span id="cb30-72"><a href="#cb30-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-73"><a href="#cb30-73" aria-hidden="true" tabindex="-1"></a>가성비가 뛰어나고 빠른 <span class="in">`gpt-3.5-turbo`</span> GPT 모델을 통해 영문을 한글로, 한글을 영어로 번역해보자. </span>
+<span id="cb30-74"><a href="#cb30-74" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Building a Multilingual Translation Tool with OpenAI ChatGPT API</span><span class="co">](https://medium.com/@kaushaltrivedi/building-a-multilingual-translation-tool-with-openai-chatgpt-api-84922c971e95)</span> 코드를 일부 변형하여 <span class="in">`reticulate`</span>를 사용해서 번역결과를 목저에 맞게 변형한다.</span>
+<span id="cb30-75"><a href="#cb30-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-78"><a href="#cb30-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb30-79"><a href="#cb30-79" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
+<span id="cb30-80"><a href="#cb30-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-81"><a href="#cb30-81" aria-hidden="true" tabindex="-1"></a>openai.api_key <span class="op">=</span> os.environ.get(<span class="st">'OPENAI_API_KEY'</span>)</span>
+<span id="cb30-82"><a href="#cb30-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-83"><a href="#cb30-83" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate_text(text, source_language, target_language):</span>
+<span id="cb30-84"><a href="#cb30-84" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"Translate the following '</span><span class="sc">{</span>source_language<span class="sc">}</span><span class="ss">' text to '</span><span class="sc">{</span>target_language<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb30-85"><a href="#cb30-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-86"><a href="#cb30-86" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> openai.ChatCompletion.create(</span>
+<span id="cb30-87"><a href="#cb30-87" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
+<span id="cb30-88"><a href="#cb30-88" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[</span>
+<span id="cb30-89"><a href="#cb30-89" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a helpful assistant that translates text."</span>},</span>
+<span id="cb30-90"><a href="#cb30-90" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}</span>
+<span id="cb30-91"><a href="#cb30-91" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb30-92"><a href="#cb30-92" aria-hidden="true" tabindex="-1"></a>        max_tokens<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb30-93"><a href="#cb30-93" aria-hidden="true" tabindex="-1"></a>        n<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb30-94"><a href="#cb30-94" aria-hidden="true" tabindex="-1"></a>        stop<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb30-95"><a href="#cb30-95" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb30-96"><a href="#cb30-96" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb30-97"><a href="#cb30-97" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb30-98"><a href="#cb30-98" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response</span>
+<span id="cb30-99"><a href="#cb30-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-100"><a href="#cb30-100" aria-hidden="true" tabindex="-1"></a><span class="co"># text = "Hello, how are you?"</span></span>
+<span id="cb30-101"><a href="#cb30-101" aria-hidden="true" tabindex="-1"></a><span class="co"># result = translate_text(text, "English", "Korean")</span></span>
+<span id="cb30-102"><a href="#cb30-102" aria-hidden="true" tabindex="-1"></a><span class="co"># print(result)</span></span>
+<span id="cb30-103"><a href="#cb30-103" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb30-104"><a href="#cb30-104" aria-hidden="true" tabindex="-1"></a><span class="co"># korean_text = "안녕하세요, 어떻게 지내세요?"</span></span>
+<span id="cb30-105"><a href="#cb30-105" aria-hidden="true" tabindex="-1"></a><span class="co"># ko_result = translate_text(korean_text, "Korean", "English")</span></span>
+<span id="cb30-106"><a href="#cb30-106" aria-hidden="true" tabindex="-1"></a><span class="co"># print(ko_result)</span></span>
+<span id="cb30-107"><a href="#cb30-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-108"><a href="#cb30-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-109"><a href="#cb30-109" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">`library(reticulate)`를 실행해야 함.</span><span class="co">]</span>{.aside}</span>
+<span id="cb30-110"><a href="#cb30-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-111"><a href="#cb30-111" aria-hidden="true" tabindex="-1"></a>::::::: column-page </span>
+<span id="cb30-112"><a href="#cb30-112" aria-hidden="true" tabindex="-1"></a>::::: columns</span>
+<span id="cb30-113"><a href="#cb30-113" aria-hidden="true" tabindex="-1"></a>::: column</span>
+<span id="cb30-114"><a href="#cb30-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-115"><a href="#cb30-115" aria-hidden="true" tabindex="-1"></a><span class="fu">### 한영 {.unnumbered}</span></span>
+<span id="cb30-116"><a href="#cb30-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-119"><a href="#cb30-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-120"><a href="#cb30-120" aria-hidden="true" tabindex="-1"></a>english_text <span class="ot">=</span> <span class="st">"Hello, how are you?"</span></span>
+<span id="cb30-121"><a href="#cb30-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-122"><a href="#cb30-122" aria-hidden="true" tabindex="-1"></a>eng_result <span class="ot">=</span> py<span class="sc">$</span><span class="fu">translate_text</span>(english_text, <span class="st">"English"</span>, <span class="st">"Korean"</span>)</span>
+<span id="cb30-123"><a href="#cb30-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-124"><a href="#cb30-124" aria-hidden="true" tabindex="-1"></a>glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"번역 대상(Source): {english_text}</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb30-125"><a href="#cb30-125" aria-hidden="true" tabindex="-1"></a>           <span class="st">"번역 결과(Target): {eng_result['choices'][[1]]$message$content}</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb30-126"><a href="#cb30-126" aria-hidden="true" tabindex="-1"></a>           <span class="st">"요청 토크: {eng_result['usage']$prompt_tokens}</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb30-127"><a href="#cb30-127" aria-hidden="true" tabindex="-1"></a>           <span class="st">"완료 토크: {eng_result['usage']$completion_tokens}</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb30-128"><a href="#cb30-128" aria-hidden="true" tabindex="-1"></a>           <span class="st">"전체 토크: {eng_result['usage']$total_tokens}</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-129"><a href="#cb30-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-130"><a href="#cb30-130" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb30-131"><a href="#cb30-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-132"><a href="#cb30-132" aria-hidden="true" tabindex="-1"></a>::: column</span>
+<span id="cb30-133"><a href="#cb30-133" aria-hidden="true" tabindex="-1"></a><span class="fu">### 영한 {.unnumbered}</span></span>
+<span id="cb30-134"><a href="#cb30-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-137"><a href="#cb30-137" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-138"><a href="#cb30-138" aria-hidden="true" tabindex="-1"></a>korean_text <span class="ot">=</span> <span class="st">"안녕하세요, 어떻게 지내세요?"</span></span>
+<span id="cb30-139"><a href="#cb30-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-140"><a href="#cb30-140" aria-hidden="true" tabindex="-1"></a>ko_result <span class="ot">=</span> py<span class="sc">$</span><span class="fu">translate_text</span>(korean_text, <span class="st">"Korean"</span>, <span class="st">"English"</span>)</span>
+<span id="cb30-141"><a href="#cb30-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-142"><a href="#cb30-142" aria-hidden="true" tabindex="-1"></a>glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"번역 대상(Source): {korean_text}</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb30-143"><a href="#cb30-143" aria-hidden="true" tabindex="-1"></a>           <span class="st">"번역 결과(Target): {ko_result['choices'][[1]]$message$content}</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb30-144"><a href="#cb30-144" aria-hidden="true" tabindex="-1"></a>           <span class="st">"요청 토크: {ko_result['usage']$prompt_tokens}</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb30-145"><a href="#cb30-145" aria-hidden="true" tabindex="-1"></a>           <span class="st">"완료 토크: {ko_result['usage']$completion_tokens}</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb30-146"><a href="#cb30-146" aria-hidden="true" tabindex="-1"></a>           <span class="st">"전체 토크: {ko_result['usage']$total_tokens}</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-147"><a href="#cb30-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-148"><a href="#cb30-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-149"><a href="#cb30-149" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb30-150"><a href="#cb30-150" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb30-151"><a href="#cb30-151" aria-hidden="true" tabindex="-1"></a>:::::::</span>
+<span id="cb30-152"><a href="#cb30-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-153"><a href="#cb30-153" aria-hidden="true" tabindex="-1"></a><span class="fu"># 번역 엔진</span></span>
+<span id="cb30-154"><a href="#cb30-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-155"><a href="#cb30-155" aria-hidden="true" tabindex="-1"></a>번역 엔진을 달리하여 번역 품질을 살펴보자.</span>
+<span id="cb30-156"><a href="#cb30-156" aria-hidden="true" tabindex="-1"></a><span class="in">`Chat`</span> 모형 대표주자가 <span class="in">`gpt-3.5-turbo`</span>를 꼽을 수 있으며,</span>
+<span id="cb30-157"><a href="#cb30-157" aria-hidden="true" tabindex="-1"></a>GPT-3 모형에 Fine-Tuning한 것이 <span class="in">`InstructGPT`</span> 모형으로 </span>
+<span id="cb30-158"><a href="#cb30-158" aria-hidden="true" tabindex="-1"></a>Ada, Babbage, Curie, Davinci 순으로 비용도 올라가고 성능도 올라간다.</span>
+<span id="cb30-159"><a href="#cb30-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-160"><a href="#cb30-160" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chat API Endpoint: <span class="in">`openai.ChatCompletion.create`</span></span>
+<span id="cb30-161"><a href="#cb30-161" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>InstructGPT API Endpoint: <span class="in">`openai.Completion.create`</span></span>
+<span id="cb30-162"><a href="#cb30-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-163"><a href="#cb30-163" aria-hidden="true" tabindex="-1"></a><span class="fu">## 번역대상 텍스트 생성</span></span>
+<span id="cb30-164"><a href="#cb30-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-165"><a href="#cb30-165" aria-hidden="true" tabindex="-1"></a>데이터 시각화에 자주 인용되는 R 패키지와 사용되는 방법을 물었고 </span>
+<span id="cb30-166"><a href="#cb30-166" aria-hidden="true" tabindex="-1"></a><span class="in">`gpt-3.5-turbo`</span>을 사용해서 번역 대상 텍스트로 생성한다.</span>
+<span id="cb30-167"><a href="#cb30-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-168"><a href="#cb30-168" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; What are some popular R packages for data visualization and how are they used? </span><span class="kw">&lt;br&gt;</span></span>
+<span id="cb30-169"><a href="#cb30-169" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; </span></span>
+<span id="cb30-170"><a href="#cb30-170" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 데이터 시각화를 위해 널리 사용되는 R 패키지에는 어떤 것이 있으며 어떻게 사용되나요?</span></span>
+<span id="cb30-171"><a href="#cb30-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-174"><a href="#cb30-174" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb30-175"><a href="#cb30-175" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-176"><a href="#cb30-176" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="ss">f"What are some popular R packages for data visualization and how are they used?"</span></span>
+<span id="cb30-177"><a href="#cb30-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-178"><a href="#cb30-178" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> openai.ChatCompletion.create(</span>
+<span id="cb30-179"><a href="#cb30-179" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
+<span id="cb30-180"><a href="#cb30-180" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[</span>
+<span id="cb30-181"><a href="#cb30-181" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a data scientist that mainly uses R programming language."</span>},</span>
+<span id="cb30-182"><a href="#cb30-182" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}</span>
+<span id="cb30-183"><a href="#cb30-183" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb30-184"><a href="#cb30-184" aria-hidden="true" tabindex="-1"></a>    max_tokens<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb30-185"><a href="#cb30-185" aria-hidden="true" tabindex="-1"></a>    n<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb30-186"><a href="#cb30-186" aria-hidden="true" tabindex="-1"></a>    stop<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb30-187"><a href="#cb30-187" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb30-188"><a href="#cb30-188" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-189"><a href="#cb30-189" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-190"><a href="#cb30-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-193"><a href="#cb30-193" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-194"><a href="#cb30-194" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-195"><a href="#cb30-195" aria-hidden="true" tabindex="-1"></a>gpt_turbo_result <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{py$response['choices'][[1]]$message$content}</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-196"><a href="#cb30-196" aria-hidden="true" tabindex="-1"></a>gpt_turbo_result <span class="sc">%&gt;%</span> </span>
+<span id="cb30-197"><a href="#cb30-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_lines</span>(<span class="st">"data/gpt_turbo_result.txt"</span>)</span>
+<span id="cb30-198"><a href="#cb30-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-199"><a href="#cb30-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-202"><a href="#cb30-202" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-203"><a href="#cb30-203" aria-hidden="true" tabindex="-1"></a>gpt_turbo_result <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/gpt_turbo_result.txt"</span>)</span>
+<span id="cb30-204"><a href="#cb30-204" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">str_c</span>(gpt_turbo_result, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb30-205"><a href="#cb30-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-206"><a href="#cb30-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-207"><a href="#cb30-207" aria-hidden="true" tabindex="-1"></a><span class="fu">## GPT 엔진</span></span>
+<span id="cb30-208"><a href="#cb30-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-209"><a href="#cb30-209" aria-hidden="true" tabindex="-1"></a><span class="fu">### `gpt-3.5-turbo`</span></span>
+<span id="cb30-210"><a href="#cb30-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-211"><a href="#cb30-211" aria-hidden="true" tabindex="-1"></a><span class="in">`gpt-3.5-turbo`</span>는 속도가 빠르고 저렴하지만 <span class="in">`gpt-4`</span>에는 성능이 미치지 못한다.</span>
+<span id="cb30-212"><a href="#cb30-212" aria-hidden="true" tabindex="-1"></a>Chat모형 <span class="in">`gpt-3.5-turbo`</span> 엔진에 넣어 번역 품질을 살펴보자.</span>
+<span id="cb30-213"><a href="#cb30-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-216"><a href="#cb30-216" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb30-217"><a href="#cb30-217" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-218"><a href="#cb30-218" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'data/gpt_turbo_result.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb30-219"><a href="#cb30-219" aria-hidden="true" tabindex="-1"></a>    source_text <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb30-220"><a href="#cb30-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-221"><a href="#cb30-221" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate_text_by_model(text, model, source_language, target_language):</span>
+<span id="cb30-222"><a href="#cb30-222" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"Translate the following '</span><span class="sc">{</span>source_language<span class="sc">}</span><span class="ss">' text to '</span><span class="sc">{</span>target_language<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb30-223"><a href="#cb30-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-224"><a href="#cb30-224" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> openai.ChatCompletion.create(</span>
+<span id="cb30-225"><a href="#cb30-225" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span>model,</span>
+<span id="cb30-226"><a href="#cb30-226" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[</span>
+<span id="cb30-227"><a href="#cb30-227" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a helpful assistant that translates text."</span>},</span>
+<span id="cb30-228"><a href="#cb30-228" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}</span>
+<span id="cb30-229"><a href="#cb30-229" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb30-230"><a href="#cb30-230" aria-hidden="true" tabindex="-1"></a>        max_tokens<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb30-231"><a href="#cb30-231" aria-hidden="true" tabindex="-1"></a>        n<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb30-232"><a href="#cb30-232" aria-hidden="true" tabindex="-1"></a>        stop<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb30-233"><a href="#cb30-233" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb30-234"><a href="#cb30-234" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb30-235"><a href="#cb30-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-236"><a href="#cb30-236" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response</span>
+<span id="cb30-237"><a href="#cb30-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-238"><a href="#cb30-238" aria-hidden="true" tabindex="-1"></a>translated_text <span class="op">=</span> translate_text_by_model(source_text, <span class="st">'gpt-3.5-turbo'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span>
+<span id="cb30-239"><a href="#cb30-239" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-240"><a href="#cb30-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-243"><a href="#cb30-243" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-244"><a href="#cb30-244" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-245"><a href="#cb30-245" aria-hidden="true" tabindex="-1"></a>gpt_turbo_3 <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{py$translated_text['choices'][[1]]$message$content}</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-246"><a href="#cb30-246" aria-hidden="true" tabindex="-1"></a>gpt_turbo_3 <span class="sc">%&gt;%</span> </span>
+<span id="cb30-247"><a href="#cb30-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_lines</span>(<span class="st">"data/gpt_turbo_3.txt"</span>)</span>
+<span id="cb30-248"><a href="#cb30-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-249"><a href="#cb30-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-252"><a href="#cb30-252" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-253"><a href="#cb30-253" aria-hidden="true" tabindex="-1"></a>gpt_turbo_3 <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/gpt_turbo_3.txt"</span>)</span>
+<span id="cb30-254"><a href="#cb30-254" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">str_c</span>(gpt_turbo_3, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb30-255"><a href="#cb30-255" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-256"><a href="#cb30-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-257"><a href="#cb30-257" aria-hidden="true" tabindex="-1"></a><span class="fu">### `text-davinci-003`</span></span>
+<span id="cb30-258"><a href="#cb30-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-259"><a href="#cb30-259" aria-hidden="true" tabindex="-1"></a>InstructGPT <span class="in">`text-davinci-003`</span> 모형에 넣어 번역 품질을 살펴보자.</span>
+<span id="cb30-260"><a href="#cb30-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-263"><a href="#cb30-263" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb30-264"><a href="#cb30-264" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-265"><a href="#cb30-265" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'data/gpt_turbo_result.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb30-266"><a href="#cb30-266" aria-hidden="true" tabindex="-1"></a>    source_text <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb30-267"><a href="#cb30-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-268"><a href="#cb30-268" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate_by_instruct_model(text, model, source_language, target_language):</span>
+<span id="cb30-269"><a href="#cb30-269" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"Translate the following '</span><span class="sc">{</span>source_language<span class="sc">}</span><span class="ss">' text to '</span><span class="sc">{</span>target_language<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb30-270"><a href="#cb30-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-271"><a href="#cb30-271" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> openai.Completion.create(</span>
+<span id="cb30-272"><a href="#cb30-272" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span>model,</span>
+<span id="cb30-273"><a href="#cb30-273" aria-hidden="true" tabindex="-1"></a>        prompt<span class="op">=</span>prompt,</span>
+<span id="cb30-274"><a href="#cb30-274" aria-hidden="true" tabindex="-1"></a>        max_tokens<span class="op">=</span><span class="dv">2000</span>,</span>
+<span id="cb30-275"><a href="#cb30-275" aria-hidden="true" tabindex="-1"></a>        n<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb30-276"><a href="#cb30-276" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb30-277"><a href="#cb30-277" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb30-278"><a href="#cb30-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-279"><a href="#cb30-279" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response</span>
+<span id="cb30-280"><a href="#cb30-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-281"><a href="#cb30-281" aria-hidden="true" tabindex="-1"></a>davinci_text <span class="op">=</span> translate_by_instruct_model(source_text, <span class="st">'text-davinci-003'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span>
+<span id="cb30-282"><a href="#cb30-282" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-283"><a href="#cb30-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-286"><a href="#cb30-286" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-287"><a href="#cb30-287" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-288"><a href="#cb30-288" aria-hidden="true" tabindex="-1"></a>davinci_text <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{py$davinci_text['choices'][[1]]$text}</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-289"><a href="#cb30-289" aria-hidden="true" tabindex="-1"></a>davinci_text <span class="sc">%&gt;%</span> </span>
+<span id="cb30-290"><a href="#cb30-290" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_lines</span>(<span class="st">"data/davinci_text.txt"</span>)</span>
+<span id="cb30-291"><a href="#cb30-291" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-292"><a href="#cb30-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-295"><a href="#cb30-295" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-296"><a href="#cb30-296" aria-hidden="true" tabindex="-1"></a>davinci_text <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/davinci_text.txt"</span>)</span>
+<span id="cb30-297"><a href="#cb30-297" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">str_c</span>(davinci_text, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb30-298"><a href="#cb30-298" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-299"><a href="#cb30-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-300"><a href="#cb30-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-301"><a href="#cb30-301" aria-hidden="true" tabindex="-1"></a><span class="fu">### `text-curie-001`</span></span>
+<span id="cb30-302"><a href="#cb30-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-303"><a href="#cb30-303" aria-hidden="true" tabindex="-1"></a>InstructGPT <span class="in">`text-curie-001`</span> 모형에 넣어 번역 품질을 살펴보자.</span>
+<span id="cb30-304"><a href="#cb30-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-307"><a href="#cb30-307" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb30-308"><a href="#cb30-308" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-309"><a href="#cb30-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-310"><a href="#cb30-310" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate_by_instruct_model(text, model, source_language, target_language):</span>
+<span id="cb30-311"><a href="#cb30-311" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"Translate the following '</span><span class="sc">{</span>source_language<span class="sc">}</span><span class="ss">' text to '</span><span class="sc">{</span>target_language<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb30-312"><a href="#cb30-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-313"><a href="#cb30-313" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> openai.Completion.create(</span>
+<span id="cb30-314"><a href="#cb30-314" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span>model,</span>
+<span id="cb30-315"><a href="#cb30-315" aria-hidden="true" tabindex="-1"></a>        prompt<span class="op">=</span>prompt,</span>
+<span id="cb30-316"><a href="#cb30-316" aria-hidden="true" tabindex="-1"></a>        max_tokens<span class="op">=</span><span class="dv">1500</span>,</span>
+<span id="cb30-317"><a href="#cb30-317" aria-hidden="true" tabindex="-1"></a>        n<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb30-318"><a href="#cb30-318" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb30-319"><a href="#cb30-319" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb30-320"><a href="#cb30-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-321"><a href="#cb30-321" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response</span>
+<span id="cb30-322"><a href="#cb30-322" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb30-323"><a href="#cb30-323" aria-hidden="true" tabindex="-1"></a>curie_text <span class="op">=</span> translate_by_instruct_model(source_text, <span class="st">'text-curie-001'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span>
+<span id="cb30-324"><a href="#cb30-324" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-325"><a href="#cb30-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-328"><a href="#cb30-328" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-329"><a href="#cb30-329" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-330"><a href="#cb30-330" aria-hidden="true" tabindex="-1"></a>curie_text <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{py$curie_text['choices'][[1]]$text}</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-331"><a href="#cb30-331" aria-hidden="true" tabindex="-1"></a>curie_text <span class="sc">%&gt;%</span> </span>
+<span id="cb30-332"><a href="#cb30-332" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_lines</span>(<span class="st">"data/curie_text.txt"</span>)</span>
+<span id="cb30-333"><a href="#cb30-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-334"><a href="#cb30-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-337"><a href="#cb30-337" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-338"><a href="#cb30-338" aria-hidden="true" tabindex="-1"></a>curie_text <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/curie_text.txt"</span>)</span>
+<span id="cb30-339"><a href="#cb30-339" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">str_c</span>(curie_text, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb30-340"><a href="#cb30-340" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-341"><a href="#cb30-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-342"><a href="#cb30-342" aria-hidden="true" tabindex="-1"></a><span class="fu">### `text-babbage-001`</span></span>
+<span id="cb30-343"><a href="#cb30-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-344"><a href="#cb30-344" aria-hidden="true" tabindex="-1"></a>InstructGPT <span class="in">`text-babbage-001`</span> 모형에 넣어 번역 품질을 살펴보자.</span>
+<span id="cb30-345"><a href="#cb30-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-348"><a href="#cb30-348" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb30-349"><a href="#cb30-349" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-350"><a href="#cb30-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-351"><a href="#cb30-351" aria-hidden="true" tabindex="-1"></a>babbage_text <span class="op">=</span> translate_by_instruct_model(source_text, <span class="st">'text-babbage-001'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span>
+<span id="cb30-352"><a href="#cb30-352" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-353"><a href="#cb30-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-356"><a href="#cb30-356" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-357"><a href="#cb30-357" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-358"><a href="#cb30-358" aria-hidden="true" tabindex="-1"></a>babbage_text <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{py$babbage_text['choices'][[1]]$text}</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-359"><a href="#cb30-359" aria-hidden="true" tabindex="-1"></a>babbage_text <span class="sc">%&gt;%</span> </span>
+<span id="cb30-360"><a href="#cb30-360" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_lines</span>(<span class="st">"data/babbage_text.txt"</span>)</span>
+<span id="cb30-361"><a href="#cb30-361" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-362"><a href="#cb30-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-365"><a href="#cb30-365" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-366"><a href="#cb30-366" aria-hidden="true" tabindex="-1"></a>babbage_text <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/babbage_text.txt"</span>)</span>
+<span id="cb30-367"><a href="#cb30-367" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">str_c</span>(babbage_text, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb30-368"><a href="#cb30-368" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-369"><a href="#cb30-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-370"><a href="#cb30-370" aria-hidden="true" tabindex="-1"></a><span class="fu">### `text-ada-001`</span></span>
+<span id="cb30-371"><a href="#cb30-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-372"><a href="#cb30-372" aria-hidden="true" tabindex="-1"></a>InstructGPT <span class="in">`text-ada-001`</span> 모형에 넣어 번역 품질을 살펴보자.</span>
+<span id="cb30-373"><a href="#cb30-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-376"><a href="#cb30-376" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb30-377"><a href="#cb30-377" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-378"><a href="#cb30-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-379"><a href="#cb30-379" aria-hidden="true" tabindex="-1"></a>ada_text <span class="op">=</span> translate_by_instruct_model(source_text, <span class="st">'text-ada-001'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span>
+<span id="cb30-380"><a href="#cb30-380" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-381"><a href="#cb30-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-384"><a href="#cb30-384" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-385"><a href="#cb30-385" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-386"><a href="#cb30-386" aria-hidden="true" tabindex="-1"></a>ada_text <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{py$ada_text['choices'][[1]]$text}</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-387"><a href="#cb30-387" aria-hidden="true" tabindex="-1"></a>ada_text <span class="sc">%&gt;%</span> </span>
+<span id="cb30-388"><a href="#cb30-388" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_lines</span>(<span class="st">"data/ada_text.txt"</span>)</span>
+<span id="cb30-389"><a href="#cb30-389" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-390"><a href="#cb30-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-393"><a href="#cb30-393" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-394"><a href="#cb30-394" aria-hidden="true" tabindex="-1"></a>ada_text <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/ada_text.txt"</span>)</span>
+<span id="cb30-395"><a href="#cb30-395" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">str_c</span>(ada_text, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb30-396"><a href="#cb30-396" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-397"><a href="#cb30-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-398"><a href="#cb30-398" aria-hidden="true" tabindex="-1"></a><span class="fu">## 챗GPT 추천</span></span>
+<span id="cb30-399"><a href="#cb30-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-400"><a href="#cb30-400" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb30-401"><a href="#cb30-401" aria-hidden="true" tabindex="-1"></a><span class="fu">### Prompt: recommend instructGPT model for english to korean translation {.unnumbered}</span></span>
+<span id="cb30-402"><a href="#cb30-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-403"><a href="#cb30-403" aria-hidden="true" tabindex="-1"></a>Sure, for English to Korean translation, you can use the OpenAI model text-davinci-002 or text-davinci-002-instruct-beta. These models have been trained on a large amount of data and are capable of high-quality translation.</span>
+<span id="cb30-404"><a href="#cb30-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-405"><a href="#cb30-405" aria-hidden="true" tabindex="-1"></a>To use these models, you can modify the translate_text_by_model function like this:</span>
+<span id="cb30-406"><a href="#cb30-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-407"><a href="#cb30-407" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb30-408"><a href="#cb30-408" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate_text_by_model(text, model<span class="op">=</span><span class="st">"text-davinci-002-instruct-beta"</span>, source_language<span class="op">=</span><span class="st">"en"</span>, target_language<span class="op">=</span><span class="st">"ko"</span>):</span>
+<span id="cb30-409"><a href="#cb30-409" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"Translate the following '</span><span class="sc">{</span>source_language<span class="sc">}</span><span class="ss">' text to '</span><span class="sc">{</span>target_language<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb30-410"><a href="#cb30-410" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> openai.Completion.create(</span>
+<span id="cb30-411"><a href="#cb30-411" aria-hidden="true" tabindex="-1"></a>        engine<span class="op">=</span>model,</span>
+<span id="cb30-412"><a href="#cb30-412" aria-hidden="true" tabindex="-1"></a>        prompt<span class="op">=</span>prompt,</span>
+<span id="cb30-413"><a href="#cb30-413" aria-hidden="true" tabindex="-1"></a>        max_tokens<span class="op">=</span><span class="dv">2000</span>,</span>
+<span id="cb30-414"><a href="#cb30-414" aria-hidden="true" tabindex="-1"></a>        n<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb30-415"><a href="#cb30-415" aria-hidden="true" tabindex="-1"></a>        stop<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb30-416"><a href="#cb30-416" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb30-417"><a href="#cb30-417" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb30-418"><a href="#cb30-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-419"><a href="#cb30-419" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.choices[<span class="dv">0</span>].text</span>
+<span id="cb30-420"><a href="#cb30-420" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-421"><a href="#cb30-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-422"><a href="#cb30-422" aria-hidden="true" tabindex="-1"></a>Here, we're using the Completion.create function to directly send the prompt to the API, without the need for the messages parameter. The max_tokens parameter controls the maximum number of tokens that the API can return in the response, so you may want to adjust this value based on your needs.</span>
+<span id="cb30-423"><a href="#cb30-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-424"><a href="#cb30-424" aria-hidden="true" tabindex="-1"></a>Note that text-davinci-002-instruct-beta is a beta model that supports instruction following. You can use this model to provide additional context to the translation by including step-by-step instructions in the prompt.</span>
+<span id="cb30-425"><a href="#cb30-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-426"><a href="#cb30-426" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb30-427"><a href="#cb30-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-428"><a href="#cb30-428" aria-hidden="true" tabindex="-1"></a><span class="fu">### `text-davinci-002`</span></span>
+<span id="cb30-429"><a href="#cb30-429" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-430"><a href="#cb30-430" aria-hidden="true" tabindex="-1"></a>InstructGPT <span class="in">`text-davinci-002`</span> 모형에 넣어 번역 품질을 살펴보자.</span>
+<span id="cb30-431"><a href="#cb30-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-434"><a href="#cb30-434" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb30-435"><a href="#cb30-435" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-436"><a href="#cb30-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-437"><a href="#cb30-437" aria-hidden="true" tabindex="-1"></a>davinci_2_text <span class="op">=</span> translate_by_instruct_model(source_text, <span class="st">'text-davinci-002'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span>
+<span id="cb30-438"><a href="#cb30-438" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-439"><a href="#cb30-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-442"><a href="#cb30-442" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-443"><a href="#cb30-443" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-444"><a href="#cb30-444" aria-hidden="true" tabindex="-1"></a>davinci_2_text <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{py$davinci_2_text['choices'][[1]]$text}</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-445"><a href="#cb30-445" aria-hidden="true" tabindex="-1"></a>davinci_2_text <span class="sc">%&gt;%</span> </span>
+<span id="cb30-446"><a href="#cb30-446" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_lines</span>(<span class="st">"data/davinci_2_text.txt"</span>)</span>
+<span id="cb30-447"><a href="#cb30-447" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-448"><a href="#cb30-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-451"><a href="#cb30-451" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-452"><a href="#cb30-452" aria-hidden="true" tabindex="-1"></a>davinci_2_text <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/davinci_2_text.txt"</span>)</span>
+<span id="cb30-453"><a href="#cb30-453" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">str_c</span>(davinci_2_text, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb30-454"><a href="#cb30-454" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-455"><a href="#cb30-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-456"><a href="#cb30-456" aria-hidden="true" tabindex="-1"></a><span class="fu">### `davinci-instruct-beta`</span></span>
+<span id="cb30-457"><a href="#cb30-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-458"><a href="#cb30-458" aria-hidden="true" tabindex="-1"></a>InstructGPT <span class="in">`davinci-instruct-beta`</span> 모형에 넣어 번역 품질을 살펴보자.</span>
+<span id="cb30-459"><a href="#cb30-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-462"><a href="#cb30-462" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb30-463"><a href="#cb30-463" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-464"><a href="#cb30-464" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-465"><a href="#cb30-465" aria-hidden="true" tabindex="-1"></a>davinci_instruct_text <span class="op">=</span> translate_by_instruct_model(source_text, <span class="st">'davinci-instruct-beta'</span>, <span class="st">'English'</span>, <span class="st">'Korean'</span>)</span>
+<span id="cb30-466"><a href="#cb30-466" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-467"><a href="#cb30-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-470"><a href="#cb30-470" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-471"><a href="#cb30-471" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-472"><a href="#cb30-472" aria-hidden="true" tabindex="-1"></a>davinci_instruct_text <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{py$davinci_instruct_text['choices'][[1]]$text}</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb30-473"><a href="#cb30-473" aria-hidden="true" tabindex="-1"></a>davinci_instruct_text <span class="sc">%&gt;%</span> </span>
+<span id="cb30-474"><a href="#cb30-474" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_lines</span>(<span class="st">"data/davinci_instruct_text.txt"</span>)</span>
+<span id="cb30-475"><a href="#cb30-475" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-476"><a href="#cb30-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-479"><a href="#cb30-479" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb30-480"><a href="#cb30-480" aria-hidden="true" tabindex="-1"></a>davinci_instruct_text <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/davinci_instruct_text.txt"</span>)</span>
+<span id="cb30-481"><a href="#cb30-481" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">str_c</span>(davinci_instruct_text, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb30-482"><a href="#cb30-482" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb30-483"><a href="#cb30-483" aria-hidden="true" tabindex="-1"></a></span>
+</code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://quarto.org/">Quarto</a> 개발</div>   
+    <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
+    <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
+  </div>
+</footer>
+
+
+</body></html>

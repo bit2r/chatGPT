@@ -1,0 +1,426 @@
+---
+title: "chatGPT"
+subtitle: "번역(영한, 한영)"
+description: | 
+  데이터 과학 프롬프트 및 GPT 번역결과를 평가합니다.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: false
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r}
+#| include: false
+library(reticulate)
+library(tidyverse)
+```
+
+
+# 번역 지표
+
+**BLEU(Bilingual Evaluation Understudy, 이중 언어 평가 연구)**는 기계 번역의 품질을 평가하는 데 사용되는 지표다. 기계 생성 번역을 사람이 생성한 하나 이상의 참조 번역과 비교하고 참조 번역과 얼마나 유사한지에 따라 점수를 부여하는 방식으로 작동한다. BLEU 점수는 0점에서 1점 사이이며, 1점은 기계 생성 번역과 참조 번역이 완벽하게 일치함을 나타내고, 점수가 높을수록 기계 생성 번역이 참조 번역과 의미적으로 더 가깝다는 것을 의미한다.
+
+**COMET(Cross-lingual Optimized Metric for Evaluation of Translation, 번역 평가를 위한 교차 언어 최적화 지표)**은 2020년에 도입된 기계 번역 평가 지표로 BLEU와 같은 기존 지표의 일부 한계를 해결하기 위해 고안되었다. 기계 생성 번역과 참조 번역 간의 n-그램 중복만을 비교하는 BLEU와 달리 COMET은 유창성, 적절성, 충실도 등 번역 품질에 대한 여러 측면을 고려함은 물론 기계 생성 번역과 참조 번역 간의 의미적 유사성도 고려한다. COMET 점수는 0점에서 100점 사이이며, 점수가 높을수록 기계 생성 번역의 품질이 우수하다는 것을 나타내고, BLEU와 같은 기존 지표보다 사람의 평가와 상관관계가 높은 것으로 나타나 기계 번역 평가에 유망한 지표로 대두되고 있다. 
+
+[참고: [@Marie2023translate], [@Marie2023gpt]]{.aside}
+
+
+```{r}
+prompt = "Score the following news summarization given the corresponding news with respect to fluency with one to five stars, where one star means “disfluency” and five stars means “perfect fluency”. Note that fluency measures the quality of individual sentences, are they well-written and grammatically correct. Consider the quality of individual sentences.
+
+Source: 
+Target: "
+```
+
+# 헬로월드
+
+가성비가 뛰어나고 빠른 `gpt-3.5-turbo` GPT 모델을 통해 영문을 한글로, 한글을 영어로 번역해보자. 
+[Building a Multilingual Translation Tool with OpenAI ChatGPT API](https://medium.com/@kaushaltrivedi/building-a-multilingual-translation-tool-with-openai-chatgpt-api-84922c971e95) 코드를 일부 변형하여 `reticulate`를 사용해서 번역결과를 목저에 맞게 변형한다.
+
+```{python}
+import openai
+
+openai.api_key = os.environ.get('OPENAI_API_KEY')
+
+def translate_text(text, source_language, target_language):
+    prompt = f"Translate the following '{source_language}' text to '{target_language}': {text}"
+
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant that translates text."},
+            {"role": "user", "content": prompt}
+        ],
+        max_tokens=300,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+    
+    return response
+
+# text = "Hello, how are you?"
+# result = translate_text(text, "English", "Korean")
+# print(result)
+# 
+# korean_text = "안녕하세요, 어떻게 지내세요?"
+# ko_result = translate_text(korean_text, "Korean", "English")
+# print(ko_result)
+```
+
+[`library(reticulate)`를 실행해야 함.]{.aside}
+
+::::::: column-page 
+::::: columns
+::: column
+
+### 한영 {.unnumbered}
+
+```{r}
+english_text = "Hello, how are you?"
+
+eng_result = py$translate_text(english_text, "English", "Korean")
+
+glue::glue("번역 대상(Source): {english_text}\n",
+           "번역 결과(Target): {eng_result['choices'][[1]]$message$content}\n",
+           "요청 토크: {eng_result['usage']$prompt_tokens}\n",
+           "완료 토크: {eng_result['usage']$completion_tokens}\n",
+           "전체 토크: {eng_result['usage']$total_tokens}\n")
+```
+:::
+
+::: column
+### 영한 {.unnumbered}
+
+```{r}
+korean_text = "안녕하세요, 어떻게 지내세요?"
+
+ko_result = py$translate_text(korean_text, "Korean", "English")
+
+glue::glue("번역 대상(Source): {korean_text}\n",
+           "번역 결과(Target): {ko_result['choices'][[1]]$message$content}\n",
+           "요청 토크: {ko_result['usage']$prompt_tokens}\n",
+           "완료 토크: {ko_result['usage']$completion_tokens}\n",
+           "전체 토크: {ko_result['usage']$total_tokens}\n")
+
+```
+:::
+:::::
+:::::::
+
+# 번역 엔진
+
+번역 엔진을 달리하여 번역 품질을 살펴보자.
+`Chat` 모형 대표주자가 `gpt-3.5-turbo`를 꼽을 수 있으며,
+GPT-3 모형에 Fine-Tuning한 것이 `InstructGPT` 모형으로 
+Ada, Babbage, Curie, Davinci 순으로 비용도 올라가고 성능도 올라간다.
+
+- Chat API Endpoint: `openai.ChatCompletion.create`
+- InstructGPT API Endpoint: `openai.Completion.create`
+
+## 번역대상 텍스트 생성
+
+데이터 시각화에 자주 인용되는 R 패키지와 사용되는 방법을 물었고 
+`gpt-3.5-turbo`을 사용해서 번역 대상 텍스트로 생성한다.
+
+> What are some popular R packages for data visualization and how are they used? <br>
+> 
+> 데이터 시각화를 위해 널리 사용되는 R 패키지에는 어떤 것이 있으며 어떻게 사용되나요?
+
+```{python}
+#| eval: false
+prompt = f"What are some popular R packages for data visualization and how are they used?"
+
+response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "system", "content": "You are a data scientist that mainly uses R programming language."},
+        {"role": "user", "content": prompt}
+    ],
+    max_tokens=300,
+    n=1,
+    stop=None,
+    temperature=0.5,
+)
+```
+
+```{r}
+#| eval: false
+gpt_turbo_result <- glue::glue("{py$response['choices'][[1]]$message$content}\n")
+gpt_turbo_result %>% 
+  write_lines("data/gpt_turbo_result.txt")
+```
+
+```{r}
+gpt_turbo_result <- read_lines("data/gpt_turbo_result.txt")
+cat(str_c(gpt_turbo_result, collapse = "\n"))
+```
+
+## GPT 엔진
+
+### `gpt-3.5-turbo`
+
+`gpt-3.5-turbo`는 속도가 빠르고 저렴하지만 `gpt-4`에는 성능이 미치지 못한다.
+Chat모형 `gpt-3.5-turbo` 엔진에 넣어 번역 품질을 살펴보자.
+
+```{python}
+#| eval: false
+with open('data/gpt_turbo_result.txt', 'r') as file:
+    source_text = file.read()
+
+def translate_text_by_model(text, model, source_language, target_language):
+    prompt = f"Translate the following '{source_language}' text to '{target_language}': {text}"
+
+    response = openai.ChatCompletion.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant that translates text."},
+            {"role": "user", "content": prompt}
+        ],
+        max_tokens=1000,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+
+    return response
+
+translated_text = translate_text_by_model(source_text, 'gpt-3.5-turbo', 'English', 'Korean')
+```
+
+```{r}
+#| eval: false
+gpt_turbo_3 <- glue::glue("{py$translated_text['choices'][[1]]$message$content}\n")
+gpt_turbo_3 %>% 
+  write_lines("data/gpt_turbo_3.txt")
+```
+
+```{r}
+gpt_turbo_3 <- read_lines("data/gpt_turbo_3.txt")
+cat(str_c(gpt_turbo_3, collapse = "\n"))
+```
+
+### `text-davinci-003`
+
+InstructGPT `text-davinci-003` 모형에 넣어 번역 품질을 살펴보자.
+
+```{python}
+#| eval: false
+with open('data/gpt_turbo_result.txt', 'r') as file:
+    source_text = file.read()
+
+def translate_by_instruct_model(text, model, source_language, target_language):
+    prompt = f"Translate the following '{source_language}' text to '{target_language}': {text}"
+
+    response = openai.Completion.create(
+        model=model,
+        prompt=prompt,
+        max_tokens=2000,
+        n=1,
+        temperature=0,
+    )
+
+    return response
+
+davinci_text = translate_by_instruct_model(source_text, 'text-davinci-003', 'English', 'Korean')
+```
+
+```{r}
+#| eval: false
+davinci_text <- glue::glue("{py$davinci_text['choices'][[1]]$text}\n")
+davinci_text %>% 
+  write_lines("data/davinci_text.txt")
+```
+
+```{r}
+davinci_text <- read_lines("data/davinci_text.txt")
+cat(str_c(davinci_text, collapse = "\n"))
+```
+
+
+### `text-curie-001`
+
+InstructGPT `text-curie-001` 모형에 넣어 번역 품질을 살펴보자.
+
+```{python}
+#| eval: false
+
+def translate_by_instruct_model(text, model, source_language, target_language):
+    prompt = f"Translate the following '{source_language}' text to '{target_language}': {text}"
+
+    response = openai.Completion.create(
+        model=model,
+        prompt=prompt,
+        max_tokens=1500,
+        n=1,
+        temperature=0,
+    )
+
+    return response
+  
+curie_text = translate_by_instruct_model(source_text, 'text-curie-001', 'English', 'Korean')
+```
+
+```{r}
+#| eval: false
+curie_text <- glue::glue("{py$curie_text['choices'][[1]]$text}\n")
+curie_text %>% 
+  write_lines("data/curie_text.txt")
+```
+
+```{r}
+curie_text <- read_lines("data/curie_text.txt")
+cat(str_c(curie_text, collapse = "\n"))
+```
+
+### `text-babbage-001`
+
+InstructGPT `text-babbage-001` 모형에 넣어 번역 품질을 살펴보자.
+
+```{python}
+#| eval: false
+
+babbage_text = translate_by_instruct_model(source_text, 'text-babbage-001', 'English', 'Korean')
+```
+
+```{r}
+#| eval: false
+babbage_text <- glue::glue("{py$babbage_text['choices'][[1]]$text}\n")
+babbage_text %>% 
+  write_lines("data/babbage_text.txt")
+```
+
+```{r}
+babbage_text <- read_lines("data/babbage_text.txt")
+cat(str_c(babbage_text, collapse = "\n"))
+```
+
+### `text-ada-001`
+
+InstructGPT `text-ada-001` 모형에 넣어 번역 품질을 살펴보자.
+
+```{python}
+#| eval: false
+
+ada_text = translate_by_instruct_model(source_text, 'text-ada-001', 'English', 'Korean')
+```
+
+```{r}
+#| eval: false
+ada_text <- glue::glue("{py$ada_text['choices'][[1]]$text}\n")
+ada_text %>% 
+  write_lines("data/ada_text.txt")
+```
+
+```{r}
+ada_text <- read_lines("data/ada_text.txt")
+cat(str_c(ada_text, collapse = "\n"))
+```
+
+## 챗GPT 추천
+
+::: {.callout-note collapse="true"}
+### Prompt: recommend instructGPT model for english to korean translation {.unnumbered}
+
+Sure, for English to Korean translation, you can use the OpenAI model text-davinci-002 or text-davinci-002-instruct-beta. These models have been trained on a large amount of data and are capable of high-quality translation.
+
+To use these models, you can modify the translate_text_by_model function like this:
+
+```python
+def translate_text_by_model(text, model="text-davinci-002-instruct-beta", source_language="en", target_language="ko"):
+    prompt = f"Translate the following '{source_language}' text to '{target_language}': {text}"
+    response = openai.Completion.create(
+        engine=model,
+        prompt=prompt,
+        max_tokens=2000,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+
+    return response.choices[0].text
+```
+
+Here, we're using the Completion.create function to directly send the prompt to the API, without the need for the messages parameter. The max_tokens parameter controls the maximum number of tokens that the API can return in the response, so you may want to adjust this value based on your needs.
+
+Note that text-davinci-002-instruct-beta is a beta model that supports instruction following. You can use this model to provide additional context to the translation by including step-by-step instructions in the prompt.
+
+:::
+
+### `text-davinci-002`
+
+InstructGPT `text-davinci-002` 모형에 넣어 번역 품질을 살펴보자.
+
+```{python}
+#| eval: false
+
+davinci_2_text = translate_by_instruct_model(source_text, 'text-davinci-002', 'English', 'Korean')
+```
+
+```{r}
+#| eval: false
+davinci_2_text <- glue::glue("{py$davinci_2_text['choices'][[1]]$text}\n")
+davinci_2_text %>% 
+  write_lines("data/davinci_2_text.txt")
+```
+
+```{r}
+davinci_2_text <- read_lines("data/davinci_2_text.txt")
+cat(str_c(davinci_2_text, collapse = "\n"))
+```
+
+### `davinci-instruct-beta`
+
+InstructGPT `davinci-instruct-beta` 모형에 넣어 번역 품질을 살펴보자.
+
+```{python}
+#| eval: false
+
+davinci_instruct_text = translate_by_instruct_model(source_text, 'davinci-instruct-beta', 'English', 'Korean')
+```
+
+```{r}
+#| eval: false
+davinci_instruct_text <- glue::glue("{py$davinci_instruct_text['choices'][[1]]$text}\n")
+davinci_instruct_text %>% 
+  write_lines("data/davinci_instruct_text.txt")
+```
+
+```{r}
+davinci_instruct_text <- read_lines("data/davinci_instruct_text.txt")
+cat(str_c(davinci_instruct_text, collapse = "\n"))
+```
+
+

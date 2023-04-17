@@ -1,0 +1,13 @@
+There are several popular R libraries for data visualization that are widely used by data scientists. Some of the most popular ones are:
+
+1. ggplot2: ggplot2 is a powerful and flexible data visualization library that allows users to create complex and aesthetically pleasing plots. It is based on the grammar of graphics and provides a wide range of customization options.
+
+2. lattice: lattice is another popular data visualization library that provides a wide range of high-level plotting functions. It is particularly useful for creating multi-panel plots and is often used for visualizing complex data sets.
+
+3. plotly: plotly is a web-based data visualization library that allows users to create interactive and dynamic plots. It is particularly useful for creating interactive dashboards and visualizations that can be shared online.
+
+4. ggvis: ggvis is a data visualization library that is based on the grammar of graphics and provides a wide range of interactive and dynamic plots. It is particularly useful for creating interactive plots that can be used in web applications.
+
+5. rCharts: rCharts is a data visualization library that provides a wide range of interactive and dynamic plots. It is particularly useful for creating interactive visualizations that can be embedded in web applications.
+
+These libraries are used to create a wide range of visualizations such as scatter plots, line charts, bar charts, histograms, heatmaps, and more. They provide a wide range of customization options and allow users to create visually appealing and informative plots that can help to communicate complex data sets

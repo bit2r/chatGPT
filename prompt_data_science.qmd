@@ -55,9 +55,11 @@ library(tidyverse)
 library(bitGPT)
 library(openai)
 
+ds_prompt <- "What is web scraping and how is it useful in data science?"
+
 gpt_answer <- create_completion(
     model = "text-davinci-003",
-    prompt = "What is web scraping and how is it useful in data science?",
+    prompt = ds_prompt,
     max_tokens = 2048
 )
 
@@ -65,6 +67,8 @@ gpt_answer_ko <- bitGPT::translate(str_remove(gpt_answer$choices$text, "\\s+"), 
 
 gpt_answer_ko
 ```
+
+
 
 ```{r}
 gpt_answer$usage %>% 

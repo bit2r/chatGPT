@@ -95,6 +95,8 @@ website:
           text: "Shiny 앱"
         - href: inaugural.qmd
           text: "대통령 취임사"
+        - href: translation.qmd
+          text: "번역(영한, 한영)"
       - text: "자동화/개발"
         menu:
         - href: ide.qmd
