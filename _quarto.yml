@@ -120,6 +120,11 @@ website:
           text: "LangCahin"
         - href: openAI_GPT.qmd
           text: "OpenAI GPT"
+        - text: "------------------"
+        - href: palmer_penguins.qmd
+          text: "펭귄 데이터셋"
+        - href: autoGPT_ds.qmd
+          text: "데이터 과학"
       - href: blog.qmd
         text: "게시글"
       - text: "유/무료 서비스"
@@ -160,6 +165,7 @@ format:
     code-block-border-left: "#31BAE9"
     highlight-style: github
     toc: true
+
 
 bibliography: bibliography.bib
 csl: apa-single-spaced.csl
