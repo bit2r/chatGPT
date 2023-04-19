@@ -124,7 +124,11 @@ website:
         - href: palmer_penguins.qmd
           text: "펭귄 데이터셋"
         - href: autoGPT_ds.qmd
-          text: "데이터 과학"
+          text: "EDA 자동화 AutoEDA"
+        - href: autoML_ds.qmd
+          text: "ML 자동화 AutoML"
+        - href: autoGPT_ds.qmd
+          text: "데이터 과학 AutoGPT"
       - href: blog.qmd
         text: "게시글"
       - text: "유/무료 서비스"

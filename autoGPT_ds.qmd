@@ -38,198 +38,304 @@ editor:
     wrap: 72
 ---
 
-# 펭귄 데이터셋
+# autoEDA
 
-## 펭귄 데이터 출현
+## `Hmisc::describe()`
 
-미국에서 "George Floyd"가 경찰에 의해 살해되면서 촉발된 ["Black Lives
-Matter"](https://ko.wikipedia.org/wiki/Black_Lives_Matter) 운동은
-아프리카계 미국인을 향한 폭력과 제도적 인종주의에 반대하는 사회운동이다.
-한국에서도 소수 정당인 정의당에서 [여당 의원 176명 중 누가?...차별금지법
-발의할 '의인'을
-구합니다](http://www.hani.co.kr/arti/politics/assembly/949422.html)로
-기사로 낼 정도로 적극적으로 나서고 있다.
-
-데이터 과학에서 최근 R.A. Fisher의 과거 저술한 "The genetical theory of
-natural selection" [@fisher1958genetical] 우생학(Eugenics) 대한
-관점이 논란이 되면서 R 데이터 과학의 첫
-데이터셋으로 붓꽃 `iris` 데이터를 다른 데이터, 즉 펭귄 데이터로 대체하는
-움직임이 활발히 전개되고 있다.
-[`palmerpenguins`](https://github.com/allisonhorst/palmerpenguins)
-[@penguin2020] 데이터셋이 대안으로 많은 호응을 얻고 있다.
-[@AbdulMajedRaja2020, @Levy2019]
-
-## 펭귄 공부 {#penguins-study}
-
-팔머(Palmer) 펭귄은 3종이 있으며 자세한 내용은 다음 나무위키를 참조한다.
-[^1]
-
-[^1]: [신발끈 여행사,
-    관광안내자료](http://www.shoestring.kr/shoecast/aaa/sp_01_peninsula/peninsula.html)
-
--   [젠투 펭귄(Gentoo Penguin)](https://namu.wiki/w/젠투펭귄): 머리에
-    모자처럼 둘러져 있는 하얀 털 때문에 알아보기가 쉽다. 암컷이 회색이
-    뒤에, 흰색이 앞에 있다. 펭귄들 중에 가장 빠른 시속 36km의 수영
-    실력을 자랑하며, 짝짓기 할 준비가 된 펭귄은 75-90cm까지도 자란다.
--   [아델리 펭귄(Adelie Penguin)](https://namu.wiki/w/아델리펭귄):
-    프랑스 탐험가인 뒤몽 뒤르빌(Dumont D'Urville) 부인의 이름을 따서
-    '아델리'라 불리게 되었다. 각진 머리와 작은 부리 때문에 알아보기
-    쉽고, 다른 펭귄들과 마찬가지로 암수가 비슷하게 생겼지만 암컷이 조금
-    더 작다.
--   [턱끈 펭귄(Chinstrap Penguin)](https://namu.wiki/w/턱끈펭귄): 언뜻
-    보면 아델리 펭귄과 매우 비슷하지만, 몸집이 조금 더 작고, 목에서 머리
-    쪽으로 이어지는 검은 털이 눈에 띈다. 어린 고삐 펭귄들은 회갈색 빛을
-    띄는 털을 가지고 있으며, 목 아래 부분은 더 하얗다. 무리를 지어
-    살아가며 일부일처제를 지키기 때문에 짝짓기 이후에도 부부로써
-    오랫동안 함께 살아간다.
+[`Hmisc`](https://cran.r-project.org/web/packages/Hmisc/index.html) 패키지를 통해 과거 20년전 데이터 분석방법을 음미합니다.
 
 ```{r}
-#| eval: false
-library(webshot2)
+library(tidyverse)
 
-webshot(url="https://allisonhorst.github.io/palmerpenguins/", selector = "#meet-the-palmer-penguins > p > img", "images/penguin-species.png")
+penguins <- palmerpenguins::penguins %>%
+  # 영어 변수명 한글 변환
+  set_names(c("종명칭", "섬이름", "부리_길이", "부리_깊이", "물갈퀴_길이",
+              "체중", "성별", "연도")) %>%
+  # 결측값 제거
+  # drop_na() %>%
+  # 영어 값 한글 값으로 변환
+  mutate(성별 = ifelse(성별 == "male", "수컷", "암컷"),
+         섬이름 = case_when( str_detect(섬이름, "Biscoe") ~ "비스코",
+                          str_detect(섬이름, "Dream") ~ "드림",
+                          str_detect(섬이름, "Torgersen") ~ "토르거센"),
+         종명칭 = case_when( str_detect(종명칭, "Adelie") ~ "아델리",
+                          str_detect(종명칭, "Chinstrap") ~ "턱끈",
+                          str_detect(종명칭, "Gentoo") ~ "젠투")
+  ) %>%
+  # 자료형 변환
+  mutate(성별   = factor(성별, levels = c("수컷", "암컷")),
+         섬이름 = factor(섬이름, levels = c("비스코", "드림", "토르거센")),
+         종명칭 = factor(종명칭, levels = c("아델리", "턱끈", "젠투")),
+         연도   = ordered(연도, levels = c(2007, 2008, 2009)))
+
+
+
+Hmisc::describe(penguins)
 ```
 
-![팔머 펭귄 3종 세트](images/penguin-species.png)
 
-다음으로 `iris` 데이터와 마찬가지로 펭귄 3종을 구분하기 위한 변수로
-조류의 부리에 있는 중앙 세로선의 융기를 지칭하는 능선(`culmen`)
-길이(culmen length)와 깊이(culmen depth)를 이해하면 된다.
+## `skimr`
+
+`skimr` 패키지를 사용하여 분석할 데이터와 친숙해진다.
 
 ```{r}
-#| eval: false
-library(webshot)
-
-webshot(url="https://allisonhorst.github.io/palmerpenguins/", selector = "#what-are-culmen-length--depth > p:nth-child(4) > img", "fig/penguin-species-variable.png")
+penguins %>% 
+  skimr::skim()
 ```
 
-![팔머 펭귄 능선 변수](images/penguin-species-variable.png)
+## `dataxray`
 
-## 펭귄 서식지 {#penguin-home}
+[`dataxray`](https://github.com/agstn/dataxray) 패키지를 사용해서 데이터에 대한 이해를 더욱 높일 수 있다.
 
-`leaflet` 팩키지로 펭귄 서식지를 남극에서 특정한다. `geocoding`을 해야
-하는데 구글에서 위치 정보를 구글링하면 <https://latitude.to/>에서 직접
-위경도를 반환하여 준다. 이 정보를 근거로 하여 펭귄 서식지를 시각화한다.
+:::{.column-page}
 
-::: {#palmer layout="[[1,1], [1,1,1,1]]"}
-![파머 연구소와 펭귄 서식지](images/penguins_map.png){width="1284"}
 
-![펭귄 3종](images/penguins_real_photo.jpg)
+```{r}
+library(dataxray)
 
-![아델리, 젠투, 턱끈 펭귄이 함께한
-사진](images/penguins_three.jpg){width="1074"}
+penguins %>% 
+   make_xray() %>% 
+   view_xray()
+```
 
-![토르거센 섬에서 새끼를 키우는 아델리
-펭귄](images/penguins_torgerson.jpg)
-
-![비스코 지점 젠투 펭귄
-서식지](images/penguins_gentoo.jpg){width="1074"}
-
-![펭귄과 함께 현장에서 일하는 크리스틴 고먼
-박사](images/penguins_field.jpg){width="1074"}
-
-파머 펭귄 데이터셋
 :::
 
-```{r penguin-home}
-library(tidyverse)
-library(leaflet)
-library(palmerpenguins)
-# library(tidygeocoder)
 
-penguins %>% 
-  count(island)
+## `dlookr`
 
-island_df <- tribble(~"address", ~"lat", ~"lng",
-                     "Torgersen Island antarctica", -64.772819, -64.074325,
-                     "Dream Island antarctica", -64.725558, -64.225562,
-                     "Biscoe Island antarctica", -64.811565, -63.777947,
-                     "Palmer Station", -64.774312, -64.054213)
-
-island_df %>% 
-  leaflet() %>% 
-  addProviderTiles(providers$OpenStreetMap) %>% 
-  addMarkers(lng=~lng, lat=~lat, 
-                   popup = ~ as.character(paste0("<strong>", paste0("명칭:",`address`), "</strong><br>",
-                                                 "-----------------------------------------------------------<br>",
-                                                 "&middot; latitude: ", `lat`, "<br>",
-                                                 "&middot; longitude: ", `lng`, "<br>"
-                   ))) 
-
-```
-
-## 데이터 설치
-
-`remotes` 팩키지 `install_github()` 함수로 펭귄 데이터를 설치한다.
+[`dlookr`](https://cran.r-project.org/web/packages/dlookr/index.html) 패키지를 사용하여 분석할 데이터와 친숙해진다.
 
 ```{r}
-#| eval: false
-# install.packages("remotes")
-remotes::install_github("allisonhorst/palmerpenguins")
-```
-
-`tidyverse` 팩키지 `glimpse()` 함수로 펭귄 데이터를 일별한다.
-
-```{r glimpse-dataset}
-library(tidyverse)
-library(palmerpenguins)
-
-glimpse(penguins)
-```
-
-## 자료구조 일별 {#penguin-EDA-skimr}
-
-`skimr` 팩키지를 사용해서 `penguins` 데이터프레임 자료구조를 일별한다.
-이를 통해서 344개 펭귄 관측값이 있으며, 7개 칼럼으로 구성된 것을 확인할
-수 있다. 또한, 범주형 변수가 3개, 숫자형 변수가 4개로 구성되어 있다.
-그외 더 자세한 사항은 범주형, 숫자형 변수에 대한 요약 통계량을 참조한다.
-
-```{r penguins-EDA-data-structure}
-skimr::skim(penguins)
-```
-
-데이터가 크지 않아 `DT` 팩키지를 통해 데이터 전반적인 내용을 살펴볼 수
-있다.
-
-```{r penguins-DT}
+library(kableExtra)
 penguins %>% 
-  reactable::reactable()
+  dlookr::describe() %>% 
+  kable(caption = "요약통계량") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F)  
 ```
 
-## 탐색적 데이터 분석 {#penguin-EDA}
+## `DataExplorer `
 
-`palmerpenguins` 데이터셋 소개에 포함되어 있는 미국 팔머 연구소 (palmer
-station) 펭귄 물갈퀴(flipper) 길이와 체질량(body mass) 산점도를
-그려보자.
+[`DataExplorer `](https://cran.r-project.org/web/packages/DataExplorer/) 패키지를 사용하여 분석할 데이터와 친숙해진다.
+
+```r
+DataExplorer::create_report(penguins)
+```
+
+:::{.panel-tabset}
+### 구조
 
 ```{r}
-library(tidyverse)
-library(extrafont)
-loadfonts()
+DataExplorer::plot_str(penguins)
+```
 
-mass_flipper <- ggplot(data = penguins, 
-                       aes(x = flipper_length_mm,
-                           y = body_mass_g)) +
-  geom_point(aes(color = species, 
-                 shape = species),
-             size = 3,
-             alpha = 0.8) +
-  theme_minimal(base_family = "NanumGothic") +
-  scale_color_manual(values = c("darkorange","purple","cyan4")) +
-  labs(title = "펭귄 크기",
-       subtitle = "남극 펭귄 3종 물갈퀴 길이와 체질량 관계",
-       x = "물갈퀴 길이 (mm)",
-       y = "체질량 (g)",
-       color = "펭귄 3종",
-       shape = "펭귄 3종") +
-  theme(legend.position = c(0.2, 0.7),
-        legend.background = element_rect(fill = "white", color = NA),
-        plot.title.position = "plot",
-        plot.caption = element_text(hjust = 0, face= "italic"),
-        plot.caption.position = "plot")
+### DF 요약
 
-mass_flipper
+```{r}
+DataExplorer::introduce(penguins)
+```
+
+### DF 요약 시각화
+
+```{r}
+DataExplorer::plot_intro(penguins)
+```
+
+### 결측값
+
+```{r}
+DataExplorer::plot_missing(penguins)
+```
+
+### 분포(범주형)
+
+```{r}
+DataExplorer::plot_bar(penguins)
 ```
 
 
+### 분포(연속형)
 
+```{r}
+DataExplorer::plot_histogram(penguins)
+```
+
+### 상관관계
+
+```{r}
+penguins %>% select_if(is.numeric) %>% 
+  # drop_na() %>% 
+  DataExplorer::plot_correlation(cor_args = list("use" = "pairwise.complete.obs"))
+```
+
+### PCA
+
+```{r}
+penguins_pca <- penguins %>% select_if(is.numeric) %>% 
+  drop_na() %>% prcomp(scale = TRUE)
+
+summary(penguins_pca)$importance %>% as.data.frame() %>% 
+  kable(caption = "PCA 요약") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F)
+```
+
+:::
+
+# 챗GPT EDA
+
+[[Model: GPT-4, autoEDA and autoML](https://sharegpt.com/c/1lHtBnV)]{.aside}
+
+챗GPT GPT-4 모형을 사용해서 생산성을 크게 향상시킬 수 있다. [@chatGPT2023ds]
+먼저 역할을 지정하고 데이터셋이 크지 않은 경우 이를 프롬프트에 넣어 GPT-4모형이 작업할 수 있는 환경을 조성한다.
+
+:::{.panel-tabset}
+
+## 역할부여와 데이터 {.unnumbered}
+
+:::{.callout-note collapse="false"}
+### I want you to act as a data scientist using R programming language and code for me. I have a dataset of penguins as follows. If you understand what I instructed. print "OK" and wait for another instruction.
+
+> species,island,culmen_length_mm,culmen_depth_mm,flipper_length_mm,body_mass_g,sex
+> Adelie,Torgersen,39.1,18.7,181,3750,MALE
+> Adelie,Torgersen,39.5,17.4,186,3800,FEMALE
+> Adelie,Torgersen,40.3,18,195,3250,FEMALE
+> Adelie,Torgersen,NA,NA,NA,NA,NA
+> Adelie,Torgersen,36.7,19.3,193,3450,FEMALE
+> Adelie,Torgersen,39.3,20.6,190,3650,MALE
+> Adelie,Torgersen,38.9,17.8,181,3625,FEMALE
+> Adelie,Torgersen,39.2,19.6,195,4675,MALE <br>
+> ...
+
+GPT-4 답변: **OK**
+:::
+
+## EDA 작업지시 {.unnumbered}
+
+본격적으로 EDA 작업을 챗GPT에 부여하고 작업을 지시한다.
+
+:::{.callout-note collapse="false"}
+### Please write code for the exploratory data analysis (EDA) task and target variable is sex.
+
+Here's an example of an R script that performs exploratory data analysis (EDA) on a dataset, with the target variable being 'sex'. The code uses the same dataset ('penguins.csv') as the previous answer.
+
+```
+# Load libraries
+library(tidyverse)
+library(tidymodels)
+library(ggplot2)
+library(readr)
+
+# Import dataset
+data <- read_csv("penguins.csv")
+
+# Data preprocessing and cleaning
+data_clean <- data %>%
+  drop_na() %>%
+  mutate(sex = as.factor(sex))
+
+# Examine the structure of the dataset
+print(str(data_clean))
+
+# Summary statistics
+print(summary(data_clean))
+
+# Target variable distribution
+print(table(data_clean$sex))
+
+# Visualize target variable distribution
+ggplot(data_clean, aes(x = sex)) +
+  geom_bar() +
+  ggtitle("Sex Distribution")
+
+# Pairwise scatterplot of continuous variables
+pairs_plot <- data_clean %>%
+  select_if(is.numeric) %>%
+  ggpairs()
+
+print(pairs_plot)
+
+# Boxplots for continuous variables by sex
+data_clean %>%
+  gather("variable", "value", -sex) %>%
+  ggplot(aes(x = sex, y = value)) +
+  geom_boxplot() +
+  facet_wrap(~ variable, scales = "free") +
+  ggtitle("Boxplots of Continuous Variables by Sex")
+
+# Visualize categorical variables by sex
+data_clean %>%
+  ggplot(aes(x = island, fill = sex)) +
+  geom_bar(position = "dodge") +
+  ggtitle("Island Distribution by Sex")
+
+# Correlation matrix
+cor_matrix <- cor(data_clean %>% select_if(is.numeric))
+print(cor_matrix)
+```
+
+This script includes several EDA techniques such as examining the dataset's structure, summarizing the dataset, visualizing the target variable distribution, creating pairwise scatterplots, boxplots, and bar charts, and calculating the correlation matrix for the continuous variables.
+
+Make sure to replace the filename and adapt the code to your specific needs.
+
+:::
+
+
+
+
+## EDA 수행 {.unnumbered}
+
+```{r}
+# Load libraries
+library(tidyverse)
+library(palmerpenguins)
+library(GGally)
+
+# Import dataset
+penguins <- palmerpenguins::penguins
+
+# Data preprocessing and cleaning
+penguins <- penguins %>%
+  drop_na() %>%
+  mutate(sex = as.factor(sex))
+
+# Examine the structure of the dataset
+print(str(penguins))
+
+# Summary statistics
+print(summary(penguins))
+
+# Target variable distribution
+print(table(penguins$sex))
+
+# Visualize target variable distribution
+ggplot(penguins, aes(x = sex)) +
+  geom_bar() +
+  ggtitle("Sex Distribution")
+
+# Pairwise scatterplot of continuous variables
+pairs_plot <- penguins %>%
+  select_if(is.numeric) %>%
+  ggpairs()
+
+print(pairs_plot)
+
+# Boxplots for continuous variables by sex
+penguins %>%
+  select(-species, -island) %>% 
+  pivot_longer(cols = -sex, names_to = "variable", values_to = "value") %>%
+  ggplot(aes(x = sex, y = value)) +
+  geom_boxplot() +
+  facet_wrap(~ variable, scales = "free") +
+  ggtitle("Boxplots of Continuous Variables by Sex")
+
+# Visualize categorical variables by sex
+penguins %>%
+  ggplot(aes(x = island, fill = sex)) +
+  geom_bar(position = "dodge") +
+  ggtitle("Island Distribution by Sex")
+
+# Correlation matrix
+cor_matrix <- cor(penguins %>% select_if(is.numeric))
+print(cor_matrix)
+```
+
+:::
