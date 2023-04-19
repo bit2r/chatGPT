@@ -129,6 +129,8 @@ website:
           text: "ML 자동화 AutoML"
         - href: autoGPT_ds.qmd
           text: "데이터 과학 AutoGPT"
+        - href: gg_grouping.qmd
+          text: "챗GPT 팀구성"
       - href: blog.qmd
         text: "게시글"
       - text: "유/무료 서비스"
