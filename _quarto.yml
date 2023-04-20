@@ -42,15 +42,14 @@ website:
           text: "프롬프트 실무"
         - href: prompt_data_science.qmd
           text: "데이터 과학 프롬프트"
+        - href: interview.qmd
+          text: "데이터 과학 인터뷰"
         - text: "------------------"
         - href: interface.qmd
           text: "인터페이스"
-        - href: deepL.qmd
-          text: "DeepL 번역 API"
         - href: open_source.qmd
-          text: "오픈소스 S/W"
-        - href: interview.qmd
-          text: "데이터 과학문제"
+          text: "오픈소스 S/W LLM"
+
       - text: "chatGPT 응용사례"
         menu:
         - href: use-cases.qmd

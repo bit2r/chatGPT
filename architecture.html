@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.3.299" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+<meta name="author" content="이광춘" />
+
+<title>chatGPT</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<!-- htmldependencies:E3FAD763 -->
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색"
+  }
+}</script>
+
+<script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script>
+<script  src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script  src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link  href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet" />
+
+
+<link rel="stylesheet" href="css/quarto.css" />
+</head>
+
+<body>
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="/index.html">
+    <span class="navbar-title">chatGPT</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+  aria-controls="navbarCollapse" aria-expanded="false" aria-label="탐색 전환"
+  onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="/index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">생성 AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai">    
+        <li>
+    <a class="dropdown-item" href="/architecture.html" rel="" target="">
+ <span class="dropdown-text">chatGPT 이해</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/trends.html" rel="" target="">
+ <span class="dropdown-text">추세 트렌드</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/why_llm.html" rel="" target="">
+ <span class="dropdown-text">왜 거대언어모형인가?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/nlp_LLM.html" rel="" target="">
+ <span class="dropdown-text">NLP와 LLM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/gpt4_performance.html" rel="" target="">
+ <span class="dropdown-text">GPT-4 성능</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/gpt-security.html" rel="" target="">
+ <span class="dropdown-text">챗GPT 보안사고</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="/prompt.html" rel="" target="">
+ <span class="dropdown-text">Prompt Engineering</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/prompt_adv.html" rel="" target="">
+ <span class="dropdown-text">Advanced Prompt Engineering</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/prompt_in_practice.html" rel="" target="">
+ <span class="dropdown-text">프롬프트 실무</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/prompt_data_science.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 프롬프트</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="/interface.html" rel="" target="">
+ <span class="dropdown-text">인터페이스</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/open_source.html" rel="" target="">
+ <span class="dropdown-text">오픈소스 S/W LLM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/interview.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학문제</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-chatgpt-응용사례" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">chatGPT 응용사례</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-chatgpt-응용사례">    
+        <li>
+    <a class="dropdown-item" href="/use-cases.html" rel="" target="">
+ <span class="dropdown-text">활용사례</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/intro_avi.html" rel="" target="">
+ <span class="dropdown-text">법인 R 소개영상</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/macbook.html" rel="" target="">
+ <span class="dropdown-text">맥북 투척사건</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/office.html" rel="" target="">
+ <span class="dropdown-text">오피스 전쟁</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/about_gpt.html" rel="" target="">
+ <span class="dropdown-text">GPT 역사</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="/news_article.html" rel="" target="">
+ <span class="dropdown-text">보도자료 작성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/intro_book.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 책</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/intro_paper.html" rel="" target="">
+ <span class="dropdown-text">논문 초록</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/rnd.html" rel="" target="">
+ <span class="dropdown-text">학술연구(R&amp;D)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/yuji.html" rel="" target="">
+ <span class="dropdown-text">멤버 Yuji</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="/text2image.html" rel="" target="">
+ <span class="dropdown-text">텍스트 → 이미지 생성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/stable_diffusion.html" rel="" target="">
+ <span class="dropdown-text">Stable Diffusion</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="/samsung.html" rel="" target="">
+ <span class="dropdown-text">삼전 주가예측</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/calculator.html" rel="" target="">
+ <span class="dropdown-text">계산기 프로그램</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/rcoding.html" rel="" target="">
+ <span class="dropdown-text">GPT R 코딩개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/rcoding-copilot.html" rel="" target="">
+ <span class="dropdown-text">부조종사 R 코딩개발</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="/math.html" rel="" target="">
+ <span class="dropdown-text">수학문제 (MIT)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/middle_school.html" rel="" target="">
+ <span class="dropdown-text">Shiny 앱</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/inaugural.html" rel="" target="">
+ <span class="dropdown-text">대통령 취임사</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/translation.html" rel="" target="">
+ <span class="dropdown-text">번역(영한, 한영)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">자동화/개발</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="/ide.html" rel="" target="">
+ <span class="dropdown-text">통합개발환경(IDE)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="/reticulate.html" rel="" target="">
+ <span class="dropdown-text">파이썬 환경구축</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/koGPT.html" rel="" target="">
+ <span class="dropdown-text">HuggingfaceR - 모형통계</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/BERT.html" rel="" target="">
+ <span class="dropdown-text">BERT</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="/hf.html" rel="" target="">
+ <span class="dropdown-text">Hugging Face</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/hf_windows.html" rel="" target="">
+ <span class="dropdown-text">Hugging Face(윈도우)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="/hf_pipeline.html" rel="" target="">
+ <span class="dropdown-text">HF 파이프라인</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/langchain.html" rel="" target="">
+ <span class="dropdown-text">LangCahin</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/openAI_GPT.html" rel="" target="">
+ <span class="dropdown-text">OpenAI GPT</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="/palmer_penguins.html" rel="" target="">
+ <span class="dropdown-text">펭귄 데이터셋</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/autoGPT_ds.html" rel="" target="">
+ <span class="dropdown-text">EDA 자동화 AutoEDA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/autoML_ds.qmd" rel="" target="">
+ <span class="dropdown-text">ML 자동화 AutoML</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/autoGPT_ds.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 AutoGPT</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="/gg_grouping.html" rel="" target="">
+ <span class="dropdown-text">챗GPT 팀구성</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/blog.html" rel="" target="">
+ <span class="menu-text">게시글</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">유/무료 서비스</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="/services.html" rel="" target="">
+ <span class="dropdown-text">(유)무료 서비스</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/bit2r/chatGPT" rel="" target=""><i 
+  class="bi bi-github" 
+  role="img" 
+>
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://r2bit.com" rel="" target="">
+ <span class="menu-text">R사용자회</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/LAION-AI/Open-Assistant" rel="" target=""><i 
+  class="bi bi-github" 
+  role="img" 
+>
+</i> 
+ <span class="menu-text">Open Assistant</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rtutor.ai/" rel="" target="">
+ <span class="menu-text">RTutor</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="/about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="다크 모드 전환"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <div id="quarto-toc-target"></div>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+  <div class="quarto-title-banner">
+    <div class="quarto-title column-body">
+      <h1 class="title">chatGPT</h1>
+            <p class="subtitle lead">챗GPT 아키텍쳐</p>
+                      </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-heading">소속</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://www.linkedin.com/in/kwangchunlee/">이광춘</a> </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://github.com/bit2r">
+              한국 R 사용자회
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+    
+      
+    </div>
+    
+  
+  </header>
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">목차</h2>
+   
+  <ul>
+  <li><a href="#챗gpt-llm-이해하기" id="toc-챗gpt-llm-이해하기"><span class="header-section-number">1</span> 챗GPT LLM 이해하기</a>
+  <ul>
+  <li><a href="#jpeg-압축" id="toc-jpeg-압축"><span class="header-section-number">1.1</span> JPEG 압축</a></li>
+  <li><a href="#제록스-복사기" id="toc-제록스-복사기"><span class="header-section-number">1.2</span> 제록스 복사기</a></li>
+  </ul></li>
+  <li><a href="#패러다임" id="toc-패러다임"><span class="header-section-number">2</span> 패러다임</a>
+  <ul>
+  <li><a href="#기계학습" id="toc-기계학습"><span class="header-section-number">2.1</span> 기계학습</a></li>
+  </ul></li>
+  <li><a href="#prompt-engineering-1" id="toc-prompt-engineering-1"><span class="header-section-number">3</span> Prompt engineering</a></li>
+  <li><a href="#생성-ai" id="toc-생성-ai"><span class="header-section-number">4</span> 생성 AI</a></li>
+  <li><a href="#기업-생태계" id="toc-기업-생태계"><span class="header-section-number">5</span> 기업 생태계</a></li>
+  </ul>
+</nav>
+<section id="챗gpt-llm-이해하기" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> 챗GPT LLM 이해하기</h1>
+<section id="jpeg-압축" class="level2" data-number="1.1">
+<h2 data-number="1.1"><span class="header-section-number">1.1</span> JPEG 압축</h2>
+<p>ChatGPT는 인터넷에서 방대한 양의 데이터를 학습하여 이를 정말 잘 압축한 하나의 저장소로 이해할 수 있다. 따라서, 압축을 풀게 되면 정확히 원본을 복원할 수 있는 부분도 있지만, 그렇지 못한 부분도 당영히 있게 된다.</p>
+<p><span class="column-margin"><a href="https://www.newyorker.com/tech/annals-of-technology/chatgpt-is-a-blurry-jpeg-of-the-web">Ted Chiang (February 9, 2023), “ChatGPT Is a Blurry JPEG of the Web - OpenAI’s chatbot offers paraphrases, whereas Google offers quotes. Which do we prefer?”, The New Yorker</a></span></p>
+<p>ChatGPT를 <strong>“웹의 흐릿한 JPEG”</strong>으로 비유하고 있다. JPEC 기술 자체는 손실 압축기술로 무손실 압축기술로 대표적인 PNG와 대비된다. 흐릿한 이미지가 선명하지 않거나 정확하지 않은 것처럼 ChatGPT도 항상 완벽한 답변을 제공하거나 모든 질문을 제대로 이해하는 것도 아니다. 하지만 사용자와의 대화를 기반으로 끊임없이 학습하고 개선하고 있다. 더 많은 사람들이 ChatGPT를 사용할수록 사람의 언어를 더 잘 이해하고 반응할 수 있게 개발된 기술이다.</p>
+<p>ChatGPT와 유사한 인공지능 프로그램이 너무 강력해지거나 인간을 대체할 수 있다고 우려하는 사람들도 있지만, ChatGPT는 단순히 작업을 더 쉽고 효율적으로 만드는 데 사용할 수 있는 강력한 도구일 뿐이므로 사람을 능가하거나 지배할 가능성은 거의 없다. 인공지능(ChatGPT)을 책임감 있고 윤리적으로 사용되도록 하는 것은 결국 사용자 귀책이다.</p>
+<p>ChatGPT가 간단한 숫자계산에 문제가 있는 것은 웹상에 산재된 숫자 계산 데이터를 바탕으로 계산을 흉내낼 수는 있으나 이와 같은 방식으로 ChatGPT가 학습한 것은 명백히 잘못된 것이다. 사칙연산에 대한 일반적인 원리를 이해하게 되면 웹상에 나온 사칙연산 문제를 정확히 해결할 뿐만 아니라 웹상에 나와있지 않는 계산문제도 풀 수 있으나 현재는 그렇지 못하다.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">PNG 파일</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">(비)손실 압축</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">파일크기</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">BMP 파일</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/jpeg/jpeg-vs-png-transparency.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/jpeg/jpeg-vs-png-transparency.png" class="img-fluid" /></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/jpeg/jpeg-vs-png-compression.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/jpeg/jpeg-vs-png-compression.png" class="img-fluid" /></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/jpeg/jpeg-vs-png-file-size.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/jpeg/jpeg-vs-png-file-size.jpg" class="img-fluid" /></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/jpeg/jpeg-vs-bmp.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="images/jpeg/jpeg-vs-bmp.jpg" class="img-fluid" /></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p><span class="column-margin">자료출처: <a href="https://fixthephoto.com/tech-tips/difference-between-jpeg-and-png.html">WHAT’S THE DIFFERENCE BETWEEN JPEG AND PNG: BEGINNER GUIDE</a></span></p>
+</section>
+<section id="제록스-복사기" class="level2" data-number="1.2">
+<h2 data-number="1.2"><span class="header-section-number">1.2</span> 제록스 복사기</h2>
+<p>독일 과학자(David Kriesel)가 제록스 복사기에서 문서에 있는 숫자를 변경하는 결함을 발견했다. 제록스 프린터가 방의 면적을 14.13m²에서 17.42m²로 넓혔고, 다른 프린터는 21.11m²에서 14.13m²로 줄였다. 숫자 문자열 중간에 특정 숫자(예: “6” 또는 “8”)가 나타나면 복사기가 해당 숫자를 다른 숫자로 바꾸는 경우가 많았다. 예를 들어, ’682’가 ’882’가 될 수 있습니다.</p>
+<p>처음에 건물 설계도를 스캔하고 분석하려고 할 때 이 문제를 발견했다. 원본에는 이러한 오류가 없었지만 스캔한 사본에서 특정 숫자가 변경된 것을 발견했다. 결국 그들은 사본을 만드는 과정에서 숫자가 변경된, 사용 중인 Xerox 복사기에 문제가 있다는 사실을 깨달았다.</p>
+<p>이 결함은 제록스 복사기에 사용되는 압축 알고리즘과 관련된 것으로 특정 숫자가 서로 가까이 있으면 알고리즘이 이를 다른 숫자로 착각하고 그에 따라 숫자를 바꾼 것이다. 이 문제가 일부 고급 모델을 포함한 다양한 제록스 복사기에 존재한다는 사실도 발견했다.</p>
+<p><span class="column-margin"><a href="http://www.dkriesel.com/en/blog/2013/0802_xerox-workcentres_are_switching_written_numbers_when_scanning">D. KRIESEL, “Xerox scanners/photocopiers randomly alter numbers in scanned documents”</a></span></p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">설계도 문서</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">스캔 결과</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">원가표 스캔</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">스캔 오류</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/jpeg/architecture-document.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="images/jpeg/architecture-document.png" class="img-fluid" /></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/jpeg/scan-output.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="images/jpeg/scan-output.png" class="img-fluid" /></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/jpeg/cost-table.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="모델: WorkCentre 7535"><img src="images/jpeg/cost-table.png" class="img-fluid" /></a></p>
+<p><figcaption>모델: WorkCentre 7535</figcaption></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/jpeg/xerox-overview.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/jpeg/xerox-overview.jpg" class="img-fluid" /></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="패러다임" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> 패러다임</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/software_3.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Andrej Karpathy Twit"><img src="images/software_3.jpeg" class="img-fluid" /></a></p>
+<p><figcaption>Andrej Karpathy Twit</figcaption></p>
+</figure>
+</div>
+<p><span class="column-margin">- Pre-Software: Special-purpose computer <br> - Software 1.0: Design the Algorithm <br> - Software 2.0: Design the Dataset <br> - Software 3.0: Design the Prompt</span></p>
+<section id="기계학습" class="level2" data-number="2.1">
+<h2 data-number="2.1"><span class="header-section-number">2.1</span> 기계학습</h2>
+<p>머신러닝은 혼자서 할 수 있는 일이 아닙니다! ML 솔루션을 구축할 때는 고객부터 고객까지 엔드투엔드로 생각하는 것이 중요합니다. 이는 설계, 계획 및 실행에 도움이 됩니다. 계획의 일환으로 누가 언제 참여해야 하는지 이해하는 것이 중요합니다. 일반적인 프로젝트를 살펴보겠습니다.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">작업흐름</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">전체 개요도</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">데이터 → 하드웨어</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/machine_learning_workflow.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="images/machine_learning_workflow.gif" class="img-fluid" /></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/machine_learning_workflow.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="images/machine_learning_workflow.jpg" class="img-fluid" /></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/cpu_gpu.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="images/cpu_gpu.jpg" class="img-fluid" /></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>인공지능(AI) 시스템 구축을 위한 새로운 패러다임이 탄생했다. <strong>기초모형(Foundation Model)</strong>은 광범위한 데이터에 대해 학습된 모델로, 광범위한 실무하위 작업에 활용할 수 있다. 현재 BERT, GPT-3, CLIP [Radford 외. 2021] 등을 예로 들 수 있다. <span class="citation" data-cites="bommasani2021opportunities">(<a href="#ref-bommasani2021opportunities" role="doc-biblioref">Bommasani 기타, 2021</a>)</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/foundation_model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/foundation_model.png" class="img-fluid" /></a></p>
+</figure>
+</div>
+<div class="panel-tabset column-page">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Feature Engineering</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Architecture Engineering</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Objective Engineering</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false">Prompt Engineering</a></li></ul>
+<div class="tab-content column-page">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<ul>
+<li><strong>패러다임</strong>: (비신경망)지도학습 (Fully Supervised Learning)</li>
+<li><strong>전성기</strong>: 2015년까지 최고 전성기 구가</li>
+<li><strong>특징</strong>
+<ol type="1">
+<li>주로 비신경망 기계학습이 사용</li>
+<li>수작업으로 Feature를 추출</li>
+</ol></li>
+<li><strong>대표작</strong>
+<ol type="1">
+<li>수작업 Feature 추출 후 SVM(support vector machine) 기계학습 모형</li>
+<li>수작업 Feature 추출 후 CRF(conditional random fields)</li>
+</ol></li>
+</ul>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<ul>
+<li><strong>패러다임</strong>: 신경망 지도학습(Fully Supervised Learning)</li>
+<li><strong>전성기</strong>: 대략 2013~2018</li>
+<li><strong>특징</strong>
+<ol type="1">
+<li>신경망(Neural Network) 의존</li>
+<li>수작업으로 Feature를 손볼 필요는 없으나 신경망 네트워크는 수정해야 함(LSTM vs CNN)</li>
+<li>종종 사전학습된 언어모형을 사용하나 임베딩(embedding) 같은 얕은(shallow) Feature를 적용</li>
+</ol></li>
+<li><strong>대표작</strong>
+<ol type="1">
+<li>텍스트 분류작업에 CNN 사용</li>
+</ol></li>
+</ul>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<ul>
+<li><strong>패러다임</strong>: 사전학습(pre-training), 미세조정(fine-tuning)</li>
+<li><strong>전성기</strong>: 2017~현재</li>
+<li><strong>특징</strong>
+<ol type="1">
+<li>사전학습된 언어모형을 전체 모형의 초기값으로 사용</li>
+<li>아키텍쳐 디자인에 작업이 덜 필요하지만 목적함수(Objective function) 엔지니어링은 필요</li>
+</ol></li>
+<li><strong>대표작</strong>
+<ol type="1">
+<li>BERT → Fine Tuning</li>
+</ol></li>
+</ul>
+</div>
+<div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
+<ul>
+<li><strong>패러다임</strong>: 사전학습(pre-training), 프롬프트(Prompt), 예측(Predict)</li>
+<li><strong>전성기</strong>: 2019~현재</li>
+<li><strong>특징</strong>
+<ol type="1">
+<li>NLP 작업이 언어모형(Language Model)에 전적으로 의존</li>
+<li>얕던 깊던 Feature 추출, 예측 등 작업이 전적으로 언어모형에 의존</li>
+<li>프롬프트 공학이 필요</li>
+</ol></li>
+<li><strong>대표작</strong>
+<ol type="1">
+<li>GPT3</li>
+</ol></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="prompt-engineering-1" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Prompt engineering</h1>
+<ul>
+<li>Instructions</li>
+<li>Question</li>
+<li>Input data</li>
+<li>Examples</li>
+</ul>
+<p><span class="column-margin"><a href="https://www.linkedin.com/pulse/prompt-engineering-101-introduction-resources-amatriain/">Xavier (Xavi) Amatriain(January 5, 2023), “Prompt Engineering 101 - Introduction and resources”, Linkedin</a>,<a href="https://microsoft.github.io/prompt-engineering/">Prompt Engineering - Learn how to use AI models with prompt engineering</a></span></p>
+</section>
+<section id="생성-ai" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> 생성 AI</h1>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">구분</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">AI 프로젝트</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false">text-to-X</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-4" role="tab" aria-controls="tabset-5-4" aria-selected="false">기타</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<ul>
+<li>generation: text → image</li>
+<li>classification: image → text</li>
+<li>transformation: image → image (or text → text)</li>
+</ul>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<ul>
+<li>GPT-3</li>
+<li>Dalle.2 (text-to-image)</li>
+<li>Meta’s AI (text-to-video)</li>
+<li>Google AI (text-to-video)</li>
+<li>Stable Diffusion (text-to-image)</li>
+<li>Tesla AI (humanoid robot + self-driving)</li>
+</ul>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<ul>
+<li>text-to-gif (T2G)</li>
+<li>text-to-3D (T2D)</li>
+<li>text-to-text (T2T)</li>
+<li>text-to-NFT (T2N)</li>
+<li>text-to-code (T2C)</li>
+<li>text-to-image (T2I)</li>
+<li>text-to-audio (T2S)</li>
+<li>text-to-video (T2V)</li>
+<li>text-to-music (T2M)</li>
+<li>text-to-motion (T2Mo)</li>
+</ul>
+</div>
+<div id="tabset-5-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-4-tab">
+<ul>
+<li>brain-to-text (B2T)</li>
+<li>image-to-text (I2T)</li>
+<li>speech-to-text (S2T)</li>
+<li>audio-to-audio (A2A)</li>
+<li>tweet-to-image (Tt2I)</li>
+<li>text-to-sound (T2S)</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="기업-생태계" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 기업 생태계</h1>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">OpenAI</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">글로벌 스타트업</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false">네이버</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/OpenAI_investment.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="images/OpenAI_investment.png" class="img-fluid" /></a></p>
+</figure>
+</div>
+<p><a href="https://www.cbinsights.com/research/openai-investment-strategy/">CBInsights, “Analyzing OpenAI’s investment strategy: How the ChatGPT maker is building a generative AI ecosystem”</a></p>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/generative_ai.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="images/generative_ai.jpg" class="img-fluid" width="570" /></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<p><span class="column-margin"><a href="https://www.etnews.com/20221104000048">성현희 (2022-11-04), “네이버 AI 사용에 1000개 중소 기업 ‘노크’”, 전자신문</a></span></p>
+<p>네이버는 ’클로바 스튜디오’를 다양한 스타트업이 활용하여 서비스를 출시하고 있다.</p>
+<ul>
+<li>임플로이랩스<a href="https://user.jobbrain.co.kr/">잡 브레인(Job Brain)</a>: AI 자소서 생성 기능에 적용, 완성도 높은 자소소</li>
+<li>앱플랫폼 <a href="https://www.tinytingel.ai/">라이팅젤</a>: 대입 취업 자소서 자동왕성 기능에 적용</li>
+<li>아스타 컴퍼니 <a href="https://www.moducopy.site/">모카</a>: 상품언어, 광고 헤드라인, 세일즈 카피 생성 기능에 활용</li>
+<li>뤼튼테크놀로지 <a href="https://wrtn.ai/">뤼튼</a>: 광고카피, 제품소개 문구 등 AI 카피라이팅 서비스에 활용</li>
+<li>유니트컴즈 <a href="https://app.keepgrow.com/">킵그로우</a>: 고객사 인스타그램에 게시물을 주기적으로 포스팅해주는 기능에 적용</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[&quot;대한민국&quot;] --&gt; B((&quot;네이버&quot;))
+    B ----&gt; E[잡브레인]
+    B ----&gt; H[라이팅젤]
+    B --&gt; C[모카]
+    B --&gt; D[뤼튼] 
+    B --&gt; F[킵그로우]
+    
+    style A fill:#FF6655AA
+    style B fill:#88ffFF
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden" data-render-id="quarto-int-sidebar-title">chatGPT</span> <span class="hidden" data-render-id="quarto-int-navbar-title">chatGPT</span> <span class="hidden" data-render-id="quarto-int-navbar:Home">Home</span> <span class="hidden" data-render-id="quarto-int-navbar:/index.html">/index.html</span> <span class="hidden" data-render-id="quarto-int-navbar:생성 AI">생성 AI</span> <span class="hidden" data-render-id="quarto-int-navbar:chatGPT 이해">chatGPT 이해</span> <span class="hidden" data-render-id="quarto-int-navbar:/architecture.html">/architecture.html</span> <span class="hidden" data-render-id="quarto-int-navbar:추세 트렌드">추세 트렌드</span> <span class="hidden" data-render-id="quarto-int-navbar:/trends.html">/trends.html</span> <span class="hidden" data-render-id="quarto-int-navbar:왜 거대언어모형인가?">왜 거대언어모형인가?</span> <span class="hidden" data-render-id="quarto-int-navbar:/why_llm.html">/why_llm.html</span> <span class="hidden" data-render-id="quarto-int-navbar:NLP와 LLM">NLP와 LLM</span> <span class="hidden" data-render-id="quarto-int-navbar:/nlp_LLM.html">/nlp_LLM.html</span> <span class="hidden" data-render-id="quarto-int-navbar:GPT-4 성능">GPT-4 성능</span> <span class="hidden" data-render-id="quarto-int-navbar:/gpt4_performance.html">/gpt4_performance.html</span> <span class="hidden" data-render-id="quarto-int-navbar:챗GPT 보안사고">챗GPT 보안사고</span> <span class="hidden" data-render-id="quarto-int-navbar:/gpt-security.html">/gpt-security.html</span> <span class="hidden" data-render-id="quarto-int-navbar:------------------">——————</span> <span class="hidden" data-render-id="quarto-int-navbar:Prompt Engineering">Prompt Engineering</span> <span class="hidden" data-render-id="quarto-int-navbar:/prompt.html">/prompt.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Advanced Prompt Engineering">Advanced Prompt Engineering</span> <span class="hidden" data-render-id="quarto-int-navbar:/prompt_adv.html">/prompt_adv.html</span> <span class="hidden" data-render-id="quarto-int-navbar:프롬프트 실무">프롬프트 실무</span> <span class="hidden" data-render-id="quarto-int-navbar:/prompt_in_practice.html">/prompt_in_practice.html</span> <span class="hidden" data-render-id="quarto-int-navbar:데이터 과학 프롬프트">데이터 과학 프롬프트</span> <span class="hidden" data-render-id="quarto-int-navbar:/prompt_data_science.html">/prompt_data_science.html</span> <span class="hidden" data-render-id="quarto-int-navbar:인터페이스">인터페이스</span> <span class="hidden" data-render-id="quarto-int-navbar:/interface.html">/interface.html</span> <span class="hidden" data-render-id="quarto-int-navbar:오픈소스 S/W LLM">오픈소스 S/W LLM</span> <span class="hidden" data-render-id="quarto-int-navbar:/open_source.html">/open_source.html</span> <span class="hidden" data-render-id="quarto-int-navbar:데이터 과학문제">데이터 과학문제</span> <span class="hidden" data-render-id="quarto-int-navbar:/interview.html">/interview.html</span> <span class="hidden" data-render-id="quarto-int-navbar:chatGPT 응용사례">chatGPT 응용사례</span> <span class="hidden" data-render-id="quarto-int-navbar:활용사례">활용사례</span> <span class="hidden" data-render-id="quarto-int-navbar:/use-cases.html">/use-cases.html</span> <span class="hidden" data-render-id="quarto-int-navbar:법인 R 소개영상">법인 R 소개영상</span> <span class="hidden" data-render-id="quarto-int-navbar:/intro_avi.html">/intro_avi.html</span> <span class="hidden" data-render-id="quarto-int-navbar:맥북 투척사건">맥북 투척사건</span> <span class="hidden" data-render-id="quarto-int-navbar:/macbook.html">/macbook.html</span> <span class="hidden" data-render-id="quarto-int-navbar:오피스 전쟁">오피스 전쟁</span> <span class="hidden" data-render-id="quarto-int-navbar:/office.html">/office.html</span> <span class="hidden" data-render-id="quarto-int-navbar:GPT 역사">GPT 역사</span> <span class="hidden" data-render-id="quarto-int-navbar:/about_gpt.html">/about_gpt.html</span> <span class="hidden" data-render-id="quarto-int-navbar:보도자료 작성">보도자료 작성</span> <span class="hidden" data-render-id="quarto-int-navbar:/news_article.html">/news_article.html</span> <span class="hidden" data-render-id="quarto-int-navbar:데이터 과학 책">데이터 과학 책</span> <span class="hidden" data-render-id="quarto-int-navbar:/intro_book.html">/intro_book.html</span> <span class="hidden" data-render-id="quarto-int-navbar:논문 초록">논문 초록</span> <span class="hidden" data-render-id="quarto-int-navbar:/intro_paper.html">/intro_paper.html</span> <span class="hidden" data-render-id="quarto-int-navbar:학술연구(R&amp;D)">학술연구(R&amp;D)</span> <span class="hidden" data-render-id="quarto-int-navbar:/rnd.html">/rnd.html</span> <span class="hidden" data-render-id="quarto-int-navbar:멤버 Yuji">멤버 Yuji</span> <span class="hidden" data-render-id="quarto-int-navbar:/yuji.html">/yuji.html</span> <span class="hidden" data-render-id="quarto-int-navbar:텍스트 → 이미지 생성">텍스트 → 이미지 생성</span> <span class="hidden" data-render-id="quarto-int-navbar:/text2image.html">/text2image.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Stable Diffusion">Stable Diffusion</span> <span class="hidden" data-render-id="quarto-int-navbar:/stable_diffusion.html">/stable_diffusion.html</span> <span class="hidden" data-render-id="quarto-int-navbar:삼전 주가예측">삼전 주가예측</span> <span class="hidden" data-render-id="quarto-int-navbar:/samsung.html">/samsung.html</span> <span class="hidden" data-render-id="quarto-int-navbar:계산기 프로그램">계산기 프로그램</span> <span class="hidden" data-render-id="quarto-int-navbar:/calculator.html">/calculator.html</span> <span class="hidden" data-render-id="quarto-int-navbar:GPT R 코딩개발">GPT R 코딩개발</span> <span class="hidden" data-render-id="quarto-int-navbar:/rcoding.html">/rcoding.html</span> <span class="hidden" data-render-id="quarto-int-navbar:부조종사 R 코딩개발">부조종사 R 코딩개발</span> <span class="hidden" data-render-id="quarto-int-navbar:/rcoding-copilot.html">/rcoding-copilot.html</span> <span class="hidden" data-render-id="quarto-int-navbar:수학문제 (MIT)">수학문제 (MIT)</span> <span class="hidden" data-render-id="quarto-int-navbar:/math.html">/math.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Shiny 앱">Shiny 앱</span> <span class="hidden" data-render-id="quarto-int-navbar:/middle_school.html">/middle_school.html</span> <span class="hidden" data-render-id="quarto-int-navbar:대통령 취임사">대통령 취임사</span> <span class="hidden" data-render-id="quarto-int-navbar:/inaugural.html">/inaugural.html</span> <span class="hidden" data-render-id="quarto-int-navbar:번역(영한, 한영)">번역(영한, 한영)</span> <span class="hidden" data-render-id="quarto-int-navbar:/translation.html">/translation.html</span> <span class="hidden" data-render-id="quarto-int-navbar:자동화/개발">자동화/개발</span> <span class="hidden" data-render-id="quarto-int-navbar:통합개발환경(IDE)">통합개발환경(IDE)</span> <span class="hidden" data-render-id="quarto-int-navbar:/ide.html">/ide.html</span> <span class="hidden" data-render-id="quarto-int-navbar:파이썬 환경구축">파이썬 환경구축</span> <span class="hidden" data-render-id="quarto-int-navbar:/reticulate.html">/reticulate.html</span> <span class="hidden" data-render-id="quarto-int-navbar:HuggingfaceR - 모형통계">HuggingfaceR - 모형통계</span> <span class="hidden" data-render-id="quarto-int-navbar:/koGPT.html">/koGPT.html</span> <span class="hidden" data-render-id="quarto-int-navbar:BERT">BERT</span> <span class="hidden" data-render-id="quarto-int-navbar:/BERT.html">/BERT.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Hugging Face">Hugging Face</span> <span class="hidden" data-render-id="quarto-int-navbar:/hf.html">/hf.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Hugging Face(윈도우)">Hugging Face(윈도우)</span> <span class="hidden" data-render-id="quarto-int-navbar:/hf_windows.html">/hf_windows.html</span> <span class="hidden" data-render-id="quarto-int-navbar:HF 파이프라인">HF 파이프라인</span> <span class="hidden" data-render-id="quarto-int-navbar:/hf_pipeline.html">/hf_pipeline.html</span> <span class="hidden" data-render-id="quarto-int-navbar:LangCahin">LangCahin</span> <span class="hidden" data-render-id="quarto-int-navbar:/langchain.html">/langchain.html</span> <span class="hidden" data-render-id="quarto-int-navbar:OpenAI GPT">OpenAI GPT</span> <span class="hidden" data-render-id="quarto-int-navbar:/openAI_GPT.html">/openAI_GPT.html</span> <span class="hidden" data-render-id="quarto-int-navbar:펭귄 데이터셋">펭귄 데이터셋</span> <span class="hidden" data-render-id="quarto-int-navbar:/palmer_penguins.html">/palmer_penguins.html</span> <span class="hidden" data-render-id="quarto-int-navbar:EDA 자동화 AutoEDA">EDA 자동화 AutoEDA</span> <span class="hidden" data-render-id="quarto-int-navbar:/autoGPT_ds.html">/autoGPT_ds.html</span> <span class="hidden" data-render-id="quarto-int-navbar:ML 자동화 AutoML">ML 자동화 AutoML</span> <span class="hidden" data-render-id="quarto-int-navbar:/autoML_ds.qmd">/autoML_ds.qmd</span> <span class="hidden" data-render-id="quarto-int-navbar:데이터 과학 AutoGPT">데이터 과학 AutoGPT</span> <span class="hidden" data-render-id="quarto-int-navbar:챗GPT 팀구성">챗GPT 팀구성</span> <span class="hidden" data-render-id="quarto-int-navbar:/gg_grouping.html">/gg_grouping.html</span> <span class="hidden" data-render-id="quarto-int-navbar:게시글">게시글</span> <span class="hidden" data-render-id="quarto-int-navbar:/blog.html">/blog.html</span> <span class="hidden" data-render-id="quarto-int-navbar:유/무료 서비스">유/무료 서비스</span> <span class="hidden" data-render-id="quarto-int-navbar:(유)무료 서비스">(유)무료 서비스</span> <span class="hidden" data-render-id="quarto-int-navbar:/services.html">/services.html</span> <span class="hidden" data-render-id="quarto-int-navbar:https://github.com/bit2r/chatGPT">https://github.com/bit2r/chatGPT</span> <span class="hidden" data-render-id="quarto-int-navbar:R사용자회">R사용자회</span> <span class="hidden" data-render-id="quarto-int-navbar:https://r2bit.com">https://r2bit.com</span> <span class="hidden" data-render-id="quarto-int-navbar:Open Assistant">Open Assistant</span> <span class="hidden" data-render-id="quarto-int-navbar:https://github.com/LAION-AI/Open-Assistant">https://github.com/LAION-AI/Open-Assistant</span> <span class="hidden" data-render-id="quarto-int-navbar:RTutor">RTutor</span> <span class="hidden" data-render-id="quarto-int-navbar:https://rtutor.ai/">https://rtutor.ai/</span> <span class="hidden" data-render-id="quarto-int-navbar:About">About</span> <span class="hidden" data-render-id="quarto-int-navbar:/about.html">/about.html</span> <span class="hidden" data-render-id="footer-left"><a href="https://quarto.org/">Quarto</a> 개발</span> <span class="hidden" data-render-id="footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></span> <span class="hidden" data-render-id="footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></span></p>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden" data-render-id="quarto-metatitle">chatGPT</span> <span class="hidden" data-render-id="quarto-twittercardtitle">chatGPT</span> <span class="hidden" data-render-id="quarto-ogcardtitle">chatGPT</span> <span class="hidden" data-render-id="quarto-metasitename">chatGPT</span> <span class="hidden" data-render-id="quarto-twittercarddesc">챗GPT 아키텍쳐</span> <span class="hidden" data-render-id="quarto-ogcardddesc">챗GPT 아키텍쳐</span></p>
+</div>
+<!-- -->
+<div class="quarto-embedded-source-code">
+<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;chatGPT&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> &quot;챗GPT 아키텍쳐&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: &quot;#562457&quot;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: &quot;#&gt;&quot; </span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> bibliography.bib</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> apa-single-spaced.csl    </span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> </span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co">  markdown: </span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">    wrap: sentence</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu"># 챗GPT LLM 이해하기</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## JPEG 압축</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>ChatGPT는 인터넷에서 방대한 양의 데이터를 학습하여 이를 정말 잘 압축한 하나의 저장소로 이해할 수 있다.</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>따라서, 압축을 풀게 되면 정확히 원본을 복원할 수 있는 부분도 있지만, 그렇지 못한 부분도 당영히 있게 된다.</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">Ted Chiang (February 9, 2023), &quot;ChatGPT Is a Blurry JPEG of the Web - OpenAI&#39;s chatbot offers paraphrases, whereas Google offers quotes. Which do we prefer?&quot;, The New Yorker</span><span class="co">](https://www.newyorker.com/tech/annals-of-technology/chatgpt-is-a-blurry-jpeg-of-the-web)</span>]{.aside}</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>ChatGPT를 **&quot;웹의 흐릿한 JPEG&quot;**으로 비유하고 있다.</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>JPEC 기술 자체는 손실 압축기술로 무손실 압축기술로 대표적인 PNG와 대비된다.</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>흐릿한 이미지가 선명하지 않거나 정확하지 않은 것처럼 ChatGPT도 항상 완벽한 답변을 제공하거나 모든 질문을 제대로 이해하는 것도 아니다.</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>하지만 사용자와의 대화를 기반으로 끊임없이 학습하고 개선하고 있다.</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>더 많은 사람들이 ChatGPT를 사용할수록 사람의 언어를 더 잘 이해하고 반응할 수 있게 개발된 기술이다.</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>ChatGPT와 유사한 인공지능 프로그램이 너무 강력해지거나 인간을 대체할 수 있다고 우려하는 사람들도 있지만, ChatGPT는 단순히 작업을 더 쉽고 효율적으로 만드는 데 사용할 수 있는 강력한 도구일 뿐이므로 사람을 능가하거나 지배할 가능성은 거의 없다.</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>인공지능(ChatGPT)을 책임감 있고 윤리적으로 사용되도록 하는 것은 결국 사용자 귀책이다.</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>ChatGPT가 간단한 숫자계산에 문제가 있는 것은 웹상에 산재된 숫자 계산 데이터를 바탕으로 계산을 흉내낼 수는 있으나 이와 같은 방식으로 ChatGPT가 학습한 것은 명백히 잘못된 것이다.</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>사칙연산에 대한 일반적인 원리를 이해하게 되면 웹상에 나온 사칙연산 문제를 정확히 해결할 뿐만 아니라 웹상에 나와있지 않는 계산문제도 풀 수 있으나 현재는 그렇지 못하다.</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="fu">### PNG 파일</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/jpeg/jpeg-vs-png-transparency.png)</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="fu">### (비)손실 압축</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/jpeg/jpeg-vs-png-compression.png)</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="fu">### 파일크기</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/jpeg/jpeg-vs-png-file-size.jpg)</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="fu">### BMP 파일</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/jpeg/jpeg-vs-bmp.jpg)</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">자료출처: [WHAT&#39;S THE DIFFERENCE BETWEEN JPEG AND PNG: BEGINNER GUIDE](https://fixthephoto.com/tech-tips/difference-between-jpeg-and-png.html)</span><span class="co">]</span>{.aside}</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## 제록스 복사기</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>독일 과학자(David Kriesel)가 제록스 복사기에서 문서에 있는 숫자를 변경하는 결함을 발견했다.</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>제록스 프린터가 방의 면적을 14.13m²에서 17.42m²로 넓혔고, 다른 프린터는 21.11m²에서 14.13m²로 줄였다.</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>숫자 문자열 중간에 특정 숫자(예: &quot;6&quot; 또는 &quot;8&quot;)가 나타나면 복사기가 해당 숫자를 다른 숫자로 바꾸는 경우가 많았다.</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>예를 들어, &#39;682&#39;가 &#39;882&#39;가 될 수 있습니다.</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>처음에 건물 설계도를 스캔하고 분석하려고 할 때 이 문제를 발견했다.</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>원본에는 이러한 오류가 없었지만 스캔한 사본에서 특정 숫자가 변경된 것을 발견했다.</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>결국 그들은 사본을 만드는 과정에서 숫자가 변경된, 사용 중인 Xerox 복사기에 문제가 있다는 사실을 깨달았다.</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>이 결함은 제록스 복사기에 사용되는 압축 알고리즘과 관련된 것으로 특정 숫자가 서로 가까이 있으면 알고리즘이 이를 다른 숫자로 착각하고 그에 따라 숫자를 바꾼 것이다.</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>이 문제가 일부 고급 모델을 포함한 다양한 제록스 복사기에 존재한다는 사실도 발견했다.</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">D. KRIESEL, &quot;Xerox scanners/photocopiers randomly alter numbers in scanned documents&quot;</span><span class="co">](http://www.dkriesel.com/en/blog/2013/0802_xerox-workcentres_are_switching_written_numbers_when_scanning)</span>]{.aside}</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="fu">### 설계도 문서</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/jpeg/architecture-document.png)</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="fu">### 스캔 결과</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/jpeg/scan-output.png)</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="fu">### 원가표 스캔</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="al">![모델: WorkCentre 7535](images/jpeg/cost-table.png)</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="fu">### 스캔 오류</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/jpeg/xerox-overview.jpg)</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="fu"># 패러다임</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="al">![Andrej Karpathy Twit](images/software_3.jpeg)</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">- Pre-Software: Special-purpose computer &lt;br&gt; - Software 1.0: Design the Algorithm &lt;br&gt; - Software 2.0: Design the Dataset &lt;br&gt; - Software 3.0: Design the Prompt</span><span class="co">]</span>{.aside}</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="fu">## 기계학습</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>머신러닝은 혼자서 할 수 있는 일이 아닙니다!</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>ML 솔루션을 구축할 때는 고객부터 고객까지 엔드투엔드로 생각하는 것이 중요합니다.</span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>이는 설계, 계획 및 실행에 도움이 됩니다.</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>계획의 일환으로 누가 언제 참여해야 하는지 이해하는 것이 중요합니다.</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>일반적인 프로젝트를 살펴보겠습니다.</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="fu">### 작업흐름</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/machine_learning_workflow.gif)</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="fu">### 전체 개요도</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/machine_learning_workflow.jpg)</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### 데이터 → 하드웨어</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/cpu_gpu.jpg)</span></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>인공지능(AI) 시스템 구축을 위한 새로운 패러다임이 탄생했다.</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>**기초모형(Foundation Model)**은 광범위한 데이터에 대해 학습된 모델로, 광범위한 실무하위 작업에 활용할 수 있다.</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>현재 BERT, GPT-3, CLIP <span class="sc">\[</span>Radford 외.</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>2021<span class="sc">\]</span> 등을 예로 들 수 있다.</span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@bommasani2021opportunities</span><span class="co">]</span></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/foundation_model.png)</span></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset .column-page}</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="fu">## Feature Engineering</span></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**패러다임**: (비신경망)지도학습 (Fully Supervised Learning)</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**전성기**: 2015년까지 최고 전성기 구가</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**특징**</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>주로 비신경망 기계학습이 사용</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>수작업으로 Feature를 추출</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**대표작**</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>수작업 Feature 추출 후 SVM(support vector machine) 기계학습 모형</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>수작업 Feature 추출 후 CRF(conditional random fields)</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="fu">## Architecture Engineering</span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**패러다임**: 신경망 지도학습(Fully Supervised Learning)</span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**전성기**: 대략 2013\~2018</span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**특징**</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>신경망(Neural Network) 의존</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>수작업으로 Feature를 손볼 필요는 없으나 신경망 네트워크는 수정해야 함(LSTM vs CNN)</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>종종 사전학습된 언어모형을 사용하나 임베딩(embedding) 같은 얕은(shallow) Feature를 적용</span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**대표작**</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>텍스트 분류작업에 CNN 사용</span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objective Engineering</span></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**패러다임**: 사전학습(pre-training), 미세조정(fine-tuning)</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**전성기**: 2017\~현재</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**특징**</span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>사전학습된 언어모형을 전체 모형의 초기값으로 사용</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>아키텍쳐 디자인에 작업이 덜 필요하지만 목적함수(Objective function) 엔지니어링은 필요</span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**대표작**</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>BERT → Fine Tuning</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prompt Engineering</span></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**패러다임**: 사전학습(pre-training), 프롬프트(Prompt), 예측(Predict)</span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**전성기**: 2019\~현재</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**특징**</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>NLP 작업이 언어모형(Language Model)에 전적으로 의존</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="ss">    2.  </span>얕던 깊던 Feature 추출, 예측 등 작업이 전적으로 언어모형에 의존</span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a><span class="ss">    3.  </span>프롬프트 공학이 필요</span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**대표작**</span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a><span class="ss">    1.  </span>GPT3</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a><span class="fu"># Prompt engineering</span></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Instructions</span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Question</span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Input data</span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Examples</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">Xavier (Xavi) Amatriain(January 5, 2023), &quot;Prompt Engineering 101 - Introduction and resources&quot;, Linkedin</span><span class="co">](https://www.linkedin.com/pulse/prompt-engineering-101-introduction-resources-amatriain/)</span>,<span class="co">[</span><span class="ot">Prompt Engineering - Learn how to use AI models with prompt engineering</span><span class="co">](https://microsoft.github.io/prompt-engineering/)</span>]{.aside}</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a><span class="fu"># 생성 AI</span></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a><span class="fu">### 구분</span></span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>generation: text → image</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>classification: image → text</span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>transformation: image → image (or text → text)</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a><span class="fu">### AI 프로젝트</span></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>GPT-3</span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Dalle.2 (text-to-image)</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Meta&#39;s AI (text-to-video)</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Google AI (text-to-video)</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Stable Diffusion (text-to-image)</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Tesla AI (humanoid robot + self-driving)</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a><span class="fu">### text-to-X</span></span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-to-gif (T2G)</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-to-3D (T2D)</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-to-text (T2T)</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-to-NFT (T2N)</span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-to-code (T2C)</span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-to-image (T2I)</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-to-audio (T2S)</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-to-video (T2V)</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-to-music (T2M)</span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-to-motion (T2Mo)</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="fu">### 기타</span></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>brain-to-text (B2T)</span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>image-to-text (I2T)</span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>speech-to-text (S2T)</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>audio-to-audio (A2A)</span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>tweet-to-image (Tt2I)</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-to-sound (T2S)</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a><span class="fu"># 기업 생태계</span></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a><span class="fu">## OpenAI</span></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/OpenAI_investment.png)</span></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">CBInsights, &quot;Analyzing OpenAI&#39;s investment strategy: How the ChatGPT maker is building a generative AI ecosystem&quot;</span><span class="co">](https://www.cbinsights.com/research/openai-investment-strategy/)</span></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a><span class="fu">## 글로벌 스타트업</span></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/generative_ai.jpg)</span>{width=&quot;570&quot;}</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a><span class="fu">## 네이버</span></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">성현희 (2022-11-04), &quot;네이버 AI 사용에 1000개 중소 기업 &#39;노크&#39;&quot;, 전자신문</span><span class="co">](https://www.etnews.com/20221104000048)</span>]{.aside}</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>네이버는 &#39;클로바 스튜디오&#39;를 다양한 스타트업이 활용하여 서비스를 출시하고 있다.</span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>임플로이랩스<span class="co">[</span><span class="ot">잡 브레인(Job Brain)</span><span class="co">](https://user.jobbrain.co.kr/)</span>: AI 자소서 생성 기능에 적용, 완성도 높은 자소소</span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>앱플랫폼 <span class="co">[</span><span class="ot">라이팅젤</span><span class="co">](https://www.tinytingel.ai/)</span>: 대입 취업 자소서 자동왕성 기능에 적용</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>아스타 컴퍼니 <span class="co">[</span><span class="ot">모카</span><span class="co">](https://www.moducopy.site/)</span>: 상품언어, 광고 헤드라인, 세일즈 카피 생성 기능에 활용</span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>뤼튼테크놀로지 <span class="co">[</span><span class="ot">뤼튼</span><span class="co">](https://wrtn.ai/)</span>: 광고카피, 제품소개 문구 등 AI 카피라이팅 서비스에 활용</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>유니트컴즈 <span class="co">[</span><span class="ot">킵그로우</span><span class="co">](https://app.keepgrow.com/)</span>: 고객사 인스타그램에 게시물을 주기적으로 포스팅해주는 기능에 적용</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>quarto-executable-code-5450563D</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a><span class="in">```mermaid</span></span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>graph TD</span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>    A[<span class="ot">&quot;</span><span class="st">대한민국</span><span class="ot">&quot;</span>] --&gt; B((<span class="ot">&quot;</span><span class="st">네이버</span><span class="ot">&quot;</span>))</span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>    B ----&gt; E[잡브레인]</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>    B ----&gt; H[라이팅젤]</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>    B --&gt; C[모카]</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>    B --&gt; D[뤼튼] </span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>    B --&gt; F[킵그로우]</span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>    style A fill:<span class="co">#FF6655AA</span></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>    style B fill:<span class="co">#88ffFF</span></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-bommasani2021opportunities" class="csl-entry" role="listitem">
+Bommasani, R., Hudson, D. A., Adeli, E., Altman, R., Arora, S., Arx, S. von, Bernstein, M. S., Bohg, J., Bosselut, A., Brunskill, E., 기타. (2021). On the opportunities and risks of foundation models. <em>arXiv preprint arXiv:2108.07258</em>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id = "quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <div class='footer-contents'>[Quarto](https://quarto.org/) 개발
+</div>  
+    </div>   
+    <div class="nav-footer-center">
+      <div class='footer-contents'>[한국 R 사용자회](mailto:admin@r2bit.com)
+</div>  
+    </div>
+    <div class="nav-footer-right">
+      <div class='footer-contents'>[Github 코드 저장소](https://github.com/bit2r/chatGPT)
+</div>  
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom"});</script>
+
+</body>
+
+</html>

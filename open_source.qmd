@@ -1,15 +1,14 @@
 ---
 title: "chatGPT"
-subtitle: "오픈소스 S/W"
+subtitle: "오픈소스 S/W LLM"
 description: |
-  
+  OpenAI Microsoft 주도로 열린 LLM AI 환경이 메타 라마 모형 공개를 시작으로 오픈소스 LLM이 대거 출시되면서 새로운 변화를 맞이하고 있다.
 author:
   - name: 이광춘
     url: https://www.linkedin.com/in/kwangchunlee/
     affiliation: 한국 R 사용자회
     affiliation-url: https://github.com/bit2r
 title-block-banner: true
-#title-block-banner: "#562457"
 format:
   html:
     css: css/quarto.css
@@ -50,7 +49,7 @@ editor:
 ![](images/Stable-Diffusion-Developer-Adoption-1-scaled.webp)
 
 
-# 메타 라마
+## 메타 라마
 
 페이스북으로 잘 알려진 메타(Meta)는 연구 목적(비상업적 사용)으로 라마(LLaMA) 거대언어모형을 오픈소스 소프트웨어로 2023년 2월 24일 공개했다.
 LLaMA는 라틴어와 키릴 문자를 사용하는 20개 언어의 텍스트를 학습하여 다양한 크기(7B, 13B, 33B, 65B 매개변수) 언어모형 형태로 공개되어 거대언어모형을 대중화하고 연구자들이 새로운 접근 방식과 사용 사례를 테스트할 수 있는 취지로 공개되었지만, 여전히 편향성, 독성, 잘못된 정보 등 추가적인 보완이 필요하다. 
@@ -117,6 +116,23 @@ sample_n(1)
 :::::
 
 :::
+
+# Open Assistant
+
+::: {#fig-assistant layout-ncol="3"}
+![Label Asssistant Reply](images/OA_label_assistant_reply.png)
+
+![Initial Prompt](images/OA_label_initial_prompt.png)
+
+![Label Prompter Reply](images/OA_label_prompter_reply.png)
+
+![Reply as Assistant](images/OA_reply_as_assistant.png)
+
+![Reply as User](images/OA_reply_as_user.png)
+
+[Open Assistant](https://open-assistant.io/dashboard)
+:::
+
 
 
 
