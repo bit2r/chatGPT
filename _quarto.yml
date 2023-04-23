@@ -132,8 +132,10 @@ website:
           text: "챗GPT 팀구성"
       - href: blog.qmd
         text: "게시글"
-      - text: "유/무료 서비스"
+      - text: "비즈니스"
         menu:
+        - href: chatGPT_overview.qmd
+          text: "챗GPT 개요"
         - href: services.qmd
           text: "(유)무료 서비스"
     right:

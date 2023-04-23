@@ -1,0 +1,110 @@
+---
+title: "chatGPT"
+subtitle: "챗GPT 개요"
+description: |
+  챗GPT를 기업과 회사에서 활용할 수 있는 다양한 측면을 살펴보자.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# 챗GPT 인터페이스
+
+사용자가 질문이나 지시사항을 프롬프트로 챗팅창에 전달하면 GPT-3/3.5/4 LLM 모형이 프롬프트를 이해하고
+질문과 지시사항에 맞는 응답을 텍스트/코드/이미지/오디오 형태로 변환하여 사용자에게 응답한다.
+이 과정이 검색과 달리 한번에 그치는 것이 아니라 원하는 결과를 얻을 때까지 맥락(context)을 유지한 상태로 반복된다.
+
+![](images/chatGPT_interface.jpg)
+
+# 챗GPT 사용 이유
+
+챗GPT는 많은 작업을 더 효율적으로 수행할 수 있기 때문에 사용한다.
+예산 대비 최종 프로젝트 비용(Cost), 적시 프로젝트 제공(Time), 
+구축된 프로젝트 결과물의 품질(Quality)에 따라 가치(Value)가 좌우된다.
+챗GPT를 통해 비용을 줄이고, 시간을 단축하고 품질을 높일 수 있기 때문에
+결국 챗GPT를 사용하는 이유가 된다.[@Hardie2012]
+
+![](images/chatGPT_why.jpg)
+
+
+# 챗GPT 한계
+
+1. 2021년 9월까지 데이터를 학습한 거대언어모형(LLM)이라 최신 정보는 가지고 있지 않다.
+    - 챗GPT 플러그인 기능을 사용하여 구글/빙 등 검색 기능으로 보완
+1. 챗GPT는 학습데이터에 내포된 편향성(Bias)
+    - ???
+1. 채팅에 질문에 일관성과 다른 주제를 중구난방으로 뒤섞어 채팅을 진행할 경우 부정확성이 커진다.
+    - 맥락(Context) 일관성을 유지하고 주제가 바뀌는 경우 `New Chat`으로 주제를 분리하여 작업한다.
+1. 틀린 사실을 마치 정답인 것처럼 착각해서 답변을 주는 헐루시네이션(hallucination).
+    - GPT-4와 같은 진화된 LLM, temperature 매개변수 지정, 정교한 프롬프트 작성을 통해 이런 문제를 완화시킬 수 있다.
+1. 법적 윤리적 문제: 빈센트 반 고흐(혹은 생존화가) 화풍으로 AI가 생성한 그림, 특정 문체를 흉내 내거나 AI가 저작한 노래 등 지적 창작물의 소유권과 프라이버시 문제
+    - 명예, 문화, 사업 등 이해관계가 걸린 경우 저작권 전문가와 법률가의 조언을 받아 추진한다.
+
+# 챗GPT 시대 업무흐름
+
+챗GPT 시대 기존 사람이 중심이 되고 기계의 자동화 기능을 적극 활용하여 생산성을 높이던 방식에서 
+기계가 중심적으로 일을 수행하고 사람은 의사결정과 기계가 작업한 결과를 검토하고 확인하는 방식으로 변경이 불가피하게 보인다.
+특히 기존 사무노동의 생산성의 핵심이 되는 오피스 제품(엑셀, 워드프로세서, 파워포인트)에 증거기반 행정과 데이터 사이언스의 급격한 도입으로 R/파이썬/SQL 언어를 결합시키는 RPA가 대세가 되었으나 이러한 작업방식은 
+사무노동자의 업무능력(문서 요약, 콘텐츠 생산 등)을 보조하는 기능에 머무르고 있다.
+이와 반대로 챗GPT가 문서요약, 콘텐츠 생산 등 시간을 줄이고 품질을 높일 수 있는데 매우 저렴한 비용(월 20 달러)으로 쉬지 않고 작업이 가능하기 때문에 사무노동자의 업무는 챗GPT 특성을 이해하여 작업 지시를 내리는 프롬프트 작성과 챗GPT 생산 결과를 검증하는 업무가 가장 중요한 업무가 될 것이고 기존 오피스와 R/파이썬/SQL은 이를 보좌하는 기능으로 재편될 것으로 예측된다.
+
+:::{#fig-automation layout-ncol=2}
+
+![챗GPT 도입 전(AS-IS)](images/chatGPT_asis.jpg)
+
+![챗GPT 도입 후(TO-BE)](images/chatGPT_tobe.jpg)
+
+챗GPT 도입에 따른 업무변화
+
+:::
+
+
+# 챗GPT 수행가능 작업
+
+챗GPT가 사무노동자의 업무를 대신할 수 있으나 모든 업무를 담당할 수는 없고,
+기본적으로 챗GPT가 수행가능한 업무 범위는 **사람이 직접 할 수 없는 일을 ChatGPT에 지시하면 안 된다.**
+
+1. 챗GPT 초기 정확한 응답결과가 요구되는 경우 챗GPT 사용이 권장되지 않았으나 GPT-4가 출시되고 챗GPT 플러그인이 출시되면서 수학계산과 같은 연산작업과 프로그래밍을 통한 계산작업에도 적용영역을 넓히고 있다.
+1. 응답품질을 사람이 직접 확인할 수 있는 경우 챗GPT를 사용한다. 여전히 헐루시네이션(hallucination) 문제가 해결되지 않았고 성, 나이, 직업, 인종, 종교 등에 대한 편향성이 존재하고 부정적인 텍스트가 응답으로 나오는 경우 책임자가 걸러내야한다.
+1. 주민번호, 코드, 공정수율 등 민감데이터(Sensitive Data)를 프롬프트에 넣어 챗GPT에 전달할 경우 보안 등 문제가 있어 사용하지 말아야 한다.
+1. 콘텐츠 저작권이 이슈가 되지 않는 경우는 적극 사용하고 경우에 따라 저작권 이슈가 발생할 수 있는 경우 주의해서 법률자문 등을 받아 후속 업무를 진행한다.
+
+    
+
+
+
+
+
+
