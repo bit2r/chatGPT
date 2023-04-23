@@ -25,7 +25,7 @@ format:
 filters:
    - lightbox
 lightbox: auto
-link-citations: yes
+link-citations: true
 knitr:
   opts_chunk: 
     message: false
@@ -42,6 +42,36 @@ editor:
 ---
 
 ![](images/cli_gui_nli.jpg)
+
+# 챗GPT
+
+거대언어모형(LLM)이 대중화된 것은 기존 API, GUI 인터페이스를 탈피하여 채팅 인터페이스를 
+제시한 것인 신의 한수로 평가받고 있다. 챗 인터페이스를 가장 성공적으로 
+제시한 OpenAI ChatGPT 이후 이를 모방한 유사 제품들이 봇물을 이루고 있다.
+
+::: panel-tabset
+### `OpenAI`  {.unnumbered}
+
+![챗GPT](images/interface_chatGPT.png)
+
+### `Google`  {.unnumbered}
+
+![바드(Bard)](images/interface_bard.jpg)
+
+### `Microsoft`  {.unnumbered}
+
+![뉴 빙(New Bing)](images/interface_bing.jpg)
+
+### `Open Assistant` {.unnumbered}
+
+![LAION AI(비영리 법인)](images/interface_open_assistant.jpg)
+
+### `Vicuna`  {.unnumbered}
+
+![메타 라마기반 LLM](images/interface_vicuna.jpg)
+
+:::
+
 
 # 웹 검색방식
 
@@ -178,6 +208,25 @@ OpenAI가 Slack 플랫폼에 구축한 이 앱은 ChatGPT의 강력한 AI 기술
 [출처: [Introducing the ChatGPT App for Slack](https://www.salesforce.com/news/stories/chatgpt-app-for-slack/)]{.aside}
 
 ![](images/kakao/Slack_ChatGPT_Blue.gif)
+
+## 스카이프(Skeype)
+
+2023년 2월 22일 마이크로소프트는 AI 챗봇을 탑재한 빙과 엣지브라우저의 모바일 앱을 공개했다. 이에 따라 스카이프에서도 빙의 챗봇 기능을 이용할 수 있게 됐다.
+
+::: panel-tabset
+### `skype` 다운로드 {.unnumbered}
+
+![](images/skype_download.jpg)
+
+### `Bing` "새 채팅" 추가 {.unnumbered}
+
+![](images/skype_bing.jpg)
+
+### 챗GPT 실행 {.unnumbered}
+
+![](images/skype_coding.jpg)
+
+:::
 
 # chatGPT 플러그인
 
