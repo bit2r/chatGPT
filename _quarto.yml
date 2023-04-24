@@ -96,6 +96,8 @@ website:
           text: "대통령 취임사"
         - href: translation.qmd
           text: "번역(영한, 한영)"
+        - href: gg_grouping.qmd
+          text: "챗GPT 팀구성"
       - text: "자동화/개발"
         menu:
         - href: ide.qmd
@@ -112,13 +114,13 @@ website:
           text: "Hugging Face"
         - href: hf_windows.qmd
           text: "Hugging Face(윈도우)"
-        - text: "------------------"
         - href: hf_pipeline.qmd
           text: "HF 파이프라인"
-        - href: langchain.qmd
-          text: "LangCahin"
+        - text: "------------------"
         - href: openAI_GPT.qmd
           text: "OpenAI GPT"
+        - href: langchain_arch.qmd
+          text: "LangCahin 아키텍쳐"
         - text: "------------------"
         - href: palmer_penguins.qmd
           text: "펭귄 데이터셋"
@@ -128,8 +130,6 @@ website:
           text: "ML 자동화 AutoML"
         - href: autoGPT_ds.qmd
           text: "데이터 과학 AutoGPT"
-        - href: gg_grouping.qmd
-          text: "챗GPT 팀구성"
       - href: blog.qmd
         text: "게시글"
       - text: "비즈니스"

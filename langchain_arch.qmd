@@ -1,8 +1,6 @@
 ---
 title: "chatGPT"
-subtitle: "LangCahin"
-description: |
-  LangChain은 AI 기능 및 애플리케이션을 보다 쉽게 구축할 수 있도록 하는 데 중점을 둔 인기 있는 오픈 소스 라이브러리로, 특히 GPT 및 기타 언어 모델을 통합하는 데 중점을 두고 있다.
+subtitle: "LangCahin 아키텍쳐"
 author:
   - name: 이광춘
     url: https://www.linkedin.com/in/kwangchunlee/
@@ -15,6 +13,7 @@ format:
     css: css/quarto.css
     theme: flatly
     code-fold: false
+    code-overflow: wrap
     toc: true
     toc-depth: 3
     toc-title: 목차
@@ -23,8 +22,9 @@ format:
     self-contained: false
 filters:
    - lightbox
+   - custom-callout.lua   
 lightbox: auto
-link-citations: yes
+link-citations: true
 knitr:
   opts_chunk: 
     message: false
@@ -35,12 +35,87 @@ knitr:
       knitr.graphics.auto_pdf: true
 editor_options: 
   chunk_output_type: console
-editor: 
-  markdown: 
-    wrap: 72
 ---
 
-# 환경설정
+# 작업흐름
+
+AI 앱 개발은 전통적으로 검증된 개발방법론에 기반한다.
+한가지 중요한 점은 거대언어모형(LLM)이 엔진으로 중요한 역할을 수행한다.
+비유를 하자면 운영체제 UNIX에 비견된다. 강력한 데이터 기반 LLM 엔진을 바탕으로 
+다양한 고성능 AI 앱 개발이 가능하다.
+
+::: {.panel-tabset}
+
+## 폭포수 모형 {.unnumbered}
+
+```{mermaid}
+graph TD
+    A[요구사항] --> B[아키텍쳐/디자인]
+    B --> C[구현]
+    C --> D[검증/테스트]
+    D --> E[유지보수]
+```
+
+## V-모형 {.unnumbered}
+
+![](images/langchain_v_cycle.png)
+
+## 스크럼 {.unnumbered}
+
+![](images/langcahin_agile.png)
+
+## 기계학습 개발 {.unnumbered}
+
+:::{#fig-ml layout-ncol=2}
+
+![](images/machine_learning_workflow.gif)
+
+![](images/machine_learning_workflow.jpg)
+:::
+
+## AI 앱 개발 {.unnumbered}
+
+
+![](images/chatGPT_app_workflow.jpg)
+:::
+
+# 거대언어모형
+
+거대언어모형(LLM)을 중심으로 다양한 생태계가 생겨나고 소멸하고 있다.
+가장 먼저 포문을 연 OpenAI 챗GPT는 GPT-3.5/4 LLM을 챗 인터페이스와 API 서비스를 통해 
+생성형 AI 시장을 열었으며 First Mover의 잇점을 최대한 이용하는 전략을 구사하고 있다.
+뒤를 이어 메타(페이스북)는 LLaMA를 비상업적 라이선스 제약을 두기는 했지만 오픈소스
+소프트웨어 형태로 시장에 풀어 다양한 LLM 모형이 개발되도록 생태계를 확대하고 있다.
+구글은 기존 T5/FLAN-T5에 이어 바드(Bard)를 출시하여 마이크로소프트/OpenAI에 맞서고 있다.
+그외 Eleuther.ai GPT-J-6B, 데이터브릭스 돌리, H2O.ai h2oGPT 등 GPT 계열 LLM이 대거 출시되고 있다.
+
+![](images/LLM_sLLM.jpg)
+
+
+# LangChain
+
+랭체인(LangChain) 대규모 언어 모델(LLM)로 구동되는 애플리케이션을 만들기 위한 프레임워크 중 하나로 랭체인을 사용하면 NLP 전문가가 아니더라도 이전에는 어렵고 광범위한 전문 지식이 필요했던 AI 앱을 쉽게 개발할 수 있다. [@opl2023]
+
+::: {.panel-tabset}
+
+### 랭체인 컴포넌트 {.unnumbered}
+
+![](images/chatGPT_langcahin.jpg)
+
+### OPL 프레임워크 {.unnumbered}
+
+![](images/chatGPT_opl_framework.webp)
+
+### OPL 개발사례 {.unnumbered}
+
+![](images/chatGPT_opl_dataflow.webp)
+
+:::
+
+
+# 헬로월드
+
+## 환경설정
 
 [LangChain](https://python.langchain.com/en/latest/index.html) 에서 OpenAI chatGPT를 호출하여 원하는 작업을 수행한다. 먼저 `openai`와 `langchain`을 설치한다.
 
@@ -56,12 +131,12 @@ editor:
 import os
 from langchain.llms import OpenAI
 
-# os.environ.get('OPENAI_API_KEY')
+os.environ['OPENAI_API_TOKEN'] = os.environ.get('OPENAI_API_KEY')
 ```
 
-# 헬로 월드
+## 농담
 
-그리고 나서, 헬로월드를 찍어본다. `model_name`을 비롯한 인수를 
+그리고 나서, 농담으로 헬로월드를 찍어본다. `model_name`을 비롯한 인수를 
 응답속도, 정확도, 간결함, 창의성, 비용 등을 고려하여 지정하여 원하는 결과를 얻어낸다.
 
 ```{python}
@@ -77,13 +152,15 @@ llm_jokes = llm_result.generations
 llm_jokes
 ```
 
-# 프롬프트 템플릿
+## 프롬프트 템플릿
 
 프롬프트 템플릿을 작성하여 해당 작업을 수행토록 지시할 수 있다.
 예를 들어 회사명을 작명하는데 대표적으로 잘 작명된 회사명을 제시하고 
 제약 조건을 추가로 둔 후 회사명 작명지시를 수행시킬 수 있다.
 
-## 영문
+### 영문
+
+랭체인 문서에 나와있는 예제를 사용해서 `PromptTemplate`으로 프롬프트를 완성해보자.
 
 ```{python}
 from langchain import PromptTemplate
@@ -107,8 +184,16 @@ prompt = PromptTemplate(
     template = template,
 )
 
-prompt.format(product="colorful socks")
+socks_prompt = prompt.format(product="colorful socks")
 ```
+
+```{r}
+library(reticulate)
+socks_prompt_chr <- py$socks_prompt
+cat(socks_prompt_chr)
+```
+
+
 
 앞서 프롬프트 템플릿을 지정한 후 실행을 통해 원하는 회사명 작명 작업을 수행시킨다.
 
@@ -121,7 +206,7 @@ print(chain.run("colorful socks"))
 ```
 
 
-## 국문
+### 국문
 
 앞서 제작된 영문회사 작명 템플릿을 번역하여 국내 몇가지 회사를 사례로 넣어 chatGPT에 작업을 지시한다.
 
@@ -147,7 +232,7 @@ k_prompt = PromptTemplate(
     template = k_template,
 )
 
-k_prompt.format(k_product="양말")
+k_socks_prompt = k_prompt.format(k_product="양말")
 ```
 
 앞서 프롬프트 템플릿을 지정한 후 실행을 통해 원하는 회사명 작명 작업을 수행시킨다.
@@ -157,11 +242,15 @@ from langchain.chains import LLMChain
 
 k_chain = LLMChain(llm = llm, prompt = k_prompt)
 
-print(k_chain.run("양말"))
+k_socks_result = k_chain.run("양말")
+```
+
+```{r}
+cat(py$k_socks_result)
 ```
 
 
-# 요약
+## 요약
 
 [[openAI Tokenizer](https://platform.openai.com/tokenizer)]{.aside}
 
@@ -172,7 +261,7 @@ print(k_chain.run("양말"))
 
 
 ```{python}
-#| error: true
+#| eval: false
 from langchain import OpenAI, PromptTemplate, LLMChain
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.chains.mapreduce import MapReduceChain
