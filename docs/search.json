@@ -2000,5 +2000,47 @@
     "title": "chatGPT",
     "section": "\n4.4 요약",
     "text": "4.4 요약\nopenAI Tokenizer\n한글은 영어에 비해 토큰 크기가 크다. 이를 위해서 text-davinci-003 모델이 소화할 수 있는 토큰보다 크기를 줄여야한다. 대한민국 대통령 취임사 중 박근혜 대통령 취임사에서 대략 2,000 토큰 크기를 대상으로 문서 요약을 수행해보자.\n\nfrom langchain import OpenAI, PromptTemplate, LLMChain\nfrom langchain.text_splitter import CharacterTextSplitter\nfrom langchain.chains.mapreduce import MapReduceChain\nfrom langchain.prompts import PromptTemplate\n\nllm = OpenAI(temperature=0)\n\ntext_splitter = CharacterTextSplitter()\n\nwith open('data/state_of_the_union.txt') as f:\n# with open('data/취임사.txt') as f:\n    inaugural_address  = f.read()\n    \ntexts = text_splitter.split_text(inaugural_address)\n\nfrom langchain.docstore.document import Document\n\ndocs = [Document(page_content=t) for t in texts[:]]\n\nfrom langchain.chains.summarize import load_summarize_chain\n\nchain = load_summarize_chain(llm, chain_type=\"map_reduce\")\nchain.run(docs)"
+  },
+  {
+    "objectID": "whisper.html",
+    "href": "whisper.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "OpenSLR은 음성 인식을 위한 학습용 말뭉치, 음성 인식 관련 소프트웨어 등 음성 및 언어 자원을 제공하고 있다.\n\n대규모(1000시간) 영어 음성 읽기 말뭉치에서 영어 음성 읽기 하나를 추출해서 관련 사항을 정답문과 비교해보자.\n\n\n\n\n대규모(1000시간) 영어 음성 읽기 말뭉치에 포함된 영어음성대본에서 텍스트를 추출해서 다음에 영어 음성에서 텍스트 추출을 비교한다.\n\n코드library(tidyverse)\n# fs::dir_ls(path=\"data/LibriSpeech/dev-clean/1993/147149\")\n\ntrans_txt &lt;- read_lines(\"data/LibriSpeech/dev-clean/1993/147149/1993-147149.trans.txt\") \n\n# trans_0011_str &lt;- trans_txt[str_detect(trans_txt, \"0011\")]\n# trans_str &lt;- str_extract_all(trans_0011_str, \"[a-zA-Z].+\")[[1]]\n\ntrans_0011 &lt;- trans_txt %&gt;% \n  enframe() %&gt;% \n  separate(value, into = c(\"순번\", \"텍스트\"), sep = \"\\\\s\", extra = \"merge\") %&gt;% \n  mutate(텍스트 = str_to_lower(텍스트)) %&gt;% \n  filter(str_detect(순번, \"0011\")) %&gt;% \n  pull(텍스트)\n\n\nthen the mother lifted up her voice and wept\n\n\n\n영어 음성을 들어보자. .flac 파일을 av 패키지 av_audio_convert() 함수로 .mp3 혹은 .wav 파일 변환이 가능하다.\n\n코드library(av)\nlibrary(embedr)\n\naudio_file &lt;- \"data/LibriSpeech/dev-clean/1993/147149/1993-147149-0011.flac\"\n\nav::av_audio_convert(audio_file, output = \"data/whisper_before.mp3\", \n                     format = \"mp3\", sample_rate = 16000)\n#&gt; [1] \"D:\\\\tcs\\\\chatGPT\\\\data\\\\whisper_before.mp3\"\n\nwhisper_before_mp3 &lt;- av::read_audio_bin(\"data/whisper_before.mp3\")\n\nembedr::embed_audio(\"data/whisper_before.mp3\")\n\n Your browser does not support the audio tag;  for browser support, please see:  https://www.w3schools.com/tags/tag_audio.asp"
+  },
+  {
+    "objectID": "whisper.html#환경설정",
+    "href": "whisper.html#환경설정",
+    "title": "chatGPT",
+    "section": "\n4.1 환경설정",
+    "text": "4.1 환경설정\nLangChain 에서 OpenAI chatGPT를 호출하여 원하는 작업을 수행한다. 먼저 openai와 langchain을 설치한다.\n\n!pip3 install openai langchain\n\nOPENAI_API_KEY를 환경변수를 넣어두고 OpenAI() 함수에서 호출하여 사용할 수 있도록 한다.\n\nimport os\nfrom langchain.llms import OpenAI\n\nos.environ['OPENAI_API_TOKEN'] = os.environ.get('OPENAI_API_KEY')"
+  },
+  {
+    "objectID": "whisper.html#농담",
+    "href": "whisper.html#농담",
+    "title": "chatGPT",
+    "section": "\n4.2 농담",
+    "text": "4.2 농담\n그리고 나서, 농담으로 헬로월드를 찍어본다. model_name을 비롯한 인수를 응답속도, 정확도, 간결함, 창의성, 비용 등을 고려하여 지정하여 원하는 결과를 얻어낸다.\n\nllm = OpenAI(model_name=\"text-davinci-003\", n=1, temperature=0.9)\nllm(\"재미있는 농담해 주세요\")\n#&gt; '\\n\\nQ. 어디가는 열차는 어디까지 가나요? \\nA. 꼬리치기로 갑니다!'\n\n3개 농담을 뽑아보자.\n\nllm_result = llm.generate([\"재미있는 농담해 주세요\"]*3)\nllm_jokes = llm_result.generations\nllm_jokes\n#&gt; [[Generation(text='\\n\\nQ. 왜 돼지가 물 속에 빠졌나요?\\n\\nA. 그건 주인이 돼지를 산책시키기 위해 물 속까지 갔기 때문이죠.', generation_info={'finish_reason': 'stop', 'logprobs': None})], [Generation(text='\\n\\nQ. 어디서 손님이 가장 많은가?\\n\\nA. 빵집 바깥에서! 왜냐하면 빵이 밖으로 나가는 거니까요!', generation_info={'finish_reason': 'stop', 'logprobs': None})], [Generation(text='\\n\\nQ. 왜 소는 물을 마시지 않나요?\\n\\nA. 왜냐하면 소는 물이 너무 말랐기 때문이죠!', generation_info={'finish_reason': 'stop', 'logprobs': None})]]"
+  },
+  {
+    "objectID": "whisper.html#프롬프트-템플릿",
+    "href": "whisper.html#프롬프트-템플릿",
+    "title": "chatGPT",
+    "section": "\n4.3 프롬프트 템플릿",
+    "text": "4.3 프롬프트 템플릿\n프롬프트 템플릿을 작성하여 해당 작업을 수행토록 지시할 수 있다. 예를 들어 회사명을 작명하는데 대표적으로 잘 작명된 회사명을 제시하고 제약 조건을 추가로 둔 후 회사명 작명지시를 수행시킬 수 있다.\n\n4.3.1 영문\n랭체인 문서에 나와있는 예제를 사용해서 PromptTemplate으로 프롬프트를 완성해보자.\n\nfrom langchain import PromptTemplate\n\ntemplate = \"\"\"\nI want you to act as a naming consultant for new companies.\n\nHere are some examples of good company names:\n\n- search engine, Google\n- social media, Facebook\n- video sharing, YouTube\n\nThe name should be short, catchy and easy to remember.\n\nWhat is a good name for a company that makes {product}?\n\"\"\"\n\nprompt = PromptTemplate(\n    input_variables = [\"product\"],\n    template = template,\n)\n\nsocks_prompt = prompt.format(product=\"colorful socks\")\n\n\nlibrary(reticulate)\nsocks_prompt_chr &lt;- py$socks_prompt\ncat(socks_prompt_chr)\n#&gt; \n#&gt; I want you to act as a naming consultant for new companies.\n#&gt; \n#&gt; Here are some examples of good company names:\n#&gt; \n#&gt; - search engine, Google\n#&gt; - social media, Facebook\n#&gt; - video sharing, YouTube\n#&gt; \n#&gt; The name should be short, catchy and easy to remember.\n#&gt; \n#&gt; What is a good name for a company that makes colorful socks?\n\n앞서 프롬프트 템플릿을 지정한 후 실행을 통해 원하는 회사명 작명 작업을 수행시킨다.\n\nfrom langchain.chains import LLMChain\n\nchain = LLMChain(llm=llm, prompt=prompt)\n\nprint(chain.run(\"colorful socks\"))\n#&gt; \n#&gt; - Snazzy Socks\n\n\n4.3.2 국문\n앞서 제작된 영문회사 작명 템플릿을 번역하여 국내 몇가지 회사를 사례로 넣어 chatGPT에 작업을 지시한다.\n\n\nk_template = \"\"\"\n신규 회사명을 작명하는 컨설턴트로 활동해 주셨으면 합니다.\n\n다음은 좋은 회사 이름 몇 가지 사례입니다:\n\n- 케이티, 통신\n- 놀부, 외식프랜차이즈\n- 율도국, 브랜드제작\n- 크몽, 아웃소싱 플랫폼\n\n이름은 짧고 눈에 잘 띄며 기억하기 쉬워야 합니다.\n\n{k_product} 제품을 잘 만드는 회사의 좋은 이름은 무엇인가요?\n\"\"\"\n\nk_prompt = PromptTemplate(\n    input_variables = [\"k_product\"],\n    template = k_template,\n)\n\nk_socks_prompt = k_prompt.format(k_product=\"양말\")\n\n앞서 프롬프트 템플릿을 지정한 후 실행을 통해 원하는 회사명 작명 작업을 수행시킨다.\n\nfrom langchain.chains import LLMChain\n\nk_chain = LLMChain(llm = llm, prompt = k_prompt)\n\nk_socks_result = k_chain.run(\"양말\")\n\n\ncat(py$k_socks_result)\n#&gt; \n#&gt; - 슈슈, 양말\n#&gt; - 솔레인, 양말\n#&gt; - 바바시, 양말\n#&gt; - 스몰하우스, 양말"
+  },
+  {
+    "objectID": "whisper.html#요약",
+    "href": "whisper.html#요약",
+    "title": "chatGPT",
+    "section": "\n4.4 요약",
+    "text": "4.4 요약\nopenAI Tokenizer\n한글은 영어에 비해 토큰 크기가 크다. 이를 위해서 text-davinci-003 모델이 소화할 수 있는 토큰보다 크기를 줄여야한다. 대한민국 대통령 취임사 중 박근혜 대통령 취임사에서 대략 2,000 토큰 크기를 대상으로 문서 요약을 수행해보자.\n\nfrom langchain import OpenAI, PromptTemplate, LLMChain\nfrom langchain.text_splitter import CharacterTextSplitter\nfrom langchain.chains.mapreduce import MapReduceChain\nfrom langchain.prompts import PromptTemplate\n\nllm = OpenAI(temperature=0)\n\ntext_splitter = CharacterTextSplitter()\n\nwith open('data/state_of_the_union.txt') as f:\n# with open('data/취임사.txt') as f:\n    inaugural_address  = f.read()\n    \ntexts = text_splitter.split_text(inaugural_address)\n\nfrom langchain.docstore.document import Document\n\ndocs = [Document(page_content=t) for t in texts[:]]\n\nfrom langchain.chains.summarize import load_summarize_chain\n\nchain = load_summarize_chain(llm, chain_type=\"map_reduce\")\nchain.run(docs)"
+  },
+  {
+    "objectID": "whisper.html#오디오-표본",
+    "href": "whisper.html#오디오-표본",
+    "title": "chatGPT",
+    "section": "",
+    "text": "대규모(1000시간) 영어 음성 읽기 말뭉치에서 영어 음성 읽기 하나를 추출해서 관련 사항을 정답문과 비교해보자.\n\n\n\n\n대규모(1000시간) 영어 음성 읽기 말뭉치에 포함된 영어음성대본에서 텍스트를 추출해서 다음에 영어 음성에서 텍스트 추출을 비교한다.\n\n코드library(tidyverse)\n# fs::dir_ls(path=\"data/LibriSpeech/dev-clean/1993/147149\")\n\ntrans_txt &lt;- read_lines(\"data/LibriSpeech/dev-clean/1993/147149/1993-147149.trans.txt\") \n\n# trans_0011_str &lt;- trans_txt[str_detect(trans_txt, \"0011\")]\n# trans_str &lt;- str_extract_all(trans_0011_str, \"[a-zA-Z].+\")[[1]]\n\ntrans_0011 &lt;- trans_txt %&gt;% \n  enframe() %&gt;% \n  separate(value, into = c(\"순번\", \"텍스트\"), sep = \"\\\\s\", extra = \"merge\") %&gt;% \n  mutate(텍스트 = str_to_lower(텍스트)) %&gt;% \n  filter(str_detect(순번, \"0011\")) %&gt;% \n  pull(텍스트)\n\n\nthen the mother lifted up her voice and wept\n\n\n\n영어 음성을 들어보자. .flac 파일을 av 패키지 av_audio_convert() 함수로 .mp3 혹은 .wav 파일 변환이 가능하다.\n\n코드library(av)\nlibrary(embedr)\n\naudio_file &lt;- \"data/LibriSpeech/dev-clean/1993/147149/1993-147149-0011.flac\"\n\nav::av_audio_convert(audio_file, output = \"data/whisper_before.mp3\", \n                     format = \"mp3\", sample_rate = 16000)\n#&gt; [1] \"D:\\\\tcs\\\\chatGPT\\\\data\\\\whisper_before.mp3\"\n\nwhisper_before_mp3 &lt;- av::read_audio_bin(\"data/whisper_before.mp3\")\n\nembedr::embed_audio(\"data/whisper_before.mp3\")\n\n Your browser does not support the audio tag;  for browser support, please see:  https://www.w3schools.com/tags/tag_audio.asp"
   }
 ]

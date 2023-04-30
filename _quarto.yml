@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - "data/*.mp3"
   render:
     - "*.qmd"
     - "!*.Rmd"
@@ -17,8 +19,6 @@ website:
     type: overlay
   navbar:
     left:
-      - href: index.qmd
-        text: Home
       - text: "생성 AI"
         menu:
         - href: architecture.qmd
@@ -121,15 +121,16 @@ website:
           text: "OpenAI GPT"
         - href: langchain_arch.qmd
           text: "LangCahin 아키텍쳐"
+        - href: whisper.qmd
+          text: "음성인식(Whisper)"
         - text: "------------------"
         - href: palmer_penguins.qmd
           text: "펭귄 데이터셋"
         - href: autoGPT_ds.qmd
           text: "EDA 자동화 AutoEDA"
-        - href: autoML_ds.qmd
-          text: "ML 자동화 AutoML"
-        - href: autoGPT_ds.qmd
-          text: "데이터 과학 AutoGPT"
+        - text: "ML 자동화 AutoML"
+        - text: "데이터 과학 AutoGPT"
+        - text: "------------------"
       - href: blog.qmd
         text: "게시글"
       - text: "비즈니스"

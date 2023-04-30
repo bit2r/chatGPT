@@ -1,0 +1,242 @@
+---
+title: "chatGPT"
+subtitle: "음성인식(Whisper)"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+html_tag_audio <- function(file, type = c("wav")) {
+  type <- match.arg(type)
+  htmltools::tags$audio(
+    controls = "",
+    htmltools::tags$source(
+      src = file,
+      type = glue::glue("audio/{type}", type = type)
+    )
+  )
+}
+```
+
+
+# 음성인식 데이터셋
+
+[OpenSLR](https://www.openslr.org/index.html)은 음성 인식을 위한 학습용 말뭉치, 음성 인식 관련 소프트웨어 등 음성 및 언어 자원을 제공하고 있다.
+
+## 오디오 표본
+
+[대규모(1000시간) 영어 음성 읽기 말뭉치](https://www.openslr.org/12)에서 영어 음성 읽기 하나를 추출해서 관련 사항을 정답문과 비교해보자.
+
+
+:::::::{.column-body-outset}
+
+:::::{.columns}
+
+:::{.column}
+
+### 영어 음성 대본 {.unnumbered}
+
+[대규모(1000시간) 영어 음성 읽기 말뭉치](https://www.openslr.org/12)에 포함된 영어음성대본에서 텍스트를 추출해서 다음에 영어 음성에서 텍스트 추출을 비교한다.
+
+```{r}
+library(tidyverse)
+# fs::dir_ls(path="data/LibriSpeech/dev-clean/1993/147149")
+
+trans_txt <- read_lines("data/LibriSpeech/dev-clean/1993/147149/1993-147149.trans.txt") 
+
+# trans_0011_str <- trans_txt[str_detect(trans_txt, "0011")]
+# trans_str <- str_extract_all(trans_0011_str, "[a-zA-Z].+")[[1]]
+
+trans_0011 <- trans_txt %>% 
+  enframe() %>% 
+  separate(value, into = c("순번", "텍스트"), sep = "\\s", extra = "merge") %>% 
+  mutate(텍스트 = str_to_lower(텍스트)) %>% 
+  filter(str_detect(순번, "0011")) %>% 
+  pull(텍스트)
+```
+
+`r trans_0011`
+
+:::
+
+:::{.column}
+
+### 영어 음성 {.unnumbered}
+
+영어 음성을 들어보자. `.flac` 파일을 `av` 패키지 `av_audio_convert()` 함수로 
+`.mp3` 혹은 `.wav` 파일 변환이 가능하다.
+
+```{r}
+library(av)
+library(embedr)
+
+audio_file <- "data/LibriSpeech/dev-clean/1993/147149/1993-147149-0011.flac"
+
+av::av_audio_convert(audio_file, output = "data/whisper_before.mp3", 
+                     format = "mp3", sample_rate = 16000)
+
+whisper_before_mp3 <- av::read_audio_bin("data/whisper_before.mp3")
+
+embedr::embed_audio("data/whisper_before.mp3")
+```
+
+:::
+
+:::::
+
+:::::::
+
+# `whisper` STT
+
+영어 음성에서 텍스트로 전환하는 작업을 STT(Speech-to-Text)라고 부르는데 
+최근 성능도 많이 좋아졌고 그중 챗GPT 인기를 얻고 있는 `whisper` API를 사용해서 
+영어 음성을 텍스트로 변환할 수도 있고, C/C++로 OpenAI의 Whisper 모델 이식한 
+[whisper.cpp](https://github.com/ggerganov/whisper.cpp) 모델을 사용하면 CPU로 
+무료로 사용가능하다.
+
+
+[`audio.whisper`](https://github.com/bnosac/audio.whisper) 패키지가 최근에 출시되어 
+이를 사용하면 수월히 R에서도 STT 작업을 수행할 수 있다.
+
+| 모형                   | 언어                        |  크기  | 필요 RAM 크기 |
+|:-----------------------|:---------------------------:|-------:|-----------:|
+| `tiny` & `tiny.en`     | Multilingual & English only | 75 MB  | 390 MB     |
+| `base` & `base.en`     | Multilingual & English only | 142 MB | 500 MB     |
+| `small` & `small.en`   | Multilingual & English only | 466 MB | 1.0 GB     |
+| `medium` & `medium.en` | Multilingual & English only | 1.5 GB | 2.6 GB     |
+| `large-v1` & `large`   | Multilingual                | 2.9 GB | 4.7 GB     |
+
+`whisper()` 입력 오디오는 16비트 `.wav` 파일형식만 가능하다. 
+따라서 `av` 패키지 `av_audio_convert()` 함수로 원본 파일(`.flac`)을 `.wav` 파일로 변환한 후에 
+STT 작업을 수행한다.
+
+:::::::{.column-body-outset}
+
+:::::{.columns}
+:::{.column}
+
+### `.flac` &rarr; `.wav` {.unnumbered}
+
+`.flac` 파일을 `.wav` 파일로 변환시킨다.
+
+```{r}
+library(audio.whisper)
+
+av::av_audio_convert(audio_file, output = "data/whisper_before.wav", 
+                     format = "wav", sample_rate = 16000)
+```
+
+:::
+
+:::{.column}
+
+### STT 결과 {.unnumbered}
+
+`base.en` 모델을 사용해서 STT로 영어음성에서 텍스트를 추출한다.
+
+```{r}
+model <- whisper("base.en")
+
+trans <- predict(model, newdata = "data/whisper_before.wav", language = "en", n_threads = 2)
+
+trans$data
+```
+
+`r trans$data`
+
+:::
+
+:::::
+
+:::::::
+
+# 동영상에서 오디오 추출
+
+`ffmpeg` 프로그램을 사용하면 오디오를 추출할 수 있다.
+MP4 파일에서 16비트 깊이와 16kHz 샘플링 레이트로 오디오를 추출하여야 `whisper`에 입력값으로 넣을 수 있는 `.wav` 파일이 된다.
+
+```bash
+ffmpeg -i misinformation.mp4 -acodec pcm_s16le -ar 16000 -ac 2 misinformation_16.wav
+```
+
+`.mp3` 확장자를 줄 경우 오디오를 `mp3` 파일로 추출하여 파일크기를 크게 줄일 수 있다.
+
+```bash
+ffmpeg -i misinformation.mp4 -acodec pcm_s16le -ar 16000 -ac 2 misinformation_16.mp3
+```
+
+# STT
+
+`2.6 GB` 영어 `medium.en` 모델은 알 수 없는 오류로 인해  `base.en` 모델을 사용하여 영어 음성에서 텍스트를 추출한다.
+
+```{r}
+#| eval: false
+library(audio.whisper)
+
+medium_model <- whisper("base.en")
+
+misinformation_trans <- predict(medium_model, newdata = "data/LibriSpeech/misinformation_16.wav", 
+                                language = "en", n_threads = 2)
+```
+
+```{r}
+#| eval: false
+library(tidyverse)
+misinformation_trans$data %>% 
+  mutate(data = glue::glue("{from} ==> {to} {text}")) %>% 
+  pull(data) %>% 
+  write_lines("data/LibriSpeech/misinformation_oneline.txt")
+```
+
+# SRT
+
+```{r}
+#| eval: false
+mis_srt_raw <- read_lines("data/LibriSpeech/misinformation_proof_reading.txt")
+
+mis_srt_tbl <- mis_srt_raw %>% 
+  enframe() %>% 
+  separate(value, into = c("start", "end"),   sep = "\\s==>\\s", extra = "merge") %>% 
+  separate(end,   into = c("end", "subtitle"), sep = "\\s", extra = "merge") %>% 
+  mutate(subtitle = str_trim(subtitle))
+ 
+mis_srt_tbl %>% 
+  mutate(srt = glue::glue("{name} \n {start} --> {end} \n {subtitle}\n\n")) %>% 
+  pull(srt) %>% 
+  write_lines("data/LibriSpeech/misinformation_proof_reading_srt.srt")
+```
+
+
+
