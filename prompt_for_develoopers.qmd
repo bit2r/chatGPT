@@ -1,0 +1,877 @@
+---
+title: "chatGPT"
+subtitle: "(개발자) 프롬프트 공학"
+description: | 
+  개발자를 위한 프롬프트 공학 관련 사항을 중심으로 살펴보자.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+<style>
+.main-container {
+  max-width: unset;
+}
+</style>
+
+
+:::{.callout-warning collapse="false"}
+
+2023년 4월 앤드류 응(Andrew Ng) 대표가 이끄는 [Deeplearning.AI](https://www.deeplearning.ai/)에서 공개한 "ChatGPT Prompt Engineering for Developers" 내용을 정리한 것입니다. [@dl2023]
+
+:::
+
+# AI 모형 개발
+
+AI 기계학습(Machine Learning) 모형을 개발하는데 전통적인 기계학습 모형 개발과 대비가 된다.
+
+기존 기계학습 모델 개발에는 라벨(Label) 정답 데이터 수집, 피처 공학(Feature Engineering), 모델 선택, 매개변수 조정이 포함되며, 도메인 전문 지식과 광범위한 데이터 전처리가 필요한 경우가 많다. 반면, 거대언어모형(LLM) 프롬프트 공학 접근법은 사전 학습된 모델을 활용하기 위해 쿼리를 설계하고 응답을 미세 조정하는 데 중점을 두게 되어, 피처 추출이나 모델 학습에는 덜 중점을 두게된다. 두 접근 방식 모두 복잡한 문제를 해결하는 것을 목표로 하지만, 기존 ML은 특정 작업에 맞게 모델을 사용자 지정하는 데 더 많이 의존하는 반면, LLM 프롬프트 엔지니어링은 다양한 애플리케이션을 위해 기존 모델과의 상호 작용을 최적화한다. 
+기존 기계학습모형은 매번 문제정의 라벨 데이터 수집 및 이후 기계학습 모형개발과정이 매번 반복되는 반면 LLM 기반 기계학습 모형 개발은 그럴 필요가 없다는 점에서 비용, 시간, 성능에서 우의를 갖는다.
+
+
+```{mermaid}
+graph TB
+
+subgraph "전통 기계학습"
+  direction TB
+  A1[라벨 데이터]
+  A2[모형 식별, 훈련, 평가]
+  A3[모형 배포 및 유지보수]
+end
+
+subgraph "프롬프트 공학 기계학습"
+  direction TB
+  B1[프롬프트 작성]
+  B2[모형 배포 및 유지보수]
+end
+
+A1 --> A2
+A2 --> A3
+
+B1 --> B2
+
+style A1 fill:#f9d71c,stroke:#333,stroke-width:2px
+style A2 fill:#f9d71c,stroke:#333,stroke-width:2px
+style A3 fill:#f9d71c,stroke:#333,stroke-width:2px
+
+style B1 fill:#8bc34a,stroke:#333,stroke-width:2px
+style B2 fill:#8bc34a,stroke:#333,stroke-width:2px
+```
+
+# 환경설정
+
+## API 키 설정
+
+개발자가 챗GPT 프롬프트 공학으로 AI 앱을 개발하기 위해서 필요한 것은 먼저 
+OpenAI 웹사이트에서 [API Keys](https://platform.openai.com/account/api-keys)를 발급받고 이를 활용하는 것이다.
+
+:::::{.columns}
+
+:::{.column}
+### `.env` 파일 {.unnumbered}
+
+`.env` 파일에 OpenAI에서 발급된 API KEY를 다음과 같은 방식으로 저장한다.
+
+```bash
+ENV_OPENAI_API_KEY=sk-q79SxxxxxxxxxxxxxxxxxxxxxxxxXK
+```
+
+:::
+:::{.column}
+### `openai` {.unnumbered}
+
+
+`.env` 파일에 기록된 API KEY 정보를 `os.getenv()` 함수에서 환경정보로 불러 읽은 후에
+이를 `openai` 패키지에 등록하여 후속 작업에 사용하도록 준비한다.
+
+```{python}
+import openai
+import os
+
+from dotenv import load_dotenv, find_dotenv
+_ = load_dotenv(find_dotenv())
+
+openai.api_key  = os.getenv('ENV_OPENAI_API_KEY')
+```
+
+:::
+
+:::::
+
+## 헬로월드
+
+`get_completion()` 사용자 정의 함수를 사용하여 요약작업을 수행하도록 한다.
+프롬프트 공학 헬로월드 사례로 텍스트를 요약하는 [`xsum`](https://huggingface.co/datasets/xsum) 데이터셋을 사용한다. ID `38900884` 문서(document)는 다음 사항이 적혀있다.
+
+:::::{.columns}
+
+:::{.column}
+### 38900884 원문 {.unnumbered}
+
+```
+"The Bath-born player, 28, has made 36 appearances for the Dragons since joining from Wasps in 2015. He is in his second season and signed a contract extension in December 2016. Dragons forwards coach Ceri Jones said: "It's a big blow. Eddie has been excellent all year for us, he has really stepped up to the mark and will be a big loss." However, Jones says Jackson's misfortune can be a chance for others to thrive. "We are very fortunate to have the likes of Ollie Griffiths, Harrison Keddie, James Thomas who can come into the back-row," said Jackson. "Harri has shown glimpses of what he can do all season and there's definitely a player there, so this is an opportunity." Dragons travel to Munster in the Pro12 on Friday."
+```
+
+:::
+
+:::{.column}
+### 디플번역 {.unnumbered}
+
+```
+배스 태생의 28세 선수는 2015년 와스프에서 드래곤즈에 입단한 이후 36경기에 출전했습니다. 두 번째 시즌을 보내고 있는 그는 2016년 12월에 연장 계약을 체결했습니다. 드래곤즈의 포워드 코치 세리 존스는 이렇게 말했습니다: "큰 타격입니다. 에디는 올 한 해 동안 우리 팀에서 훌륭한 활약을 펼쳤고, 정말 큰 손실이 될 것입니다."라고 말했습니다. 하지만 존스는 잭슨의 불행이 다른 선수들에게는 기회가 될 수 있다고 말합니다. "올리 그리피스, 해리슨 케디, 제임스 토마스 같은 선수들이 뒷줄에 들어올 수 있다는 것은 매우 행운입니다."라고 잭슨은 말합니다. "해리는 올 시즌 그가 할 수 있는 것을 살짝 보여줬고, 확실히 그런 선수가 있기 때문에 이번이 기회입니다." 드래곤스는 금요일에 먼스터와 프로12 경기를 치릅니다.
+
+Translated with www.DeepL.com/Translator (free version)
+```
+:::
+
+:::::
+
+상기 텍스트 요약작업을 수행해보자.
+
+:::::{.columns}
+:::{.column}
+### 프롬프트 요약작업결과 {.unnumbered}
+
+```{python}
+#| eval: false
+def get_completion(prompt):
+    model="gpt-3.5-turbo"
+    messages = [{"role": "user", "content": prompt}]
+    response = openai.ChatCompletion.create(
+        model=model,
+        messages=messages,
+        temperature=0,
+    )
+    return response.choices[0].message["content"]
+
+text = f"""
+The Bath-born player, 28, has made 36 appearances for the Dragons since joining from Wasps in 2015. He is in his second season and signed a contract extension in December 2016. Dragons forwards coach Ceri Jones said: "It's a big blow. Eddie has been excellent all year for us, he has really stepped up to the mark and will be a big loss." However, Jones says Jackson's misfortune can be a chance for others to thrive. "We are very fortunate to have the likes of Ollie Griffiths, Harrison Keddie, James Thomas who can come into the back-row," said Jackson. "Harri has shown glimpses of what he can do all season and there's definitely a player there, so this is an opportunity." Dragons travel to Munster in the Pro12 on Friday.
+"""
+prompt = f"""
+Summarize the text delimited by triple backticks \ 
+into a one sentence.
+```{text}```
+"""
+response = get_completion(prompt)
+print(response)  
+```
+
+```
+Newport Gwent Dragons player Eddie Jackson will miss the rest of the season due to a knee injury, but the team's forwards coach sees it as an opportunity for other players to step up.
+```
+
+:::
+
+:::{.column}
+### 요약 원문 정답라벨 {.unnumbered}
+```
+Newport Gwent Dragons number eight Ed Jackson has undergone shoulder surgery and faces a spell on the sidelines.
+```
+
+:::
+
+:::::
+
+
+# 프롬프트 작성
+
+개발자 입장에서 프롬프트 작성하는 방식은 다음 두가지 원칙을 세울 수 있다.
+
+1. 명확하고 구체적인 지시명령문 작성
+1. LLM 모형에 생각시간 제공
+
+
+```{r}
+library(tidyverse)
+library(collapsibleTree)
+library(readxl)
+
+prompt_raw <- read_excel("data/prompt_engineering.xlsx", sheet = "guidelines")
+
+collapsibleTree(prompt_raw, c("원칙", "세부책략"),
+                tooltipHtml = "tooltip",
+                root = "프롬프트 작성원칙")
+```
+
+## 명확한 지시명령어
+
+```{mermaid}
+graph TB
+A[명확한 지시명령어 작성] --> B["구분자 사용(Delimiter)"]
+A --> C["출력형식(HTML, JSON)"]
+A --> D[조건 확인]
+A --> E["퓨삿(Few-Shot) 학습"]
+```
+
+
+### 구분자 사용
+
+구분 기호(delimiter)로 명확히 한다. 구분기호는 ```, """, < >, `<태그> </태그>`, ':` 등 사용가능하다.
+
+AI HUB [문서요약 텍스트](https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100) 에서 샘플데이터를 다운로드 받아 구분자 사용의 사례로 활용하자.
+
+```{r}
+library(tidyverse)
+library(jsonlite)
+library(reticulate)
+
+editorial <- jsonlite::stream_in(file("data/001.문서요약텍스트_sample/라벨링데이터/사설잡지/sample.jsonl")) 
+
+editorial_sample <- editorial %>% 
+  filter(id == "148261803") %>% 
+  select(id, abstractive, article_original) %>%
+  mutate(article_original = map_chr(article_original, paste0, collapse=" ")) 
+
+editorial_sample %>% 
+  mutate(article_sub = str_sub(article_original, 1, 100)) %>% 
+  select(id, abstractive, article_sub) %>% 
+  gt::gt()
+```
+
+
+```{python}
+#| eval: false
+text = f"""
+금융위원회는 러시앤캐시 등 자기자본 500억 이상인 큰 대부업체들이 저축은행을 인수할 수 있도록 길을 터줬는데 부실한 저축은행이 더 부실해지지 않도록 구조조정부터 해야 하고 저축은행을 인수한 대부업체는 대부업 자체에 손을 떼도록 해야 한다.
+"""
+prompt = f"""
+백틱 세 개로 구분된 텍스트를 하나의 문장으로 요약합니다.
+```{text}```
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+:::::{.columns}
+:::{.column}
+### AI-HUB 문서요약 정답 {.unnumbered}
+
+금융위원회는 러시앤캐시 등 자기자본 500억 이상인 큰 대부업체들이 저축은행을 인수할 수 있도록 길을 터줬는데 부실한 저축은행이 더 부실해지지 않도록 구조조정부터 해야 하고 저축은행을 인수한 대부업체는 대부업 자체에 손을 떼도록 해야 한다.
+:::
+:::{.column}
+### LLM 요약 {.unnumbered}
+
+금융위원회는 대부업체들이 저축은행 인수 가능하게 하지만, 구조조정부터 해야하며 인수한 업체는 대부업에서 손을 떼야 한다.
+:::
+:::::
+
+
+### 출력형식 지정
+
+JSON, HTML, XML 등 출력형식을 명시적으로 지정한다.
+
+```{python}
+#| eval: false
+prompt = f"""
+저자명과 장르가 포함된 도서 목록을 5권 생성합니다.
+다음 필드값을 갖고 JSON 형식으로 작성합니다: 
+서지번호, 제목, 저자, 장르.
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+1. {
+   "서지번호": "001",
+   "제목": "1984",
+   "저자": "조지 오웰",
+   "장르": "SF"
+}
+
+2. {
+   "서지번호": "002",
+   "제목": "죽은 시인의 사회",
+   "저자": "노먼 메일러",
+   "장르": "소설"
+}
+
+3. {
+   "서지번호": "003",
+   "제목": "책은 독서가 아니다",
+   "저자": "유시민",
+   "장르": "자기계발"
+}
+
+4. {
+   "서지번호": "004",
+   "제목": "미움받을 용기",
+   "저자": "기시미 이치로",
+   "장르": "자기계발"
+}
+
+5. {
+   "서지번호": "005",
+   "제목": "해리 포터와 마법사의 돌",
+   "저자": "J.K. 롤링",
+   "장르": "판타지"
+}
+```
+
+### 조건확인
+
+LLM 모델에게 조건이 충족되는지 확인하도록 지시한다.
+
+```{python}
+#| eval: false
+text_1 = f"""
+차 한 잔을 만드는 것은 쉽습니다! 먼저 물을 끓여야 합니다. 끓는 동안 컵을 들고 티백을 넣으세요. 물이 충분히 뜨거워지면 티백 위에 붓기만 하면 됩니다. 차가 우러날 수 있도록 잠시 기다리세요. 몇 분 후 티백을 꺼내세요. 원한다면 설탕이나 우유를 넣어 맛을 더할 수 있습니다. 그리고 그게 다입니다! 맛있는 차 한 잔을 즐기세요.
+"""
+prompt = f"""
+백틱 3개로 구분된 텍스트가 제공됩니다. 
+일련의 지침이 포함된 경우 다음 형식으로 해당 지침을 다시 작성합니다:
+
+1단계 - ...
+2단계 - ...
+...
+N단계 - ...
+
+텍스트에 일련의 지침이 포함되어 있지 않은 경우에는 \"제공된 단계 없음\"이라고 간단히 작성합니다.
+```{text_1}```
+"""
+
+response = get_completion(prompt)
+print("Completion for Text 1:")
+print(response)
+```
+
+```
+1단계 - 물을 끓입니다.
+2단계 - 끓는 동안 컵에 티백을 넣습니다.
+3단계 - 물이 충분히 뜨거워지면 티백 위에 물을 붓습니다.
+4단계 - 차가 우러날 수 있도록 잠시 기다립니다.
+5단계 - 몇 분 후 티백을 꺼냅니다.
+6단계 - 원한다면 설탕이나 우유를 넣어 맛을 더합니다.
+7단계 - 맛있는 차 한 잔을 즐깁니다.
+```
+
+### 퓨샷 프롬프트
+
+예제를 LLM에 제공하여 해당 질의에 대한 응답을 이끌어내는 방식이다.
+
+```{python}
+#| eval: false
+
+prompt = f"""
+당신의 임무는 일관된 스타일로 대답하는 것입니다.
+
+<어린이>: 인내심에 대해 가르쳐주세요.
+
+<조부모>: 가장 깊은 계곡을 깎는 강은 수수한 샘에서 흐르고, 가장 웅장한 교향곡은 한 음에서 시작됩니다; 가장 복잡한 자수는 하나의 실에서 시작됩니다.
+
+<어린이>: 회복탄력성에 대해 가르쳐 주세요.
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+<조부모>: 회복탄력성은 어려운 상황에서도 빠르게 회복하는 능력입니다. 마치 탄력 있는 공처럼 어려운 상황에서 튕겨나와 다시 일어날 수 있는 능력이죠. 이것은 우리가 어려운 일을 겪을 때 긍정적인 마인드와 강한 의지력을 가지고 있어야 가능합니다.
+```
+
+## LLM 모형에 생각시간 제공
+
+```{mermaid}
+graph TB
+A[LLM 모형에 생각시간 제공] --> B["수행작업 단계 명시"]
+A --> C["모델 스스로 해결책 찾도록 지시"]
+```
+
+
+### 수행작업 단계 명시
+
+지시한 작업을 완수하는데 필요한 단계를 명시한다.
+
+```{python}
+#| eval: false
+
+text = f"""
+매력적인 마을에서 잭과 질 남매는 언덕 꼭대기에 있는 우물에서 물을 길어오기 위한 여정을 시작합니다. 우물. 즐거운 마음으로 노래를 부르며 오르던 중 불행이 닥쳤습니다. 잭은 돌에 걸려 넘어졌고 질도 그 뒤를 따라 언덕 아래로 굴러 떨어졌습니다. 약간의 상처를 입었지만 두 사람은 서로를 위로하며 집으로 돌아왔습니다. 사고에도 불구하고 두 사람의 모험심은 꺾이지 않았고 기쁨을 만끽하며 탐험을 계속했습니다.
+"""
+# example 1
+prompt_1 = f"""
+다음 작업을 수행합니다: 
+1 - 백틱 세 개로 구분된 다음 텍스트를 1문장으로 요약합니다.
+2 - 요약을 영어로 번역합니다.
+3 - 영어 요약에 각 이름을 나열합니다.
+4 - 다음 키가 포함된 json 객체를 출력합니다: english_summary, num_names.
+
+답을 줄 바꿈으로 구분하세요.
+
+텍스트:
+```{text}```
+"""
+response = get_completion(prompt_1)
+print(response)
+```
+
+```
+잭과 질은 우물에서 물을 길어오기 위해 여정을 시작합니다. 하지만 불행히도 잭은 돌에 걸려 넘어지고 질도 굴러 떨어집니다. 상처를 입었지만 두 사람은 모험심이 꺾이지 않고 계속 탐험을 이어갑니다.
+
+Jack and Jill set out on a journey to fetch water from a charming village well atop a hill. However, unfortunate events occur as Jack trips over a rock and Jill tumbles down the hill. Despite their injuries, the siblings continue their adventure with unbroken spirits.
+
+Names: Jack, Jill
+
+{
+  "english_summary": "Jack and Jill set out on a journey to fetch water from a charming village well atop a hill. However, unfortunate events occur as Jack trips over a rock and Jill tumbles down the hill. Despite their injuries, the siblings continue their adventure with unbroken spirits.",
+  "num_names": 2
+}
+```
+
+한단계 더 들어가 구체적인 출력형식도 지정한다.
+
+```{python}
+#| eval: false
+
+prompt_2 = f"""
+다음 작업을 수행합니다: 
+1 - 백틱 세 개로 구분된 다음 텍스트를 1 문장으로 요약합니다.
+2 - 요약을 영어로 번역합니다.
+3 - 영어 요약에 각 이름을 나열합니다.
+4 - 다음 키가 포함된 json 객체를 출력합니다: english_summary, num_names.
+
+
+다음 형식을 사용합니다:
+텍스트: <요약할 텍스트>
+요약: <요약>
+번역: <요약 번역>
+이름: <영어 요약의 이름 목록>
+출력 JSON: <요약 및 num_names가 포함된 json>
+
+텍스트: 
+```{text}```
+"""
+response = get_completion(prompt_2)
+print(response)
+```
+
+```
+요약: 잭과 질 남매는 우물에서 물을 길어오기 위한 여정을 시작하고, 불행이 닥쳐도 모험심은 꺾이지 않았습니다.
+번역: Jack and Jill siblings start a journey to fetch water from a well in a charming village, but unfortunate events occur. Despite the accident, their adventurous spirit remains unbroken and they continue to explore with joy.
+이름: Jack, Jill
+출력 JSON: {"english_summary": "Jack and Jill siblings start a journey to fetch water from a well in a charming village, but unfortunate events occur. Despite the accident, their adventurous spirit remains unbroken and they continue to explore with joy.", "num_names": 2}
+```
+
+### 모델 스스로 해결책 찾도록 지시
+
+LLM 모델에 먼저 자체 해결책을 찾도록 지시하여 다양한 문제를 해결할 수 있다.
+
+
+## 반복 프롬프트 개발
+
+프롬프트 개발은 운좋게 한번에 원하는 결과를 얻을 수도 있지만 대개는 LLM 작업결과를 
+검토하고 다듬어가는 과정이 필수적이다.
+
+```{python}
+#| eval: false
+
+fact_sheet_chair = """
+개요
+- 미드 센추리에서 영감을 받은 아름다운 사무용 가구 제품군의 일부입니다, 
+파일 캐비닛, 책상, 책장, 회의용 테이블 등을 포함합니다.
+- 쉘 색상과 베이스 마감의 여러 옵션이 있습니다.
+- 플라스틱 소재의 후면 및 전면 커버(SWC-100) 또는 
+또는 10가지 패브릭 및 6가지 가죽 옵션의 풀 커버(SWC-110)로 제공됩니다.
+- 기본 마감 옵션: 스테인리스 스틸, 무광 블랙, 
+유광 화이트 또는 크롬.
+- 의자는 팔걸이가 있든 없든 선택할 수 있습니다.
+- 가정 또는 비즈니스 환경에 적합합니다.
+- 계약 사용 자격이 있습니다.
+
+구조
+- 5바퀴 플라스틱 코팅 알루미늄 베이스.
+- 공압식 의자는 쉽게 올리거나 내릴 수 있도록 조절됩니다.
+
+치수
+- 폭 53cm | 20.87"
+- 깊이 51 cm | 20.08"
+- 높이 80 cm | 31.50"
+- 좌석 높이 44cm | 17.32"
+- 좌석 깊이 41cm | 16.14"
+
+옵션
+- 소프트 또는 하드 플로어 캐스터 옵션.
+- 두 가지 시트 폼 밀도 선택 가능: 
+ 중간(1.8파운드/ft3) 또는 높음(2.8파운드/ft3)
+- 팔걸이 없음 또는 8위치 PU 팔걸이 
+
+재료
+쉘 베이스 글라이더
+- 변형 나일론 PA6/PA66 코팅된 주조 알루미늄.
+- 셸 두께: 10mm.
+SEAT
+- HD36 폼
+
+원산지
+- 이탈리아
+"""
+
+prompt = f"""
+너의 임무는 마케팅 팀이 기술 자료집을 기반으로 제품의 소매 웹사이트에 대한 설명을 작성하는 것을 돕는 것입니다.
+
+백틱 세 개로 구분된 기술 사양서에 적시된 정보를 기반으로 제품 설명서를 작성한다.
+
+기술 사양: 
+```{fact_sheet_chair}```
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+당신의 임무는 마케팅 팀이 제품의 소매 웹사이트에 대한 설명을 작성하는 것을 돕는 것입니다. 이를 위해 백틱 세 개로 구분된 기술 사양서에 적시된 정보를 기반으로 제품 설명서를 작성해야 합니다.
+
+이 제품은 미드 센추리에서 영감을 받은 아름다운 사무용 가구 제품군의 일부입니다. 파일 캐비닛, 책상, 책장, 회의용 테이블 등을 포함하며, 쉘 색상과 베이스 마감의 여러 옵션이 있습니다. 또한, 플라스틱 소재의 후면 및 전면 커버(SWC-100) 또는 10가지 패브릭 및 6가지 가죽 옵션의 풀 커버(SWC-110)로 제공됩니다. 기본 마감 옵션은 스테인리스 스틸, 무광 블랙, 유광 화이트 또는 크롬입니다.
+
+이 제품은 가정 또는 비즈니스 환경에 적합하며, 계약 사용 자격이 있습니다. 구조는 5바퀴 플라스틱 코팅 알루미늄 베이스로 이루어져 있으며, 공압식 의자는 쉽게 올리거나 내릴 수 있도록 조절됩니다. 이 의자의 폭은 53cm, 깊이는 51cm, 높이는 80cm, 좌석 높이는 44cm, 좌석 깊이는 41cm입니다.
+
+이 제품은 소프트 또는 하드 플로어 캐스터 옵션을 제공하며, 두 가지 시트 폼 밀도 선택 가능합니다. 또한, 팔걸이 없음 또는 8위치 PU 팔걸이를 선택할 수 있습니다. 쉘 베이스 글라이더는 변형 나일론 PA6/PA66 코팅된 주조 알루미늄으로 이루어져 있으며, 셸 두께는 10mm입니다. 시트는 HD36 폼으로 만들어졌으며, 이 제품은 이탈리아에서 생산됩니다.
+```
+
+### 텍스트 길이 조정
+
+LLM 작업 결과가 너무길다. 출력결과를 50 단어로 한정한다.
+
+```{python}
+#| eval: false
+
+prompt = f"""
+너의 임무는 마케팅 팀이 기술 자료집을 기반으로 제품의 소매 웹사이트에 대한 설명을 작성하는 것을 돕는 것입니다.
+
+백틱 세 개로 구분된 기술 사양서에 적시된 정보를 기반으로 제품 설명서를 작성한다.
+
+최대 50단어를 사용하세요.
+
+기술 사양서: 
+```{fact_sheet_chair}```
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+This product description is based on the technical specifications provided in a document separated by three backticks. The product is a beautiful line of office furniture inspired by Mid-Century design, including file cabinets, desks, bookshelves, and conference tables. It comes in various shell colors and base finishes, with options for plastic or full covers in different fabrics or leather. The chair has adjustable height and comes with or without armrests. It is suitable for home or business environments and has contract use eligibility.
+```
+
+### 독자 대상 명시
+
+```{python}
+#| eval: false
+
+prompt = f"""
+너의 임무는 마케팅 팀이 기술 자료집을 기반으로 제품의 소매 웹사이트에 대한 설명을 작성하는 것을 돕는 것입니다.
+
+백틱 세 개로 구분된 기술 사양서에 적시된 정보를 기반으로 제품 설명서를 작성한다.
+
+이 설명은 가구 소매업체를 위한 것입니다, 
+따라서 본질적으로 기술적인 내용이어야 하며 제품을 구성하는 재료에 초점을 맞춰야 합니다.
+
+최대 50단어를 사용하고 한글로 작성되어야 한다.
+
+기술 사양서: 
+```{fact_sheet_chair}```
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+미드 센추리에서 영감을 받은 아름다운 사무용 가구 제품군의 일부입니다. 파일 캐비닛, 책상, 책장, 회의용 테이블 등을 포함하며, 쉘 색상과 베이스 마감의 여러 옵션이 있습니다. 플라스틱 소재의 후면 및 전면 커버 또는 패브릭 및 가죽 옵션의 풀 커버로 제공됩니다. 의자는 팔걸이가 있든 없든 선택할 수 있으며, 가정 또는 비즈니스 환경에 적합합니다.
+```
+
+## 요약
+
+### 간략한 요약
+
+```{python}
+#| eval: false
+
+prod_review = """
+딸의 생일 선물로 이 팬더 봉제 인형을 받았는데, 딸이 좋아해서 어디든 가지고 다닙니다. 부드럽고 매우 귀엽고 얼굴이 친근한 표정입니다. 하지만 제가 지불한 금액에 비해 조금 작습니다. 같은 가격에 더 큰 다른 옵션이 있을 것 같아요. 예상보다 하루 일찍 도착해서 아이에게 주기 전에 제가 직접 가지고 놀 수 있었어요.
+"""
+
+prompt = f"""
+전자상거래 사이트의 제품 후기에 대한 간단한 요약을 작성하는 것이 과제입니다. 
+
+백틱 세 개로 구분된 아래 후기를 최대 30단어 이내로 요약하세요. 
+후기: ```{prod_review}```
+"""
+
+response = get_completion(prompt)
+print(response)
+```
+
+```
+작지만 귀여운 팬더 봉제인형, 얼굴이 친근하고 부드러워 딸이 좋아합니다. 가격 대비 크기는 작지만, 예상보다 일찍 도착해 기쁩니다.
+```
+
+### 배송/배달 초점 두고 요약
+
+
+```{python}
+#| eval: false
+
+prompt = f"""
+전자상거래 사이트의 제품 후기에 대한 간단한 요약을 작성하는 것이 과제입니다. 
+
+백틱 세 개로 구분된 아래 후기를 제품의 배송 및 배송과 관련된 모든 측면에 중점을 두어 최대 30단어 이내로 요약하세요. 
+후기: ```{prod_review}```
+"""
+
+response = get_completion(prompt)
+print(response)
+
+```
+
+```
+부드럽고 귀여운 팬더 봉제 인형, 조금 작은 가격에 비해, 빠른 배송.
+```
+
+### 가격에 초점 두고 요약
+
+
+```{python}
+#| eval: false
+
+prompt = f"""
+전자상거래 사이트의 제품 후기에 대한 간단한 요약을 작성하는 것이 과제입니다. 
+
+백틱 세 개로 구분된 아래 후기를 제품의 가격과 지각된 가치와 관련된 모든 측면에 중점을 두어 최대 30단어 이내로 요약하세요. 
+후기: ```{prod_review}```
+"""
+
+response = get_completion(prompt)
+print(response)
+
+```
+
+```
+부드럽고 귀여운 팬더 봉제 인형은 딸이 좋아하며, 예상보다 일찍 도착하여 만족스러웠지만, 가격 대비 크기가 작아서 다른 옵션을 고려할 수 있을 것 같다.
+```
+
+### 요약 대신 추출
+
+```{python}
+#| eval: false
+
+prompt = f"""
+너의 임무는 전자상거래 사이트의 제품 리뷰에서 관련 정보를 추출하여 배송 부서에 피드백을 제공하는 것입니다. 
+
+백틱 세 개로 구분된 아래 후기에서 배송과 배달과 관련된 정보를 최대 30단어 이내로 추출하세요.
+
+후기: ```{prod_review}```
+"""
+
+response = get_completion(prompt)
+print(response)
+```
+
+```
+배송과 배달과 관련된 정보: 예상보다 하루 일찍 도착
+```
+
+## 추론
+
+### 감성(긍/부정)
+
+```{python}
+#| eval: false
+
+lamp_review = """
+침실을 위한 멋진 램프가 필요했는데, 이 제품은 수납공간이 더 있고 가격대가 너무 높지 않았어요. 빠르게 받았습니다.  배송 중에 램프 줄이 끊어졌는데, 회사에서 기꺼이 새 것을 보내주었습니다. 그것도 며칠 안에 도착했어요. 조립도 쉬웠습니다.  누락된 부품이 있어서 고객지원팀에 연락했더니 매우 빠르게 누락된 부품을 보내주었어요! Lumina는 고객과 제품을 아끼는 훌륭한 회사인 것 같습니다!!!
+"""
+
+prompt = f"""
+세 개의 백틱으로 구분된 다음 제품 후기에 드러난 감정은 무엇입니까?
+
+후기 텍스트: '''{lamp_review}'''
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+긍정적인 감정 (만족, 감사, 칭찬)
+```
+
+### 감정 유형 식별
+
+```{python}
+#| eval: false
+
+prompt = f"""
+세 개의 백틱으로 구분된 다음 제품 후기 작성자가 표현하고 있는 감정 목록을 식별합니다. 
+목록에 5개 이하의 항목을 포함시키십시오. 쉼표로 구분된 소문자 단어 목록으로 답안의 형식을 지정합니다.
+
+
+후기 텍스트: '''{lamp_review}'''
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+만족, 감사, 칭찬, 빠른, 친절
+```
+
+### 고객 분노
+
+```{python}
+#| eval: false
+
+prompt = f"""
+다음 제품 후기 작성자가 분노를 표현하고 있나요?
+후기는 백틱 세 번으로 구분됩니다. 
+예 또는 아니오로 답하세요.
+
+
+후기 텍스트: '''{lamp_review}'''
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+아니오.
+```
+
+### 제품과 회사명 추출
+
+
+```{python}
+#| eval: false
+
+prompt = f"""
+
+후기 텍스트에서 다음 항목을 식별합니다: 
+- 리뷰어가 구매한 아이템
+- 해당 아이템을 만든 회사
+
+후기는 백틱 세 개로 구분합니다. 
+"Item" 및 "Brand"를 키로 사용하여 응답 형식을 JSON 객체로 지정합니다. 
+정보가 없는 경우 "알 수 없음"을 값으로 사용합니다.
+응답은 가능한 한 짧게 작성하세요.
+
+후기 텍스트: '''{lamp_review}'''
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+{
+    "Item": "램프",
+    "Brand": "Lumina"
+}
+```
+
+### 한번에 처리
+
+```{python}
+#| eval: false
+
+prompt = f"""
+후기 텍스트에서 다음 항목을 식별합니다: 
+- 감정(긍정 또는 부정)
+- 리뷰 작성자가 분노를 표현하고 있나요? (참 또는 거짓)
+- 리뷰어가 구매한 아이템
+- 아이템을 만든 회사
+
+후기는 백틱 세 개로 구분됩니다. 
+응답의 형식은 다음을 사용하여 JSON 객체로 지정합니다. 
+"감정", "분노", "아이템", "브랜드"를 키로 사용하여 JSON 객체로 형식화합니다.
+정보가 없는 경우 값으로 "알 수 없음"을 사용합니다.
+응답은 가능한 한 짧게 작성하세요.
+분노 값의 형식을 부울로 지정합니다.
+
+
+후기 텍스트: '''{lamp_review}'''
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+{
+    "감정": "긍정",
+    "분노": false,
+    "아이템": "램프",
+    "브랜드": "Lumina"
+}
+```
+
+### 토픽 추론
+
+```{python}
+#| eval: false
+
+story = """
+최근 정부에서 실시한 설문조사에서 공공 부문 직원들에게 자신이 근무하는 부서에 대한 만족도를 평가해 달라는 요청을 받았습니다. 그 결과 가장 인기 있는 부서는 만족도가 가장 높은 부서로 나타났습니다.
+
+NASA의 한 직원인 존 스미스는 조사 결과에 대해 다음과 같이 말했습니다, "NASA가 1위에 오른 것이 놀랍지 않습니다. 훌륭한 사람들과 함께 일하기 좋은 곳이며 놀라운 기회를 제공합니다. 이렇게 혁신적인 조직의 일원이 된 것이 자랑스럽습니다."
+
+이번 결과는 NASA의 경영진도 환영했습니다, 톰 존슨(Tom Johnson) 국장은 "우리 직원들이 직원들이 NASA에서의 업무에 만족하고 있다는 소식을 듣게 되어 기쁩니다. 우리에게는 목표를 달성하기 위해 지칠 줄 모르고 일하고 있는 목표를 달성하기 위해 끊임없이 노력하는 재능 있고 헌신적인 팀이 있습니다. 성과를 내고 있습니다."
+
+설문조사에 따르면 다음과 같은 사실도 밝혀졌습니다. 사회보장국은 만족도가 가장 낮았습니다. 직원의 45%만이 자신의 업무에 만족한다고 답했습니다. 자신의 직업에 만족한다고 답했습니다. 정부는 다음과 같이 약속했습니다. 설문조사에서 직원들이 제기한 우려 사항을 해결하고 모든 부서의 직무 만족도를 개선하기 위해 노력하겠다고 약속했습니다.
+"""
+
+prompt = f"""
+다음 텍스트에서 논의되고 있는 5개의 주제를 결정하십시오. 
+세 개의 백틱으로 구분된 다음 텍스트에서 5개의 주제를 정합니다.
+
+각 항목은 최대 두 단어 길이로 작성합니다. 
+
+쉼표로 구분된 항목 목록으로 응답 형식을 지정합니다.
+
+텍스트: '''{story}'''
+"""
+response = get_completion(prompt)
+print(response)
+
+```
+
+
+```
+1. 공공 부문 직원들의 만족도 조사
+2. NASA 직원들의 만족도
+3. 사회보장국 직원들의 만족도
+4. 정부의 대응 조치
+5. 조직의 성과와 직원 만족도의 관계
+```
+
+## 변환
+
+거대언어모형(LLM)을 활용한 변환(Transformation)에는 언어 번역, 맞춤법 및 문법 검사, 어조 조정, 형식 변환과 같은 텍스트 변환 작업이 포함된다.
+
+

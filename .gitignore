@@ -14,3 +14,6 @@ code/misinformation/venv/
 
 data/LibriSpeech
 *.bin
+
+.env
+data/001.문서요약텍스트_sample

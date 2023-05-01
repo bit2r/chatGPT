@@ -2,7 +2,7 @@
 title: "chatGPT"
 subtitle: "프롬프트 실무"
 description: | 
-  실무에서 사용되는 프롬프트 실제 사례를 살펴보자.
+  챗GPT의 텍스트 생성에 환각/환영(hallucination) 발생에 유의하여 일상생활 활용에 대해서 법률, 건강, 투자, 학업 등 챗GPT를 효과적으로 사용할 수 있는 방안을 살펴보자.
 author:
   - name: 이광춘
     url: https://www.linkedin.com/in/kwangchunlee/
