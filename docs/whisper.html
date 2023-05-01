@@ -72,7 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -432,9 +435,14 @@ ga('send', {
   </ul>
 </li>
   <li><a href="#whisper-stt" id="toc-whisper-stt" class="nav-link" data-scroll-target="#whisper-stt"><span class="header-section-number">2</span> <code>whisper</code> STT</a></li>
-  <li><a href="#%EB%8F%99%EC%98%81%EC%83%81%EC%97%90%EC%84%9C-%EC%98%A4%EB%94%94%EC%98%A4-%EC%B6%94%EC%B6%9C" id="toc-동영상에서-오디오-추출" class="nav-link" data-scroll-target="#%EB%8F%99%EC%98%81%EC%83%81%EC%97%90%EC%84%9C-%EC%98%A4%EB%94%94%EC%98%A4-%EC%B6%94%EC%B6%9C"><span class="header-section-number">3</span> 동영상에서 오디오 추출</a></li>
-  <li><a href="#stt" id="toc-stt" class="nav-link" data-scroll-target="#stt"><span class="header-section-number">4</span> STT</a></li>
-  <li><a href="#srt" id="toc-srt" class="nav-link" data-scroll-target="#srt"><span class="header-section-number">5</span> SRT</a></li>
+  <li>
+<a href="#%EC%B1%97gpt%EC%99%80-%EC%98%A4%EC%A0%95%EB%B3%B4" id="toc-챗gpt와-오정보" class="nav-link" data-scroll-target="#%EC%B1%97gpt%EC%99%80-%EC%98%A4%EC%A0%95%EB%B3%B4"><span class="header-section-number">3</span> 챗GPT와 오정보</a>
+  <ul class="collapse">
+<li><a href="#%EB%8F%99%EC%98%81%EC%83%81%EC%97%90%EC%84%9C-%EC%98%A4%EB%94%94%EC%98%A4-%EC%B6%94%EC%B6%9C" id="toc-동영상에서-오디오-추출" class="nav-link" data-scroll-target="#%EB%8F%99%EC%98%81%EC%83%81%EC%97%90%EC%84%9C-%EC%98%A4%EB%94%94%EC%98%A4-%EC%B6%94%EC%B6%9C"><span class="header-section-number">3.1</span> 동영상에서 오디오 추출</a></li>
+  <li><a href="#stt" id="toc-stt" class="nav-link" data-scroll-target="#stt"><span class="header-section-number">3.2</span> STT</a></li>
+  <li><a href="#srt" id="toc-srt" class="nav-link" data-scroll-target="#srt"><span class="header-section-number">3.3</span> SRT</a></li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -612,17 +620,48 @@ ga('send', {
 </div>
 </div>
 </div>
-</section><section id="동영상에서-오디오-추출" class="level1" data-number="3"><h1 data-number="3">
-<span class="header-section-number">3</span> 동영상에서 오디오 추출</h1>
-<p><code>ffmpeg</code> 프로그램을 사용하면 오디오를 추출할 수 있다. MP4 파일에서 16비트 깊이와 16kHz 샘플링 레이트로 오디오를 추출하여야 <code>whisper</code>에 입력값으로 넣을 수 있는 <code>.wav</code> 파일이 된다.</p>
+</section><section id="챗gpt와-오정보" class="level1 page-columns page-full" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> 챗GPT와 오정보</h1>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="https://statkclee.github.io/deep-learning/rconf-keynote.html">한국 R 컨퍼런스 - Julia Silge Keynote번역 (2021-11-17)</a></span></div></div>
+<p>2023년 서울 R 미트업에서 “챗GPT와 오정보(ChatGPT and Misinformation)”를 주제로 워싱턴 대학 제빈 웨스트 교수님을 모시고 특강을 진행했다. 한정된 예산으로 직접 모시지는 못하고 줌(Zoom) 녹화로 대신했다.</p>
+<p>약 1시간 분량의 녹화분량 중 일부 불필요한 부분은 <a href="https://ko.wikipedia.org/wiki/%EC%98%A4%ED%94%88%EC%83%B7">오픈샷 비디오 편집기(OpenShot Video Editor)</a>를 가지고 잘라낸다.</p>
+<p>결국 유튜브 동영상으로 올려 한글 자막을 입히는 것이 최종 목적이기 때문에 <code>.mp4</code> 파일에서 이미지 정보 대신 오디오 정보만 <code>.wav</code>, <code>.mp3</code> 파일로 추출해서 뽑아낸다.</p>
+<p>STT(Speech-to-Text) 영어 음성을 영어 텍스트로 전사(transcribe)해야 하는 작업이 필요하기 때문에 다양한 모델이 있지만 성능이 좋다고 인정받는 OpenAI Whisper 를 사용한다.</p>
+<p><a href="https://platform.openai.com/docs/models/whisper">OpenAI Whisper API</a>는 OpenAI의 API를 통해 사용할 수 있는 음성-텍스트 변환 모델이며 Whisper의 <a href="https://github.com/openai/whisper">오픈 소스 버전은 Github</a>에서 사용할 수 있다. 오픈 소스 버전의 Whisper와 OpenAI의 API를 통해 제공되는 버전은 차이가 없지만, OpenAI의 Whisper API를 사용할 경우, 시스템 전반에 걸친 일련의 최적화를 통해 OpenAI는 12월부터 ChatGPT의 비용을 90% 저렴하게 이용할 수 있으며,개발자는 API에서 오픈 소스 Whisper 대형-v2 모델을 사용하여 훨씬 빠르고 비용 효율적인 결과를 얻을 수 있다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/whisper_srt.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/whisper_srt.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<section id="동영상에서-오디오-추출" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="동영상에서-오디오-추출">
+<span class="header-section-number">3.1</span> 동영상에서 오디오 추출</h2>
+<p><code>ffmpeg</code> 프로그램을 사용하면 오디오를 추출할 수 있다. MP4 파일에서 16비트 깊이와 16kHz 샘플링 레이트로 오디오를 추출하여야 <code>whisper</code>에 입력값으로 넣을 수 있는 <code>.wav</code> 파일이 된다. 두가지 조건(16비트 깊이와 16kHz 샘플링)이 충족되지 않을 경우 Whisper에서 처리할 수 없다는 오류가 나온다.</p>
+<div class="columns">
+<div class="column">
+<section id="mp4에서-.wav-추출" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="mp4에서-.wav-추출">
+<code>.mp4</code>에서 <code>.wav</code> 추출</h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ffmpeg</span> <span class="at">-i</span> misinformation.mp4 <span class="at">-acodec</span> pcm_s16le <span class="at">-ar</span> 16000 <span class="at">-ac</span> 2 misinformation_16.wav</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</div><div class="column">
+<section id="mp4에서-.mp3-추출" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="mp4에서-.mp3-추출">
+<code>.mp4</code>에서 <code>.mp3</code> 추출</h3>
 <p><code>.mp3</code> 확장자를 줄 경우 오디오를 <code>mp3</code> 파일로 추출하여 파일크기를 크게 줄일 수 있다.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ffmpeg</span> <span class="at">-i</span> misinformation.mp4 <span class="at">-acodec</span> pcm_s16le <span class="at">-ar</span> 16000 <span class="at">-ac</span> 2 misinformation_16.mp3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="stt" class="level1" data-number="4"><h1 data-number="4">
-<span class="header-section-number">4</span> STT</h1>
-<p><code>2.6 GB</code> 영어 <code>medium.en</code> 모델은 알 수 없는 오류로 인해 <code>base.en</code> 모델을 사용하여 영어 음성에서 텍스트를 추출한다.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ffmpeg</span> <span class="at">-i</span> misinformation.mp4 <span class="at">-acodec</span> pcm_s16le <span class="at">-ar</span> 16000 <span class="at">-ac</span> 2 misinformation.mp3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</div>
+</div>
+<p>전체 <code>.mp3</code> 파일이 너무 길어 <code>ffmpeg</code>를 사용해서 30분부터 30초만 추출하는 코드를 작성해서 들어보자.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ffmpeg</span> <span class="at">-i</span> misinformation.mp3 <span class="at">-ss</span> 00:30:30 <span class="at">-t</span> 00:00:30 <span class="at">-vn</span> <span class="at">-codec:a</span> libmp3lame <span class="at">-qscale:a</span> 2 misinformation_short.mp3</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell">
-<details><summary>코드</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bnosac/audio.whisper">audio.whisper</a></span><span class="op">)</span></span>
+<details><summary>코드</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">embedr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/embedr/man/embed_audio.html">embed_audio</a></span><span class="op">(</span><span class="st">"data/LibriSpeech/misinformation_short.mp3"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<audio controls=""><source src="data/LibriSpeech/misinformation_short.mp3" type="audio/mpeg"> Your browser does not support the audio tag;  for browser support, please see:  https://www.w3schools.com/tags/tag_audio.asp </audio>
+</div>
+</div>
+</section><section id="stt" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="stt">
+<span class="header-section-number">3.2</span> STT</h2>
+<p>16비트 깊이와 16kHz 샘플링 조건을 갖춘 <code>.wav</code> 파일이 준비되면 다음 단계로 음성-텍스트 변환 Whisper 모델을 선정하여 텍스트 전사 작업을 수행한다. 윈도우 10 에서 <code>2.6 GB</code> 영어 <code>medium.en</code> 모델은 알 수 없는 오류로 인해 <code>base.en</code> 모델을 사용하여 영어 음성에서 텍스트를 추출했다.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bnosac/audio.whisper">audio.whisper</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">medium_model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/audio.whisper/man/whisper.html">whisper</a></span><span class="op">(</span><span class="st">"base.en"</span><span class="op">)</span></span>
 <span></span>
@@ -630,18 +669,20 @@ ga('send', {
 <span>                                language <span class="op">=</span> <span class="st">"en"</span>, n_threads <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p>Whisper 모델을 통해 나온 음성-텍스트 변환 결과를 로컬 파일에 저장하여 점검한다.</p>
 <div class="cell">
-<details><summary>코드</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<details><summary>코드</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="va">misinformation_trans</span><span class="op">$</span><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{from} ==&gt; {to} {text}"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_lines.html">write_lines</a></span><span class="op">(</span><span class="st">"data/LibriSpeech/misinformation_oneline.txt"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section><section id="srt" class="level1" data-number="5"><h1 data-number="5">
-<span class="header-section-number">5</span> SRT</h1>
+</section><section id="srt" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="srt">
+<span class="header-section-number">3.3</span> SRT</h2>
+<p>몇번의 시행착오를 거쳐 순번, 시작시각, 종료시각, 텍스트로 구성된 파일을 <code>.srt</code> 파일 형태로 변환하여 영어 자막작업을 마무리한다.</p>
 <div class="cell">
-<details><summary>코드</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mis_srt_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_lines.html">read_lines</a></span><span class="op">(</span><span class="st">"data/LibriSpeech/misinformation_proof_reading.txt"</span><span class="op">)</span></span>
+<details><summary>코드</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mis_srt_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_lines.html">read_lines</a></span><span class="op">(</span><span class="st">"data/LibriSpeech/misinformation_proof_reading.txt"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mis_srt_tbl</span> <span class="op">&lt;-</span> <span class="va">mis_srt_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -655,11 +696,50 @@ ga('send', {
 <span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_lines.html">write_lines</a></span><span class="op">(</span><span class="st">"data/LibriSpeech/misinformation_proof_reading_srt.srt"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p>유튜브 동영상 영문 자막으로 사용될 <code>.srt</code> 자막 파일을 불러읽어와서 최종 작업결과를 살펴본다.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">mis_srt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_lines.html">read_lines</a></span><span class="op">(</span><span class="st">"data/LibriSpeech/misinformation.srt"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mis_srt</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span>
+<span><span class="co">#&gt;  [1] "1 "                                                                                          </span></span>
+<span><span class="co">#&gt;  [2] "00:00:00.000 --&gt; 00:00:27.520 "                                                              </span></span>
+<span><span class="co">#&gt;  [3] "Welcome everybody to our Seoul R Online seminar where we explore various ideas and"          </span></span>
+<span><span class="co">#&gt;  [4] ""                                                                                            </span></span>
+<span><span class="co">#&gt;  [5] "2 "                                                                                          </span></span>
+<span><span class="co">#&gt;  [6] "00:00:27.520 --&gt; 00:00:33.360 "                                                              </span></span>
+<span><span class="co">#&gt;  [7] "practices of data science. We are really happy today to have Jevin West from the University" </span></span>
+<span><span class="co">#&gt;  [8] ""                                                                                            </span></span>
+<span><span class="co">#&gt;  [9] "3 "                                                                                          </span></span>
+<span><span class="co">#&gt; [10] "00:00:33.360 --&gt; 00:00:43.040 "                                                              </span></span>
+<span><span class="co">#&gt; [11] "of Washington with us to talk about ChatGPT and misinformation. I'm sorry, I'll begin again."</span></span>
+<span><span class="co">#&gt; [12] ""                                                                                            </span></span>
+<span><span class="co">#&gt; [13] "4 "                                                                                          </span></span>
+<span><span class="co">#&gt; [14] "00:00:43.040 --&gt; 00:00:46.480 "                                                              </span></span>
+<span><span class="co">#&gt; [15] "Okay, no problem. No, I do this a lot of times."                                             </span></span>
+<span><span class="co">#&gt; [16] ""                                                                                            </span></span>
+<span><span class="co">#&gt; [17] "5 "                                                                                          </span></span>
+<span><span class="co">#&gt; [18] "00:00:46.480 --&gt; 00:00:53.680 "                                                              </span></span>
+<span><span class="co">#&gt; [19] "Welcome everybody to our Seoul R Online seminar. We explore various ideas and"               </span></span>
+<span><span class="co">#&gt; [20] ""</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/magick/">magick</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mis_mp4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/magick/reference/editing.html">image_read_video</a></span><span class="op">(</span><span class="st">"data/LibriSpeech/misinformation.mp4"</span>,  fps <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/misinformation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/misinformation.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
 
 
 <!-- -->
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1058,247 +1138,322 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "음성인식(Whisper)"</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>html_tag_audio <span class="ot">&lt;-</span> <span class="cf">function</span>(file, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"wav"</span>)) {</span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>  type <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(type)</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>  htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">audio</span>(</span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">controls =</span> <span class="st">""</span>,</span>
-<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">source</span>(</span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">src =</span> file,</span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"audio/{type}"</span>, <span class="at">type =</span> type)</span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="fu"># 음성인식 데이터셋</span></span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">OpenSLR</span><span class="co">](https://www.openslr.org/index.html)</span>은 음성 인식을 위한 학습용 말뭉치, 음성 인식 관련 소프트웨어 등 음성 및 언어 자원을 제공하고 있다.</span>
-<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## 오디오 표본</span></span>
-<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">대규모(1000시간) 영어 음성 읽기 말뭉치</span><span class="co">](https://www.openslr.org/12)</span>에서 영어 음성 읽기 하나를 추출해서 관련 사항을 정답문과 비교해보자.</span>
-<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>:::::::{.column-body-outset}</span>
-<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>:::::{.columns}</span>
-<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
-<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a><span class="fu">### 영어 음성 대본 {.unnumbered}</span></span>
-<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">대규모(1000시간) 영어 음성 읽기 말뭉치</span><span class="co">](https://www.openslr.org/12)</span>에 포함된 영어음성대본에서 텍스트를 추출해서 다음에 영어 음성에서 텍스트 추출을 비교한다.</span>
-<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="co"># fs::dir_ls(path="data/LibriSpeech/dev-clean/1993/147149")</span></span>
-<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>trans_txt <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/LibriSpeech/dev-clean/1993/147149/1993-147149.trans.txt"</span>) </span>
-<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="co"># trans_0011_str &lt;- trans_txt[str_detect(trans_txt, "0011")]</span></span>
-<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a><span class="co"># trans_str &lt;- str_extract_all(trans_0011_str, "[a-zA-Z].+")[[1]]</span></span>
-<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>trans_0011 <span class="ot">&lt;-</span> trans_txt <span class="sc">%&gt;%</span> </span>
-<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(value, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"순번"</span>, <span class="st">"텍스트"</span>), <span class="at">sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">s"</span>, <span class="at">extra =</span> <span class="st">"merge"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(텍스트 <span class="ot">=</span> <span class="fu">str_to_lower</span>(텍스트)) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(순번, <span class="st">"0011"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(텍스트)</span>
-<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="in">`r trans_0011`</span></span>
-<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
-<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a><span class="fu">### 영어 음성 {.unnumbered}</span></span>
-<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a>영어 음성을 들어보자. <span class="in">`.flac`</span> 파일을 <span class="in">`av`</span> 패키지 <span class="in">`av_audio_convert()`</span> 함수로 </span>
-<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a><span class="in">`.mp3`</span> 혹은 <span class="in">`.wav`</span> 파일 변환이 가능하다.</span>
-<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(av)</span>
-<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(embedr)</span>
-<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a>audio_file <span class="ot">&lt;-</span> <span class="st">"data/LibriSpeech/dev-clean/1993/147149/1993-147149-0011.flac"</span></span>
-<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a>av<span class="sc">::</span><span class="fu">av_audio_convert</span>(audio_file, <span class="at">output =</span> <span class="st">"data/whisper_before.mp3"</span>, </span>
-<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a>                     <span class="at">format =</span> <span class="st">"mp3"</span>, <span class="at">sample_rate =</span> <span class="dv">16000</span>)</span>
-<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a>whisper_before_mp3 <span class="ot">&lt;-</span> av<span class="sc">::</span><span class="fu">read_audio_bin</span>(<span class="st">"data/whisper_before.mp3"</span>)</span>
-<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a>embedr<span class="sc">::</span><span class="fu">embed_audio</span>(<span class="st">"data/whisper_before.mp3"</span>)</span>
-<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a>:::::</span>
-<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>:::::::</span>
-<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a><span class="fu"># `whisper` STT</span></span>
-<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a>영어 음성에서 텍스트로 전환하는 작업을 STT(Speech-to-Text)라고 부르는데 </span>
-<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a>최근 성능도 많이 좋아졌고 그중 챗GPT 인기를 얻고 있는 <span class="in">`whisper`</span> API를 사용해서 </span>
-<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a>영어 음성을 텍스트로 변환할 수도 있고, C/C++로 OpenAI의 Whisper 모델 이식한 </span>
-<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">whisper.cpp</span><span class="co">](https://github.com/ggerganov/whisper.cpp)</span> 모델을 사용하면 CPU로 </span>
-<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a>무료로 사용가능하다.</span>
-<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">`audio.whisper`</span><span class="co">](https://github.com/bnosac/audio.whisper)</span> 패키지가 최근에 출시되어 </span>
-<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a>이를 사용하면 수월히 R에서도 STT 작업을 수행할 수 있다.</span>
-<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a>| 모형                   | 언어                        |  크기  | 필요 RAM 크기 |</span>
-<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a>|:-----------------------|:---------------------------:|-------:|-----------:|</span>
-<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a>| <span class="in">`tiny`</span> &amp; <span class="in">`tiny.en`</span>     | Multilingual &amp; English only | 75 MB  | 390 MB     |</span>
-<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a>| <span class="in">`base`</span> &amp; <span class="in">`base.en`</span>     | Multilingual &amp; English only | 142 MB | 500 MB     |</span>
-<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a>| <span class="in">`small`</span> &amp; <span class="in">`small.en`</span>   | Multilingual &amp; English only | 466 MB | 1.0 GB     |</span>
-<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a>| <span class="in">`medium`</span> &amp; <span class="in">`medium.en`</span> | Multilingual &amp; English only | 1.5 GB | 2.6 GB     |</span>
-<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a>| <span class="in">`large-v1`</span> &amp; <span class="in">`large`</span>   | Multilingual                | 2.9 GB | 4.7 GB     |</span>
-<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a><span class="in">`whisper()`</span> 입력 오디오는 16비트 <span class="in">`.wav`</span> 파일형식만 가능하다. </span>
-<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a>따라서 <span class="in">`av`</span> 패키지 <span class="in">`av_audio_convert()`</span> 함수로 원본 파일(<span class="in">`.flac`</span>)을 <span class="in">`.wav`</span> 파일로 변환한 후에 </span>
-<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a>STT 작업을 수행한다.</span>
-<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a>:::::::{.column-body-outset}</span>
-<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a>:::::{.columns}</span>
-<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
-<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a><span class="fu">### `.flac` &amp;rarr; `.wav` {.unnumbered}</span></span>
-<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a><span class="in">`.flac`</span> 파일을 <span class="in">`.wav`</span> 파일로 변환시킨다.</span>
-<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(audio.whisper)</span>
-<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a>av<span class="sc">::</span><span class="fu">av_audio_convert</span>(audio_file, <span class="at">output =</span> <span class="st">"data/whisper_before.wav"</span>, </span>
-<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a>                     <span class="at">format =</span> <span class="st">"wav"</span>, <span class="at">sample_rate =</span> <span class="dv">16000</span>)</span>
-<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
-<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a><span class="fu">### STT 결과 {.unnumbered}</span></span>
-<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a><span class="in">`base.en`</span> 모델을 사용해서 STT로 영어음성에서 텍스트를 추출한다.</span>
-<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">whisper</span>(<span class="st">"base.en"</span>)</span>
-<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a>trans <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="st">"data/whisper_before.wav"</span>, <span class="at">language =</span> <span class="st">"en"</span>, <span class="at">n_threads =</span> <span class="dv">2</span>)</span>
-<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a>trans<span class="sc">$</span>data</span>
-<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a><span class="in">`r trans$data`</span></span>
-<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a>:::::</span>
-<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a>:::::::</span>
-<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a><span class="fu"># 동영상에서 오디오 추출</span></span>
-<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a><span class="in">`ffmpeg`</span> 프로그램을 사용하면 오디오를 추출할 수 있다.</span>
-<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a>MP4 파일에서 16비트 깊이와 16kHz 샘플링 레이트로 오디오를 추출하여야 <span class="in">`whisper`</span>에 입력값으로 넣을 수 있는 <span class="in">`.wav`</span> 파일이 된다.</span>
-<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a><span class="ex">ffmpeg</span> <span class="at">-i</span> misinformation.mp4 <span class="at">-acodec</span> pcm_s16le <span class="at">-ar</span> 16000 <span class="at">-ac</span> 2 misinformation_16.wav</span>
-<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a><span class="in">`.mp3`</span> 확장자를 줄 경우 오디오를 <span class="in">`mp3`</span> 파일로 추출하여 파일크기를 크게 줄일 수 있다.</span>
-<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a><span class="ex">ffmpeg</span> <span class="at">-i</span> misinformation.mp4 <span class="at">-acodec</span> pcm_s16le <span class="at">-ar</span> 16000 <span class="at">-ac</span> 2 misinformation_16.mp3</span>
-<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a><span class="fu"># STT</span></span>
-<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a><span class="in">`2.6 GB`</span> 영어 <span class="in">`medium.en`</span> 모델은 알 수 없는 오류로 인해  <span class="in">`base.en`</span> 모델을 사용하여 영어 음성에서 텍스트를 추출한다.</span>
-<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(audio.whisper)</span>
-<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a>medium_model <span class="ot">&lt;-</span> <span class="fu">whisper</span>(<span class="st">"base.en"</span>)</span>
-<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a>misinformation_trans <span class="ot">&lt;-</span> <span class="fu">predict</span>(medium_model, <span class="at">newdata =</span> <span class="st">"data/LibriSpeech/misinformation_16.wav"</span>, </span>
-<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a>                                <span class="at">language =</span> <span class="st">"en"</span>, <span class="at">n_threads =</span> <span class="dv">2</span>)</span>
-<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-229"><a href="#cb10-229" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a>misinformation_trans<span class="sc">$</span>data <span class="sc">%&gt;%</span> </span>
-<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{from} ==&gt; {to} {text}"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(data) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_lines</span>(<span class="st">"data/LibriSpeech/misinformation_oneline.txt"</span>)</span>
-<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a><span class="fu"># SRT</span></span>
-<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a>mis_srt_raw <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/LibriSpeech/misinformation_proof_reading.txt"</span>)</span>
-<span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-245"><a href="#cb10-245" aria-hidden="true" tabindex="-1"></a>mis_srt_tbl <span class="ot">&lt;-</span> mis_srt_raw <span class="sc">%&gt;%</span> </span>
-<span id="cb10-246"><a href="#cb10-246" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb10-247"><a href="#cb10-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(value, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"start"</span>, <span class="st">"end"</span>),   <span class="at">sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">s==&gt;</span><span class="sc">\\</span><span class="st">s"</span>, <span class="at">extra =</span> <span class="st">"merge"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-248"><a href="#cb10-248" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(end,   <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"end"</span>, <span class="st">"subtitle"</span>), <span class="at">sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">s"</span>, <span class="at">extra =</span> <span class="st">"merge"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-249"><a href="#cb10-249" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">subtitle =</span> <span class="fu">str_trim</span>(subtitle))</span>
-<span id="cb10-250"><a href="#cb10-250" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb10-251"><a href="#cb10-251" aria-hidden="true" tabindex="-1"></a>mis_srt_tbl <span class="sc">%&gt;%</span> </span>
-<span id="cb10-252"><a href="#cb10-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">srt =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{name} </span><span class="sc">\n</span><span class="st"> {start} --&gt; {end} </span><span class="sc">\n</span><span class="st"> {subtitle}</span><span class="sc">\n\n</span><span class="st">"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-253"><a href="#cb10-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(srt) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-254"><a href="#cb10-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_lines</span>(<span class="st">"data/LibriSpeech/misinformation_proof_reading_srt.srt"</span>)</span>
-<span id="cb10-255"><a href="#cb10-255" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-256"><a href="#cb10-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-257"><a href="#cb10-257" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode" id="cb14" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "음성인식(Whisper)"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>html_tag_audio <span class="ot">&lt;-</span> <span class="cf">function</span>(file, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"wav"</span>)) {</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>  type <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(type)</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>  htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">audio</span>(</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">controls =</span> <span class="st">""</span>,</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>    htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">source</span>(</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">src =</span> file,</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>      <span class="at">type =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"audio/{type}"</span>, <span class="at">type =</span> type)</span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a><span class="fu"># 음성인식 데이터셋</span></span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">OpenSLR</span><span class="co">](https://www.openslr.org/index.html)</span>은 음성 인식을 위한 학습용 말뭉치, 음성 인식 관련 소프트웨어 등 음성 및 언어 자원을 제공하고 있다.</span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## 오디오 표본</span></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">대규모(1000시간) 영어 음성 읽기 말뭉치</span><span class="co">](https://www.openslr.org/12)</span>에서 영어 음성 읽기 하나를 추출해서 관련 사항을 정답문과 비교해보자.</span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>:::::::{.column-body-outset}</span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>:::::{.columns}</span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a><span class="fu">### 영어 음성 대본 {.unnumbered}</span></span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">대규모(1000시간) 영어 음성 읽기 말뭉치</span><span class="co">](https://www.openslr.org/12)</span>에 포함된 영어음성대본에서 텍스트를 추출해서 다음에 영어 음성에서 텍스트 추출을 비교한다.</span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a><span class="co"># fs::dir_ls(path="data/LibriSpeech/dev-clean/1993/147149")</span></span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a>trans_txt <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/LibriSpeech/dev-clean/1993/147149/1993-147149.trans.txt"</span>) </span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a><span class="co"># trans_0011_str &lt;- trans_txt[str_detect(trans_txt, "0011")]</span></span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a><span class="co"># trans_str &lt;- str_extract_all(trans_0011_str, "[a-zA-Z].+")[[1]]</span></span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>trans_0011 <span class="ot">&lt;-</span> trans_txt <span class="sc">%&gt;%</span> </span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(value, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"순번"</span>, <span class="st">"텍스트"</span>), <span class="at">sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">s"</span>, <span class="at">extra =</span> <span class="st">"merge"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(텍스트 <span class="ot">=</span> <span class="fu">str_to_lower</span>(텍스트)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-90"><a href="#cb14-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(순번, <span class="st">"0011"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-91"><a href="#cb14-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(텍스트)</span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a><span class="in">`r trans_0011`</span></span>
+<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a><span class="fu">### 영어 음성 {.unnumbered}</span></span>
+<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a>영어 음성을 들어보자. <span class="in">`.flac`</span> 파일을 <span class="in">`av`</span> 패키지 <span class="in">`av_audio_convert()`</span> 함수로 </span>
+<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a><span class="in">`.mp3`</span> 혹은 <span class="in">`.wav`</span> 파일 변환이 가능하다.</span>
+<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(av)</span>
+<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(embedr)</span>
+<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a>audio_file <span class="ot">&lt;-</span> <span class="st">"data/LibriSpeech/dev-clean/1993/147149/1993-147149-0011.flac"</span></span>
+<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a>av<span class="sc">::</span><span class="fu">av_audio_convert</span>(audio_file, <span class="at">output =</span> <span class="st">"data/whisper_before.mp3"</span>, </span>
+<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a>                     <span class="at">format =</span> <span class="st">"mp3"</span>, <span class="at">sample_rate =</span> <span class="dv">16000</span>)</span>
+<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a>whisper_before_mp3 <span class="ot">&lt;-</span> av<span class="sc">::</span><span class="fu">read_audio_bin</span>(<span class="st">"data/whisper_before.mp3"</span>)</span>
+<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a>embedr<span class="sc">::</span><span class="fu">embed_audio</span>(<span class="st">"data/whisper_before.mp3"</span>)</span>
+<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-120"><a href="#cb14-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-121"><a href="#cb14-121" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a>:::::::</span>
+<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a><span class="fu"># `whisper` STT</span></span>
+<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a>영어 음성에서 텍스트로 전환하는 작업을 STT(Speech-to-Text)라고 부르는데 </span>
+<span id="cb14-130"><a href="#cb14-130" aria-hidden="true" tabindex="-1"></a>최근 성능도 많이 좋아졌고 그중 챗GPT 인기를 얻고 있는 <span class="in">`whisper`</span> API를 사용해서 </span>
+<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a>영어 음성을 텍스트로 변환할 수도 있고, C/C++로 OpenAI의 Whisper 모델 이식한 </span>
+<span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">whisper.cpp</span><span class="co">](https://github.com/ggerganov/whisper.cpp)</span> 모델을 사용하면 CPU로 </span>
+<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a>무료로 사용가능하다.</span>
+<span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-136"><a href="#cb14-136" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">`audio.whisper`</span><span class="co">](https://github.com/bnosac/audio.whisper)</span> 패키지가 최근에 출시되어 </span>
+<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a>이를 사용하면 수월히 R에서도 STT 작업을 수행할 수 있다.</span>
+<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-139"><a href="#cb14-139" aria-hidden="true" tabindex="-1"></a>| 모형                   | 언어                        |  크기  | 필요 RAM 크기 |</span>
+<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a>|:-----------------------|:---------------------------:|-------:|-----------:|</span>
+<span id="cb14-141"><a href="#cb14-141" aria-hidden="true" tabindex="-1"></a>| <span class="in">`tiny`</span> &amp; <span class="in">`tiny.en`</span>     | Multilingual &amp; English only | 75 MB  | 390 MB     |</span>
+<span id="cb14-142"><a href="#cb14-142" aria-hidden="true" tabindex="-1"></a>| <span class="in">`base`</span> &amp; <span class="in">`base.en`</span>     | Multilingual &amp; English only | 142 MB | 500 MB     |</span>
+<span id="cb14-143"><a href="#cb14-143" aria-hidden="true" tabindex="-1"></a>| <span class="in">`small`</span> &amp; <span class="in">`small.en`</span>   | Multilingual &amp; English only | 466 MB | 1.0 GB     |</span>
+<span id="cb14-144"><a href="#cb14-144" aria-hidden="true" tabindex="-1"></a>| <span class="in">`medium`</span> &amp; <span class="in">`medium.en`</span> | Multilingual &amp; English only | 1.5 GB | 2.6 GB     |</span>
+<span id="cb14-145"><a href="#cb14-145" aria-hidden="true" tabindex="-1"></a>| <span class="in">`large-v1`</span> &amp; <span class="in">`large`</span>   | Multilingual                | 2.9 GB | 4.7 GB     |</span>
+<span id="cb14-146"><a href="#cb14-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-147"><a href="#cb14-147" aria-hidden="true" tabindex="-1"></a><span class="in">`whisper()`</span> 입력 오디오는 16비트 <span class="in">`.wav`</span> 파일형식만 가능하다. </span>
+<span id="cb14-148"><a href="#cb14-148" aria-hidden="true" tabindex="-1"></a>따라서 <span class="in">`av`</span> 패키지 <span class="in">`av_audio_convert()`</span> 함수로 원본 파일(<span class="in">`.flac`</span>)을 <span class="in">`.wav`</span> 파일로 변환한 후에 </span>
+<span id="cb14-149"><a href="#cb14-149" aria-hidden="true" tabindex="-1"></a>STT 작업을 수행한다.</span>
+<span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-151"><a href="#cb14-151" aria-hidden="true" tabindex="-1"></a>:::::::{.column-body-outset}</span>
+<span id="cb14-152"><a href="#cb14-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-153"><a href="#cb14-153" aria-hidden="true" tabindex="-1"></a>:::::{.columns}</span>
+<span id="cb14-154"><a href="#cb14-154" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb14-155"><a href="#cb14-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-156"><a href="#cb14-156" aria-hidden="true" tabindex="-1"></a><span class="fu">### `.flac` &amp;rarr; `.wav` {.unnumbered}</span></span>
+<span id="cb14-157"><a href="#cb14-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-158"><a href="#cb14-158" aria-hidden="true" tabindex="-1"></a><span class="in">`.flac`</span> 파일을 <span class="in">`.wav`</span> 파일로 변환시킨다.</span>
+<span id="cb14-159"><a href="#cb14-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-163"><a href="#cb14-163" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(audio.whisper)</span>
+<span id="cb14-164"><a href="#cb14-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-165"><a href="#cb14-165" aria-hidden="true" tabindex="-1"></a>av<span class="sc">::</span><span class="fu">av_audio_convert</span>(audio_file, <span class="at">output =</span> <span class="st">"data/whisper_before.wav"</span>, </span>
+<span id="cb14-166"><a href="#cb14-166" aria-hidden="true" tabindex="-1"></a>                     <span class="at">format =</span> <span class="st">"wav"</span>, <span class="at">sample_rate =</span> <span class="dv">16000</span>)</span>
+<span id="cb14-167"><a href="#cb14-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-168"><a href="#cb14-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-169"><a href="#cb14-169" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-170"><a href="#cb14-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-171"><a href="#cb14-171" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb14-172"><a href="#cb14-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-173"><a href="#cb14-173" aria-hidden="true" tabindex="-1"></a><span class="fu">### STT 결과 {.unnumbered}</span></span>
+<span id="cb14-174"><a href="#cb14-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-175"><a href="#cb14-175" aria-hidden="true" tabindex="-1"></a><span class="in">`base.en`</span> 모델을 사용해서 STT로 영어음성에서 텍스트를 추출한다.</span>
+<span id="cb14-176"><a href="#cb14-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-179"><a href="#cb14-179" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-180"><a href="#cb14-180" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">whisper</span>(<span class="st">"base.en"</span>)</span>
+<span id="cb14-181"><a href="#cb14-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-182"><a href="#cb14-182" aria-hidden="true" tabindex="-1"></a>trans <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="st">"data/whisper_before.wav"</span>, <span class="at">language =</span> <span class="st">"en"</span>, <span class="at">n_threads =</span> <span class="dv">2</span>)</span>
+<span id="cb14-183"><a href="#cb14-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-184"><a href="#cb14-184" aria-hidden="true" tabindex="-1"></a>trans<span class="sc">$</span>data</span>
+<span id="cb14-185"><a href="#cb14-185" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-186"><a href="#cb14-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-187"><a href="#cb14-187" aria-hidden="true" tabindex="-1"></a><span class="in">`r trans$data`</span></span>
+<span id="cb14-188"><a href="#cb14-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-189"><a href="#cb14-189" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-190"><a href="#cb14-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-191"><a href="#cb14-191" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb14-192"><a href="#cb14-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-193"><a href="#cb14-193" aria-hidden="true" tabindex="-1"></a>:::::::</span>
+<span id="cb14-194"><a href="#cb14-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-195"><a href="#cb14-195" aria-hidden="true" tabindex="-1"></a><span class="fu"># 챗GPT와 오정보</span></span>
+<span id="cb14-196"><a href="#cb14-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-197"><a href="#cb14-197" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">한국 R 컨퍼런스 - Julia Silge Keynote번역 (2021-11-17)</span><span class="co">](https://statkclee.github.io/deep-learning/rconf-keynote.html)</span>]{.aside}</span>
+<span id="cb14-198"><a href="#cb14-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-199"><a href="#cb14-199" aria-hidden="true" tabindex="-1"></a>2023년 서울 R 미트업에서 "챗GPT와 오정보(ChatGPT and Misinformation)"를 주제로</span>
+<span id="cb14-200"><a href="#cb14-200" aria-hidden="true" tabindex="-1"></a>워싱턴 대학 제빈 웨스트 교수님을 모시고 특강을 진행했다. </span>
+<span id="cb14-201"><a href="#cb14-201" aria-hidden="true" tabindex="-1"></a>한정된 예산으로 직접 모시지는 못하고 줌(Zoom) 녹화로 대신했다.</span>
+<span id="cb14-202"><a href="#cb14-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-203"><a href="#cb14-203" aria-hidden="true" tabindex="-1"></a>약 1시간 분량의 녹화분량 중 일부 불필요한 부분은 <span class="co">[</span><span class="ot">오픈샷 비디오 편집기(OpenShot Video Editor)</span><span class="co">](https://ko.wikipedia.org/wiki/%EC%98%A4%ED%94%88%EC%83%B7)</span>를 가지고 잘라낸다.</span>
+<span id="cb14-204"><a href="#cb14-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-205"><a href="#cb14-205" aria-hidden="true" tabindex="-1"></a>결국 유튜브 동영상으로 올려 한글 자막을 입히는 것이 최종 목적이기 때문에 </span>
+<span id="cb14-206"><a href="#cb14-206" aria-hidden="true" tabindex="-1"></a><span class="in">`.mp4`</span> 파일에서 이미지 정보 대신 오디오 정보만 <span class="in">`.wav`</span>, <span class="in">`.mp3`</span> 파일로 추출해서 뽑아낸다. </span>
+<span id="cb14-207"><a href="#cb14-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-208"><a href="#cb14-208" aria-hidden="true" tabindex="-1"></a>STT(Speech-to-Text) 영어 음성을 영어 텍스트로 전사(transcribe)해야 하는 작업이 </span>
+<span id="cb14-209"><a href="#cb14-209" aria-hidden="true" tabindex="-1"></a>필요하기 때문에 다양한 모델이 있지만 성능이 좋다고 인정받는 OpenAI Whisper 를 </span>
+<span id="cb14-210"><a href="#cb14-210" aria-hidden="true" tabindex="-1"></a>사용한다. </span>
+<span id="cb14-211"><a href="#cb14-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-212"><a href="#cb14-212" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">OpenAI Whisper API</span><span class="co">](https://platform.openai.com/docs/models/whisper)</span>는 OpenAI의 API를 통해 사용할 수 있는 음성-텍스트 변환 모델이며 Whisper의 <span class="co">[</span><span class="ot">오픈 소스 버전은 Github</span><span class="co">](https://github.com/openai/whisper)</span>에서 사용할 수 있다. 오픈 소스 버전의 Whisper와 OpenAI의 API를 통해 제공되는 버전은 차이가 없지만, OpenAI의 Whisper API를 사용할 경우, 시스템 전반에 걸친 일련의 최적화를 통해 OpenAI는 12월부터 ChatGPT의 비용을 90% 저렴하게 이용할 수 있으며,개발자는 API에서 오픈 소스 Whisper 대형-v2 모델을 사용하여 훨씬 빠르고 비용 효율적인 결과를 얻을 수 있다.</span>
+<span id="cb14-213"><a href="#cb14-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-214"><a href="#cb14-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-215"><a href="#cb14-215" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/whisper_srt.jpg)</span></span>
+<span id="cb14-216"><a href="#cb14-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-217"><a href="#cb14-217" aria-hidden="true" tabindex="-1"></a><span class="fu">## 동영상에서 오디오 추출</span></span>
+<span id="cb14-218"><a href="#cb14-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-219"><a href="#cb14-219" aria-hidden="true" tabindex="-1"></a><span class="in">`ffmpeg`</span> 프로그램을 사용하면 오디오를 추출할 수 있다.</span>
+<span id="cb14-220"><a href="#cb14-220" aria-hidden="true" tabindex="-1"></a>MP4 파일에서 16비트 깊이와 16kHz 샘플링 레이트로 오디오를 추출하여야 <span class="in">`whisper`</span>에 입력값으로 넣을 수 있는 <span class="in">`.wav`</span> 파일이 된다. 두가지 조건(16비트 깊이와 16kHz 샘플링)이 충족되지 않을 경우 Whisper에서 처리할 수 없다는 오류가 나온다.</span>
+<span id="cb14-221"><a href="#cb14-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-222"><a href="#cb14-222" aria-hidden="true" tabindex="-1"></a>:::::{.columns}</span>
+<span id="cb14-223"><a href="#cb14-223" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb14-224"><a href="#cb14-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-225"><a href="#cb14-225" aria-hidden="true" tabindex="-1"></a><span class="fu">### `.mp4`에서 `.wav` 추출  {.unnumbered}</span></span>
+<span id="cb14-226"><a href="#cb14-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-227"><a href="#cb14-227" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb14-228"><a href="#cb14-228" aria-hidden="true" tabindex="-1"></a><span class="ex">ffmpeg</span> <span class="at">-i</span> misinformation.mp4 <span class="at">-acodec</span> pcm_s16le <span class="at">-ar</span> 16000 <span class="at">-ac</span> 2 misinformation_16.wav</span>
+<span id="cb14-229"><a href="#cb14-229" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-230"><a href="#cb14-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-231"><a href="#cb14-231" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-232"><a href="#cb14-232" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb14-233"><a href="#cb14-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-234"><a href="#cb14-234" aria-hidden="true" tabindex="-1"></a><span class="fu">### `.mp4`에서 `.mp3` 추출 {.unnumbered}</span></span>
+<span id="cb14-235"><a href="#cb14-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-236"><a href="#cb14-236" aria-hidden="true" tabindex="-1"></a><span class="in">`.mp3`</span> 확장자를 줄 경우 오디오를 <span class="in">`mp3`</span> 파일로 추출하여 파일크기를 크게 줄일 수 있다.</span>
+<span id="cb14-237"><a href="#cb14-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-238"><a href="#cb14-238" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb14-239"><a href="#cb14-239" aria-hidden="true" tabindex="-1"></a><span class="ex">ffmpeg</span> <span class="at">-i</span> misinformation.mp4 <span class="at">-acodec</span> pcm_s16le <span class="at">-ar</span> 16000 <span class="at">-ac</span> 2 misinformation.mp3</span>
+<span id="cb14-240"><a href="#cb14-240" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-241"><a href="#cb14-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-242"><a href="#cb14-242" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-243"><a href="#cb14-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-244"><a href="#cb14-244" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb14-245"><a href="#cb14-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-246"><a href="#cb14-246" aria-hidden="true" tabindex="-1"></a>전체 <span class="in">`.mp3`</span> 파일이 너무 길어 <span class="in">`ffmpeg`</span>를 사용해서 30분부터 30초만 추출하는 코드를 작성해서 들어보자.</span>
+<span id="cb14-247"><a href="#cb14-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-248"><a href="#cb14-248" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb14-249"><a href="#cb14-249" aria-hidden="true" tabindex="-1"></a><span class="ex">ffmpeg</span> <span class="at">-i</span> misinformation.mp3 <span class="at">-ss</span> 00:30:30 <span class="at">-t</span> 00:00:30 <span class="at">-vn</span> <span class="at">-codec:a</span> libmp3lame <span class="at">-qscale:a</span> 2 misinformation_short.mp3</span>
+<span id="cb14-250"><a href="#cb14-250" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-251"><a href="#cb14-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-252"><a href="#cb14-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-253"><a href="#cb14-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-256"><a href="#cb14-256" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-257"><a href="#cb14-257" aria-hidden="true" tabindex="-1"></a>embedr<span class="sc">::</span><span class="fu">embed_audio</span>(<span class="st">"data/LibriSpeech/misinformation_short.mp3"</span>)</span>
+<span id="cb14-258"><a href="#cb14-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-259"><a href="#cb14-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-260"><a href="#cb14-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-261"><a href="#cb14-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-262"><a href="#cb14-262" aria-hidden="true" tabindex="-1"></a><span class="fu">## STT</span></span>
+<span id="cb14-263"><a href="#cb14-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-264"><a href="#cb14-264" aria-hidden="true" tabindex="-1"></a>16비트 깊이와 16kHz 샘플링 조건을 갖춘 <span class="in">`.wav`</span> 파일이 준비되면 다음 단계로 </span>
+<span id="cb14-265"><a href="#cb14-265" aria-hidden="true" tabindex="-1"></a>음성-텍스트 변환 Whisper 모델을 선정하여 텍스트 전사 작업을 수행한다.</span>
+<span id="cb14-266"><a href="#cb14-266" aria-hidden="true" tabindex="-1"></a>윈도우 10 에서 <span class="in">`2.6 GB`</span> 영어 <span class="in">`medium.en`</span> 모델은 알 수 없는 오류로 인해 <span class="in">`base.en`</span> 모델을 사용하여 영어 음성에서 텍스트를 추출했다.</span>
+<span id="cb14-267"><a href="#cb14-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-270"><a href="#cb14-270" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-271"><a href="#cb14-271" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-272"><a href="#cb14-272" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(audio.whisper)</span>
+<span id="cb14-273"><a href="#cb14-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-274"><a href="#cb14-274" aria-hidden="true" tabindex="-1"></a>medium_model <span class="ot">&lt;-</span> <span class="fu">whisper</span>(<span class="st">"base.en"</span>)</span>
+<span id="cb14-275"><a href="#cb14-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-276"><a href="#cb14-276" aria-hidden="true" tabindex="-1"></a>misinformation_trans <span class="ot">&lt;-</span> <span class="fu">predict</span>(medium_model, <span class="at">newdata =</span> <span class="st">"data/LibriSpeech/misinformation_16.wav"</span>, </span>
+<span id="cb14-277"><a href="#cb14-277" aria-hidden="true" tabindex="-1"></a>                                <span class="at">language =</span> <span class="st">"en"</span>, <span class="at">n_threads =</span> <span class="dv">2</span>)</span>
+<span id="cb14-278"><a href="#cb14-278" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-279"><a href="#cb14-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-280"><a href="#cb14-280" aria-hidden="true" tabindex="-1"></a>Whisper 모델을 통해 나온 음성-텍스트 변환 결과를 로컬 파일에 저장하여 점검한다.</span>
+<span id="cb14-281"><a href="#cb14-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-284"><a href="#cb14-284" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-285"><a href="#cb14-285" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-286"><a href="#cb14-286" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb14-287"><a href="#cb14-287" aria-hidden="true" tabindex="-1"></a>misinformation_trans<span class="sc">$</span>data <span class="sc">%&gt;%</span> </span>
+<span id="cb14-288"><a href="#cb14-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">data =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{from} ==&gt; {to} {text}"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-289"><a href="#cb14-289" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(data) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-290"><a href="#cb14-290" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_lines</span>(<span class="st">"data/LibriSpeech/misinformation_oneline.txt"</span>)</span>
+<span id="cb14-291"><a href="#cb14-291" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-292"><a href="#cb14-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-293"><a href="#cb14-293" aria-hidden="true" tabindex="-1"></a><span class="fu">## SRT</span></span>
+<span id="cb14-294"><a href="#cb14-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-295"><a href="#cb14-295" aria-hidden="true" tabindex="-1"></a>몇번의 시행착오를 거쳐 순번, 시작시각, 종료시각, 텍스트로 구성된 파일을 <span class="in">`.srt`</span> 파일 형태로 </span>
+<span id="cb14-296"><a href="#cb14-296" aria-hidden="true" tabindex="-1"></a>변환하여 영어 자막작업을 마무리한다.</span>
+<span id="cb14-297"><a href="#cb14-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-300"><a href="#cb14-300" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-301"><a href="#cb14-301" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-302"><a href="#cb14-302" aria-hidden="true" tabindex="-1"></a>mis_srt_raw <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/LibriSpeech/misinformation_proof_reading.txt"</span>)</span>
+<span id="cb14-303"><a href="#cb14-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-304"><a href="#cb14-304" aria-hidden="true" tabindex="-1"></a>mis_srt_tbl <span class="ot">&lt;-</span> mis_srt_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb14-305"><a href="#cb14-305" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb14-306"><a href="#cb14-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(value, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"start"</span>, <span class="st">"end"</span>),   <span class="at">sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">s==&gt;</span><span class="sc">\\</span><span class="st">s"</span>, <span class="at">extra =</span> <span class="st">"merge"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-307"><a href="#cb14-307" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(end,   <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"end"</span>, <span class="st">"subtitle"</span>), <span class="at">sep =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">s"</span>, <span class="at">extra =</span> <span class="st">"merge"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-308"><a href="#cb14-308" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">subtitle =</span> <span class="fu">str_trim</span>(subtitle))</span>
+<span id="cb14-309"><a href="#cb14-309" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb14-310"><a href="#cb14-310" aria-hidden="true" tabindex="-1"></a>mis_srt_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb14-311"><a href="#cb14-311" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">srt =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{name} </span><span class="sc">\n</span><span class="st"> {start} --&gt; {end} </span><span class="sc">\n</span><span class="st"> {subtitle}</span><span class="sc">\n\n</span><span class="st">"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-312"><a href="#cb14-312" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(srt) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-313"><a href="#cb14-313" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_lines</span>(<span class="st">"data/LibriSpeech/misinformation_proof_reading_srt.srt"</span>)</span>
+<span id="cb14-314"><a href="#cb14-314" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-315"><a href="#cb14-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-316"><a href="#cb14-316" aria-hidden="true" tabindex="-1"></a>유튜브 동영상 영문 자막으로 사용될 <span class="in">`.srt`</span> 자막 파일을 불러읽어와서 최종 작업결과를 살펴본다.</span>
+<span id="cb14-317"><a href="#cb14-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-320"><a href="#cb14-320" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-321"><a href="#cb14-321" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb14-322"><a href="#cb14-322" aria-hidden="true" tabindex="-1"></a>mis_srt <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/LibriSpeech/misinformation.srt"</span>)</span>
+<span id="cb14-323"><a href="#cb14-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-324"><a href="#cb14-324" aria-hidden="true" tabindex="-1"></a>mis_srt <span class="sc">%&gt;%</span> </span>
+<span id="cb14-325"><a href="#cb14-325" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">20</span>) </span>
+<span id="cb14-326"><a href="#cb14-326" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-327"><a href="#cb14-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-328"><a href="#cb14-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-331"><a href="#cb14-331" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-332"><a href="#cb14-332" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-333"><a href="#cb14-333" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span>
+<span id="cb14-334"><a href="#cb14-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-335"><a href="#cb14-335" aria-hidden="true" tabindex="-1"></a>mis_mp4 <span class="ot">&lt;-</span> <span class="fu">image_read_video</span>(<span class="st">"data/LibriSpeech/misinformation.mp4"</span>,  <span class="at">fps =</span> <span class="dv">1</span>)</span>
+<span id="cb14-336"><a href="#cb14-336" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-337"><a href="#cb14-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-338"><a href="#cb14-338" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/misinformation.png)</span></span>
 </code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
@@ -1307,7 +1462,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":true,"selector":".lightbox","descPosition":"bottom"});</script>
 
 
 </body></html>

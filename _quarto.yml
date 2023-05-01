@@ -3,6 +3,7 @@ project:
   output-dir: docs
   resources:
     - "data/*.mp3"
+    - "data/LibriSpeech/*.mp3"
   render:
     - "*.qmd"
     - "!*.Rmd"
