@@ -610,6 +610,16 @@ print(response)
 미드 센추리에서 영감을 받은 아름다운 사무용 가구 제품군의 일부입니다. 파일 캐비닛, 책상, 책장, 회의용 테이블 등을 포함하며, 쉘 색상과 베이스 마감의 여러 옵션이 있습니다. 플라스틱 소재의 후면 및 전면 커버 또는 패브릭 및 가죽 옵션의 풀 커버로 제공됩니다. 의자는 팔걸이가 있든 없든 선택할 수 있으며, 가정 또는 비즈니스 환경에 적합합니다.
 ```
 
+# 프롬프트 개발업무
+
+```{r}
+practice_raw <- read_excel("data/prompt_engineering.xlsx", sheet = "summary")
+
+collapsibleTree(practice_raw, c("실무작업", "세부작업"),
+                tooltipHtml = "tooltip",
+                root = "프롬프트 개발업무")
+```
+
 ## 요약
 
 ### 간략한 요약
@@ -870,8 +880,298 @@ print(response)
 5. 조직의 성과와 직원 만족도의 관계
 ```
 
+
 ## 변환
 
 거대언어모형(LLM)을 활용한 변환(Transformation)에는 언어 번역, 맞춤법 및 문법 검사, 어조 조정, 형식 변환과 같은 텍스트 변환 작업이 포함된다.
+
+### 번역
+
+```{python}
+#| eval: false
+
+prompt = f"""
+다음 영어 텍스트를 한국어로 번역하세요. 
+  
+```Hi, I would like to order a blender```
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+안녕하세요, 블렌더를 주문하고 싶습니다.
+```
+
+### 언어탐지
+
+```{python}
+#| eval: false
+
+prompt = f"""
+어느 언어인지 알려주세요.:
+  
+```こんにちは良い一日です。``` 
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+일본어입니다.
+```
+
+### 격식 및 비격식 언어
+
+```{python}
+#| eval: false
+
+prompt = f"""
+다음 영문 텍스트를 격식 및 비격식 형태 한국어로 번역하세요.: 
+'Would you like to order a pillow?'
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+격식: 베개를 주문하시겠습니까?
+비격식: 베개 사실래요?
+```
+
+### 범용 번역기
+
+대규모 다국적 이커머스 기업에서 IT를 담당하고 있다고 상상해 보세요. 사용자들이 모든 모국어로 IT 문제에 대해 메시지를 보내고 있습니다. 전 세계 각지에서 온 직원들은 각자의 모국어만 구사합니다. 여러분에게는 범용 번역기가 필요합니다!
+
+```{python}
+#| eval: false
+
+user_messages = [
+  "La performance du système est plus lente que d'habitude.",  # System performance is slower than normal         
+  "Mi monitor tiene píxeles que no se iluminan.",              # My monitor has pixels that are not lighting
+  "Il mio mouse non funziona",                                 # My mouse is not working
+  "Mój klawisz Ctrl jest zepsuty",                             # My keyboard has a broken control key
+  "我的屏幕在闪烁",                                            # My screen is flashing
+  "컴퓨터 시작 버튼이 동작하지 않아요"                         # My computer's start button doesn't work
+] 
+
+
+for issue in user_messages:
+    prompt = f"어떤 언어인지 말해 주세요: ```{issue}```"
+    lang = get_completion(prompt)
+    print(f"원문 메시지 ({lang}): {issue}")
+
+    prompt = f"""
+    다음 텍스트를 영어와 한국어로 번역하세요: 
+    ```{issue}```
+    """
+    response = get_completion(prompt)
+    print(response, "\n")
+
+```
+
+```
+원문 메시지 (프랑스어입니다.): La performance du système est plus lente que d'habitude.
+영어: The system performance is slower than usual.
+한국어: 시스템 성능이 평소보다 느립니다. 
+
+원문 메시지 (스페인어입니다.): Mi monitor tiene píxeles que no se iluminan.
+My monitor has pixels that don't light up. 
+내 모니터에는 불이 켜지지 않는 픽셀이 있습니다. 
+
+원문 메시지 (이것은 이탈리아어입니다.): Il mio mouse non funziona
+영어: My mouse is not working.
+한국어: 내 마우스가 작동하지 않습니다. 
+
+원문 메시지 (이것은 폴란드어입니다.): Mój klawisz Ctrl jest zepsuty
+영어: My Ctrl key is broken
+한국어: 내 Ctrl 키가 고장 났어요 
+
+원문 메시지 (중국어입니다.): 我的屏幕在闪烁
+영어: My screen is flickering.
+한국어: 내 화면이 깜빡입니다. 
+
+원문 메시지 (한국어입니다.): 컴퓨터 시작 버튼이 동작하지 않아요
+- English: The computer start button is not working.
+- 한국어: 컴퓨터 시작 버튼이 작동하지 않습니다. 
+```
+
+### 어조 변환
+
+```{python}
+#| eval: false
+
+prompt = f"""
+Translate the following from slang to a business letter: 
+'Dude, This is Joe, check out this spec on this standing lamp.'
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+Dear Sir/Madam,
+
+I am writing to bring to your attention a standing lamp that I believe may be of interest to you. Please find attached the specifications for your review.
+
+Thank you for your time and consideration.
+
+Sincerely,
+
+Joe
+```
+
+### 자료형 변환
+
+```{python}
+#| eval: false
+
+data_json = { "resturant employees" :[ 
+    {"name":"Shyam", "email":"shyamjaiswal@gmail.com"},
+    {"name":"Bob", "email":"bob32@gmail.com"},
+    {"name":"Jai", "email":"jai87@gmail.com"}
+]}
+
+prompt = f"""
+Translate the following python dictionary from JSON to an HTML \
+table with column headers and title: {data_json}
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+```
+<table>
+  <caption>Restaurant Employees</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Shyam</td>
+      <td>shyamjaiswal@gmail.com</td>
+    </tr>
+    <tr>
+      <td>Bob</td>
+      <td>bob32@gmail.com</td>
+    </tr>
+    <tr>
+      <td>Jai</td>
+      <td>jai87@gmail.com</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### 문법/맞춤법 교정
+
+
+```{python}
+#| eval: false
+
+texts = [ 
+  "The girl with the black and white puppies have a ball.",  # The girl has a ball.
+  "Yolanda has her notebook.", # ok
+  "Its going to be a long day. Does the car need it’s oil changed?",  # Homonyms (동음이의어)
+  "Their goes my freedom. There going to bring they’re suitcases.",  # Homonyms (동음이의어)
+  "Your going to need you’re notebook.",  # Homonyms (동음이의어)
+  "That medicine effects my ability to sleep. Have you heard of the butterfly affect?", # Homonyms (동음이의어)
+  "This phrase is to cherck chatGPT for speling abilitty"  # spelling (맞춤법)
+]
+
+for text in texts:
+    prompt = f"""다음 텍스트를 교정 및 수정하고 수정된 버전을 다시 작성합니다. 
+    오류를 찾지 못하면 "오류 없음"이라고 입력합니다. 텍스트 주위에 구두점을 사용하지 마세요:
+    ```{text}```"""
+    response = get_completion(prompt)
+    print(response)
+```
+
+```
+The girl with the black and white puppies has a ball.
+Yolanda has her notebook. (오류 없음)
+It's going to be a long day. Does the car need its oil changed?
+Their goes my freedom. They're going to bring their suitcases.
+You're going to need your notebook.
+That medicine affects my ability to sleep. Have you heard of the butterfly effect?
+This phrase is to check ChatGPT for spelling ability.
+```
+
+### 교정
+
+```{python}
+#| eval: false
+
+text = f"""
+Got this for my daughter for her birthday cuz she keeps taking \
+mine from my room.  Yes, adults also like pandas too.  She takes \
+it everywhere with her, and it's super soft and cute.  One of the \
+ears is a bit lower than the other, and I don't think that was \
+designed to be asymmetrical. It's a bit small for what I paid for it \
+though. I think there might be other options that are bigger for \
+the same price.  It arrived a day earlier than expected, so I got \
+to play with it myself before I gave it to my daughter.
+"""
+prompt = f"proofread and correct this review: ```{text}```"
+response = get_completion(prompt)
+print(response)
+```
+
+```
+I got this for my daughter's birthday because she keeps taking mine from my room. Yes, adults also like pandas too. She takes it everywhere with her, and it's super soft and cute. However, one of the ears is a bit lower than the other, and I don't think that was designed to be asymmetrical. Additionally, it's a bit small for what I paid for it. I think there might be other options that are bigger for the same price. On the positive side, it arrived a day earlier than expected, so I got to play with it myself before I gave it to my daughter.
+```
+
+
+## 확장
+
+믹서기(Blender) 제품에 대한 고객 후기에 대해 자동 전자우편 회신을 제작해보자.
+
+```{python}
+#| eval: false
+
+sentiment = "부정"
+
+review = f"""
+그래서 11월 한 달 동안은 17피스 시스템을 약 절반 할인된 49달러에 시즌 한정으로 판매했지만, 12월 둘째 주에 어떤 이유에서인지(가격 폭리라고 부릅니다) 같은 시스템의 가격이 모두 70달러에서 89달러 사이로 올라갔습니다. 그리고 11피스 시스템도 이전 판매 가격인 29달러에서 10달러 정도 가격이 올랐습니다. 그래서 괜찮아 보이지만 본체를 보면 칼날이 제자리에 고정되는 부분이 몇 년 전의 이전 버전만큼 좋아 보이지는 않는데, 저는 아주 부드럽게 사용할 계획입니다 (예를 들어 콩, 얼음, 쌀 등 아주 단단한 재료를 먼저 분쇄한 다음 분쇄기에 넣고 분쇄합니다). 먼저 블렌더에서 원하는 크기로 분쇄한 다음 휘핑 날로 전환하여 더 고운 가루로 만들고, 스무디를 만들 때는 먼저 십자 칼날을 사용한 다음 더 곱거나 덜 펄프가 필요한 경우 납작 칼날을 사용합니다). 스무디를 만들 때 특별한 팁: 과일과 채소를 잘게 썰어 얼려두면(시금치를 사용할 경우 시금치를 살짝 데친 후 사용할 때까지 얼려두고 셔벗을 만들 경우 중소형 푸드 프로세서를 사용하세요) 스무디를 만들 때 얼음을 너무 많이 넣지 않을 수 있습니다. 약 1년이 지나자 모터에서 이상한 소리가 났어요. 고객 서비스에 전화했지만 이미 보증 기간이 만료되어서 다른 제품을 구입해야 했습니다. 참고: 이러한 유형의 제품에서는 전반적인 품질이 향상되었기 때문에 브랜드 인지도와 소비자 충성도에 의존하여 판매를 유지하고 있습니다. 약 이틀 만에 받았습니다.
+"""
+
+prompt = f"""
+당신은 고객 서비스 AI 어시스턴트입니다.
+당신의 임무는 소중한 고객에게 이메일 답장을 보내는 것입니다.
+``` 구분자로 구분된 고객 이메일이 주어집니다, 
+
+고객의 리뷰에 대한 감사의 답장을 생성합니다.
+감정이 긍정적이거나 중립적인 경우 고객의 리뷰에 감사를 표시합니다.
+감정이 부정적이면 사과하고 고객 서비스에 문의할 수 있도록 고객 서비스에 문의할 수 있다고 제안합니다. 
+
+고객 후기의 구체적인 세부 정보를 사용하세요.
+간결하고 전문적인 어조로 작성하세요.
+이메일에 'AI 고객 상담원'으로 서명합니다.
+
+고객 후기: ```{review}```
+후기 감성: {sentiment}
+"""
+response = get_completion(prompt)
+print(response)
+```
+
+
+```
+안녕하세요,
+
+저희 제품을 구매해 주셔서 감사합니다. 고객님의 후기를 읽어보니 제품에 대한 실망이 크게 느껴집니다. 이에 대해 진심으로 사과드립니다.
+
+고객님께서 언급하신 문제점은 저희 제품의 품질 향상을 위해 노력하고 있으며, 고객님의 소중한 의견을 반영하여 더 나은 제품을 만들기 위해 노력할 것입니다.
+
+만약 다른 제품을 구입하시려는 경우, 저희 고객 서비스팀에 문의하시면 다양한 제품에 대한 정보와 조언을 제공해 드릴 수 있습니다.
+
+감사합니다.
+
+AI 고객 상담원
+```
+
 
 

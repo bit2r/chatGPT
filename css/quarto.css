@@ -16,6 +16,7 @@
   font-style: normal;
 }
 
+
 /*-- scss:rules --*/
 .navbar-dark {
   background-color: #6c757d;
@@ -43,10 +44,44 @@ ul, .ul, li, .li {
   font-family: 'MaruBuri-Regular', serif;
 }
 
-.scrolling {
-/*  overflow-x: visible; */
+.main-container {
+    max-width: 800px;
+}
+/*
+pre, .pre {
+  overflow-y: auto;
   overflow-x: auto;
+  word-break: break-all;
+}
+*/
+
+code, .code {
+  overflow-x: auto;
+  word-break: break-all;
+}
+
+pre code {
+  white-space: pre
+}
+
+/*
+.scrolling {
+  overflow-x: hidden;
   white-space: ;
 }
 
+
+body * {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 .main-container { max-width: unset; }
+*/
