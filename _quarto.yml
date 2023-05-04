@@ -135,6 +135,8 @@ website:
         - text: "ML 자동화 AutoML"
         - text: "데이터 과학 AutoGPT"
         - text: "------------------"
+        - href: pandasai.qmd
+          text: "판다스 AI"
       - href: blog.qmd
         text: "게시글"
       - text: "비즈니스"

@@ -1,81 +1,103 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.299">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="이광춘">
-<title>chatGPT</title>
-<style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-</style>
+    <meta charset="utf-8">
+    <meta name="generator" content="quarto-1.3.299">
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/profile.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+    <title>chatGPT - OpenAI APIKEY 설정</title>    <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      div.columns{display: flex; gap: min(4vw, 1.5em);}
+      div.column{flex: auto; overflow-x: auto;}
+      div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+      ul.task-list{list-style: none;}
+      ul.task-list li input[type="checkbox"] {
+        width: 0.8em;
+        margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+        vertical-align: middle;
+      }
+      /* CSS for syntax highlighting */
+      pre > code.sourceCode { white-space: pre; position: relative; }
+      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+      pre > code.sourceCode > span:empty { height: 1.2em; }
+      .sourceCode { overflow: visible; }
+      code.sourceCode > span { color: inherit; text-decoration: inherit; }
+      div.sourceCode { margin: 1em 0; }
+      pre.sourceCode { margin: 0; }
+      @media screen {
+      div.sourceCode { overflow: auto; }
+      }
+      @media print {
+      pre > code.sourceCode { white-space: pre-wrap; }
+      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+      }
+      pre.numberSource code
+        { counter-reset: source-line 0; }
+      pre.numberSource code > span
+        { position: relative; left: -4em; counter-increment: source-line; }
+      pre.numberSource code > span > a:first-child::before
+        { content: counter(source-line);
+          position: relative; left: -1em; text-align: right; vertical-align: baseline;
+          border: none; display: inline-block;
+          -webkit-touch-callout: none; -webkit-user-select: none;
+          -khtml-user-select: none; -moz-user-select: none;
+          -ms-user-select: none; user-select: none;
+          padding: 0 4px; width: 4em;
+        }
+      pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+      div.sourceCode
+        {   }
+      @media screen {
+      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+      }
+    </style>
+    <style>
+      .quarto-embed-header {
+        height: 3em;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: solid 1px;
+      }
+      .quarto-embed-header h6 {
+        font-size: 1em;
+        padding-top: 0.6em;
+        margin-left: 1em;
+        margin-right: 1em;
+        font-weight: 300;
+      }
+      .quarto-embed-header a.quarto-download-embed {
+        font-size: 0.7em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
+      }
+    </style>
+    
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/profile.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+     <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -93,7 +115,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-detached-cancel-button-title": "취소",
     "search-submit-button-title": "검색"
   }
-}</script><script type="text/javascript">
+}</script>  
+<script type="text/javascript">
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -105,15 +128,23 @@ ga('send', {
   hitType: 'pageview',
   'anonymizeIp': true,
 });
-</script><link rel="stylesheet" href="css/quarto.css">
-</head>
-<body class="nav-fixed">
-
-
+</script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>  
+        <link rel="stylesheet" href="../css/quarto.css">
+      </head>
+  <body class="nav-fixed quarto-notebook">
+    <div class="quarto-embed-header">
+      <h6><i class="bi bi-journal-code"></i> pandasai.ipynb</h6>
+      <a href="../jupyterlab/jupyterlab/pandasai.ipynb" class="btn btn-primary quarto-download-embed" download="pandasai.ipynb">Download Notebook</a>
+    </div>
+     
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">chatGPT</span>
     </a>
   </div>
@@ -123,257 +154,257 @@ ga('send', {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-<li class="nav-item dropdown ">
+  <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">생성 AI</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai">
-<li>
-    <a class="dropdown-item" href="./architecture.html" rel="" target="">
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai">    
+        <li>
+    <a class="dropdown-item" href="../architecture.html" rel="" target="">
  <span class="dropdown-text">chatGPT 이해</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./trends.html" rel="" target="">
+    <a class="dropdown-item" href="../trends.html" rel="" target="">
  <span class="dropdown-text">추세 트렌드</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./why_llm.html" rel="" target="">
+    <a class="dropdown-item" href="../why_llm.html" rel="" target="">
  <span class="dropdown-text">왜 거대언어모형인가?</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./nlp_LLM.html" rel="" target="">
+    <a class="dropdown-item" href="../nlp_LLM.html" rel="" target="">
  <span class="dropdown-text">NLP와 LLM</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./gpt4_performance.html" rel="" target="">
+    <a class="dropdown-item" href="../gpt4_performance.html" rel="" target="">
  <span class="dropdown-text">GPT-4 성능</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./gpt-security.html" rel="" target="">
+    <a class="dropdown-item" href="../gpt-security.html" rel="" target="">
  <span class="dropdown-text">챗GPT 보안사고</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./interface.html" rel="" target="">
+    <a class="dropdown-item" href="../interface.html" rel="" target="">
  <span class="dropdown-text">인터페이스</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./open_source.html" rel="" target="">
+    <a class="dropdown-item" href="../open_source.html" rel="" target="">
  <span class="dropdown-text">오픈소스 S/W LLM</span></a>
   </li>  
     </ul>
-</li>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-chatgpt-응용사례" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">chatGPT 응용사례</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-chatgpt-응용사례">
-<li>
-    <a class="dropdown-item" href="./use-cases.html" rel="" target="">
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-chatgpt-응용사례">    
+        <li>
+    <a class="dropdown-item" href="../use-cases.html" rel="" target="">
  <span class="dropdown-text">활용사례</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./intro_avi.html" rel="" target="">
+    <a class="dropdown-item" href="../intro_avi.html" rel="" target="">
  <span class="dropdown-text">법인 R 소개영상</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./macbook.html" rel="" target="">
+    <a class="dropdown-item" href="../macbook.html" rel="" target="">
  <span class="dropdown-text">맥북 투척사건</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./office.html" rel="" target="">
+    <a class="dropdown-item" href="../office.html" rel="" target="">
  <span class="dropdown-text">오피스 전쟁</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./news_article.html" rel="" target="">
+    <a class="dropdown-item" href="../news_article.html" rel="" target="">
  <span class="dropdown-text">보도자료 작성</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./intro_book.html" rel="" target="">
+    <a class="dropdown-item" href="../intro_book.html" rel="" target="">
  <span class="dropdown-text">데이터 과학 책</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./intro_paper.html" rel="" target="">
+    <a class="dropdown-item" href="../intro_paper.html" rel="" target="">
  <span class="dropdown-text">논문 초록</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./rnd.html" rel="" target="">
+    <a class="dropdown-item" href="../rnd.html" rel="" target="">
  <span class="dropdown-text">학술연구(R&amp;D)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./yuji.html" rel="" target="">
+    <a class="dropdown-item" href="../yuji.html" rel="" target="">
  <span class="dropdown-text">멤버 Yuji</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./text2image.html" rel="" target="">
+    <a class="dropdown-item" href="../text2image.html" rel="" target="">
  <span class="dropdown-text">텍스트 → 이미지 생성</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./stable_diffusion.html" rel="" target="">
+    <a class="dropdown-item" href="../stable_diffusion.html" rel="" target="">
  <span class="dropdown-text">Stable Diffusion</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./samsung.html" rel="" target="">
+    <a class="dropdown-item" href="../samsung.html" rel="" target="">
  <span class="dropdown-text">삼전 주가예측</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./calculator.html" rel="" target="">
+    <a class="dropdown-item" href="../calculator.html" rel="" target="">
  <span class="dropdown-text">계산기 프로그램</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./rcoding.html" rel="" target="">
+    <a class="dropdown-item" href="../rcoding.html" rel="" target="">
  <span class="dropdown-text">GPT R 코딩개발</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./rcoding-copilot.html" rel="" target="">
+    <a class="dropdown-item" href="../rcoding-copilot.html" rel="" target="">
  <span class="dropdown-text">부조종사 R 코딩개발</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./math.html" rel="" target="">
+    <a class="dropdown-item" href="../math.html" rel="" target="">
  <span class="dropdown-text">수학문제 (MIT)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./middle_school.html" rel="" target="">
+    <a class="dropdown-item" href="../middle_school.html" rel="" target="">
  <span class="dropdown-text">Shiny 앱</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./inaugural.html" rel="" target="">
+    <a class="dropdown-item" href="../inaugural.html" rel="" target="">
  <span class="dropdown-text">대통령 취임사</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./translation.html" rel="" target="">
+    <a class="dropdown-item" href="../translation.html" rel="" target="">
  <span class="dropdown-text">번역(영한, 한영)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./gg_grouping.html" rel="" target="">
+    <a class="dropdown-item" href="../gg_grouping.html" rel="" target="">
  <span class="dropdown-text">챗GPT 팀구성</span></a>
   </li>  
     </ul>
-</li>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-prompt-eng." role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Prompt Eng.</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-prompt-eng.">
-<li>
-    <a class="dropdown-item" href="./prompt.html" rel="" target="">
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-prompt-eng.">    
+        <li>
+    <a class="dropdown-item" href="../prompt.html" rel="" target="">
  <span class="dropdown-text">Prompt Engineering</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./prompt_adv.html" rel="" target="">
+    <a class="dropdown-item" href="../prompt_adv.html" rel="" target="">
  <span class="dropdown-text">Advanced Prompt Engineering</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./prompt_in_practice.html" rel="" target="">
+    <a class="dropdown-item" href="../prompt_in_practice.html" rel="" target="">
  <span class="dropdown-text">프롬프트 실무</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./prompt_for_develoopers.html" rel="" target="">
+    <a class="dropdown-item" href="../prompt_for_develoopers.html" rel="" target="">
  <span class="dropdown-text">(개발자) 프롬프트 공학</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./prompt_data_science.html" rel="" target="">
+    <a class="dropdown-item" href="../prompt_data_science.html" rel="" target="">
  <span class="dropdown-text">데이터 과학 프롬프트</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./interview.html" rel="" target="">
+    <a class="dropdown-item" href="../interview.html" rel="" target="">
  <span class="dropdown-text">데이터 과학 인터뷰</span></a>
   </li>  
     </ul>
-</li>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">자동화/개발</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-">
-<li>
-    <a class="dropdown-item" href="./ide.html" rel="" target="">
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../ide.html" rel="" target="">
  <span class="dropdown-text">통합개발환경(IDE)</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./reticulate.html" rel="" target="">
+    <a class="dropdown-item" href="../reticulate.html" rel="" target="">
  <span class="dropdown-text">파이썬 환경구축</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./koGPT.html" rel="" target="">
+    <a class="dropdown-item" href="../koGPT.html" rel="" target="">
  <span class="dropdown-text">HuggingfaceR - 모형통계</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./BERT.html" rel="" target="">
+    <a class="dropdown-item" href="../BERT.html" rel="" target="">
  <span class="dropdown-text">BERT</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./hf.html" rel="" target="">
+    <a class="dropdown-item" href="../hf.html" rel="" target="">
  <span class="dropdown-text">Hugging Face</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./hf_windows.html" rel="" target="">
+    <a class="dropdown-item" href="../hf_windows.html" rel="" target="">
  <span class="dropdown-text">Hugging Face(윈도우)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./hf_pipeline.html" rel="" target="">
+    <a class="dropdown-item" href="../hf_pipeline.html" rel="" target="">
  <span class="dropdown-text">HF 파이프라인</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./openAI_GPT.html" rel="" target="">
+    <a class="dropdown-item" href="../openAI_GPT.html" rel="" target="">
  <span class="dropdown-text">OpenAI GPT</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./langchain_arch.html" rel="" target="">
+    <a class="dropdown-item" href="../langchain_arch.html" rel="" target="">
  <span class="dropdown-text">LangCahin 아키텍쳐</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./whisper.html" rel="" target="">
+    <a class="dropdown-item" href="../whisper.html" rel="" target="">
  <span class="dropdown-text">음성인식(Whisper)</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./palmer_penguins.html" rel="" target="">
+    <a class="dropdown-item" href="../palmer_penguins.html" rel="" target="">
  <span class="dropdown-text">펭귄 데이터셋</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./autoGPT_ds.html" rel="" target="">
+    <a class="dropdown-item" href="../autoGPT_ds.html" rel="" target="">
  <span class="dropdown-text">EDA 자동화 AutoEDA</span></a>
   </li>  
         <li class="dropdown-header">ML 자동화 AutoML</li>
         <li class="dropdown-header">데이터 과학 AutoGPT</li>
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./pandasai.html" rel="" target="">
+    <a class="dropdown-item" href="../pandasai.html" rel="" target="">
  <span class="dropdown-text">판다스 AI</span></a>
   </li>  
     </ul>
-</li>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html" rel="" target="">
+    <a class="nav-link" href="../blog.html" rel="" target="">
  <span class="menu-text">게시글</span></a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">비즈니스</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">
-<li>
-    <a class="dropdown-item" href="./chatGPT_overview.html" rel="" target="">
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">    
+        <li>
+    <a class="dropdown-item" href="../chatGPT_overview.html" rel="" target="">
  <span class="dropdown-text">챗GPT 개요</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./services.html" rel="" target="">
+    <a class="dropdown-item" href="../services.html" rel="" target="">
  <span class="dropdown-text">(유)무료 서비스</span></a>
   </li>  
     </ul>
-</li>
+  </li>
 </ul>
-<ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/bit2r/chatGPT" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
@@ -392,82 +423,220 @@ ga('send', {
  <span class="menu-text">RTutor</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-<div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="다크 모드 전환"><i class="bi"></i></a>
 </div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title">chatGPT</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> 코드</button></div></div>
-            <p class="subtitle lead">들어가며</p>
-                      </div>
-  </div>
-    
-  <div class="quarto-title-meta-author">
-    <div class="quarto-title-meta-heading">저자</div>
-    <div class="quarto-title-meta-heading">소속</div>
-    
-      <div class="quarto-title-meta-contents">
-      <p class="author"><a href="https://www.linkedin.com/in/kwangchunlee/">이광춘</a> </p>
-    </div>
-      <div class="quarto-title-meta-contents">
-          <p class="affiliation">
-              <a href="https://github.com/bit2r">
-              한국 R 사용자회
-              </a>
-            </p>
-        </div>
-      </div>
-
-  <div class="quarto-title-meta">
-
-        
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%EA%B7%BC%EA%B0%84%EB%AA%A8%ED%98%95-%EA%B0%9C%EB%B0%9C%EC%9E%90" id="toc-근간모형-개발자" class="nav-link active" data-scroll-target="#%EA%B7%BC%EA%B0%84%EB%AA%A8%ED%98%95-%EA%B0%9C%EB%B0%9C%EC%9E%90"><span class="header-section-number">1</span> 근간모형 개발자</a></li>
-  <li><a href="#ai-%EC%9D%91%EC%9A%A9%EC%A0%9C%ED%92%88-%EA%B0%9C%EB%B0%9C%EC%9E%90" id="toc-ai-응용제품-개발자" class="nav-link" data-scroll-target="#ai-%EC%9D%91%EC%9A%A9%EC%A0%9C%ED%92%88-%EA%B0%9C%EB%B0%9C%EC%9E%90"><span class="header-section-number">2</span> AI 응용제품 개발자</a></li>
-  <li><a href="#ai-%EC%A0%9C%ED%92%88-%EC%82%AC%EC%9A%A9%EC%9E%90" id="toc-ai-제품-사용자" class="nav-link" data-scroll-target="#ai-%EC%A0%9C%ED%92%88-%EC%82%AC%EC%9A%A9%EC%9E%90"><span class="header-section-number">3</span> AI 제품 사용자</a></li>
-  </ul></nav>
+  <li><a href="#헬로월드" id="toc-헬로월드" class="nav-link active" data-scroll-target="#헬로월드">헬로월드</a></li>
+  <li><a href="#시각화" id="toc-시각화" class="nav-link" data-scroll-target="#시각화">시각화</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="근간모형-개발자" class="level1" data-number="1"><h1 data-number="1">
-<span class="header-section-number">1</span> 근간모형 개발자</h1>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/dev-foundation.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/dev-foundation.jpg" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
-</section><section id="ai-응용제품-개발자" class="level1" data-number="2"><h1 data-number="2">
-<span class="header-section-number">2</span> AI 응용제품 개발자</h1>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/naver_clova.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/naver_clova.png" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
-</section><section id="ai-제품-사용자" class="level1" data-number="3"><h1 data-number="3">
-<span class="header-section-number">3</span> AI 제품 사용자</h1>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/two_men_on_a_bus.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/two_men_on_a_bus.png" class="img-fluid figure-img"></a></p>
-</figure>
+<main class="content page-columns page-full" id="quarto-document-content">      <header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">OpenAI APIKEY 설정</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> 코드</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 표시</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 숨기기</a></li></ul></div></div>
 </div>
 
 
-<!-- -->
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>     <div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell" data-execution_count="3">
+<details open="">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv, find_dotenv</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> load_dotenv(find_dotenv())</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>openai.api_key  <span class="op">=</span> os.getenv(<span class="st">'ENV_OPENAI_API_KEY'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div></div>
+<section id="헬로월드" class="level1 page-columns page-full">
+<h1>헬로월드</h1>
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [21]:</pre></div><div class="cell" data-execution_count="21">
+<details open="">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandasai <span class="im">import</span> PandasAI</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample DataFrame</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"country"</span>: [<span class="st">"United States"</span>, <span class="st">"United Kingdom"</span>, <span class="st">"France"</span>, <span class="st">"Germany"</span>, <span class="st">"Italy"</span>, <span class="st">"Spain"</span>, <span class="st">"Canada"</span>, <span class="st">"Australia"</span>, <span class="st">"Japan"</span>, <span class="st">"China"</span>],</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"gdp"</span>: [<span class="dv">21400000</span>, <span class="dv">2940000</span>, <span class="dv">2830000</span>, <span class="dv">3870000</span>, <span class="dv">2160000</span>, <span class="dv">1350000</span>, <span class="dv">1780000</span>, <span class="dv">1320000</span>, <span class="dv">516000</span>, <span class="dv">14000000</span>],</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"happiness_index"</span>: [<span class="fl">7.3</span>, <span class="fl">7.2</span>, <span class="fl">6.5</span>, <span class="fl">7.0</span>, <span class="fl">6.0</span>, <span class="fl">6.3</span>, <span class="fl">7.3</span>, <span class="fl">7.3</span>, <span class="fl">5.9</span>, <span class="fl">5.0</span>]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">gdp</th>
+<th data-quarto-table-cell-role="th">happiness_index</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>United States</td>
+<td>21400000</td>
+<td>7.3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>United Kingdom</td>
+<td>2940000</td>
+<td>7.2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>France</td>
+<td>2830000</td>
+<td>6.5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Germany</td>
+<td>3870000</td>
+<td>7.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Italy</td>
+<td>2160000</td>
+<td>6.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Spain</td>
+<td>1350000</td>
+<td>6.3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Canada</td>
+<td>1780000</td>
+<td>7.3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Australia</td>
+<td>1320000</td>
+<td>7.3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>Japan</td>
+<td>516000</td>
+<td>5.9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>China</td>
+<td>14000000</td>
+<td>5.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div>
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [43]:</pre></div><div class="cell" data-execution_count="43">
+<details open="">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instantiate a LLM</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandasai.llm.openai <span class="im">import</span> OpenAI</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> OpenAI(api_token<span class="op">=</span>openai.api_key,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>             model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>             temperature<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>pandas_ai <span class="op">=</span> PandasAI(llm)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>pandas_ai.run(df, prompt<span class="op">=</span><span class="st">'Which are the 5 happiest countries?'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="llm-code" class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>'According to the data, the top 5 happiest countries are the United States, Canada, Australia, United Kingdom, and Germany.'</code></pre>
+</div>
+</div></div>
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [27]:</pre></div><div class="cell" data-execution_count="27">
+<details open="">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>top_5_values <span class="op">=</span> df.nlargest(<span class="dv">5</span>, <span class="st">'happiness_index'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>top_5_values[<span class="st">'country'</span>].astype(<span class="bu">str</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>0     United States
+6            Canada
+7         Australia
+1    United Kingdom
+3           Germany
+Name: country, dtype: object</code></pre>
+</div>
+</div></div>
+</section>
+<section id="시각화" class="level1 page-columns page-full">
+<h1>시각화</h1>
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [37]:</pre></div><div class="cell" data-execution_count="37">
+<details open="">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pandas_ai.run(df, prompt='plot the horizontal bar chart of gpd by all the country and sorted by gdp in a increasing order, using different colors for each bar')</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pandas_ai.run(df, prompt<span class="op">=</span><span class="st">'Plot the horizontal bar chart of countries showing for each the gpd, </span><span class="ch">\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">                          using different colors for each bar'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="pandasai_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>'Can you create a horizontal bar chart that displays the GDP of different countries, with each bar being a different color?'</code></pre>
+</div>
+</div></div>
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [42]:</pre></div><div id="gdp-happy" class="cell" data-execution_count="42">
+<details open="">
+<summary>코드</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pandas_ai.run(df, prompt<span class="op">=</span><span class="st">'gdp와 happiness_index 두 변수간의 관계를 산점도로 그려주고 각 점과 겹치지 않게 조금 떨어져 country 라벨을 붙여서 시각화해주세요'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="pandasai_files/figure-html/gdp-happy-output-1.png" id="gdp-happy-1" class="img-fluid"></p>
+</div>
+<div id="gdp-happy-2" class="cell-output cell-output-display" data-execution_count="42">
+<pre><code>'Can you please create a scatter plot showing the relationship between GDP and happiness index, and label each point with the corresponding country name without overlapping?'</code></pre>
+</div>
+</div></div>
+
+
+</section>
+     </main> <!-- /main -->  <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -865,65 +1034,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "들어가며"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> bibliography.bib</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> apa-single-spaced.csl</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu"># 근간모형 개발자</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/dev-foundation.jpg)</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu"># AI 응용제품 개발자</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/naver_clova.png)</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="fu"># AI 제품 사용자</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/two_men_on_a_bus.png)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
-</div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+</script>  </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left"><a href="https://quarto.org/">Quarto</a> 개발</div>   
     <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":true,"descPosition":"bottom","openEffect":"zoom"});</script>
-
+</footer> 
+  
 
 </body></html>

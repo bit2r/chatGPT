@@ -1,0 +1,50 @@
+---
+title: "chatGPT"
+subtitle: "판다스 AI"
+description: | 
+  파이썬 판다스 AI
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# 산점도
+
+{{< embed jupyterlab/pandasai.ipynb#gdp-happy >}}
+
+# 코드 설정
+
+{{< embed jupyterlab/pandasai.ipynb#llm-code echo=true >}}
+
+
