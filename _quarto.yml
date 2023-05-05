@@ -130,6 +130,8 @@ website:
         - text: "------------------"
         - href: palmer_penguins.qmd
           text: "펭귄 데이터셋"
+        - href: penguins_analytics.qmd
+          text: "펭귄 데이터 분석"
         - href: autoGPT_ds.qmd
           text: "EDA 자동화 AutoEDA"
         - text: "ML 자동화 AutoML"

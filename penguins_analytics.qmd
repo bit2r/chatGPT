@@ -1,0 +1,802 @@
+---
+title: "chatGPT"
+subtitle: "펭귄 데이터 분석"
+description: | 
+  펭귄 데이터 분석
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-tools: true
+    code-link: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+notebook-view:
+  - notebook: jupyterlab/pandasai.ipynb
+    title: "PandasAI 쥬피터 노트북"
+---
+
+
+# 탐색적 데이터 분석
+
+```{r}
+library(tidyverse)
+library(leaflet)
+library(palmerpenguins)
+
+penguins <- palmerpenguins::penguins %>% 
+  drop_na()
+```
+
+## 범주형 변수
+
+범주형 변수(`species`, `island`, `sex`) 관계를 살펴보자.
+
+### `species`, `island`
+
+`species`, `island` 시각화, 표, 검정 통계량을 통해 서로 독립이 아님이 확인된다.
+
+– Adelie: 아델리 펭귄은 모든 섬에 서식
+– Gentoo: 젠투 펭귄은 비스코(Biscoe) 섬에만 서식
+– Chinstrap: 턱끈 펭귄은 드림(Dream) 섬에만 서식.
+
+::: {layout-ncol=3 .column-page}
+
+### 시각화 {.unnumbered}
+
+```{r}
+penguins_colors <- c('#057076', '#ff8301', '#bf5ccb')
+
+penguins %>% 
+  ggplot(aes(x = island, y = species, color = species)) +
+  geom_jitter(size = 3) + 
+  scale_color_manual(values = penguins_colors)  +
+  theme_bw(base_family = "NanumGothic") +
+  theme(legend.position = "top") +
+  labs(title = "펭귄종과 서식하는 섬",
+       x = "섬",
+       y = "펭귄종명") 
+```
+
+### 표 {.unnumbered}
+
+```{r}
+library(gtExtras)
+
+penguins %>% 
+  count(species, island) %>% 
+  pivot_wider(names_from = island, values_from = n, values_fill = 0) %>% 
+  gt::gt() %>% 
+  gtExtras::gt_theme_538()
+```
+
+
+### 통계검정 {.unnumbered}
+
+```{r}
+library(infer)
+
+
+# 관측통계량
+observed_indep_statistic <- penguins %>% 
+  specify(species ~ island) %>%
+  hypothesize(null = "independence") %>%
+  calculate(stat = "Chisq")
+
+# 통계검정 시각화
+penguins %>% 
+  specify(species ~ island) %>%
+  assume(distribution = "Chisq") %>% 
+  visualize() + 
+  shade_p_value(observed_indep_statistic,
+                direction = "greater")  
+
+# P값
+penguins %>% 
+  specify(species ~ island) %>%
+  assume(distribution = "Chisq") %>% 
+  get_p_value(obs_stat = observed_indep_statistic,
+              direction = "two-sided")
+```
+
+:::
+
+다른 `species`와 `sex`, `sex`와 `island` 범주 사이는 특별한 관계를 찾을 수 없음.
+
+::: {layout-ncol=2 .column-page}
+
+### `species`와 `sex` {.unnumbered}
+
+```{r}
+library(janitor)
+library(gt)
+
+penguins %>% 
+  count(species, sex) %>% 
+  pivot_wider(names_from = sex, values_from = n, values_fill = 0) %>% 
+  adorn_totals("row", name = "합계") %>%
+  adorn_percentages("row") %>%
+  adorn_pct_formatting(digits = 1) %>%
+  adorn_ns()  %>% 
+  gt::gt() %>% 
+  tab_options(table.font.names = 'NanumGothic',
+                column_labels.font.weight = 'bold',
+                heading.title.font.size = 14,
+                heading.subtitle.font.size = 14,
+                table.font.color = 'steelblue',
+                source_notes.font.size = 10,
+                #source_notes.
+                table.font.size = 14) %>%   
+    gtExtras::gt_theme_538()
+```
+
+### `sex`와 `island` {.unnumbered}
+
+```{r}
+penguins %>% 
+  count(island, sex) %>% 
+  pivot_wider(names_from = sex, values_from = n, values_fill = 0) %>% 
+  adorn_totals("row", name = "합계") %>%
+  adorn_percentages("row") %>%
+  adorn_pct_formatting(digits = 1) %>%
+  adorn_ns()  %>% 
+  gt::gt() %>% 
+tab_options(table.font.names = 'NanumGothic',
+              column_labels.font.weight = 'bold',
+              heading.title.font.size = 14,
+              heading.subtitle.font.size = 14,
+              table.font.color = 'darkgreen',
+              source_notes.font.size = 10,
+              #source_notes.
+              table.font.size = 14) %>%   
+  gtExtras::gt_theme_538()
+```
+
+:::
+
+## 연속형 변수
+
+[[Simple Correlation Analysis in R using Tidyverse Principles](https://paulvanderlaken.com/2018/09/10/simpler-correlation-analysis-in-r-using-tidyverse-principles/)]{.aside}
+
+### 상관관계
+
+`penguins` 데이터프레임에서 연속형 변수만 추출하여 상관관계를 살펴보자.
+
+::: {layout-ncol=3 .column-page}
+
+### 시각화 {.unnumbered}
+
+```{r}
+library(corrplot)
+
+penguins_num <- penguins %>% 
+  select(-year) %>% 
+  select_if(is.numeric) 
+
+penguins_num %>% 
+  cor() %>% 
+  corrplot(type = "upper", order = "hclust", 
+         tl.col = "black", tl.srt = 45)
+```
+
+#### 상관계수 일반표 {.unnumbered}
+
+```{r}
+library(corrr)
+library(gt)
+
+penguins_num %>% 
+  rename_with(.cols = everything(), .fn = ~str_remove(., pattern = "_mm|_g")) %>% 
+  corrr::correlate( use = "pairwise.complete.obs",
+                    method = "pearson") %>% 
+  rearrange() %>% 
+  shave() %>% 
+  # fashion() %>% 
+  gt::gt() %>% 
+  # 상관계수 색상
+  data_color(
+    columns = where(is.numeric),
+    colors = scales::col_numeric(
+      ## option D for Viridis - correlation coloring
+      palette = RColorBrewer::brewer.pal(9, "RdBu"), 
+      domain = NULL,
+      na.color = 'white')
+  ) %>% 
+  sub_missing(
+    columns = everything(),
+    missing_text = "-"
+  ) %>% 
+  cols_align(align = "center", columns = everything()) %>% 
+  gtExtras::gt_theme_538()  
+```
+
+#### 상관계수 긴 표 {.unnumbered}
+
+```{r}
+corrr::correlate(penguins_num) %>% 
+  stretch(remove.dups = TRUE) %>% 
+  filter(!is.na(r)) %>% 
+  arrange(desc(r)) %>% 
+  mutate(음양 = ifelse(r > 0, "양의 상관", "음의 상관")) %>% 
+  mutate(color = "") %>% 
+  gt(groupname_col = "음양") %>% 
+  fmt_number(
+    columns = r,
+    decimals = 2,
+    use_seps = FALSE
+  )  %>% 
+  data_color(
+    columns = r,
+    target_columns = color,
+    method = "numeric",
+    palette = RColorBrewer::brewer.pal(9, "RdBu")
+  ) %>% 
+  cols_label(
+    x = "",
+    y = "",
+    r = "상관계수",
+    color = ""
+  ) |>
+  opt_vertical_padding(scale = 0.7)  %>% 
+  gtExtras::gt_theme_538()
+```
+
+
+:::
+
+
+
+### 평행 그래프
+
+```{r}
+library(GGally)
+
+penguins %>% 
+  select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) %>% 
+  ggparcoord(columns = 2:5,
+             showPoints = TRUE,
+             groupColumn = "species") +
+  scale_color_manual(values = penguins_colors)
+```
+
+### 짝 산점도
+
+```{r}
+penguins %>% 
+  select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) %>% 
+  ggpairs(columns = 2:5, ggplot2::aes(colour=species),
+          upper = list(continuous='density', combo='box_no_facet'),
+          axisLabels='internal') +
+  scale_color_manual(values = penguins_colors) +
+  scale_fill_manual(values = penguins_colors) +
+  theme_minimal()
+```
+
+
+# 모형
+
+## 성별 분류모형
+
+펭귄의 암수를 분류하는 기계학습모형을 개발하기 전에 훈련/시험 데이터셋으로 나눈다.
+
+```{r}
+library(tidymodels)
+
+penguins_split <- penguins %>% 
+  initial_split(prop = 0.70, strata = sex)
+ 
+penguins_train <- training(penguins_split)
+penguins_test  <- testing(penguins_split)
+```
+
+### 로지스틱 회귀
+
+펭귄의 암수를 분류하는 로지스틱 회귀모형으로 분류모형을 개발해보자.
+
+```{r}
+logistic_spec <- logistic_reg() %>% 
+  set_engine("glm") %>% 
+  set_mode("classification")
+
+logistic_wflow <- 
+  workflow(
+    sex ~ species + island + bill_length_mm + bill_depth_mm + 
+          flipper_length_mm + body_mass_g,
+    logistic_spec
+  )
+
+logistic_fit <- logistic_wflow %>% fit(data = penguins_train)
+
+sex_predict <- predict(logistic_fit, penguins_test, type = "class")
+
+bind_cols(penguins_test, sex_predict) %>% 
+  ggplot(aes(x = sex, y = .pred_class, color = sex)) +
+  geom_jitter(size = 1, width = 0.2, height = 0.2) +
+  scale_color_manual(values = c("blue", "red")) +
+  theme_bw()
+```
+
+### Random Forest
+
+펭귄의 암수를 분류하는 Random Forest 모형으로 분류모형을 개발해보자.
+
+```{r}
+rf_spec <- rand_forest() %>% 
+  set_engine("ranger") %>% 
+  set_mode("classification")
+
+rf_wflow <- 
+  workflow(
+    sex ~ species + island + bill_length_mm + bill_depth_mm + 
+          flipper_length_mm + body_mass_g,
+    rf_spec
+  )
+
+rf_fit <- rf_wflow %>% fit(data = penguins_train)
+
+sex_rf <- predict(rf_fit, penguins_test, type = "class")
+
+bind_cols(penguins_test, sex_rf) %>% 
+  ggplot(aes(x = sex, y = .pred_class, color = sex)) +
+  geom_jitter(size = 1, width = 0.2, height = 0.2) +
+  scale_color_manual(values = c("blue", "red")) +
+  theme_bw()
+```
+
+### SVM
+
+펭귄의 암수를 분류하는 SVM 모형으로 분류모형을 개발해보자.
+
+```{r}
+svm_spec <- svm_rbf() %>% 
+  set_engine("kernlab") %>% 
+  set_mode("classification")
+
+svm_wflow <- 
+  workflow(
+    sex ~ species + island + bill_length_mm + bill_depth_mm + 
+          flipper_length_mm + body_mass_g,
+    svm_spec
+  )
+
+svm_fit <- svm_wflow %>% fit(data = penguins_train)
+
+sex_svm <- predict(svm_fit, penguins_test, type = "class")
+
+bind_cols(penguins_test, sex_svm) %>% 
+  ggplot(aes(x = sex, y = .pred_class, color = sex)) +
+  geom_jitter(size = 1, width = 0.2, height = 0.2) +
+  scale_color_manual(values = c("blue", "red")) +
+  theme_bw()
+```
+
+
+
+## 펭귄종 분류모형
+
+펭귄종(아델리, 젠투, 턱끈)을 분류하는 기계학습모형을 개발하기 전에 훈련/시험 데이터셋으로 나눈다.
+
+### 다항회귀모형
+
+펭귄종(아델리, 젠투, 턱끈)을 분류하는 로지스틱 회귀모형으로 분류모형을 개발해보자.
+
+```{r}
+multinom_spec <- multinom_reg() %>% 
+  set_mode("classification")
+
+multinom_wflow <- 
+  workflow(
+    species ~ sex + island + bill_length_mm + bill_depth_mm + 
+          flipper_length_mm + body_mass_g,
+    multinom_spec
+  )
+
+multinom_fit <- multinom_wflow %>% fit(data = penguins_train)
+
+sex_predict <- predict(multinom_fit, penguins_test, type = "class")
+
+bind_cols(penguins_test, sex_predict) %>% 
+  ggplot(aes(x = species, y = .pred_class, color = species)) +
+  geom_jitter(size = 1, width = 0.2, height = 0.2) +
+  scale_color_manual(values = penguins_colors) +
+  theme_bw()
+```
+
+### Random Forest
+
+펭귄종(아델리, 젠투, 턱끈)을 분류하는 Random Forest 모형으로 분류모형을 개발해보자.
+
+```{r}
+rf_spec <- rand_forest() %>% 
+  set_engine("ranger") %>% 
+  set_mode("classification")
+
+rf_wflow <- 
+  workflow(
+    species ~ sex + island + bill_length_mm + bill_depth_mm + 
+          flipper_length_mm + body_mass_g,
+    rf_spec
+  )
+
+rf_fit <- rf_wflow %>% fit(data = penguins_train)
+
+sex_rf <- predict(rf_fit, penguins_test, type = "class")
+
+bind_cols(penguins_test, sex_rf) %>% 
+  ggplot(aes(x = species, y = .pred_class, color = species)) +
+  geom_jitter(size = 1, width = 0.2, height = 0.2) +
+  scale_color_manual(values = penguins_colors) +
+  theme()
+```
+
+
+# 고급 시각화
+
+## 펭귄크기와 물칼퀴
+
+```{r}
+extrafont::loadfonts()
+ggplot2::theme_set(ggplot2::theme_minimal(base_family = "MaruBuri"))
+
+species_mean <- penguins %>% 
+  group_by(species) %>% 
+  summarise(flipper_mean = mean(flipper_length_mm),
+         body_mass_mean  = mean(body_mass_g)) 
+
+penguins %>% 
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, shape = species),
+             size = 3, alpha = 0.8) +
+  # 평균 추가
+  geom_point(data = species_mean, aes(x = flipper_mean, y = body_mass_mean, shape = species),
+             size = 5, color = "black", show.legend = FALSE) +  
+  scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
+  labs(title = "남국 파머 연구수 서식 펭귄 크기",
+       subtitle = "아델리, 젠투, 턱끈 펭귄 물갈퀴 길이와 체질량",
+       x = "물갈퀴 길이 (mm)",
+       y = "체질량 (g)",
+       color = "펭귄종",
+       shape = "펭귄종") +
+  theme(legend.position = c(0.9, 0.2),
+        plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot") 
+```
+
+## 물갈퀴와 부리 길이
+
+```{r}
+
+species_mean <- penguins %>% 
+  group_by(species) %>% 
+  summarise(flipper_mean = mean(flipper_length_mm),
+            bill_mean  = mean(bill_length_mm)) 
+
+penguins %>% 
+  ggplot(aes(x = flipper_length_mm, y = bill_length_mm)) +
+  geom_point(aes(color = species, shape = species),
+             size = 3, alpha = 0.8) +
+  # 평균 추가
+  geom_point(data = species_mean, aes(x = flipper_mean, y = bill_mean, shape = species),
+             size = 5, color = "black", show.legend = FALSE) +  
+  scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
+  labs(title = "물갈퀴 길이와 부리 길이",
+       subtitle = "아델리, 젠투, 턱끈 펭귄 물갈퀴 길이와 부리 길이 치수",
+       x = "물갈퀴 길이 (mm)",
+       y = "부리 길이 (mm)",
+       color = "펭귄종",
+       shape = "펭귄종") +
+  theme(legend.position = c(0.9, 0.2),
+        plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot") 
+```
+
+## 분포와 Facet
+
+::: {layout-ncol=3 .column-page}
+
+```{r}
+ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), 
+                 alpha = 0.5, 
+                 position = "identity") +
+  scale_fill_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "물갈퀴 길이 (mm)",
+       y = "빈도수",
+       title = "펭귄 물갈퀴 길이",
+       fill = "펭귄종")
+```
+
+
+```{r}
+ggplot(data = penguins, aes(x = species, y = flipper_length_mm)) +
+  geom_boxplot(aes(color = species), width = 0.3, show.legend = FALSE) +
+  geom_jitter(aes(color = species), alpha = 0.5, show.legend = FALSE, 
+              position = position_jitter(width = 0.2, seed = 0)) +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(x = "펭귄종",
+       y = "물갈퀴 길이 (mm)",
+       title = "펭귄종별 물갈퀴 길이 분포")
+```
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = sex)) +
+  scale_color_manual(values = c("darkorange","cyan4"), na.translate = FALSE) +
+  labs(title = "펭귄 물갈퀴 길이와 체질량",
+       subtitle = "아델리, 젠투, 턱끈 펭귄 물갈퀴 길이와 체질량",
+       x = "물갈퀴 길이 (mm)",
+       y = "체질량 (g)",
+       color = "펭귄암수") +
+  theme(legend.position = "bottom",
+        plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot") +
+  facet_wrap(~species)
+```
+
+:::
+
+# 심슨 역설
+
+심슨의 역설(Simpson’s Paradox)은 데이터를 취합할 때 의미 있는 변수를 생략하면 변수 간에 관찰되는 추세가 역전되는 데이터 현상이다. 
+
+부리의 길이와 깊이는 전체적으로 음의 상관관계를 보이지만, 종을 포함하면 이러한 추세가 반전되어 종 내에서는 부리 길이와 부리 깊이 사이에 양의 상관관계가 뚜렷하게 나타난다.
+
+::: {layout-ncol=2 .column-page}
+
+### 펭귄종 누락 시각화 {.unnumbered}
+
+```{r}
+library(ggpubr)
+
+penguins %>% 
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm)) +
+    geom_point(size = 3, alpha = 0.8) +
+    labs(title = "펭귄종을 누락한 상태 부리 길이와 깊이",
+         subtitle = "남극 파머 연구소",
+         x = "부리 길이 (mm)",
+         y = "부리 깊이 (mm)") +
+    theme(plot.title.position = "plot",
+          plot.caption = element_text(hjust = 0, face= "italic"),
+          plot.caption.position = "plot") +
+    geom_smooth(method = "lm", se = FALSE, color = "gray50") +
+    stat_regline_equation(label.x = 30, label.y = 22)
+```
+
+### 펭귄종 포함 시각화 {.unnumbered}
+
+```{r}
+library(ggpmisc)
+
+penguins %>% 
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, 
+             color = species, shape = species)) +
+    geom_point(size = 3, alpha = 0.8) +
+    scale_color_manual(values = c("darkorange","purple","cyan4")) +
+    stat_poly_line(formula = y ~ x, se = FALSE) +
+    stat_poly_eq(aes(label = after_stat(eq.label)), formula = y ~ x) +
+    labs(title = "펭귄종을 포함한 상태 부리 길이와 깊이",
+         subtitle = "남극 파머 연구소",
+         x = "부리 길이 (mm)",
+         y = "부리 깊이 (mm)") +
+    theme(plot.title.position = "plot",
+          plot.caption = element_text(hjust = 0, face= "italic"),
+          plot.caption.position = "plot",
+          legend.position = "top") 
+  
+```
+
+:::
+
+# 다변량 분석
+
+## 주성분 분석
+
+주성분 분석(PCA)은 다변량 데이터의 패턴을 탐색하는 데 일반적으로 사용되는 차원 축소 방법이다. [@penguin2022]
+
+```{r}
+#| layout-ncol: 2
+
+# Omit year
+penguins_noyr <- penguins %>%
+  select(-year) %>%
+  mutate(species = as.character(species)) %>%
+  mutate(species = case_when(
+    species == "Adelie" ~ "Adélie",
+    TRUE ~ species
+  )) %>%
+  mutate(species = as.factor(species))
+
+penguin_recipe <-
+  recipe(~., data = penguins_noyr) %>%
+  update_role(species, island, sex, new_role = "id") %>%
+  step_naomit(all_predictors()) %>%
+  step_normalize(all_predictors()) %>%
+  step_pca(all_predictors(), id = "pca") %>%
+  prep()
+
+penguin_pca <-
+  penguin_recipe %>%
+  tidy(id = "pca")
+
+penguin_percvar <- penguin_recipe %>%
+  tidy(id = "pca", type = "variance") %>%
+  dplyr::filter(terms == "percent variance")
+
+# Make the penguins PCA biplot:
+
+# Get pca loadings into wider format
+pca_wider <- penguin_pca %>%
+  tidyr::pivot_wider(names_from = component, id_cols = terms)
+
+# define arrow style:
+arrow_style <- arrow(length = unit(.05, "inches"),
+                     type = "closed")
+
+penguins_juiced <- juice(penguin_recipe)
+
+# Make the penguins PCA biplot:
+pca_plot <-
+  penguins_juiced %>%
+  ggplot(aes(PC1, PC2)) +
+  coord_cartesian(
+    xlim = c(-3, 4),
+    ylim = c(-2.5, 2))  +
+  paletteer::scale_color_paletteer_d("colorblindr::OkabeIto") +
+  guides(color = guide_legend("Species"),
+        shape = guide_legend("Species")) +
+  theme(legend.position = "bottom",
+        panel.border = element_rect(color = "gray70", fill = NA))
+
+# For positioning (above):
+# 1: bill_length
+# 2: bill_depth
+# 3: flipper length
+# 4: body mass
+
+penguins_biplot <- pca_plot +
+  geom_segment(data = pca_wider,
+               aes(xend = PC1, yend = PC2),
+               x = 0,
+               y = 0,
+               arrow = arrow_style) +
+  geom_point(aes(color = species, shape = species),
+             alpha = 0.7,
+             size = 2) +
+  shadowtext::geom_shadowtext(data = pca_wider,
+                  aes(x = PC1, y = PC2, label = terms),
+                  nudge_x = c(0.7,0.7,1.7,1.2),
+                  nudge_y = c(-0.1,-0.2,0.1,-0.1),
+                  size = 4,
+                  color = "black",
+                  bg.color = "white")
+
+penguins_biplot
+
+penguin_screeplot_base <- penguin_percvar %>%
+  ggplot(aes(x = component, y = value)) +
+  scale_x_continuous(limits = c(0, 5), breaks = c(1,2,3,4), expand = c(0,0)) +
+  scale_y_continuous(limits = c(0,100), expand = c(0,0)) +
+  ylab("% of total variance") +
+  theme(panel.border = element_rect(color = "gray70", fill = NA),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank())
+
+penguin_screeplot <- penguin_screeplot_base +
+  geom_col(fill = "gray50") +
+  geom_text(aes(label = round(value,2)), vjust=-0.25)
+
+penguin_screeplot
+```
+
+## 군집분석
+
+k-평균(K-Means) 비지도학습 군집분석은 기계학습 및 분류에 대한 일반적이고 인기 있는 알고리즘이다.
+
+```{r}
+## ---- kmeans ---------------------------------------------------------
+
+# TWO VARIABLE k-means comparison
+# Penguins: Bill length vs. bill depth
+pb_species <- penguins %>%
+  select(species, starts_with("bill")) %>%
+  drop_na() %>%
+  mutate(species = as.character(species)) %>%
+  mutate(species = case_when(
+    species == "Adelie" ~ "Adélie",
+    TRUE ~ species
+  )) %>%
+  mutate(species = as.factor(species))
+
+# Prep penguins for k-means:
+pb_nospecies <- pb_species %>%
+  select(-species) %>%
+  recipe() %>%
+  step_normalize(all_numeric()) %>%
+  prep() %>%
+  juice()
+
+# Perform k-means on penguin bill dimensions (k = 3, w/20 centroid starts)
+
+# Save augmented data
+set.seed(100)
+pb_clust <-
+  pb_nospecies %>%
+  kmeans(centers = 3, nstart = 20) %>%
+  broom::augment(pb_species)
+
+# Get counts in each cluster by species
+pb_clust_n <- pb_clust %>%
+  count(species, .cluster) %>%
+  pivot_wider(names_from = species, values_from = n, names_sort = TRUE) %>%
+  arrange(.cluster) %>%
+  replace_na(list(`Adelie` = 0))
+
+# Plot penguin k-means clusters:
+# make a base plot b/c https://github.com/plotly/plotly.R/issues/1942
+pb_kmeans_base <-
+  pb_clust %>%
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm)) +
+  paletteer::scale_color_paletteer_d("colorblindr::OkabeIto") +
+  paletteer::scale_fill_paletteer_d("colorblindr::OkabeIto") +
+  scale_x_continuous(limits = c(30, 60),
+                     breaks = c(30, 40, 50, 60)) +
+  theme(legend.position = "bottom",
+        panel.border = element_rect(fill = NA, color = "gray70")) +
+  labs(x = "Bill length (mm)",
+       y = "Bill depth (mm)",
+       color = "Species")
+# ggpubr::stat_chull(aes(fill = .cluster, color = .cluster),
+# alpha = 0.5, geom = "polygon", show.legend = FALSE)
+
+pb_kmeans_gg <- pb_kmeans_base +
+  geom_text(aes(label = .cluster,
+                color = species),
+            key_glyph = draw_key_rect,
+            check_overlap = TRUE)
+
+pb_kmeans_plotly <- pb_kmeans_base +
+  geom_text(aes(label = .cluster,
+                color = species,
+                text = paste("Species: ", species,
+                             "\nCluster: ", .cluster,
+                             "\nBill length (mm): ", bill_length_mm,
+                             "\nBill depth (mm): ", bill_depth_mm)
+                ),
+            size = 3)
+
+plotly::ggplotly(pb_kmeans_plotly, height = 300, tooltip = "text")
+```
+
+

@@ -37,11 +37,27 @@ knitr:
       knitr.graphics.auto_pdf: true
 editor_options: 
   chunk_output_type: console
+notebook-view:
+  - notebook: jupyterlab/pandasai.ipynb
+    title: "PandasAI 쥬피터 노트북"
 ---
 
-# 산점도
+
+[PandasAI](https://github.com/gventuri/pandas-ai)는 널리 사용되는 데이터 분석 및 조작 도구인 Pandas에 생성형 인공지능 기능을 추가한 Python 라이브러리다. 이 라이브러리는 판다스와 함께 사용하도록 설계되었으나 판다스를 대체할 수는 없다. 
+이유는 판다스 문법에 맞는 파이썬 코드를 작성하는 용도에 적합하기 때문이다.
+
+
+
+
+# 시각화
+
+:::{#viz layout-ncol=2}
+
+{{< embed jupyterlab/pandasai.ipynb#viz-gdp >}}
 
 {{< embed jupyterlab/pandasai.ipynb#gdp-happy >}}
+
+:::
 
 # 코드 설정
 
