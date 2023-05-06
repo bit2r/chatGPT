@@ -139,6 +139,8 @@ website:
         - text: "------------------"
         - href: pandasai.qmd
           text: "판다스 AI"
+        - href: llama_penguins.qmd
+          text: "펭귄: 라마인덱스"
       - href: blog.qmd
         text: "게시글"
       - text: "비즈니스"

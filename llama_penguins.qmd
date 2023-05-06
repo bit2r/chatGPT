@@ -1,0 +1,132 @@
+---
+title: "chatGPT"
+subtitle: "펭귄: 라마인덱스"
+description: | 
+  라마인덱스 펭귄 데이터 분석
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-tools: true
+    code-link: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+notebook-view:
+  - notebook: jupyterlab/penguins_langchain.ipynb
+    title: "llama-index 쥬피터 노트북"
+---
+
+![](images/llama-penguins.jpg)
+
+[LlamaIndex(GPT 인덱스)](https://github.com/jerryjliu/llama_index)는 LLM을 외부 데이터와 연결하기 위한 통합 인터페이스를 제공하는 프로젝트다. 외부 데이터에는 당연히 데이터프레임도 포함된다.
+
+펭귄 데이터를 판다스 데이터프레임으로 파이썬 환경으로 가져온 후에 [LlamaIndex(GPT 인덱스)](https://github.com/jerryjliu/llama_index)에 넣어 OpenAI GPT API 인터페이스를 통해 자연어로 다양한 데이터 분석을 수행할 수 있다.
+
+# 사전준비
+
+챗GPT 시대 데이터 분석에 필요한 사항은 먼저 OpenAI API 연결을 위한 설정, 분석 데이터셋, 그리고 이를 연결시키는 [LlamaIndex(GPT 인덱스)](https://github.com/jerryjliu/llama_index)라고 할 수 있다.
+
+## OpenAI 설정
+
+{{< embed jupyterlab/penguins_langchain.ipynb#openai-setup echo=true >}}
+
+## 데이터셋
+
+{{< embed jupyterlab/penguins_langchain.ipynb#penguins-dataset echo=true >}}
+
+# 결측값
+
+펭귄 데이터는 적지만 결측값이 존재한다. 
+실제 현업에서 데이터를 들여다보면 훨씬 더 많은 결측치가 존재하지만 
+학습용으로는 손색이 없다.
+
+## 결측값 현황
+
+`show_missing()` 함수를 사용해서 간략히 전체적인 결측값 현황을 파악할 수 있다.
+
+{{< embed jupyterlab/penguins_langchain.ipynb#missing-values echo=true >}}
+
+
+## 결측값 제거
+
+`llama-index` 파이썬 패키지를 설치한 후에 `GPTPandasIndex()` 함수로 결측값이 담긴
+펭귄 데이터프레임을 넣어 자연어 질의문을 던지게 되면 원하는 파이썬 작업결과를 
+얻을 수 있다.
+
+```
+# !pip install llama-index
+```
+
+{{< embed jupyterlab/penguins_langchain.ipynb#missing-values-remove echo=true >}}
+
+
+# 데이터 살펴보기
+
+원본 데이터를 분석을 위해 데이터를 가져오게 되면 가장 먼저 
+데이터를 살펴보게 된다. 지시명령문을 다음과 같이 작성헤 되면 행과 열을 파악할 수 있게 된다.
+
+```
+Return how many rows and how many columns are in the dataset.\n
+                                 The response must be a key-value object as we show in the tags:\n 
+                                 <{'rows':..., 'columns':...}>
+```
+
+{{< embed jupyterlab/penguins_langchain.ipynb#llama-setup echo=true >}}
+
+
+# 상관관계
+
+몇차례 시행착오가 있었지만 숫자형 칼럼만 선택하여 상관관계를 파악한다.
+
+{{< embed jupyterlab/penguins_langchain.ipynb#llama-correlation echo=true >}}
+
+# 요약통계량
+
+실무에서 가장 많이 사용하는 그룹 집단별로 요약통계량을 구하는 질의문을 작성하여 시행한다.
+
+{{< embed jupyterlab/penguins_langchain.ipynb#llama-summary echo=true >}}
+
+
+# 시각화
+
+## 산점도
+
+{{< embed jupyterlab/penguins_langchain.ipynb#llama-scatter echo=true >}}
+
+## 분포도
+
+{{< embed jupyterlab/penguins_langchain.ipynb#llama-histogram echo=true >}}
+
+# 모형
+
+{{< embed jupyterlab/penguins_langchain.ipynb#llama-model echo=true >}}
+
+
