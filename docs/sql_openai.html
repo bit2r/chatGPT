@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.299">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="이광춘">
+<meta name="description" content="챗GPT SQL">
+<title>chatGPT</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./images/profile.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색"
+  }
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><link rel="stylesheet" href="css/quarto.css">
+</head>
+<body class="nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">chatGPT</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">생성 AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai">
+<li>
+    <a class="dropdown-item" href="./architecture.html" rel="" target="">
+ <span class="dropdown-text">chatGPT 이해</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./trends.html" rel="" target="">
+ <span class="dropdown-text">추세 트렌드</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./why_llm.html" rel="" target="">
+ <span class="dropdown-text">왜 거대언어모형인가?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nlp_LLM.html" rel="" target="">
+ <span class="dropdown-text">NLP와 LLM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gpt4_performance.html" rel="" target="">
+ <span class="dropdown-text">GPT-4 성능</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gpt-security.html" rel="" target="">
+ <span class="dropdown-text">챗GPT 보안사고</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./interface.html" rel="" target="">
+ <span class="dropdown-text">인터페이스</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./open_source.html" rel="" target="">
+ <span class="dropdown-text">오픈소스 S/W LLM</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-chatgpt-응용사례" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">chatGPT 응용사례</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-chatgpt-응용사례">
+<li>
+    <a class="dropdown-item" href="./use-cases.html" rel="" target="">
+ <span class="dropdown-text">활용사례</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_avi.html" rel="" target="">
+ <span class="dropdown-text">법인 R 소개영상</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./macbook.html" rel="" target="">
+ <span class="dropdown-text">맥북 투척사건</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./office.html" rel="" target="">
+ <span class="dropdown-text">오피스 전쟁</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./news_article.html" rel="" target="">
+ <span class="dropdown-text">보도자료 작성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_book.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 책</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_paper.html" rel="" target="">
+ <span class="dropdown-text">논문 초록</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rnd.html" rel="" target="">
+ <span class="dropdown-text">학술연구(R&amp;D)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./yuji.html" rel="" target="">
+ <span class="dropdown-text">멤버 Yuji</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./text2image.html" rel="" target="">
+ <span class="dropdown-text">텍스트 → 이미지 생성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./stable_diffusion.html" rel="" target="">
+ <span class="dropdown-text">Stable Diffusion</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./samsung.html" rel="" target="">
+ <span class="dropdown-text">삼전 주가예측</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./calculator.html" rel="" target="">
+ <span class="dropdown-text">계산기 프로그램</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding.html" rel="" target="">
+ <span class="dropdown-text">GPT R 코딩개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding-copilot.html" rel="" target="">
+ <span class="dropdown-text">부조종사 R 코딩개발</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./math.html" rel="" target="">
+ <span class="dropdown-text">수학문제 (MIT)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./middle_school.html" rel="" target="">
+ <span class="dropdown-text">Shiny 앱</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./inaugural.html" rel="" target="">
+ <span class="dropdown-text">대통령 취임사</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./translation.html" rel="" target="">
+ <span class="dropdown-text">번역(영한, 한영)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gg_grouping.html" rel="" target="">
+ <span class="dropdown-text">챗GPT 팀구성</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-prompt-eng." role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Prompt Eng.</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-prompt-eng.">
+<li>
+    <a class="dropdown-item" href="./prompt.html" rel="" target="">
+ <span class="dropdown-text">Prompt Engineering</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./prompt_adv.html" rel="" target="">
+ <span class="dropdown-text">Advanced Prompt Engineering</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./prompt_in_practice.html" rel="" target="">
+ <span class="dropdown-text">프롬프트 실무</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./prompt_for_develoopers.html" rel="" target="">
+ <span class="dropdown-text">(개발자) 프롬프트 공학</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./prompt_data_science.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 프롬프트</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./interview.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 인터뷰</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">자동화/개발</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">
+<li>
+    <a class="dropdown-item" href="./ide.html" rel="" target="">
+ <span class="dropdown-text">통합개발환경(IDE)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./reticulate.html" rel="" target="">
+ <span class="dropdown-text">파이썬 환경구축</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./koGPT.html" rel="" target="">
+ <span class="dropdown-text">HuggingfaceR - 모형통계</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BERT.html" rel="" target="">
+ <span class="dropdown-text">BERT</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./hf.html" rel="" target="">
+ <span class="dropdown-text">Hugging Face</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hf_windows.html" rel="" target="">
+ <span class="dropdown-text">Hugging Face(윈도우)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hf_pipeline.html" rel="" target="">
+ <span class="dropdown-text">HF 파이프라인</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./openAI_GPT.html" rel="" target="">
+ <span class="dropdown-text">OpenAI GPT</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./langchain_arch.html" rel="" target="">
+ <span class="dropdown-text">LangCahin 아키텍쳐</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./whisper.html" rel="" target="">
+ <span class="dropdown-text">음성인식(Whisper)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./palmer_penguins.html" rel="" target="">
+ <span class="dropdown-text">펭귄 데이터셋</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./penguins_analytics.html" rel="" target="">
+ <span class="dropdown-text">펭귄 데이터 분석</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./autoGPT_ds.html" rel="" target="">
+ <span class="dropdown-text">EDA 자동화 AutoEDA</span></a>
+  </li>  
+        <li class="dropdown-header">ML 자동화 AutoML</li>
+        <li class="dropdown-header">데이터 과학 AutoGPT</li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./pandasai.html" rel="" target="">
+ <span class="dropdown-text">판다스 AI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./llama_penguins.html" rel="" target="">
+ <span class="dropdown-text">펭귄: 라마인덱스</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sql_openai.html" rel="" target="">
+ <span class="dropdown-text">챗GPT SQL</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item">
+    <a class="nav-link" href="./blog.html" rel="" target="">
+ <span class="menu-text">게시글</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">비즈니스</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">
+<li>
+    <a class="dropdown-item" href="./chatGPT_overview.html" rel="" target="">
+ <span class="dropdown-text">챗GPT 개요</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./services.html" rel="" target="">
+ <span class="dropdown-text">(유)무료 서비스</span></a>
+  </li>  
+    </ul>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/bit2r/chatGPT" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://r2bit.com" rel="" target="">
+ <span class="menu-text">R사용자회</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/LAION-AI/Open-Assistant" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Open Assistant</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rtutor.ai/" rel="" target="">
+ <span class="menu-text">RTutor</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+<div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="다크 모드 전환"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title">chatGPT</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> 코드</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 표시</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 숨기기</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">소스 코드 표시</a></li></ul></div></div>
+            <p class="subtitle lead">챗GPT SQL</p>
+                  <div>
+        <div class="description">
+          <p>챗GPT SQL</p>
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-heading">소속</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://www.linkedin.com/in/kwangchunlee/">이광춘</a> </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://github.com/bit2r">
+              한국 R 사용자회
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li>
+<a href="#%EC%9E%90%EC%97%B0%EC%96%B4-sql" id="toc-자연어-sql" class="nav-link active" data-scroll-target="#%EC%9E%90%EC%97%B0%EC%96%B4-sql"><span class="header-section-number">1</span> 자연어 → SQL</a>
+  <ul class="collapse">
+<li><a href="#%ED%95%A8%EC%88%98" id="toc-함수" class="nav-link" data-scroll-target="#%ED%95%A8%EC%88%98"><span class="header-section-number">1.1</span> 함수</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#langchain-sql" id="toc-langchain-sql" class="nav-link" data-scroll-target="#langchain-sql"><span class="header-section-number">2</span> Langchain + SQL</a>
+  <ul class="collapse">
+<li><a href="#%EC%A0%95%EB%A0%AC%EA%B3%BC-%EC%A4%91%EB%B3%B5%EC%A0%9C%EA%B1%B0" id="toc-정렬과-중복제거" class="nav-link" data-scroll-target="#%EC%A0%95%EB%A0%AC%EA%B3%BC-%EC%A4%91%EB%B3%B5%EC%A0%9C%EA%B1%B0"><span class="header-section-number">2.1</span> 정렬과 중복제거</a></li>
+  <li><a href="#%EC%B4%9D%EA%B3%84" id="toc-총계" class="nav-link" data-scroll-target="#%EC%B4%9D%EA%B3%84"><span class="header-section-number">2.2</span> 총계</a></li>
+  <li><a href="#%EC%B1%97gpt-%EB%AA%A8%EB%8D%B8" id="toc-챗gpt-모델" class="nav-link" data-scroll-target="#%EC%B1%97gpt-%EB%AA%A8%EB%8D%B8"><span class="header-section-number">2.3</span> 챗GPT 모델</a></li>
+  </ul>
+</li>
+  <li><a href="#%EA%B4%80%EB%A0%A8%EC%A0%95%EB%B3%B4" id="toc-관련정보" class="nav-link" data-scroll-target="#%EA%B4%80%EB%A0%A8%EC%A0%95%EB%B3%B4"><span class="header-section-number">3</span> 관련정보</a></li>
+  </ul><div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="jupyterlab\sql.ipynb.html"><i class="bi bi-journal-code"></i>SQL 쥬피터 노트북</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/sql_workflow.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/sql_workflow.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<section id="자연어-sql" class="level1 page-columns page-full" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> 자연어 → SQL</h1>
+<p><code>code-davinci-002</code>이 사용중단(deprecated)되어 <code>text-davinci-002</code>, <code>text-davinci-003</code> 모델들이 Codex 기반으로 프로그램 작성이 가능하다. <span class="citation" data-cites="plaetsen_2023">(<a href="#ref-plaetsen_2023" role="doc-biblioref">Plaetsen, 2023</a>)</span></p>
+<div class="column-body-outset">
+<div class="columns">
+<div class="column">
+<section id="영어-프롬프트" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="영어-프롬프트">영어 프롬프트</h3>
+<div data-notebook="jupyterlab/sql.ipynb" data-notebook-title="사전준비">
+<div id="sql-helloworld" class="cell" data-execution_count="49">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"Get all the users that are older than 35 years old"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="st">"text-davinci-002"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>max_tokens <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> openai.Completion.create(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    engine<span class="op">=</span>model,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    prompt<span class="op">=</span>prompt,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span>temperature,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    max_tokens<span class="op">=</span>max_tokens,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>].text)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>
+
+SELECT * FROM users WHERE age &gt; 35;</code></pre>
+</div>
+</div>
+<a class="quarto-notebook-link" id="nblink-1" href="jupyterlab\sql.ipynb.html#sql-helloworld">원천: SQL 쥬피터 노트북</a></div>
+</section>
+</div><div class="column">
+<section id="한글-프롬프트" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="한글-프롬프트">한글 프롬프트</h3>
+<div data-notebook="jupyterlab/sql.ipynb" data-notebook-title="사전준비">
+<div id="sql-helloworld-ko" class="cell" data-execution_count="48">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"users 테이블에서 35세 이상 사용자를 추출하는 SQL 코드를 작성하세요"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="st">"text-davinci-002"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>temperature <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>max_tokens <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> openai.Completion.create(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    engine<span class="op">=</span>model,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    prompt<span class="op">=</span>prompt,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span>temperature,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    max_tokens<span class="op">=</span>max_tokens,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>].text)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>.
+
+```mysql
+SELECT * FROM users WHERE age &gt;= 35;
+```</code></pre>
+</div>
+</div>
+<a class="quarto-notebook-link" id="nblink-2" href="jupyterlab\sql.ipynb.html#sql-helloworld-ko">원천: SQL 쥬피터 노트북</a></div>
+</section>
+</div>
+</div>
+</div>
+<section id="함수" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="함수">
+<span class="header-section-number">1.1</span> 함수</h2>
+<p><code>generate_sql_query()</code> 함수를 작성하여 국,영문 프롬프트를 작성하여 바로 SQL 쿼리를 작성하는 것도 가능하다.</p>
+<div data-notebook="jupyterlab/sql.ipynb" data-notebook-title="사전준비">
+<div class="cell" data-execution_count="52">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_sql_query(prompt, max_tokens <span class="op">=</span> <span class="dv">100</span>):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> openai.Completion.create(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        engine<span class="op">=</span><span class="st">"text-davinci-003"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        prompt<span class="op">=</span>prompt,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        max_tokens<span class="op">=</span>max_tokens</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.choices[<span class="dv">0</span>].text</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>generate_sql_query(<span class="st">"Get all the users that are older than 35 years old from users table"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div id="sql-function" class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>'\n\nSELECT * FROM users WHERE age &gt; 35;'</code></pre>
+</div>
+</div>
+<a class="quarto-notebook-link" id="nblink-3" href="jupyterlab\sql.ipynb.html">원천: SQL 쥬피터 노트북</a></div>
+</section></section><section id="langchain-sql" class="level1 page-columns page-full" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> Langchain + SQL</h1>
+<p>국영문 프롬프트를 주어 자연어를 SQL 쿼리문을 작성하는 것에서 한걸음 더 들어가 데이터베이스에서 SQL 쿼리문을 실행하여 결과값을 얻는 것도 가능하다. 소프트웨어 카펜트리 SQL 교과정에서 사용하는 <code>survey.db</code>를 대상으로 테이블이 존재하는지 존재한다면 몇개인지 테이블 명은 무엇인지 파악할 수 있다.</p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="https://swcarpentry.github.io/sql-novice-survey/">Databases and SQL</a></span></div></div>
+<div data-notebook="jupyterlab/sql.ipynb" data-notebook-title="사전준비">
+<div class="cell" data-execution_count="53">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain <span class="im">import</span> OpenAI, SQLDatabase, SQLDatabaseChain</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dvd_db <span class="op">=</span> SQLDatabase.from_uri(<span class="st">"sqlite:///survey.db"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> OpenAI(temperature<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>db_chain <span class="op">=</span> SQLDatabaseChain.from_llm(llm, dvd_db, verbose<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>db_chain.run(<span class="st">"How many tables are there? If there exists tables, list table names"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>
+
+&gt; Entering new SQLDatabaseChain chain...
+How many tables are there? If there exists tables, list table names
+SQLQuery: SELECT name FROM sqlite_master WHERE type='table';
+SQLResult: [('Person',), ('Site',), ('Survey',), ('Visited',)]
+Answer: There are 4 tables: Person, Site, Survey, Visited.
+&gt; Finished chain.</code></pre>
+</div>
+<div id="sql-survey" class="cell-output cell-output-display" data-execution_count="53">
+<pre><code>' There are 4 tables: Person, Site, Survey, Visited.'</code></pre>
+</div>
+</div>
+<a class="quarto-notebook-link" id="nblink-4" href="jupyterlab\sql.ipynb.html">원천: SQL 쥬피터 노트북</a></div>
+<section id="정렬과-중복제거" class="level2 page-columns page-full" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="정렬과-중복제거">
+<span class="header-section-number">2.1</span> 정렬과 중복제거</h2>
+<p><a href="https://swcarpentry.github.io/sql-novice-survey/02-sort-dup/index.html">Sorting and Removing Duplicates</a>에 언급된 “Person 테이블에 있는 과학자의 전체 이름을 성을 기준으로 정렬하여 표시하는 쿼리를 작성합니다.” 라는 퀴즈문제를 풀어보자.</p>
+<div class="column-body-outset">
+<div class="columns">
+<div class="column">
+<section id="swc-코드" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="swc-코드">SWC 코드</h3>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org">DBI</a></span><span class="op">)</span></span>
+<span><span class="va">survey_db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">RSQLite</span><span class="fu">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html">SQLite</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"jupyterlab/survey.db"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">survey_db</span>, <span class="st">"SELECT personal, family FROM Person ORDER BY family ASC;"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    personal   family</span></span>
+<span><span class="co">#&gt; 1     Frank Danforth</span></span>
+<span><span class="co">#&gt; 2   William     Dyer</span></span>
+<span><span class="co">#&gt; 3  Anderson     Lake</span></span>
+<span><span class="co">#&gt; 4     Frank  Pabodie</span></span>
+<span><span class="co">#&gt; 5 Valentina  Roerich</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</div><div class="column">
+<section id="챗gpt-코드" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="챗gpt-코드">챗GPT 코드</h3>
+<div data-notebook="jupyterlab/sql.ipynb" data-notebook-title="사전준비">
+<div class="cell" data-execution_count="55">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>db_chain.run(<span class="st">"Write a query that displays the full names of the scientists in the Person table, ordered by family name."</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>
+
+&gt; Entering new SQLDatabaseChain chain...
+Write a query that displays the full names of the scientists in the Person table, ordered by family name.
+SQLQuery: SELECT "personal" || ' ' || "family" AS "Full Name" FROM "Person" ORDER BY "family" ASC LIMIT 5;
+SQLResult: [('Frank Danforth',), ('William Dyer',), ('Anderson Lake',), ('Frank Pabodie',), ('Valentina Roerich',)]
+Answer: The full names of the scientists in the Person table, ordered by family name, are Frank Danforth, William Dyer, Anderson Lake, Frank Pabodie, and Valentina Roerich.
+&gt; Finished chain.</code></pre>
+</div>
+<div id="sql-sort" class="cell-output cell-output-display" data-execution_count="55">
+<pre><code>' The full names of the scientists in the Person table, ordered by family name, are Frank Danforth, William Dyer, Anderson Lake, Frank Pabodie, and Valentina Roerich.'</code></pre>
+</div>
+</div>
+<a class="quarto-notebook-link" id="nblink-5" href="jupyterlab\sql.ipynb.html">원천: SQL 쥬피터 노트북</a></div>
+</section>
+</div>
+</div>
+</div>
+</section><section id="총계" class="level2 page-columns page-full" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="총계">
+<span class="header-section-number">2.2</span> 총계</h2>
+<p><a href="https://swcarpentry.github.io/sql-novice-survey/04-calc/index.html">Calculating New Values</a>에 언급된 “자세히 읽어본 결과, 발렌티나 로리히가 염도를 백분율로 보고하고 있다는 것을 알 수 있습니다. 설문 조사 테이블에서 그녀의 모든 염도 측정값을 100으로 나눈 값을 반환하는 쿼리를 작성합니다.(After further reading, we realize that Valentina Roerich was reporting salinity as percentages. Write a query that returns all of her salinity measurements from the Survey table with the values divided by 100.)” 라는 퀴즈문제를 풀어보자.</p>
+<div class="column-body-outset">
+<div class="columns">
+<div class="column">
+<section id="swc-코드-1" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="swc-코드-1">SWC 코드</h3>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">survey_db</span>, <span class="st">"SELECT taken, reading / 100 FROM Survey WHERE person = 'roe' AND quant = 'sal';"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   taken reading / 100</span></span>
+<span><span class="co">#&gt; 1   752         0.416</span></span>
+<span><span class="co">#&gt; 2   837         0.225</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</div><div class="column">
+<section id="챗gpt-코드-1" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="챗gpt-코드-1">챗GPT 코드</h3>
+<div data-notebook="jupyterlab/sql.ipynb" data-notebook-title="사전준비">
+<div class="cell" data-execution_count="57">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>db_chain.run(<span class="st">'After further reading, we realize that Valentina Roerich(roe) was reporting salinity as percentages.</span><span class="ch">\</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="st">              Write a query that returns all of her salinity measurements from the Survey table with the values divided by 100.'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>
+
+&gt; Entering new SQLDatabaseChain chain...
+After further reading, we realize that Valentina Roerich(roe) was reporting salinity as percentages.              Write a query that returns all of her salinity measurements from the Survey table with the values divided by 100.
+SQLQuery: SELECT person, quant, reading/100 AS reading FROM Survey WHERE person = 'roe' AND quant = 'sal';
+SQLResult: [('roe', 'sal', 0.41600000000000004), ('roe', 'sal', 0.225)]
+Answer: Valentina Roerich reported salinity measurements of 0.416 and 0.225.
+&gt; Finished chain.</code></pre>
+</div>
+<div id="sql-new-value" class="cell-output cell-output-display" data-execution_count="57">
+<pre><code>' Valentina Roerich reported salinity measurements of 0.416 and 0.225.'</code></pre>
+</div>
+</div>
+<a class="quarto-notebook-link" id="nblink-6" href="jupyterlab\sql.ipynb.html">원천: SQL 쥬피터 노트북</a></div>
+</section>
+</div>
+</div>
+</div>
+</section><section id="챗gpt-모델" class="level2 page-columns page-full" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="챗gpt-모델">
+<span class="header-section-number">2.3</span> 챗GPT 모델</h2>
+<p>앞선 완성(Completion) 모형 대신 챗GPT 모형을 사용하여 고급 SQL문을 작성할 수 있다. 데이터베이스의 데이터베이스 스키마 정보를 확보하자.</p>
+<div data-notebook="jupyterlab/sql.ipynb" data-notebook-title="사전준비">
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>db_chain.run(<span class="st">'print database schema info'</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>
+
+&gt; Entering new SQLDatabaseChain chain...
+print database schema info
+SQLQuery: SELECT * FROM sqlite_master;
+SQLResult: [('table', 'Person', 'Person', 2, 'CREATE TABLE Person (id text, personal text, family text)'), ('table', 'Site', 'Site', 3, 'CREATE TABLE Site (name text, lat real, long real)'), ('table', 'Survey', 'Survey', 5, 'CREATE TABLE Survey (taken integer, person text, quant text, reading real)'), ('table', 'Visited', 'Visited', 4, 'CREATE TABLE Visited (id integer, site text, dated text)')]
+Answer: The database schema info is: Person (id text, personal text, family text), Site (name text, lat real, long real), Survey (taken integer, person text, quant text, reading real), Visited (id integer, site text, dated text).
+&gt; Finished chain.</code></pre>
+</div>
+<div id="sql-db-info" class="cell-output cell-output-display" data-execution_count="58">
+<pre><code>' The database schema info is: Person (id text, personal text, family text), Site (name text, lat real, long real), Survey (taken integer, person text, quant text, reading real), Visited (id integer, site text, dated text).'</code></pre>
+</div>
+</div>
+<a class="quarto-notebook-link" id="nblink-7" href="jupyterlab\sql.ipynb.html">원천: SQL 쥬피터 노트북</a></div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">프롬프트 참조: <a href="https://github.com/woniesong92/talktosql">TalkToSQL</a></span></div></div>
+<p><a href="https://swcarpentry.github.io/sql-novice-survey/07-join/index.html">Combining Data</a>에 나오는 사례를 제대로 SQL 쿼리문을 작성하기 위해서는 <code>system_prompt</code>에 역할 부여는 물론 Few-Shot learning을 위한 사례도 전달하고 <code>user_prompt</code> 프롬프트 작성에 데이터베이스 테이블 정보도 넘겨줘야 원하는 쿼리문을 작성할 가능이 높아진다.</p>
+<div data-notebook="jupyterlab/sql.ipynb" data-notebook-title="사전준비">
+<div id="sql-chatgpt" class="cell">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>system_prompt <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="st">    You are the world's best SQL expert. Help me convert natural language to valid SQL queries. Only respond with valid SQL queries, nothing else.</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="st">    You must learn the column names based on the information the user gives you and build valid SQL queries. Never guess the column names.</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">    These are the examples:</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="st">    query: get all people names</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="st">    answer: SELECT name from people;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="st">    query: get all cars whose owner name is aaron</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="st">    answer: SELECT c.* FROM people p JOIN cars c ON p.id = c.owner_id WHERE p.name = 'aaron';</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>query<span class="op">=</span><span class="st">'Write a query that lists all radiation readings from the DR-1 site step-by-step'</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>user_prompt <span class="op">=</span> <span class="ss">f"""</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="ss">    This is my database information:</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="ss">    Person (id text, personal text, family text), </span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="ss">    Site (name text, lat real, long real), </span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="ss">    Survey (taken integer, person text, quant text, reading real), </span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="ss">    Visited (id integer, site text, dated text)</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="ss">    query: </span><span class="sc">{</span>query<span class="sc">}</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="ss">    answer:</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>completion <span class="op">=</span> openai.ChatCompletion.create(</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gpt-3.5-turbo"</span>,</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: system_prompt},</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: user_prompt},</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(completion.choices[<span class="dv">0</span>].message.content)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<a class="quarto-notebook-link" id="nblink-8" href="jupyterlab\sql.ipynb.html#sql-chatgpt">원천: SQL 쥬피터 노트북</a></div>
+<div class="column-body-outset">
+<div class="columns">
+<div class="column">
+<section id="swc-코드-2" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="swc-코드-2">SWC 코드</h3>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">survey_db</span>, <span class="st">"SELECT</span></span>
+<span><span class="st">   Survey.reading</span></span>
+<span><span class="st">FROM</span></span>
+<span><span class="st">   Site</span></span>
+<span><span class="st">   JOIN</span></span>
+<span><span class="st">      Visited</span></span>
+<span><span class="st">  JOIN</span></span>
+<span><span class="st">      Survey</span></span>
+<span><span class="st">      ON Site.name = Visited.site</span></span>
+<span><span class="st">      AND Visited.id = Survey.taken</span></span>
+<span><span class="st">WHERE</span></span>
+<span><span class="st">   Site.name = 'DR-1'</span></span>
+<span><span class="st">   AND Survey.quant = 'rad';"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   reading</span></span>
+<span><span class="co">#&gt; 1    9.82</span></span>
+<span><span class="co">#&gt; 2    7.80</span></span>
+<span><span class="co">#&gt; 3   11.25</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</div><div class="column">
+<section id="챗gpt-코드-2" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="챗gpt-코드-2">챗GPT 코드</h3>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">survey_db</span>, <span class="st">"SELECT s.reading</span></span>
+<span><span class="st">           FROM Visited v</span></span>
+<span><span class="st">           JOIN Survey s ON v.id = s.taken AND v.site = 'DR-1'</span></span>
+<span><span class="st">           WHERE s.quant = 'rad';"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   reading</span></span>
+<span><span class="co">#&gt; 1    9.82</span></span>
+<span><span class="co">#&gt; 2    7.80</span></span>
+<span><span class="co">#&gt; 3   11.25</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section></section><section id="관련정보" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> 관련정보</h1>
+<ul>
+<li><a href="https://www.kaggle.com/datasets/atanaskanev/sqlite-sakila-sample-database">SQLite Sakila Sample Database</a></li>
+<li><a href="https://statkclee.github.io/data-science/ds-postgreSQL.html"><code>postgreSQL</code> - DVD 대여 데이터베이스</a></li>
+<li><a href="https://statkclee.github.io/data-science/ds-postgreSQL-insight.html">DVD 대여 데이터베이스에서 인사이트 도출</a></li>
+</ul>
+
+
+<!-- -->
+
+
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">참고문헌</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-plaetsen_2023" class="csl-entry" role="listitem">
+Plaetsen, M. V. (2023). Using OpenAI with structured data: A beginner’s guide. In <em>Medium</em>. Medium. <a href="https://medium.com/@margauxvanderplaetsen/using-openai-with-structured-data-a-beginners-guide-2d12719a72a9">https://medium.com/@margauxvanderplaetsen/using-openai-with-structured-data-a-beginners-guide-2d12719a72a9</a>
+</div>
+</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "챗GPT SQL"</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> | </span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">  챗GPT SQL</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co">    code-link: true</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a><span class="an">notebook-view:</span></span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a><span class="co">  - notebook: jupyterlab/sql.ipynb</span></span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a><span class="co">    title: "SQL 쥬피터 노트북"</span></span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/sql_workflow.jpg)</span></span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a><span class="fu"># 자연어 &amp;rarr; SQL</span></span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a><span class="in">`code-davinci-002`</span>이 사용중단(deprecated)되어 <span class="in">`text-davinci-002`</span>, <span class="in">`text-davinci-003`</span> 모델들이 Codex 기반으로 프로그램 작성이 가능하다. <span class="co">[</span><span class="ot">@plaetsen_2023</span><span class="co">]</span></span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>:::{.column-body-outset}</span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a>:::::{.columns}</span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### 영어 프롬프트 {.unnumbered}</span></span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a>{{&lt; embed jupyterlab/sql.ipynb#sql-helloworld echo=true &gt;}}</span>
+<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb24-63"><a href="#cb24-63" aria-hidden="true" tabindex="-1"></a><span class="fu">### 한글 프롬프트 {.unnumbered}</span></span>
+<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a>{{&lt; embed jupyterlab/sql.ipynb#sql-helloworld-ko echo=true &gt;}}</span>
+<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## 함수</span></span>
+<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a><span class="in">`generate_sql_query()`</span> 함수를 작성하여 국,영문 프롬프트를 작성하여 바로 SQL </span>
+<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a>쿼리를 작성하는 것도 가능하다.</span>
+<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a>{{&lt; embed jupyterlab/sql.ipynb#sql-function echo=true &gt;}}</span>
+<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a><span class="fu"># Langchain + SQL</span></span>
+<span id="cb24-79"><a href="#cb24-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-80"><a href="#cb24-80" aria-hidden="true" tabindex="-1"></a>국영문 프롬프트를 주어 자연어를 SQL 쿼리문을 작성하는 것에서 한걸음 더 들어가 </span>
+<span id="cb24-81"><a href="#cb24-81" aria-hidden="true" tabindex="-1"></a>데이터베이스에서 SQL 쿼리문을 실행하여 결과값을 얻는 것도 가능하다.</span>
+<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a>소프트웨어 카펜트리 SQL 교과정에서 사용하는 <span class="in">`survey.db`</span>를 대상으로 </span>
+<span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a>테이블이 존재하는지 존재한다면 몇개인지 테이블 명은 무엇인지 파악할 수 있다.</span>
+<span id="cb24-84"><a href="#cb24-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-85"><a href="#cb24-85" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">Databases and SQL</span><span class="co">](https://swcarpentry.github.io/sql-novice-survey/)</span>]{.aside}</span>
+<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-87"><a href="#cb24-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-88"><a href="#cb24-88" aria-hidden="true" tabindex="-1"></a>{{&lt; embed jupyterlab/sql.ipynb#sql-survey echo=true &gt;}}</span>
+<span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-91"><a href="#cb24-91" aria-hidden="true" tabindex="-1"></a><span class="fu">## 정렬과 중복제거</span></span>
+<span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Sorting and Removing Duplicates</span><span class="co">](https://swcarpentry.github.io/sql-novice-survey/02-sort-dup/index.html)</span>에 언급된 "Person 테이블에 있는 과학자의 전체 이름을 성을 기준으로 정렬하여 표시하는 쿼리를 작성합니다." 라는 퀴즈문제를 풀어보자.</span>
+<span id="cb24-94"><a href="#cb24-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-95"><a href="#cb24-95" aria-hidden="true" tabindex="-1"></a>:::{.column-body-outset}</span>
+<span id="cb24-96"><a href="#cb24-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a>:::::{.columns}</span>
+<span id="cb24-98"><a href="#cb24-98" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb24-99"><a href="#cb24-99" aria-hidden="true" tabindex="-1"></a><span class="fu">### SWC 코드 {.unnumbered}</span></span>
+<span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a>survey_db <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="st">"jupyterlab/survey.db"</span>)</span>
+<span id="cb24-106"><a href="#cb24-106" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(survey_db, <span class="st">"SELECT personal, family FROM Person ORDER BY family ASC;"</span>)</span>
+<span id="cb24-107"><a href="#cb24-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-110"><a href="#cb24-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-111"><a href="#cb24-111" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a><span class="fu">### 챗GPT 코드 {.unnumbered}</span></span>
+<span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a>{{&lt; embed jupyterlab/sql.ipynb#sql-sort echo=true &gt;}}</span>
+<span id="cb24-115"><a href="#cb24-115" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-116"><a href="#cb24-116" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-118"><a href="#cb24-118" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-119"><a href="#cb24-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-120"><a href="#cb24-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-121"><a href="#cb24-121" aria-hidden="true" tabindex="-1"></a><span class="fu">## 총계</span></span>
+<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Calculating New Values</span><span class="co">](https://swcarpentry.github.io/sql-novice-survey/04-calc/index.html)</span>에 언급된 "자세히 읽어본 결과, 발렌티나 로리히가 염도를 백분율로 보고하고 있다는 것을 알 수 있습니다. 설문 조사 테이블에서 그녀의 모든 염도 측정값을 100으로 나눈 값을 반환하는 쿼리를 작성합니다.(After further reading, we realize that Valentina Roerich was reporting salinity as percentages. Write a query that returns all of her salinity measurements from the Survey table with the values divided by 100.)" 라는 퀴즈문제를 풀어보자.</span>
+<span id="cb24-124"><a href="#cb24-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-125"><a href="#cb24-125" aria-hidden="true" tabindex="-1"></a>:::{.column-body-outset}</span>
+<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-127"><a href="#cb24-127" aria-hidden="true" tabindex="-1"></a>:::::{.columns}</span>
+<span id="cb24-128"><a href="#cb24-128" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb24-129"><a href="#cb24-129" aria-hidden="true" tabindex="-1"></a><span class="fu">### SWC 코드 {.unnumbered}</span></span>
+<span id="cb24-130"><a href="#cb24-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-133"><a href="#cb24-133" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-134"><a href="#cb24-134" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(survey_db, <span class="st">"SELECT taken, reading / 100 FROM Survey WHERE person = 'roe' AND quant = 'sal';"</span>)</span>
+<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-136"><a href="#cb24-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-138"><a href="#cb24-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-139"><a href="#cb24-139" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb24-140"><a href="#cb24-140" aria-hidden="true" tabindex="-1"></a><span class="fu">### 챗GPT 코드 {.unnumbered}</span></span>
+<span id="cb24-141"><a href="#cb24-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-142"><a href="#cb24-142" aria-hidden="true" tabindex="-1"></a>{{&lt; embed jupyterlab/sql.ipynb#sql-new-value echo=true &gt;}}</span>
+<span id="cb24-143"><a href="#cb24-143" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-144"><a href="#cb24-144" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb24-145"><a href="#cb24-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-146"><a href="#cb24-146" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-148"><a href="#cb24-148" aria-hidden="true" tabindex="-1"></a><span class="fu">## 챗GPT 모델</span></span>
+<span id="cb24-149"><a href="#cb24-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a>앞선 완성(Completion) 모형 대신 챗GPT 모형을 사용하여 고급 SQL문을 작성할 수 있다.</span>
+<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a>데이터베이스의 데이터베이스 스키마 정보를 확보하자.</span>
+<span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-153"><a href="#cb24-153" aria-hidden="true" tabindex="-1"></a>{{&lt; embed jupyterlab/sql.ipynb#sql-db-info echo=true &gt;}}</span>
+<span id="cb24-154"><a href="#cb24-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-155"><a href="#cb24-155" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">프롬프트 참조: [TalkToSQL](https://github.com/woniesong92/talktosql)</span><span class="co">]</span>{.aside}</span>
+<span id="cb24-156"><a href="#cb24-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-157"><a href="#cb24-157" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Combining Data</span><span class="co">](https://swcarpentry.github.io/sql-novice-survey/07-join/index.html)</span>에 나오는 사례를 제대로 SQL 쿼리문을 작성하기 위해서는 <span class="in">`system_prompt`</span>에 역할 부여는 물론 Few-Shot learning을 위한 사례도 전달하고 <span class="in">`user_prompt`</span> 프롬프트 작성에 데이터베이스 테이블 정보도 넘겨줘야 원하는 쿼리문을 작성할 가능이 높아진다.</span>
+<span id="cb24-158"><a href="#cb24-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-159"><a href="#cb24-159" aria-hidden="true" tabindex="-1"></a>{{&lt; embed jupyterlab/sql.ipynb#sql-chatGPT echo=true &gt;}}</span>
+<span id="cb24-160"><a href="#cb24-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-161"><a href="#cb24-161" aria-hidden="true" tabindex="-1"></a>:::{.column-body-outset}</span>
+<span id="cb24-162"><a href="#cb24-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-163"><a href="#cb24-163" aria-hidden="true" tabindex="-1"></a>:::::{.columns}</span>
+<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb24-165"><a href="#cb24-165" aria-hidden="true" tabindex="-1"></a><span class="fu">### SWC 코드 {.unnumbered}</span></span>
+<span id="cb24-166"><a href="#cb24-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-169"><a href="#cb24-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-170"><a href="#cb24-170" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(survey_db, <span class="st">"SELECT</span></span>
+<span id="cb24-171"><a href="#cb24-171" aria-hidden="true" tabindex="-1"></a><span class="st">   Survey.reading</span></span>
+<span id="cb24-172"><a href="#cb24-172" aria-hidden="true" tabindex="-1"></a><span class="st">FROM</span></span>
+<span id="cb24-173"><a href="#cb24-173" aria-hidden="true" tabindex="-1"></a><span class="st">   Site</span></span>
+<span id="cb24-174"><a href="#cb24-174" aria-hidden="true" tabindex="-1"></a><span class="st">   JOIN</span></span>
+<span id="cb24-175"><a href="#cb24-175" aria-hidden="true" tabindex="-1"></a><span class="st">      Visited</span></span>
+<span id="cb24-176"><a href="#cb24-176" aria-hidden="true" tabindex="-1"></a><span class="st">  JOIN</span></span>
+<span id="cb24-177"><a href="#cb24-177" aria-hidden="true" tabindex="-1"></a><span class="st">      Survey</span></span>
+<span id="cb24-178"><a href="#cb24-178" aria-hidden="true" tabindex="-1"></a><span class="st">      ON Site.name = Visited.site</span></span>
+<span id="cb24-179"><a href="#cb24-179" aria-hidden="true" tabindex="-1"></a><span class="st">      AND Visited.id = Survey.taken</span></span>
+<span id="cb24-180"><a href="#cb24-180" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE</span></span>
+<span id="cb24-181"><a href="#cb24-181" aria-hidden="true" tabindex="-1"></a><span class="st">   Site.name = 'DR-1'</span></span>
+<span id="cb24-182"><a href="#cb24-182" aria-hidden="true" tabindex="-1"></a><span class="st">   AND Survey.quant = 'rad';"</span>)</span>
+<span id="cb24-183"><a href="#cb24-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-184"><a href="#cb24-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-185"><a href="#cb24-185" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-186"><a href="#cb24-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-187"><a href="#cb24-187" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb24-188"><a href="#cb24-188" aria-hidden="true" tabindex="-1"></a><span class="fu">### 챗GPT 코드 {.unnumbered}</span></span>
+<span id="cb24-189"><a href="#cb24-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-192"><a href="#cb24-192" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-193"><a href="#cb24-193" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(survey_db, <span class="st">"SELECT s.reading</span></span>
+<span id="cb24-194"><a href="#cb24-194" aria-hidden="true" tabindex="-1"></a><span class="st">           FROM Visited v</span></span>
+<span id="cb24-195"><a href="#cb24-195" aria-hidden="true" tabindex="-1"></a><span class="st">           JOIN Survey s ON v.id = s.taken AND v.site = 'DR-1'</span></span>
+<span id="cb24-196"><a href="#cb24-196" aria-hidden="true" tabindex="-1"></a><span class="st">           WHERE s.quant = 'rad';"</span>)</span>
+<span id="cb24-197"><a href="#cb24-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-198"><a href="#cb24-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-199"><a href="#cb24-199" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-200"><a href="#cb24-200" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb24-201"><a href="#cb24-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-202"><a href="#cb24-202" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb24-203"><a href="#cb24-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-204"><a href="#cb24-204" aria-hidden="true" tabindex="-1"></a><span class="fu"># 관련정보</span></span>
+<span id="cb24-205"><a href="#cb24-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-206"><a href="#cb24-206" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">SQLite Sakila Sample Database</span><span class="co">](https://www.kaggle.com/datasets/atanaskanev/sqlite-sakila-sample-database)</span></span>
+<span id="cb24-207"><a href="#cb24-207" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`postgreSQL` - DVD 대여 데이터베이스</span><span class="co">](https://statkclee.github.io/data-science/ds-postgreSQL.html)</span></span>
+<span id="cb24-208"><a href="#cb24-208" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">DVD 대여 데이터베이스에서 인사이트 도출</span><span class="co">](https://statkclee.github.io/data-science/ds-postgreSQL-insight.html)</span></span>
+</code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://quarto.org/">Quarto</a> 개발</div>   
+    <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
+    <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":true,"openEffect":"zoom","descPosition":"bottom"});</script>
+
+
+</body></html>

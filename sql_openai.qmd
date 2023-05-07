@@ -1,0 +1,201 @@
+---
+title: "chatGPT"
+subtitle: "챗GPT SQL"
+description: | 
+  챗GPT SQL
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-tools: true
+    code-link: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+notebook-view:
+  - notebook: jupyterlab/sql.ipynb
+    title: "SQL 쥬피터 노트북"
+---
+
+![](images/sql_workflow.jpg)
+
+# 자연어 &rarr; SQL
+
+`code-davinci-002`이 사용중단(deprecated)되어 `text-davinci-002`, `text-davinci-003` 모델들이 Codex 기반으로 프로그램 작성이 가능하다. [@plaetsen_2023]
+
+:::{.column-body-outset}
+
+:::::{.columns}
+:::{.column}
+### 영어 프롬프트 {.unnumbered}
+
+{{< embed jupyterlab/sql.ipynb#sql-helloworld echo=true >}}
+:::
+
+:::{.column}
+### 한글 프롬프트 {.unnumbered}
+
+{{< embed jupyterlab/sql.ipynb#sql-helloworld-ko echo=true >}}
+:::
+:::::
+
+:::
+
+## 함수
+
+`generate_sql_query()` 함수를 작성하여 국,영문 프롬프트를 작성하여 바로 SQL 
+쿼리를 작성하는 것도 가능하다.
+
+{{< embed jupyterlab/sql.ipynb#sql-function echo=true >}}
+
+# Langchain + SQL
+
+국영문 프롬프트를 주어 자연어를 SQL 쿼리문을 작성하는 것에서 한걸음 더 들어가 
+데이터베이스에서 SQL 쿼리문을 실행하여 결과값을 얻는 것도 가능하다.
+소프트웨어 카펜트리 SQL 교과정에서 사용하는 `survey.db`를 대상으로 
+테이블이 존재하는지 존재한다면 몇개인지 테이블 명은 무엇인지 파악할 수 있다.
+
+[[Databases and SQL](https://swcarpentry.github.io/sql-novice-survey/)]{.aside}
+
+
+{{< embed jupyterlab/sql.ipynb#sql-survey echo=true >}}
+
+
+## 정렬과 중복제거
+
+[Sorting and Removing Duplicates](https://swcarpentry.github.io/sql-novice-survey/02-sort-dup/index.html)에 언급된 "Person 테이블에 있는 과학자의 전체 이름을 성을 기준으로 정렬하여 표시하는 쿼리를 작성합니다." 라는 퀴즈문제를 풀어보자.
+
+:::{.column-body-outset}
+
+:::::{.columns}
+:::{.column}
+### SWC 코드 {.unnumbered}
+
+```{r}
+library(DBI)
+survey_db <- dbConnect(RSQLite::SQLite(), "jupyterlab/survey.db")
+dbGetQuery(survey_db, "SELECT personal, family FROM Person ORDER BY family ASC;")
+```
+
+:::
+
+:::{.column}
+### 챗GPT 코드 {.unnumbered}
+
+{{< embed jupyterlab/sql.ipynb#sql-sort echo=true >}}
+:::
+:::::
+
+:::
+
+
+## 총계
+
+[Calculating New Values](https://swcarpentry.github.io/sql-novice-survey/04-calc/index.html)에 언급된 "자세히 읽어본 결과, 발렌티나 로리히가 염도를 백분율로 보고하고 있다는 것을 알 수 있습니다. 설문 조사 테이블에서 그녀의 모든 염도 측정값을 100으로 나눈 값을 반환하는 쿼리를 작성합니다.(After further reading, we realize that Valentina Roerich was reporting salinity as percentages. Write a query that returns all of her salinity measurements from the Survey table with the values divided by 100.)" 라는 퀴즈문제를 풀어보자.
+
+:::{.column-body-outset}
+
+:::::{.columns}
+:::{.column}
+### SWC 코드 {.unnumbered}
+
+```{r}
+dbGetQuery(survey_db, "SELECT taken, reading / 100 FROM Survey WHERE person = 'roe' AND quant = 'sal';")
+```
+
+:::
+
+:::{.column}
+### 챗GPT 코드 {.unnumbered}
+
+{{< embed jupyterlab/sql.ipynb#sql-new-value echo=true >}}
+:::
+:::::
+
+:::
+
+## 챗GPT 모델
+
+앞선 완성(Completion) 모형 대신 챗GPT 모형을 사용하여 고급 SQL문을 작성할 수 있다.
+데이터베이스의 데이터베이스 스키마 정보를 확보하자.
+
+{{< embed jupyterlab/sql.ipynb#sql-db-info echo=true >}}
+
+[프롬프트 참조: [TalkToSQL](https://github.com/woniesong92/talktosql)]{.aside}
+
+[Combining Data](https://swcarpentry.github.io/sql-novice-survey/07-join/index.html)에 나오는 사례를 제대로 SQL 쿼리문을 작성하기 위해서는 `system_prompt`에 역할 부여는 물론 Few-Shot learning을 위한 사례도 전달하고 `user_prompt` 프롬프트 작성에 데이터베이스 테이블 정보도 넘겨줘야 원하는 쿼리문을 작성할 가능이 높아진다.
+
+{{< embed jupyterlab/sql.ipynb#sql-chatGPT echo=true >}}
+
+:::{.column-body-outset}
+
+:::::{.columns}
+:::{.column}
+### SWC 코드 {.unnumbered}
+
+```{r}
+dbGetQuery(survey_db, "SELECT
+   Survey.reading
+FROM
+   Site
+   JOIN
+      Visited
+  JOIN
+      Survey
+      ON Site.name = Visited.site
+      AND Visited.id = Survey.taken
+WHERE
+   Site.name = 'DR-1'
+   AND Survey.quant = 'rad';")
+```
+
+:::
+
+:::{.column}
+### 챗GPT 코드 {.unnumbered}
+
+```{r}
+dbGetQuery(survey_db, "SELECT s.reading
+           FROM Visited v
+           JOIN Survey s ON v.id = s.taken AND v.site = 'DR-1'
+           WHERE s.quant = 'rad';")
+```
+
+:::
+:::::
+
+:::
+
+# 관련정보
+
+- [SQLite Sakila Sample Database](https://www.kaggle.com/datasets/atanaskanev/sqlite-sakila-sample-database)
+- [`postgreSQL` - DVD 대여 데이터베이스](https://statkclee.github.io/data-science/ds-postgreSQL.html)
+- [DVD 대여 데이터베이스에서 인사이트 도출](https://statkclee.github.io/data-science/ds-postgreSQL-insight.html)
+
