@@ -1,0 +1,186 @@
+---
+title: "chatGPT"
+subtitle: "보도자료작성"
+description: | 
+  챗GPT 보도자료작성
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-tools: true
+    code-link: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+notebook-view:
+  - notebook: jupyterlab/misinformation.ipynb
+    title: "오정보 쥬피터 노트북"
+---
+
+![](images/langchain_summary.jpg)
+
+# 문서 요약
+
+GPT 모델은 텍스트에서 흔히 볼 수 있는 문자 시퀀스인 토큰을 사용하여 텍스트를 처리한다. GPT 모델은 이러한 토큰 간의 통계적 관계를 이해하고 토큰 시퀀스에서 다음 토큰을 생성하는 데 탁월하다.
+
+요약은 많은 LLM 작업의 기본 구성 요소로 많은 양의 텍스트를 간결한 요점으로 압축해야 하는 사용 사례가 많다.따라서, 요약하려는 텍스트의 길이에 따라 다양한 요약 방법을 선택해야한다.
+
+문서 길이에 따라 요약하는 방식도 달라진다. 짧은 텍스트의 경우 프롬프트 공학을 사용해서 요약을 짧은 코드로 수행할 수 있지만 텍스트의 길이가 길어지고 특히, 책과 같이 수백 페이지에 이르게 되는 경우 다른 전략이 필요하다.
+
+# 텍스트 길이
+
+서울 R 미트업 2023년 5월 "챗GPT와 오정보(Misinformation)" 행사에서 제빈 웨스트 교수가 발표한 [헛소문 바로잡기(Cutting Through Bullshit: Navigating Misinformation and Disinformation in the GenChatGPT Era)](https://r2bit.com/seoul-r/contents/meetup-2023.html) 텍스트를 추출하여 요약해보자. STT를 이용하여 음성에서 텍스트를 추출하는 방법에 대해서는 [음성인식(Whisper)](https://r2bit.com/chatGPT/whisper.html)을 참고한다.
+
+## `.srt` → `.txt`
+
+자막파일(`.srt`)에서 시간 정보를 제거하고 텍스트만 전환하는 작업을 다음 코드를 사용하여 진행한다.
+
+```{r}
+#| eval: false
+
+library(srt)
+library(tidyverse)
+
+misinfo_raw <- read_srt("data/LibriSpeech/misinformation.srt", collapse = " ")
+
+misinfo_str <- misinfo_raw %>% 
+  filter(n >=20, n<=404) %>% 
+  pull(subtitle)
+
+str_c(misinfo_str, collapse = " ") %>%
+  write_lines("data/LibriSpeech/misinfo_chatGPT.txt")
+```
+
+## R 코드
+
+텍스트 길이와 별개로 단어갯수(word)를 파악하는 것이 전체적인 API 비용 및
+후속 텍스트 분석 방향을 잡을 때 중요하다. 이를 위해서 `stringr` 패키지
+`str_sub()` 함수와 정규표현식(`\\w+`)을 결합하여 사용하거나 
+텍스트 마이닝 특화된 `qdap` 패키지 `wc()` 함수를 사용해서 계산한다.
+
+```{r}
+library(tidyverse)
+
+misinfo_txt <- read_lines("data/LibriSpeech/misinfo_chatGPT.txt")
+
+misinfo_wc <- str_count(misinfo_txt, '\\w+')
+
+glue::glue("텍스트 일부: {str_sub(misinfo_txt, 1, 100)} 
+           단어갯수: {misinfo_wc}
+           단어갯수(qdap): {qdap::wc(misinfo_txt)}")
+```
+
+[OpenAI [Tokenizer](https://platform.openai.com/tokenizer)]{.aside}
+
+## `Tokenizer`
+
+챗GPT LLM은 토큰을 기본 단위로 사용하고 과금단위이기도 하기 때문에 OpenAI 에서 제공하는 
+[Tokenizer](https://platform.openai.com/tokenizer)에서 복사하여 붙여넣게 되면 발표음성을 텍스트 파일에 저장시킨 사항을 바로 확인할 수 있다. 다른 방식은 `langchain` `get_num_tokens()` 메쏘드를 사용해서 API를 통해 확인하는 방식이다.
+
+:::::{.columns}
+
+:::{.column width=30%}
+### 웹 UI {.unnumbered}
+
+![](images/misinfo_tokens.jpg){width="500"}
+:::
+
+:::{.column  width=70%}
+### API 프로그래밍 {.unnumbered}
+
+{{< embed jupyterlab/misinformation.ipynb#langchain_token echo=true >}}
+
+:::
+:::::
+
+
+# 요약
+
+[참조코드: [5 Levels Of Summarization: Novice to Expert](https://github.com/gkamradt/langchain-tutorials/blob/main/data_generation/5%20Levels%20Of%20Summarization%20-%20Novice%20To%20Expert.ipynb)]{.aside}
+
+[Greg Kamradt](https://github.com/gkamradt)은 LLM 문서요약관련하여 5가지 전략을 제시하고 있다.
+
+- 몇 문장 요약하기 - 기본 프롬프트
+- 몇 단락 요약 - 프롬프트 템플릿
+- 몇 페이지 요약 - 맵 리듀스(Map Reduce)
+- 책 전체 요약하기 - Best Representation Vectors
+- 알 수 없는 양의 텍스트 요약 - 에이전트(Agent)
+
+5가지 전략 중 강의내용을 요약할 수 있는 두가지 사례를 중심으로 살펴보자.
+
+## 몇 문장 요약
+
+요약형태도 지정하여 누구나 이해하기 쉬운 형태로 몇 문장 텍스트를 요약하도록 프롬프트를 작성하여 국문, 영문 작업을 수행한다.
+
+
+:::::::{.column-body-outset}
+
+:::::{.columns}
+:::{.column}
+### 국문요약 {.unnumbered}
+
+{{< embed jupyterlab/misinformation.ipynb#langchain_summary_sentences echo=true >}}
+
+:::
+
+:::{.column}
+### 영문요약 {.unnumbered}
+
+{{< embed jupyterlab/misinformation.ipynb#langchain_summary_sentences_eng echo=true >}}
+:::
+:::::
+
+:::::::
+
+## 전체 요약
+
+요약 대상이 되는 텍스트와 요약 프롬프트를 한번에 넣어 작업하는 대신
+텍스트 토큰 크기를 산정한 후에 적절한 크기로 나눈 다음
+각각 텍스트 조각에 대해 요약작업을 수행하고 나서 
+이를 다시 요약하는 맵리듀스(Map Reduce) 방식으로 요약 작업을 마무리한다.
+
+### 토큰 크기
+
+발표 텍스트 토큰 크기를 계산하여 적절한 토큰 분리 크기를 산정한다.
+
+{{< embed jupyterlab/misinformation.ipynb#openai-setup-split echo=true >}}
+
+### 요약결과
+
+`load_summarize_chain()` 으로 전체 발표 텍스트를 요약한다.
+
+{{< embed jupyterlab/misinformation.ipynb#openai-split-size echo=true >}}
+
+:::{.callout-warning collapse="false"}
+### 디플 번역 {.unnumbered}
+
+이 글에서는 잘못된 정보, 일자리 퇴출, 사이비 과학 확산, 신뢰성 검증의 필요성 등 생성형 AI와 챗봇의 잠재적 영향에 대해 논의합니다. 또한 이러한 기술이 악의적인 행위자에 의해 악용될 수 있는 방법과 이 문제를 해결하기 위한 연구, 정책, 교육, 커뮤니티 참여의 필요성에 대해서도 살펴봅니다. 민주적 담론, 건강 및 기타 영역에 미칠 수 있는 잠재적 영향과 잘못된 정보의 영향을 감지하고 되돌리기 어려운 점을 살펴봅니다. 마지막으로 인공지능으로 인한 일자리 손실 가능성, 사이비 과학의 확산, 챗봇이 허위 인용을 일으킬 가능성에 대해 논의합니다.
+:::
+

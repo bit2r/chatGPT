@@ -106,20 +106,8 @@ website:
         menu:
         - href: ide.qmd
           text: "통합개발환경(IDE)"
-        - text: "------------------"
         - href: reticulate.qmd
           text: "파이썬 환경구축"
-        - href: koGPT.qmd
-          text: "HuggingfaceR - 모형통계"
-        - href: BERT.qmd
-          text: "BERT"
-        - text: "------------------"
-        - href: hf.qmd
-          text: "Hugging Face"
-        - href: hf_windows.qmd
-          text: "Hugging Face(윈도우)"
-        - href: hf_pipeline.qmd
-          text: "HF 파이프라인"
         - text: "------------------"
         - href: openAI_GPT.qmd
           text: "OpenAI GPT"
@@ -127,6 +115,8 @@ website:
           text: "LangCahin 아키텍쳐"
         - href: whisper.qmd
           text: "음성인식(Whisper)"
+        - href: news_release.qmd
+          text: "보도자료작성"
         - text: "------------------"
         - href: palmer_penguins.qmd
           text: "펭귄 데이터셋"
@@ -143,6 +133,18 @@ website:
           text: "펭귄: 라마인덱스"
         - href: sql_openai.qmd
           text: "챗GPT SQL"
+        - text: "------------------"
+        - href: hf.qmd
+          text: "Hugging Face"
+        - href: hf_windows.qmd
+          text: "Hugging Face(윈도우)"
+        - href: hf_pipeline.qmd
+          text: "HF 파이프라인"
+        - href: koGPT.qmd
+          text: "HuggingfaceR - 모형통계"
+        - href: BERT.qmd
+          text: "BERT"
+
       - href: blog.qmd
         text: "게시글"
       - text: "비즈니스"

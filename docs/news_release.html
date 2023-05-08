@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.299">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="이광춘">
+<meta name="description" content="챗GPT 보도자료작성">
+<title>chatGPT</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./images/profile.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색"
+  }
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><link rel="stylesheet" href="css/quarto.css">
+</head>
+<body class="nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">chatGPT</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">생성 AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai">
+<li>
+    <a class="dropdown-item" href="./architecture.html" rel="" target="">
+ <span class="dropdown-text">chatGPT 이해</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./trends.html" rel="" target="">
+ <span class="dropdown-text">추세 트렌드</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./why_llm.html" rel="" target="">
+ <span class="dropdown-text">왜 거대언어모형인가?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nlp_LLM.html" rel="" target="">
+ <span class="dropdown-text">NLP와 LLM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gpt4_performance.html" rel="" target="">
+ <span class="dropdown-text">GPT-4 성능</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gpt-security.html" rel="" target="">
+ <span class="dropdown-text">챗GPT 보안사고</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./interface.html" rel="" target="">
+ <span class="dropdown-text">인터페이스</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./open_source.html" rel="" target="">
+ <span class="dropdown-text">오픈소스 S/W LLM</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-chatgpt-응용사례" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">chatGPT 응용사례</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-chatgpt-응용사례">
+<li>
+    <a class="dropdown-item" href="./use-cases.html" rel="" target="">
+ <span class="dropdown-text">활용사례</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_avi.html" rel="" target="">
+ <span class="dropdown-text">법인 R 소개영상</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./macbook.html" rel="" target="">
+ <span class="dropdown-text">맥북 투척사건</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./office.html" rel="" target="">
+ <span class="dropdown-text">오피스 전쟁</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./news_article.html" rel="" target="">
+ <span class="dropdown-text">보도자료 작성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_book.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 책</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_paper.html" rel="" target="">
+ <span class="dropdown-text">논문 초록</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rnd.html" rel="" target="">
+ <span class="dropdown-text">학술연구(R&amp;D)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./yuji.html" rel="" target="">
+ <span class="dropdown-text">멤버 Yuji</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./text2image.html" rel="" target="">
+ <span class="dropdown-text">텍스트 → 이미지 생성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./stable_diffusion.html" rel="" target="">
+ <span class="dropdown-text">Stable Diffusion</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./samsung.html" rel="" target="">
+ <span class="dropdown-text">삼전 주가예측</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./calculator.html" rel="" target="">
+ <span class="dropdown-text">계산기 프로그램</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding.html" rel="" target="">
+ <span class="dropdown-text">GPT R 코딩개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding-copilot.html" rel="" target="">
+ <span class="dropdown-text">부조종사 R 코딩개발</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./math.html" rel="" target="">
+ <span class="dropdown-text">수학문제 (MIT)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./middle_school.html" rel="" target="">
+ <span class="dropdown-text">Shiny 앱</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./inaugural.html" rel="" target="">
+ <span class="dropdown-text">대통령 취임사</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./translation.html" rel="" target="">
+ <span class="dropdown-text">번역(영한, 한영)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gg_grouping.html" rel="" target="">
+ <span class="dropdown-text">챗GPT 팀구성</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-prompt-eng." role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Prompt Eng.</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-prompt-eng.">
+<li>
+    <a class="dropdown-item" href="./prompt.html" rel="" target="">
+ <span class="dropdown-text">Prompt Engineering</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./prompt_adv.html" rel="" target="">
+ <span class="dropdown-text">Advanced Prompt Engineering</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./prompt_in_practice.html" rel="" target="">
+ <span class="dropdown-text">프롬프트 실무</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./prompt_for_develoopers.html" rel="" target="">
+ <span class="dropdown-text">(개발자) 프롬프트 공학</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./prompt_data_science.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 프롬프트</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./interview.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 인터뷰</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">자동화/개발</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">
+<li>
+    <a class="dropdown-item" href="./ide.html" rel="" target="">
+ <span class="dropdown-text">통합개발환경(IDE)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./reticulate.html" rel="" target="">
+ <span class="dropdown-text">파이썬 환경구축</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./openAI_GPT.html" rel="" target="">
+ <span class="dropdown-text">OpenAI GPT</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./langchain_arch.html" rel="" target="">
+ <span class="dropdown-text">LangCahin 아키텍쳐</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./whisper.html" rel="" target="">
+ <span class="dropdown-text">음성인식(Whisper)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./news_release.html" rel="" target="">
+ <span class="dropdown-text">보도자료작성</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./palmer_penguins.html" rel="" target="">
+ <span class="dropdown-text">펭귄 데이터셋</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./penguins_analytics.html" rel="" target="">
+ <span class="dropdown-text">펭귄 데이터 분석</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./autoGPT_ds.html" rel="" target="">
+ <span class="dropdown-text">EDA 자동화 AutoEDA</span></a>
+  </li>  
+        <li class="dropdown-header">ML 자동화 AutoML</li>
+        <li class="dropdown-header">데이터 과학 AutoGPT</li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./pandasai.html" rel="" target="">
+ <span class="dropdown-text">판다스 AI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./llama_penguins.html" rel="" target="">
+ <span class="dropdown-text">펭귄: 라마인덱스</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sql_openai.html" rel="" target="">
+ <span class="dropdown-text">챗GPT SQL</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./hf.html" rel="" target="">
+ <span class="dropdown-text">Hugging Face</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hf_windows.html" rel="" target="">
+ <span class="dropdown-text">Hugging Face(윈도우)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hf_pipeline.html" rel="" target="">
+ <span class="dropdown-text">HF 파이프라인</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./koGPT.html" rel="" target="">
+ <span class="dropdown-text">HuggingfaceR - 모형통계</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BERT.html" rel="" target="">
+ <span class="dropdown-text">BERT</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item">
+    <a class="nav-link" href="./blog.html" rel="" target="">
+ <span class="menu-text">게시글</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">비즈니스</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">
+<li>
+    <a class="dropdown-item" href="./chatGPT_overview.html" rel="" target="">
+ <span class="dropdown-text">챗GPT 개요</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./services.html" rel="" target="">
+ <span class="dropdown-text">(유)무료 서비스</span></a>
+  </li>  
+    </ul>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/bit2r/chatGPT" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://r2bit.com" rel="" target="">
+ <span class="menu-text">R사용자회</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/LAION-AI/Open-Assistant" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Open Assistant</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rtutor.ai/" rel="" target="">
+ <span class="menu-text">RTutor</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+<div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="다크 모드 전환"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title">chatGPT</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> 코드</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 표시</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 숨기기</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">소스 코드 표시</a></li></ul></div></div>
+            <p class="subtitle lead">보도자료작성</p>
+                  <div>
+        <div class="description">
+          <p>챗GPT 보도자료작성</p>
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-heading">소속</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://www.linkedin.com/in/kwangchunlee/">이광춘</a> </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://github.com/bit2r">
+              한국 R 사용자회
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#%EB%AC%B8%EC%84%9C-%EC%9A%94%EC%95%BD" id="toc-문서-요약" class="nav-link active" data-scroll-target="#%EB%AC%B8%EC%84%9C-%EC%9A%94%EC%95%BD"><span class="header-section-number">1</span> 문서 요약</a></li>
+  <li>
+<a href="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EA%B8%B8%EC%9D%B4" id="toc-텍스트-길이" class="nav-link" data-scroll-target="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EA%B8%B8%EC%9D%B4"><span class="header-section-number">2</span> 텍스트 길이</a>
+  <ul class="collapse">
+<li><a href="#srt-.txt" id="toc-srt-.txt" class="nav-link" data-scroll-target="#srt-.txt"><span class="header-section-number">2.1</span> <code>.srt</code> → <code>.txt</code></a></li>
+  <li><a href="#r-%EC%BD%94%EB%93%9C" id="toc-r-코드" class="nav-link" data-scroll-target="#r-%EC%BD%94%EB%93%9C"><span class="header-section-number">2.2</span> R 코드</a></li>
+  <li><a href="#tokenizer" id="toc-tokenizer" class="nav-link" data-scroll-target="#tokenizer"><span class="header-section-number">2.3</span> <code>Tokenizer</code></a></li>
+  </ul>
+</li>
+  <li>
+<a href="#%EC%9A%94%EC%95%BD" id="toc-요약" class="nav-link" data-scroll-target="#%EC%9A%94%EC%95%BD"><span class="header-section-number">3</span> 요약</a>
+  <ul class="collapse">
+<li><a href="#%EB%AA%87-%EB%AC%B8%EC%9E%A5-%EC%9A%94%EC%95%BD" id="toc-몇-문장-요약" class="nav-link" data-scroll-target="#%EB%AA%87-%EB%AC%B8%EC%9E%A5-%EC%9A%94%EC%95%BD"><span class="header-section-number">3.1</span> 몇 문장 요약</a></li>
+  <li>
+<a href="#%EC%A0%84%EC%B2%B4-%EC%9A%94%EC%95%BD" id="toc-전체-요약" class="nav-link" data-scroll-target="#%EC%A0%84%EC%B2%B4-%EC%9A%94%EC%95%BD"><span class="header-section-number">3.2</span> 전체 요약</a>
+  <ul class="collapse">
+<li><a href="#%ED%86%A0%ED%81%B0-%ED%81%AC%EA%B8%B0" id="toc-토큰-크기" class="nav-link" data-scroll-target="#%ED%86%A0%ED%81%B0-%ED%81%AC%EA%B8%B0"><span class="header-section-number">3.2.1</span> 토큰 크기</a></li>
+  <li><a href="#%EC%9A%94%EC%95%BD%EA%B2%B0%EA%B3%BC" id="toc-요약결과" class="nav-link" data-scroll-target="#%EC%9A%94%EC%95%BD%EA%B2%B0%EA%B3%BC"><span class="header-section-number">3.2.2</span> 요약결과</a></li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul><div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="jupyterlab\misinformation.ipynb.html"><i class="bi bi-journal-code"></i>오정보 쥬피터 노트북</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/langchain_summary.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/langchain_summary.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<section id="문서-요약" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> 문서 요약</h1>
+<p>GPT 모델은 텍스트에서 흔히 볼 수 있는 문자 시퀀스인 토큰을 사용하여 텍스트를 처리한다. GPT 모델은 이러한 토큰 간의 통계적 관계를 이해하고 토큰 시퀀스에서 다음 토큰을 생성하는 데 탁월하다.</p>
+<p>요약은 많은 LLM 작업의 기본 구성 요소로 많은 양의 텍스트를 간결한 요점으로 압축해야 하는 사용 사례가 많다.따라서, 요약하려는 텍스트의 길이에 따라 다양한 요약 방법을 선택해야한다.</p>
+<p>문서 길이에 따라 요약하는 방식도 달라진다. 짧은 텍스트의 경우 프롬프트 공학을 사용해서 요약을 짧은 코드로 수행할 수 있지만 텍스트의 길이가 길어지고 특히, 책과 같이 수백 페이지에 이르게 되는 경우 다른 전략이 필요하다.</p>
+</section><section id="텍스트-길이" class="level1 page-columns page-full" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> 텍스트 길이</h1>
+<p>서울 R 미트업 2023년 5월 “챗GPT와 오정보(Misinformation)” 행사에서 제빈 웨스트 교수가 발표한 <a href="https://r2bit.com/seoul-r/contents/meetup-2023.html">헛소문 바로잡기(Cutting Through Bullshit: Navigating Misinformation and Disinformation in the GenChatGPT Era)</a> 텍스트를 추출하여 요약해보자. STT를 이용하여 음성에서 텍스트를 추출하는 방법에 대해서는 <a href="https://r2bit.com/chatGPT/whisper.html">음성인식(Whisper)</a>을 참고한다.</p>
+<section id="srt-.txt" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="srt-.txt">
+<span class="header-section-number">2.1</span> <code>.srt</code> → <code>.txt</code>
+</h2>
+<p>자막파일(<code>.srt</code>)에서 시간 정보를 제거하고 텍스트만 전환하는 작업을 다음 코드를 사용하여 진행한다.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/kiernann/srt">srt</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">misinfo_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/srt/man/read_srt.html">read_srt</a></span><span class="op">(</span><span class="st">"data/LibriSpeech/misinformation.srt"</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">misinfo_str</span> <span class="op">&lt;-</span> <span class="va">misinfo_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;=</span><span class="fl">20</span>, <span class="va">n</span><span class="op">&lt;=</span><span class="fl">404</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">subtitle</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_c.html">str_c</a></span><span class="op">(</span><span class="va">misinfo_str</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://readr.tidyverse.org/reference/read_lines.html">write_lines</a></span><span class="op">(</span><span class="st">"data/LibriSpeech/misinfo_chatGPT.txt"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="r-코드" class="level2 page-columns page-full" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="r-코드">
+<span class="header-section-number">2.2</span> R 코드</h2>
+<p>텍스트 길이와 별개로 단어갯수(word)를 파악하는 것이 전체적인 API 비용 및 후속 텍스트 분석 방향을 잡을 때 중요하다. 이를 위해서 <code>stringr</code> 패키지 <code><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub()</a></code> 함수와 정규표현식(<code>\\w+</code>)을 결합하여 사용하거나 텍스트 마이닝 특화된 <code>qdap</code> 패키지 <code>wc()</code> 함수를 사용해서 계산한다.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">misinfo_txt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_lines.html">read_lines</a></span><span class="op">(</span><span class="st">"data/LibriSpeech/misinfo_chatGPT.txt"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">misinfo_wc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_count.html">str_count</a></span><span class="op">(</span><span class="va">misinfo_txt</span>, <span class="st">'\\w+'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"텍스트 일부: {str_sub(misinfo_txt, 1, 100)} </span></span>
+<span><span class="st">           단어갯수: {misinfo_wc}</span></span>
+<span><span class="st">           단어갯수(qdap): {qdap::wc(misinfo_txt)}"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 텍스트 일부: Well, thank you very much, Dr. Ahn. This is a real pleasure to be able to speak across the ocean. I  </span></span>
+<span><span class="co">#&gt; 단어갯수: 6900</span></span>
+<span><span class="co">#&gt; 단어갯수(qdap): 6615</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">OpenAI <a href="https://platform.openai.com/tokenizer">Tokenizer</a></span></div></div>
+</section><section id="tokenizer" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="tokenizer">
+<span class="header-section-number">2.3</span> <code>Tokenizer</code>
+</h2>
+<p>챗GPT LLM은 토큰을 기본 단위로 사용하고 과금단위이기도 하기 때문에 OpenAI 에서 제공하는 <a href="https://platform.openai.com/tokenizer">Tokenizer</a>에서 복사하여 붙여넣게 되면 발표음성을 텍스트 파일에 저장시킨 사항을 바로 확인할 수 있다. 다른 방식은 <code>langchain</code> <code>get_num_tokens()</code> 메쏘드를 사용해서 API를 통해 확인하는 방식이다.</p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<section id="웹-ui" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="웹-ui">웹 UI</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/misinfo_tokens.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/misinfo_tokens.jpg" class="img-fluid figure-img" width="500"></a></p>
+</figure>
+</div>
+</section>
+</div><div class="column" style="width:70%;">
+<section id="api-프로그래밍" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="api-프로그래밍">API 프로그래밍</h3>
+<div data-notebook="jupyterlab/misinformation.ipynb" data-notebook-title="오정보 요약">
+<div id="langchain_token" class="cell" data-execution_count="19">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain <span class="im">import</span> OpenAI</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> OpenAI(temperature<span class="op">=</span><span class="dv">0</span>, openai_api_key<span class="op">=</span>os.getenv(<span class="st">'ENV_OPENAI_API_KEY'</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>prompt_lvl_01 <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">Please provide a summary of the following text.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">Please provide your output in a manner that a 5 year old would understand</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">TEXT:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">Well, thank you very much, Dr. Ahn. This is a real pleasure to be able to speak across the ocean.</span><span class="ch">\</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">I wish I was there in person, but I did get the opportunity to meet many of your students during your visit in Seattle at the University of Washington,</span><span class="ch">\</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">and that was a real pleasure. So thank you so much.\ </span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">So today I'm going to talk about some of the excitement around generative AI and these chatbots that we're seeing everywhere in our world.\ </span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">But mostly I'm going to talk a lot about some of the concerns I have around these chatbots and how they may contribute to this growing problem of misinformation in our digital worlds.</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>num_tokens_lvl_01 <span class="op">=</span> llm.get_num_tokens(prompt_lvl_01)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="ss">f"Level 1 Prompt has </span><span class="sc">{</span>num_tokens_lvl_01<span class="sc">}</span><span class="ss"> tokens"</span>)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>Level 1 Prompt has 172 tokens</code></pre>
+</div>
+</div>
+<a class="quarto-notebook-link" id="nblink-1" href="jupyterlab\misinformation.ipynb.html#langchain_token">원천: 오정보 쥬피터 노트북</a></div>
+</section>
+</div>
+</div>
+</section></section><section id="요약" class="level1 page-columns page-full" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> 요약</h1>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">참조코드: <a href="https://github.com/gkamradt/langchain-tutorials/blob/main/data_generation/5%20Levels%20Of%20Summarization%20-%20Novice%20To%20Expert.ipynb">5 Levels Of Summarization: Novice to Expert</a></span></div></div>
+<p><a href="https://github.com/gkamradt">Greg Kamradt</a>은 LLM 문서요약관련하여 5가지 전략을 제시하고 있다.</p>
+<ul>
+<li>몇 문장 요약하기 - 기본 프롬프트</li>
+<li>몇 단락 요약 - 프롬프트 템플릿</li>
+<li>몇 페이지 요약 - 맵 리듀스(Map Reduce)</li>
+<li>책 전체 요약하기 - Best Representation Vectors</li>
+<li>알 수 없는 양의 텍스트 요약 - 에이전트(Agent)</li>
+</ul>
+<p>5가지 전략 중 강의내용을 요약할 수 있는 두가지 사례를 중심으로 살펴보자.</p>
+<section id="몇-문장-요약" class="level2 page-columns page-full" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="몇-문장-요약">
+<span class="header-section-number">3.1</span> 몇 문장 요약</h2>
+<p>요약형태도 지정하여 누구나 이해하기 쉬운 형태로 몇 문장 텍스트를 요약하도록 프롬프트를 작성하여 국문, 영문 작업을 수행한다.</p>
+<div class="column-body-outset">
+<div class="columns">
+<div class="column">
+<section id="국문요약" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="국문요약">국문요약</h3>
+<div data-notebook="jupyterlab/misinformation.ipynb" data-notebook-title="오정보 요약">
+<div id="langchain_summary_sentences" class="cell" data-execution_count="22">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain <span class="im">import</span> OpenAI</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> OpenAI(temperature<span class="op">=</span><span class="dv">0</span>, openai_api_key<span class="op">=</span>os.getenv(<span class="st">'ENV_OPENAI_API_KEY'</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>prompt_lvl_01_ko <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">다음 텍스트를 요약해주세요.</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">초등학생이 이해할 수 있게 요약을 쉽게 해주세요.</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">TEXT:</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">Well, thank you very much, Dr. Ahn. This is a real pleasure to be able to speak across the ocean.</span><span class="ch">\</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="st">I wish I was there in person, but I did get the opportunity to meet many of your students during your visit in Seattle at the University of Washington,</span><span class="ch">\</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="st">and that was a real pleasure. So thank you so much.\ </span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="st">So today I'm going to talk about some of the excitement around generative AI and these chatbots that we're seeing everywhere in our world.\ </span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="st">But mostly I'm going to talk a lot about some of the concerns I have around these chatbots and how they may contribute to this growing problem of misinformation in our digital worlds.</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>output_lvl_01_ko <span class="op">=</span> llm(prompt_lvl_01_ko)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (output_lvl_01_ko)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>
+Dr. Ahn과 함께 오션에서 만난 여러 학생들과의 만남을 기쁘게 생각하며, 인공지능과 챗봇의 기쁨과 관련해 미디어 정보의 문제를 이야기하고 있다.</code></pre>
+</div>
+</div>
+<a class="quarto-notebook-link" id="nblink-2" href="jupyterlab\misinformation.ipynb.html#langchain_summary_sentences">원천: 오정보 쥬피터 노트북</a></div>
+</section>
+</div><div class="column">
+<section id="영문요약" class="level3 unnumbered"><h3 class="unnumbered anchored" data-anchor-id="영문요약">영문요약</h3>
+<div data-notebook="jupyterlab/misinformation.ipynb" data-notebook-title="오정보 요약">
+<div id="langchain_summary_sentences_eng" class="cell" data-execution_count="24">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>prompt_lvl_01 <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">Please provide a summary of the following text.</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">Please provide your output in a manner that a 5 year old would understand</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">TEXT:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="st">Well, thank you very much, Dr. Ahn. This is a real pleasure to be able to speak across the ocean.</span><span class="ch">\</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="st">I wish I was there in person, but I did get the opportunity to meet many of your students during your visit in Seattle at the University of Washington,</span><span class="ch">\</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="st">and that was a real pleasure. So thank you so much.\ </span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="st">So today I'm going to talk about some of the excitement around generative AI and these chatbots that we're seeing everywhere in our world.\ </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="st">But mostly I'm going to talk a lot about some of the concerns I have around these chatbots and how they may contribute to this growing problem of misinformation in our digital worlds.</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>output_lvl_01 <span class="op">=</span> llm(prompt_lvl_01)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (output_lvl_01)</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>
+Dr. Ahn and someone from Seattle had a nice chat across the ocean. They talked about how AI and chatbots are exciting, but also how they can cause problems with misinformation.</code></pre>
+</div>
+</div>
+<a class="quarto-notebook-link" id="nblink-3" href="jupyterlab\misinformation.ipynb.html#langchain_summary_sentences_eng">원천: 오정보 쥬피터 노트북</a></div>
+</section>
+</div>
+</div>
+</div>
+</section><section id="전체-요약" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="전체-요약">
+<span class="header-section-number">3.2</span> 전체 요약</h2>
+<p>요약 대상이 되는 텍스트와 요약 프롬프트를 한번에 넣어 작업하는 대신 텍스트 토큰 크기를 산정한 후에 적절한 크기로 나눈 다음 각각 텍스트 조각에 대해 요약작업을 수행하고 나서 이를 다시 요약하는 맵리듀스(Map Reduce) 방식으로 요약 작업을 마무리한다.</p>
+<section id="토큰-크기" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="토큰-크기">
+<span class="header-section-number">3.2.1</span> 토큰 크기</h3>
+<p>발표 텍스트 토큰 크기를 계산하여 적절한 토큰 분리 크기를 산정한다.</p>
+<div data-notebook="jupyterlab/misinformation.ipynb" data-notebook-title="오정보 요약">
+<div class="cell" data-execution_count="25">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain <span class="im">import</span> OpenAI</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> OpenAI(temperature<span class="op">=</span><span class="dv">0</span>, openai_api_key<span class="op">=</span>os.getenv(<span class="st">'ENV_OPENAI_API_KEY'</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain <span class="im">import</span> OpenAI</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.chains.summarize <span class="im">import</span> load_summarize_chain</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.text_splitter <span class="im">import</span> RecursiveCharacterTextSplitter</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>misinfo_lecture <span class="op">=</span> <span class="st">'../data/LibriSpeech/misinfo_chatGPT.txt'</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(misinfo_lecture, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    misinfo <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>llm.get_num_tokens(misinfo)      </span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div id="openai-setup-split" class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>7848</code></pre>
+</div>
+</div>
+<a class="quarto-notebook-link" id="nblink-4" href="jupyterlab\misinformation.ipynb.html">원천: 오정보 쥬피터 노트북</a></div>
+</section><section id="요약결과" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="요약결과">
+<span class="header-section-number">3.2.2</span> 요약결과</h3>
+<p><code>load_summarize_chain()</code> 으로 전체 발표 텍스트를 요약한다.</p>
+<div data-notebook="jupyterlab/misinformation.ipynb" data-notebook-title="오정보 요약">
+<div class="cell" data-execution_count="27">
+<details><summary>코드</summary><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>summary_chain <span class="op">=</span> load_summarize_chain(llm<span class="op">=</span>llm, chain_type<span class="op">=</span><span class="st">'map_reduce'</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                                      verbose<span class="op">=</span><span class="va">True</span> <span class="co"># Set verbose=True if you want to see the prompts being used</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                                    )</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> summary_chain.run(docs)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>output</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>
+
+&gt; Entering new MapReduceDocumentsChain chain...
+
+
+&gt; Entering new LLMChain chain...
+Prompt after formatting:
+Write a concise summary of the following:
+
+
+"Well, thank you very much, Dr. Ahn. This is a real pleasure to be able to speak across the ocean. I wish I was there in person, but I did get the opportunity to meet many of your students during your visit in Seattle at the University of Washington, and that was a real pleasure. So thank you so much. So today I'm going to talk about some of the excitement around generative AI and these chatbots that we're seeing everywhere in our world. But mostly I'm going to talk a lot about some of the concerns I have around these chatbots and how they may contribute to this growing problem of misinformation in our digital worlds. So I'm going to share my screen here. There we go. Just here, share, and there we go. All right, can you see that, Dr. An? Yes. Okay, great. Okay, so as Dr. An said, I study misinformation and disinformation in all sorts of forms where I study misinformation. The most is at the interface of science and society, but we also study it more generally in our center where we look at it from the political angle, from the angle of science, from the angle of health. We've studied misinformation during the pandemic and during elections and all sorts of other topics. But today I'm going to focus on some of my concerns around generative AI, and hopefully that will generate some questions and comments when it comes to this particular topic. I'm sure a lot of us are thinking about it. So one of the things that I tend to ask myself when new technologies come onto the world scene is whether we're better or worse off. I recently wrote an op-ed, an opinion piece for the Seattle Times, which is our paper here in Seattle in the United States. And I talked about some of the concerns I had. And so some of the things I'm going to talk about in this talk come from that op-ed, but I'm going to talk about a lot of other things I didn't have room to talk about in that particular op-ed. But I really want us as a group to think a lot about this. Are we better or worse off with this new chatbot ability? And of course it's a mixed bag. There are things that might be better, and there are things that are going to be worse. I'm going to kind of focus on the more pessimistic version of this. About a week ago, there was a lot of attention around a new music song that was posted on several music services that sounded like a mix between the famous musician Drake and the weekend. These are two musical artists that are known worldwide for their music. And there was a song that was created that was quite catchy. And believe it or not, it was kind of good, I have to admit. And it was probably viewed by millions and millions of people. I don't know the exact stats on that. I should look that up. But the point is this song was created with some of this new generative AI technology. And this is an example where there might be some positive elements of this technology that allows for this mixing and this creation. It created a song that caught enough people's attention that it caught so much attention. It actually had to be taken down because of issues likely around copyright. And there's all sorts of fallout from this. And there's lots of discussions in the legal world that are continuing. And it's only been about a week since this song was released. But this is an example of the excitement that surrounds this technology. And for good reason, if it can create a song that's a good mix of Drake and the weekend and it sounds reasonably good, that's some evidence at least of the power of this new technology. And it's not like this is brand new technology. There is this kind of technology from the natural language processing world and machine learning more generally has been around. But there's been some advancements recently that make the generative aspect quite exciting, but also a little scary. So I'm going to talk about today some of the the cautions that I have. There's a lot more cautions. But these are the things I'm going to focus on. And it's a lot to focus on in about 25 minutes. So I'm going to hit these briefly. And then if there are questions, we can always go back to some of these topics in more detail. But I'm going to go through talking about how at least from my perspective, as someone who studies misinformation, and as someone who studies misinformation specifically in science, these are some of my big concerns. One of them is that these really are bullshatters at scale. They get a lot right, but they also get some things wrong. Concerns around how this might affect democratic discourse online and offline. Concerns about content credit for all those content creators out there, the musicians like Drake and the weekend, and the writers and the journalists and the researchers and the authors and the poets, etc. What happens to their content when it gets pushed down after these generative AI, these chatbots and these large language models train on this content and then provide some reason new content on top of it. Who owns the content? How's that going to work as we move forward? I'll talk a little bit about some of the job elimination issues, both course in science, but in other areas, it'll be that, well, some of these are focused outside of the issue of science. And then of course, I'm going to talk about some of the issues of pseudoscience proliferation, the overconfidence of AI and the need for some of these qualifiers of confidence, the issues around reverse engineering, the generative cost, the actual cost, both monetarily, environmentally, but also the costs in other forms and creativity and other things. And then I'll talk, I'll end with just really emphasizing this issue about garbage in garbage out. Okay, so we now live in this world where it seems we've got almost sentient beings. I know there's lots of philosophical debates whether they're sentient. I don't think they are. And we certainly haven't reached AGI levels. And there's all sorts of great, you know, critiques of this particular technology. But one thing that at least I think we're all pretty sure of, it's kind of here to stay in some form or another. Even in my world in education as a professor who runs a research lab and also as a professor who teaches students, college students, I'm seeing the technology everywhere. And when I was teaching my class last quarter, I decided to just embrace the technology and allow the students to use it in any form that they see as long as they let me know that they were using it. That's my only criteria because I want to learn how this technology can be used by students and by teachers like myself and professors like myself. But I also want to figure out where it goes wrong. And so I learned a lot from my students and I will continue to have that kind of policy. But maybe that'll change at some point. I know that some instructors don't allow it. I know that some scientific publishers are not allowing co-authorship or the use of AI in any form. Even countries like Italy have outlawed some forms of this technology. And so there's going to be some that are going to eliminate it, some that are going to embrace it. And the way I look at it is that it may just force me to write different kinds of questions and do different kinds of assessment. But it might also be a tool that could help students learn to write when they're stuck and learn how to correct as long as they're willing to do some editing and self-correct and correction of the content that comes from these different bots. And so the technology really is here to stay. And one thing I should say is what's interesting is that we have a technology that really seems to have passed the Turing test. And one thing that's a bit a little surprising to me is that we haven't had a big celebration about this. Even though I'm a bit of a critic of this technology and I focus a lot of my attention on some of the concerning areas of Generative AI, since I studied misinformation, disinformation. I should say though, on the other hand, we should be thinking about some of the things that have occurred. And for those not familiar with the Turing test, it's this pretty simple idea that the Turing test will have passed when an individual can't tell the difference. But when content, at least in this case written content created by a human and one by a computer. And if that's the case, and I do think in many respects, we probably have passed this Turing test. And there's been no celebrations. So I guess, okay, for those that are optimistic about this technology and more positive about this technology, this would be something to celebrate. Absolutely. No doubt. And in terms of education, as I mentioned before, this is really transforming education, but it's transforming all sorts of other industries in ways that have captured the world's attention. I mean, this technology has been adopted now faster than pretty much any other technology has been adopted with hundreds, like 100 million users within a very short amount of time. And of course, that's only growing and billions and billions of dollars being invested into this technology from big corporations to venture capitalists. There is a lot going into this technology. And again, there's good reason for that. And a lot of times my students will say, well, it's just like a calculator. Why would you ever want to take it away? And I'm not taking it. I'm lo and use it. But I will say, it's a little different than a calculator, because this is a technology that gets this things wrong at minimum, probably 10% of the time. I mean, these things are starting to still get sorted out in the research space. We're working on some of these things to figure out, you know, what is the baseline error? Well, it turns out it's pretty high. And in some cases, the impact can be quite high. So if you're talking about the medical field or you're talking about fields that really have an impact on an individual's lives, that 10% or 20% or 5% or whatever, those errors can"
+
+
+CONCISE SUMMARY:
+Prompt after formatting:
+Write a concise summary of the following:
+
+
+"gets this things wrong at minimum, probably 10% of the time. I mean, these things are starting to still get sorted out in the research space. We're working on some of these things to figure out, you know, what is the baseline error? Well, it turns out it's pretty high. And in some cases, the impact can be quite high. So if you're talking about the medical field or you're talking about fields that really have an impact on an individual's lives, that 10% or 20% or 5% or whatever, those errors can be highly problematic. If you're just creating a poem, then fine. It doesn't really matter. But this analogy to the calculator goes a little, it's there's reason to think that's a somewhat reasonable analogy, but it is different. I wouldn't use a calculator that got the answers wrong 10% of the time. That would be, I would probably be looking for other technologies. Or if I was using that calculator, it would make it for a lot harder work. And that's what we have to recognize. It's yes, we have this technology that can do a lot of this new amazing things to make some of our jobs easier. But it's going to take a lot of hard work on the editorial side to make sure that we're paying attention to some of those errors. And there's all sorts of application. This was an article just recently written by Wired sort of examining the ways in which the medical field is starting to think about the adoption of this. In fact, some medical researchers have gone so far as to say that all doctors will be using this technology at some point. And maybe that's true. And there are reasons to think that's a possibility with its ability to mine the scientific literature, to integrate all sorts of different symptoms, and could be that assistant in the doctor's room. However, there are reasons to also be worried about these technologies and in places like the medical field. It might help the doctors as this article talks about, but it also might not benefit so greatly many of those patients, especially because we have many, many examples of the ways in which these machines get things wrong and have biases built in because the data that it's trained on has some of these biases. And at this point, a lot of these technologies are essentially just patching and putting band aids on these problems that exist. And part of it's just because these things are very difficult to reverse engineer, which I'll talk about a little bit later. Now, there's plenty of other reasons to be excited to actually one of my colleagues who I just saw at a conference last week, Daniel Katz and his colleague Michael Bomerito showed how this technology took the bar exam. This is the main legal, the exam in the United States for allowing you to become a lawyer or sort of allowing you to sort of move forward as a certified lawyer. And they were able to show that chat GPT did already darn well in past the bar exam. And there's examples of the MCAT and, you know, some of these other standardized tests that are that have been tested with this technology. In fact, in many ways, these have almost become a baseline test when comparing different large language models. And so it is pretty amazing. So again, amazed in many ways, but I'm going to talk the rest of the time about some of the concerns that I have. And by the way, as was mentioned, I have this book where I talk about bullshit. And bullshit is a part of the misinformation story. And as Dr. An had mentioned, it's also been translated in Korean, which has been super fun to see it pulled or written in these other languages. And it helps me try to figure out what's being said here. But in that book, if you read it, one of the more important laws and principles that we talk about is something called "Randalini's Bullshit, a Symmetry Principle." And if you go to Wikipedia, at least the English version, I actually should check the Korean version, see if it's there. But the English version of the Wikipedia has this principle in the Wikipedia. And this law is pretty simple. It basically says that the amount of energy needed to refute bullshit is an order of magnitude bigger than needed to produce it. So the amount of energy needed to refute it to clean it up, to fix the problem, is an order of magnitude much harder to produce it. So here's the law. So my colleague Carl Bergstrom decided to ask the large language model that Metacreat a while ago called Galactica. And this has been taken down since then, but this was the science version, essentially, of one of these large language models. And he decided to ask Galactica, "Tell me about Randalini's Bullshit, a Symmetry Principle. And you know what it came up with?" And this is the real answer. Here's what it came up. Randalini's law is a theory in economics proposed by G. Anani Brannalini, a professor at the University of Pateau, which dates the smaller the economic unit, the greater its efficiency. Almost nothing here is correct. It's basically bullshitting the bullshit principle. So to me, this encapsulates one of the biggest problems with this technology. It bullshits, and it can do this at scale. And this could be put in the wrong hands. And this can also just add more noise to an information environment that has plenty of noise. We needed to clean up that polluted information environment, not add noise. And that's what a lot of these chatbots will do, definitely, because they make, they put a lot of accurate things out there, but they also put a lot of false things. And this is the best encapsulation that I've seen so far, which is actually bullshitting the bullshit principle. So that's a problem. So as I mentioned in this op-ed, I talk about some of these things. And one of the things I talk about as well is that not only do these things, can these bullshit at scale, they also can get in the way of democratic discourse. And many years ago, back in 2018, there was a lot of attention around Facebook's role in pushing misinformation. Excuse me. And they revealed at the time when Mark Zuckerberg was being questioned by Congress about all the fake accounts. And they admitted they had disabled 1.3 billion fake accounts. Now, they certainly haven't solved that problem, just like no social media platform has solved that. In fact, when Elon Musk was taking over Twitter, that was one of the big issues at hand, that there was all sorts of concerns if there was lots and lots of bots on Twitter. Now, that's still a problem. I can guarantee you, you know, my group has done a little bit of work working in detecting and looking at the effects of bots. But my colleagues in my research area have done a lot of work on that space, and it's very, very hard to do. But one thing is that, you know, we do know is that there are a lot of bots out there and a lot of fake accounts. Now, imagine those fake accounts with the ability that these chat bots now have to look even more human technology that's basically, well, has passed the Turing test. That to me is problematic because of these different reasons. So you have these large number of fake accounts. Now imagine these fake accounts being scaled to conversations with our public officials. Now, democracies depend on an engagement with the public, with their officials that they voted in. Well, that becomes a problem like it was back in 2017, when there was discussions, at least in the United States around something called net neutrality. And net neutrality was a policy that was being debated in governmental circles, and they wanted to know what the public was saying. But when you went to what the public was saying, they had complete the, there were comments that had completely flooded the conversation on one side of the issue, and it turns out that they were essentially fake accounts. They were bots. And again, now imagine doing that with the sophistication that these new chat bots have before you could, there was a, you could start, you could detect a bot much easier. Now it's become even harder. And if our democratic systems are flooded with these kinds of things, this is, this is problematic. So this issue, in its potential impact on democratic discourse, and its ability to bullshit at scale is of major concern to me. So I spent a lot of my time, like my colleagues in our center, in sort of the darker core of the internet, studying the ways in which misinformation and disinformation spreads online. And one thing that we are, of course, very concerned about now are the ways in which these technologies can really further inflame or further fan the flames of discourse in groups, if these get in the wrong hands. And they certainly will. It's almost certain that bad actors are finding ways to use this technology for their own ends. And we know that, you know, our surgeon general and other major leaders around the world have recognized the ways in which misinformation can affect our health, and they can affect the health of democracies. So it's not just that, oh, well, it's annoying, there's a lot of false information online. It just makes it hard to find, you know, good information. It's not just that it actually affects people's health. And we're recognizing that. And at least, well, we've recognized it. And now we've got another problem ahead of us, which is the ability of these technologies to create deep fake images, video, audio, text. That's the challenge that we have ahead of us. So as Dr. On mentioned, we have a center at the University of Washington in Seattle in the United States where we study this, and this is one of the issues that we study and we study these things on social media platforms. And we look at the way that individuals and organizations get amplified. But we're also going to start looking at the ways that these bots and synthetically created content also get amplified. So we do this through all sorts of different channels, research is our main thing, but we also do it through policy and education and community engagement. And one of"
+
+
+CONCISE SUMMARY:
+Prompt after formatting:
+Write a concise summary of the following:
+
+
+"in the United States where we study this, and this is one of the issues that we study and we study these things on social media platforms. And we look at the way that individuals and organizations get amplified. But we're also going to start looking at the ways that these bots and synthetically created content also get amplified. So we do this through all sorts of different channels, research is our main thing, but we also do it through policy and education and community engagement. And one of the things that my colleague Carl Wurxman, I created several years ago to bring public attention to synthetic media to deep fakes, was to create a game that we called which faces real calm. And it was a simple game. We just asked the users which image is real. One of them is a real image of a real person on this earth. And another one was synthetically created with computers. And you can go through that, you know, thousands and thousands and thousands of images and we play this game and then you get told whether it's real or not. And it turns out it's pretty hard. I mean, you know, there's some that are kind of obvious, but they're hard like this one right here, which one's real. Look at it for a second. Well, the one that's real is the one with the blue shirt, at least on my right. And if you said the one on the red shirt, totally understand it's really hard to tell the difference. And the reason why we created this game was just to bring public attention because the time in a technology's birth that's I think most scary when it comes to its potential impact is when the public is not aware of the things that it can do. So we created this game and we've had millions and millions of plays of this game. And we've now seen actually this technology, you know, get used and you know, of course, good ways, but a lot of bad ways too. For example, we've seen this technology be used to create fake journalists. This is an example and you can read more about it, but this has happened many times where journalists, or so-called journalists, you know, profiles created and then there's these images and people that study deep fake imagery can actually look at these images and start to see what some of look for some of these telltale signs on what's real or not. So these, this technology's been been already used. And we talked about this when this game was created, the ways in which it's been used. And we've already seen it, of course, many ways. So now we're asking how are the ways in which this new generative technology could be used. But it's very similar. It's based on similar kinds of concepts and data training, etc, etc. But we're now asking the same things. And of course, we've seen this now just recently with this kind of technology being used in videos and even in ways that are more sophisticated than just these sort of portrait pictures. So this was an image. It's a fake image and it's been reported all over BBC and lots of other places of Donald Trump supposedly being arrested in New York. This was before he was actually brought to New York on the recent case. But this, of course, never happened, but it certainly sparked all sorts of concern and it spread like wildfire on the internet using some of this, you know, mid-journey technology in our company called Mid-Journey and a lot of other companies that are creating this. So it's making it easier and easier and less expensive and making it harder for us to tell what's real. And so that technology has of course evolved. So, okay, so now I've talked about some of the democratic discourse. I'm going to go through a little quicker on these other ones so then I can get to sort of the end and try to finish in about, I would say about seven minutes or so. So like I mentioned at the beginning, there's this issue of content creation and that's really important because these content creators are generating a lot of the content that a lot of these technology companies are using to create these chatbots. But we've seen this story before and by the way, just recently, there are major technology companies that are now not allowing the scraping of this data to be trained for these technologies unless they're compensating. I think that's a fair thing. So, you know, some of these big companies like Reddit is not allowing stack overflow is now saying, "Hey, if you're going to scrape our data, they want to be compensated." And so you're going to start to see content creators starting to push back, which is good because like I said, we've seen this story before. Oh, and by the way, this is an example of, you know, Getty Images is in a lawsuit right now with a company that may have been scraping their data illegally. And the reason why that came out is because you can see this little Getty Images that pops up, which is a watermark that Getty Images puts on their images. So there's an appending lawsuit about this and that could determine some of the some of how this content can or can't be scraped. But we've seen this before when looking at new technology and the impact it can have on other information producers in the United States and in many places around the world, we have growing news deserts. These are areas where there's no more local news. And that's pretty devastating for democratic discourse or democracies because we depend on local news for engagement, civic engagement and quality information and local news tends to be trusted more than national news. And there's all sorts of reasons for that happening. But certainly one element of that is the effect that search engines and Google in particular around it, you know, the way it sells ads and it takes a large cut at those ads has potentially contributed to these news deserts. Of course, there's lots of other things as well. But that technology everyone was excited about, including myself and we use it all the time. But there are these unintended effects that can affect other aspects of our information ecosystems. And right now, there's a lawsuit going on. The Justice Department, United States Justice Department is suing Google for monopolizing digital advertising technologies. And one of those elements of this lawsuit story is the sort of increase in the demise of local news. So there's all sorts of interesting things playing out right now. And then the Biden administration, United States is thinking about doing some regulation of AI, but they don't know, it's so new to all administrations that it's hard to figure out. Like I mentioned, Italy has gone probably one of the furthest steps I think around this. But there hasn't been a lot of action, at least on the US side when it comes to this sort of thing. And so, there's been letters. So this was an article written by Time. The image quite nice. It actually grows. There was a letter that went around from a bunch of influential people in AI and business leaders and technology, including Elon Musk that says, hey, we should stop the development until we've had more time to think about it. Although it's kind of ironic, given that many of these tech leaders are still, of course, pushing their own development of AI in many ways and creating new AI companies and developing. But anyway, that's another story. But that is something to think about. I don't think it's a, I think there's no way that that letter is going to stop the technology from being developed. But one thing it is good about is it's makes hopefully forcing the public and journalists and government officials, etc. to start to think about the ways in which this technology could affect society. We should think about it. As I mentioned, one of the concerns is job demise. And I think there's a lot of concern with that by those that even work in the job industry, the Pew Research Center recently asked workers where are they concerned? Turns out a large number of workers from across these different industries are concerned. And there's probably good reason for this concern. Even Sam Altman at OpenAI, which is sort of, or is the owner of the chat GPT, which is the one of the more well-known chatbots out there. And it's also the one that Microsoft has invested billions. This is something that they've even said probably lose 5 million jobs. So these are real concerns. So the other thing to mention too is that it's not just within science itself, these are real concerns. And we've seen the proliferation of pseudoscience and the rise of predatory journals and content that maybe looks like science. But it's not. And I'll show you this is an example for many years ago. This was a paper that was published in this international conference on atomic and nuclear physics. And you look at the title Atomic Energy, or the made of able to a single source, and you read the abstract, and if you look at the abstract, it doesn't make a lot of sense. Well, it turns out that when this was created, it was created by a person to make a point about how poor some of these journal venues and conference venues are. This paper was made with autocomplete using an iPhone. And this is not all that different from this chatbots and chat GPT, which is really these autocomplete machines on steroids. And it looked sort of official, like a real science paper, but of course, a lot of it was nonsense. And the newest ones are much better. But it is a concern that this could increase the number of pseudoscience types of things or articles that are written by chatbots. In fact, there's been some articles that have been co-authored by chat GPT, although some journal, a lot of journals and publishers are saying they won't allow that anymore. And that's probably a good thing. And I will say this, there's been lots of talk about the hallucination of these chatbots. Well, one thing that I find incredibly problematic is the hallucination of citations. It'll make up citations all the time. And we've been doing some work trying to find ways to see when this happens. It even happened. My"
+
+
+CONCISE SUMMARY:
+Prompt after formatting:
+Write a concise summary of the following:
+
+
+"some articles that have been co-authored by chat GPT, although some journal, a lot of journals and publishers are saying they won't allow that anymore. And that's probably a good thing. And I will say this, there's been lots of talk about the hallucination of these chatbots. Well, one thing that I find incredibly problematic is the hallucination of citations. It'll make up citations all the time. And we've been doing some work trying to find ways to see when this happens. It even happened. My colleague, Carl, found these examples of papers supposedly by me. Well, these aren't real citations by me. It shows me right here, West German. This is not my paper. It's close to some of the papers I've written in terms of title, but it's just a fake citation. I just made up these citations. And that's again, another example of how that could affect the citation record and scholarly literature and something that I'm concerned about for science. And something that's now happened with some of these chatbots, even in Bing now that has sort of integrated chat GPT4 into Bing, is that it just throws references. So it looks official. But I can tell you that this was not done before the fact. This is this knowledge that was written out in this answer when I asked about new tax loss for electric vehicles. This is one question I asked that it's not that it's wrote, you know, learn something from citations and then cited them like we do in the scholar literature, it cited them close talk, something that was probably semantically similar. Although, well, maybe scholars, scholars probably do this too. Well, they do do it post after posting, some argument or sentence. But this is problematic to me because it looks like it's a science, almost science and, you know, science-y and technical. And it's really not even though it has those references. So, you know, there's been lots of discussion in the scientific literature what to do with these chatbots, some of lists of authors on papers, publishers have come out, even publishers in the machine learning world. So ICML was, you know, one of the first conferences, not the, I don't think it was the first, but one of the, you know, among the first that was saying, you can't use chat TBT on this. You know, some are saying if you use it, you have to note it, you know, all sorts of different policies are being created. But overall, you know, I think the publishing community in the scholar literature is going to have to grapple with this. And I, and my colleague and I have, Carl and I have a, another op-ed that we're, that we write about sort of what publishers can do around this particular issue. Now, one of the other big concerns of this is, of course, that this technology shows, you know, it doesn't, it's always 100% confident, whether it's right or whether it's wrong. And that's really problematic. At least when humans communicate, they have these qualifiers of confidence where you can say something like, I'm pretty sure, or I think so, or I think that's right. You know, these things are important. And these chatbots don't have it. They just are always, they always seem to be, well, not seem. They spew out things, whether they're right or wrong with 100% confidence. And that's dangerous. And if there's, you know, one paper, one of my colleagues Emily Bender has this great feature where in this paper that she talks about, and also in this feature in, in the New York or, in this New York magazine, they talk, it talks a lot about some of the current concerns, Emily, and other people that are true linguists that truly understand some of the problems with these technologies. This is one that I would recommend reading. And a lot of you may have heard of this early interview that a New York Times journalist had with this, you know, with Bing's chatbot. And it, what essentially happened was the chatbot kind of went off the rails and started to say, well, you should leave your wife and I want to take over the world and all these things happen. And of course, a lot of the developers of this technology, whoa, whoa, whoa, we need to fix it. And there's been new rules around how you can use this Bing chatbot and other chatbots. But the problem with these fixes is they're like bandings. There's really, it's very, very difficult to reverse engineer these problems or reverse engineer. Yeah, reverse engineer these issues. It's not like you can go to a line of code and say, oh, that's where the problem is. It's the way that these things are trained, the way these models work with their resilience of parameters makes it very difficult to reverse engineer. And that's problematic when we run into these issues and all the issues we haven't even thought of. And so that to be is another big concern. Of course, there's all sorts of jail breaks to get these chatbots to do things that there have been bandings put around. And that's problematic. And I won't go over all the jail breaks you can read about because I don't want to get those out too much to the bug. But you can read about them. It's not like they're that hidden. And that's problematic. And there'll be many, many others as well. So these are some of the ones I had, some of these concerns, reverse engineers. The last two I'll mention is the cost. And the cost, we talked about jobs, the cost potentially to all different aspects of society. And the kind of scary thing is right now is that a lot of the tech layoffs are removing these teams. They're removing other individuals as well. But they're removing individuals that are on ethics and safety teams. And of all times to have these kinds of teams at these companies, it would be now, and certainly maybe if you went back in history at the beginning of the rise of social media, that they're being eliminated. And this is a concern. But there's also other kinds of costs that a lot of people forget. And that's the cost of these queries. There's been several analyses that have come out recently about the cost per query for running some of these chatbots. And it's almost an order of magnitude greater than a regular query that you'd have, let's say, on a Google search. And that has a cost. And there's also costs of investing billions and billions of dollars in this technology that could also go to other kinds of investments that might be helping society. So there's these costs that we have to think about the environmental costs, the costs to society, the costs of adding more pollution into our information systems, et cetera. There's also the issue of garbage in garbage out. And that's a problem we're likely going to see as these chatbots generate more and more content that land online, that becomes the training data for those chatbots in, you know, chat, chat GBT5 and chat GBT6. And what those effects will be requires some more research and thinking. But the main thing that we've known in a lot for a long time, of course, in the machine learning world is that garbage in with your training data creates garbage out. And even if you didn't have this, you know, feed forward loop that I just mentioned, there's a lot of garbage on the internet and that garbage finds its way into conversations with these chatbots. And that's always a concern whether you're talking about science or this technology just generative AI technology more broadly. So I'll end by saying that this technology is in many cases amazing. I have mostly focused on some of my cautions and concerns like many people have, especially in my world as someone who studies misinformation and misinformation specifically in science and its effect on the institution of science. And so, and so these are things that we're going to have to, you know, pay attention to going forward. But I think like a lot of our new technology, we just need time to think about it and run seminars and workshops and conferences just like this. So hopefully this generates some conversation and hopefully we can sort out some of these cautions. So with that, I'll end, you can reach out to me, you can learn more about my book and the research we do in my lab and at our university and in our center and you can reach me in these ways. So all right,"
+
+
+CONCISE SUMMARY:
+
+&gt; Finished chain.
+
+
+&gt; Entering new StuffDocumentsChain chain...
+
+
+&gt; Entering new LLMChain chain...
+Prompt after formatting:
+Write a concise summary of the following:
+
+
+" In this talk, the speaker discusses the excitement and concerns around generative AI and chatbots, which have become increasingly popular. He focuses on the potential for misinformation and disinformation, job elimination, pseudoscience proliferation, and the need for qualifiers of confidence. He also discusses the implications of the technology for education, copyright, and content credit.
+
+ This article discusses the potential implications of large language models and chatbots, which can produce false information at scale. It examines the potential impact on democratic discourse, health, and other areas, and the difficulty of detecting and reversing the effects of misinformation. It also looks at the ways in which these technologies can be used by bad actors and the need for research, policy, education, and community engagement to address the issue.
+
+ This article discusses the use of social media platforms to study the amplification of individuals and organizations, as well as the use of bots and synthetically created content. It also discusses the game "Which Faces Real" created to bring public attention to deep fakes, and how this technology has been used to create fake journalists and videos. It also discusses the potential impact of new generative technology on content creators, the growing news deserts in the US, and the Justice Department's lawsuit against Google for monopolizing digital advertising technologies. Finally, it discusses the potential for job loss due to AI, the proliferation of pseudoscience, and the potential for chatbots to create false citations.
+
+ Chat GPT technology has been used to co-author articles, but many journals and publishers are now prohibiting this. There are concerns about the technology creating fake citations and always being 100% confident in its answers, which can be dangerous. There are also concerns about the cost of the technology, the environmental cost, and the potential for garbage in/garbage out. It is important to take time to think about the implications of this technology and to have conversations about it."
+
+
+CONCISE SUMMARY:
+
+&gt; Finished chain.
+
+&gt; Finished chain.
+
+&gt; Finished chain.</code></pre>
+</div>
+<div id="openai-split-size" class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>' This article discusses the potential implications of generative AI and chatbots, such as misinformation, job elimination, pseudoscience proliferation, and the need for qualifiers of confidence. It also looks at the ways in which these technologies can be used by bad actors and the need for research, policy, education, and community engagement to address the issue. It examines the potential impact on democratic discourse, health, and other areas, and the difficulty of detecting and reversing the effects of misinformation. Finally, it discusses the potential for job loss due to AI, the proliferation of pseudoscience, and the potential for chatbots to create false citations.'</code></pre>
+</div>
+</div>
+<a class="quarto-notebook-link" id="nblink-5" href="jupyterlab\misinformation.ipynb.html">원천: 오정보 쥬피터 노트북</a></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+디플 번역
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>이 글에서는 잘못된 정보, 일자리 퇴출, 사이비 과학 확산, 신뢰성 검증의 필요성 등 생성형 AI와 챗봇의 잠재적 영향에 대해 논의합니다. 또한 이러한 기술이 악의적인 행위자에 의해 악용될 수 있는 방법과 이 문제를 해결하기 위한 연구, 정책, 교육, 커뮤니티 참여의 필요성에 대해서도 살펴봅니다. 민주적 담론, 건강 및 기타 영역에 미칠 수 있는 잠재적 영향과 잘못된 정보의 영향을 감지하고 되돌리기 어려운 점을 살펴봅니다. 마지막으로 인공지능으로 인한 일자리 손실 가능성, 사이비 과학의 확산, 챗봇이 허위 인용을 일으킬 가능성에 대해 논의합니다.</p>
+</div>
+</div>
+</div>
+
+
+<!-- -->
+
+</section></section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb14" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "보도자료작성"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> | </span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">  챗GPT 보도자료작성</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">    code-link: true</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="an">notebook-view:</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="co">  - notebook: jupyterlab/misinformation.ipynb</span></span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="co">    title: "오정보 쥬피터 노트북"</span></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/langchain_summary.jpg)</span></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a><span class="fu"># 문서 요약</span></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>GPT 모델은 텍스트에서 흔히 볼 수 있는 문자 시퀀스인 토큰을 사용하여 텍스트를 처리한다. GPT 모델은 이러한 토큰 간의 통계적 관계를 이해하고 토큰 시퀀스에서 다음 토큰을 생성하는 데 탁월하다.</span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>요약은 많은 LLM 작업의 기본 구성 요소로 많은 양의 텍스트를 간결한 요점으로 압축해야 하는 사용 사례가 많다.따라서, 요약하려는 텍스트의 길이에 따라 다양한 요약 방법을 선택해야한다.</span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>문서 길이에 따라 요약하는 방식도 달라진다. 짧은 텍스트의 경우 프롬프트 공학을 사용해서 요약을 짧은 코드로 수행할 수 있지만 텍스트의 길이가 길어지고 특히, 책과 같이 수백 페이지에 이르게 되는 경우 다른 전략이 필요하다.</span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a><span class="fu"># 텍스트 길이</span></span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>서울 R 미트업 2023년 5월 "챗GPT와 오정보(Misinformation)" 행사에서 제빈 웨스트 교수가 발표한 <span class="co">[</span><span class="ot">헛소문 바로잡기(Cutting Through Bullshit: Navigating Misinformation and Disinformation in the GenChatGPT Era)</span><span class="co">](https://r2bit.com/seoul-r/contents/meetup-2023.html)</span> 텍스트를 추출하여 요약해보자. STT를 이용하여 음성에서 텍스트를 추출하는 방법에 대해서는 <span class="co">[</span><span class="ot">음성인식(Whisper)</span><span class="co">](https://r2bit.com/chatGPT/whisper.html)</span>을 참고한다.</span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## `.srt` → `.txt`</span></span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>자막파일(<span class="in">`.srt`</span>)에서 시간 정보를 제거하고 텍스트만 전환하는 작업을 다음 코드를 사용하여 진행한다.</span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(srt)</span>
+<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb14-72"><a href="#cb14-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-73"><a href="#cb14-73" aria-hidden="true" tabindex="-1"></a>misinfo_raw <span class="ot">&lt;-</span> <span class="fu">read_srt</span>(<span class="st">"data/LibriSpeech/misinformation.srt"</span>, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb14-74"><a href="#cb14-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-75"><a href="#cb14-75" aria-hidden="true" tabindex="-1"></a>misinfo_str <span class="ot">&lt;-</span> misinfo_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb14-76"><a href="#cb14-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;=</span><span class="dv">20</span>, n<span class="sc">&lt;=</span><span class="dv">404</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-77"><a href="#cb14-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(subtitle)</span>
+<span id="cb14-78"><a href="#cb14-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-79"><a href="#cb14-79" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(misinfo_str, <span class="at">collapse =</span> <span class="st">" "</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-80"><a href="#cb14-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_lines</span>(<span class="st">"data/LibriSpeech/misinfo_chatGPT.txt"</span>)</span>
+<span id="cb14-81"><a href="#cb14-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-82"><a href="#cb14-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-83"><a href="#cb14-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## R 코드</span></span>
+<span id="cb14-84"><a href="#cb14-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-85"><a href="#cb14-85" aria-hidden="true" tabindex="-1"></a>텍스트 길이와 별개로 단어갯수(word)를 파악하는 것이 전체적인 API 비용 및</span>
+<span id="cb14-86"><a href="#cb14-86" aria-hidden="true" tabindex="-1"></a>후속 텍스트 분석 방향을 잡을 때 중요하다. 이를 위해서 <span class="in">`stringr`</span> 패키지</span>
+<span id="cb14-87"><a href="#cb14-87" aria-hidden="true" tabindex="-1"></a><span class="in">`str_sub()`</span> 함수와 정규표현식(<span class="in">`\\w+`</span>)을 결합하여 사용하거나 </span>
+<span id="cb14-88"><a href="#cb14-88" aria-hidden="true" tabindex="-1"></a>텍스트 마이닝 특화된 <span class="in">`qdap`</span> 패키지 <span class="in">`wc()`</span> 함수를 사용해서 계산한다.</span>
+<span id="cb14-89"><a href="#cb14-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-92"><a href="#cb14-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-93"><a href="#cb14-93" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb14-94"><a href="#cb14-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-95"><a href="#cb14-95" aria-hidden="true" tabindex="-1"></a>misinfo_txt <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">"data/LibriSpeech/misinfo_chatGPT.txt"</span>)</span>
+<span id="cb14-96"><a href="#cb14-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-97"><a href="#cb14-97" aria-hidden="true" tabindex="-1"></a>misinfo_wc <span class="ot">&lt;-</span> <span class="fu">str_count</span>(misinfo_txt, <span class="st">'</span><span class="sc">\\</span><span class="st">w+'</span>)</span>
+<span id="cb14-98"><a href="#cb14-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-99"><a href="#cb14-99" aria-hidden="true" tabindex="-1"></a>glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"텍스트 일부: {str_sub(misinfo_txt, 1, 100)} </span></span>
+<span id="cb14-100"><a href="#cb14-100" aria-hidden="true" tabindex="-1"></a><span class="st">           단어갯수: {misinfo_wc}</span></span>
+<span id="cb14-101"><a href="#cb14-101" aria-hidden="true" tabindex="-1"></a><span class="st">           단어갯수(qdap): {qdap::wc(misinfo_txt)}"</span>)</span>
+<span id="cb14-102"><a href="#cb14-102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb14-103"><a href="#cb14-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-104"><a href="#cb14-104" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">OpenAI [Tokenizer](https://platform.openai.com/tokenizer)</span><span class="co">]</span>{.aside}</span>
+<span id="cb14-105"><a href="#cb14-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-106"><a href="#cb14-106" aria-hidden="true" tabindex="-1"></a><span class="fu">## `Tokenizer`</span></span>
+<span id="cb14-107"><a href="#cb14-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-108"><a href="#cb14-108" aria-hidden="true" tabindex="-1"></a>챗GPT LLM은 토큰을 기본 단위로 사용하고 과금단위이기도 하기 때문에 OpenAI 에서 제공하는 </span>
+<span id="cb14-109"><a href="#cb14-109" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Tokenizer</span><span class="co">](https://platform.openai.com/tokenizer)</span>에서 복사하여 붙여넣게 되면 발표음성을 텍스트 파일에 저장시킨 사항을 바로 확인할 수 있다. 다른 방식은 <span class="in">`langchain`</span> <span class="in">`get_num_tokens()`</span> 메쏘드를 사용해서 API를 통해 확인하는 방식이다.</span>
+<span id="cb14-110"><a href="#cb14-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-111"><a href="#cb14-111" aria-hidden="true" tabindex="-1"></a>:::::{.columns}</span>
+<span id="cb14-112"><a href="#cb14-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-113"><a href="#cb14-113" aria-hidden="true" tabindex="-1"></a>:::{.column width=30%}</span>
+<span id="cb14-114"><a href="#cb14-114" aria-hidden="true" tabindex="-1"></a><span class="fu">### 웹 UI {.unnumbered}</span></span>
+<span id="cb14-115"><a href="#cb14-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-116"><a href="#cb14-116" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/misinfo_tokens.jpg)</span>{width="500"}</span>
+<span id="cb14-117"><a href="#cb14-117" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-118"><a href="#cb14-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-119"><a href="#cb14-119" aria-hidden="true" tabindex="-1"></a>:::{.column  width=70%}</span>
+<span id="cb14-120"><a href="#cb14-120" aria-hidden="true" tabindex="-1"></a><span class="fu">### API 프로그래밍 {.unnumbered}</span></span>
+<span id="cb14-121"><a href="#cb14-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-122"><a href="#cb14-122" aria-hidden="true" tabindex="-1"></a>{{&lt; embed jupyterlab/misinformation.ipynb#langchain_token echo=true &gt;}}</span>
+<span id="cb14-123"><a href="#cb14-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-124"><a href="#cb14-124" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-125"><a href="#cb14-125" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb14-126"><a href="#cb14-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-127"><a href="#cb14-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-128"><a href="#cb14-128" aria-hidden="true" tabindex="-1"></a><span class="fu"># 요약</span></span>
+<span id="cb14-129"><a href="#cb14-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-130"><a href="#cb14-130" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">참조코드: [5 Levels Of Summarization: Novice to Expert](https://github.com/gkamradt/langchain-tutorials/blob/main/data_generation/5%20Levels%20Of%20Summarization%20-%20Novice%20To%20Expert.ipynb)</span><span class="co">]</span>{.aside}</span>
+<span id="cb14-131"><a href="#cb14-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-132"><a href="#cb14-132" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Greg Kamradt</span><span class="co">](https://github.com/gkamradt)</span>은 LLM 문서요약관련하여 5가지 전략을 제시하고 있다.</span>
+<span id="cb14-133"><a href="#cb14-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-134"><a href="#cb14-134" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>몇 문장 요약하기 - 기본 프롬프트</span>
+<span id="cb14-135"><a href="#cb14-135" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>몇 단락 요약 - 프롬프트 템플릿</span>
+<span id="cb14-136"><a href="#cb14-136" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>몇 페이지 요약 - 맵 리듀스(Map Reduce)</span>
+<span id="cb14-137"><a href="#cb14-137" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>책 전체 요약하기 - Best Representation Vectors</span>
+<span id="cb14-138"><a href="#cb14-138" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>알 수 없는 양의 텍스트 요약 - 에이전트(Agent)</span>
+<span id="cb14-139"><a href="#cb14-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-140"><a href="#cb14-140" aria-hidden="true" tabindex="-1"></a>5가지 전략 중 강의내용을 요약할 수 있는 두가지 사례를 중심으로 살펴보자.</span>
+<span id="cb14-141"><a href="#cb14-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-142"><a href="#cb14-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## 몇 문장 요약</span></span>
+<span id="cb14-143"><a href="#cb14-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-144"><a href="#cb14-144" aria-hidden="true" tabindex="-1"></a>요약형태도 지정하여 누구나 이해하기 쉬운 형태로 몇 문장 텍스트를 요약하도록 프롬프트를 작성하여 국문, 영문 작업을 수행한다.</span>
+<span id="cb14-145"><a href="#cb14-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-146"><a href="#cb14-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-147"><a href="#cb14-147" aria-hidden="true" tabindex="-1"></a>:::::::{.column-body-outset}</span>
+<span id="cb14-148"><a href="#cb14-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-149"><a href="#cb14-149" aria-hidden="true" tabindex="-1"></a>:::::{.columns}</span>
+<span id="cb14-150"><a href="#cb14-150" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb14-151"><a href="#cb14-151" aria-hidden="true" tabindex="-1"></a><span class="fu">### 국문요약 {.unnumbered}</span></span>
+<span id="cb14-152"><a href="#cb14-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-153"><a href="#cb14-153" aria-hidden="true" tabindex="-1"></a>{{&lt; embed jupyterlab/misinformation.ipynb#langchain_summary_sentences echo=true &gt;}}</span>
+<span id="cb14-154"><a href="#cb14-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-155"><a href="#cb14-155" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-156"><a href="#cb14-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-157"><a href="#cb14-157" aria-hidden="true" tabindex="-1"></a>:::{.column}</span>
+<span id="cb14-158"><a href="#cb14-158" aria-hidden="true" tabindex="-1"></a><span class="fu">### 영문요약 {.unnumbered}</span></span>
+<span id="cb14-159"><a href="#cb14-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-160"><a href="#cb14-160" aria-hidden="true" tabindex="-1"></a>{{&lt; embed jupyterlab/misinformation.ipynb#langchain_summary_sentences_eng echo=true &gt;}}</span>
+<span id="cb14-161"><a href="#cb14-161" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb14-162"><a href="#cb14-162" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb14-163"><a href="#cb14-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-164"><a href="#cb14-164" aria-hidden="true" tabindex="-1"></a>:::::::</span>
+<span id="cb14-165"><a href="#cb14-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-166"><a href="#cb14-166" aria-hidden="true" tabindex="-1"></a><span class="fu">## 전체 요약</span></span>
+<span id="cb14-167"><a href="#cb14-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-168"><a href="#cb14-168" aria-hidden="true" tabindex="-1"></a>요약 대상이 되는 텍스트와 요약 프롬프트를 한번에 넣어 작업하는 대신</span>
+<span id="cb14-169"><a href="#cb14-169" aria-hidden="true" tabindex="-1"></a>텍스트 토큰 크기를 산정한 후에 적절한 크기로 나눈 다음</span>
+<span id="cb14-170"><a href="#cb14-170" aria-hidden="true" tabindex="-1"></a>각각 텍스트 조각에 대해 요약작업을 수행하고 나서 </span>
+<span id="cb14-171"><a href="#cb14-171" aria-hidden="true" tabindex="-1"></a>이를 다시 요약하는 맵리듀스(Map Reduce) 방식으로 요약 작업을 마무리한다.</span>
+<span id="cb14-172"><a href="#cb14-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-173"><a href="#cb14-173" aria-hidden="true" tabindex="-1"></a><span class="fu">### 토큰 크기</span></span>
+<span id="cb14-174"><a href="#cb14-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-175"><a href="#cb14-175" aria-hidden="true" tabindex="-1"></a>발표 텍스트 토큰 크기를 계산하여 적절한 토큰 분리 크기를 산정한다.</span>
+<span id="cb14-176"><a href="#cb14-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-177"><a href="#cb14-177" aria-hidden="true" tabindex="-1"></a>{{&lt; embed jupyterlab/misinformation.ipynb#openai-setup-split echo=true &gt;}}</span>
+<span id="cb14-178"><a href="#cb14-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-179"><a href="#cb14-179" aria-hidden="true" tabindex="-1"></a><span class="fu">### 요약결과</span></span>
+<span id="cb14-180"><a href="#cb14-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-181"><a href="#cb14-181" aria-hidden="true" tabindex="-1"></a><span class="in">`load_summarize_chain()`</span> 으로 전체 발표 텍스트를 요약한다.</span>
+<span id="cb14-182"><a href="#cb14-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-183"><a href="#cb14-183" aria-hidden="true" tabindex="-1"></a>{{&lt; embed jupyterlab/misinformation.ipynb#openai-split-size echo=true &gt;}}</span>
+<span id="cb14-184"><a href="#cb14-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-185"><a href="#cb14-185" aria-hidden="true" tabindex="-1"></a>:::{.callout-warning collapse="false"}</span>
+<span id="cb14-186"><a href="#cb14-186" aria-hidden="true" tabindex="-1"></a><span class="fu">### 디플 번역 {.unnumbered}</span></span>
+<span id="cb14-187"><a href="#cb14-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-188"><a href="#cb14-188" aria-hidden="true" tabindex="-1"></a>이 글에서는 잘못된 정보, 일자리 퇴출, 사이비 과학 확산, 신뢰성 검증의 필요성 등 생성형 AI와 챗봇의 잠재적 영향에 대해 논의합니다. 또한 이러한 기술이 악의적인 행위자에 의해 악용될 수 있는 방법과 이 문제를 해결하기 위한 연구, 정책, 교육, 커뮤니티 참여의 필요성에 대해서도 살펴봅니다. 민주적 담론, 건강 및 기타 영역에 미칠 수 있는 잠재적 영향과 잘못된 정보의 영향을 감지하고 되돌리기 어려운 점을 살펴봅니다. 마지막으로 인공지능으로 인한 일자리 손실 가능성, 사이비 과학의 확산, 챗봇이 허위 인용을 일으킬 가능성에 대해 논의합니다.</span>
+<span id="cb14-189"><a href="#cb14-189" aria-hidden="true" tabindex="-1"></a>:::</span>
+</code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://quarto.org/">Quarto</a> 개발</div>   
+    <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
+    <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":true,"descPosition":"bottom"});</script>
+
+
+</body></html>
