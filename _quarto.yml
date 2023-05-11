@@ -114,9 +114,11 @@ website:
         - href: langchain_arch.qmd
           text: "LangCahin 아키텍쳐"
         - href: whisper.qmd
-          text: "음성인식(Whisper)"
+          text: "오정보 음성인식(Whisper)"
         - href: news_release.qmd
-          text: "보도자료작성"
+          text: "오정보 요약"
+        - href: misinfo_embedding.qmd
+          text: "오정보 임베딩"
         - text: "------------------"
         - href: palmer_penguins.qmd
           text: "펭귄 데이터셋"

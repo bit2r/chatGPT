@@ -18,3 +18,9 @@ data/LibriSpeech
 .env
 data/001.문서요약텍스트_sample
 jupyterlab/sqlite-sakila-db/
+data/
+data/field-guide-to-data-science.pdf
+jupyterlab/langchain/
+jupyterlab/.ipynb_checkpoints/
+jupyterlab/misinfo-embeddings.csv
+

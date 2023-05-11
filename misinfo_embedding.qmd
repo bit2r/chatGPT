@@ -1,0 +1,134 @@
+---
+title: "chatGPT"
+subtitle: "오정보 임베딩"
+description: | 
+  챗GPT 오정보 임베딩
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-tools: true
+    code-link: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+notebook-view:
+  - notebook: jupyterlab/pinecone.ipynb
+    title: "벡터 DB 쥬피터 노트북"
+---
+
+![](images/misinfo-pinecone.jpg)
+
+
+# 텍스트 &rarr; 벡터 DB
+
+## 환경설정
+
+{{< embed jupyterlab/pinecone.ipynb#misinfo-setup echo=true >}}
+
+
+# 텍스트 데이터
+
+서울 R 미트업에서 발표한 "챗GPT와 오정보(Misinformation)" 자막 `.srt` 파일을 텍스트로 변환시킨 텍스트 파일이다.
+
+{{< embed jupyterlab/pinecone.ipynb#misinfo-txt echo=true >}}
+
+
+## 토큰 크기
+
+텍스트 데이터 토큰 크기를 추정하는 것은 비용뿐만 아니라 추후 개발방향에 전략을 세우는데 큰 시사점을 제시한다.
+
+:::::::{.column-body-outset}
+
+:::::{.columns}
+:::{.column}
+### 정규표현식 {.unnumbered}
+
+{{< embed jupyterlab/pinecone.ipynb#misinfo-regex echo=true >}}
+
+:::
+
+:::{.column}
+### `tiktoken` {.unnumbered}
+
+{{< embed jupyterlab/pinecone.ipynb#misinfo-tiktoken echo=true >}}
+:::
+:::::
+
+:::::::
+
+
+## 비용
+
+[[OpenAI_Lab/Context-based-search-Version2.ipynb](https://github.com/OpsConfig/OpenAI_Lab/blob/3a8c55160a6790fc790ef1c2c797d83c716eee94/Context-based-search-Version2.ipynb)]{.aside}
+
+{{< embed jupyterlab/pinecone.ipynb#misinfo-price echo=true >}}
+
+
+# 임베딩
+
+## 텍스트 쪼개기
+
+{{< embed jupyterlab/pinecone.ipynb#misinfo-pandas echo=true >}}
+
+## 임베딩
+
+{{< embed jupyterlab/pinecone.ipynb#misinfo-embedding echo=true >}}
+
+
+# 벡터 데이터베이스
+
+앞서 임베딩이 마무리되었으며 이를 벡터 데이터베이스에 밀어넣고 
+다양한 후속작업을 수행할 수 있도록 준비한다.
+관계형 데이터베이스가 그 수가 많은 만큼 벡터 데이터베이스는 종류가 많다. 
+선두 주자로 평가받는 [파인콘(Pinecone)](https://www.pinecone.io/) 회원가입하면
+API 형태로 벡터 데이터베이스를사용할 수 있다.
+
+![](images/misinfo_pinecone_db.jpg)
+
+## DB 생성
+
+{{< embed jupyterlab/pinecone.ipynb#misinfo-create-db echo=true >}}
+
+## 임베딩 삽입
+
+[[VECTOR DATABASE: CRUD with Pinecone](https://towardsdatascience.com/crud-with-pinecone-ee6b6f8b54e8)]{.aside}
+
+{{< embed jupyterlab/pinecone.ipynb#misinfo-upsert echo=true >}}
+
+# 검색
+
+> "why misinformation is dangerous?"
+
+{{< embed jupyterlab/pinecone.ipynb#misinfo-query echo=true >}}
+
+# 시각화
+
+...
