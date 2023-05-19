@@ -2700,5 +2700,19 @@
     "title": "chatGPT",
     "section": "\n4.2 임베딩 삽입",
     "text": "4.2 임베딩 삽입\nVECTOR DATABASE: CRUD with Pinecone\n\n\n코드import itertools\n\ndef chunks(iterable, batch_size=100):\n    it = iter(iterable)\n    chunk = tuple(itertools.islice(it, batch_size))\n    while chunk:\n        yield chunk\n        chunk = tuple(itertools.islice(it, batch_size))\n\nfor batch in chunks([(str(t), v) for t, v in zip(df.vector_id, df.embedding)]):\n    index.upsert(vectors=batch, namespace = \"misinfo_namespace\")\n\nindex.describe_index_stats()    \n\n{'dimension': 1536,\n 'index_fullness': 0.0,\n 'namespaces': {'misinfo_namespace': {'vector_count': 368}},\n 'total_vector_count': 368}\n\n\n원천: 벡터 DB 쥬피터 노트북"
+  },
+  {
+    "objectID": "mathpix.html",
+    "href": "mathpix.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "tinytex::install_tinytex() 명령어로 $\\LaTeX$을 설치한다.\n\n코드tinytex::install_tinytex()\n# 설치위치 확인\ntinytex::tinytex_root()\n\n\n\n\n코드writeLines(c(\n  '\\\\documentclass{article}',\n  '\\\\begin{document}', 'Hello world!', '\\\\end{document}'\n), 'pdf/test_eng.tex')\n\ntinytex::pdflatex('pdf/test_eng.tex')\n#&gt; [1] \"pdf/test_eng.pdf\""
+  },
+  {
+    "objectID": "mathpix.html#헬로월드",
+    "href": "mathpix.html#헬로월드",
+    "title": "chatGPT",
+    "section": "",
+    "text": "코드writeLines(c(\n  '\\\\documentclass{article}',\n  '\\\\begin{document}', 'Hello world!', '\\\\end{document}'\n), 'pdf/test_eng.tex')\n\ntinytex::pdflatex('pdf/test_eng.tex')\n#&gt; [1] \"pdf/test_eng.pdf\""
   }
 ]

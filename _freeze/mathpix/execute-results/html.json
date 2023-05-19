@@ -1,0 +1,14 @@
+{
+  "hash": "2b7b514f70bec8f1f5fbd96b3e824f12",
+  "result": {
+    "markdown": "---\ntitle: \"chatGPT\"\nsubtitle: \"수능 수학(Mathpix)\"\ndescription: | \n  수능 수학문제를 OCR (Mathpix)와 챗GPT를 사용해서 풀어보자.\nauthor:\n  - name: 이광춘\n    url: https://www.linkedin.com/in/kwangchunlee/\n    affiliation: 한국 R 사용자회\n    affiliation-url: https://github.com/bit2r\ntitle-block-banner: true\n#title-block-banner: \"#562457\"\nformat:\n  html:\n    css: css/quarto.css\n    theme: flatly\n    code-fold: true\n    code-tools: true\n    code-link: true\n    code-overflow: wrap\n    toc: true\n    toc-depth: 3\n    toc-title: 목차\n    number-sections: true\n    highlight-style: github    \n    self-contained: false\nfilters:\n   - lightbox\n\nlightbox: auto\nlink-citations: true\nknitr:\n  opts_chunk: \n    message: false\n    warning: false\n    collapse: true\n    comment: \"#>\" \n    R.options:\n      knitr.graphics.auto_pdf: true\neditor_options: \n  chunk_output_type: console\nnotebook-view:\n  - notebook: jupyterlab/pinecone.ipynb\n    title: \"벡터 DB 쥬피터 노트북\"\n---\n\n\n\n\n\n# `LaTeX` 설치\n\n`tinytex::install_tinytex()` 명령어로 `$\\LaTeX$`을 설치한다.\n\n\n::: {.cell}\n\n```{.r .cell-code}\ntinytex::install_tinytex()\n# 설치위치 확인\ntinytex::tinytex_root()\n```\n:::\n\n\n## 헬로월드\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nwriteLines(c(\n  '\\\\documentclass{article}',\n  '\\\\begin{document}', 'Hello world!', '\\\\end{document}'\n), 'pdf/test_eng.tex')\n\ntinytex::pdflatex('pdf/test_eng.tex')\n#> [1] \"pdf/test_eng.pdf\"\n```\n:::\n\n\n\n# `mathpix` 패키지\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(mathpix)\nmathpix(\"images//integral.jpg\")\n```\n:::\n\n\n$$\n \\int \\frac { 4 x } { \\sqrt { x ^ { 2 } + 1 } } d x \n$$\n\n# `pdf` &rarr; `.png`\n\n2023년 수능 PDF 수학문제 파일을 이미지(`.png`) 파일로 변환시키자.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(pdftools)\n\npdf_convert(\"data/2교시_수학영역_문제지.pdf\", format = \"png\", pages=1, filenames = \"pdf/math_01.png\")\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nmath_01_png <- mathpix(\"pdf/math_01.png\", insert = FALSE)\n```\n:::\n\n\n$$\n g ( x ) = x ^ { 2 } f ( x ) \n$$\n\n::: {.cell}\n\n```{.r .cell-code}\nmath_01_png\n#> [1] \"$$\\n g ( x ) = x ^ { 2 } f ( x ) \\n$$\"\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

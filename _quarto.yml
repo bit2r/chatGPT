@@ -86,6 +86,9 @@ website:
           text: "번역(영한, 한영)"
         - href: gg_grouping.qmd
           text: "챗GPT 팀구성"
+        - href: mathpix.qmd
+          text: "수능 수학(Mathpix)"
+
       - text: "Prompt Eng."
         menu:
         - href: prompt.qmd
