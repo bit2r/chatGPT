@@ -956,7 +956,7 @@
     "href": "services.html",
     "title": "chatGPT",
     "section": "",
-    "text": "’B^ EDIT’는 카카오브레인의 AI 이미지 생성 모델 ’칼로(Karlo)’를 기반으로한 ’B^ EDIT’로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을 활용해 이미지 수정기능을 제공한다. 바로가기"
+    "text": "’B^ EDIT’는 카카오브레인의 AI 이미지 생성 모델 ’칼로(Karlo)’를 기반으로한 ’B^ EDIT’로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을 활용해 이미지 수정기능을 제공한다. 바로가기\n\n\n\n동일한 서비스를 NVIDIA 그래픽 카드가 있는 경우 NVIDIA 캔버스를 다운로드 받아 AI를 사용하여 간단한 붓터치를 사실적인 풍경 이미지로 바꿀 수 있다. 배경을 빠르게 만들거나 컨셉 탐색 속도를 높여 아이디어를 시각화하는 데 더 많은 시간을 할애할 수 있어 시간을 줄여준다.\n\n\n\n\n\n\n\n구성요소\n사양\n\n\n\nGPU\nNVIDIA GeForce RTX, NVIDIA RTX, or TITAN RTX GPU\n\n\n하드디스크\nSSD\n\n\n운영체제\n윈도우즈 10\n\n\n드라이버\nGeForce RTX 40 시리즈의 경우 520 이상, 기타 모든 GPU의 경우 471.68 이상\n\n\n\n\n\n\n\n\nNVIDIA가 짧은 단어와 간단한 마우스 클릭으로 사실적인 예술품을 만들어주는 최신 버전의 AI 페인팅 툴 GauGAN2를 공개했다. 바로가기"
   },
   {
     "objectID": "shorty/example.html",
@@ -1026,21 +1026,21 @@
     "href": "text2image.html#chatgpt-프롬프트",
     "title": "chatGPT",
     "section": "\n2.1 chatGPT 프롬프트",
-    "text": "2.1 chatGPT 프롬프트\nrecommend the most famous painting style in history\n\n\n\n\n\n\ncompletion\n\n\n\n\n\nHere are some of the most famous painting styles in history:\n\nRenaissance: The Renaissance was a cultural movement in Italy from the 14th to the 17th century, characterized by a renewed interest in classical art, philosophy, and science. Renaissance paintings are known for their realism, balance, and harmony.\nBaroque: The Baroque style was popular in Europe from the late 16th to the early 18th century. Baroque paintings are known for their dramatic lighting, intense emotions, and dynamic compositions.\nImpressionism: Impressionism was a modernist movement in French painting in the late 19th century. Impressionist paintings are known for their loose brushstrokes, light-filled compositions, and focus on capturing fleeting moments.\nSurrealism: Surrealism was a cultural movement in the 20th century that aimed to liberate the imagination and explore the subconscious. Surrealist paintings are known for their dreamlike and fantastical imagery.\nAbstract Expressionism: Abstract Expressionism was a modernist movement in American painting in the mid-20th century. Abstract Expressionist paintings are known for their large canvases, gestural brushstrokes, and emphasis on the process of creation.\n\nThese are just a few examples of famous painting styles in history. There are many other styles that have influenced and shaped the course of art history.\n\n\n\nOpen AI - Create image API"
+    "text": "2.1 chatGPT 프롬프트\nrecommend the most famous painting style in history"
   },
   {
     "objectID": "text2image.html#화풍을-달리한-그림",
     "href": "text2image.html#화풍을-달리한-그림",
     "title": "chatGPT",
-    "section": "\n2.2 화풍을 달리한 그림",
-    "text": "2.2 화풍을 달리한 그림\n\n\n르네상스(Renaissance)\n바로크(Baroque)\n인상주의(Impressionism)\n초현실주의(Surrealism)\n추상표현주의(Abstract Expressionism)\n\n\n\n\n코드library(tidyverse)\nlibrary(openai)\n\n# usethis::edit_r_environ(scope = \"project\")\n\nresponse <- create_image(\n    prompt = \"draw good health and long life world in a Renaissance style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nRenaissance <- image_read(response$data$url)\nprint(Renaissance)\n\nimage_write(Renaissance, path = \"images/styles/Renaissance.png\", format = \"png\")\n\n\n\n\n르네상스(Renaissance)\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Baroque style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nBaroque <- image_read(response$data$url)\nprint(Baroque)\n\nimage_write(Baroque, path = \"images/styles/Baroque.png\", format = \"png\")\n\n\n\n\n바로크(Baroque)\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Impressionism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nImpressionism <- image_read(response$data$url)\nprint(Impressionism)\n\nimage_write(Impressionism, path = \"images/styles/Impressionism.png\", format = \"png\")\n\n\n\n\n인상주의(Impressionism)\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Surrealism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nSurrealism <- image_read(response$data$url)\nprint(Surrealism)\n\nimage_write(Surrealism, path = \"images/styles/Surrealism.png\", format = \"png\")\n\n\n\n\n초현실주의(Surrealism)\n\n\n\n\n\n코드response <- create_image(\n    prompt = \"draw good health and long life world in a Abstract Expressionism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nexpressionism <- image_read(response$data$url)\nprint(expressionism)\n\nimage_write(expressionism, path = \"images/styles/expressionism.png\", format = \"png\")\n\n\n\n\n추상표현주의(Abstract Expressionism)"
+    "section": "\n2.3 화풍을 달리한 그림",
+    "text": "2.3 화풍을 달리한 그림\n\n\n르네상스(Renaissance)\n바로크(Baroque)\n인상주의(Impressionism)\n초현실주의(Surrealism)\n추상표현주의(Abstract Expressionism)\n\n\n\n\n코드library(tidyverse)\nlibrary(openai)\n\n# usethis::edit_r_environ(scope = \"project\")\n\nresponse &lt;- create_image(\n    prompt = \"draw good health and long life world in a Renaissance style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nRenaissance &lt;- image_read(response$data$url)\nprint(Renaissance)\n\nimage_write(Renaissance, path = \"images/styles/Renaissance.png\", format = \"png\")\n\n\n\n\n르네상스(Renaissance)\n\n\n\n\n\n코드response &lt;- create_image(\n    prompt = \"draw good health and long life world in a Baroque style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nBaroque &lt;- image_read(response$data$url)\nprint(Baroque)\n\nimage_write(Baroque, path = \"images/styles/Baroque.png\", format = \"png\")\n\n\n\n\n바로크(Baroque)\n\n\n\n\n\n코드response &lt;- create_image(\n    prompt = \"draw good health and long life world in a Impressionism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nImpressionism &lt;- image_read(response$data$url)\nprint(Impressionism)\n\nimage_write(Impressionism, path = \"images/styles/Impressionism.png\", format = \"png\")\n\n\n\n\n인상주의(Impressionism)\n\n\n\n\n\n코드response &lt;- create_image(\n    prompt = \"draw good health and long life world in a Surrealism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nSurrealism &lt;- image_read(response$data$url)\nprint(Surrealism)\n\nimage_write(Surrealism, path = \"images/styles/Surrealism.png\", format = \"png\")\n\n\n\n\n초현실주의(Surrealism)\n\n\n\n\n\n코드response &lt;- create_image(\n    prompt = \"draw good health and long life world in a Abstract Expressionism style\",\n    n = 1,\n    size = \"1024x1024\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv('OPEN_AI_KEY')\n)\n\nexpressionism &lt;- image_read(response$data$url)\nprint(expressionism)\n\nimage_write(expressionism, path = \"images/styles/expressionism.png\", format = \"png\")\n\n\n\n\n추상표현주의(Abstract Expressionism)"
   },
   {
     "objectID": "text2image.html#openai-패키지",
     "href": "text2image.html#openai-패키지",
     "title": "chatGPT",
     "section": "\n1.1 openai 패키지",
-    "text": "1.1 openai 패키지\nopenai 패키지 create_image() 함수를 사용하여 이미지를 제작할 수 있다.\n\n코드library(tidyverse)\nlibrary(openai)\n\n# usethis::edit_r_environ(scope = \"project\")\n\nresponse <- create_image(\n    prompt = \"Create R programming language logo for Korean R user group in a kandinsky and Gustav Klimt style embracing Python programming language supported by many contributors around the world, which must include R logo from R consortium and wikipedia\",\n    n = 1,\n    size = \"256x256\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\nlibrary(magick)\nR_logo <- image_read(response$data$url)\nprint(R_logo)\n\nmagick::image_write(R_logo, \"images/R_logo.png\")"
+    "text": "1.1 openai 패키지\nopenai 패키지 create_image() 함수를 사용하여 이미지를 제작할 수 있다.\n\n코드library(tidyverse)\nlibrary(openai)\n\n# usethis::edit_r_environ(scope = \"project\")\n\nresponse &lt;- create_image(\n    prompt = \"Create R programming language logo for Korean R user group in a kandinsky and Gustav Klimt style embracing Python programming language supported by many contributors around the world, which must include R logo from R consortium and wikipedia\",\n    n = 1,\n    size = \"256x256\",\n    response_format = \"url\",\n    openai_api_key = Sys.getenv(\"OPEN_AI_KEY\")\n)\n\nlibrary(magick)\nR_logo &lt;- image_read(response$data$url)\nprint(R_logo)\n\nmagick::image_write(R_logo, \"images/R_logo.png\")"
   },
   {
     "objectID": "stable_diffusion.html#실사-사진-예시",
@@ -2714,5 +2714,40 @@
     "title": "chatGPT",
     "section": "",
     "text": "코드writeLines(c(\n  '\\\\documentclass{article}',\n  '\\\\begin{document}', 'Hello world!', '\\\\end{document}'\n), 'pdf/test_eng.tex')\n\ntinytex::pdflatex('pdf/test_eng.tex')\n#&gt; [1] \"pdf/test_eng.pdf\""
+  },
+  {
+    "objectID": "services.html#bedit",
+    "href": "services.html#bedit",
+    "title": "chatGPT",
+    "section": "",
+    "text": "’B^ EDIT’는 카카오브레인의 AI 이미지 생성 모델 ’칼로(Karlo)’를 기반으로한 ’B^ EDIT’로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을 활용해 이미지 수정기능을 제공한다. 바로가기"
+  },
+  {
+    "objectID": "services.html#gaugan고갱-2",
+    "href": "services.html#gaugan고갱-2",
+    "title": "chatGPT",
+    "section": "",
+    "text": "동일한 서비스를 NVIDIA 그래픽 카드가 있는 경우 NVIDIA 캔버스를 다운로드 받아 AI를 사용하여 간단한 붓터치를 사실적인 풍경 이미지로 바꿀 수 있다. 배경을 빠르게 만들거나 컨셉 탐색 속도를 높여 아이디어를 시각화하는 데 더 많은 시간을 할애할 수 있어 시간을 줄여준다.\n\n\n\n\n\n\n\n구성요소\n사양\n\n\n\nGPU\nNVIDIA GeForce RTX, NVIDIA RTX, or TITAN RTX GPU\n\n\n하드디스크\nSSD\n\n\n운영체제\n윈도우즈 10\n\n\n드라이버\nGeForce RTX 40 시리즈의 경우 520 이상, 기타 모든 GPU의 경우 471.68 이상\n\n\n\n\n\n\n\n\nNVIDIA가 짧은 단어와 간단한 마우스 클릭으로 사실적인 예술품을 만들어주는 최신 버전의 AI 페인팅 툴 GauGAN2를 공개했다. 바로가기"
+  },
+  {
+    "objectID": "text_to_images.html",
+    "href": "text_to_images.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "’B^ EDIT’는 카카오브레인의 AI 이미지 생성 모델 ’칼로(Karlo)’를 기반으로한 ’B^ EDIT’로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을 활용해 이미지 수정기능을 제공한다. 바로가기\n\n\n\n동일한 서비스를 NVIDIA 그래픽 카드가 있는 경우 NVIDIA 캔버스를 다운로드 받아 AI를 사용하여 간단한 붓터치를 사실적인 풍경 이미지로 바꿀 수 있다. 배경을 빠르게 만들거나 컨셉 탐색 속도를 높여 아이디어를 시각화하는 데 더 많은 시간을 할애할 수 있어 시간을 줄여준다.\n\n\n\n\n\n\n\n구성요소\n사양\n\n\n\nGPU\nNVIDIA GeForce RTX, NVIDIA RTX, or TITAN RTX GPU\n\n\n하드디스크\nSSD\n\n\n운영체제\n윈도우즈 10\n\n\n드라이버\nGeForce RTX 40 시리즈의 경우 520 이상, 기타 모든 GPU의 경우 471.68 이상\n\n\n\n\n\n\n\n\nNVIDIA가 짧은 단어와 간단한 마우스 클릭으로 사실적인 예술품을 만들어주는 최신 버전의 AI 페인팅 툴 GauGAN2를 공개했다. 바로가기"
+  },
+  {
+    "objectID": "text_to_images.html#bedit",
+    "href": "text_to_images.html#bedit",
+    "title": "chatGPT",
+    "section": "",
+    "text": "’B^ EDIT’는 카카오브레인의 AI 이미지 생성 모델 ’칼로(Karlo)’를 기반으로한 ’B^ EDIT’로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을 활용해 이미지 수정기능을 제공한다. 바로가기"
+  },
+  {
+    "objectID": "text_to_images.html#gaugan고갱-2",
+    "href": "text_to_images.html#gaugan고갱-2",
+    "title": "chatGPT",
+    "section": "",
+    "text": "동일한 서비스를 NVIDIA 그래픽 카드가 있는 경우 NVIDIA 캔버스를 다운로드 받아 AI를 사용하여 간단한 붓터치를 사실적인 풍경 이미지로 바꿀 수 있다. 배경을 빠르게 만들거나 컨셉 탐색 속도를 높여 아이디어를 시각화하는 데 더 많은 시간을 할애할 수 있어 시간을 줄여준다.\n\n\n\n\n\n\n\n구성요소\n사양\n\n\n\nGPU\nNVIDIA GeForce RTX, NVIDIA RTX, or TITAN RTX GPU\n\n\n하드디스크\nSSD\n\n\n운영체제\n윈도우즈 10\n\n\n드라이버\nGeForce RTX 40 시리즈의 경우 520 이상, 기타 모든 GPU의 경우 471.68 이상\n\n\n\n\n\n\n\n\nNVIDIA가 짧은 단어와 간단한 마우스 클릭으로 사실적인 예술품을 만들어주는 최신 버전의 AI 페인팅 툴 GauGAN2를 공개했다. 바로가기"
   }
 ]

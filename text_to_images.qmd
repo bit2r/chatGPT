@@ -1,8 +1,8 @@
 ---
 title: "chatGPT"
-subtitle: "`chatGPT` (유)무료 서비스"
+subtitle: "Text-to-Images"
 description: |
-  국내외 `chatGPT` 유무료 서비스를 다음과 같이 꾸준히 정리해 나가고 있습니다.
+  Text-to-Images 관련 기술을 확인합니다.
 author:
   - name: 이광춘
     url: https://www.linkedin.com/in/kwangchunlee/
@@ -24,7 +24,7 @@ format:
 filters:
    - lightbox
 lightbox: auto
-link-citations: yes
+link-citations: true
 knitr:
   opts_chunk: 
     message: false
@@ -40,7 +40,9 @@ editor:
     wrap: 72
 ---
 
-# B\^Edit
+# 서비스 사례
+
+## B\^Edit
 
 'B\^ EDIT'는 카카오브레인의 AI 이미지 생성 모델 '칼로(Karlo)'를
 기반으로한 'B\^ EDIT'로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을
@@ -49,9 +51,9 @@ editor:
 
 {{< video https://youtu.be/z1mu1o0rHnI >}}
 
-# GauGAN(고갱) 2
+## GauGAN(고갱) 2
 
-## NVIDIA 캔버스
+### NVIDIA 캔버스
 
 동일한 서비스를 NVIDIA 그래픽 카드가 있는 경우 [**NVIDIA 캔버스**](https://www.nvidia.com/en-us/studio/canvas/)를 다운로드 받아 AI를 사용하여 간단한 붓터치를 사실적인 풍경 이미지로 바꿀 수 있다. 
 배경을 빠르게 만들거나 컨셉 탐색 속도를 높여 아이디어를 시각화하는 데 더 많은 시간을 할애할 수 있어 시간을 줄여준다.
@@ -67,7 +69,7 @@ editor:
 
 ![](images/nvidia_canvas.jpg)
 
-## 고갱 2 API
+### 고갱 2 API
 
 NVIDIA가 짧은 단어와 간단한 마우스 클릭으로 사실적인 예술품을 만들어주는
 최신 버전의 AI 페인팅 툴 GauGAN2를 공개했다. [바로가기](http://gaugan.org/gaugan2/)

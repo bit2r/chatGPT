@@ -62,10 +62,12 @@ website:
         - href: yuji.qmd
           text: "멤버 Yuji"
         - text: "------------------"
-        - href: text2image.qmd
-          text: "텍스트 → 이미지 생성"
         - href: stable_diffusion.qmd
           text: "Stable Diffusion"
+        - href: text_to_images.qmd
+          text: "Text-to-Images"
+        - href: text2image.qmd
+          text: "`bitGPT` Text-to-Image"
         - text: "------------------"
         - href: samsung.qmd
           text: "삼전 주가예측"
@@ -156,8 +158,6 @@ website:
         menu:
         - href: chatGPT_overview.qmd
           text: "챗GPT 개요"
-        - href: services.qmd
-          text: "(유)무료 서비스"
     right:
       - icon: github
         href: https://github.com/bit2r/chatGPT

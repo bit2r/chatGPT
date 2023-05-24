@@ -1,6 +1,6 @@
 ---
 title: "chatGPT"
-subtitle: "텍스트 &rarr; 이미지 생성"
+subtitle: "`bitGPT` Text-to-Image"
 description: 텍스트에서 원하는 이미지를 생성하는 방법을 살펴보자.
 author:
   - name: 이광춘
@@ -24,7 +24,7 @@ filters:
    - lightbox
    - custom-callout.lua   
 lightbox: auto
-link-citations: yes
+link-citations: true
 knitr:
   opts_chunk: 
     message: false
