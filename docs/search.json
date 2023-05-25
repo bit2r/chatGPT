@@ -2734,20 +2734,20 @@
     "href": "text_to_images.html",
     "title": "chatGPT",
     "section": "",
-    "text": "’B^ EDIT’는 카카오브레인의 AI 이미지 생성 모델 ’칼로(Karlo)’를 기반으로한 ’B^ EDIT’로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을 활용해 이미지 수정기능을 제공한다. 바로가기\n\n\n\n동일한 서비스를 NVIDIA 그래픽 카드가 있는 경우 NVIDIA 캔버스를 다운로드 받아 AI를 사용하여 간단한 붓터치를 사실적인 풍경 이미지로 바꿀 수 있다. 배경을 빠르게 만들거나 컨셉 탐색 속도를 높여 아이디어를 시각화하는 데 더 많은 시간을 할애할 수 있어 시간을 줄여준다.\n\n\n\n\n\n\n\n구성요소\n사양\n\n\n\nGPU\nNVIDIA GeForce RTX, NVIDIA RTX, or TITAN RTX GPU\n\n\n하드디스크\nSSD\n\n\n운영체제\n윈도우즈 10\n\n\n드라이버\nGeForce RTX 40 시리즈의 경우 520 이상, 기타 모든 GPU의 경우 471.68 이상\n\n\n\n\n\n\n\n\nNVIDIA가 짧은 단어와 간단한 마우스 클릭으로 사실적인 예술품을 만들어주는 최신 버전의 AI 페인팅 툴 GauGAN2를 공개했다. 바로가기"
+    "text": "’B^ EDIT’는 카카오브레인의 AI 이미지 생성 모델 ’칼로(Karlo)’를 기반으로한 ’B^ EDIT’로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을 활용해 이미지 수정기능을 제공한다. 바로가기\n\n카카오브레인이 개발하여 공개한 ‘B^ EDIT(비 에디트)’ 웹 서비스를 통해 Text-to-Image 기능을 통해 다양한 AI 이미지를 얻을 수 있다.\n성현희 (2023-03-07), “카카오브레인, ‘B^ EDIT’ 오픈 베타서비스 글로벌 출시” 전자신문\n\n\n’B^ EDIT’에 접속해 바로크, 3D 렌더, 일본 애니메이션 등 총 30가지 화풍 중 원하는 화풍과 제시어(프롬프트)를 입력하면, AI가 화풍 및 프롬프트에 적합한 이미지 8장을 5~10초 이내로 생성한다. 그외에도 아웃페인팅(Outpainting), 인페이팅(Inpainting), CS2I(Color Sketch To Image) 등의 기능도 제공한다.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n동일한 서비스를 NVIDIA 그래픽 카드가 있는 경우 NVIDIA 캔버스를 다운로드 받아 AI를 사용하여 간단한 붓터치를 사실적인 풍경 이미지로 바꿀 수 있다. 배경을 빠르게 만들거나 컨셉 탐색 속도를 높여 아이디어를 시각화하는 데 더 많은 시간을 할애할 수 있어 시간을 줄여준다.\n\n\n\n\n\n\n\n구성요소\n사양\n\n\n\nGPU\nNVIDIA GeForce RTX, NVIDIA RTX, or TITAN RTX GPU\n\n\n하드디스크\nSSD\n\n\n운영체제\n윈도우즈 10\n\n\n드라이버\nGeForce RTX 40 시리즈의 경우 520 이상, 기타 모든 GPU의 경우 471.68 이상\n\n\n\n\n\n\n\n\nNVIDIA가 짧은 단어와 간단한 마우스 클릭으로 사실적인 예술품을 만들어주는 최신 버전의 AI 페인팅 툴 GauGAN2를 공개했다. 바로가기"
   },
   {
     "objectID": "text_to_images.html#bedit",
     "href": "text_to_images.html#bedit",
     "title": "chatGPT",
-    "section": "",
-    "text": "’B^ EDIT’는 카카오브레인의 AI 이미지 생성 모델 ’칼로(Karlo)’를 기반으로한 ’B^ EDIT’로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을 활용해 이미지 수정기능을 제공한다. 바로가기"
+    "section": "\n4.1 B^Edit",
+    "text": "4.1 B^Edit\n’B^ EDIT’는 카카오브레인의 AI 이미지 생성 모델 ’칼로(Karlo)’를 기반으로한 ’B^ EDIT’로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을 활용해 이미지 수정기능을 제공한다. 바로가기\n\n4.1.1 소개자료\n카카오브레인이 개발하여 공개한 ‘B^ EDIT(비 에디트)’ 웹 서비스를 통해 Text-to-Image 기능을 통해 다양한 AI 이미지를 얻을 수 있다.\n성현희 (2023-03-07), “카카오브레인, ‘B^ EDIT’ 오픈 베타서비스 글로벌 출시” 전자신문\n\n\n4.1.2 사용방법\n’B^ EDIT’에 접속해 바로크, 3D 렌더, 일본 애니메이션 등 총 30가지 화풍 중 원하는 화풍과 제시어(프롬프트)를 입력하면, AI가 화풍 및 프롬프트에 적합한 이미지 8장을 5~10초 이내로 생성한다. 그외에도 아웃페인팅(Outpainting), 인페이팅(Inpainting), CS2I(Color Sketch To Image) 등의 기능도 제공한다."
   },
   {
     "objectID": "text_to_images.html#gaugan고갱-2",
     "href": "text_to_images.html#gaugan고갱-2",
     "title": "chatGPT",
-    "section": "",
-    "text": "동일한 서비스를 NVIDIA 그래픽 카드가 있는 경우 NVIDIA 캔버스를 다운로드 받아 AI를 사용하여 간단한 붓터치를 사실적인 풍경 이미지로 바꿀 수 있다. 배경을 빠르게 만들거나 컨셉 탐색 속도를 높여 아이디어를 시각화하는 데 더 많은 시간을 할애할 수 있어 시간을 줄여준다.\n\n\n\n\n\n\n\n구성요소\n사양\n\n\n\nGPU\nNVIDIA GeForce RTX, NVIDIA RTX, or TITAN RTX GPU\n\n\n하드디스크\nSSD\n\n\n운영체제\n윈도우즈 10\n\n\n드라이버\nGeForce RTX 40 시리즈의 경우 520 이상, 기타 모든 GPU의 경우 471.68 이상\n\n\n\n\n\n\n\n\nNVIDIA가 짧은 단어와 간단한 마우스 클릭으로 사실적인 예술품을 만들어주는 최신 버전의 AI 페인팅 툴 GauGAN2를 공개했다. 바로가기"
+    "section": "\n4.2 GauGAN(고갱) 2",
+    "text": "4.2 GauGAN(고갱) 2\n\n4.2.1 NVIDIA 캔버스\n동일한 서비스를 NVIDIA 그래픽 카드가 있는 경우 NVIDIA 캔버스를 다운로드 받아 AI를 사용하여 간단한 붓터치를 사실적인 풍경 이미지로 바꿀 수 있다. 배경을 빠르게 만들거나 컨셉 탐색 속도를 높여 아이디어를 시각화하는 데 더 많은 시간을 할애할 수 있어 시간을 줄여준다.\n\n\n\n\n\n\n\n구성요소\n사양\n\n\n\nGPU\nNVIDIA GeForce RTX, NVIDIA RTX, or TITAN RTX GPU\n\n\n하드디스크\nSSD\n\n\n운영체제\n윈도우즈 10\n\n\n드라이버\nGeForce RTX 40 시리즈의 경우 520 이상, 기타 모든 GPU의 경우 471.68 이상\n\n\n\n\n\n\n\n\n4.2.2 고갱 2 API\nNVIDIA가 짧은 단어와 간단한 마우스 클릭으로 사실적인 예술품을 만들어주는 최신 버전의 AI 페인팅 툴 GauGAN2를 공개했다. 바로가기"
   }
 ]

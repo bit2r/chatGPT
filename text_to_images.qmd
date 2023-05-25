@@ -40,16 +40,196 @@ editor:
     wrap: 72
 ---
 
+![](images/anyang_t2i.jpg)
+
+# 작업흐름
+
+**프롬프트(Prompt)**는 이전에 학습된 모델 가중치를 새로운 맥락에서 재사용할 수 있는 메커니즘으로, 새롭게 등장한 극단적인 형태의 **전이학습(Transfer Learning)**이라고 주장할 수 있다. 수년에 걸쳐 NLP 작업별 모델을 구축할 때 미리 학습된 가중치를 점점 더 많이 재사용할 수 있는 방법을 찾아냈다. 2013년에 `word2vec`은 범용 단어 임베딩을 정적 라이브러리에 번들로 제공했고, 이를 NLP 모델에 입력으로 사용하기 시작했다. 2010년대 후반에는 ELMo와 BERT와 같은 모델에 미세 조정(Fine-Tuning) 기능이 도입되어 사전 학습된 모델의 전체 아키텍처를 재사용하고 각 작업에 대해 최소한의 가중치만 추가하여 연결함으로써 NLP 작업을 구현하는 표준적인 방식으로 자리잡았다. 마지막으로, GPT-3는 2020년 프롬프트를 통해 전이 학습에 대한 마침표를 찍었다. 이제부터 사전 학습된 단일 모델에 추가 매개변수나 재학습 없이도 단순히 텍스트 입력만으로 올바른 방향으로 안내하기만 하면 거의 모든 특정 NLP 작업을 수행할 수 있게 되었다. NLP 모형과 마찬가지로 Stable Diffusion, DALL-E와 같은 텍스트-이미지(Text-to-Image) 모형은 전이 학습 스펙트럼의 한 자리를 당당히 차지하고 있다. [@Turc_2022]
+
+[[Kaggle: Midjourney User Prompts & Generated Images](https://www.kaggle.com/datasets/succinctlyai/midjourney-texttoimage)]{.aside}
+
+
+![](images/kakao_bedit_creator.jpg)
+
+# 프롬프트
+
+생성형 이미지 제작을 위한 프롬프트에서 중요한 것은 텍스트 프롬프트 제작과 다소 차이가 있다.
+
+![](images/image_prompt_overview.jpg)
+
+:::{.panel-tabset}
+
+### 객체(Object)
+
+- castle
+- dragon
+- knight
+- wizard
+- king
+- queen
+
+### 형용사
+
+- beautiful
+- realistic
+- colorful
+- massive
+- abstract
+- aesthetic
+- ball bearing
+- biomorphic
+- brushwork
+- classic
+- clever
+- complex
+- conceptual
+
+### 아티스트
+
+- Peter Mohrbacher
+- Craig Mullins
+- Refer
+- Ashley Wood
+- hajime sorayama
+- floria sigismondi
+- matt mahurin
+- robert mapplethorope
+
+### 빛
+
+- monochromatic
+- uplight
+- neon light
+- soft light
+- cinematic light
+- volumetric light
+
+### 해상도
+
+- hd
+- 4k
+- 8k
+- extreme detail
+- highly detail
+- hyper detail
+
+### 카메라 뷰
+
+- ultra wide-angle
+- street level view
+- panoramic
+- top view
+- low angle view
+- bird-eye view
+
+### 사진
+
+- analog photography
+- nature photography
+- 80s photography
+- cinematic photography
+
+### 스타일
+
+- concept art
+- digital art
+- digital painting
+- sketch
+- matte painting
+- pop art
+- line art
+- manga
+- stencil art
+- crayon
+- chalk
+- oil paintings
+- Abstract Expressionism
+- Abstraction
+- Academic
+- Action painting
+- Aesthetic
+- Allover painting
+- Angular
+- Appropriation
+- Architecture
+- Artifice
+- Automatism
+- Avant-garde
+- Baroque
+- Bauhaus
+- Contemporary
+- Cubism
+- Cyberpunk
+- Digital art
+- Fantasy
+- Impressionism
+- Minimal
+- Modern
+- Pixel art
+- Realism
+- Surrealism
+
+:::
+
+:::{.callout-note collapse="true"}
+### 프롬프트: a cute metal cat shooting laser gun, digital art, 4k, monochromatic, Craig Mullins, cinematic photography, nature background, low angle view
+
+---
+
+:::{#cat-ai layout-ncol=5}
+
+![](images/cat_00.jpg)
+
+![](images/cat_01.jfif)
+
+![](images/cat_02.jfif)
+
+![](images/cat_03.jfif)
+
+![](images/cat_04.jfif)
+
+:::
+
+:::
+
+
+# 사례
+
+- [Best MidJourney Prompts: Art Styles & Photography](https://www.creativindie.com/best-midjourney-prompts-an-epic-list-of-crazy-text-to-image-ideas/)
+
+
 # 서비스 사례
 
 ## B\^Edit
 
 'B\^ EDIT'는 카카오브레인의 AI 이미지 생성 모델 '칼로(Karlo)'를
 기반으로한 'B\^ EDIT'로 원하는 화풍의 이미지 생성은 물론, 다양한 기능을
-활용해 이미지 수정기능을 제공한다.
-[바로가기](https://bedit.kakaobrain.com/)
+활용해 이미지 수정기능을 제공한다. [바로가기](https://bedit.kakaobrain.com/)
+
+### 소개자료
+
+카카오브레인이 개발하여 공개한 ['B^ EDIT(비 에디트)'](https://bedit.kakaobrain.com/) 웹 서비스를 통해 Text-to-Image 기능을 통해 다양한 AI 이미지를 얻을 수 있다.
+
+[[성현희 (2023-03-07), "카카오브레인, 'B^ EDIT' 오픈 베타서비스 글로벌 출시" 전자신문](https://www.etnews.com/20230307000030)]{.aside}
 
 {{< video https://youtu.be/z1mu1o0rHnI >}}
+
+
+### 사용방법
+
+'B^ EDIT'에 접속해 바로크, 3D 렌더, 일본 애니메이션 등 총 30가지 화풍 중 원하는 화풍과 제시어(프롬프트)를 입력하면, AI가 화풍 및 프롬프트에 적합한 이미지 8장을 5~10초 이내로 생성한다. 그외에도 아웃페인팅(Outpainting), 인페이팅(Inpainting), CS2I(Color Sketch To Image) 등의 기능도 제공한다.
+
+:::{#bedit layout-ncol=4}
+
+![](images/kakao_b_edit.jpg)
+
+![](images/kakao_b_edit_login.jpg)
+
+![](images/kakao_b_edit_new.jpg)
+
+![](images/kakao_b_edit_import.jpg)
+:::
+
 
 ## GauGAN(고갱) 2
 
