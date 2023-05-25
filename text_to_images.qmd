@@ -193,9 +193,84 @@ editor:
 :::
 
 
-# 사례
+# 미드저니 참고서
 
-- [Best MidJourney Prompts: Art Styles & Photography](https://www.creativindie.com/best-midjourney-prompts-an-epic-list-of-crazy-text-to-image-ideas/)
+[[Best MidJourney Prompts: Art Styles & Photography](https://www.creativindie.com/best-midjourney-prompts-an-epic-list-of-crazy-text-to-image-ideas/)]{.aside}
+
+## 예술과 사진
+
+:::{.panel-tabset}
+
+### Abstract
+
+“Vibrant colors,” “Geometric shapes,” “Abstract patterns,” “Movement and flow,” “Texture and layers.”
+
+![](images/tesocraderek_Abstract_Art_Vibrant_colors_Geometric_shapes_Abstr_75ce4982-61b5-4625-81d7-05b2c71445ec.webp)
+
+### Surreal
+
+“Dreamlike,” “Surreal landscapes,” “Mystical creatures,” “Twisted reality,” “Surreal still life.”
+
+![](images/tesocraderek_Surreal_Art_Dreamlike_Surreal_landscapes_Mystical__3b776f9a-4b68-4da8-a3d7-783110b561aa.webp)
+
+### Landscape Photography
+
+“Majestic mountains,” “Lush forests,” “Glittering lakes,” “Desert dunes,” “Golden sunsets.”
+
+![](images/tesocraderek_Landscape_Photography_Majestic_mountains_Lush_fore_f02113cc-1a88-4697-8af9-4bb7a678fbd1.webp)
+
+### Portrait Photography
+
+“Emotive eyes,” “Intense gazes,” “Contemplative mood,” “Expressive gestures,” “Stylized poses”.
+
+![](images/tesocraderek_Portrait_Photography_Emotive_eyes_Intense_gazes_Co_b9f29f67-c788-43e4-ab72-b8b0ff00ab20.webp)
+
+### Minimalism
+
+“Simplicity,” “Clean lines,” “Minimal colors,” “Negative space,” “Minimal still life.”
+
+![](images/tesocraderek_Minimalism_Simplicity_Clean_lines_Minimal_colors_N_488e8892-922f-40de-a2cb-e98418e5aa78.webp)
+
+:::
+
+
+## 아트 스타일
+
+:::{.panel-tabset}
+
+### impressionism
+
+“Blurry brushstrokes,” “Painted light,” “Impressionistic landscapes,” “Pastel colors,” “Impressionistic portraits.”
+
+![](images/tesocraderek_Impressionism_Blurry_brushstrokes_Painted_light_Im_f65f8af1-48dd-4926-9407-ca563dc252c1.webp)
+
+### Realism
+
+“Hyper-realistic textures,” “Precise details,” “Realistic still life,” “Realistic portraits,” “Realistic landscapes.”
+
+![](images/tesocraderek_Realism_Hyper-realistic_textures_Precise_details_R_02e5e6aa-6081-4ea4-9195-7c58a35768d9.webp)
+
+### Pop Art
+
+“Bold colors,” “Stylized portraits,” “Famous faces,” “Pop art still life,” “Pop art landscapes.”
+
+![](images/tesocraderek_Pop_Art_Bold_colors_Stylized_portraits_Famous_face_f69d1629-ed73-47f0-ba1c-5fda9ce18638.webp)
+
+### Street Photography
+
+“Candid moments,” “Urban landscapes,” “Street life,” “Stories in motion,” “Street portraits.”
+
+![](images/tesocraderek_Street_Photography_Candid_moments_Urban_landscapes_fe559b00-db74-46a6-8d38-a5b5ca976c9a.webp)
+
+### Night Photography
+
+“Lit cityscapes,” “Starry skies,” “Moonlit landscapes,” “Night time portraits,” “Long exposures.”
+
+
+![](images/tesocraderek_Night_Photography_Lit_cityscapes_Starry_skies_Moon_324f6667-e10d-4459-8f57-2111b419ea51.webp)
+
+
+:::
 
 
 # 서비스 사례
@@ -268,5 +343,110 @@ NVIDIA가 짧은 단어와 간단한 마우스 클릭으로 사실적인 예술�
 ::::::::::::::
 
 
+# 뉴스 이미지 사례
+
+## 뉴스 기사
+
+[누리호, 힘차게 날아올랐다…美도 달성하지 못한 진기록](https://v.daum.net/v/20230525184307343) 뉴스기사에 포함될 이미지를 제작한다.
+
+:::{#nuri layout-ncol=2}
+
+![](images/nuri_01.jfif)
+
+![](images/nuri_02.jfif)
+
+:::
+
+
+:::{.callout-note collapse="true"}
+### 프롬프트: 아래 뉴스기사는 백틱기호(`) 세개 사이에 담겨져 있습니다. 다음 뉴스기사를 이미지로 나타내기 위해 midjourney text prompt를 작성해세요.
+
+```
+누리호, 힘차게 날아올랐다…美도 달성하지 못한 진기록
+
+김진원입력 2023. 5. 25. 18:43수정 2023. 5. 25. 21:14
+
+한국이 독자 기술로 개발한 로켓 ‘누리호’가 25일 우주로 향했다. 실용위성을 탑재한 발사체를 쏘아 올린 첫 사례다. 누리호는 차세대 소형위성 2호를 목표 궤도인 고도 550㎞에 정확하게 올려놨다. 남극 세종기지에서 위성 신호를 정상 수신했다. 작년 6월 누리호 2차 발사에 이어 이번 3차 발사 프로젝트까지 성공적으로 수행하면서 한국은 세계적인 우주 과학 강국으로 우뚝 서게 됐다. 첫 로켓 개발 후 연속 발사 성공은 미국과 러시아, 중국도 달성하지 못한 진기록이다. 
+
+누리호는 이날 오후 6시24분 전남 고흥군 나로우주센터 전용 발사대에서 우주로 날아올랐다. 오전 11시 발사를 결정한 이후 오후 5시께 연료와 산화제 주입을 차례로 완료했다. 누리호는 오후 6시24분 정각에 3500도 초고온 고압가스의 힘을 받아 하늘로 힘차게 솟구쳤다.
+
+
+누리호는 발사 뒤 1단과 위성을 감싼 덮개인 페어링, 2단을 차례로 떼어냈다. 고도 550㎞에선 주탑재 위성인 차세대 소형위성 2호를 분리했다. 이후 20초 간격으로 부탑재 위성인 큐브위성을 차례로 내보냈다. 다만 7기의 큐브위성 중 1기에 대해선 사출 성공 여부를 판단 중이다.
+
+누리호는 과학기술정보통신부와 한국항공우주연구원이 2010년부터 개발한 토종 발사체다. 한국이 지난 2차에 이어 3차 발사까지 성공하면서 50여 년의 세계 우주개발사(史)에서 찾아보기 힘든 발자취를 남기게 됐다. 윤석열 대통령은 “달에 가는 것이 쉽기 때문이 아니라 어렵기 때문에 도전한다”며 “어렵기 때문에 우리의 도전이 되고 꿈이 되는 것”이라고 말했다.
+
+이어 “우리나라가 우주강국 G7에 들어가는 쾌거를 이뤘다”고 강조했다.
+
+ 실용위성 8기 싣고 우주로…2032년 '달 착륙선' 보내는 게 목표
+
+사진=연합뉴스
+
+사진=연합뉴스
+25일 오전 5시 전남 고흥 나로우주센터. 한국형발사체 ‘누리호(KSLV-2)’ 전용 발사대 주변은 사람들로 북적였다. 액체헬륨 저장탱크의 ‘해압밸브’와 ‘지상장비시스템(PLC)’을 제어하는 소프트웨어(SW)에서 발생한 문제를 해결하기 위해 한국항공우주연구원 연구진은 밤을 꼬박 새웠다.
+
+SW를 구성하는 명령어가 순차적으로 전달되지 않는 문제를 해결하기 위해 명령어 사이의 간격을 세밀하게 수정했다. 여섯 차례에 걸친 반복 시험을 시행한 결과 ‘정상’이란 판정이 내려졌다. 해가 뜬 외나로도 앞바다는 구름 한 점 없이 맑았다. 비와 강풍, 낙뢰의 가능성도 작았다. 우주정거장, 인공위성과 충돌 가능성도 없었다. 발사 준비가 다시 시작됐다.
+
+ ○실용·큐브위성 8기 분리 도전
+
+발사 1시간 전. 기체 점검과 연료·산화제 충전을 마친 누리호를 우주로 인도하는 전자탑재체(에비오닉스)의 전원이 켜졌다. 발사체 기립 장치가 철수하고 관성항법 유도시스템의 정렬이 시작됐다.
+
+발사 10분 전 발사자동운용(PLO)이 시작됐다. PLO는 발사 10분 전부터 발사체 이륙 직전까지 발사관제시스템에 의해 자동으로 이뤄지는 발사 준비 작업이다. 그리고 발사. 오후 6시24분 굉음과 함께 누리호가 힘차게 솟구쳤다. 연소가스 온도는 섭씨 3500도. 포스코의 쇳물을 녹이는 용광로 온도(1500도)의 두 배 이상이다. 압력도 대기압의 60배까지 치솟았다. 발사대를 식히기 위해 초당 1.8t의 냉각수가 쉴 새 없이 쏟아졌다.
+
+발사 125초 뒤 고도 64.5㎞. 누리호는 1단을 분리한다. 이어 위성을 감싼 덮개인 페어링과 2단이 차례로 떨어져 나간다. 누리호가 적도를 지나면 남태평양 팔라우 추적소에서 누리호의 비행 궤적과 동작 상태를 확인한다.
+
+발사 783초 뒤 고도 550㎞에 도달하면 주 탑재위성인 차세대 소형위성 2호가 분리된다. 차세대 소형위성 2호는 영상 레이더(SAR)를 탑재했다. 해상도 5m, 관측 폭 40㎞의 마이크로파로 지구를 관측한다. 광학카메라와 달리 빛과 구름의 영향을 받지 않는다.
+
+이후 20초 간격으로 벤처기업 져스텍과 루미르, 카이로스페이스가 제작한 큐브위성 3기가 차례로 분리된다. 각각 우주 방사선을 검출하고 광학카메라 성능을 검증한다. 우주쓰레기 경감 기술도 실증한다. 마지막에는 천문연에서 개발한 우주기상관측 군집(群集)위성 ‘도요샛’ 4기가 분리된다. 도요샛은 중량 10㎏ 이하 나노급 위성으로는 최초로 편대 비행을 시도하며 플라즈마 등 우주 날씨의 시공간적 변화를 관측하는 임무를 수행한다. 발사 1138초가 지나면 임무를 완수한 누리호가 비행을 종료한다.
+
+ ○반복 발사 통해 신뢰도 높인다
+
+전날 누리호 3차 발사는 예정 시간을 2시간 14분 앞두고 연기됐다. 이처럼 발사를 눈앞에 두고 기술적 문제로 연기하는 일은 로켓 개발 과정에서 종종 있는 일이다. 작년 6월 누리호 2차 발사 때도 기립 상태에서 점검 중 문제가 발견돼 조립동으로 되돌아갔다. 액체헬륨 탱크 내부의 레벨 센서가 비정상적인 수치를 나타냈기 때문이다. 2009년 8월 ‘나로호(KSLV-1)’ 1차 발사 당시에도 압력 측정 관련 SW 오류로 이륙 7분56초를 앞두고 발사가 중단됐다. 나로호 3차 발사를 시도했던 2012년 11월에도 최종 발사 시간 발표 전 연료를 주입하는 연결 부위가 새는 문제가 발생해 발사가 미뤄졌다.
+
+우주 발사체는 첨단 기술의 집약체다. 반복 발사 운용을 통해 발사 과정을 최적화·안정화하고 발사체의 신뢰성을 높이는 것이 필수다. 정부는 2027년까지 네 차례에 걸친 추가 발사를 통해 한국형발사체 누리호의 신뢰도를 검증하고 체계종합기업 한화에어로스페이스 기술을 이전한다. 차세대 중형위성 3호와 초소형위성 2~11호 등이 다음 누리호에 탑재될 예정이다.
+
+누리호 성능을 개량한 차세대 발사체 개발사업도 진행한다. 차세대 발사체는 1단 100t급 이상 엔진 5기, 2단 10t급 이상 엔진 2기로 구성된 2단형 발사체로 개발될 예정이다. 2030년부터 세 차례 반복 발사를 통해 신뢰도를 검증한다.
+
+2032년 달 착륙선을 보내는 것이 최종 목표다.
+
+고흥(나로우주센터)=김진원 기자 jin1@hankyung.com
+```
+
+---
+
+
+네, 한국형발사체 누리호 발사 성공에 대한 Midjourney 텍스트 프롬프트는 다음과 같습니다.
+
+- 한국형발사체 누리호가 우주로 발사되는 모습을 나타내는 이미지를 생성해 주세요.
+- **한국형발사체 누리호가 성공적으로 발사되어 목표 궤도에 진입하는 모습**을 나타내는 이미지를 생성해 주세요.
+- 한국형발사체 누리호가 성공적으로 발사되어 위성을 궤도에 올리는 모습을 나타내는 이미지를 생성해 주세요.
+
+이 프롬프트를 사용하여 한국형발사체 누리호 발사 성공에 대한 이미지를 생성할 수 있습니다.
+
+:::
+
+
+## 이미지 생성자
+
+:::{.panel-tabset}
+
+### 스타일 적용 전
+
+South Korean launch vehicle Nuri successfully launches and enters its target orbit
+
+![](images/nuri_image_01.jpg)
+
+### 스타일 적용 후
+
+South Korean launch vehicle Nuri successfully launches and enters its target orbit, cinematic light, extreme detail, panoramic, Craig Mullins
+
+![](images/nuri_image_02.jpg)
+
+### 한장
+
+South Korean launch vehicle Nuri successfully launches and enters its target orbit, Max Ernst, volumetric light
+
+![](images/nuri_finail.jfif)
+
+:::
 
 
