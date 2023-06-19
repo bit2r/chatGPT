@@ -79,7 +79,7 @@ website:
           text: "부조종사 R 코딩개발"
         - text: "------------------"
         - href: math.qmd
-          text: "수학문제 (MIT)"
+          text: "수학: MIT / 수능"
         - href: middle_school.qmd
           text: "Shiny 앱"
         - href: inaugural.qmd
@@ -88,8 +88,9 @@ website:
           text: "번역(영한, 한영)"
         - href: gg_grouping.qmd
           text: "챗GPT 팀구성"
-        - href: mathpix.qmd
-          text: "수능 수학(Mathpix)"
+        - text: "------------------"
+        - href: biz_number_API.qmd
+          text: "사업자등록증 API (국세청)"
 
       - text: "Prompt Eng."
         menu:

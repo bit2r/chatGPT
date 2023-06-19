@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="이광춘">
+<meta name="description" content="국세청 사업자등록증 API를 사용하여 프로그래밍하는 방법을 살펴보자.">
+<title>chatGPT</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./images/profile.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "일치 없음",
+    "search-matching-documents-text": "일치된 문서",
+    "search-copy-link-title": "검색 링크 복사",
+    "search-hide-matches-text": "추가 검색 결과 숨기기",
+    "search-more-match-text": "추가 검색결과",
+    "search-more-matches-text": "추가 검색결과",
+    "search-clear-button-title": "제거",
+    "search-detached-cancel-button-title": "취소",
+    "search-submit-button-title": "검색",
+    "search-label": "검색"
+  }
+}</script><script type="text/javascript">
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-229551680-1', 'auto');
+
+ga('send', {
+  hitType: 'pageview',
+  'anonymizeIp': true,
+});
+</script><link rel="stylesheet" href="css/quarto.css">
+</head>
+<body class="nav-fixed">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">chatGPT</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="검색"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="탐색 전환" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">생성 AI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ai">
+<li>
+    <a class="dropdown-item" href="./architecture.html" rel="" target="">
+ <span class="dropdown-text">chatGPT 이해</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./trends.html" rel="" target="">
+ <span class="dropdown-text">추세 트렌드</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./why_llm.html" rel="" target="">
+ <span class="dropdown-text">왜 거대언어모형인가?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nlp_LLM.html" rel="" target="">
+ <span class="dropdown-text">NLP와 LLM</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gpt4_performance.html" rel="" target="">
+ <span class="dropdown-text">GPT-4 성능</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gpt-security.html" rel="" target="">
+ <span class="dropdown-text">챗GPT 보안사고</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./interface.html" rel="" target="">
+ <span class="dropdown-text">인터페이스</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./open_source.html" rel="" target="">
+ <span class="dropdown-text">오픈소스 S/W LLM</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-chatgpt-응용사례" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">chatGPT 응용사례</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-chatgpt-응용사례">
+<li>
+    <a class="dropdown-item" href="./use-cases.html" rel="" target="">
+ <span class="dropdown-text">활용사례</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_avi.html" rel="" target="">
+ <span class="dropdown-text">법인 R 소개영상</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./macbook.html" rel="" target="">
+ <span class="dropdown-text">맥북 투척사건</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./office.html" rel="" target="">
+ <span class="dropdown-text">오피스 전쟁</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./news_article.html" rel="" target="">
+ <span class="dropdown-text">보도자료 작성</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_book.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 책</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./intro_paper.html" rel="" target="">
+ <span class="dropdown-text">논문 초록</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rnd.html" rel="" target="">
+ <span class="dropdown-text">학술연구(R&amp;D)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./yuji.html" rel="" target="">
+ <span class="dropdown-text">멤버 Yuji</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./stable_diffusion.html" rel="" target="">
+ <span class="dropdown-text">Stable Diffusion</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./text_to_images.html" rel="" target="">
+ <span class="dropdown-text">Text-to-Images</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./text2image.html" rel="" target="">
+ <span class="dropdown-text"><code>bitGPT</code> Text-to-Image</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./samsung.html" rel="" target="">
+ <span class="dropdown-text">삼전 주가예측</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./calculator.html" rel="" target="">
+ <span class="dropdown-text">계산기 프로그램</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding.html" rel="" target="">
+ <span class="dropdown-text">GPT R 코딩개발</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./rcoding-copilot.html" rel="" target="">
+ <span class="dropdown-text">부조종사 R 코딩개발</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./math.html" rel="" target="">
+ <span class="dropdown-text">수학: MIT / 수능</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./middle_school.html" rel="" target="">
+ <span class="dropdown-text">Shiny 앱</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./inaugural.html" rel="" target="">
+ <span class="dropdown-text">대통령 취임사</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./translation.html" rel="" target="">
+ <span class="dropdown-text">번역(영한, 한영)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gg_grouping.html" rel="" target="">
+ <span class="dropdown-text">챗GPT 팀구성</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./biz_number_API.html" rel="" target="">
+ <span class="dropdown-text">사업자등록증 API (국세청)</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-prompt-eng." role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Prompt Eng.</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-prompt-eng.">
+<li>
+    <a class="dropdown-item" href="./prompt.html" rel="" target="">
+ <span class="dropdown-text">Prompt Engineering</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./prompt_adv.html" rel="" target="">
+ <span class="dropdown-text">Advanced Prompt Engineering</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./prompt_in_practice.html" rel="" target="">
+ <span class="dropdown-text">프롬프트 실무</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./prompt_for_develoopers.html" rel="" target="">
+ <span class="dropdown-text">(개발자) 프롬프트 공학</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./prompt_data_science.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 프롬프트</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./interview.html" rel="" target="">
+ <span class="dropdown-text">데이터 과학 인터뷰</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">자동화/개발</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">
+<li>
+    <a class="dropdown-item" href="./ide.html" rel="" target="">
+ <span class="dropdown-text">통합개발환경(IDE)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./reticulate.html" rel="" target="">
+ <span class="dropdown-text">파이썬 환경구축</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./openAI_GPT.html" rel="" target="">
+ <span class="dropdown-text">OpenAI GPT</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./langchain_arch.html" rel="" target="">
+ <span class="dropdown-text">LangCahin 아키텍쳐</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./whisper.html" rel="" target="">
+ <span class="dropdown-text">오정보 음성인식(Whisper)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./news_release.html" rel="" target="">
+ <span class="dropdown-text">오정보 요약</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./misinfo_embedding.html" rel="" target="">
+ <span class="dropdown-text">오정보 임베딩</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./palmer_penguins.html" rel="" target="">
+ <span class="dropdown-text">펭귄 데이터셋</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./penguins_analytics.html" rel="" target="">
+ <span class="dropdown-text">펭귄 데이터 분석</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./autoGPT_ds.html" rel="" target="">
+ <span class="dropdown-text">EDA 자동화 AutoEDA</span></a>
+  </li>  
+        <li class="dropdown-header">ML 자동화 AutoML</li>
+        <li class="dropdown-header">데이터 과학 AutoGPT</li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./pandasai.html" rel="" target="">
+ <span class="dropdown-text">판다스 AI</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./llama_penguins.html" rel="" target="">
+ <span class="dropdown-text">펭귄: 라마인덱스</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sql_openai.html" rel="" target="">
+ <span class="dropdown-text">챗GPT SQL</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./hf.html" rel="" target="">
+ <span class="dropdown-text">Hugging Face</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hf_windows.html" rel="" target="">
+ <span class="dropdown-text">Hugging Face(윈도우)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hf_pipeline.html" rel="" target="">
+ <span class="dropdown-text">HF 파이프라인</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./koGPT.html" rel="" target="">
+ <span class="dropdown-text">HuggingfaceR - 모형통계</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./BERT.html" rel="" target="">
+ <span class="dropdown-text">BERT</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item">
+    <a class="nav-link" href="./blog.html" rel="" target="">
+ <span class="menu-text">게시글</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu--1" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">비즈니스</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu--1">
+<li>
+    <a class="dropdown-item" href="./chatGPT_overview.html" rel="" target="">
+ <span class="dropdown-text">챗GPT 개요</span></a>
+  </li>  
+    </ul>
+</li>
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/bit2r/chatGPT" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://r2bit.com" rel="" target="">
+ <span class="menu-text">R사용자회</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/LAION-AI/Open-Assistant" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Open Assistant</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rtutor.ai/" rel="" target="">
+ <span class="menu-text">RTutor</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+<div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="다크 모드 전환"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title">chatGPT</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> 코드</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 표시</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">전체 코드 숨기기</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">소스 코드 표시</a></li></ul></div></div>
+            <p class="subtitle lead">사업자등록증 API (국세청)</p>
+                  <div>
+        <div class="description">
+          <p>국세청 사업자등록증 API를 사용하여 프로그래밍하는 방법을 살펴보자.</p>
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">저자</div>
+    <div class="quarto-title-meta-heading">소속</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://www.linkedin.com/in/kwangchunlee/">이광춘</a> </p>
+    </div>
+      <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://github.com/bit2r">
+              한국 R 사용자회
+              </a>
+            </p>
+        </div>
+      </div>
+
+  <div class="quarto-title-meta">
+
+        
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
+   
+  <ul>
+<li><a href="#%EC%82%AC%EC%97%85%EC%9E%90-%EB%93%B1%EB%A1%9D%EC%A6%9D" id="toc-사업자-등록증" class="nav-link active" data-scroll-target="#%EC%82%AC%EC%97%85%EC%9E%90-%EB%93%B1%EB%A1%9D%EC%A6%9D"><span class="header-section-number">1</span> 사업자 등록증</a></li>
+  <li><a href="#%EB%93%B1%EB%A1%9D%EC%83%81%ED%83%9C-%EC%A1%B0%ED%9A%8C" id="toc-등록상태-조회" class="nav-link" data-scroll-target="#%EB%93%B1%EB%A1%9D%EC%83%81%ED%83%9C-%EC%A1%B0%ED%9A%8C"><span class="header-section-number">2</span> 등록상태 조회</a></li>
+  <li><a href="#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D" id="toc-프로그래밍" class="nav-link" data-scroll-target="#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D"><span class="header-section-number">3</span> 프로그래밍</a></li>
+  <li>
+<a href="#%EC%B1%97gpt" id="toc-챗gpt" class="nav-link" data-scroll-target="#%EC%B1%97gpt"><span class="header-section-number">4</span> 챗GPT</a>
+  <ul class="collapse">
+<li><a href="#r-%EC%BD%94%EB%93%9C-%EB%B3%80%ED%99%98" id="toc-r-코드-변환" class="nav-link" data-scroll-target="#r-%EC%BD%94%EB%93%9C-%EB%B3%80%ED%99%98"><span class="header-section-number">4.1</span> R 코드 변환</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#%EB%8C%80%EB%9F%89-%EB%B0%98%EB%B3%B5%EC%9E%91%EC%97%85" id="toc-대량-반복작업" class="nav-link" data-scroll-target="#%EB%8C%80%EB%9F%89-%EB%B0%98%EB%B3%B5%EC%9E%91%EC%97%85"><span class="header-section-number">5</span> 대량 반복작업</a>
+  <ul class="collapse">
+<li><a href="#%ED%95%A8%EC%88%98%EC%9E%91%EC%84%B1" id="toc-함수작성" class="nav-link" data-scroll-target="#%ED%95%A8%EC%88%98%EC%9E%91%EC%84%B1"><span class="header-section-number">5.1</span> 함수작성</a></li>
+  <li><a href="#%EC%97%85%EC%B2%B4%EC%A0%95%EB%B3%B4-%EB%8C%80%EC%9E%A5" id="toc-업체정보-대장" class="nav-link" data-scroll-target="#%EC%97%85%EC%B2%B4%EC%A0%95%EB%B3%B4-%EB%8C%80%EC%9E%A5"><span class="header-section-number">5.2</span> 업체정보 대장</a></li>
+  </ul>
+</li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><section id="사업자-등록증" class="level1 page-columns page-full" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> 사업자 등록증</h1>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="images/business_sample.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="삼주전자 사업자등록증"><img src="images/business_sample.jpg" class="img-fluid" alt="삼주전자 사업자등록증"></a> 출처: <a href="https://sje.co.kr/document/">삼주전자 웹사이트</a></span></div></div>
+<p>사업자 등록증은 사업을 영위하는 개인이나 법인이 자신의 사업을 정부에 공식적으로 등록한 증명서로 국세청이 이를 관리하며, 사업자 등록을 하면 사업자등록번호를 부여받게 되고 사업자 등록증에는 다음과 같은 정보가 포함된다.</p>
+<ol type="1">
+<li>사업자 등록 번호: 사업자의 고유 식별 번호로 다른 사업자와 구분하기 위한 것이며, 사업 거래 시에 사용된다.</li>
+<li>사업자의 이름: 개인 사업자의 경우 개인의 이름, 법인의 경우 법인의 이름이 표기된다.</li>
+<li>사업의 종류: 사업자가 영위하는 사업의 종류를 나타낸다.</li>
+<li>사업장의 위치: 사업이 진행되는 주요 장소를 나타낸다.</li>
+</ol></section><section id="등록상태-조회" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> 등록상태 조회</h1>
+<p>국세청을 통해 정상적으로 사업자등록증을 발급받았으나 현재 정상적으로 사업을 영위하고 있는지 휴업상태인지 폐업상태인지를 확인하는 절차가 필요하다. 이를 위해서 국세청 홈페이지에서 상단 메뉴 <strong>조회/발급</strong> <code>&gt;</code> <strong>사업자상태</strong> <code>&gt;</code> <strong>사업자등록번호로 조회</strong> 를 통해 해당 사업자의 현재 등록상태를 조회할 수 있다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/nts_biz_no.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="images/nts_biz_no.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</section><section id="프로그래밍" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> 프로그래밍</h1>
+<p>문제는 업체가 한두 곳인 경우 문제가 없지만 주기적으로 수 많은 업체의 휴폐업을 비롯한 사업자 등록 상태를 점검하는 것은 엄청난 업무가 아닐 수 없다. 이를 위해서 API를 국세청에서 열어 제공하고 있는데 이를 위해서 다양한 프로그래밍 언어를 사용해서 문제를 풀어갈 수 있다.</p>
+<p>공공데이터 포털에서 <a href="https://www.data.go.kr/data/15081808/openapi.do">“국세청_사업자등록정보 진위확인 및 상태조회 서비스”</a>를 통해 매번 복사하여 붙여넣기가 아닌 프로그래밍을 통해 사업자 등록정보 진위 및 상태를 조회할 수 있다. 이를 위해 다음 절차를 진행한다.</p>
+<ol type="1">
+<li>API <strong>활용신청</strong>을 통해 인증키를 발급받고 <strong>일반 인증키</strong>를 <strong>인증키 설정</strong>에 넣는다.</li>
+<li>
+<code>사업자등록정보 진위확인 API</code> 혹은 <code>사업자등록 상태조회 API</code>를 선택하여 필수정보인 <code>b_no</code>에 사업자번호를 넣는다.</li>
+<li>하단 <strong>OpenAPI 호출</strong> 버튼을 클릭한다.</li>
+<li>반환된 값을 확인한다.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/data_portal_setup.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/data_portal_setup.jpg" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+<p>상태코드 <code>200</code>에 정상 출력결과가 확인된다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"request_cnt"</span><span class="ex">:</span> 1,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"match_cnt"</span><span class="ex">:</span> 1,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"status_code"</span><span class="ex">:</span> <span class="st">"OK"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data"</span><span class="ex">:</span> [</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_no"</span><span class="ex">:</span> <span class="st">"1320557431"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_stt"</span><span class="ex">:</span> <span class="st">"계속사업자"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_stt_cd"</span><span class="ex">:</span> <span class="st">"01"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"tax_type"</span><span class="ex">:</span> <span class="st">"부가가치세 일반과세자"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"tax_type_cd"</span><span class="ex">:</span> <span class="st">"01"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"end_dt"</span><span class="ex">:</span> <span class="st">""</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"utcc_yn"</span><span class="ex">:</span> <span class="st">"N"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"tax_type_change_dt"</span><span class="ex">:</span> <span class="st">""</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"invoice_apply_dt"</span><span class="ex">:</span> <span class="st">""</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"rbf_tax_type"</span><span class="ex">:</span> <span class="st">"해당없음"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"rbf_tax_type_cd"</span><span class="ex">:</span> <span class="st">"99"</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">}</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="ex">]</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>curl</code> 코드
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>curl</code> 코드를 개발중인 프로그래밍 언어에 맞춰 챗GPT를 활용하여 사용한다.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> <span class="st">'POST'</span> <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=GQMNxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'</span> <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">'accept: application/json'</span> <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">'Authorization: GQMNxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'</span> <span class="dt">\</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">'Content-Type: application/json'</span> <span class="dt">\</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">-d</span> <span class="st">'{</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">  "b_no": [</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">    "1320557431"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">  ]</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section><section id="챗gpt" class="level1" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> 챗GPT</h1>
+<p><code>curl</code> 코드를 R 코드로 변환시켜 재현가능한 문서와 자동 문서 생성이 가능하도록 선행작업을 수행한다. R 환경에서 정상작동되는 것이 확인되면 다음단계로 API_KEY 인증키가 문서에 그대로 담겨있어 보안에 취약하니 이를 추가 코딩을 통해 보완한다.</p>
+<section id="r-코드-변환" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="r-코드-변환">
+<span class="header-section-number">4.1</span> R 코드 변환</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">프롬프트</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">출력결과</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">보완작업</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<pre><code>다음 `curl` 코드를 R 코드로 변환해주세요.
+
+curl -X 'POST' \
+  'https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=GQMNLxxxxxxxxxxxxxxxxxxxxxx' \
+  -H 'accept: application/json' \
+  -H 'Authorization: GQMNLxxxxxxxxxxxxxxxxxxxxxx' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "b_no": [
+    "1320557431"
+  ]
+}'</code></pre>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>curl 명령은 HTTP 프로토콜을 사용하여 웹 서버와 상호 작용하는 데 사용되는 명령행 도구입니다. 이 명령을 R 코드로 변환하려면 httr 패키지의 POST 함수를 사용할 수 있습니다.</p>
+<p>아래는 주어진 curl 명령을 R 코드로 변환한 예입니다.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 필요한 패키지를 불러옵니다.</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># API endpoint와 필요한 헤더를 설정합니다.</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=GQMNLxxxxxxxxxxxxxxxxxxxxxx"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>headers <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">'accept'</span> <span class="ot">=</span> <span class="st">'application/json'</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Authorization'</span> <span class="ot">=</span> <span class="st">'GQMNLxxxxxxxxxxxxxxxxxxxxxx'</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Content-Type'</span> <span class="ot">=</span> <span class="st">'application/json'</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 요청 본문을 설정합니다.</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>body <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"b_no"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"1320557431"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># POST 요청을 보냅니다.</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">POST</span>(url, <span class="fu">add_headers</span>(headers), <span class="at">body =</span> body, <span class="at">encode =</span> <span class="st">"json"</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 응답을 확인합니다.</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">content</span>(response)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p><code><a href="https://usethis.r-lib.org/reference/edit.html">usethis::edit_r_environ()</a></code> 함수를 사용해서 <code>NTS_API_KEY</code>를 <code>.Renviron</code> 파일에 숨긴다. 이를 통해 보안이 강화되지만 동일한 결과를 얻을 수 있게 작업이 완료되었다.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org">readxl</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">url</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"https://api.odcloud.kr/api/nts-businessman/v1/status"</span>,</span>
+<span>                  <span class="st">"?serviceKey={Sys.getenv('NTS_API_KEY')}"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">headers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">'accept'</span> <span class="op">=</span> <span class="st">'application/json'</span>,</span>
+<span>  <span class="st">'Content-Type'</span> <span class="op">=</span> <span class="st">'application/json'</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">body</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>  <span class="st">"b_no"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"1320557431"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/POST.html">POST</a></span><span class="op">(</span><span class="va">url</span>, <span class="fu"><a href="https://httr.r-lib.org/reference/add_headers.html">add_headers</a></span><span class="op">(</span>.headers<span class="op">=</span><span class="va">headers</span><span class="op">)</span>, body<span class="op">=</span><span class="va">body</span>, encode<span class="op">=</span><span class="st">"json"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># print the response</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="va">response</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">result_tbl</span> <span class="op">&lt;-</span> <span class="va">result</span><span class="op">$</span><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">result_tbl</span></span>
+<span><span class="co">#&gt;         b_no      b_stt b_stt_cd              tax_type tax_type_cd end_dt</span></span>
+<span><span class="co">#&gt; 1 1320557431 계속사업자       01 부가가치세 일반과세자          01       </span></span>
+<span><span class="co">#&gt;   utcc_yn tax_type_change_dt invoice_apply_dt rbf_tax_type rbf_tax_type_cd</span></span>
+<span><span class="co">#&gt; 1       N                                         해당없음              99</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</section></section><section id="대량-반복작업" class="level1" data-number="5"><h1 data-number="5">
+<span class="header-section-number">5</span> 대량 반복작업</h1>
+<p>사업자 등록번호가 100개 이상 담겨있는 엑셀파일에서 전체 사업자등록현황을 파악해보자. 스크립트를 통해 사업자 등록번호기준 작업을 확인했기 때문에 함수를 작성해서 이를 반복해서 결과를 얻어내는 과정을 코딩해보자.</p>
+<section id="함수작성" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="함수작성">
+<span class="header-section-number">5.1</span> 함수작성</h2>
+<p><code>get_status</code> 함수를 작성해서 사업자번호를 넘기면 국세청 API를 통해 사업자 진위여부와 함께 과세유형정보도 확인가능하도록 기능을 추가한다.</p>
+<div class="cell">
+<details><summary>코드</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">get_status</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">biz_number</span> <span class="op">=</span> <span class="st">"1320557431"</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">url</span> <span class="op">&lt;-</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"https://api.odcloud.kr/api/nts-businessman/v1/status"</span>,</span>
+<span>                    <span class="st">"?serviceKey={Sys.getenv('NTS_API_KEY')}"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">headers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">'accept'</span> <span class="op">=</span> <span class="st">'application/json'</span>,</span>
+<span>    <span class="st">'Content-Type'</span> <span class="op">=</span> <span class="st">'application/json'</span></span>
+<span>  <span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">body</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>    <span class="st">"b_no"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">biz_number</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/POST.html">POST</a></span><span class="op">(</span><span class="va">url</span>, <span class="fu"><a href="https://httr.r-lib.org/reference/add_headers.html">add_headers</a></span><span class="op">(</span>.headers<span class="op">=</span><span class="va">headers</span><span class="op">)</span>, body<span class="op">=</span><span class="va">body</span>, encode<span class="op">=</span><span class="st">"json"</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># print the response</span></span>
+<span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="va">response</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">result_tbl</span> <span class="op">&lt;-</span> <span class="va">result</span><span class="op">$</span><span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">result_tbl</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">get_status</span><span class="op">(</span><span class="st">"1320557431"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;         b_no      b_stt b_stt_cd              tax_type tax_type_cd end_dt</span></span>
+<span><span class="co">#&gt; 1 1320557431 계속사업자       01 부가가치세 일반과세자          01       </span></span>
+<span><span class="co">#&gt;   utcc_yn tax_type_change_dt invoice_apply_dt rbf_tax_type rbf_tax_type_cd</span></span>
+<span><span class="co">#&gt; 1       N                                         해당없음              99</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="업체정보-대장" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="업체정보-대장">
+<span class="header-section-number">5.2</span> 업체정보 대장</h2>
+<p>사업자등록번호를 포함한 업체정보가 담긴 엑셀파일을 준비하여 국세청 API에 넘겨 사업자등록진위 및 사업자 등록상태를 확인할 수 있도록 엑셀파일 전처리 작업을 수행한다.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>mst_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/xxxx연구개발특구_기업현황_데이터 요청사항_230618.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"xxxx연구단지 입주기업"</span>, <span class="at">skip =</span> <span class="dv">1</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>mst_tbl <span class="ot">&lt;-</span> mst_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(사업자번호 <span class="ot">=</span> <span class="fu">str_remove_all</span>(사업자번호, <span class="st">"-"</span>) <span class="sc">%&gt;%</span> <span class="fu">str_squish</span>(.))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>함수형 프로그래밍 <code>purrr</code> 패키지 <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> 함수를 사용해서 결과값을 사업자등록증 단위로 반환받고 그 결과를 표로 정리한다.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mst_status <span class="ot">&lt;-</span> mst_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">result =</span> <span class="fu">map</span>(사업자번호, get_status)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(회사명, 사업자번호, result) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(상태 <span class="ot">=</span> <span class="fu">map_chr</span>(result, <span class="st">"b_stt"</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>         과세유형 <span class="ot">=</span> <span class="fu">map_chr</span>(result, <span class="st">"tax_type"</span>)) </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>mst_status <span class="sc">%&gt;%</span> </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(회사명, 사업자번호, 상태, 과세유형) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 분석결과 표로 정리</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(상태, <span class="at">name=</span><span class="st">"업체수"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">adorn_totals</span>(<span class="at">name =</span> <span class="st">"합계"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>       <span class="ex">상태</span> 업체수</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                <span class="ex">18</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">계속사업자</span>    210</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>     <span class="ex">폐업자</span>      1</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="ex">합계</span>    229</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+<!-- -->
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "복사완료!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "복사완료!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "사업자등록증 API (국세청)"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> | </span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">  국세청 사업자등록증 API를 사용하여 프로그래밍하는 방법을 살펴보자.</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">    code-link: true</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="an">notebook-view:</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="co">  - notebook: jupyterlab/pinecone.ipynb</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="co">    title: "벡터 DB 쥬피터 노트북"</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="fu"># 사업자 등록증</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![삼주전자 사업자등록증](images/business_sample.jpg)</span><span class="ot"> 출처: [삼주전자 웹사이트](https://sje.co.kr/document/)</span><span class="co">]</span>{.aside}</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>사업자 등록증은 사업을 영위하는 개인이나 법인이 자신의 사업을 정부에 공식적으로 등록한 증명서로 국세청이 이를 관리하며, 사업자 등록을 하면 사업자등록번호를 부여받게 되고 사업자 등록증에는 다음과 같은 정보가 포함된다.</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>사업자 등록 번호: 사업자의 고유 식별 번호로 다른 사업자와 구분하기 위한 것이며, 사업 거래 시에 사용된다.</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>사업자의 이름: 개인 사업자의 경우 개인의 이름, 법인의 경우 법인의 이름이 표기된다.</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>사업의 종류: 사업자가 영위하는 사업의 종류를 나타낸다.</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>사업장의 위치: 사업이 진행되는 주요 장소를 나타낸다.</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="fu"># 등록상태 조회</span></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>국세청을 통해 정상적으로 사업자등록증을 발급받았으나 현재 정상적으로 사업을 영위하고 있는지 휴업상태인지 폐업상태인지를 확인하는 절차가 필요하다. 이를 위해서 국세청 홈페이지에서 상단 메뉴 **조회/발급** `&gt;` **사업자상태** `&gt;` **사업자등록번호로 조회** 를 통해 해당 사업자의 현재 등록상태를 조회할 수 있다.</span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/nts_biz_no.jpg)</span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a><span class="fu"># 프로그래밍</span></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>문제는 업체가 한두 곳인 경우 문제가 없지만 주기적으로 수 많은 업체의 휴폐업을 비롯한 사업자 등록 상태를 점검하는 것은 엄청난 업무가 아닐 수 없다. 이를 위해서 API를 국세청에서 열어 제공하고 있는데 이를 위해서 다양한 프로그래밍 언어를 사용해서 문제를 풀어갈 수 있다.</span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>공공데이터 포털에서 <span class="co">[</span><span class="ot">"국세청_사업자등록정보 진위확인 및 상태조회 서비스"</span><span class="co">](https://www.data.go.kr/data/15081808/openapi.do)</span>를 통해 매번 복사하여 붙여넣기가 아닌 프로그래밍을 통해 사업자 등록정보 진위 및 상태를 조회할 수 있다. 이를 위해 다음 절차를 진행한다.</span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>API **활용신청**을 통해 인증키를 발급받고 **일반 인증키**를 **인증키 설정**에 넣는다.</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span><span class="in">`사업자등록정보 진위확인 API`</span> 혹은 <span class="in">`사업자등록 상태조회 API`</span>를 선택하여 필수정보인 <span class="in">`b_no`</span>에 사업자번호를 넣는다.</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>하단 **OpenAPI 호출** 버튼을 클릭한다.</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>반환된 값을 확인한다.</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/data_portal_setup.jpg)</span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>상태코드 <span class="in">`200`</span>에 정상 출력결과가 확인된다.</span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>  <span class="st">"request_cnt"</span><span class="ex">:</span> 1,</span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>  <span class="st">"match_cnt"</span><span class="ex">:</span> 1,</span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>  <span class="st">"status_code"</span><span class="ex">:</span> <span class="st">"OK"</span>,</span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data"</span><span class="ex">:</span> [</span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>    <span class="kw">{</span></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_no"</span><span class="ex">:</span> <span class="st">"1320557431"</span>,</span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_stt"</span><span class="ex">:</span> <span class="st">"계속사업자"</span>,</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>      <span class="st">"b_stt_cd"</span><span class="ex">:</span> <span class="st">"01"</span>,</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>      <span class="st">"tax_type"</span><span class="ex">:</span> <span class="st">"부가가치세 일반과세자"</span>,</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a>      <span class="st">"tax_type_cd"</span><span class="ex">:</span> <span class="st">"01"</span>,</span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a>      <span class="st">"end_dt"</span><span class="ex">:</span> <span class="st">""</span>,</span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>      <span class="st">"utcc_yn"</span><span class="ex">:</span> <span class="st">"N"</span>,</span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a>      <span class="st">"tax_type_change_dt"</span><span class="ex">:</span> <span class="st">""</span>,</span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>      <span class="st">"invoice_apply_dt"</span><span class="ex">:</span> <span class="st">""</span>,</span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>      <span class="st">"rbf_tax_type"</span><span class="ex">:</span> <span class="st">"해당없음"</span>,</span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a>      <span class="st">"rbf_tax_type_cd"</span><span class="ex">:</span> <span class="st">"99"</span></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>    <span class="kw">}</span></span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a>  <span class="ex">]</span></span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>:::{.callout-tip}</span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="fu">### `curl` 코드</span></span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="in">`curl`</span> 코드를 개발중인 프로그래밍 언어에 맞춰 챗GPT를 활용하여 사용한다.</span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-X</span> <span class="st">'POST'</span> <span class="dt">\</span></span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a>  <span class="st">'https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=GQMNxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'</span> <span class="dt">\</span></span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">'accept: application/json'</span> <span class="dt">\</span></span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">'Authorization: GQMNxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'</span> <span class="dt">\</span></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">'Content-Type: application/json'</span> <span class="dt">\</span></span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a>  <span class="at">-d</span> <span class="st">'{</span></span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a><span class="st">  "b_no": [</span></span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a><span class="st">    "1320557431"</span></span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="st">  ]</span></span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a><span class="st">}'</span></span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a><span class="fu"># 챗GPT</span></span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="in">`curl`</span> 코드를 R 코드로 변환시켜 재현가능한 문서와 자동 문서 생성이 가능하도록 선행작업을 수행한다.</span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a>R 환경에서 정상작동되는 것이 확인되면 다음단계로 API_KEY 인증키가 문서에 그대로 담겨있어 보안에</span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a>취약하니 이를 추가 코딩을 통해 보완한다.</span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a><span class="fu">## R 코드 변환</span></span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a>:::{.panel-tabset}</span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="fu">### 프롬프트</span></span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a><span class="in">다음 `curl` 코드를 R 코드로 변환해주세요.</span></span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a><span class="in">curl -X 'POST' \</span></span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a><span class="in">  'https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=GQMNLxxxxxxxxxxxxxxxxxxxxxx' \</span></span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="in">  -H 'accept: application/json' \</span></span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a><span class="in">  -H 'Authorization: GQMNLxxxxxxxxxxxxxxxxxxxxxx' \</span></span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a><span class="in">  -H 'Content-Type: application/json' \</span></span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a><span class="in">  -d '{</span></span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a><span class="in">  "b_no": [</span></span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a><span class="in">    "1320557431"</span></span>
+<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a><span class="in">  ]</span></span>
+<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a><span class="in">}'</span></span>
+<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a><span class="fu">### 출력결과</span></span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a>curl 명령은 HTTP 프로토콜을 사용하여 웹 서버와 상호 작용하는 데 사용되는 명령행 도구입니다. 이 명령을 R 코드로 변환하려면 httr 패키지의 POST 함수를 사용할 수 있습니다.</span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a>아래는 주어진 curl 명령을 R 코드로 변환한 예입니다.</span>
+<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a><span class="co"># 필요한 패키지를 불러옵니다.</span></span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a><span class="co"># API endpoint와 필요한 헤더를 설정합니다.</span></span>
+<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=GQMNLxxxxxxxxxxxxxxxxxxxxxx"</span></span>
+<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a>headers <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a>  <span class="st">'accept'</span> <span class="ot">=</span> <span class="st">'application/json'</span>,</span>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Authorization'</span> <span class="ot">=</span> <span class="st">'GQMNLxxxxxxxxxxxxxxxxxxxxxx'</span>,</span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Content-Type'</span> <span class="ot">=</span> <span class="st">'application/json'</span></span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a><span class="co"># 요청 본문을 설정합니다.</span></span>
+<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a>body <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a>  <span class="st">"b_no"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"1320557431"</span>)</span>
+<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a><span class="co"># POST 요청을 보냅니다.</span></span>
+<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">POST</span>(url, <span class="fu">add_headers</span>(headers), <span class="at">body =</span> body, <span class="at">encode =</span> <span class="st">"json"</span>)</span>
+<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a><span class="co"># 응답을 확인합니다.</span></span>
+<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a><span class="fu">content</span>(response)</span>
+<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a><span class="fu">### 보완작업</span></span>
+<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a><span class="in">`usethis::edit_r_environ()`</span> 함수를 사용해서 <span class="in">`NTS_API_KEY`</span>를 <span class="in">`.Renviron`</span> 파일에 숨긴다.</span>
+<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a>이를 통해 보안이 강화되지만 동일한 결과를 얻을 수 있게 작업이 완료되었다.</span>
+<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"https://api.odcloud.kr/api/nts-businessman/v1/status"</span>,</span>
+<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"?serviceKey={Sys.getenv('NTS_API_KEY')}"</span>)</span>
+<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a>headers <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a>  <span class="st">'accept'</span> <span class="ot">=</span> <span class="st">'application/json'</span>,</span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Content-Type'</span> <span class="ot">=</span> <span class="st">'application/json'</span></span>
+<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a>body <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a>  <span class="st">"b_no"</span> <span class="ot">=</span> <span class="fu">list</span>(<span class="st">"1320557431"</span>)</span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">POST</span>(url, <span class="fu">add_headers</span>(<span class="at">.headers=</span>headers), <span class="at">body=</span>body, <span class="at">encode=</span><span class="st">"json"</span>)</span>
+<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a><span class="co"># print the response</span></span>
+<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">content</span>(response)</span>
+<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a>result_tbl <span class="ot">&lt;-</span> result<span class="sc">$</span>data <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>()</span>
+<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a>result_tbl</span>
+<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a><span class="fu"># 대량 반복작업</span></span>
+<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a>사업자 등록번호가 100개 이상 담겨있는 엑셀파일에서 전체 사업자등록현황을 파악해보자.</span>
+<span id="cb10-229"><a href="#cb10-229" aria-hidden="true" tabindex="-1"></a>스크립트를 통해 사업자 등록번호기준 작업을 확인했기 때문에 함수를 작성해서 이를 반복해서 결과를 얻어내는 과정을 코딩해보자.</span>
+<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a><span class="fu">## 함수작성</span></span>
+<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a><span class="in">`get_status`</span> 함수를 작성해서 사업자번호를 넘기면 국세청 API를 통해 사업자 진위여부와 함께 과세유형정보도 확인가능하도록 기능을 추가한다.</span>
+<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a>get_status <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">biz_number =</span> <span class="st">"1320557431"</span>) {</span>
+<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"https://api.odcloud.kr/api/nts-businessman/v1/status"</span>,</span>
+<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"?serviceKey={Sys.getenv('NTS_API_KEY')}"</span>)</span>
+<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a>  headers <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a>    <span class="st">'accept'</span> <span class="ot">=</span> <span class="st">'application/json'</span>,</span>
+<span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Content-Type'</span> <span class="ot">=</span> <span class="st">'application/json'</span></span>
+<span id="cb10-245"><a href="#cb10-245" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-246"><a href="#cb10-246" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-247"><a href="#cb10-247" aria-hidden="true" tabindex="-1"></a>  body <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb10-248"><a href="#cb10-248" aria-hidden="true" tabindex="-1"></a>    <span class="st">"b_no"</span> <span class="ot">=</span> <span class="fu">list</span>(biz_number)</span>
+<span id="cb10-249"><a href="#cb10-249" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-250"><a href="#cb10-250" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-251"><a href="#cb10-251" aria-hidden="true" tabindex="-1"></a>  response <span class="ot">&lt;-</span> <span class="fu">POST</span>(url, <span class="fu">add_headers</span>(<span class="at">.headers=</span>headers), <span class="at">body=</span>body, <span class="at">encode=</span><span class="st">"json"</span>)</span>
+<span id="cb10-252"><a href="#cb10-252" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-253"><a href="#cb10-253" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print the response</span></span>
+<span id="cb10-254"><a href="#cb10-254" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">content</span>(response)</span>
+<span id="cb10-255"><a href="#cb10-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-256"><a href="#cb10-256" aria-hidden="true" tabindex="-1"></a>  result_tbl <span class="ot">&lt;-</span> result<span class="sc">$</span>data <span class="sc">%&gt;%</span> <span class="fu">data.frame</span>()</span>
+<span id="cb10-257"><a href="#cb10-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-258"><a href="#cb10-258" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result_tbl)</span>
+<span id="cb10-259"><a href="#cb10-259" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-260"><a href="#cb10-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-261"><a href="#cb10-261" aria-hidden="true" tabindex="-1"></a><span class="fu">get_status</span>(<span class="st">"1320557431"</span>)</span>
+<span id="cb10-262"><a href="#cb10-262" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-263"><a href="#cb10-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-264"><a href="#cb10-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-265"><a href="#cb10-265" aria-hidden="true" tabindex="-1"></a><span class="fu">## 업체정보 대장</span></span>
+<span id="cb10-266"><a href="#cb10-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-267"><a href="#cb10-267" aria-hidden="true" tabindex="-1"></a>사업자등록번호를 포함한 업체정보가 담긴 엑셀파일을 준비하여 국세청 API에 넘겨 사업자등록진위 및 사업자 등록상태를 확인할 수 있도록 엑셀파일 전처리 작업을 수행한다.</span>
+<span id="cb10-268"><a href="#cb10-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-269"><a href="#cb10-269" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-270"><a href="#cb10-270" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb10-271"><a href="#cb10-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-272"><a href="#cb10-272" aria-hidden="true" tabindex="-1"></a>mst_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/xxxx연구개발특구_기업현황_데이터 요청사항_230618.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"xxxx연구단지 입주기업"</span>, <span class="at">skip =</span> <span class="dv">1</span>)</span>
+<span id="cb10-273"><a href="#cb10-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-274"><a href="#cb10-274" aria-hidden="true" tabindex="-1"></a>mst_tbl <span class="ot">&lt;-</span> mst_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb10-275"><a href="#cb10-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(사업자번호 <span class="ot">=</span> <span class="fu">str_remove_all</span>(사업자번호, <span class="st">"-"</span>) <span class="sc">%&gt;%</span> <span class="fu">str_squish</span>(.))</span>
+<span id="cb10-276"><a href="#cb10-276" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-277"><a href="#cb10-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-278"><a href="#cb10-278" aria-hidden="true" tabindex="-1"></a>함수형 프로그래밍 <span class="in">`purrr`</span> 패키지 <span class="in">`map()`</span> 함수를 사용해서 결과값을 사업자등록증 단위로 반환받고 그 결과를 표로 정리한다.</span>
+<span id="cb10-279"><a href="#cb10-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-280"><a href="#cb10-280" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-281"><a href="#cb10-281" aria-hidden="true" tabindex="-1"></a>mst_status <span class="ot">&lt;-</span> mst_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb10-282"><a href="#cb10-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">result =</span> <span class="fu">map</span>(사업자번호, get_status)) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-283"><a href="#cb10-283" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(회사명, 사업자번호, result) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-284"><a href="#cb10-284" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(상태 <span class="ot">=</span> <span class="fu">map_chr</span>(result, <span class="st">"b_stt"</span>),</span>
+<span id="cb10-285"><a href="#cb10-285" aria-hidden="true" tabindex="-1"></a>         과세유형 <span class="ot">=</span> <span class="fu">map_chr</span>(result, <span class="st">"tax_type"</span>)) </span>
+<span id="cb10-286"><a href="#cb10-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-287"><a href="#cb10-287" aria-hidden="true" tabindex="-1"></a>mst_status <span class="sc">%&gt;%</span> </span>
+<span id="cb10-288"><a href="#cb10-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(회사명, 사업자번호, 상태, 과세유형) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-289"><a href="#cb10-289" aria-hidden="true" tabindex="-1"></a>  <span class="do">## 분석결과 표로 정리</span></span>
+<span id="cb10-290"><a href="#cb10-290" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(상태, <span class="at">name=</span><span class="st">"업체수"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-291"><a href="#cb10-291" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">adorn_totals</span>(<span class="at">name =</span> <span class="st">"합계"</span>)</span>
+<span id="cb10-292"><a href="#cb10-292" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-293"><a href="#cb10-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-294"><a href="#cb10-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-295"><a href="#cb10-295" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb10-296"><a href="#cb10-296" aria-hidden="true" tabindex="-1"></a>       <span class="ex">상태</span> 업체수</span>
+<span id="cb10-297"><a href="#cb10-297" aria-hidden="true" tabindex="-1"></a>                <span class="ex">18</span></span>
+<span id="cb10-298"><a href="#cb10-298" aria-hidden="true" tabindex="-1"></a> <span class="ex">계속사업자</span>    210</span>
+<span id="cb10-299"><a href="#cb10-299" aria-hidden="true" tabindex="-1"></a>     <span class="ex">폐업자</span>      1</span>
+<span id="cb10-300"><a href="#cb10-300" aria-hidden="true" tabindex="-1"></a>       <span class="ex">합계</span>    229</span>
+<span id="cb10-301"><a href="#cb10-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://quarto.org/">Quarto</a> 개발</div>   
+    <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
+    <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
+  </div>
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":true,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom"});</script>
+
+
+</body></html>

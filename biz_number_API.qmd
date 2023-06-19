@@ -1,0 +1,298 @@
+---
+title: "chatGPT"
+subtitle: "사업자등록증 API (국세청)"
+description: | 
+  국세청 사업자등록증 API를 사용하여 프로그래밍하는 방법을 살펴보자.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-tools: true
+    code-link: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+notebook-view:
+  - notebook: jupyterlab/pinecone.ipynb
+    title: "벡터 DB 쥬피터 노트북"
+---
+
+# 사업자 등록증
+
+[![삼주전자 사업자등록증](images/business_sample.jpg) 출처: [삼주전자 웹사이트](https://sje.co.kr/document/)]{.aside}
+
+사업자 등록증은 사업을 영위하는 개인이나 법인이 자신의 사업을 정부에 공식적으로 등록한 증명서로 국세청이 이를 관리하며, 사업자 등록을 하면 사업자등록번호를 부여받게 되고 사업자 등록증에는 다음과 같은 정보가 포함된다.
+
+1. 사업자 등록 번호: 사업자의 고유 식별 번호로 다른 사업자와 구분하기 위한 것이며, 사업 거래 시에 사용된다.
+1. 사업자의 이름: 개인 사업자의 경우 개인의 이름, 법인의 경우 법인의 이름이 표기된다.
+1. 사업의 종류: 사업자가 영위하는 사업의 종류를 나타낸다.
+1. 사업장의 위치: 사업이 진행되는 주요 장소를 나타낸다.
+
+
+# 등록상태 조회
+
+국세청을 통해 정상적으로 사업자등록증을 발급받았으나 현재 정상적으로 사업을 영위하고 있는지 휴업상태인지 폐업상태인지를 확인하는 절차가 필요하다. 이를 위해서 국세청 홈페이지에서 상단 메뉴 **조회/발급** `>` **사업자상태** `>` **사업자등록번호로 조회** 를 통해 해당 사업자의 현재 등록상태를 조회할 수 있다.
+
+![](images/nts_biz_no.jpg)
+
+
+# 프로그래밍
+
+문제는 업체가 한두 곳인 경우 문제가 없지만 주기적으로 수 많은 업체의 휴폐업을 비롯한 사업자 등록 상태를 점검하는 것은 엄청난 업무가 아닐 수 없다. 이를 위해서 API를 국세청에서 열어 제공하고 있는데 이를 위해서 다양한 프로그래밍 언어를 사용해서 문제를 풀어갈 수 있다.
+
+공공데이터 포털에서 ["국세청_사업자등록정보 진위확인 및 상태조회 서비스"](https://www.data.go.kr/data/15081808/openapi.do)를 통해 매번 복사하여 붙여넣기가 아닌 프로그래밍을 통해 사업자 등록정보 진위 및 상태를 조회할 수 있다. 이를 위해 다음 절차를 진행한다.
+
+1. API **활용신청**을 통해 인증키를 발급받고 **일반 인증키**를 **인증키 설정**에 넣는다.
+1. `사업자등록정보 진위확인 API` 혹은 `사업자등록 상태조회 API`를 선택하여 필수정보인 `b_no`에 사업자번호를 넣는다.
+1. 하단 **OpenAPI 호출** 버튼을 클릭한다.
+1. 반환된 값을 확인한다.
+
+
+![](images/data_portal_setup.jpg)
+
+상태코드 `200`에 정상 출력결과가 확인된다.
+
+```bash
+{
+  "request_cnt": 1,
+  "match_cnt": 1,
+  "status_code": "OK",
+  "data": [
+    {
+      "b_no": "1320557431",
+      "b_stt": "계속사업자",
+      "b_stt_cd": "01",
+      "tax_type": "부가가치세 일반과세자",
+      "tax_type_cd": "01",
+      "end_dt": "",
+      "utcc_yn": "N",
+      "tax_type_change_dt": "",
+      "invoice_apply_dt": "",
+      "rbf_tax_type": "해당없음",
+      "rbf_tax_type_cd": "99"
+    }
+  ]
+}
+```
+
+
+:::{.callout-tip}
+### `curl` 코드
+
+`curl` 코드를 개발중인 프로그래밍 언어에 맞춰 챗GPT를 활용하여 사용한다.
+
+```bash
+curl -X 'POST' \
+  'https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=GQMNxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' \
+  -H 'accept: application/json' \
+  -H 'Authorization: GQMNxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "b_no": [
+    "1320557431"
+  ]
+}'
+```
+
+:::
+
+# 챗GPT
+
+`curl` 코드를 R 코드로 변환시켜 재현가능한 문서와 자동 문서 생성이 가능하도록 선행작업을 수행한다.
+R 환경에서 정상작동되는 것이 확인되면 다음단계로 API_KEY 인증키가 문서에 그대로 담겨있어 보안에
+취약하니 이를 추가 코딩을 통해 보완한다.
+
+## R 코드 변환
+
+:::{.panel-tabset}
+
+### 프롬프트
+
+```
+다음 `curl` 코드를 R 코드로 변환해주세요.
+
+curl -X 'POST' \
+  'https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=GQMNLxxxxxxxxxxxxxxxxxxxxxx' \
+  -H 'accept: application/json' \
+  -H 'Authorization: GQMNLxxxxxxxxxxxxxxxxxxxxxx' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "b_no": [
+    "1320557431"
+  ]
+}'
+```
+
+### 출력결과
+
+curl 명령은 HTTP 프로토콜을 사용하여 웹 서버와 상호 작용하는 데 사용되는 명령행 도구입니다. 이 명령을 R 코드로 변환하려면 httr 패키지의 POST 함수를 사용할 수 있습니다.
+
+아래는 주어진 curl 명령을 R 코드로 변환한 예입니다.
+
+
+```{{r}}
+
+# 필요한 패키지를 불러옵니다.
+library(httr)
+
+# API endpoint와 필요한 헤더를 설정합니다.
+url <- "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=GQMNLxxxxxxxxxxxxxxxxxxxxxx"
+headers <- c(
+  'accept' = 'application/json',
+  'Authorization' = 'GQMNLxxxxxxxxxxxxxxxxxxxxxx',
+  'Content-Type' = 'application/json'
+)
+
+# 요청 본문을 설정합니다.
+body <- list(
+  "b_no" = c("1320557431")
+)
+
+# POST 요청을 보냅니다.
+response <- POST(url, add_headers(headers), body = body, encode = "json")
+
+# 응답을 확인합니다.
+content(response)
+
+```
+
+
+### 보완작업
+
+`usethis::edit_r_environ()` 함수를 사용해서 `NTS_API_KEY`를 `.Renviron` 파일에 숨긴다.
+이를 통해 보안이 강화되지만 동일한 결과를 얻을 수 있게 작업이 완료되었다.
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(tidyverse)
+library(httr)
+
+url <- glue::glue("https://api.odcloud.kr/api/nts-businessman/v1/status",
+                  "?serviceKey={Sys.getenv('NTS_API_KEY')}")
+
+headers <- c(
+  'accept' = 'application/json',
+  'Content-Type' = 'application/json'
+)
+
+body <- list(
+  "b_no" = list("1320557431")
+)
+
+response <- POST(url, add_headers(.headers=headers), body=body, encode="json")
+
+# print the response
+result <- content(response)
+
+result_tbl <- result$data %>% data.frame()
+
+result_tbl
+```
+
+
+:::
+
+
+# 대량 반복작업
+
+사업자 등록번호가 100개 이상 담겨있는 엑셀파일에서 전체 사업자등록현황을 파악해보자.
+스크립트를 통해 사업자 등록번호기준 작업을 확인했기 때문에 함수를 작성해서 이를 반복해서 결과를 얻어내는 과정을 코딩해보자.
+
+## 함수작성
+
+`get_status` 함수를 작성해서 사업자번호를 넘기면 국세청 API를 통해 사업자 진위여부와 함께 과세유형정보도 확인가능하도록 기능을 추가한다.
+
+```{r}
+get_status <- function(biz_number = "1320557431") {
+    url <- glue::glue("https://api.odcloud.kr/api/nts-businessman/v1/status",
+                    "?serviceKey={Sys.getenv('NTS_API_KEY')}")
+  
+  headers <- c(
+    'accept' = 'application/json',
+    'Content-Type' = 'application/json'
+  )
+  
+  body <- list(
+    "b_no" = list(biz_number)
+  )
+  
+  response <- POST(url, add_headers(.headers=headers), body=body, encode="json")
+  
+  # print the response
+  result <- content(response)
+
+  result_tbl <- result$data %>% data.frame()
+
+  return(result_tbl)
+}
+
+get_status("1320557431")
+```
+
+
+## 업체정보 대장
+
+사업자등록번호를 포함한 업체정보가 담긴 엑셀파일을 준비하여 국세청 API에 넘겨 사업자등록진위 및 사업자 등록상태를 확인할 수 있도록 엑셀파일 전처리 작업을 수행한다.
+
+```{{r}}
+library(readxl)
+
+mst_raw <- read_excel("data/xxxx연구개발특구_기업현황_데이터 요청사항_230618.xlsx", sheet = "xxxx연구단지 입주기업", skip = 1)
+
+mst_tbl <- mst_raw %>% 
+  mutate(사업자번호 = str_remove_all(사업자번호, "-") %>% str_squish(.))
+```
+
+함수형 프로그래밍 `purrr` 패키지 `map()` 함수를 사용해서 결과값을 사업자등록증 단위로 반환받고 그 결과를 표로 정리한다.
+
+```{{r}}
+mst_status <- mst_tbl %>% 
+  mutate(result = map(사업자번호, get_status)) %>% 
+  select(회사명, 사업자번호, result) %>% 
+  mutate(상태 = map_chr(result, "b_stt"),
+         과세유형 = map_chr(result, "tax_type")) 
+
+mst_status %>% 
+  select(회사명, 사업자번호, 상태, 과세유형) %>% 
+  ## 분석결과 표로 정리
+  count(상태, name="업체수") %>% 
+  janitor::adorn_totals(name = "합계")
+```
+
+
+```bash
+       상태 업체수
+                18
+ 계속사업자    210
+     폐업자      1
+       합계    229
+```
+
