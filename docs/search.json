@@ -2839,6 +2839,55 @@
     "href": "three_paradigm.html",
     "title": "챗GPT",
     "section": "",
-    "text": "1 챗GPT 시대 데이터 분석\n\nOpenAI 챗GPT Code Interpreter 플러그인\n\n\n노터블(Notable): EDA & ETL Made Easy (SQL, Python, & R)\n오픈소스 GPT-Code UI\nR\n\n\nRTutor.ai, GitHub 저장소\n\nhttps://chatlize.ai/\n\n\n\n2 Code Interpreter\n\n\nCode Interpreter BETA\n1단계\n2단계\n4단계\n5단계\n6단계\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3 Notable.ai"
+    "text": "1 챗GPT 시대 데이터 분석\n\nOpenAI 챗GPT Code Interpreter 플러그인\n\n\n노터블(Notable): EDA & ETL Made Easy (SQL, Python, & R)\n오픈소스 GPT-Code UI\nR\n\n\nRTutor.ai, GitHub 저장소\n\nhttps://chatlize.ai/\n\n\n\n2 Code Interpreter\n\n\n1단계\n2단계\n3단계\n4단계\n5단계 (데이터+프롬프트)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3 Notable.ai\n\n4 심슨 패러독스\n\n챗GPT Code Interpreter : 채팅 이력\n\nJupyter Notebook 다운로드: penguin_analysis.ipynb\n\n\npenguin_analysis.ipynb → penguin_analysis.qmd\n\n명령어: $ quarto convert penguin_analysis.ipynb\n\n\n\n쿼토 컴파일: 바로가기\n\n\n`"
+  },
+  {
+    "objectID": "penguin_analysis.html",
+    "href": "penguin_analysis.html",
+    "title": "Analysis of Penguin Data",
+    "section": "",
+    "text": "This notebook presents an analysis of a dataset containing measurements of penguins. The goal is to investigate the existence of Simpson’s Paradox in the data.\nSimpson’s Paradox is a phenomenon in probability and statistics, in which a trend appears in different groups of data but disappears or reverses when these groups are combined."
+  },
+  {
+    "objectID": "penguin_analysis.html#import-necessary-libraries",
+    "href": "penguin_analysis.html#import-necessary-libraries",
+    "title": "Analysis of Penguin Data",
+    "section": "Import Necessary Libraries",
+    "text": "Import Necessary Libraries\n\n\n코드\nimport pandas as pd\nimport numpy as np\nimport seaborn as sns\nimport matplotlib.pyplot as plt"
+  },
+  {
+    "objectID": "penguin_analysis.html#load-the-dataset",
+    "href": "penguin_analysis.html#load-the-dataset",
+    "title": "Analysis of Penguin Data",
+    "section": "Load the Dataset",
+    "text": "Load the Dataset\n\n\n코드\n# Load the dataset\ndf = pd.read_csv('data/penguins.csv')"
+  },
+  {
+    "objectID": "penguin_analysis.html#check-correlations-within-each-species-for-culmen-length-and-depth",
+    "href": "penguin_analysis.html#check-correlations-within-each-species-for-culmen-length-and-depth",
+    "title": "Analysis of Penguin Data",
+    "section": "Check Correlations Within Each Species for Culmen Length and Depth",
+    "text": "Check Correlations Within Each Species for Culmen Length and Depth\n\n\n코드\n# Check correlations within each species for culmen_length_mm and culmen_depth_mm\nspecies_list = df['species'].unique()\nfor species in species_list:\n    print(f\"Correlation within {species} species:\")\n    print(df[df['species'] == species][['bill_length_mm', 'bill_depth_mm']].corr())\n    print(\"\\n\")\n\n\nCorrelation within Adelie species:\n                bill_length_mm  bill_depth_mm\nbill_length_mm        1.000000       0.391492\nbill_depth_mm         0.391492       1.000000\n\n\nCorrelation within Gentoo species:\n                bill_length_mm  bill_depth_mm\nbill_length_mm        1.000000       0.643384\nbill_depth_mm         0.643384       1.000000\n\n\nCorrelation within Chinstrap species:\n                bill_length_mm  bill_depth_mm\nbill_length_mm        1.000000       0.653536\nbill_depth_mm         0.653536       1.000000"
+  },
+  {
+    "objectID": "penguin_analysis.html#calculate-the-overall-correlation-between-culmen-length-and-depth",
+    "href": "penguin_analysis.html#calculate-the-overall-correlation-between-culmen-length-and-depth",
+    "title": "Analysis of Penguin Data",
+    "section": "Calculate the Overall Correlation Between Culmen Length and Depth",
+    "text": "Calculate the Overall Correlation Between Culmen Length and Depth\n\n\n코드\n# Calculate the overall correlation between bill_length_mm and bill_depth_mm\noverall_corr = df[['bill_length_mm', 'bill_depth_mm']].corr().iloc[0, 1]\noverall_corr\n\n\n-0.2350528703555336"
+  },
+  {
+    "objectID": "penguin_analysis.html#create-scatter-plot",
+    "href": "penguin_analysis.html#create-scatter-plot",
+    "title": "Analysis of Penguin Data",
+    "section": "Create Scatter Plot",
+    "text": "Create Scatter Plot\n\n\n코드\n# Create a figure and axis\nfig, ax = plt.subplots(figsize=(10, 8))\n\n# Overall regression line\nsns.regplot(x='bill_length_mm', y='bill_depth_mm', data=df, scatter=False, \n            line_kws={'color': 'black', 'label': \"Overall regression line\"})\n\n# Loop through each species\nfor species in species_list:\n    species_data = df[df['species'] == species]\n    sns.scatterplot(x='bill_length_mm', y='bill_depth_mm', data=species_data, label=species)\n    sns.regplot(x='bill_length_mm', y='bill_depth_mm', data=species_data, scatter=False, \n                line_kws={'label': f\"{species} regression line\"})\n\nplt.title('Bill Depth vs Bill Length')\nplt.xlabel('Bill Length (mm)')\nplt.ylabel('Bill Depth (mm)')\n\n# Add legend\nplt.legend()\n\nplt.show()"
+  },
+  {
+    "objectID": "penguin_analysis.html#create-separate-scatter-plots-with-regression-lines-for-each-species",
+    "href": "penguin_analysis.html#create-separate-scatter-plots-with-regression-lines-for-each-species",
+    "title": "Analysis of Penguin Data",
+    "section": "Create Separate Scatter Plots with Regression Lines for Each Species",
+    "text": "Create Separate Scatter Plots with Regression Lines for Each Species\n\n\n코드\n# Create a figure and axis\nfig, axs = plt.subplots(3, 1, figsize=(10, 20))\n\n# Loop through each species\nfor ax, species in zip(axs, species_list):\n    species_data = df[df['species'] == species]\n    sns.regplot(x='bill_length_mm', y='bill_depth_mm', data=species_data, ax=ax, \n                line_kws={'label': f\"{species} regression line\"})\n    ax.set_title(f'{species} Penguins')\n    ax.set_xlabel('Bill Length (mm)')\n    ax.set_ylabel('Bill Depth (mm)')\n    ax.legend()\n\nplt.tight_layout()\nplt.show()"
   }
 ]
