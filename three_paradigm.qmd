@@ -1,0 +1,94 @@
+---
+title: "챗GPT"
+subtitle: "챗GPT 펭귄 데이터 분석"
+description: | 
+  Code Interpreter, Notable, 오픈 소스 데이터 분석 AI 엔진을 살펴보자. 
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-tools: true
+    code-link: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+notebook-view:
+  - notebook: jupyterlab/pinecone.ipynb
+    title: "벡터 DB 쥬피터 노트북"
+---
+
+# 챗GPT 시대 데이터 분석
+
+- OpenAI 챗GPT [Code Interpreter 플러그인](https://openai.com/blog/chatgpt-plugins#code-interpreter)
+- [노터블(Notable)](https://noteable.io/): EDA & ETL Made Easy (SQL, Python, & R)
+- [오픈소스 GPT-Code UI](https://github.com/ricklamers/gpt-code-ui)
+- R
+    - [RTutor.ai](http://rtutor.ai/), [GitHub 저장소](https://github.com/gexijin/RTutor)
+    - [https://chatlize.ai/](https://chatlize.ai/)
+
+
+# Code Interpreter
+
+
+::: {.panel-tabset}
+
+### Code Interpreter BETA
+
+![](images/rtutor/code_interpreter_01.webp)
+
+### 1단계
+
+![](images/rtutor/code_interpreter_02.webp)
+
+### 2단계
+
+![](images/rtutor/code_interpreter_03.webp)
+
+### 4단계
+
+![](images/rtutor/code_interpreter_04.webp)
+
+### 5단계
+
+![](images/rtutor/code_interpreter_05.webp)
+
+### 6단계
+
+![](images/rtutor/code_interpreter_import.jpg)
+
+:::
+
+
+# Notable.ai
+
+
+
+
+

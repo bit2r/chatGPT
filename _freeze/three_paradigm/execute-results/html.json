@@ -1,0 +1,14 @@
+{
+  "hash": "4a8e88bbe1fb5c2f13a1824580989613",
+  "result": {
+    "markdown": "---\ntitle: \"챗GPT\"\nsubtitle: \"챗GPT 펭귄 데이터 분석\"\ndescription: | \n  Code Interpreter, Notable, 오픈 소스 데이터 분석 AI 엔진을 살펴보자. \nauthor:\n  - name: 이광춘\n    url: https://www.linkedin.com/in/kwangchunlee/\n    affiliation: 한국 R 사용자회\n    affiliation-url: https://github.com/bit2r\ntitle-block-banner: true\n#title-block-banner: \"#562457\"\nformat:\n  html:\n    css: css/quarto.css\n    theme: flatly\n    code-fold: true\n    code-tools: true\n    code-link: true\n    code-overflow: wrap\n    toc: true\n    toc-depth: 3\n    toc-title: 목차\n    number-sections: true\n    highlight-style: github    \n    self-contained: false\nfilters:\n   - lightbox\n\nlightbox: auto\nlink-citations: true\nknitr:\n  opts_chunk: \n    message: false\n    warning: false\n    collapse: true\n    comment: \"#>\" \n    R.options:\n      knitr.graphics.auto_pdf: true\neditor_options: \n  chunk_output_type: console\nnotebook-view:\n  - notebook: jupyterlab/pinecone.ipynb\n    title: \"벡터 DB 쥬피터 노트북\"\n---\n\n\n# 챗GPT 시대 데이터 분석\n\n- OpenAI 챗GPT [Code Interpreter 플러그인](https://openai.com/blog/chatgpt-plugins#code-interpreter)\n- [노터블(Notable)](https://noteable.io/): EDA & ETL Made Easy (SQL, Python, & R)\n- [오픈소스 GPT-Code UI](https://github.com/ricklamers/gpt-code-ui)\n- R\n    - [RTutor.ai](http://rtutor.ai/), [GitHub 저장소](https://github.com/gexijin/RTutor)\n    - [https://chatlize.ai/](https://chatlize.ai/)\n\n\n# Code Interpreter\n\n\n::: {.panel-tabset}\n\n### Code Interpreter BETA\n\n![](images/rtutor/code_interpreter_01.webp)\n\n### 1단계\n\n![](images/rtutor/code_interpreter_02.webp)\n\n### 2단계\n\n![](images/rtutor/code_interpreter_03.webp)\n\n### 4단계\n\n![](images/rtutor/code_interpreter_04.webp)\n\n### 5단계\n\n![](images/rtutor/code_interpreter_05.webp)\n\n### 6단계\n\n![](images/rtutor/code_interpreter_import.jpg)\n\n:::\n\n\n# Notable.ai\n\n\n\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

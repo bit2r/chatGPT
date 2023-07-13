@@ -2833,5 +2833,12 @@
     "title": "chatGPT",
     "section": "\n5.2 업체정보 대장",
     "text": "5.2 업체정보 대장\n사업자등록번호를 포함한 업체정보가 담긴 엑셀파일을 준비하여 국세청 API에 넘겨 사업자등록진위 및 사업자 등록상태를 확인할 수 있도록 엑셀파일 전처리 작업을 수행한다.\n```{r}\nlibrary(readxl)\n\nmst_raw &lt;- read_excel(\"data/xxxx연구개발특구_기업현황_데이터 요청사항_230618.xlsx\", sheet = \"xxxx연구단지 입주기업\", skip = 1)\n\nmst_tbl &lt;- mst_raw %&gt;% \n  mutate(사업자번호 = str_remove_all(사업자번호, \"-\") %&gt;% str_squish(.))\n```\n함수형 프로그래밍 purrr 패키지 map() 함수를 사용해서 결과값을 사업자등록증 단위로 반환받고 그 결과를 표로 정리한다.\n```{r}\nmst_status &lt;- mst_tbl %&gt;% \n  mutate(result = map(사업자번호, get_status)) %&gt;% \n  select(회사명, 사업자번호, result) %&gt;% \n  mutate(상태 = map_chr(result, \"b_stt\"),\n         과세유형 = map_chr(result, \"tax_type\")) \n\nmst_status %&gt;% \n  select(회사명, 사업자번호, 상태, 과세유형) %&gt;% \n  ## 분석결과 표로 정리\n  count(상태, name=\"업체수\") %&gt;% \n  janitor::adorn_totals(name = \"합계\")\n```\n       상태 업체수\n                18\n 계속사업자    210\n     폐업자      1\n       합계    229"
+  },
+  {
+    "objectID": "three_paradigm.html",
+    "href": "three_paradigm.html",
+    "title": "챗GPT",
+    "section": "",
+    "text": "1 챗GPT 시대 데이터 분석\n\nOpenAI 챗GPT Code Interpreter 플러그인\n\n\n노터블(Notable): EDA & ETL Made Easy (SQL, Python, & R)\n오픈소스 GPT-Code UI\nR\n\n\nRTutor.ai, GitHub 저장소\n\nhttps://chatlize.ai/\n\n\n\n2 Code Interpreter\n\n\nCode Interpreter BETA\n1단계\n2단계\n4단계\n5단계\n6단계\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3 Notable.ai"
   }
 ]
