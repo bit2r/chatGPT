@@ -44,6 +44,8 @@ notebook-view:
     title: "벡터 DB 쥬피터 노트북"
 ---
 
+![](images/chatgpt_code_interpreter.jpg)
+
 # 챗GPT 시대 데이터 분석
 
 - OpenAI 챗GPT [Code Interpreter 플러그인](https://openai.com/blog/chatgpt-plugins#code-interpreter)
