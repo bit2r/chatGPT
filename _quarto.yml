@@ -117,6 +117,8 @@ website:
         - text: "------------------"
         - href: openAI_api.qmd
           text: "OpenAI API 프로그래밍"
+        - href: openAI_api_apps.qmd
+          text: "OpenAI API 응용프로그램"
         - href: langchain_arch.qmd
           text: "LangCahin 아키텍쳐"
         - href: whisper.qmd

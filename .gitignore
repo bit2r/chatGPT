@@ -16,6 +16,7 @@ data/LibriSpeech
 *.bin
 
 .env
+
 data/001.문서요약텍스트_sample
 jupyterlab/sqlite-sakila-db/
 data/

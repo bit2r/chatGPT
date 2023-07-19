@@ -1,0 +1,168 @@
+---
+title: "챗GPT"
+subtitle: "OpenAI API 응용프로그램"
+description: |
+  OpenAI API 환경을 갖춘 후에 본격적인 응용프로그램 개발을 시작해보자.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+date: today    
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: false
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# 들어가며
+
+`.env` 파일에 OpenAI API-KEY 를 저장한 경우 `.gitignore` 에 `.env`를 기록하여 협업과 
+공개를 할 경우 주요 정보가 외부에 노출 되지 않도록 주의한다.
+
+## `openai` 패키지 
+
+GitHub 저장소 [OpenAI Python Library](https://github.com/openai/openai-python)의 `openai` 파이썬 패키지를 설치한 후 버전을 확인한다.
+
+```{python}
+#| eval: false
+! pip show openai
+
+Name: openai
+Version: 0.27.2
+Summary: Python client library for the OpenAI API
+Home-page: https://github.com/openai/openai-python
+Author: OpenAI
+Author-email: support@openai.com
+License: 
+Location: c:\miniconda\envs\r-reticulate\lib\site-packages
+Requires: aiohttp, requests, tqdm
+Required-by: 
+```
+
+
+## `gpt-4` 모델
+
+`gpt-3.5-turbo` 모형은 속도가 빠르고 API 호출 당 가격이 저렴하지만,
+성능이 `gpt-4` 보다 낮은 것으로 알려져 있다.  `max_tokens` 크기를 달리하여 API 반환길이를 조절할 수 있고, `temperature` 값을 달리하여 사실에 보다 가까운 값을 얻고자 할 경우 0으로 그렇지 않고 다양한 창의적인 응답을 원할 경우 0 보다 큰 값을 지정한다.
+
+```{python}
+#| eval: false
+
+import openai
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+openai.api_key = os.getenv('OPENAI_API_KEY')
+
+response = ChatCompletion.create(
+  model       = "gpt-4",
+  messages    = [
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "파이썬하고 R 하고 싸우면 누가 이겨?"}
+  ],
+  max_tokens   = 100,
+  temperature  = 0
+)
+
+print(response["choices"][0]['message']['content'])
+```
+
+``` bash
+파이썬과 R은 프로그래밍 언어로, 싸우는 것이 아니라 각각의 특성과 용도에 따라 사용됩니다. 
+
+파이썬은 범용 프로그래밍 언어로, 웹 개발, 데이터 분석, 인공 지능 등 다양한 분야에서 사용됩니다.
+```
+
+# `ChatCompletion`
+
+`openai.Completion.create()` 함수를 사용하여 `text-davinci-003`, `text-davinci-002`, `ada`, `babbage`, `curie`, `davinci` 등 텍스트 완성 기능을 사용할 수 있다. 
+하지만, `openai.ChatCompletion.create()` 함수를 사용하게 되면 `gpt-4`를 비롯한 고급 모형과 AI 고급기능을 사용할 수 있지만 비용이 높아진다.
+
+
+[[OpenAI Pricing](https://openai.com/pricing)]{.aside}
+
+# 중재(Moderation)
+
+AI LLM 모형에 입력값으로 전달되는 다양한 텍스트에 부적절한 내용이 담겨있을 수 있다. 
+AI 제품을 제작할 때 이를 사전에 감지하여 적절한 조치를 취하는 것이 필요하다.
+
+[욕설 감지 데이터셋](https://github.com/2runo/Curse-detection-data)에서 욕설로 
+라벨링된 텍스트를 하나 가져와서 살펴본다.
+
+```{python}
+#| eval: true
+
+import openai
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+openai.api_key = os.getenv('OPENAI_API_KEY')
+
+response = openai.Moderation.create(
+  model = "text-moderation-latest",
+  input = "정신병자 천국이구나"
+)
+
+print(response)
+```
+
+
+
+```{r}
+#| eval: true
+
+library(reticulate)
+library(tidyverse)
+
+
+moderation_part_1 <- py$response$results[[1]]$categories |> 
+  enframe(name = "구분") |> 
+  mutate(판정 = map_lgl(value, 1)) |> 
+  select(구분, 판정)
+
+
+moderation_part_2 <- py$response$results[[1]]$category_scores |> 
+  enframe(name = "구분") |> 
+  mutate(점수 = map_dbl(value, 1)) |> 
+  select(구분, 점수)
+
+moderation_tbl <- left_join(moderation_part_1, moderation_part_2)
+
+moderation_tbl |> 
+  arrange(desc(점수))
+```
+
+
+

@@ -3015,5 +3015,26 @@
     "title": "챗GPT",
     "section": "\n5.1 텍스트 벡터 표현",
     "text": "5.1 텍스트 벡터 표현\ntext-embedding-ada-002 모델은 빠르고 가성비가 뛰어난 임베딩 모델이다. “대한민국 수도는 서울입니다.” 이라는 문서를 벡터로 표현하면 다음과 같다. 즉, 1,536 차원을 갖는 공간에 하나의 점으로 표현될 수 있다.\n\nimport os\nimport openai\n\nopenai.api_key = os.getenv(\"OPENAI_API_KEY\")\n\nseoul_response = openai.Embedding.create(\n  model=\"text-embedding-ada-002\",\n  input=\"대한민국 수도는 서울입니다.\",\n)\n\nseoul_embedding = seoul_response[\"data\"][0]['embedding']\n\nprint(f'벡터길이: {len(seoul_embedding)}')\n#&gt; 벡터길이: 1536\nprint(f'벡터 일부: {seoul_embedding[:10]}')\n#&gt; 벡터 일부: [0.014582998119294643, -0.018063032999634743, 0.004872684367001057, -0.013805408962070942, -0.031180081889033318, 0.025176068767905235, -0.034519895911216736, 0.011357911862432957, -0.007960736751556396, -0.0020682618487626314]\n\n마찬가지로 일본의 수도 도쿄도 벡터로 표현할 수 있다.\n\ntokyo_response = openai.Embedding.create(\n  model=\"text-embedding-ada-002\",\n  input=\"일본 수도는 동경입니다.\",\n)\n\ntokyo_embedding = tokyo_response[\"data\"][0]['embedding']\nprint(f'벡터길이: {len(tokyo_embedding)}')\n#&gt; 벡터길이: 1536\nprint(f'벡터 일부: {tokyo_embedding[:10]}')\n#&gt; 벡터 일부: [0.010957648046314716, -0.013234060257673264, 0.009729413315653801, -0.011890077032148838, -0.03179261088371277, 0.03436483070254326, -0.029786281287670135, 0.008629790507256985, 0.01711810939013958, -0.0014733985299244523]"
+  },
+  {
+    "objectID": "openAI_api_apps.html",
+    "href": "openAI_api_apps.html",
+    "title": "챗GPT",
+    "section": "",
+    "text": ".env 파일에 OpenAI API-KEY 를 저장한 경우 .gitignore 에 .env를 기록하여 협업과 공개를 할 경우 주요 정보가 외부에 노출 되지 않도록 주의한다.\n\nGitHub 저장소 OpenAI Python Library의 openai 파이썬 패키지를 설치한 후 버전을 확인한다.\n\n! pip show openai\n\nName: openai\nVersion: 0.27.2\nSummary: Python client library for the OpenAI API\nHome-page: https://github.com/openai/openai-python\nAuthor: OpenAI\nAuthor-email: support@openai.com\nLicense: \nLocation: c:\\miniconda\\envs\\r-reticulate\\lib\\site-packages\nRequires: aiohttp, requests, tqdm\nRequired-by: \n\n\ngpt-3.5-turbo 모형은 속도가 빠르고 API 호출 당 가격이 저렴하지만, 성능이 gpt-4 보다 낮은 것으로 알려져 있다. max_tokens 크기를 달리하여 API 반환길이를 조절할 수 있고, temperature 값을 달리하여 사실에 보다 가까운 값을 얻고자 할 경우 0으로 그렇지 않고 다양한 창의적인 응답을 원할 경우 0 보다 큰 값을 지정한다.\n\nimport openai\nfrom dotenv import load_dotenv\nimport os\n\nload_dotenv()\n\nopenai.api_key = os.getenv('OPENAI_API_KEY')\n\nresponse = ChatCompletion.create(\n  model       = \"gpt-4\",\n  messages    = [\n    {\"role\": \"system\", \"content\": \"You are a helpful assistant.\"},\n    {\"role\": \"user\", \"content\": \"파이썬하고 R 하고 싸우면 누가 이겨?\"}\n  ],\n  max_tokens   = 100,\n  temperature  = 0\n)\n\nprint(response[\"choices\"][0]['message']['content'])\n\n파이썬과 R은 프로그래밍 언어로, 싸우는 것이 아니라 각각의 특성과 용도에 따라 사용됩니다. \n\n파이썬은 범용 프로그래밍 언어로, 웹 개발, 데이터 분석, 인공 지능 등 다양한 분야에서 사용됩니다."
+  },
+  {
+    "objectID": "openAI_api_apps.html#openai-패키지",
+    "href": "openAI_api_apps.html#openai-패키지",
+    "title": "챗GPT",
+    "section": "",
+    "text": "GitHub 저장소 OpenAI Python Library의 openai 파이썬 패키지를 설치한 후 버전을 확인한다.\n\n! pip show openai\n\nName: openai\nVersion: 0.27.2\nSummary: Python client library for the OpenAI API\nHome-page: https://github.com/openai/openai-python\nAuthor: OpenAI\nAuthor-email: support@openai.com\nLicense: \nLocation: c:\\miniconda\\envs\\r-reticulate\\lib\\site-packages\nRequires: aiohttp, requests, tqdm\nRequired-by:"
+  },
+  {
+    "objectID": "openAI_api_apps.html#gpt-4-모델",
+    "href": "openAI_api_apps.html#gpt-4-모델",
+    "title": "챗GPT",
+    "section": "",
+    "text": "gpt-3.5-turbo 모형은 속도가 빠르고 API 호출 당 가격이 저렴하지만, 성능이 gpt-4 보다 낮은 것으로 알려져 있다. max_tokens 크기를 달리하여 API 반환길이를 조절할 수 있고, temperature 값을 달리하여 사실에 보다 가까운 값을 얻고자 할 경우 0으로 그렇지 않고 다양한 창의적인 응답을 원할 경우 0 보다 큰 값을 지정한다.\n\nimport openai\nfrom dotenv import load_dotenv\nimport os\n\nload_dotenv()\n\nopenai.api_key = os.getenv('OPENAI_API_KEY')\n\nresponse = ChatCompletion.create(\n  model       = \"gpt-4\",\n  messages    = [\n    {\"role\": \"system\", \"content\": \"You are a helpful assistant.\"},\n    {\"role\": \"user\", \"content\": \"파이썬하고 R 하고 싸우면 누가 이겨?\"}\n  ],\n  max_tokens   = 100,\n  temperature  = 0\n)\n\nprint(response[\"choices\"][0]['message']['content'])\n\n파이썬과 R은 프로그래밍 언어로, 싸우는 것이 아니라 각각의 특성과 용도에 따라 사용됩니다. \n\n파이썬은 범용 프로그래밍 언어로, 웹 개발, 데이터 분석, 인공 지능 등 다양한 분야에서 사용됩니다."
   }
 ]
