@@ -115,8 +115,8 @@ website:
         - href: reticulate.qmd
           text: "파이썬 환경구축"
         - text: "------------------"
-        - href: openAI_GPT.qmd
-          text: "OpenAI GPT"
+        - href: openAI_api.qmd
+          text: "OpenAI API 프로그래밍"
         - href: langchain_arch.qmd
           text: "LangCahin 아키텍쳐"
         - href: whisper.qmd
@@ -201,4 +201,4 @@ csl: apa-single-spaced.csl
 link-citations: true
 
 execute:
-  freeze: true
+  freeze: auto
