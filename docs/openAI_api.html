@@ -316,6 +316,10 @@ ga('send', {
  <span class="dropdown-text">OpenAI API 프로그래밍</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./openAI_api_apps.html" rel="" target="">
+ <span class="dropdown-text">OpenAI API 응용프로그램</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./langchain_arch.html" rel="" target="">
  <span class="dropdown-text">LangCahin 아키텍쳐</span></a>
   </li>  
@@ -464,7 +468,7 @@ ga('send', {
       <div>
       <div class="quarto-title-meta-heading">공개</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">2023년 07월 19일</p>
+        <p class="date">2023년 07월 21일</p>
       </div>
     </div>
     
@@ -510,12 +514,13 @@ ga('send', {
   <li><a href="#api" id="toc-api" class="nav-link" data-scroll-target="#api"><span class="header-section-number">2.3</span> API</a></li>
   </ul>
 </li>
-  <li><a href="#%EB%8F%84%EA%B5%AC" id="toc-도구" class="nav-link" data-scroll-target="#%EB%8F%84%EA%B5%AC"><span class="header-section-number">3</span> 도구</a></li>
-  <li><a href="#openai-api-%ED%97%AC%EB%A1%9C%EC%9B%94%EB%93%9C" id="toc-openai-api-헬로월드" class="nav-link" data-scroll-target="#openai-api-%ED%97%AC%EB%A1%9C%EC%9B%94%EB%93%9C"><span class="header-section-number">4</span> OpenAI API 헬로월드</a></li>
+  <li><a href="#openai-api-%ED%97%AC%EB%A1%9C%EC%9B%94%EB%93%9C" id="toc-openai-api-헬로월드" class="nav-link" data-scroll-target="#openai-api-%ED%97%AC%EB%A1%9C%EC%9B%94%EB%93%9C"><span class="header-section-number">3</span> OpenAI API 헬로월드</a></li>
   <li>
-<a href="#%EC%9E%84%EB%B2%A0%EB%94%A9" id="toc-임베딩" class="nav-link" data-scroll-target="#%EC%9E%84%EB%B2%A0%EB%94%A9"><span class="header-section-number">5</span> 임베딩</a>
+<a href="#%EB%8F%84%EA%B5%AC-postman" id="toc-도구-postman" class="nav-link" data-scroll-target="#%EB%8F%84%EA%B5%AC-postman"><span class="header-section-number">4</span> 도구 (Postman)</a>
   <ul class="collapse">
-<li><a href="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EB%B2%A1%ED%84%B0-%ED%91%9C%ED%98%84" id="toc-텍스트-벡터-표현" class="nav-link" data-scroll-target="#%ED%85%8D%EC%8A%A4%ED%8A%B8-%EB%B2%A1%ED%84%B0-%ED%91%9C%ED%98%84"><span class="header-section-number">5.1</span> 텍스트 벡터 표현</a></li>
+<li><a href="#openai-api-key" id="toc-openai-api-key" class="nav-link" data-scroll-target="#openai-api-key"><span class="header-section-number">4.1</span> OpenAI API KEY</a></li>
+  <li><a href="#postman-%EC%A0%91%EC%86%8D%ED%99%95%EC%9D%B8" id="toc-postman-접속확인" class="nav-link" data-scroll-target="#postman-%EC%A0%91%EC%86%8D%ED%99%95%EC%9D%B8"><span class="header-section-number">4.2</span> Postman 접속확인</a></li>
+  <li><a href="#ai-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1" id="toc-ai-이미지-생성" class="nav-link" data-scroll-target="#ai-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1"><span class="header-section-number">4.3</span> AI 이미지 생성</a></li>
   </ul>
 </li>
   </ul></nav>
@@ -775,23 +780,8 @@ ga('send', {
 <figure class="figure"><p><a href="images/openai_services.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="images/openai_services.jpg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
-</section></section><section id="도구" class="level1" data-number="3"><h1 data-number="3">
-<span class="header-section-number">3</span> 도구</h1>
-<p><a href="https://www.postman.com/">Postman</a>을 사용하여 실제 AI 제품 및 서비스 개발이 들어가기 전에 기능을 확인한다.</p>
-<ul>
-<li>
-<code>GET</code>: 펭귄 csv 파일으로 바로 다운로드 받을 수 있다.</li>
-<li>
-<code>GET</code> + Params: API-KEY를 매개변수로 전달하여 “오징어 게임” JSON 데이터를 가져올 수 있다.</li>
-<li>
-<code>POST</code> + API-KEY: 인증(Authorization) 과정을 거쳐 챗 완성(Chat Completion) 기능을 작성한 프롬프트를 전송하여 GPT-3.5 모델로부터 받아올 수 있다.</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/postman_api.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/postman_api.jpg" class="img-fluid figure-img"></a></p>
-</figure>
-</div>
-</section><section id="openai-api-헬로월드" class="level1" data-number="4"><h1 data-number="4">
-<span class="header-section-number">4</span> OpenAI API 헬로월드</h1>
+</section></section><section id="openai-api-헬로월드" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> OpenAI API 헬로월드</h1>
 <p>OpenAI 회사가 제시하고 있는 기준에 맞춰 따라줘야 OpenAI API를 사용할 수 있다. 이를 위해 먼저 회원가입을 통한 계정을 생성하고 본인 인증과 과금을 위한 API KEY를 생성하고 프로그래밍 언어에서 쉽게 사용할 수 있도록 파이썬의 경우 <code>openai</code> 패키지를 설치하고 문법에 맞춰 코드를 작성하면 된다.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
@@ -875,43 +865,180 @@ ga('send', {
 </div>
 </div>
 </div>
-</section><section id="임베딩" class="level1" data-number="5"><h1 data-number="5">
-<span class="header-section-number">5</span> 임베딩</h1>
-<p><strong>임베딩(Embedding)</strong> 일반적으로 실수 벡터의 형태로 텍스트 데이터를 수치로 표현한 것으로, 이를 통해서 표현된 벡터는 연속적인 벡터 공간에서 텍스트 데이터에 내재된 의미(semantic)를 포착한다.</p>
-<p>실용적인 관점에서 임베딩은 실제 객체와 관계를 벡터로 표현하는 방식이다. 동일한 벡터 공간을 사용하여 두 사물이 얼마나 유사한지 측정하는 데 사용한다.</p>
-<section id="텍스트-벡터-표현" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="텍스트-벡터-표현">
-<span class="header-section-number">5.1</span> 텍스트 벡터 표현</h2>
-<p><code>text-embedding-ada-002</code> 모델은 빠르고 가성비가 뛰어난 임베딩 모델이다. “대한민국 수도는 서울입니다.” 이라는 문서를 벡터로 표현하면 다음과 같다. 즉, 1,536 차원을 갖는 공간에 하나의 점으로 표현될 수 있다.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>openai.api_key <span class="op">=</span> os.getenv(<span class="st">"OPENAI_API_KEY"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>seoul_response <span class="op">=</span> openai.Embedding.create(</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">input</span><span class="op">=</span><span class="st">"대한민국 수도는 서울입니다."</span>,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>seoul_embedding <span class="op">=</span> seoul_response[<span class="st">"data"</span>][<span class="dv">0</span>][<span class="st">'embedding'</span>]</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'벡터길이: </span><span class="sc">{</span><span class="bu">len</span>(seoul_embedding)<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 벡터길이: 1536</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'벡터 일부: </span><span class="sc">{</span>seoul_embedding[:<span class="dv">10</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 벡터 일부: [0.014582998119294643, -0.018063032999634743, 0.004872684367001057, -0.013805408962070942, -0.031180081889033318, 0.025176068767905235, -0.034519895911216736, 0.011357911862432957, -0.007960736751556396, -0.0020682618487626314]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="도구-postman" class="level1 page-columns page-full" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> 도구 (Postman)</h1>
+<p><a href="https://www.postman.com/">Postman</a>을 사용하여 실제 AI 제품 및 서비스 개발이 들어가기 전에 기능을 확인한다.</p>
+<ul>
+<li>
+<code>GET</code>: 펭귄 csv 파일으로 바로 다운로드 받을 수 있다.</li>
+<li>
+<code>GET</code> + Params: API-KEY를 매개변수로 전달하여 “오징어 게임” JSON 데이터를 가져올 수 있다.</li>
+<li>
+<code>POST</code> + API-KEY: 인증(Authorization) 과정을 거쳐 챗 완성(Chat Completion) 기능을 작성한 프롬프트를 전송하여 GPT-3.5 모델로부터 받아올 수 있다.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/postman_api.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="images/postman_api.jpg" class="img-fluid figure-img"></a></p>
+</figure>
 </div>
-<p>마찬가지로 일본의 수도 도쿄도 벡터로 표현할 수 있다.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tokyo_response <span class="op">=</span> openai.Embedding.create(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">input</span><span class="op">=</span><span class="st">"일본 수도는 동경입니다."</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>tokyo_embedding <span class="op">=</span> tokyo_response[<span class="st">"data"</span>][<span class="dv">0</span>][<span class="st">'embedding'</span>]</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'벡터길이: </span><span class="sc">{</span><span class="bu">len</span>(tokyo_embedding)<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 벡터길이: 1536</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'벡터 일부: </span><span class="sc">{</span>tokyo_embedding[:<span class="dv">10</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 벡터 일부: [0.010957648046314716, -0.013234060257673264, 0.009729413315653801, -0.011890077032148838, -0.03179261088371277, 0.03436483070254326, -0.029786281287670135, 0.008629790507256985, 0.01711810939013958, -0.0014733985299244523]</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="">출처: <a href="https://medium.com/apis-with-valentine/how-to-use-the-dall-e-2-api-from-openai-to-generate-images-in-postman-687aa5419e77">How to Use the DALL·E 2 API from OpenAI to Generate Images in Postman</a></span></div></div>
+<p>단계별로 OpenAI API를 활용하는 방법은 정리되어 있다. 먼저 <a href="https://platform.openai.com/signup">OpenAI API 생성</a>에 회원가입하고 로그인한다.</p>
+<section id="openai-api-key" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="openai-api-key">
+<span class="header-section-number">4.1</span> OpenAI API KEY</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">1 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">2 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">3 단계</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/openai_step_01.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="images/openai/openai_step_01.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/openai_step_02.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="images/openai/openai_step_02.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/openai_step_03.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="images/openai/openai_step_03.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section><section id="postman-접속확인" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="postman-접속확인">
+<span class="header-section-number">4.2</span> Postman 접속확인</h2>
+<p><a href="https://www.postman.com/">Postman</a> 웹사이트에 회원가입하고 로그인한다.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">1 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">2 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">3 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">4 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false">5 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-6" role="tab" aria-controls="tabset-3-6" aria-selected="false">6 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-7" role="tab" aria-controls="tabset-3-7" aria-selected="false">7 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-8" role="tab" aria-controls="tabset-3-8" aria-selected="false">8 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-9" role="tab" aria-controls="tabset-3-9" aria-selected="false">9 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-10" role="tab" aria-controls="tabset-3-10" aria-selected="false">10 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-11-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-11" role="tab" aria-controls="tabset-3-11" aria-selected="false">11 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-12-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-12" role="tab" aria-controls="tabset-3-12" aria-selected="false">12 단계</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/postman_step_01.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/openai/postman_step_01.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/postman_step_02.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="images/openai/postman_step_02.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/postman_step_03.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="images/openai/postman_step_03.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/postman_step_04.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="images/openai/postman_step_04.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-5-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/postman_step_05.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="images/openai/postman_step_05.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-6-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/postman_step_06.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="images/openai/postman_step_06.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-7-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/postman_step_07.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="images/openai/postman_step_07.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-8-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/postman_step_08.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="images/openai/postman_step_08.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-9-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/postman_step_09.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="images/openai/postman_step_09.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-10-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/postman_step_10.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="images/openai/postman_step_10.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-11" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-11-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/postman_step_11.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="images/openai/postman_step_11.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-12" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-12-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/postman_step_12.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="images/openai/postman_step_12.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section><section id="ai-이미지-생성" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="ai-이미지-생성">
+<span class="header-section-number">4.3</span> AI 이미지 생성</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">1 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">2 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">3 단계</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false">4 단계</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/dalle_step_01.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img src="images/openai/dalle_step_01.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/dalle_step_02.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img src="images/openai/dalle_step_02.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/dalle_step_03.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-24"><img src="images/openai/dalle_step_03.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/openai/dalle_step_04.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-25"><img src="images/openai/dalle_step_04.webp" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -1316,405 +1443,458 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "챗GPT"</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "OpenAI API 프로그래밍"</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> |</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">  OpenAI API를 사용한 본격적인 프로그래밍을 시작한다. 이를 위해서 기본이 되는 모형과 회원가입 API KEY 발급 헬로월드 기본기를 익힌다.</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today    </span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> </span></span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="co">  markdown: </span></span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="co">    wrap: 72</span></span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="fu"># ChatGPT</span></span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>**ChatGPT**는 간단히 말해 생성형 사전 학습된 트랜스포머(Generative</span>
-<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>Pre-trained Transformer)의 약자로, OpenAI의 GPT-3/GPT-4 거대 언어 모델</span>
-<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>제품군에 기반한 챗봇으로 지도학습과 강화학습기법을 적용하여</span>
-<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>미세조정(fine-tuned)된 제품이자 서비스다.</span>
-<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## GPT-4</span></span>
-<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>[[GPT-4's Leaked Details Shed Light on its Massive Scale and Impressive</span>
-<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>Architecture](https://mpost.io/gpt-4s-leaked-details-shed-light-on-its-massive-scale-and-impressive-architecture/)]{.aside}</span>
-<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>GPT-4는 GPT-3보다 10배 많은 1조 8천억 개의 파라미터, 120개 계층을 갖는</span>
-<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>아키텍쳐를 갖고 있다. OpenAI는 16개 전문가(MoE, Mixture of Experts)와</span>
-<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>1,100억 개의 다층 퍼셉트론 파라미터를 갖는 전문가 혼합 모델로</span>
-<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>구현되었으며, 13조 개의 토큰이 포함된 학습 데이터셋을 사용했다. 훈련</span>
-<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>비용은 3,200 \~ 6,300만 달러로 GPT-4는 이전 버전보다 추론 비용이 약 3배</span>
-<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>더 높지만, 분산 데이터센터에서 128개 GPU 클러스터 위에서 동작하는 추론</span>
-<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>아키텍쳐를 갖고 있다.</span>
-<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a><span class="al">![The Ship of Theseus](images/theseus-paradox.png)</span></span>
-<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>OpenAI의 전략은 **테세우스의 배(Theseus's Ship)** 와 유사하다고 볼 수</span>
-<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>있다.</span>
-<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## GPT-3</span></span>
-<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>OpenAI GPT-3 모형은 크게 세가지가 있다.</span>
-<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>GPT-3/GPT-4</span>
-<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Codex</span>
-<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>콘텐츠 필터 모델</span>
-<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>GPT-3은 자연어 처리 및 생성을 담당하는 모델로 인간의 언어 즉, 자연어처럼</span>
-<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>보이는 텍스트를 이해할 수 있다. 한걸음 더 들어가면 속도와 성능에 따라</span>
-<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>4가지 모델(A, B, C, D)로 구분된다.</span>
-<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-davinci-003</span>
-<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-curie-001</span>
-<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-babbage-001</span>
-<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-ada-001</span>
-<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a>성능기준으로 보면 다음과 같이 정렬할 수 있는데 비용도 그에 따라</span>
-<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a>높아진다는 의미도 함축한다.</span>
-<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a><span class="in">`text-davinci-003`</span> <span class="sc">\&gt;</span> <span class="in">`text-curie-001`</span> <span class="sc">\&gt;</span> <span class="in">`text-babbage-001`</span> <span class="sc">\&gt;</span></span>
-<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a><span class="in">`text-ada-001`</span></span>
-<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>따라서, OpenAI는 다빈치 모델(<span class="in">`text-davinci-003`</span>)을 통해 원하는 결과를</span>
-<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>얻은 후에 다른 모델을 사용해 볼 것을 권장하는데 이유는 훨씬 저렴한</span>
-<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a>비용으로 많은 수의 유사한 작업을 수행할 수 있기 때문이다.</span>
-<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a><span class="fu">### `text-ada-001`</span></span>
-<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a>2,048개의 토큰 및 2019년 10월까지의 데이터 학습하여 이후 모형과 비교하여</span>
-<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a>정확도나 성능에서 다소 밀리는 모습이지만 최적화를 통해 매우 빠르고</span>
-<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a>비용이 가장 저렴하다.</span>
-<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a><span class="fu">### `text-babbage-001`</span></span>
-<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a>2,048개의 토큰과 2019년 10월까지의 데이터 학습되었고 간단한 분류와</span>
-<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a>의미론적 분류에 효과적이다.</span>
-<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a><span class="fu">### `text-curie-001`</span></span>
-<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-110"><a href="#cb8-110" aria-hidden="true" tabindex="-1"></a>최대 2048개의 토큰을 지원하며 <span class="in">`text-davinci-003`</span> 다음으로 뛰어난 성능을</span>
-<span id="cb8-111"><a href="#cb8-111" aria-hidden="true" tabindex="-1"></a>보이는 GPT-3 모델이다. 2019년 10월까지의 데이터로 학습되었기 때문에</span>
-<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a><span class="in">`text-davinci-003`</span>보다 정확도가 떨어지지만, 번역, 복잡한 분류, 텍스트</span>
-<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a>분석 및 요약에 좋은 성능을 보이고 있어 <span class="in">`text-davinci-003`</span>와 비교하여</span>
-<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a>가성비가 높다고 평가되고 있다.</span>
-<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a><span class="fu">### `text-davinci-003`</span></span>
-<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a>2021년 9월까지의 데이터로 훈련되었기 때문에 최신 정보를 제공하지</span>
-<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a>못한다는 한계는 있지만, 앞선 GPT-3 모형과 비교하여 더 높은 품질을</span>
-<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a>제공한다. 장점 중 하나는 최대 4,000개 토큰까지 요청할 수 있다는 점이</span>
-<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a>이전 모형과 큰 차별점이 된다.</span>
-<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## 코덱스(Codex)</span></span>
-<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a>코덱스는 프로그래밍 코드 이해 및 생성을 위한 것으로 <span class="in">`code-davinci-002`</span>와</span>
-<span id="cb8-126"><a href="#cb8-126" aria-hidden="true" tabindex="-1"></a><span class="in">`code-cushman-001`</span>가 있다. 또한, 코덱스는 GitHub Copilot을 구동하는</span>
-<span id="cb8-127"><a href="#cb8-127" aria-hidden="true" tabindex="-1"></a>모델이기도 하다. 파이썬, 자바스크립트, 고, 펄, PHP, 루비, 스위프트,</span>
-<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a>타입스크립트, SQL, 셸 등 12개 이상의 프로그래밍 언어를 지원할 뿐만</span>
-<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a>아니라 자연어로 표현된 주석(comment)를 이해하고 사용자를 대신하여 요청된</span>
-<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a>작업을 수행할 수 있다.</span>
-<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-132"><a href="#cb8-132" aria-hidden="true" tabindex="-1"></a><span class="fu">### `code-cushman-001`</span></span>
-<span id="cb8-133"><a href="#cb8-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-134"><a href="#cb8-134" aria-hidden="true" tabindex="-1"></a>복잡한 작업을 수행하는 데 있어서는 <span class="in">`code-davinci-002`</span>가 더 강력하지만,</span>
-<span id="cb8-135"><a href="#cb8-135" aria-hidden="true" tabindex="-1"></a>많은 코드 생성 작업을 수행할 수 있고 <span class="in">`code-davinci-002`</span> 보다 더 빠르고</span>
-<span id="cb8-136"><a href="#cb8-136" aria-hidden="true" tabindex="-1"></a>저렴하다는 장점이 있다.</span>
-<span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-138"><a href="#cb8-138" aria-hidden="true" tabindex="-1"></a><span class="fu">### `code-davinci-002`</span></span>
-<span id="cb8-139"><a href="#cb8-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-140"><a href="#cb8-140" aria-hidden="true" tabindex="-1"></a>자연어를 코드로 번역하는 데 탁월할 뿐만 아니라 코드를 자동 완성할 뿐만</span>
-<span id="cb8-141"><a href="#cb8-141" aria-hidden="true" tabindex="-1"></a>아니라 보충 요소 삽입도 지원한다. 최대 8,000개의 토큰을 처리할 수 있으며</span>
-<span id="cb8-142"><a href="#cb8-142" aria-hidden="true" tabindex="-1"></a>2021년 6월까지의 데이터로 학습되었다.</span>
-<span id="cb8-143"><a href="#cb8-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-144"><a href="#cb8-144" aria-hidden="true" tabindex="-1"></a><span class="fu">## 콘텐츠 필터</span></span>
-<span id="cb8-145"><a href="#cb8-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-146"><a href="#cb8-146" aria-hidden="true" tabindex="-1"></a>민감한 콘텐츠 제거하기 위한 필터 모형이다. 민감하거나 안전하지 않을 수</span>
-<span id="cb8-147"><a href="#cb8-147" aria-hidden="true" tabindex="-1"></a>있는 API 생성 텍스트를 감지할 수 있다. 사용자가 사용할 AI 응용프로그램을</span>
-<span id="cb8-148"><a href="#cb8-148" aria-hidden="true" tabindex="-1"></a>개발할 경우, 필터를 사용하여 모델이 부적절한 콘텐츠를 반환하는지 감지할</span>
-<span id="cb8-149"><a href="#cb8-149" aria-hidden="true" tabindex="-1"></a>수 있다. 이 필터는 텍스트를 다음 3가지 범주로 나눈다.</span>
-<span id="cb8-150"><a href="#cb8-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-151"><a href="#cb8-151" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>안전(safe)</span>
-<span id="cb8-152"><a href="#cb8-152" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>민감(sensitive)</span>
-<span id="cb8-153"><a href="#cb8-153" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>안전하지 않음(unsafe)</span>
-<span id="cb8-154"><a href="#cb8-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-155"><a href="#cb8-155" aria-hidden="true" tabindex="-1"></a><span class="fu"># OpenAI, 챗GPT, OpenAI API</span></span>
-<span id="cb8-156"><a href="#cb8-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-157"><a href="#cb8-157" aria-hidden="true" tabindex="-1"></a>OpenAI, 챗GPT(ChatGPT), OpenAI API를 명확히 구분하는 것이 필요하다.</span>
-<span id="cb8-158"><a href="#cb8-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-159"><a href="#cb8-159" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>OpenAI: 회사명</span>
-<span id="cb8-160"><a href="#cb8-160" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>챗GPT(ChatGPT): AI 응용프로그램 (AI 챗팅 서비스)</span>
-<span id="cb8-161"><a href="#cb8-161" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>OpenAI API: OpenAI 인공지능 모형을 활용하는 API 서비스</span>
-<span id="cb8-162"><a href="#cb8-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-163"><a href="#cb8-163" aria-hidden="true" tabindex="-1"></a><span class="fu">## 인터페이스</span></span>
-<span id="cb8-164"><a href="#cb8-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-165"><a href="#cb8-165" aria-hidden="true" tabindex="-1"></a>OpenAI API는 OpenAI에서 개발한 GPT-3, GPT-4 모델을 통해 AI 기능을</span>
-<span id="cb8-166"><a href="#cb8-166" aria-hidden="true" tabindex="-1"></a>개발하고 있는 다양한 제품과 서비스에 담아내는 과정이다. 제품과 서비스를</span>
-<span id="cb8-167"><a href="#cb8-167" aria-hidden="true" tabindex="-1"></a>개발하면서 머리 뿐만 아니라 다른 다양한 재료도 데이터, API 혹은 파일</span>
-<span id="cb8-168"><a href="#cb8-168" aria-hidden="true" tabindex="-1"></a>형태로 담아낼 수 있다.</span>
-<span id="cb8-169"><a href="#cb8-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-170"><a href="#cb8-170" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai_api.jpg)</span></span>
-<span id="cb8-171"><a href="#cb8-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-172"><a href="#cb8-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## 고려사항</span></span>
-<span id="cb8-173"><a href="#cb8-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-174"><a href="#cb8-174" aria-hidden="true" tabindex="-1"></a>OpenAI는 3월에 채팅 완료(Chat Completion) API를 도입했으며, 현재 API GPT</span>
-<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a>사용량의 97%를 차지하고 있다.</span>
-<span id="cb8-176"><a href="#cb8-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-177"><a href="#cb8-177" aria-hidden="true" tabindex="-1"></a>2020년 6월에 도입된 초기 Completion API는 언어 모델과 상호 작용할 수</span>
-<span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a>있는 자유형 텍스트 프롬프트를 제공하기 위해 도입되었다. 이후 보다</span>
-<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a>구조화된 프롬프트 인터페이스(structured prompt interface)를 통해 더 나은</span>
-<span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a>결과를 제공할 수 있다는 사실을 알게 되었다. 채팅 기반 패러다임은 이전의</span>
-<span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a>사용 사례와 새로운 대화 요구 사항의 대부분을 처리하는 동시에 더 높은</span>
-<span id="cb8-182"><a href="#cb8-182" aria-hidden="true" tabindex="-1"></a>유연성과 구체성을 제공하는 강력한 것으로 입증되었다. 특히 채팅 완료</span>
-<span id="cb8-183"><a href="#cb8-183" aria-hidden="true" tabindex="-1"></a>API의 구조화된 인터페이스(예: 시스템 메시지, 함수 호출)와</span>
-<span id="cb8-184"><a href="#cb8-184" aria-hidden="true" tabindex="-1"></a>멀티턴(Multi-turn) 대화 기능을 통해 개발자는 대화 환경과 광범위한 완료</span>
-<span id="cb8-185"><a href="#cb8-185" aria-hidden="true" tabindex="-1"></a>작업을 구축할 수 있다.</span>
-<span id="cb8-186"><a href="#cb8-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-187"><a href="#cb8-187" aria-hidden="true" tabindex="-1"></a>|        구분         |           이전 모형           |        신 모형         |</span>
-<span id="cb8-188"><a href="#cb8-188" aria-hidden="true" tabindex="-1"></a>|:----------------:|:----------------------------:|:----------------------:|</span>
-<span id="cb8-189"><a href="#cb8-189" aria-hidden="true" tabindex="-1"></a>| Chat Completion API |         gpt-3.5-turbo         |     gpt-3.5-turbo      |</span>
-<span id="cb8-190"><a href="#cb8-190" aria-hidden="true" tabindex="-1"></a>|   Completion API    |              ada              |        ada-002         |</span>
-<span id="cb8-191"><a href="#cb8-191" aria-hidden="true" tabindex="-1"></a>|   Completion API    |            babbage            |      babbage-002       |</span>
-<span id="cb8-192"><a href="#cb8-192" aria-hidden="true" tabindex="-1"></a>|   Completion API    |             curie             |       curie-002        |</span>
-<span id="cb8-193"><a href="#cb8-193" aria-hidden="true" tabindex="-1"></a>|   Completion API    |            davinci            |      davinci-002       |</span>
-<span id="cb8-194"><a href="#cb8-194" aria-hidden="true" tabindex="-1"></a>|   Completion API    |     davinci-instruct-beta     | gpt-3.5-turbo-instruct |</span>
-<span id="cb8-195"><a href="#cb8-195" aria-hidden="true" tabindex="-1"></a>|   Completion API    |      curie-instruct-beta      | gpt-3.5-turbo-instruct |</span>
-<span id="cb8-196"><a href="#cb8-196" aria-hidden="true" tabindex="-1"></a>|   Completion API    |         text-ada-001          | gpt-3.5-turbo-instruct |</span>
-<span id="cb8-197"><a href="#cb8-197" aria-hidden="true" tabindex="-1"></a>|   Completion API    |       text-babbage-001        | gpt-3.5-turbo-instruct |</span>
-<span id="cb8-198"><a href="#cb8-198" aria-hidden="true" tabindex="-1"></a>|   Completion API    |        text-curie-001         | gpt-3.5-turbo-instruct |</span>
-<span id="cb8-199"><a href="#cb8-199" aria-hidden="true" tabindex="-1"></a>|   Completion API    |       text-davinci-001        | gpt-3.5-turbo-instruct |</span>
-<span id="cb8-200"><a href="#cb8-200" aria-hidden="true" tabindex="-1"></a>|   Completion API    |       text-davinci-002        | gpt-3.5-turbo-instruct |</span>
-<span id="cb8-201"><a href="#cb8-201" aria-hidden="true" tabindex="-1"></a>|   Completion API    |       text-davinci-003        | gpt-3.5-turbo-instruct |</span>
-<span id="cb8-202"><a href="#cb8-202" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |   code-search-ada-code-001    | text-embedding-ada-002 |</span>
-<span id="cb8-203"><a href="#cb8-203" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |   code-search-ada-text-001    | text-embedding-ada-002 |</span>
-<span id="cb8-204"><a href="#cb8-204" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   | code-search-babbage-code-001  | text-embedding-ada-002 |</span>
-<span id="cb8-205"><a href="#cb8-205" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   | code-search-babbage-text-001  | text-embedding-ada-002 |</span>
-<span id="cb8-206"><a href="#cb8-206" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |    text-search-ada-doc-001    | text-embedding-ada-002 |</span>
-<span id="cb8-207"><a href="#cb8-207" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |   text-search-ada-query-001   | text-embedding-ada-002 |</span>
-<span id="cb8-208"><a href="#cb8-208" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |  text-search-babbage-doc-001  | text-embedding-ada-002 |</span>
-<span id="cb8-209"><a href="#cb8-209" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   | text-search-babbage-query-001 | text-embedding-ada-002 |</span>
-<span id="cb8-210"><a href="#cb8-210" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |   text-search-curie-doc-001   | text-embedding-ada-002 |</span>
-<span id="cb8-211"><a href="#cb8-211" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |  text-search-curie-query-001  | text-embedding-ada-002 |</span>
-<span id="cb8-212"><a href="#cb8-212" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |  text-search-davinci-doc-001  | text-embedding-ada-002 |</span>
-<span id="cb8-213"><a href="#cb8-213" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   | text-search-davinci-query-001 | text-embedding-ada-002 |</span>
-<span id="cb8-214"><a href="#cb8-214" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |    text-similarity-ada-001    | text-embedding-ada-002 |</span>
-<span id="cb8-215"><a href="#cb8-215" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |  text-similarity-babbage-001  | text-embedding-ada-002 |</span>
-<span id="cb8-216"><a href="#cb8-216" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |   text-similarity-curie-001   | text-embedding-ada-002 |</span>
-<span id="cb8-217"><a href="#cb8-217" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |  text-similarity-davinci-001  | text-embedding-ada-002 |</span>
-<span id="cb8-218"><a href="#cb8-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-219"><a href="#cb8-219" aria-hidden="true" tabindex="-1"></a><span class="fu">## API</span></span>
-<span id="cb8-220"><a href="#cb8-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-221"><a href="#cb8-221" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">OpenAI</span><span class="co">](https://platform.openai.com/apps)</span>는 크게 3가지 서비스를</span>
-<span id="cb8-222"><a href="#cb8-222" aria-hidden="true" tabindex="-1"></a>제공하고 있다.</span>
-<span id="cb8-223"><a href="#cb8-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-224"><a href="#cb8-224" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">챗GPT</span><span class="co">](https://chat.openai.com/)</span></span>
-<span id="cb8-225"><a href="#cb8-225" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Dall-E</span><span class="co">](https://labs.openai.com/)</span></span>
-<span id="cb8-226"><a href="#cb8-226" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">API</span><span class="co">](https://platform.openai.com/)</span></span>
-<span id="cb8-227"><a href="#cb8-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-228"><a href="#cb8-228" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">API 문서</span><span class="co">](https://platform.openai.com/docs/api-reference)</span>를 통해 다양한</span>
-<span id="cb8-229"><a href="#cb8-229" aria-hidden="true" tabindex="-1"></a>API 서비스를 확인할 수 있다.</span>
-<span id="cb8-230"><a href="#cb8-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-231"><a href="#cb8-231" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai_services.jpg)</span></span>
-<span id="cb8-232"><a href="#cb8-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-233"><a href="#cb8-233" aria-hidden="true" tabindex="-1"></a><span class="fu"># 도구</span></span>
-<span id="cb8-234"><a href="#cb8-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-235"><a href="#cb8-235" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Postman</span><span class="co">](https://www.postman.com/)</span>을 사용하여 실제 AI 제품 및 서비스</span>
-<span id="cb8-236"><a href="#cb8-236" aria-hidden="true" tabindex="-1"></a>개발이 들어가기 전에 기능을 확인한다.</span>
-<span id="cb8-237"><a href="#cb8-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-238"><a href="#cb8-238" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`GET`</span>: 펭귄 csv 파일으로 바로 다운로드 받을 수 있다.</span>
-<span id="cb8-239"><a href="#cb8-239" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`GET`</span> + Params: API-KEY를 매개변수로 전달하여 "오징어 게임" JSON</span>
-<span id="cb8-240"><a href="#cb8-240" aria-hidden="true" tabindex="-1"></a>    데이터를 가져올 수 있다.</span>
-<span id="cb8-241"><a href="#cb8-241" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`POST`</span> + API-KEY: 인증(Authorization) 과정을 거쳐 챗 완성(Chat</span>
-<span id="cb8-242"><a href="#cb8-242" aria-hidden="true" tabindex="-1"></a>    Completion) 기능을 작성한 프롬프트를 전송하여 GPT-3.5 모델로부터</span>
-<span id="cb8-243"><a href="#cb8-243" aria-hidden="true" tabindex="-1"></a>    받아올 수 있다.</span>
-<span id="cb8-244"><a href="#cb8-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-245"><a href="#cb8-245" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/postman_api.jpg)</span></span>
-<span id="cb8-246"><a href="#cb8-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-247"><a href="#cb8-247" aria-hidden="true" tabindex="-1"></a><span class="fu"># OpenAI API 헬로월드</span></span>
-<span id="cb8-248"><a href="#cb8-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-249"><a href="#cb8-249" aria-hidden="true" tabindex="-1"></a>OpenAI 회사가 제시하고 있는 기준에 맞춰 따라줘야 OpenAI API를 사용할 수</span>
-<span id="cb8-250"><a href="#cb8-250" aria-hidden="true" tabindex="-1"></a>있다. 이를 위해 먼저 회원가입을 통한 계정을 생성하고 본인 인증과 과금을</span>
-<span id="cb8-251"><a href="#cb8-251" aria-hidden="true" tabindex="-1"></a>위한 API KEY를 생성하고 프로그래밍 언어에서 쉽게 사용할 수 있도록</span>
-<span id="cb8-252"><a href="#cb8-252" aria-hidden="true" tabindex="-1"></a>파이썬의 경우 <span class="in">`openai`</span> 패키지를 설치하고 문법에 맞춰 코드를 작성하면</span>
-<span id="cb8-253"><a href="#cb8-253" aria-hidden="true" tabindex="-1"></a>된다.</span>
-<span id="cb8-254"><a href="#cb8-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-255"><a href="#cb8-255" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
-<span id="cb8-256"><a href="#cb8-256" aria-hidden="true" tabindex="-1"></a><span class="fu">### 계정생성</span></span>
-<span id="cb8-257"><a href="#cb8-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-258"><a href="#cb8-258" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">OpenAI API 생성</span><span class="co">](https://platform.openai.com/signup)</span> 웹사이트에서</span>
-<span id="cb8-259"><a href="#cb8-259" aria-hidden="true" tabindex="-1"></a>계정을 생성한다.</span>
-<span id="cb8-260"><a href="#cb8-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-261"><a href="#cb8-261" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai_api_signup.jpg)</span>{fig-align="center" width="265"}</span>
-<span id="cb8-262"><a href="#cb8-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-263"><a href="#cb8-263" aria-hidden="true" tabindex="-1"></a><span class="fu">### API KEY 발급</span></span>
-<span id="cb8-264"><a href="#cb8-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-265"><a href="#cb8-265" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">API keys</span><span class="co">](https://platform.openai.com/account/api-keys)</span> 웹사이트에서</span>
-<span id="cb8-266"><a href="#cb8-266" aria-hidden="true" tabindex="-1"></a>API KEY를 발급받는다.</span>
-<span id="cb8-267"><a href="#cb8-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-268"><a href="#cb8-268" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/apikey_creation.jpg)</span></span>
-<span id="cb8-269"><a href="#cb8-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-270"><a href="#cb8-270" aria-hidden="true" tabindex="-1"></a><span class="fu">### `openai` 패키지 설치</span></span>
-<span id="cb8-271"><a href="#cb8-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-272"><a href="#cb8-272" aria-hidden="true" tabindex="-1"></a>[API</span>
-<span id="cb8-273"><a href="#cb8-273" aria-hidden="true" tabindex="-1"></a>Reference](https://platform.openai.com/docs/api-reference/introduction)</span>
-<span id="cb8-274"><a href="#cb8-274" aria-hidden="true" tabindex="-1"></a>안내에 따라 <span class="in">`openai`</span> 패키지를 설치한다.</span>
-<span id="cb8-275"><a href="#cb8-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-276"><a href="#cb8-276" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb8-277"><a href="#cb8-277" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install openai</span>
-<span id="cb8-278"><a href="#cb8-278" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-279"><a href="#cb8-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-280"><a href="#cb8-280" aria-hidden="true" tabindex="-1"></a><span class="fu">### 헬로월드</span></span>
-<span id="cb8-281"><a href="#cb8-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-282"><a href="#cb8-282" aria-hidden="true" tabindex="-1"></a>API키를 직접 파이썬 프로그램에 명시하고 결과를 확인한다.</span>
-<span id="cb8-283"><a href="#cb8-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-286"><a href="#cb8-286" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb8-287"><a href="#cb8-287" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb8-288"><a href="#cb8-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-289"><a href="#cb8-289" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
-<span id="cb8-290"><a href="#cb8-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-291"><a href="#cb8-291" aria-hidden="true" tabindex="-1"></a>openai.api_key <span class="op">=</span> <span class="st">"sk-xxxxxxxxxxxxxxxxxxxxxxxxxx"</span></span>
-<span id="cb8-292"><a href="#cb8-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-293"><a href="#cb8-293" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> openai.Completion.create(</span>
-<span id="cb8-294"><a href="#cb8-294" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span><span class="st">"text-davinci-003"</span>,</span>
-<span id="cb8-295"><a href="#cb8-295" aria-hidden="true" tabindex="-1"></a>  prompt<span class="op">=</span><span class="st">"OpenAI API가 뭔가요?"</span></span>
-<span id="cb8-296"><a href="#cb8-296" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-297"><a href="#cb8-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-298"><a href="#cb8-298" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span>
-<span id="cb8-299"><a href="#cb8-299" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-300"><a href="#cb8-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-301"><a href="#cb8-301" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb8-302"><a href="#cb8-302" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
-<span id="cb8-303"><a href="#cb8-303" aria-hidden="true" tabindex="-1"></a>  <span class="st">"choices"</span><span class="ex">:</span> [</span>
-<span id="cb8-304"><a href="#cb8-304" aria-hidden="true" tabindex="-1"></a>    <span class="kw">{</span></span>
-<span id="cb8-305"><a href="#cb8-305" aria-hidden="true" tabindex="-1"></a>      <span class="st">"finish_reason"</span><span class="ex">:</span> <span class="st">"length"</span>,</span>
-<span id="cb8-306"><a href="#cb8-306" aria-hidden="true" tabindex="-1"></a>      <span class="st">"index"</span><span class="ex">:</span> 0,</span>
-<span id="cb8-307"><a href="#cb8-307" aria-hidden="true" tabindex="-1"></a>      <span class="st">"logprobs"</span><span class="ex">:</span> null,</span>
-<span id="cb8-308"><a href="#cb8-308" aria-hidden="true" tabindex="-1"></a>      <span class="st">"text"</span><span class="ex">:</span> <span class="st">"\n\nOpenAI API\ub294 \uc778\uacf5"</span></span>
-<span id="cb8-309"><a href="#cb8-309" aria-hidden="true" tabindex="-1"></a>    <span class="kw">}</span></span>
-<span id="cb8-310"><a href="#cb8-310" aria-hidden="true" tabindex="-1"></a>  <span class="ex">],</span></span>
-<span id="cb8-311"><a href="#cb8-311" aria-hidden="true" tabindex="-1"></a>  <span class="st">"created"</span><span class="ex">:</span> 1689745304,</span>
-<span id="cb8-312"><a href="#cb8-312" aria-hidden="true" tabindex="-1"></a>  <span class="st">"id"</span><span class="ex">:</span> <span class="st">"cmpl-7duESieoaT985f4IKPskfcYQ3AH7F"</span>,</span>
-<span id="cb8-313"><a href="#cb8-313" aria-hidden="true" tabindex="-1"></a>  <span class="st">"model"</span><span class="ex">:</span> <span class="st">"text-davinci-003"</span>,</span>
-<span id="cb8-314"><a href="#cb8-314" aria-hidden="true" tabindex="-1"></a>  <span class="st">"object"</span><span class="ex">:</span> <span class="st">"text_completion"</span>,</span>
-<span id="cb8-315"><a href="#cb8-315" aria-hidden="true" tabindex="-1"></a>  <span class="st">"usage"</span><span class="ex">:</span> {</span>
-<span id="cb8-316"><a href="#cb8-316" aria-hidden="true" tabindex="-1"></a>    <span class="st">"completion_tokens"</span><span class="ex">:</span> 14,</span>
-<span id="cb8-317"><a href="#cb8-317" aria-hidden="true" tabindex="-1"></a>    <span class="st">"prompt_tokens"</span><span class="ex">:</span> 15,</span>
-<span id="cb8-318"><a href="#cb8-318" aria-hidden="true" tabindex="-1"></a>    <span class="st">"total_tokens"</span><span class="ex">:</span> 29</span>
-<span id="cb8-319"><a href="#cb8-319" aria-hidden="true" tabindex="-1"></a>  <span class="kw">}</span></span>
-<span id="cb8-320"><a href="#cb8-320" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
-<span id="cb8-321"><a href="#cb8-321" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-322"><a href="#cb8-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-323"><a href="#cb8-323" aria-hidden="true" tabindex="-1"></a><span class="fu">### 보안강화</span></span>
-<span id="cb8-324"><a href="#cb8-324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-327"><a href="#cb8-327" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb8-328"><a href="#cb8-328" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb8-329"><a href="#cb8-329" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb8-330"><a href="#cb8-330" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
-<span id="cb8-331"><a href="#cb8-331" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb8-332"><a href="#cb8-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-333"><a href="#cb8-333" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
-<span id="cb8-334"><a href="#cb8-334" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; True</span></span>
-<span id="cb8-335"><a href="#cb8-335" aria-hidden="true" tabindex="-1"></a>openai.api_key <span class="op">=</span> os.getenv(<span class="st">'OPENAI_API_KEY'</span>)</span>
-<span id="cb8-336"><a href="#cb8-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-337"><a href="#cb8-337" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> openai.Completion.create(</span>
-<span id="cb8-338"><a href="#cb8-338" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span><span class="st">"text-davinci-003"</span>,</span>
-<span id="cb8-339"><a href="#cb8-339" aria-hidden="true" tabindex="-1"></a>  prompt<span class="op">=</span><span class="st">"OpenAI API가 뭔가요?"</span></span>
-<span id="cb8-340"><a href="#cb8-340" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-341"><a href="#cb8-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-342"><a href="#cb8-342" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response[<span class="st">"choices"</span>][<span class="dv">0</span>][<span class="st">'text'</span>])</span>
-<span id="cb8-343"><a href="#cb8-343" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-344"><a href="#cb8-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-345"><a href="#cb8-345" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
-<span id="cb8-346"><a href="#cb8-346" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenAI</span> API는 OpenAI가 </span>
-<span id="cb8-347"><a href="#cb8-347" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-348"><a href="#cb8-348" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb8-349"><a href="#cb8-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-350"><a href="#cb8-350" aria-hidden="true" tabindex="-1"></a><span class="fu"># 임베딩</span></span>
-<span id="cb8-351"><a href="#cb8-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-352"><a href="#cb8-352" aria-hidden="true" tabindex="-1"></a>**임베딩(Embedding)** 일반적으로 실수 벡터의 형태로 텍스트 데이터를</span>
-<span id="cb8-353"><a href="#cb8-353" aria-hidden="true" tabindex="-1"></a>수치로 표현한 것으로, 이를 통해서 표현된 벡터는 연속적인 벡터 공간에서</span>
-<span id="cb8-354"><a href="#cb8-354" aria-hidden="true" tabindex="-1"></a>텍스트 데이터에 내재된 의미(semantic)를 포착한다.</span>
-<span id="cb8-355"><a href="#cb8-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-356"><a href="#cb8-356" aria-hidden="true" tabindex="-1"></a>실용적인 관점에서 임베딩은 실제 객체와 관계를 벡터로 표현하는 방식이다.</span>
-<span id="cb8-357"><a href="#cb8-357" aria-hidden="true" tabindex="-1"></a>동일한 벡터 공간을 사용하여 두 사물이 얼마나 유사한지 측정하는 데</span>
-<span id="cb8-358"><a href="#cb8-358" aria-hidden="true" tabindex="-1"></a>사용한다.</span>
-<span id="cb8-359"><a href="#cb8-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-360"><a href="#cb8-360" aria-hidden="true" tabindex="-1"></a><span class="fu">## 텍스트 벡터 표현</span></span>
-<span id="cb8-361"><a href="#cb8-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-362"><a href="#cb8-362" aria-hidden="true" tabindex="-1"></a><span class="in">`text-embedding-ada-002`</span> 모델은 빠르고 가성비가 뛰어난 임베딩 모델이다.</span>
-<span id="cb8-363"><a href="#cb8-363" aria-hidden="true" tabindex="-1"></a>"대한민국 수도는 서울입니다." 이라는 문서를 벡터로 표현하면 다음과 같다.</span>
-<span id="cb8-364"><a href="#cb8-364" aria-hidden="true" tabindex="-1"></a>즉, 1,536 차원을 갖는 공간에 하나의 점으로 표현될 수 있다.</span>
-<span id="cb8-365"><a href="#cb8-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-368"><a href="#cb8-368" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb8-369"><a href="#cb8-369" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb8-370"><a href="#cb8-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-371"><a href="#cb8-371" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb8-372"><a href="#cb8-372" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
-<span id="cb8-373"><a href="#cb8-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-374"><a href="#cb8-374" aria-hidden="true" tabindex="-1"></a>openai.api_key <span class="op">=</span> os.getenv(<span class="st">"OPENAI_API_KEY"</span>)</span>
-<span id="cb8-375"><a href="#cb8-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-376"><a href="#cb8-376" aria-hidden="true" tabindex="-1"></a>seoul_response <span class="op">=</span> openai.Embedding.create(</span>
-<span id="cb8-377"><a href="#cb8-377" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
-<span id="cb8-378"><a href="#cb8-378" aria-hidden="true" tabindex="-1"></a>  <span class="bu">input</span><span class="op">=</span><span class="st">"대한민국 수도는 서울입니다."</span>,</span>
-<span id="cb8-379"><a href="#cb8-379" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-380"><a href="#cb8-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-381"><a href="#cb8-381" aria-hidden="true" tabindex="-1"></a>seoul_embedding <span class="op">=</span> seoul_response[<span class="st">"data"</span>][<span class="dv">0</span>][<span class="st">'embedding'</span>]</span>
-<span id="cb8-382"><a href="#cb8-382" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-383"><a href="#cb8-383" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'벡터길이: </span><span class="sc">{</span><span class="bu">len</span>(seoul_embedding)<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb8-384"><a href="#cb8-384" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 벡터길이: 1536</span></span>
-<span id="cb8-385"><a href="#cb8-385" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'벡터 일부: </span><span class="sc">{</span>seoul_embedding[:<span class="dv">10</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb8-386"><a href="#cb8-386" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 벡터 일부: [0.014582998119294643, -0.018063032999634743, 0.004872684367001057, -0.013805408962070942, -0.031180081889033318, 0.025176068767905235, -0.034519895911216736, 0.011357911862432957, -0.007960736751556396, -0.0020682618487626314]</span></span>
-<span id="cb8-387"><a href="#cb8-387" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-388"><a href="#cb8-388" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-389"><a href="#cb8-389" aria-hidden="true" tabindex="-1"></a>마찬가지로 일본의 수도 도쿄도 벡터로 표현할 수 있다.</span>
-<span id="cb8-390"><a href="#cb8-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-393"><a href="#cb8-393" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb8-394"><a href="#cb8-394" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb8-395"><a href="#cb8-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-396"><a href="#cb8-396" aria-hidden="true" tabindex="-1"></a>tokyo_response <span class="op">=</span> openai.Embedding.create(</span>
-<span id="cb8-397"><a href="#cb8-397" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span><span class="st">"text-embedding-ada-002"</span>,</span>
-<span id="cb8-398"><a href="#cb8-398" aria-hidden="true" tabindex="-1"></a>  <span class="bu">input</span><span class="op">=</span><span class="st">"일본 수도는 동경입니다."</span>,</span>
-<span id="cb8-399"><a href="#cb8-399" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-400"><a href="#cb8-400" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-401"><a href="#cb8-401" aria-hidden="true" tabindex="-1"></a>tokyo_embedding <span class="op">=</span> tokyo_response[<span class="st">"data"</span>][<span class="dv">0</span>][<span class="st">'embedding'</span>]</span>
-<span id="cb8-402"><a href="#cb8-402" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'벡터길이: </span><span class="sc">{</span><span class="bu">len</span>(tokyo_embedding)<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb8-403"><a href="#cb8-403" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 벡터길이: 1536</span></span>
-<span id="cb8-404"><a href="#cb8-404" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'벡터 일부: </span><span class="sc">{</span>tokyo_embedding[:<span class="dv">10</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb8-405"><a href="#cb8-405" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 벡터 일부: [0.010957648046314716, -0.013234060257673264, 0.009729413315653801, -0.011890077032148838, -0.03179261088371277, 0.03436483070254326, -0.029786281287670135, 0.008629790507256985, 0.01711810939013958, -0.0014733985299244523]</span></span>
-<span id="cb8-406"><a href="#cb8-406" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-407"><a href="#cb8-407" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "챗GPT"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "OpenAI API 프로그래밍"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> |</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">  OpenAI API를 사용한 본격적인 프로그래밍을 시작한다. 이를 위해서 기본이 되는 모형과 회원가입 API KEY 발급 헬로월드 기본기를 익힌다.</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today    </span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> </span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co">  markdown: </span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co">    wrap: 72</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="fu"># ChatGPT</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>**ChatGPT**는 간단히 말해 생성형 사전 학습된 트랜스포머(Generative</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>Pre-trained Transformer)의 약자로, OpenAI의 GPT-3/GPT-4 거대 언어 모델</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>제품군에 기반한 챗봇으로 지도학습과 강화학습기법을 적용하여</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>미세조정(fine-tuned)된 제품이자 서비스다.</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## GPT-4</span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>[[GPT-4's Leaked Details Shed Light on its Massive Scale and Impressive</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>Architecture](https://mpost.io/gpt-4s-leaked-details-shed-light-on-its-massive-scale-and-impressive-architecture/)]{.aside}</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>GPT-4는 GPT-3보다 10배 많은 1조 8천억 개의 파라미터, 120개 계층을 갖는</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>아키텍쳐를 갖고 있다. OpenAI는 16개 전문가(MoE, Mixture of Experts)와</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>1,100억 개의 다층 퍼셉트론 파라미터를 갖는 전문가 혼합 모델로</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>구현되었으며, 13조 개의 토큰이 포함된 학습 데이터셋을 사용했다. 훈련</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>비용은 3,200 \~ 6,300만 달러로 GPT-4는 이전 버전보다 추론 비용이 약 3배</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>더 높지만, 분산 데이터센터에서 128개 GPU 클러스터 위에서 동작하는 추론</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>아키텍쳐를 갖고 있다.</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a><span class="al">![The Ship of Theseus](images/theseus-paradox.png)</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>OpenAI의 전략은 **테세우스의 배(Theseus's Ship)** 와 유사하다고 볼 수</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>있다.</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## GPT-3</span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>OpenAI GPT-3 모형은 크게 세가지가 있다.</span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>GPT-3/GPT-4</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Codex</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>콘텐츠 필터 모델</span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>GPT-3은 자연어 처리 및 생성을 담당하는 모델로 인간의 언어 즉, 자연어처럼</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>보이는 텍스트를 이해할 수 있다. 한걸음 더 들어가면 속도와 성능에 따라</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>4가지 모델(A, B, C, D)로 구분된다.</span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-davinci-003</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-curie-001</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-babbage-001</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>text-ada-001</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>성능기준으로 보면 다음과 같이 정렬할 수 있는데 비용도 그에 따라</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>높아진다는 의미도 함축한다.</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a><span class="in">`text-davinci-003`</span> <span class="sc">\&gt;</span> <span class="in">`text-curie-001`</span> <span class="sc">\&gt;</span> <span class="in">`text-babbage-001`</span> <span class="sc">\&gt;</span></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a><span class="in">`text-ada-001`</span></span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>따라서, OpenAI는 다빈치 모델(<span class="in">`text-davinci-003`</span>)을 통해 원하는 결과를</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>얻은 후에 다른 모델을 사용해 볼 것을 권장하는데 이유는 훨씬 저렴한</span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>비용으로 많은 수의 유사한 작업을 수행할 수 있기 때문이다.</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a><span class="fu">### `text-ada-001`</span></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>2,048개의 토큰 및 2019년 10월까지의 데이터 학습하여 이후 모형과 비교하여</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>정확도나 성능에서 다소 밀리는 모습이지만 최적화를 통해 매우 빠르고</span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>비용이 가장 저렴하다.</span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a><span class="fu">### `text-babbage-001`</span></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>2,048개의 토큰과 2019년 10월까지의 데이터 학습되었고 간단한 분류와</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>의미론적 분류에 효과적이다.</span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a><span class="fu">### `text-curie-001`</span></span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>최대 2048개의 토큰을 지원하며 <span class="in">`text-davinci-003`</span> 다음으로 뛰어난 성능을</span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>보이는 GPT-3 모델이다. 2019년 10월까지의 데이터로 학습되었기 때문에</span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a><span class="in">`text-davinci-003`</span>보다 정확도가 떨어지지만, 번역, 복잡한 분류, 텍스트</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>분석 및 요약에 좋은 성능을 보이고 있어 <span class="in">`text-davinci-003`</span>와 비교하여</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>가성비가 높다고 평가되고 있다.</span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a><span class="fu">### `text-davinci-003`</span></span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>2021년 9월까지의 데이터로 훈련되었기 때문에 최신 정보를 제공하지</span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>못한다는 한계는 있지만, 앞선 GPT-3 모형과 비교하여 더 높은 품질을</span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>제공한다. 장점 중 하나는 최대 4,000개 토큰까지 요청할 수 있다는 점이</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>이전 모형과 큰 차별점이 된다.</span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## 코덱스(Codex)</span></span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>코덱스는 프로그래밍 코드 이해 및 생성을 위한 것으로 <span class="in">`code-davinci-002`</span>와</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a><span class="in">`code-cushman-001`</span>가 있다. 또한, 코덱스는 GitHub Copilot을 구동하는</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>모델이기도 하다. 파이썬, 자바스크립트, 고, 펄, PHP, 루비, 스위프트,</span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>타입스크립트, SQL, 셸 등 12개 이상의 프로그래밍 언어를 지원할 뿐만</span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>아니라 자연어로 표현된 주석(comment)를 이해하고 사용자를 대신하여 요청된</span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>작업을 수행할 수 있다.</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a><span class="fu">### `code-cushman-001`</span></span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>복잡한 작업을 수행하는 데 있어서는 <span class="in">`code-davinci-002`</span>가 더 강력하지만,</span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>많은 코드 생성 작업을 수행할 수 있고 <span class="in">`code-davinci-002`</span> 보다 더 빠르고</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>저렴하다는 장점이 있다.</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a><span class="fu">### `code-davinci-002`</span></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>자연어를 코드로 번역하는 데 탁월할 뿐만 아니라 코드를 자동 완성할 뿐만</span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>아니라 보충 요소 삽입도 지원한다. 최대 8,000개의 토큰을 처리할 수 있으며</span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>2021년 6월까지의 데이터로 학습되었다.</span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a><span class="fu">## 콘텐츠 필터</span></span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>민감한 콘텐츠 제거하기 위한 필터 모형이다. 민감하거나 안전하지 않을 수</span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>있는 API 생성 텍스트를 감지할 수 있다. 사용자가 사용할 AI 응용프로그램을</span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>개발할 경우, 필터를 사용하여 모델이 부적절한 콘텐츠를 반환하는지 감지할</span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>수 있다. 이 필터는 텍스트를 다음 3가지 범주로 나눈다.</span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>안전(safe)</span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>민감(sensitive)</span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>안전하지 않음(unsafe)</span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a><span class="fu"># OpenAI, 챗GPT, OpenAI API</span></span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a>OpenAI, 챗GPT(ChatGPT), OpenAI API를 명확히 구분하는 것이 필요하다.</span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>OpenAI: 회사명</span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>챗GPT(ChatGPT): AI 응용프로그램 (AI 챗팅 서비스)</span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>OpenAI API: OpenAI 인공지능 모형을 활용하는 API 서비스</span>
+<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a><span class="fu">## 인터페이스</span></span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a>OpenAI API는 OpenAI에서 개발한 GPT-3, GPT-4 모델을 통해 AI 기능을</span>
+<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a>개발하고 있는 다양한 제품과 서비스에 담아내는 과정이다. 제품과 서비스를</span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>개발하면서 머리 뿐만 아니라 다른 다양한 재료도 데이터, API 혹은 파일</span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a>형태로 담아낼 수 있다.</span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai_api.jpg)</span></span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## 고려사항</span></span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a>OpenAI는 3월에 채팅 완료(Chat Completion) API를 도입했으며, 현재 API GPT</span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a>사용량의 97%를 차지하고 있다.</span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a>2020년 6월에 도입된 초기 Completion API는 언어 모델과 상호 작용할 수</span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a>있는 자유형 텍스트 프롬프트를 제공하기 위해 도입되었다. 이후 보다</span>
+<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a>구조화된 프롬프트 인터페이스(structured prompt interface)를 통해 더 나은</span>
+<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a>결과를 제공할 수 있다는 사실을 알게 되었다. 채팅 기반 패러다임은 이전의</span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a>사용 사례와 새로운 대화 요구 사항의 대부분을 처리하는 동시에 더 높은</span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>유연성과 구체성을 제공하는 강력한 것으로 입증되었다. 특히 채팅 완료</span>
+<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a>API의 구조화된 인터페이스(예: 시스템 메시지, 함수 호출)와</span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a>멀티턴(Multi-turn) 대화 기능을 통해 개발자는 대화 환경과 광범위한 완료</span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a>작업을 구축할 수 있다.</span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a>|        구분         |           이전 모형           |        신 모형         |</span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a>|:----------------:|:----------------------------:|:----------------------:|</span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a>| Chat Completion API |         gpt-3.5-turbo         |     gpt-3.5-turbo      |</span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a>|   Completion API    |              ada              |        ada-002         |</span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a>|   Completion API    |            babbage            |      babbage-002       |</span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a>|   Completion API    |             curie             |       curie-002        |</span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a>|   Completion API    |            davinci            |      davinci-002       |</span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a>|   Completion API    |     davinci-instruct-beta     | gpt-3.5-turbo-instruct |</span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a>|   Completion API    |      curie-instruct-beta      | gpt-3.5-turbo-instruct |</span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a>|   Completion API    |         text-ada-001          | gpt-3.5-turbo-instruct |</span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a>|   Completion API    |       text-babbage-001        | gpt-3.5-turbo-instruct |</span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a>|   Completion API    |        text-curie-001         | gpt-3.5-turbo-instruct |</span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>|   Completion API    |       text-davinci-001        | gpt-3.5-turbo-instruct |</span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>|   Completion API    |       text-davinci-002        | gpt-3.5-turbo-instruct |</span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>|   Completion API    |       text-davinci-003        | gpt-3.5-turbo-instruct |</span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |   code-search-ada-code-001    | text-embedding-ada-002 |</span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |   code-search-ada-text-001    | text-embedding-ada-002 |</span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   | code-search-babbage-code-001  | text-embedding-ada-002 |</span>
+<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   | code-search-babbage-text-001  | text-embedding-ada-002 |</span>
+<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |    text-search-ada-doc-001    | text-embedding-ada-002 |</span>
+<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |   text-search-ada-query-001   | text-embedding-ada-002 |</span>
+<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |  text-search-babbage-doc-001  | text-embedding-ada-002 |</span>
+<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   | text-search-babbage-query-001 | text-embedding-ada-002 |</span>
+<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |   text-search-curie-doc-001   | text-embedding-ada-002 |</span>
+<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |  text-search-curie-query-001  | text-embedding-ada-002 |</span>
+<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |  text-search-davinci-doc-001  | text-embedding-ada-002 |</span>
+<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   | text-search-davinci-query-001 | text-embedding-ada-002 |</span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |    text-similarity-ada-001    | text-embedding-ada-002 |</span>
+<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |  text-similarity-babbage-001  | text-embedding-ada-002 |</span>
+<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |   text-similarity-curie-001   | text-embedding-ada-002 |</span>
+<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a>|  Embeddings Model   |  text-similarity-davinci-001  | text-embedding-ada-002 |</span>
+<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a><span class="fu">## API</span></span>
+<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">OpenAI</span><span class="co">](https://platform.openai.com/apps)</span>는 크게 3가지 서비스를</span>
+<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a>제공하고 있다.</span>
+<span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-224"><a href="#cb6-224" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">챗GPT</span><span class="co">](https://chat.openai.com/)</span></span>
+<span id="cb6-225"><a href="#cb6-225" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Dall-E</span><span class="co">](https://labs.openai.com/)</span></span>
+<span id="cb6-226"><a href="#cb6-226" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">API</span><span class="co">](https://platform.openai.com/)</span></span>
+<span id="cb6-227"><a href="#cb6-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-228"><a href="#cb6-228" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">API 문서</span><span class="co">](https://platform.openai.com/docs/api-reference)</span>를 통해 다양한</span>
+<span id="cb6-229"><a href="#cb6-229" aria-hidden="true" tabindex="-1"></a>API 서비스를 확인할 수 있다.</span>
+<span id="cb6-230"><a href="#cb6-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-231"><a href="#cb6-231" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai_services.jpg)</span></span>
+<span id="cb6-232"><a href="#cb6-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-233"><a href="#cb6-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a><span class="fu"># OpenAI API 헬로월드</span></span>
+<span id="cb6-235"><a href="#cb6-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a>OpenAI 회사가 제시하고 있는 기준에 맞춰 따라줘야 OpenAI API를 사용할 수</span>
+<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a>있다. 이를 위해 먼저 회원가입을 통한 계정을 생성하고 본인 인증과 과금을</span>
+<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a>위한 API KEY를 생성하고 프로그래밍 언어에서 쉽게 사용할 수 있도록</span>
+<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a>파이썬의 경우 <span class="in">`openai`</span> 패키지를 설치하고 문법에 맞춰 코드를 작성하면</span>
+<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a>된다.</span>
+<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a><span class="fu">### 계정생성</span></span>
+<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">OpenAI API 생성</span><span class="co">](https://platform.openai.com/signup)</span> 웹사이트에서</span>
+<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a>계정을 생성한다.</span>
+<span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai_api_signup.jpg)</span>{fig-align="center" width="265"}</span>
+<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a><span class="fu">### API KEY 발급</span></span>
+<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">API keys</span><span class="co">](https://platform.openai.com/account/api-keys)</span> 웹사이트에서</span>
+<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a>API KEY를 발급받는다.</span>
+<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/apikey_creation.jpg)</span></span>
+<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a><span class="fu">### `openai` 패키지 설치</span></span>
+<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a>[API</span>
+<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a>Reference](https://platform.openai.com/docs/api-reference/introduction)</span>
+<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a>안내에 따라 <span class="in">`openai`</span> 패키지를 설치한다.</span>
+<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pip install openai</span>
+<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a><span class="fu">### 헬로월드</span></span>
+<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a>API키를 직접 파이썬 프로그램에 명시하고 결과를 확인한다.</span>
+<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
+<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>openai.api_key <span class="op">=</span> <span class="st">"sk-xxxxxxxxxxxxxxxxxxxxxxxxxx"</span></span>
+<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> openai.Completion.create(</span>
+<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span><span class="st">"text-davinci-003"</span>,</span>
+<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>  prompt<span class="op">=</span><span class="st">"OpenAI API가 뭔가요?"</span></span>
+<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response)</span>
+<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a>  <span class="st">"choices"</span><span class="ex">:</span> [</span>
+<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a>    <span class="kw">{</span></span>
+<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a>      <span class="st">"finish_reason"</span><span class="ex">:</span> <span class="st">"length"</span>,</span>
+<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a>      <span class="st">"index"</span><span class="ex">:</span> 0,</span>
+<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a>      <span class="st">"logprobs"</span><span class="ex">:</span> null,</span>
+<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a>      <span class="st">"text"</span><span class="ex">:</span> <span class="st">"\n\nOpenAI API\ub294 \uc778\uacf5"</span></span>
+<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a>    <span class="kw">}</span></span>
+<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a>  <span class="ex">],</span></span>
+<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a>  <span class="st">"created"</span><span class="ex">:</span> 1689745304,</span>
+<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a>  <span class="st">"id"</span><span class="ex">:</span> <span class="st">"cmpl-7duESieoaT985f4IKPskfcYQ3AH7F"</span>,</span>
+<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a>  <span class="st">"model"</span><span class="ex">:</span> <span class="st">"text-davinci-003"</span>,</span>
+<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a>  <span class="st">"object"</span><span class="ex">:</span> <span class="st">"text_completion"</span>,</span>
+<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a>  <span class="st">"usage"</span><span class="ex">:</span> {</span>
+<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a>    <span class="st">"completion_tokens"</span><span class="ex">:</span> 14,</span>
+<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a>    <span class="st">"prompt_tokens"</span><span class="ex">:</span> 15,</span>
+<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a>    <span class="st">"total_tokens"</span><span class="ex">:</span> 29</span>
+<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a>  <span class="kw">}</span></span>
+<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span>
+<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-309"><a href="#cb6-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-310"><a href="#cb6-310" aria-hidden="true" tabindex="-1"></a><span class="fu">### 보안강화</span></span>
+<span id="cb6-311"><a href="#cb6-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-314"><a href="#cb6-314" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb6-315"><a href="#cb6-315" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb6-316"><a href="#cb6-316" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb6-317"><a href="#cb6-317" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb6-318"><a href="#cb6-318" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb6-319"><a href="#cb6-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-320"><a href="#cb6-320" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb6-321"><a href="#cb6-321" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; True</span></span>
+<span id="cb6-322"><a href="#cb6-322" aria-hidden="true" tabindex="-1"></a>openai.api_key <span class="op">=</span> os.getenv(<span class="st">'OPENAI_API_KEY'</span>)</span>
+<span id="cb6-323"><a href="#cb6-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-324"><a href="#cb6-324" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> openai.Completion.create(</span>
+<span id="cb6-325"><a href="#cb6-325" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span><span class="st">"text-davinci-003"</span>,</span>
+<span id="cb6-326"><a href="#cb6-326" aria-hidden="true" tabindex="-1"></a>  prompt<span class="op">=</span><span class="st">"OpenAI API가 뭔가요?"</span></span>
+<span id="cb6-327"><a href="#cb6-327" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-328"><a href="#cb6-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-329"><a href="#cb6-329" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response[<span class="st">"choices"</span>][<span class="dv">0</span>][<span class="st">'text'</span>])</span>
+<span id="cb6-330"><a href="#cb6-330" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-331"><a href="#cb6-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-332"><a href="#cb6-332" aria-hidden="true" tabindex="-1"></a><span class="in">``` bash</span></span>
+<span id="cb6-333"><a href="#cb6-333" aria-hidden="true" tabindex="-1"></a><span class="ex">OpenAI</span> API는 OpenAI가 </span>
+<span id="cb6-334"><a href="#cb6-334" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-335"><a href="#cb6-335" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-336"><a href="#cb6-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-337"><a href="#cb6-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-338"><a href="#cb6-338" aria-hidden="true" tabindex="-1"></a><span class="fu"># 도구 (Postman)</span></span>
+<span id="cb6-339"><a href="#cb6-339" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb6-340"><a href="#cb6-340" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Postman</span><span class="co">](https://www.postman.com/)</span>을 사용하여 실제 AI 제품 및 서비스</span>
+<span id="cb6-341"><a href="#cb6-341" aria-hidden="true" tabindex="-1"></a>개발이 들어가기 전에 기능을 확인한다.</span>
+<span id="cb6-342"><a href="#cb6-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-343"><a href="#cb6-343" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`GET`</span>: 펭귄 csv 파일으로 바로 다운로드 받을 수 있다.</span>
+<span id="cb6-344"><a href="#cb6-344" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`GET`</span> + Params: API-KEY를 매개변수로 전달하여 "오징어 게임" JSON</span>
+<span id="cb6-345"><a href="#cb6-345" aria-hidden="true" tabindex="-1"></a>    데이터를 가져올 수 있다.</span>
+<span id="cb6-346"><a href="#cb6-346" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`POST`</span> + API-KEY: 인증(Authorization) 과정을 거쳐 챗 완성(Chat</span>
+<span id="cb6-347"><a href="#cb6-347" aria-hidden="true" tabindex="-1"></a>    Completion) 기능을 작성한 프롬프트를 전송하여 GPT-3.5 모델로부터</span>
+<span id="cb6-348"><a href="#cb6-348" aria-hidden="true" tabindex="-1"></a>    받아올 수 있다.</span>
+<span id="cb6-349"><a href="#cb6-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-350"><a href="#cb6-350" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/postman_api.jpg)</span></span>
+<span id="cb6-351"><a href="#cb6-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-352"><a href="#cb6-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-353"><a href="#cb6-353" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">출처: [How to Use the DALL·E 2 API from OpenAI to Generate Images in Postman](https://medium.com/apis-with-valentine/how-to-use-the-dall-e-2-api-from-openai-to-generate-images-in-postman-687aa5419e77)</span><span class="co">]</span>{.aside}</span>
+<span id="cb6-354"><a href="#cb6-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-355"><a href="#cb6-355" aria-hidden="true" tabindex="-1"></a>단계별로 OpenAI API를 활용하는 방법은 정리되어 있다. 먼저 <span class="co">[</span><span class="ot">OpenAI API 생성</span><span class="co">](https://platform.openai.com/signup)</span>에 회원가입하고 로그인한다.</span>
+<span id="cb6-356"><a href="#cb6-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-357"><a href="#cb6-357" aria-hidden="true" tabindex="-1"></a><span class="fu">## OpenAI API KEY </span></span>
+<span id="cb6-358"><a href="#cb6-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-359"><a href="#cb6-359" aria-hidden="true" tabindex="-1"></a>:::{.panel-tabset}</span>
+<span id="cb6-360"><a href="#cb6-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-361"><a href="#cb6-361" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1 단계</span></span>
+<span id="cb6-362"><a href="#cb6-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-363"><a href="#cb6-363" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/openai_step_01.webp)</span></span>
+<span id="cb6-364"><a href="#cb6-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-365"><a href="#cb6-365" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2 단계</span></span>
+<span id="cb6-366"><a href="#cb6-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-367"><a href="#cb6-367" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/openai_step_02.webp)</span></span>
+<span id="cb6-368"><a href="#cb6-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-369"><a href="#cb6-369" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3 단계</span></span>
+<span id="cb6-370"><a href="#cb6-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-371"><a href="#cb6-371" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/openai_step_03.webp)</span></span>
+<span id="cb6-372"><a href="#cb6-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-373"><a href="#cb6-373" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-374"><a href="#cb6-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-375"><a href="#cb6-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-376"><a href="#cb6-376" aria-hidden="true" tabindex="-1"></a><span class="fu">## Postman 접속확인</span></span>
+<span id="cb6-377"><a href="#cb6-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-378"><a href="#cb6-378" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Postman</span><span class="co">](https://www.postman.com/)</span> 웹사이트에 회원가입하고 로그인한다.</span>
+<span id="cb6-379"><a href="#cb6-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-380"><a href="#cb6-380" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb6-381"><a href="#cb6-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-382"><a href="#cb6-382" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1 단계</span></span>
+<span id="cb6-383"><a href="#cb6-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-384"><a href="#cb6-384" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/postman_step_01.webp)</span></span>
+<span id="cb6-385"><a href="#cb6-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-386"><a href="#cb6-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-387"><a href="#cb6-387" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2 단계</span></span>
+<span id="cb6-388"><a href="#cb6-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-389"><a href="#cb6-389" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/postman_step_02.webp)</span></span>
+<span id="cb6-390"><a href="#cb6-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-391"><a href="#cb6-391" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3 단계</span></span>
+<span id="cb6-392"><a href="#cb6-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-393"><a href="#cb6-393" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/postman_step_03.webp)</span></span>
+<span id="cb6-394"><a href="#cb6-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-395"><a href="#cb6-395" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4 단계</span></span>
+<span id="cb6-396"><a href="#cb6-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-397"><a href="#cb6-397" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/postman_step_04.webp)</span></span>
+<span id="cb6-398"><a href="#cb6-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-399"><a href="#cb6-399" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5 단계</span></span>
+<span id="cb6-400"><a href="#cb6-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-401"><a href="#cb6-401" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/postman_step_05.webp)</span></span>
+<span id="cb6-402"><a href="#cb6-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-403"><a href="#cb6-403" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6 단계</span></span>
+<span id="cb6-404"><a href="#cb6-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-405"><a href="#cb6-405" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/postman_step_06.webp)</span></span>
+<span id="cb6-406"><a href="#cb6-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-407"><a href="#cb6-407" aria-hidden="true" tabindex="-1"></a><span class="fu">### 7 단계</span></span>
+<span id="cb6-408"><a href="#cb6-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-409"><a href="#cb6-409" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/postman_step_07.webp)</span></span>
+<span id="cb6-410"><a href="#cb6-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-411"><a href="#cb6-411" aria-hidden="true" tabindex="-1"></a><span class="fu">### 8 단계</span></span>
+<span id="cb6-412"><a href="#cb6-412" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-413"><a href="#cb6-413" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/postman_step_08.webp)</span></span>
+<span id="cb6-414"><a href="#cb6-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-415"><a href="#cb6-415" aria-hidden="true" tabindex="-1"></a><span class="fu">### 9 단계</span></span>
+<span id="cb6-416"><a href="#cb6-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-417"><a href="#cb6-417" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/postman_step_09.webp)</span></span>
+<span id="cb6-418"><a href="#cb6-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-419"><a href="#cb6-419" aria-hidden="true" tabindex="-1"></a><span class="fu">### 10 단계</span></span>
+<span id="cb6-420"><a href="#cb6-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-421"><a href="#cb6-421" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/postman_step_10.webp)</span></span>
+<span id="cb6-422"><a href="#cb6-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-423"><a href="#cb6-423" aria-hidden="true" tabindex="-1"></a><span class="fu">### 11 단계</span></span>
+<span id="cb6-424"><a href="#cb6-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-425"><a href="#cb6-425" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/postman_step_11.webp)</span></span>
+<span id="cb6-426"><a href="#cb6-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-427"><a href="#cb6-427" aria-hidden="true" tabindex="-1"></a><span class="fu">### 12 단계</span></span>
+<span id="cb6-428"><a href="#cb6-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-429"><a href="#cb6-429" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/postman_step_12.webp)</span></span>
+<span id="cb6-430"><a href="#cb6-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-431"><a href="#cb6-431" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-432"><a href="#cb6-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-433"><a href="#cb6-433" aria-hidden="true" tabindex="-1"></a><span class="fu">## AI 이미지 생성</span></span>
+<span id="cb6-434"><a href="#cb6-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-435"><a href="#cb6-435" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb6-436"><a href="#cb6-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-437"><a href="#cb6-437" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1 단계</span></span>
+<span id="cb6-438"><a href="#cb6-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-439"><a href="#cb6-439" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/dalle_step_01.webp)</span></span>
+<span id="cb6-440"><a href="#cb6-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-441"><a href="#cb6-441" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2 단계</span></span>
+<span id="cb6-442"><a href="#cb6-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-443"><a href="#cb6-443" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/dalle_step_02.webp)</span></span>
+<span id="cb6-444"><a href="#cb6-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-445"><a href="#cb6-445" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3 단계</span></span>
+<span id="cb6-446"><a href="#cb6-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-447"><a href="#cb6-447" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/dalle_step_03.webp)</span></span>
+<span id="cb6-448"><a href="#cb6-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-449"><a href="#cb6-449" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4 단계</span></span>
+<span id="cb6-450"><a href="#cb6-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-451"><a href="#cb6-451" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/openai/dalle_step_04.webp)</span></span>
+<span id="cb6-452"><a href="#cb6-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-453"><a href="#cb6-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-454"><a href="#cb6-454" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-455"><a href="#cb6-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-456"><a href="#cb6-456" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
@@ -1723,7 +1903,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":true,"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","loop":true});</script>
 
 
 </body></html>

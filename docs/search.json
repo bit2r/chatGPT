@@ -3064,5 +3064,33 @@
     "title": "챗GPT",
     "section": "\n8.1 AI 이미지 후처리",
     "text": "8.1 AI 이미지 후처리\n웹에 이미지가 걸려있어 이를 로컬 파일로 다운로드 받아 후속 작업에 활용할 수 있도록 코드를 작성한다.\n\n코드import requests\nfrom PIL import Image\nimport io\n\n# 이미지 URL\nurl = \"https://oaidalleapiprodscus.blob.core.windows.net/private/org-GpPkNlGHcRh9i7pQIlhT18p7/user-Qkv0ntrn5tQoUu6pocAidY5V/img-BHSmfeMCmONIkrl3nSHIZIR7.png?st=2023-07-21T05%3A08%3A01Z&se=2023-07-21T07%3A08%3A01Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-07-20T20%3A06%3A58Z&ske=2023-07-21T20%3A06%3A58Z&sks=b&skv=2021-08-06&sig=8G4gBoBYYHoklBNVR1ggHiURZulcxJ62y0YjJ/OJfkM%3D\"\n\n# GET 요청\nresponse = requests.get(url)\n\n# 이미지 가져오기\nimage = Image.open(io.BytesIO(response.content))\n\n# 이미지 JPEG 변환\nimage.save('images/dalle_image.jpeg', 'JPEG')"
+  },
+  {
+    "objectID": "openAI_api.html#openai-api-key",
+    "href": "openAI_api.html#openai-api-key",
+    "title": "챗GPT",
+    "section": "\n4.1 OpenAI API KEY",
+    "text": "4.1 OpenAI API KEY\n\n\n1 단계\n2 단계\n3 단계"
+  },
+  {
+    "objectID": "openAI_api.html#postman-접속확인",
+    "href": "openAI_api.html#postman-접속확인",
+    "title": "챗GPT",
+    "section": "\n4.2 Postman 접속확인",
+    "text": "4.2 Postman 접속확인\nPostman 웹사이트에 회원가입하고 로그인한다.\n\n\n1 단계\n2 단계\n3 단계\n4 단계\n5 단계\n6 단계\n7 단계\n8 단계\n9 단계\n10 단계\n11 단계\n12 단계"
+  },
+  {
+    "objectID": "openAI_api.html#ai-이미지-생성",
+    "href": "openAI_api.html#ai-이미지-생성",
+    "title": "챗GPT",
+    "section": "\n4.3 AI 이미지 생성",
+    "text": "4.3 AI 이미지 생성\n\n\n1 단계\n2 단계\n3 단계\n4 단계"
+  },
+  {
+    "objectID": "openAI_api_apps.html#텍스트-벡터-표현",
+    "href": "openAI_api_apps.html#텍스트-벡터-표현",
+    "title": "챗GPT",
+    "section": "\n9.1 텍스트 벡터 표현",
+    "text": "9.1 텍스트 벡터 표현\ntext-embedding-ada-002 모델은 빠르고 가성비가 뛰어난 임베딩 모델이다. “대한민국 수도는 서울입니다.” 이라는 문서를 벡터로 표현하면 다음과 같다. 즉, 1,536 차원을 갖는 공간에 하나의 점으로 표현될 수 있다.\n\n코드import os\nimport openai\n\nopenai.api_key = os.getenv(\"OPENAI_API_KEY\")\n\nseoul_response = openai.Embedding.create(\n  model=\"text-embedding-ada-002\",\n  input=\"대한민국 수도는 서울입니다.\",\n)\n\nseoul_embedding = seoul_response[\"data\"][0]['embedding']\n\nprint(f'벡터길이: {len(seoul_embedding)}')\n#&gt; 벡터길이: 1536\nprint(f'벡터 일부: {seoul_embedding[:10]}')\n#&gt; 벡터 일부: [0.014582998119294643, -0.018063032999634743, 0.004872684367001057, -0.013805408962070942, -0.031180081889033318, 0.025176068767905235, -0.034519895911216736, 0.011357911862432957, -0.007960736751556396, -0.0020682618487626314]\n\n\n마찬가지로 일본의 수도 도쿄도 벡터로 표현할 수 있다.\n\n코드tokyo_response = openai.Embedding.create(\n  model=\"text-embedding-ada-002\",\n  input=\"일본 수도는 동경입니다.\",\n)\n\ntokyo_embedding = tokyo_response[\"data\"][0]['embedding']\nprint(f'벡터길이: {len(tokyo_embedding)}')\n#&gt; 벡터길이: 1536\nprint(f'벡터 일부: {tokyo_embedding[:10]}')\n#&gt; 벡터 일부: [0.010957648046314716, -0.013234060257673264, 0.009729413315653801, -0.011890077032148838, -0.03179261088371277, 0.03436483070254326, -0.029786281287670135, 0.008629790507256985, 0.01711810939013958, -0.0014733985299244523]"
   }
 ]
