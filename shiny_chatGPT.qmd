@@ -1,0 +1,128 @@
+---
+title: "챗GPT"
+subtitle: "Shiny 챗GPT"
+description: |
+  Shiny로 챗GPT를 구현한다.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+date: today    
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# ChatGPT
+
+챗GPT API를 활용하여 자체 앱을 개발할 경우 특정 요구 사항에 맞는 사용자 지정 인터페이스를 만들 수 있다는 장점 외에 다음과 같은 장단점이 제기된다.
+
+- 웹사이트 로고를 넣고 다른 자체 시스템과 통합할 수 있다.
+- 기존 서비스에 챗봇 기능 추가
+- 챗GPT 월간 유료 구독비용보다 저렴하다.
+    - 특히, 사용자가 100명 넘어갈 경우 API를 통한 서비스 사용이 비용적인 측면에서 매력이 있다.
+    - 예를 들어, 100명이 유료 구독할 경우 대략 \$2,000 달러가 비용으로 책정되는데 현재 환율기준 `1,300월/\$` 대략 260만원인데 10,000번 호출할 경우 대략 \$1,800 달러면 해결된다.
+
+
+# 비용
+
+[출처: [OpenAI API Pricing calculator](https://gptforwork.com/tools/openai-chatgpt-api-pricing-calculator)]{.aside}
+
+```{r}
+library(tidyverse)
+library(gt)
+library(gtExtras)
+
+cost_raw <- tibble::tribble(
+  ~`Tokens.per.execution	Words.per.execution	Price.for.1.execution`,
+                                                        "Price for",
+                                                            "10000",
+                                                       "executions",
+                                         "10\t8\t~$0.00045\t~$4.50",
+                                        "20\t15\t~$0.00090\t~$9.00",
+                                       "50\t38\t~$0.00225\t~$22.50",
+                                      "100\t75\t~$0.00450\t~$45.00",
+                                     "200\t150\t~$0.00900\t~$90.00",
+                                    "500\t375\t~$0.02250\t~$225.00",
+                                   "1000\t750\t~$0.04500\t~$450.00",
+                                  "2000\t1500\t~$0.09000\t~$900.00",
+                                 "4000\t3000\t~$0.18000\t~$1800.00"
+  )
+
+cost_raw |> 
+  janitor::clean_names() |> 
+  set_names("data") |> 
+  mutate(data = map(data, str_split, pattern = "\t")) |> 
+  unnest(data) |> 
+  mutate(ncol = map_int(data, length)) |> 
+  filter(ncol == 4) |> 
+  mutate(tokens = map_chr(data, 1),
+         words = map_chr(data, 2),
+         unit_cost = map_chr(data, 3),
+         ttl_cost =  map_chr(data, 4)) |> 
+  mutate(ttl_cost = parse_number(ttl_cost)) |> 
+  select(-data, -ncol) |> 
+  mutate(tokens = parse_number(tokens),
+         words  = parse_number(words)) |> 
+  gt::gt() |> 
+    gt_theme_538() |> 
+    cols_align("center") |> 
+    fmt_integer(columns = c(ttl_cost, words, tokens)) |> 
+    tab_footnote(
+      footnote = "챗GPT 유료계정 $20 x 100명, $2,000 기준",
+      locations = cells_body(columns = ttl_cost, rows = 9)
+    ) |> 
+  tab_header(
+    title = html("챗GPT4 API 호출횟수와 유료계정"),
+    subtitle = html("GPT-4 API 10,000번 호출 기준")
+  )
+```
+
+
+# 자체 앱 구출
+
+GitHub 저장소 [deepanshu88/shinyChatGPT](https://github.com/deepanshu88/shinyChatGPT) 코드를 바탕으로 로고와 메시지를 바꾸면 Shiny 챗GPT 앱을 간단히 구현할 수 있다.
+
+:::::{.columns}
+:::{.column}
+
+![](images/shinyGPT.gif)
+
+:::
+
+:::{.column}
+
+![](images/km_chatgpt.jpg)
+
+:::
+
+:::::

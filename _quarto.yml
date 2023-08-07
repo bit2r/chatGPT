@@ -128,6 +128,9 @@ website:
         - href: misinfo_embedding.qmd
           text: "오정보 임베딩"
         - text: "------------------"
+        - href: shiny_chatGPT.qmd
+          text: "Shiny 챗GPT"
+        - text: "------------------"
         - href: palmer_penguins.qmd
           text: "펭귄 데이터셋"
         - href: penguins_analytics.qmd
