@@ -4,6 +4,7 @@ project:
   resources:
     - "data/*.mp3"
     - "data/LibriSpeech/*.mp3"
+    - "data/제84주년_31절_기념사_노무현.mp3"
   render:
     - "*.qmd"
     - "!*.Rmd"
