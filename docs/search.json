@@ -3113,5 +3113,61 @@
     "title": "챗GPT",
     "section": "",
     "text": "1 ChatGPT\n챗GPT API를 활용하여 자체 앱을 개발할 경우 특정 요구 사항에 맞는 사용자 지정 인터페이스를 만들 수 있다는 장점 외에 다음과 같은 장단점이 제기된다.\n\n웹사이트 로고를 넣고 다른 자체 시스템과 통합할 수 있다.\n기존 서비스에 챗봇 기능 추가\n챗GPT 월간 유료 구독비용보다 저렴하다.\n\n특히, 사용자가 100명 넘어갈 경우 API를 통한 서비스 사용이 비용적인 측면에서 매력이 있다.\n예를 들어, 100명이 유료 구독할 경우 대략 $2,000 달러가 비용으로 책정되는데 현재 환율기준 1,300월/\\$ 대략 260만원인데 10,000번 호출할 경우 대략 $1,800 달러면 해결된다.\n\n\n\n2 비용\n출처: OpenAI API Pricing calculator\n\n코드library(tidyverse)\nlibrary(gt)\nlibrary(gtExtras)\n\ncost_raw &lt;- tibble::tribble(\n  ~`Tokens.per.execution    Words.per.execution Price.for.1.execution`,\n                                                        \"Price for\",\n                                                            \"10000\",\n                                                       \"executions\",\n                                         \"10\\t8\\t~$0.00045\\t~$4.50\",\n                                        \"20\\t15\\t~$0.00090\\t~$9.00\",\n                                       \"50\\t38\\t~$0.00225\\t~$22.50\",\n                                      \"100\\t75\\t~$0.00450\\t~$45.00\",\n                                     \"200\\t150\\t~$0.00900\\t~$90.00\",\n                                    \"500\\t375\\t~$0.02250\\t~$225.00\",\n                                   \"1000\\t750\\t~$0.04500\\t~$450.00\",\n                                  \"2000\\t1500\\t~$0.09000\\t~$900.00\",\n                                 \"4000\\t3000\\t~$0.18000\\t~$1800.00\"\n  )\n\ncost_raw |&gt; \n  janitor::clean_names() |&gt; \n  set_names(\"data\") |&gt; \n  mutate(data = map(data, str_split, pattern = \"\\t\")) |&gt; \n  unnest(data) |&gt; \n  mutate(ncol = map_int(data, length)) |&gt; \n  filter(ncol == 4) |&gt; \n  mutate(tokens = map_chr(data, 1),\n         words = map_chr(data, 2),\n         unit_cost = map_chr(data, 3),\n         ttl_cost =  map_chr(data, 4)) |&gt; \n  mutate(ttl_cost = parse_number(ttl_cost)) |&gt; \n  select(-data, -ncol) |&gt; \n  mutate(tokens = parse_number(tokens),\n         words  = parse_number(words)) |&gt; \n  gt::gt() |&gt; \n    gt_theme_538() |&gt; \n    cols_align(\"center\") |&gt; \n    fmt_integer(columns = c(ttl_cost, words, tokens)) |&gt; \n    tab_footnote(\n      footnote = \"챗GPT 유료계정 $20 x 100명, $2,000 기준\",\n      locations = cells_body(columns = ttl_cost, rows = 9)\n    ) |&gt; \n  tab_header(\n    title = html(\"챗GPT4 API 호출횟수와 유료계정\"),\n    subtitle = html(\"GPT-4 API 10,000번 호출 기준\")\n  )\n\n\n\n\n\n\n챗GPT4 API 호출횟수와 유료계정\n    \n\nGPT-4 API 10,000번 호출 기준\n    \n\ntokens\n      words\n      unit_cost\n      ttl_cost\n    \n\n\n\n10\n8\n~$0.00045\n4\n\n\n20\n15\n~$0.00090\n9\n\n\n50\n38\n~$0.00225\n22\n\n\n100\n75\n~$0.00450\n45\n\n\n200\n150\n~$0.00900\n90\n\n\n500\n375\n~$0.02250\n225\n\n\n1,000\n750\n~$0.04500\n450\n\n\n2,000\n1,500\n~$0.09000\n900\n\n\n4,000\n3,000\n~$0.18000\n1,8001\n\n\n\n\n\n1 챗GPT 유료계정 $20 x 100명, $2,000 기준\n    \n\n\n\n\n\n3 자체 앱 구출\nGitHub 저장소 deepanshu88/shinyChatGPT 코드를 바탕으로 로고와 메시지를 바꾸면 Shiny 챗GPT 앱을 간단히 구현할 수 있다."
+  },
+  {
+    "objectID": "three_paradigm.html#import-necessary-libraries",
+    "href": "three_paradigm.html#import-necessary-libraries",
+    "title": "챗GPT",
+    "section": "\n5.1 Import Necessary Libraries",
+    "text": "5.1 Import Necessary Libraries\nimport pandas as pd\nimport numpy as np\nimport seaborn as sns\nimport matplotlib.pyplot as plt"
+  },
+  {
+    "objectID": "three_paradigm.html#load-the-dataset",
+    "href": "three_paradigm.html#load-the-dataset",
+    "title": "챗GPT",
+    "section": "\n5.2 Load the Dataset",
+    "text": "5.2 Load the Dataset\n# Load the dataset\ndf = pd.read_csv('penguins.csv')"
+  },
+  {
+    "objectID": "three_paradigm.html#check-correlations-within-each-species-for-culmen-length-and-depth",
+    "href": "three_paradigm.html#check-correlations-within-each-species-for-culmen-length-and-depth",
+    "title": "챗GPT",
+    "section": "\n5.3 Check Correlations Within Each Species for Culmen Length and Depth",
+    "text": "5.3 Check Correlations Within Each Species for Culmen Length and Depth\n# Check correlations within each species for culmen_length_mm and culmen_depth_mm\nspecies_list = df['species'].unique()\nfor species in species_list:\n    print(f\"Correlation within {species} species:\")\n    print(df[df['species'] == species][['bill_length_mm', 'bill_depth_mm']].corr())\n    print(\"\\n\")"
+  },
+  {
+    "objectID": "three_paradigm.html#calculate-the-overall-correlation-between-culmen-length-and-depth",
+    "href": "three_paradigm.html#calculate-the-overall-correlation-between-culmen-length-and-depth",
+    "title": "챗GPT",
+    "section": "\n5.4 Calculate the Overall Correlation Between Culmen Length and Depth",
+    "text": "5.4 Calculate the Overall Correlation Between Culmen Length and Depth\n# Calculate the overall correlation between bill_length_mm and bill_depth_mm\noverall_corr = df[['bill_length_mm', 'bill_depth_mm']].corr().iloc[0, 1]\noverall_corr"
+  },
+  {
+    "objectID": "three_paradigm.html#create-scatter-plot",
+    "href": "three_paradigm.html#create-scatter-plot",
+    "title": "챗GPT",
+    "section": "\n5.5 Create Scatter Plot",
+    "text": "5.5 Create Scatter Plot\n# Create a figure and axis\nfig, ax = plt.subplots(figsize=(10, 8))\n\n# Overall regression line\nsns.regplot(x='bill_length_mm', y='bill_depth_mm', data=df, scatter=False, \n            line_kws={'color': 'black', 'label': \"Overall regression line\"})\n\n# Loop through each species\nfor species in species_list:\n    species_data = df[df['species'] == species]\n    sns.scatterplot(x='bill_length_mm', y='bill_depth_mm', data=species_data, label=species)\n    sns.regplot(x='bill_length_mm', y='bill_depth_mm', data=species_data, scatter=False, \n                line_kws={'label': f\"{species} regression line\"})\n\nplt.title('Bill Depth vs Bill Length')\nplt.xlabel('Bill Length (mm)')\nplt.ylabel('Bill Depth (mm)')\n\n# Add legend\nplt.legend()\n\nplt.show()"
+  },
+  {
+    "objectID": "three_paradigm.html#create-separate-scatter-plots-with-regression-lines-for-each-species",
+    "href": "three_paradigm.html#create-separate-scatter-plots-with-regression-lines-for-each-species",
+    "title": "챗GPT",
+    "section": "\n5.6 Create Separate Scatter Plots with Regression Lines for Each Species",
+    "text": "5.6 Create Separate Scatter Plots with Regression Lines for Each Species\n# Create a figure and axis\nfig, axs = plt.subplots(3, 1, figsize=(10, 20))\n\n# Loop through each species\nfor ax, species in zip(axs, species_list):\n    species_data = df[df['species'] == species]\n    sns.regplot(x='bill_length_mm', y='bill_depth_mm', data=species_data, ax=ax, \n                line_kws={'label': f\"{species} regression line\"})\n    ax.set_title(f'{species} Penguins')\n    ax.set_xlabel('Bill Length (mm)')\n    ax.set_ylabel('Bill Depth (mm)')\n    ax.legend()\n\nplt.tight_layout()\nplt.show()"
+  },
+  {
+    "objectID": "three_paradigm.html#설정",
+    "href": "three_paradigm.html#설정",
+    "title": "챗GPT",
+    "section": "\n2.1 설정",
+    "text": "2.1 설정\n유료구독하고 “Code Interpreter”를 활성화시킨다.\n\n\n1단계\n2단계\n3단계\n4단계\n5단계 (데이터+프롬프트)"
+  },
+  {
+    "objectID": "three_paradigm.html#심슨-패러독스",
+    "href": "three_paradigm.html#심슨-패러독스",
+    "title": "챗GPT",
+    "section": "\n2.2 심슨 패러독스",
+    "text": "2.2 심슨 패러독스\n“챗GPT Code Interpreter”를 사용하여 분석한 사례\n\n챗GPT Code Interpreter : 채팅 이력\n\nJupyter Notebook 다운로드: penguin_analysis.ipynb\n\n\npenguin_analysis.ipynb → penguin_analysis.qmd\n\n명령어: $ quarto convert penguin_analysis.ipynb\n\n\n\n쿼토 컴파일: 바로가기"
   }
 ]

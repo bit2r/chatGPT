@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.4.288">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
 <meta name="description" content="Code Interpreter, Notable, 오픈 소스 데이터 분석 AI 엔진을 살펴보자.">
@@ -83,6 +83,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    null
+  ],
   "language": {
     "search-no-results-text": "일치 없음",
     "search-matching-documents-text": "일치된 문서",
@@ -111,10 +114,9 @@ ga('send', {
 </head>
 <body class="nav-fixed">
 
-
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">chatGPT</span>
     </a>
@@ -312,8 +314,12 @@ ga('send', {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
-    <a class="dropdown-item" href="./openAI_GPT.html" rel="" target="">
- <span class="dropdown-text">OpenAI GPT</span></a>
+    <a class="dropdown-item" href="./openAI_api.html" rel="" target="">
+ <span class="dropdown-text">OpenAI API 프로그래밍</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./openAI_api_apps.html" rel="" target="">
+ <span class="dropdown-text">OpenAI API 응용프로그램</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./langchain_arch.html" rel="" target="">
@@ -333,6 +339,11 @@ ga('send', {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
+    <a class="dropdown-item" href="./shiny_chatGPT.html" rel="" target="">
+ <span class="dropdown-text">Shiny 챗GPT</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
     <a class="dropdown-item" href="./palmer_penguins.html" rel="" target="">
  <span class="dropdown-text">펭귄 데이터셋</span></a>
   </li>  
@@ -342,7 +353,7 @@ ga('send', {
   </li>  
         <li>
     <a class="dropdown-item" href="./three_paradigm.html" rel="" target="">
- <span class="dropdown-text">AI 분석 도구</span></a>
+ <span class="dropdown-text">Code Interpreter, Notable</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./penguin_analysis.html" rel="" target="">
@@ -425,15 +436,15 @@ ga('send', {
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-<div class="quarto-navbar-tools">
+</div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="다크 모드 전환"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <div class="quarto-title-block"><div><h1 class="title">챗GPT</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> 코드</button></div></div>
-            <p class="subtitle lead">챗GPT 펭귄 데이터 분석</p>
+            <p class="subtitle lead">Code Interpreter, Notable</p>
                   <div>
         <div class="description">
           <p>Code Interpreter, Notable, 오픈 소스 데이터 분석 AI 엔진을 살펴보자.</p>
@@ -474,13 +485,18 @@ ga('send', {
    
   <ul>
 <li><a href="#%EC%B1%97gpt-%EC%8B%9C%EB%8C%80-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D" id="toc-챗gpt-시대-데이터-분석" class="nav-link active" data-scroll-target="#%EC%B1%97gpt-%EC%8B%9C%EB%8C%80-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B6%84%EC%84%9D"><span class="header-section-number">1</span> 챗GPT 시대 데이터 분석</a></li>
-  <li><a href="#code-interpreter" id="toc-code-interpreter" class="nav-link" data-scroll-target="#code-interpreter"><span class="header-section-number">2</span> Code Interpreter</a></li>
+  <li>
+<a href="#code-interpreter" id="toc-code-interpreter" class="nav-link" data-scroll-target="#code-interpreter"><span class="header-section-number">2</span> Code Interpreter</a>
+  <ul class="collapse">
+<li><a href="#%EC%84%A4%EC%A0%95" id="toc-설정" class="nav-link" data-scroll-target="#%EC%84%A4%EC%A0%95"><span class="header-section-number">2.1</span> 설정</a></li>
+  <li><a href="#%EC%8B%AC%EC%8A%A8-%ED%8C%A8%EB%9F%AC%EB%8F%85%EC%8A%A4" id="toc-심슨-패러독스" class="nav-link" data-scroll-target="#%EC%8B%AC%EC%8A%A8-%ED%8C%A8%EB%9F%AC%EB%8F%85%EC%8A%A4"><span class="header-section-number">2.2</span> 심슨 패러독스</a></li>
+  </ul>
+</li>
   <li><a href="#notable.ai" id="toc-notable.ai" class="nav-link" data-scroll-target="#notable.ai"><span class="header-section-number">3</span> Notable.ai</a></li>
-  <li><a href="#%EC%8B%AC%EC%8A%A8-%ED%8C%A8%EB%9F%AC%EB%8F%85%EC%8A%A4" id="toc-심슨-패러독스" class="nav-link" data-scroll-target="#%EC%8B%AC%EC%8A%A8-%ED%8C%A8%EB%9F%AC%EB%8F%85%EC%8A%A4"><span class="header-section-number">4</span> 심슨 패러독스</a></li>
-  </ul></nav>
+  </ul><div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="jupyterlab\pinecone-preview.html"><i class="bi bi-journal-code"></i>벡터 DB 쥬피터 노트북</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><div class="quarto-figure quarto-figure-center">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="images/chatgpt_code_interpreter.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/chatgpt_code_interpreter.jpg" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
@@ -497,11 +513,14 @@ ga('send', {
 <li>
 <a href="http://rtutor.ai/">RTutor.ai</a>, <a href="https://github.com/gexijin/RTutor">GitHub 저장소</a>
 </li>
-<li><a href="https://chatlize.ai/">https://chatlize.ai/</a></li>
+<li><a href="https://chatlize.ai/" class="uri">https://chatlize.ai/</a></li>
 </ul>
 </li>
 </ul></section><section id="code-interpreter" class="level1" data-number="2"><h1 data-number="2">
 <span class="header-section-number">2</span> Code Interpreter</h1>
+<section id="설정" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="설정">
+<span class="header-section-number">2.1</span> 설정</h2>
+<p>유료구독하고 “Code Interpreter”를 활성화시킨다.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">1단계</a></li>
@@ -543,10 +562,9 @@ ga('send', {
 </div>
 </div>
 </div>
-</section><section id="notable.ai" class="level1" data-number="3"><h1 data-number="3">
-<span class="header-section-number">3</span> Notable.ai</h1>
-</section><section id="심슨-패러독스" class="level1" data-number="4"><h1 data-number="4">
-<span class="header-section-number">4</span> 심슨 패러독스</h1>
+</section><section id="심슨-패러독스" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="심슨-패러독스">
+<span class="header-section-number">2.2</span> 심슨 패러독스</h2>
+<p>“챗GPT Code Interpreter”를 사용하여 분석한 사례</p>
 <ol type="1">
 <li>챗GPT Code Interpreter : <a href="https://chat.openai.com/share/2e7237e6-c0ca-45b1-9254-4a4476430b19">채팅 이력</a>
 </li>
@@ -561,8 +579,53 @@ ga('send', {
 </li>
 <li>쿼토 컴파일: <a href="penguin_analysis.html">바로가기</a>
 </li>
-</ol>
-<p>`</p>
+</ol></section></section><section id="notable.ai" class="level1 page-columns page-full" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> Notable.ai</h1>
+<p><a href="https://noteable.io/">Notable</a>은 챗GPT 플러그인으로 챗GPT 유료버전에서 <a href="https://noteable.io/">Notable</a> 프로젝트와 데이터셋을 연결시키게 되면 분석을 수행할 수 있다.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/notable.jpeg.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="images/notable.jpeg.jpg" class="img-fluid figure-img" width="764"></a></p>
+</figure>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">연결</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">데이터 연결</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">분석</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">노트북</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/notable_connect.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="images/notable_connect.jpg" class="img-fluid figure-img" width="568"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/notable_data.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="images/notable_data.jpg" class="img-fluid figure-img" width="297"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/notable_analysis.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="images/notable_analysis.jpg" class="img-fluid figure-img" width="402"></a></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/notable_notebook.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="images/notable_notebook.jpg" class="img-fluid figure-img" width="478"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="https://app.noteable.io/published/47a5675e-68e4-4686-a199-7f704a5941fb/%EA%B4%91%EB%AA%85%EC%8B%9C_%EC%9D%B8%EA%B5%AC%EC%88%98_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%B6%84%EC%84%9D">Notable 분석결과</a></span></div></div>
+<p>광명시_인구수_데이터_분석.ipynb</p>
+<ul>
+<li>Notable Jupyter Notebook 다운로드: <a href="data/광명시_인구수_데이터_분석.ipynb"><code>광명시_인구수_데이터_분석.ipynb</code></a>
+</li>
+</ul>
 
 
 <!-- -->
@@ -608,6 +671,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -676,13 +766,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -812,10 +904,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -825,8 +916,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -839,6 +939,81 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -882,6 +1057,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -968,7 +1144,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "챗GPT"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "챗GPT 펭귄 데이터 분석"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Code Interpreter, Notable"</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> | </span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  Code Interpreter, Notable, 오픈 소스 데이터 분석 AI 엔진을 살펴보자. </span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
@@ -1016,20 +1192,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu"># 챗GPT 시대 데이터 분석</span></span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>OpenAI 챗GPT <span class="co">[</span><span class="ot">Code Interpreter 플러그인</span><span class="co">](https://openai.com/blog/chatgpt-plugins#code-interpreter)</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">노터블(Notable)</span><span class="co">](https://noteable.io/)</span>: EDA &amp; ETL Made Easy (SQL, Python, &amp; R)</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">오픈소스 GPT-Code UI</span><span class="co">](https://github.com/ricklamers/gpt-code-ui)</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="co">[</span><span class="ot">RTutor.ai</span><span class="co">](http://rtutor.ai/)</span>, <span class="co">[</span><span class="ot">GitHub 저장소</span><span class="co">](https://github.com/gexijin/RTutor)</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">    - </span><span class="co">[</span><span class="ot">https://chatlize.ai/</span><span class="co">](https://chatlize.ai/)</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>OpenAI 챗GPT <span class="co">[</span><span class="ot">Code Interpreter 플러그인</span><span class="co">](https://openai.com/blog/chatgpt-plugins#code-interpreter)</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">노터블(Notable)</span><span class="co">](https://noteable.io/)</span>: EDA &amp; ETL Made Easy (SQL, Python, &amp; R)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">오픈소스 GPT-Code UI</span><span class="co">](https://github.com/ricklamers/gpt-code-ui)</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>R</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="co">[</span><span class="ot">RTutor.ai</span><span class="co">](http://rtutor.ai/)</span>, <span class="co">[</span><span class="ot">GitHub 저장소</span><span class="co">](https://github.com/gexijin/RTutor)</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span><span class="ot">&lt;https://chatlize.ai/&gt;</span></span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="fu"># Code Interpreter</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="fu"># Code Interpreter</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## 설정</span></span>
 <span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>유료구독하고 "Code Interpreter"를 활성화시킨다.</span>
 <span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
 <span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1단계</span></span>
 <span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/rtutor/code_interpreter_02.webp)</span></span>
@@ -1049,35 +1225,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5단계 (데이터+프롬프트)</span></span>
 <span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/rtutor/code_interpreter_import.jpg)</span></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## 심슨 패러독스</span></span>
 <span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="fu"># Notable.ai</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>"챗GPT Code Interpreter"를 사용하여 분석한 사례</span>
 <span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="fu"># 심슨 패러독스</span></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>챗GPT Code Interpreter : <span class="co">[</span><span class="ot">채팅 이력</span><span class="co">](https://chat.openai.com/share/2e7237e6-c0ca-45b1-9254-4a4476430b19)</span></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Jupyter Notebook 다운로드: <span class="co">[</span><span class="ot">`penguin_analysis.ipynb`</span><span class="co">](data/penguin_analysis.ipynb)</span></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span><span class="in">`penguin_analysis.ipynb`</span> <span class="dv">&amp;rarr;</span> <span class="in">`penguin_analysis.qmd`</span> </span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="ss">    -  </span>명령어: <span class="in">`$ quarto convert penguin_analysis.ipynb`</span></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>쿼토 컴파일: <span class="co">[</span><span class="ot">바로가기</span><span class="co">](penguin_analysis.html)</span></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>챗GPT Code Interpreter : <span class="co">[</span><span class="ot">채팅 이력</span><span class="co">](https://chat.openai.com/share/2e7237e6-c0ca-45b1-9254-4a4476430b19)</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Jupyter Notebook 다운로드: <span class="co">[</span><span class="ot">`penguin_analysis.ipynb`</span><span class="co">](data/penguin_analysis.ipynb)</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span><span class="in">`penguin_analysis.ipynb`</span> → <span class="in">`penguin_analysis.qmd`</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>명령어: <span class="in">`$ quarto convert penguin_analysis.ipynb`</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>쿼토 컴파일: <span class="co">[</span><span class="ot">바로가기</span><span class="co">](penguin_analysis.html)</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="fu"># Notable.ai</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Notable</span><span class="co">](https://noteable.io/)</span>은 챗GPT 플러그인으로 챗GPT 유료버전에서 <span class="co">[</span><span class="ot">Notable</span><span class="co">](https://noteable.io/)</span> 프로젝트와 데이터셋을 연결시키게 되면 분석을 수행할 수 있다.</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/notable.jpeg.jpg)</span>{fig-align="center" width="764"}</span>
 <span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>`  </span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="fu">### 연결</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/notable_connect.jpg)</span>{fig-align="center" width="568"}</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="fu">### 데이터 연결</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/notable_data.jpg)</span>{width="297"} </span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="fu">### 분석</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/notable_analysis.jpg)</span>{fig-align="center" width="402"}</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="fu">### 노트북</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/notable_notebook.jpg)</span>{fig-align="center" width="478"}</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">Notable 분석결과</span><span class="co">](https://app.noteable.io/published/47a5675e-68e4-4686-a199-7f704a5941fb/%EA%B4%91%EB%AA%85%EC%8B%9C_%EC%9D%B8%EA%B5%AC%EC%88%98_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%B6%84%EC%84%9D)</span>]{.aside}</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>광명시_인구수_데이터_분석.ipynb</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notable Jupyter Notebook 다운로드: <span class="co">[</span><span class="ot">`광명시_인구수_데이터_분석.ipynb`</span><span class="co">](data/광명시_인구수_데이터_분석.ipynb)</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left"><a href="https://quarto.org/">Quarto</a> 개발</div>   
-    <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
-    <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
+    <div class="nav-footer-left">
+<p><a href="https://quarto.org/">Quarto</a> 개발</p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></p>
+</div>
+    <div class="nav-footer-right">
+<p><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></p>
+</div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":true,"openEffect":"zoom","descPosition":"bottom","selector":".lightbox"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","loop":true});</script>
 
 
 </body></html>

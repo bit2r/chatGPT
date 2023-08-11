@@ -137,7 +137,7 @@ website:
         - href: penguins_analytics.qmd
           text: "챗GPT 펭귄 데이터 분석"
         - href: three_paradigm.qmd
-          text: "AI 분석 도구"
+          text: "Code Interpreter, Notable"
         - href: penguin_analysis.qmd
           text: "심슨 패러독스"
         - text: "데이터 과학 AutoGPT"

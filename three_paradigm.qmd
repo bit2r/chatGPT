@@ -1,6 +1,6 @@
 ---
 title: "챗GPT"
-subtitle: "챗GPT 펭귄 데이터 분석"
+subtitle: "Code Interpreter, Notable"
 description: | 
   Code Interpreter, Notable, 오픈 소스 데이터 분석 AI 엔진을 살펴보자. 
 author:
@@ -48,20 +48,20 @@ notebook-view:
 
 # 챗GPT 시대 데이터 분석
 
-- OpenAI 챗GPT [Code Interpreter 플러그인](https://openai.com/blog/chatgpt-plugins#code-interpreter)
-- [노터블(Notable)](https://noteable.io/): EDA & ETL Made Easy (SQL, Python, & R)
-- [오픈소스 GPT-Code UI](https://github.com/ricklamers/gpt-code-ui)
-- R
-    - [RTutor.ai](http://rtutor.ai/), [GitHub 저장소](https://github.com/gexijin/RTutor)
-    - [https://chatlize.ai/](https://chatlize.ai/)
-
+-   OpenAI 챗GPT [Code Interpreter 플러그인](https://openai.com/blog/chatgpt-plugins#code-interpreter)
+-   [노터블(Notable)](https://noteable.io/): EDA & ETL Made Easy (SQL, Python, & R)
+-   [오픈소스 GPT-Code UI](https://github.com/ricklamers/gpt-code-ui)
+-   R
+    -   [RTutor.ai](http://rtutor.ai/), [GitHub 저장소](https://github.com/gexijin/RTutor)
+    -   <https://chatlize.ai/>
 
 # Code Interpreter
 
+## 설정
 
-::: {.panel-tabset}
+유료구독하고 "Code Interpreter"를 활성화시킨다.
 
-
+::: panel-tabset
 ### 1단계
 
 ![](images/rtutor/code_interpreter_02.webp)
@@ -81,25 +81,48 @@ notebook-view:
 ### 5단계 (데이터+프롬프트)
 
 ![](images/rtutor/code_interpreter_import.jpg)
+:::
+
+## 심슨 패러독스
+
+"챗GPT Code Interpreter"를 사용하여 분석한 사례
+
+1.  챗GPT Code Interpreter : [채팅 이력](https://chat.openai.com/share/2e7237e6-c0ca-45b1-9254-4a4476430b19)
+2.  Jupyter Notebook 다운로드: [`penguin_analysis.ipynb`](data/penguin_analysis.ipynb)
+3.  `penguin_analysis.ipynb` → `penguin_analysis.qmd`
+    -   명령어: `$ quarto convert penguin_analysis.ipynb`
+4.  쿼토 컴파일: [바로가기](penguin_analysis.html)
+
+# Notable.ai
+
+[Notable](https://noteable.io/)은 챗GPT 플러그인으로 챗GPT 유료버전에서 [Notable](https://noteable.io/) 프로젝트와 데이터셋을 연결시키게 되면 분석을 수행할 수 있다.
+
+![](images/notable.jpeg.jpg){fig-align="center" width="764"}
+
+::: panel-tabset
+### 연결
+
+![](images/notable_connect.jpg){fig-align="center" width="568"}
+
+### 데이터 연결
+
+![](images/notable_data.jpg){width="297"} 
+
+### 분석
+
+![](images/notable_analysis.jpg){fig-align="center" width="402"}
+
+### 노트북
+
+![](images/notable_notebook.jpg){fig-align="center" width="478"}
 
 :::
 
 
-# Notable.ai
+[[Notable 분석결과](https://app.noteable.io/published/47a5675e-68e4-4686-a199-7f704a5941fb/%EA%B4%91%EB%AA%85%EC%8B%9C_%EC%9D%B8%EA%B5%AC%EC%88%98_%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%B6%84%EC%84%9D)]{.aside}
 
+광명시_인구수_데이터_분석.ipynb
 
-
-# 심슨 패러독스
-
-1. 챗GPT Code Interpreter : [채팅 이력](https://chat.openai.com/share/2e7237e6-c0ca-45b1-9254-4a4476430b19)
-2. Jupyter Notebook 다운로드: [`penguin_analysis.ipynb`](data/penguin_analysis.ipynb)
-3. `penguin_analysis.ipynb` &rarr; `penguin_analysis.qmd` 
-    -  명령어: `$ quarto convert penguin_analysis.ipynb`
-4. 쿼토 컴파일: [바로가기](penguin_analysis.html)
-   
-
-
-
-`  
+- Notable Jupyter Notebook 다운로드: [`광명시_인구수_데이터_분석.ipynb`](data/광명시_인구수_데이터_분석.ipynb)
 
 
