@@ -92,6 +92,8 @@ website:
         - text: "------------------"
         - href: biz_number_API.qmd
           text: "사업자등록증 API (국세청)"
+        - href: plugin.qmd
+          text: "챗GPT 플러그인"
 
       - text: "Prompt Eng."
         menu:

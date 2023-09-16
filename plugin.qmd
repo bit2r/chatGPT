@@ -1,0 +1,358 @@
+---
+title: "플러그인(Plugin)"
+subtitle: "칸바, 카카오맵, 울프람"
+description: | 
+  카카오맵, 칸바, 울프람 사례를 통해 챗GPT 플러그인을 만나보자.
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    code-tools: true
+    code-link: true
+    code-overflow: wrap
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# 지오코딩
+
+**지오코딩(Geocoding)**은 주소, 지명, 우편 번호 등의 위치 정보를 위도와 경도로 변환하는 것으로 이를 통해 특정 위치를 지도 상에 표시하거나, 위치 기반 서비스를 제공할 수 있다. 예를 들어, "서울특별시 강남구 테헤란로 212"라는 주소를 위도 37.5012746, 경도 127.0395857와 같은 좌표로 변환하는 일종의 함수로 볼 수 있다.
+
+지오코딩은 주소나 지명을 위도와 경도로 변환하는 과정으로, 일반적으로 사용자가 주소나 지명을 입력하면 이를 API 요청으로 전달한다. 서버는 이 요청을 처리하여 해당 위치의 위도와 경도 정보를 반환한다. 이렇게 얻은 위도와 경도는 지도 상에 표시하거나 위치 기반 서비스를 제공하는 데 사용된다. 반대로, 위도와 경도를 주소나 지명으로 변환하는 것을 **역방향 지오코딩**이라고 한다. Google Maps API, Kakao Maps API, Naver Maps API 등 서비스 제공업체가 다수 존재하지만 일정 횟수 이상의 요청 제한, 정확도 문제, 데이터 갱신주기 등 제한사항을 파악하고 적절한 API를 선택하여 업무에 적용한다.
+
+[[ShareGPT: 챗GPT Plugin - 지도API](https://chat.openai.com/share/dcfee23a-0853-454b-9d8c-f76fc4474cb6)]{.aside}
+
+카카오 지도 API [기술문서](https://apis.map.kakao.com/web/documentation/)를 챗GPT 플러그인 "Link Reader"을 사용하여 좌표를 찍고 이를 지도위에 출력하는 코드를 작성해보자.
+
+## 지오코딩 API 코드
+
+카카오 지도 API를 호출해서 주소를 넘기는 프롬프트를 챗GPT 플로그인을 사용해서 위경도 좌표를 반환하는 생성한다.
+
+::: {.callout-note collapse="true"}
+### 웹사이트를 읽고 다음 지령을 준비해 https://apis.map.kakao.com/web/documentation/
+
+``` markdown
+Kakao 지도 API 문서는 다양한 지도 관련 기능을 제공한다. 이 문서는 지도 객체 생성, 이벤트, 메서드 등에 대한 상세한 정보를 담고 있다. 아래는 주요 내용의 요약이다.
+
+### 지도 객체 생성
+- `kakao.maps.Map(container, options)`: 지도를 생성한다.
+  - `container`: 지도가 표시될 HTML element
+  - `options`: 중심 좌표, 확대 수준, 지도 종류 등을 설정할 수 있다.
+
+### 주요 메서드
+- `setCenter(latlng)`: 지도의 중심 좌표를 설정한다.
+- `getCenter()`: 지도의 중심 좌표를 반환한다.
+- `setLevel(level, options)`: 지도의 확대 수준을 설정한다.
+- `getLevel()`: 지도의 확대 수준을 반환한다.
+- `setMapTypeId(mapTypeId)`: 지도의 타입을 설정한다.
+- `getMapTypeId()`: 지도의 타입을 반환한다.
+
+### 이벤트
+- `center_changed`: 중심 좌표가 변경되면 발생한다.
+- `zoom_start`: 확대 수준이 변경되기 직전에 발생한다.
+- `zoom_changed`: 확대 수준이 변경되면 발생한다.
+- `click`: 지도를 클릭하면 발생한다.
+- `dblclick`: 지도를 더블클릭하면 발생한다.
+
+이 외에도 다양한 메서드와 이벤트가 있어, 개발자가 원하는 기능을 쉽게 구현할 수 있다.
+```
+:::
+
+::: {.callout-note collapse="true"}
+### 주소를 넘기면 위경도 좌표를 반환하는 R 코드를 작성해줘.
+
+R에서 주소를 위경도 좌표로 변환하기 위해 `httr` 패키지를 사용하여 Kakao API를 호출할 수 있다. 아래는 간단한 예시 코드이다.
+
+``` r
+# 필요한 패키지를 설치하고 불러온다
+install.packages("httr")
+install.packages("jsonlite")
+library(httr)
+library(jsonlite)
+
+# 주소를 위경도로 변환하는 함수를 정의한다
+get_latlng <- function(address) {
+  # Kakao API 키를 설정한다 (본인의 API 키로 교체해야 한다)
+  api_key <- "YOUR_KAKAO_API_KEY"
+  
+  # API URL과 파라미터를 설정한다
+  url <- "https://dapi.kakao.com/v2/local/search/address.json"
+  params <- list(query = address)
+  headers <- add_headers("Authorization" = paste("KakaoAK", api_key))
+  
+  # API를 호출한다
+  response <- GET(url, query = params, headers)
+  
+  # 응답을 확인하고 JSON을 파싱한다
+  if (status_code(response) == 200) {
+    content <- content(response, "text", encoding = "UTF-8")
+    json_data <- fromJSON(content)
+    
+    # 위경도를 추출한다
+    if (json_data$meta$total_count > 0) {
+      lat <- json_data$documents[[1]]$y
+      lng <- json_data$documents[[1]]$x
+      return(list(lat = lat, lng = lng))
+    } else {
+      return(NULL)
+    }
+  } else {
+    stop("API request failed")
+  }
+}
+
+# 함수를 테스트한다
+address <- "서울특별시 강남구 테헤란로 212"
+result <- get_latlng(address)
+print(paste("Latitude:", result$lat, "Longitude:", result$lng))
+```
+
+이 코드에서 `YOUR_KAKAO_API_KEY` 부분을 본인의 Kakao API 키로 교체해야 한다. 이 함수는 주소(`address`)를 입력으로 받아 위도(`lat`)와 경도(`lng`)를 리스트로 반환한다.
+
+주의: API 키를 공개하지 않도록 주의해야 한다.
+:::
+
+## 코드 수정
+
+챗GPT가 제시한 "API 키를 공개하지 않도록 주의해야 한다"를 반영하여 `api_key <- "YOUR_KAKAO_API_KEY"` 부분을 `api_key <- Sys.getenv("KAKAO_MAP_API_KEY")` 바꿔 외부에 카카오 지도 API키를 숨긴다. "가톨릭관동대학교" 주소 "강원도 강릉시 범일로579번길 24"를 넣어 위경도 좌표를 얻어낸다.
+
+```{r}
+#| code-line-numbers: "10"
+
+# 필요한 패키지를 설치하고 불러온다
+# install.packages("httr")
+# install.packages("jsonlite")
+library(httr)
+library(jsonlite)
+
+# 주소를 위경도로 변환하는 함수를 정의한다
+get_latlng <- function(address) {
+  # Kakao API 키를 설정한다 (본인의 API 키로 교체해야 한다)
+  api_key <- Sys.getenv("KAKAO_MAP_API_KEY")
+  
+  # API URL과 파라미터를 설정한다
+  url <- "https://dapi.kakao.com/v2/local/search/address.json"
+  params <- list(query = address)
+  headers <- add_headers("Authorization" = paste("KakaoAK", api_key))
+  
+  # API를 호출한다
+  response <- GET(url, query = params, headers)
+  
+  # 응답을 확인하고 JSON을 파싱한다
+  if (status_code(response) == 200) {
+    content <- content(response, "text", encoding = "UTF-8")
+    json_data <- fromJSON(content)
+    
+    # 위경도를 추출한다
+    if (json_data$meta$total_count > 0) {
+      lat <- json_data$documents[[1]]$y
+      lng <- json_data$documents[[1]]$x
+      return(list(lat = lat, lng = lng))
+    } else {
+      return(NULL)
+    }
+  } else {
+    stop("API request failed")
+  }
+}
+
+# 가톨릭관동대학교 주소
+address <- "강원도 강릉시 범일로579번길 24"
+result <- get_latlng(address)
+print(paste("Latitude:", result$lat, "Longitude:", result$lng))
+```
+
+## 가톨릭관동대 위치
+
+가톨릭관동대학교 주소 정보를 지오코딩을 통해 위경도 좌표를 얻는다. 다음으로 `ggplot`으로 주소를 찍고, 대한민국지도위에 올려 정확한 위치를 시각화한다.
+
+```{r}
+# 필요한 패키지를 설치하고 불러온다
+# install.packages(c("sf", "ggplot2", "ggrepel"))
+library(sf)
+library(ggplot2)
+library(ggrepel)
+
+# 위경도 좌표와 주소를 가진 데이터 프레임을 생성한다
+coordinates_df <- data.frame(
+  lon = result$lng, # 경도
+  lat = result$lat,    # 위도
+  address = c("강원도 강릉시 범일로579번길 24")
+)
+
+# 데이터 프레임을 sf 객체로 변환한다
+coordinates_sf <- st_as_sf(coordinates_df, coords = c("lon", "lat"), crs = 4326)
+
+# 대한민국지도
+library(giscoR)
+cntry <- gisco_countries
+KOR <- subset(cntry, ISO3_CODE == "KOR")
+
+# ggplot2와 geom_sf()를 사용하여 시각화한다
+coordinates_sf |> 
+  ggplot() +
+    geom_sf() +
+    geom_sf_text(aes(label = address), size = 2, nudge_y = 0.2) +
+    labs(title = "챗GPT 플로그인 사례",
+         x ="",
+         y ="") +
+    theme_minimal() +
+    geom_sf(data = KOR, fill = "transparent")
+```
+
+# 포스터 제작
+
+[[ShareGPT: Canva 사용사례](https://chat.openai.com/share/9689351d-6f4b-475c-96e4-618e46aca82b)]{.aside}
+
+[캔바](https://canva.com/)는 온라인 디자인 툴로, 사용자가 손쉽게 다양한 디자인을 생성할 수 있다. 전문적인 디자인 경험이 없는 사람들도 높은 품질의 그래픽 제작을 도와준다. 사진, 텍스트, 아이콘 등을 드래그 앤 드롭하는 방식으로 디자인을 할 수 있으며, 다양한 템플릿이 지원되어 작업을 더욱 쉽고 빠르게 그래픽 작업을 수행할 수 있으며, 소셜 미디어 포스트, 프레젠테이션, 포스터, 비즈니스 카드 등 다양한 형태의 디자인을 생성할 수 있다. 작업한 디자인은 캔바 내에서 바로 다운로드 가능하고 다른 사람과 공유할 수 있다.
+
+::: {layout-ncol="3"}
+![](images/plugin_canva.jpg){fig-align="center" width="287"}
+
+![](images/plugin_canva_edit.jpg){fig-align="center" width="287"}
+
+![](images/plugin_canva_poster.jpg){fig-align="center" width="287"}
+:::
+
+# 사실확인과 수학
+
+## 사실 확인
+
+울프람 알파(Wolfram Alpha) 사용해서 사실관계를 확인해보자.
+
+::: {.callout-note collapse="true"}
+### "지구는 평평하다"라는 주장을 검증해줘.
+
+```
+"지구는 평평하다"라는 주장에 대해 Wolfram Alpha를 이용해 검증해보았습니다.
+
+### 입력 해석
+- 질문: 지구는 평평하다?
+
+### 결과
+- 답변: 아니다.
+  - 지역적으로만 그렇다. 그리고 그것도 특정 지역, 예를 들어 미국 중서부에서만 해당된다.
+
+자세한 정보는 [Wolfram|Alpha 웹사이트](https://www6b3.wolframalpha.com/input?i=Is+the+Earth+flat%3F)에서 확인할 수 있다.
+
+이처럼 Wolfram Alpha는 다양한 주장이나 정보에 대한 팩트체크를 할 수 있는 유용한 도구이다.
+```
+
+[Wolfram|Alpha 웹사이트](https://www6b3.wolframalpha.com/input?i=Is+the+Earth+flat%3F)
+:::
+
+::: {.callout-note collapse="true"}
+### 라면을 많이 먹으면 건강에 정말 안좋은가?
+
+Wolfram Alpha에서는 "라면을 많이 먹으면 건강에 정말 안 좋은가?"에 대한 구체적인 답변을 제공하지 못했다. 그러나 일반적으로 라면은 높은 나트륨, 지방, 인공 첨가물 등을 포함하고 있어, 과도하게 섭취할 경우 다음과 같은 건강 문제가 발생할 수 있다:
+
+1. **고혈압**: 라면에는 나트륨이 많이 들어있다. 나트륨 과다 섭취는 혈압을 높일 수 있다.
+  
+2. **비만**: 라면은 칼로리가 높고, 지방도 많이 들어있다. 지속적으로 라면을 많이 먹으면 체중 증가의 위험이 있다.
+
+3. **소화기 문제**: 라면은 소화가 잘 되지 않는 식품 중 하나이다. 과도한 섭취는 소화기에 부담을 줄 수 있다.
+
+4. **영양 불균형**: 라면은 영양소가 적고, 나트륨이나 지방 등의 불필요한 성분이 많다. 이로 인해 영양 불균형이 발생할 수 있다.
+
+5. **심혈관 질환**: 고혈압, 높은 콜레스테롤 등은 심혈관 질환의 위험을 높인다.
+
+라면을 즐길 때는 이러한 점들을 고려하여 적당한 양과 빈도로 섭취하는 것이 중요하다.
+:::
+
+## 수능문제 풀이
+
+[[ShareGPT: 팩트체크와 수학문제 풀이](https://chat.openai.com/share/e3e57271-9956-4348-abe9-4a87bc56a984)]{.aside}
+
+2023학년도 대학수학능력시험 수학영역 문제를 풀어보자.
+
+![](images/plugin_wolfram.jpg)
+
+::: {.callout-note collapse="true"}
+### $\left(\frac{4}{2^{\sqrt{2}}}\right)^{2+\sqrt{2}}$ 값은?
+
+식 $$
+\left(\frac{4}{2^{\sqrt{2}}}\right)^{2+\sqrt{2}}
+$$
+의 값은 $4$입니다.
+
+정확한 형태로는 $2^{(2 - \sqrt{2}) (2 + \sqrt{2})}$로 표현됩니다.
+
+자세한 정보는 [Wolfram|Alpha 웹사이트](https://www6b3.wolframalpha.com/input?i=%284+%2F+%282%5E%28sqrt%282%29%29%29%29%5E%282+%2B+sqrt%282%29%29)에서 확인할 수 있다.
+
+:::
+
+
+::: {.callout-note collapse="true"}
+### 과정도 설명해줘.
+
+물론이다. 주어진 식은 $$
+\left(\frac{4}{2^{\sqrt{2}}}\right)^{2+\sqrt{2}}
+$$이다.
+
+이 식을 단계별로 분해해보자.
+
+### 단계 1: 분모를 간단하게 만들기
+먼저, 분모인 $2^{\sqrt{2}}$를 간단하게 만들기 위해 분자와 분모에 $2^{\sqrt{2}}$를 곱한다. 이렇게 하면:
+
+$$
+\left(\frac{4 \times 2^{\sqrt{2}}}{2^{\sqrt{2}} \times 2^{\sqrt{2}}}\right)^{2+\sqrt{2}}
+$$
+
+### 단계 2: 분모를 합치기
+이제 분모의 $2^{\sqrt{2}} \times 2^{\sqrt{2}}$를 합쳐 $2^{2\sqrt{2}}$로 만든다.
+
+$$
+\left(\frac{4 \times 2^{\sqrt{2}}}{2^{2\sqrt{2}}}\right)^{2+\sqrt{2}}
+$$
+
+### 단계 3: 분자를 합치기
+분자의 $4 \times 2^{\sqrt{2}}$를 합쳐 $2^2 \times 2^{\sqrt{2}} = 2^{2+\sqrt{2}}$로 만든다.
+
+$$
+\left(\frac{2^{2+\sqrt{2}}}{2^{2\sqrt{2}}}\right)^{2+\sqrt{2}}
+$$
+
+### 단계 4: 지수 법칙 적용
+지수 법칙에 따라 분자와 분모의 지수를 빼준다.
+
+$$
+\left(2^{(2+\sqrt{2}) - 2\sqrt{2}}\right)^{2+\sqrt{2}} = \left(2^{(2 - \sqrt{2})(2 + \sqrt{2})}\right)^{2+\sqrt{2}}
+$$
+
+### 단계 5: 최종 계산
+마지막으로, $(2 - \sqrt{2})(2 + \sqrt{2})$를 계산하면 $4 - 2 = 2$가 된다. 따라서 최종 결과는 $2^2 = 4$이다.
+
+이렇게 해서 $$
+\left(\frac{4}{2^{\sqrt{2}}}\right)^{2+\sqrt{2}} = 4
+$$임을 확인할 수 있다.
+
+:::
+
+
