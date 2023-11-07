@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
 <title>chatGPT</title>
@@ -144,6 +144,17 @@ ga('send', {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
 <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-gpt4" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">챗GPT4</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-gpt4">
+<li>
+    <a class="dropdown-item" href="./devday.html" rel="" target="">
+ <span class="dropdown-text">OpenAI 개발자 날</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ai" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">생성 AI</span>
     </a>
@@ -281,6 +292,10 @@ ga('send', {
     <a class="dropdown-item" href="./biz_number_API.html" rel="" target="">
  <span class="dropdown-text">사업자등록증 API (국세청)</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./plugin.html" rel="" target="">
+ <span class="dropdown-text">챗GPT 플러그인</span></a>
+  </li>  
     </ul>
 </li>
   <li class="nav-item dropdown ">
@@ -355,6 +370,11 @@ ga('send', {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li>
+    <a class="dropdown-item" href="./shiny_chatGPT.html" rel="" target="">
+ <span class="dropdown-text">Shiny 챗GPT</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
     <a class="dropdown-item" href="./palmer_penguins.html" rel="" target="">
  <span class="dropdown-text">펭귄 데이터셋</span></a>
   </li>  
@@ -364,7 +384,7 @@ ga('send', {
   </li>  
         <li>
     <a class="dropdown-item" href="./three_paradigm.html" rel="" target="">
- <span class="dropdown-text">AI 분석 도구</span></a>
+ <span class="dropdown-text">Code Interpreter, Notable</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./penguin_analysis.html" rel="" target="">
@@ -481,7 +501,7 @@ ga('send', {
       <div>
       <div class="quarto-title-meta-heading">공개</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">2023년 07월 21일</p>
+        <p class="date">2023년 11월 07일</p>
       </div>
     </div>
     
@@ -536,19 +556,19 @@ ga('send', {
 <p>PDF 문서를 <a href="https://github.com/Ifeanyi55/Convert2Docx"><code>Convert2Docx</code></a> 패키지를 활용하여 워드파일로 변환시킨다. 페이지가 많아 제법 시간이 소요된다.</p>
 <div class="cell">
 <details><summary>코드</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">Convert2Docx</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/Convert2Docx/man/Converter.html">Converter</a></span><span class="op">(</span>pdf_file <span class="op">=</span> <span class="st">"data/2303.08774.pdf"</span>,</span>
+<span><span class="fu">Converter</span><span class="op">(</span>pdf_file <span class="op">=</span> <span class="st">"data/2303.08774.pdf"</span>,</span>
 <span>          docx_filename <span class="op">=</span> <span class="st">"data/2303.08774.docx"</span><span class="op">)</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section><section id="워드-표추출" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="워드-표추출">
 <span class="header-section-number">1.2</span> 워드 → 표추출</h2>
-<p><a href="https://github.com/hrbrmstr/docxtractr"><code>docxtractr</code></a> 패키지를 설치하고 <code><a href="https://rdrr.io/pkg/docxtractr/man/docx_extract_tbl.html">docx_extract_tbl()</a></code> 함수로 PDF 파일에 담긴 표를 추출한다.</p>
+<p><a href="https://github.com/hrbrmstr/docxtractr"><code>docxtractr</code></a> 패키지를 설치하고 <code>docx_extract_tbl()</code> 함수로 PDF 파일에 담긴 표를 추출한다.</p>
 <div class="cell">
 <details><summary>코드</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://gitlab.com/hrbrmstr/docxtractr">docxtractr</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">gpt_docx</span> <span class="op">&lt;-</span> <span class="fu">docxtractr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/docxtractr/man/read_docx.html">read_docx</a></span><span class="op">(</span><span class="st">"data/2303.08774.docx"</span><span class="op">)</span></span>
+<span><span class="va">gpt_docx</span> <span class="op">&lt;-</span> <span class="fu">docxtractr</span><span class="fu">::</span><span class="fu">read_docx</span><span class="op">(</span><span class="st">"data/2303.08774.docx"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">tbl_01</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/docxtractr/man/docx_extract_tbl.html">docx_extract_tbl</a></span><span class="op">(</span><span class="va">gpt_docx</span>, <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span><span class="va">tbl_01</span> <span class="op">&lt;-</span> <span class="fu">docx_extract_tbl</span><span class="op">(</span><span class="va">gpt_docx</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>    <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html">clean_names</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">tbl_01</span></span>
 <span><span class="co">#&gt; # A tibble: 34 × 4</span></span>
@@ -4421,7 +4441,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":true,"openEffect":"zoom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":true,"openEffect":"zoom","closeEffect":"zoom"});</script>
 
 
 </body></html>

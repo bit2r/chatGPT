@@ -5,7 +5,6 @@
 <meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
-<meta name="description" content="챗GPT가 다양한 분야에서 생산성 향상을 보여주고 있지만 충분히 준비되지 않은 상태에서 챗GPT를 사용하기 위해 각 조직마다 점검의 시간을 갖고 있기도 하다.">
 <title>chatGPT</title>
 <style>
 code{white-space: pre-wrap;}
@@ -107,7 +106,7 @@ ga('send', {
   hitType: 'pageview',
   'anonymizeIp': true,
 });
-</script><link rel="stylesheet" href="css/quarto.css">
+</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="css/quarto.css">
 </head>
 <body class="nav-fixed">
 
@@ -457,13 +456,8 @@ ga('send', {
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <div class="quarto-title-block"><div><h1 class="title">chatGPT</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> 코드</button></div></div>
-            <p class="subtitle lead">챗GPT 보안사고</p>
-                  <div>
-        <div class="description">
-          <p>챗GPT가 다양한 분야에서 생산성 향상을 보여주고 있지만 충분히 준비되지 않은 상태에서 챗GPT를 사용하기 위해 각 조직마다 점검의 시간을 갖고 있기도 하다.</p>
-        </div>
-      </div>
-                </div>
+            <p class="subtitle lead"><del>노동자</del> 개발자 날</p>
+                      </div>
   </div>
     
   <div class="quarto-title-meta-author">
@@ -497,47 +491,175 @@ ga('send', {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">목차</h2>
    
   <ul>
-<li><a href="#%EC%B1%97gpt-%EB%B3%B4%EC%95%88%EC%82%AC%EA%B3%A0" id="toc-챗gpt-보안사고" class="nav-link active" data-scroll-target="#%EC%B1%97gpt-%EB%B3%B4%EC%95%88%EC%82%AC%EA%B3%A0"><span class="header-section-number">1</span> 챗GPT 보안사고</a></li>
-  <li><a href="#%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90" id="toc-삼성전자" class="nav-link" data-scroll-target="#%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90"><span class="header-section-number">2</span> 삼성전자</a></li>
-  <li><a href="#%EC%9D%B4%ED%83%88%EB%A6%AC%EC%95%84" id="toc-이탈리아" class="nav-link" data-scroll-target="#%EC%9D%B4%ED%83%88%EB%A6%AC%EC%95%84"><span class="header-section-number">3</span> 이탈리아</a></li>
+<li><a href="#openai-%EA%B0%9C%EB%B0%9C%EC%9E%90-%EB%82%A0" id="toc-openai-개발자-날" class="nav-link active" data-scroll-target="#openai-%EA%B0%9C%EB%B0%9C%EC%9E%90-%EB%82%A0"><span class="header-section-number">1</span> OpenAI 개발자 날</a></li>
+  <li>
+<a href="#%EC%B1%97gpt-4-%ED%84%B0%EB%B3%B4" id="toc-챗gpt-4-터보" class="nav-link" data-scroll-target="#%EC%B1%97gpt-4-%ED%84%B0%EB%B3%B4"><span class="header-section-number">2</span> 챗GPT-4 터보</a>
+  <ul class="collapse">
+<li><a href="#%EC%B5%9C%EA%B7%BC-%EC%A7%80%EC%8B%9D" id="toc-최근-지식" class="nav-link" data-scroll-target="#%EC%B5%9C%EA%B7%BC-%EC%A7%80%EC%8B%9D"><span class="header-section-number">2.1</span> 최근 지식</a></li>
+  <li><a href="#%EB%A7%A5%EB%9D%BD-%ED%81%AC%EA%B8%B0" id="toc-맥락-크기" class="nav-link" data-scroll-target="#%EB%A7%A5%EB%9D%BD-%ED%81%AC%EA%B8%B0"><span class="header-section-number">2.2</span> 맥락 크기</a></li>
+  <li><a href="#%EB%B9%84%EC%9A%A9" id="toc-비용" class="nav-link" data-scroll-target="#%EB%B9%84%EC%9A%A9"><span class="header-section-number">2.3</span> 비용</a></li>
+  <li><a href="#%EB%8B%A4%EC%A4%91-%EB%AA%A8%EB%93%9C%EC%84%B1" id="toc-다중-모드성" class="nav-link" data-scroll-target="#%EB%8B%A4%EC%A4%91-%EB%AA%A8%EB%93%9C%EC%84%B1"><span class="header-section-number">2.4</span> 다중 모드성</a></li>
+  <li><a href="#gpt-%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8" id="toc-gpt-플러그인" class="nav-link" data-scroll-target="#gpt-%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8"><span class="header-section-number">2.5</span> GPT 플러그인</a></li>
+  <li><a href="#%EC%A0%80%EC%9E%91%EA%B6%8C-%EB%B3%B4%ED%97%98" id="toc-저작권-보험" class="nav-link" data-scroll-target="#%EC%A0%80%EC%9E%91%EA%B6%8C-%EB%B3%B4%ED%97%98"><span class="header-section-number">2.6</span> 저작권 보험</a></li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><section id="챗gpt-보안사고" class="level1" data-number="1"><h1 data-number="1">
-<span class="header-section-number">1</span> 챗GPT 보안사고</h1>
-<p><strong>보안 vs 효율</strong> 을 높고 많은 공공기관을 비롯한 기업들이 고민을 하고 있다. 거대언어모형(LLM)에 기반하여 모든 것을 자체 개발하면 상관이 없으나 현실적으로 GPT-3/3.5/4 모형을 갖춘 조직이 전무하지만, 이미 대다수의 사람이 오픈AI 챗GPT를 맛보았기 때문에 생산성 향상을 그냥 두고 넘어가기도 어려운 상황이다. 이런 점에서 챗GPT 제한적 사용이 현재시점(’23년 3월) 최선으로 보이며 점차 오픈소스 거대언어모형(LLM)과 전략적 제휴를 통한 챗GPT 사용이 중장기적 추진방향으로 자리 잡고 있다.</p>
-<p><a href="https://n.news.naver.com/mnews/article/022/0003798570?sid=101">이동수 (2023.04.02.), “대기업 회의 내용 유출… ‘챗GPT 기밀 유출’ 우려가 현실로”, 세계일보</a></p>
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content"><section id="openai-개발자-날" class="level1 page-columns page-full" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> OpenAI 개발자 날</h1>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class=""><a href="https://openai.com/blog/new-models-and-developer-products-announced-at-devday">New models and developer products announced at DevDay</a></span></div></div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/U9mJuUkhUzk?si=92ZTbuZUuL8wZwUW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+</iframe>
+</section><section id="챗gpt-4-터보" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> 챗GPT-4 터보</h1>
+<section id="최근-지식" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="최근-지식">
+<span class="header-section-number">2.1</span> 최근 지식</h2>
+<p>2021년 9월 → 2023년 4월</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">GPT3-5-turbo</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">GPT-4 + 빙검색</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">GPT-4</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">GPT-4 터보</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="images/chatGPT-leakage.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="images/chatGPT-leakage.jpg" class="img-fluid figure-img"></a></p>
+<figure class="figure"><p><a href="images/chatGPT4_turbo/gpt_3_5_turbo.jpg" class="lightbox" title="2023년 11월 7일 기준" data-gallery="quarto-lightbox-gallery-6"><img src="images/chatGPT4_turbo/gpt_3_5_turbo.jpg" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">2023년 11월 7일 기준</figcaption></figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/chatGPT4_turbo/gpt_4_bing.jpg" class="lightbox" title="2023년 11월 7일 기준" data-gallery="quarto-lightbox-gallery-7"><img src="images/chatGPT4_turbo/gpt_4_bing.jpg" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">2023년 11월 7일 기준</figcaption></figure>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/chatGPT4_turbo/gpt_4.jpg" class="lightbox" title="2023년 11월 7일 기준" data-gallery="quarto-lightbox-gallery-8"><img src="images/chatGPT4_turbo/gpt_4.jpg" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">2023년 11월 7일 기준</figcaption></figure>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/chatGPT4_turbo/gpt_4_turbo.jpg" class="lightbox" title="2023년 11월 7일 기준" data-gallery="quarto-lightbox-gallery-9"><img src="images/chatGPT4_turbo/gpt_4_turbo.jpg" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">2023년 11월 7일 기준</figcaption></figure>
+</div>
+</div>
+</div>
+</div>
+</section><section id="맥락-크기" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="맥락-크기">
+<span class="header-section-number">2.2</span> 맥락 크기</h2>
+<table class="table">
+<thead><tr class="header">
+<th style="text-align: center;">구분</th>
+<th style="text-align: center;">GPT-4 Turbo</th>
+<th style="text-align: center;">GPT-4 32K</th>
+<th style="text-align: center;">GPT-3.5 Turbo</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">문맥 창</td>
+<td style="text-align: center;">128,000 토큰</td>
+<td style="text-align: center;">32,000 토큰</td>
+<td style="text-align: center;">8,192 토큰</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">페이지수</td>
+<td style="text-align: center;">약 300 쪽</td>
+<td style="text-align: center;">약 75 쪽</td>
+<td style="text-align: center;">약 19 쪽</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">기준</td>
+<td style="text-align: center;">427 토큰 / 쪽</td>
+<td style="text-align: center;">427 토큰 / 쪽</td>
+<td style="text-align: center;">427 토큰 / 쪽</td>
+</tr>
+</tbody>
+</table></section><section id="비용" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="비용">
+<span class="header-section-number">2.3</span> 비용</h2>
+<p>환율(1,300월/1달러)을 적용하여 1,000개 토큰 기준 비용을 산출하면 <code>GPT-4 Turbo</code>가 <code>GPT-4</code> 와 비교하면 입력기준 <span class="math inline">\(\frac{1}{3}\)</span> 저렴하다.</p>
+<table class="table">
+<thead><tr class="header">
+<th style="text-align: center;">모형</th>
+<th style="text-align: center;">입력(1K 토큰)</th>
+<th style="text-align: center;">출력(1K 토큰)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">GPT-4 Turbo</td>
+<td style="text-align: center;"><strong>13.0원</strong></td>
+<td style="text-align: center;"><strong>39.0원</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">GPT-4</td>
+<td style="text-align: center;">39.0원</td>
+<td style="text-align: center;">78.0원</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">GPT-4 32k</td>
+<td style="text-align: center;">78.0원</td>
+<td style="text-align: center;">156.0원</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">GPT-3.5 Turbo</td>
+<td style="text-align: center;">1.3원</td>
+<td style="text-align: center;">2.6원</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Assistant API</td>
+<td style="text-align: center;">19.5원</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table></section><section id="다중-모드성" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="다중-모드성">
+<span class="header-section-number">2.4</span> 다중 모드성</h2>
+<p>“GPT-4 터보”는 <strong>다중 모드성(Multimodality)</strong>를 제공한다. 과거 텍스트, 이미지, 오디오 각각 다른 모드로 제공된 것이 “GPT-4 터보”에서 통합되어 제공된다.</p>
+<ul>
+<li>텍스트(GPT-4)</li>
+<li>이미지(DALL-E 3)</li>
+<li>오디오(Whisper)</li>
+</ul></section><section id="gpt-플러그인" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="gpt-플러그인">
+<span class="header-section-number">2.5</span> GPT 플러그인</h2>
+<p>컴퓨터와 디지털 기술이 발전함에 따라 소프트웨어는 끊임없이 진화해왔다. 초기에는 기본적인 설치형 소프트웨어가 주를 이루었으며, 이는 특정 작업을 수행하기 위해 물리적 매체를 통해 컴퓨터에 직접 설치되어 사용된다. 사용자는 소프트웨어를 구매하고 소유하는 개념을 가지고 있었다.</p>
+<p>그 다음에는 웹 소프트웨어가 등장한다. 인터넷의 보급으로 클라우드 기반의 서비스들이 생겨나기 시작하면서, 사용자들은 언제 어디서나 접속 가능한 웹 애플리케이션을 이용하게 된다. 설치 필요 없이 브라우저를 통해 접근하는 이 모형은 편의성을 극대화했다.</p>
+<p>이후 스마트폰의 보편화와 함께 앱 소프트웨어가 급부상한다. 앱 스토어를 통해 다운로드받아 모바일 기기에 설치하는 이 모형은 휴대성과 접근성을 강화하며 대중의 일상 속으로 깊숙이 들어간다.</p>
+<p>마지막으로, 인공지능의 발달은 GPT와 같은 플러그인 소프트웨어의 출현을 가져온다. 이들은 기존의 플랫폼이나 소프트웨어에 부가적으로 통합되어, 사용자 경험을 개인화하고, 향상시키는 역할을 한다. 사용자는 이제 복잡한 명령어를 입력하거나 전문 지식이 없어도 고도의 기능을 이용할 수 있게 되었다.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 25.0%;justify-content: center;">
+<figure class="figure"><p><a href="images/chatGPT4_turbo/plugins_01_disk.png" class="lightbox" title="설치형 SW" data-gallery="quarto-lightbox-gallery-1"><img src="images/chatGPT4_turbo/plugins_01_disk.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">설치형 SW</figcaption></figure>
+</div>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 25.0%;justify-content: center;">
+<figure class="figure"><p><a href="images/chatGPT4_turbo/plugins_02_web.jpg.png" class="lightbox" title="웹 SW" data-gallery="quarto-lightbox-gallery-2"><img src="images/chatGPT4_turbo/plugins_02_web.jpg.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">웹 SW</figcaption></figure>
+</div>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 25.0%;justify-content: center;">
+<figure class="figure"><p><a href="images/chatGPT4_turbo/plugins_03_app.png" class="lightbox" title="스마트폰 앱SW" data-gallery="quarto-lightbox-gallery-3"><img src="images/chatGPT4_turbo/plugins_03_app.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">스마트폰 앱SW</figcaption></figure>
+</div>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 25.0%;justify-content: center;">
+<figure class="figure"><p><a href="images/chatGPT4_turbo/plugins_04_gpt.png" class="lightbox" title="GPT 플러그인" data-gallery="quarto-lightbox-gallery-4"><img src="images/chatGPT4_turbo/plugins_04_gpt.png" class="img-fluid figure-img"></a></p>
+<figcaption class="figure-caption">GPT 플러그인</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><a href="images/chatGPT4_turbo/openai_ecosystem.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="images/chatGPT4_turbo/openai_ecosystem.png" class="img-fluid figure-img"></a></p>
 </figure>
 </div>
-</section><section id="삼성전자" class="level1" data-number="2"><h1 data-number="2">
-<span class="header-section-number">2</span> 삼성전자</h1>
-<ul>
-<li><a href="https://economist.co.kr/article/view/ecn202303300057">정두용 (2023-03-30), “우려가 현실로…삼성전자, 챗GPT 빗장 풀자마자 ‘오남용’ 속출”, 이코노미스트</a></li>
-</ul>
-<blockquote class="blockquote">
-<p>삼성전자 DS 부문 임직원 A씨는 <strong>반도체 설비 계측 데이터베이스(DB)</strong> 다운로드 프로그램의 소스 코드를 실행 중 오류를 확인했다. 문제가 된 소스 코드 전부를 복사해 챗GPT에 입력, 해결 방법을 문의했다. 삼성전자 설비 계측과 관련한 소스 코드가 오픈AI 학습 데이터로 입력된 셈이다.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>임직원 B씨는 수율·불량 설비 파악을 위해 작성한 <strong>프로그램 코드</strong>를 챗GPT에 입력하는 사고를 냈다. 관련 소스 전체를 챗GPT에 입력하고 코드 최적화를 요청했다. 임직원 C씨는 스마트폰으로 녹음한 회의 내용을 <strong>네이버 클로바 애플리케이션(앱)</strong>을 통해 문서 파일로 변환한 뒤 챗GPT에 입력했다. 회의록 작성 요청이 목적이다.</p>
-</blockquote>
-</section><section id="이탈리아" class="level1" data-number="3"><h1 data-number="3">
-<span class="header-section-number">3</span> 이탈리아</h1>
-<ul>
-<li><a href="https://m.hankookilbo.com/News/Read/A2023040208490005108">민재용 (2023.04.02), “이탈리아도 챗GPT ‘차단’…서방 국가중 처음”, 한국일보</a></li>
-</ul>
-<blockquote class="blockquote">
-<p>로이터 통신 등에 따르면 이탈리아 데이터 보호청은 “챗GPT가 이탈리아의 개인정보 보호 기준과 규정을 충족할 때까지 서비스 접속을 일시적으로 차단할 것”이라고 밝혔다.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>접속 차단 이유는 개인정보 침해 우려 때문이다. 이탈리아 당국은 챗GPT가 알고리즘 학습을 이유로, 개인정보를 대량으로 수집하고 저장하는 행위를 정당화할 법적 근거가 없다고 지적했다. 보호청은 챗GPT 개발사 오픈AI가 20일 이내에 해결책을 내놓지 않으면 전 세계 매출액의 최대 4%에 달하는 벌금을 물게 될 것이라고 경고하기도 했다.</p>
-</blockquote>
+</section><section id="저작권-보험" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="저작권-보험">
+<span class="header-section-number">2.6</span> 저작권 보험</h2>
+<p>OpenAI는 만약 고객이 OpenAI의 서비스를 사용하다가 저작권 침해와 관련된 법적 문제에 직면했을 때, 법적 책임을 질 준비가 되어 있다고 공표했다. 이것은 저작권 침해에 대한 ’보험’과도 같다. 구글이나 마이크로소프트와 같은 다른 대형 기술 회사들도 비슷한 약속을 해왔으며, 이로써 사용자는 해당 회사의 서비스를 사용함에 있어서 발생할 수 있는 저작권 문제에 대해 좀 더 안심하고 서비스를 이용할 수 있게 되었다. OpenAI의 이런 조치는 고객이 만약 저작권 침해로 인해 법적으로 고소를 당하게 되더라도, OpenAI가 나서서 문제를 해결하고, 필요한 법적 조치를 취해주겠다는 것을 의미한다.</p>
 
 
 <!-- -->
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -938,78 +1060,136 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">소스 코드</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "chatGPT"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "챗GPT 보안사고"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> |</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  챗GPT가 다양한 분야에서 생산성 향상을 보여주고 있지만 충분히 준비되지 않은 상태에서</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  챗GPT를 사용하기 위해 각 조직마다 점검의 시간을 갖고 있기도 하다.</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: false</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> </span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">  markdown: </span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">    wrap: 72</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu"># 챗GPT 보안사고</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>**보안 vs 효율** 을 높고 많은 공공기관을 비롯한 기업들이 고민을 하고 있다.</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>거대언어모형(LLM)에 기반하여 모든 것을 자체 개발하면 상관이 없으나</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>현실적으로 GPT-3/3.5/4 모형을 갖춘 조직이 전무하지만, 이미 대다수의 </span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>사람이 오픈AI 챗GPT를 맛보았기 때문에 생산성 향상을 그냥 두고 넘어가기도 어려운 상황이다.</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>이런 점에서 챗GPT 제한적 사용이 현재시점('23년 3월) 최선으로 보이며 </span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>점차 오픈소스 거대언어모형(LLM)과 전략적 제휴를 통한 챗GPT 사용이 중장기적 추진방향으로 </span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>자리 잡고 있다.</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "~~노동자~~ 개발자 날"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: 이광춘</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://www.linkedin.com/in/kwangchunlee/</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: 한국 R 사용자회</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://github.com/bit2r</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="an">title-block-banner:</span><span class="co"> true</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#title-block-banner: "#562457"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    css: css/quarto.css</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: 목차</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github    </span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: false</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">   - lightbox</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> auto</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="an">link-citations:</span><span class="co"> true</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk: </span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">    collapse: true</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">    comment: "#&gt;" </span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">    R.options:</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">      knitr.graphics.auto_pdf: true</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> bibliography.bib</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="an">csl:</span><span class="co"> apa-single-spaced.csl    </span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> </span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co">  markdown: </span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">    wrap: sentence</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu"># OpenAI 개발자 날</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">New models and developer products announced at DevDay</span><span class="co">](https://openai.com/blog/new-models-and-developer-products-announced-at-devday)</span>]{.aside}</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;iframe</span> <span class="er">width</span><span class="ot">=</span><span class="st">"560"</span> <span class="er">height</span><span class="ot">=</span><span class="st">"315"</span> <span class="er">src</span><span class="ot">=</span><span class="st">"https://www.youtube.com/embed/U9mJuUkhUzk?si=92ZTbuZUuL8wZwUW"</span> <span class="er">title</span><span class="ot">=</span><span class="st">"YouTube video player"</span> <span class="er">frameborder</span><span class="ot">=</span><span class="st">"0"</span> <span class="er">allow</span><span class="ot">=</span><span class="st">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"</span> <span class="er">allowfullscreen</span><span class="kw">&gt;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/iframe&gt;</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="fu"># 챗GPT-4 터보</span></span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">이동수 (2023.04.02.), "대기업 회의 내용 유출… ‘챗GPT 기밀 유출’ 우려가 현실로", 세계일보</span><span class="co">](https://n.news.naver.com/mnews/article/022/0003798570?sid=101)</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## 최근 지식</span></span>
 <span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/chatGPT-leakage.jpg)</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="fu"># 삼성전자</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">정두용 (2023-03-30), "우려가 현실로…삼성전자, 챗GPT 빗장 풀자마자 ‘오남용’ 속출", 이코노미스트</span><span class="co">](https://economist.co.kr/article/view/ecn202303300057)</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 삼성전자 DS 부문 임직원 A씨는 **반도체 설비 계측 데이터베이스(DB)** 다운로드 프로그램의 소스 코드를 실행 중 오류를 확인했다. 문제가 된 소스 코드 전부를 복사해 챗GPT에 입력, 해결 방법을 문의했다. 삼성전자 설비 계측과 관련한 소스 코드가 오픈AI 학습 데이터로 입력된 셈이다.</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 임직원 B씨는 수율·불량 설비 파악을 위해 작성한 **프로그램 코드**를 챗GPT에 입력하는 사고를 냈다. 관련 소스 전체를 챗GPT에 입력하고 코드 최적화를 요청했다. 임직원 C씨는 스마트폰으로 녹음한 회의 내용을 **네이버 클로바 애플리케이션(앱)**을 통해 문서 파일로 변환한 뒤 챗GPT에 입력했다. 회의록 작성 요청이 목적이다.</span></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="fu"># 이탈리아</span></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">민재용 (2023.04.02), "이탈리아도 챗GPT '차단'...서방 국가중 처음", 한국일보</span><span class="co">](https://m.hankookilbo.com/News/Read/A2023040208490005108)</span></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 로이터 통신 등에 따르면 이탈리아 데이터 보호청은 "챗GPT가 이탈리아의 개인정보 보호 기준과 규정을 충족할 때까지 서비스 접속을 일시적으로 차단할 것"이라고 밝혔다.</span></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 접속 차단 이유는 개인정보 침해 우려 때문이다. 이탈리아 당국은 챗GPT가 알고리즘 학습을 이유로, 개인정보를 대량으로 수집하고 저장하는 행위를 정당화할 법적 근거가 없다고 지적했다. 보호청은 챗GPT 개발사 오픈AI가 20일 이내에 해결책을 내놓지 않으면 전 세계 매출액의 최대 4%에 달하는 벌금을 물게 될 것이라고 경고하기도 했다.</span></span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>2021년 9월 → 2023년 4월</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="fu">### GPT3-5-turbo</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="al">![2023년 11월 7일 기준](images/chatGPT4_turbo/gpt_3_5_turbo.jpg)</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="fu">### GPT-4 + 빙검색</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="al">![2023년 11월 7일 기준](images/chatGPT4_turbo/gpt_4_bing.jpg)</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="fu">### GPT-4</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="al">![2023년 11월 7일 기준](images/chatGPT4_turbo/gpt_4.jpg)</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="fu">### GPT-4 터보</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="al">![2023년 11월 7일 기준](images/chatGPT4_turbo/gpt_4_turbo.jpg)</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="fu">## 맥락 크기</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>|   구분   |  GPT-4 Turbo  | GPT-4 32K | GPT-3.5 Turbo |</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>|:--------:|:-------------:|:-------------:|:-------------:|</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>| 문맥 창  | 128,000 토큰  |  32,000 토큰  |  8,192 토큰   |</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>| 페이지수 |   약 300 쪽   |   약 75 쪽    |   약 19 쪽    |</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>|   기준   | 427 토큰 / 쪽 | 427 토큰 / 쪽 | 427 토큰 / 쪽 |</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## 비용</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>환율(1,300월/1달러)을 적용하여 1,000개 토큰 기준 비용을 산출하면 <span class="in">`GPT-4 Turbo`</span>가 <span class="in">`GPT-4`</span> 와 비교하면 입력기준 $\frac{1}{3}$ 저렴하다.</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>|     모형      | 입력(1K 토큰) | 출력(1K 토큰) |</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>|:-------------:|:--------------------:|:--------------------:|</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>|  GPT-4 Turbo  |   **13.0원**        |       **39.0원**    |</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>|     GPT-4     |       39.0원        |       78.0원        |</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>|   GPT-4 32k   |       78.0원        |       156.0원       |</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>| GPT-3.5 Turbo |        1.3원        |        2.6원        |</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>| Assistant API |       19.5원        |          <span class="sc">\-</span>          |</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="fu">## 다중 모드성</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>"GPT-4 터보"는 **다중 모드성(Multimodality)**를 제공한다. 과거 텍스트, 이미지, 오디오 각각 다른 모드로 제공된 것이 "GPT-4 터보"에서 통합되어 제공된다.</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>텍스트(GPT-4)</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>이미지(DALL-E 3)</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>오디오(Whisper)</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## GPT 플러그인</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>컴퓨터와 디지털 기술이 발전함에 따라 소프트웨어는 끊임없이 진화해왔다. 초기에는 기본적인 설치형 소프트웨어가 주를 이루었으며, 이는 특정 작업을 수행하기 위해 물리적 매체를 통해 컴퓨터에 직접 설치되어 사용된다. 사용자는 소프트웨어를 구매하고 소유하는 개념을 가지고 있었다. </span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>그 다음에는 웹 소프트웨어가 등장한다. 인터넷의 보급으로 클라우드 기반의 서비스들이 생겨나기 시작하면서, 사용자들은 언제 어디서나 접속 가능한 웹 애플리케이션을 이용하게 된다. 설치 필요 없이 브라우저를 통해 접근하는 이 모형은 편의성을 극대화했다.</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>이후 스마트폰의 보편화와 함께 앱 소프트웨어가 급부상한다. 앱 스토어를 통해 다운로드받아 모바일 기기에 설치하는 이 모형은 휴대성과 접근성을 강화하며 대중의 일상 속으로 깊숙이 들어간다.</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>마지막으로, 인공지능의 발달은 GPT와 같은 플러그인 소프트웨어의 출현을 가져온다. 이들은 기존의 플랫폼이나 소프트웨어에 부가적으로 통합되어, 사용자 경험을 개인화하고, 향상시키는 역할을 한다. 사용자는 이제 복잡한 명령어를 입력하거나 전문 지식이 없어도 고도의 기능을 이용할 수 있게 되었다.</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>:::{layout-nrow="1"}</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="al">![설치형 SW](images/chatGPT4_turbo/plugins_01_disk.png)</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="al">![웹 SW](images/chatGPT4_turbo/plugins_02_web.jpg.png)</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="al">![스마트폰 앱SW](images/chatGPT4_turbo/plugins_03_app.png)</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="al">![GPT 플러그인](images/chatGPT4_turbo/plugins_04_gpt.png)</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/chatGPT4_turbo/openai_ecosystem.png)</span></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="fu">## 저작권 보험</span></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>OpenAI는 만약 고객이 OpenAI의 서비스를 사용하다가 저작권 침해와 관련된 법적 문제에 직면했을 때, 법적 책임을 질 준비가 되어 있다고 공표했다. 이것은 저작권 침해에 대한 '보험'과도 같다. 구글이나 마이크로소프트와 같은 다른 대형 기술 회사들도 비슷한 약속을 해왔으며, 이로써 사용자는 해당 회사의 서비스를 사용함에 있어서 발생할 수 있는 저작권 문제에 대해 좀 더 안심하고 서비스를 이용할 수 있게 되었다. OpenAI의 이런 조치는 고객이 만약 저작권 침해로 인해 법적으로 고소를 당하게 되더라도, OpenAI가 나서서 문제를 해결하고, 필요한 법적 조치를 취해주겠다는 것을 의미한다.</span></code><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
@@ -1017,7 +1197,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
     <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":true,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom"});</script>
+</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","loop":true,"selector":".lightbox","closeEffect":"zoom"});</script>
 
 
 </body></html>

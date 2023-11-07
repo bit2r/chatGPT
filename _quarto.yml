@@ -21,6 +21,11 @@ website:
     type: overlay
   navbar:
     left:
+      - text: "챗GPT4"
+        menu:
+        - href: devday.qmd
+          text: "OpenAI 개발자 날"
+
       - text: "생성 AI"
         menu:
         - href: architecture.qmd
