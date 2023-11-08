@@ -25,3 +25,4 @@ jupyterlab/langchain/
 jupyterlab/.ipynb_checkpoints/
 jupyterlab/misinfo-embeddings.csv
 
+.env
