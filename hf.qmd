@@ -231,6 +231,8 @@ reticulate::py_install(c("torch", "sentencepiece"), pip = TRUE)
 영문 텍스트 감정을 분류하는 작업을 수행하자.
 
 ```{r}
+#| eval: false
+
 library(reticulate)
 library(tidyverse)
 
@@ -261,6 +263,7 @@ outputs %>%
 개체명 인식은 텍스트 내부에 지명, 인명, 제품 등을 자동으로 인식하는 과정이다.
 
 ```{r}
+#| eval: false
 # Download model for ner task
 ner_tagger <- transformers$pipeline(task = "ner", aggregation_strategy = "simple")
 
@@ -294,6 +297,7 @@ map_dfr(1:length(outputs), ~to_r(.x))
 텍스트에 질문을 던지고 해당 대답을 찾아내는 작업을 수행해보자.
 
 ```{r}
+#| eval: false
 # Specify task
 reader <- transformers$pipeline(task = "question-answering")
 
@@ -311,6 +315,7 @@ outputs %>%
 텍스트가 매우 긴 경우 이를 단순히 요약할 수 있다.
 
 ```{r}
+#| eval: false
 summarizer <- transformers$pipeline("summarization")
 outputs <- summarizer(text, max_length = 56L, clean_up_tokenization_spaces = TRUE)
 outputs
@@ -321,6 +326,7 @@ outputs
 [Language Technology Research Group at the University of Helsinki](https://huggingface.co/Helsinki-NLP) 에서 사전학습모형을 다운로드 받아 번역작업을 수행할 수 있다.
 
 ```{r}
+#| eval: false
 # This requires python package sentencepiece
 sentencepiece <- reticulate::import("sentencepiece")
 
@@ -341,6 +347,7 @@ outputs
 반응을 자동생성시켜 답신을 작성할 수 있다.
 
 ```{r}
+#| eval: false
 generator <- transformers$pipeline("text-generation")
 response <- "Dear Bumblebee, I am sorry to hear that your order was mixed up."
 prompt <- paste(text, "\n\nCustomer service response:\n", response)
