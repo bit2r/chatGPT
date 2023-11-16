@@ -1,0 +1,97 @@
+---
+title: "chatGPT"
+subtitle: "OpenAI API 학습"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+bibliography: bibliography.bib
+csl: apa-single-spaced.csl    
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+# OpenAI 개발자 날
+
+[Farzad Mahmoodinobar, "OpenAI API — Intro & Implementation of the Models Behind ChatGPT - A programmatic approach to use models behind ChatGPT.", Towards Data Science, 2023-11-07](https://medium.com/towards-data-science/openai-api-intro-11-practical-implementation-examples-of-the-models-behind-chatgpt-18601f68b51b)
+
+:::{.callout-warning}
+
+```
+You tried to access openai.Completion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+```
+
+:::
+
+
+```{python}
+import os
+from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
+
+client = OpenAI(
+    api_key=os.getenv('OPENAI_API_KEY'),
+)
+
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "파이썬하고 R 하고 싸우면 누가 이겨?",
+        }
+    ],
+    model="gpt-3.5-turbo",
+)
+
+
+print(chat_completion.choices[0].message.content)
+```
+
+```
+파이썬과 R은 둘 다 통계 분석과 데이터 처리를 위한 강력한 도구이며 각각의 장단점이 있습니다. 어떤 언어가 이긴다고 말하기는 어렵습니다.
+
+- 파이썬은 다양한 오픈 소스 패키지와 라이브러리의 풍부한 생태계를 가지고 있어 범용적인 프로그래밍에 적합합니다. 머신러닝, 딥러닝, 웹 개발, 자연어 처리 등 다양한 분야에 사용될 수 있으며, 쉽고 간결한 문법을 갖고 있어 입문자에게 친숙합니다.
+
+- R은 통계 분석과 데이터 시각화에 특화되어 있으며, 통계학과 데이터 분석 전문가들에게 널리 사용되고 있습니다. R은 통계 개발에 용이하며 다양한 통계적 모델링과 검정, 시뮬레이션, 데이터 정제 등을 위한 패키지를 제공합니다. R은 통계 데이터에 집중하기 때문에 통계 및 데이터 분석을 하는데 있어 더 많은 옵션을 제공하는 경우가 많습니다.
+
+따라서 어떤 언어를 선택할지는 사용자의 목적과 선호도, 배경에 따라 달라집니다. 파이썬은 범용적인 프로그래밍 언어로 다양한 분야에서 활용할 수 있으며, R은 통계 분석과 데이터 처리에 좀 더 특화되어 있습니다.
+```
+
+

@@ -1,0 +1,14 @@
+{
+  "hash": "943001e5127dbcd6120fe0a588652a9b",
+  "result": {
+    "markdown": "---\ntitle: \"chatGPT\"\nsubtitle: \"OpenAI API 학습\"\nauthor:\n  - name: 이광춘\n    url: https://www.linkedin.com/in/kwangchunlee/\n    affiliation: 한국 R 사용자회\n    affiliation-url: https://github.com/bit2r\ntitle-block-banner: true\n#title-block-banner: \"#562457\"\nformat:\n  html:\n    css: css/quarto.css\n    theme: flatly\n    code-fold: true\n    toc: true\n    toc-depth: 3\n    toc-title: 목차\n    number-sections: true\n    highlight-style: github    \n    self-contained: false\nfilters:\n   - lightbox\nlightbox: auto\nlink-citations: true\nknitr:\n  opts_chunk: \n    message: false\n    warning: false\n    collapse: true\n    comment: \"#>\" \n    R.options:\n      knitr.graphics.auto_pdf: true\neditor_options: \n  chunk_output_type: console\nbibliography: bibliography.bib\ncsl: apa-single-spaced.csl    \neditor: \n  markdown: \n    wrap: sentence\n---\n\n\n# OpenAI 개발자 날\n\n[Farzad Mahmoodinobar, \"OpenAI API — Intro & Implementation of the Models Behind ChatGPT - A programmatic approach to use models behind ChatGPT.\", Towards Data Science, 2023-11-07](https://medium.com/towards-data-science/openai-api-intro-11-practical-implementation-examples-of-the-models-behind-chatgpt-18601f68b51b)\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

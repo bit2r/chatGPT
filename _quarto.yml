@@ -25,6 +25,20 @@ website:
         menu:
         - href: devday.qmd
           text: "OpenAI 개발자 날"
+        - href: ide.qmd
+          text: "통합개발환경(IDE)"
+        - href: reticulate.qmd
+          text: "파이썬 환경구축"
+        - text: "------------------"
+        - href: openAI_api.qmd
+          text: "OpenAI API 프로그래밍"
+        - href: openAI_api_apps.qmd
+          text: "OpenAI API 응용프로그램"
+        - href: langchain_arch.qmd
+          text: "LangCahin 아키텍쳐"
+        - href: openai_api_turbo.qmd
+          text: "OpenAI API 학습"
+
 
       - text: "생성 AI"
         menu:
@@ -118,17 +132,6 @@ website:
 
       - text: "자동화/개발"
         menu:
-        - href: ide.qmd
-          text: "통합개발환경(IDE)"
-        - href: reticulate.qmd
-          text: "파이썬 환경구축"
-        - text: "------------------"
-        - href: openAI_api.qmd
-          text: "OpenAI API 프로그래밍"
-        - href: openAI_api_apps.qmd
-          text: "OpenAI API 응용프로그램"
-        - href: langchain_arch.qmd
-          text: "LangCahin 아키텍쳐"
         - href: whisper.qmd
           text: "오정보 음성인식(Whisper)"
         - href: news_release.qmd

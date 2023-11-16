@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.288">
+<meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="이광춘">
 <title>chatGPT</title>
@@ -79,9 +79,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
-  "keyboard-shortcut": [
-    null
-  ],
   "language": {
     "search-no-results-text": "일치 없음",
     "search-matching-documents-text": "일치된 문서",
@@ -111,9 +108,10 @@ ga('send', {
 </head>
 <body class="nav-fixed">
 
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">chatGPT</span>
     </a>
@@ -132,6 +130,31 @@ ga('send', {
 <li>
     <a class="dropdown-item" href="./devday.html" rel="" target="">
  <span class="dropdown-text">OpenAI 개발자 날</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ide.html" rel="" target="">
+ <span class="dropdown-text">통합개발환경(IDE)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./reticulate.html" rel="" target="">
+ <span class="dropdown-text">파이썬 환경구축</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="./openAI_api.html" rel="" target="">
+ <span class="dropdown-text">OpenAI API 프로그래밍</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./openAI_api_apps.html" rel="" target="">
+ <span class="dropdown-text">OpenAI API 응용프로그램</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./langchain_arch.html" rel="" target="">
+ <span class="dropdown-text">LangCahin 아키텍쳐</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./openai_api_turbo.html" rel="" target="">
+ <span class="dropdown-text">OpenAI API 학습</span></a>
   </li>  
     </ul>
 </li>
@@ -317,27 +340,6 @@ ga('send', {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-">
 <li>
-    <a class="dropdown-item" href="./ide.html" rel="" target="">
- <span class="dropdown-text">통합개발환경(IDE)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./reticulate.html" rel="" target="">
- <span class="dropdown-text">파이썬 환경구축</span></a>
-  </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li>
-    <a class="dropdown-item" href="./openAI_api.html" rel="" target="">
- <span class="dropdown-text">OpenAI API 프로그래밍</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./openAI_api_apps.html" rel="" target="">
- <span class="dropdown-text">OpenAI API 응용프로그램</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./langchain_arch.html" rel="" target="">
- <span class="dropdown-text">LangCahin 아키텍쳐</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./whisper.html" rel="" target="">
  <span class="dropdown-text">오정보 음성인식(Whisper)</span></a>
   </li>  
@@ -448,10 +450,10 @@ ga('send', {
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+<div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="다크 모드 전환"><i class="bi"></i></a>
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
@@ -841,33 +843,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
   }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
   const toggleColorMode = (alternate) => {
     // Switch the stylesheets
     const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
@@ -934,15 +909,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  let localAlternateSentinel = 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1072,9 +1045,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1084,17 +1058,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1107,81 +1072,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
-        }
-        return container.innerHTML
-      } else {
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      return note.innerHTML;
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      }
-    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1225,7 +1115,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1507,17 +1396,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-195"><a href="#cb18-195" aria-hidden="true" tabindex="-1"></a>[<span class="co">[</span><span class="ot">R, Reticulate, and Hugging Face Models</span><span class="co">](https://cengiz.me/posts/huggingface/)</span>]{.aside}</span>
 <span id="cb18-196"><a href="#cb18-196" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-199"><a href="#cb18-199" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb18-200"><a href="#cb18-200" aria-hidden="true" tabindex="-1"></a><span class="in">graph LR</span></span>
-<span id="cb18-201"><a href="#cb18-201" aria-hidden="true" tabindex="-1"></a><span class="in">    A["venv 가상환경"] --&gt; T(("Transformer"))</span></span>
-<span id="cb18-202"><a href="#cb18-202" aria-hidden="true" tabindex="-1"></a><span class="in">    B["R reticulate"] --&gt; T(("Transformer"))</span></span>
-<span id="cb18-203"><a href="#cb18-203" aria-hidden="true" tabindex="-1"></a><span class="in">    T ---&gt; C["텍스트 분류(Text Classification)"]</span></span>
-<span id="cb18-204"><a href="#cb18-204" aria-hidden="true" tabindex="-1"></a><span class="in">    T ---&gt; D["개체명인식(NER)"]</span></span>
-<span id="cb18-205"><a href="#cb18-205" aria-hidden="true" tabindex="-1"></a><span class="in">    T ---&gt; E["질의 응답(Question &amp; Answering)"]</span></span>
-<span id="cb18-206"><a href="#cb18-206" aria-hidden="true" tabindex="-1"></a><span class="in">    T ---&gt; F["요약(Summarization)"]</span></span>
-<span id="cb18-207"><a href="#cb18-207" aria-hidden="true" tabindex="-1"></a><span class="in">    T ---&gt; G["번역(Translation)"]</span></span>
-<span id="cb18-208"><a href="#cb18-208" aria-hidden="true" tabindex="-1"></a><span class="in">    T ---&gt; H["텍스트 생성(Text Generation)"]    </span></span>
-<span id="cb18-209"><a href="#cb18-209" aria-hidden="true" tabindex="-1"></a><span class="in">    style A fill:#FF6655AA</span></span>
-<span id="cb18-210"><a href="#cb18-210" aria-hidden="true" tabindex="-1"></a><span class="in">    style T fill:#88ffFF</span></span>
+<span id="cb18-200"><a href="#cb18-200" aria-hidden="true" tabindex="-1"></a>graph LR</span>
+<span id="cb18-201"><a href="#cb18-201" aria-hidden="true" tabindex="-1"></a>    A[<span class="ot">"</span><span class="st">venv 가상환경</span><span class="ot">"</span>] --&gt; T((<span class="ot">"</span><span class="st">Transformer</span><span class="ot">"</span>))</span>
+<span id="cb18-202"><a href="#cb18-202" aria-hidden="true" tabindex="-1"></a>    B[<span class="ot">"</span><span class="st">R reticulate</span><span class="ot">"</span>] --&gt; T((<span class="ot">"</span><span class="st">Transformer</span><span class="ot">"</span>))</span>
+<span id="cb18-203"><a href="#cb18-203" aria-hidden="true" tabindex="-1"></a>    T ---&gt; C[<span class="ot">"</span><span class="st">텍스트 분류(Text Classification)</span><span class="ot">"</span>]</span>
+<span id="cb18-204"><a href="#cb18-204" aria-hidden="true" tabindex="-1"></a>    T ---&gt; D[<span class="ot">"</span><span class="st">개체명인식(NER)</span><span class="ot">"</span>]</span>
+<span id="cb18-205"><a href="#cb18-205" aria-hidden="true" tabindex="-1"></a>    T ---&gt; E[<span class="ot">"</span><span class="st">질의 응답(Question &amp; Answering)</span><span class="ot">"</span>]</span>
+<span id="cb18-206"><a href="#cb18-206" aria-hidden="true" tabindex="-1"></a>    T ---&gt; F[<span class="ot">"</span><span class="st">요약(Summarization)</span><span class="ot">"</span>]</span>
+<span id="cb18-207"><a href="#cb18-207" aria-hidden="true" tabindex="-1"></a>    T ---&gt; G[<span class="ot">"</span><span class="st">번역(Translation)</span><span class="ot">"</span>]</span>
+<span id="cb18-208"><a href="#cb18-208" aria-hidden="true" tabindex="-1"></a>    T ---&gt; H[<span class="ot">"</span><span class="st">텍스트 생성(Text Generation)</span><span class="ot">"</span>]    </span>
+<span id="cb18-209"><a href="#cb18-209" aria-hidden="true" tabindex="-1"></a>    style A fill:<span class="co">#FF6655AA</span></span>
+<span id="cb18-210"><a href="#cb18-210" aria-hidden="true" tabindex="-1"></a>    style T fill:<span class="co">#88ffFF</span></span>
 <span id="cb18-211"><a href="#cb18-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-212"><a href="#cb18-212" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-213"><a href="#cb18-213" aria-hidden="true" tabindex="-1"></a></span>
@@ -1629,7 +1518,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
 <span id="cb18-331"><a href="#cb18-331" aria-hidden="true" tabindex="-1"></a>summarizer <span class="ot">&lt;-</span> transformers<span class="sc">$</span><span class="fu">pipeline</span>(<span class="st">"summarization"</span>)</span>
-<span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a>outputs <span class="ot">&lt;-</span> <span class="fu">summarizer</span>(text, <span class="at">max_length =</span> <span class="dv">56</span>L, <span class="at">clean_up_tokenization_spaces =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a>outputs <span class="ot">&lt;-</span> <span class="fu">summarizer</span>(text, <span class="at">max_length =</span> 56L, <span class="at">clean_up_tokenization_spaces =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb18-333"><a href="#cb18-333" aria-hidden="true" tabindex="-1"></a>outputs</span>
 <span id="cb18-334"><a href="#cb18-334" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-335"><a href="#cb18-335" aria-hidden="true" tabindex="-1"></a></span>
@@ -1648,7 +1537,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-350"><a href="#cb18-350" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">"Helsinki-NLP/opus-mt-tc-big-en-ko"</span>) <span class="co"># model = "Helsinki-NLP/opus-mt-en-de"</span></span>
 <span id="cb18-351"><a href="#cb18-351" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-352"><a href="#cb18-352" aria-hidden="true" tabindex="-1"></a>outputs <span class="ot">&lt;-</span> <span class="fu">translator</span>(text, <span class="at">clean_up_tokenization_spaces =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb18-353"><a href="#cb18-353" aria-hidden="true" tabindex="-1"></a>                      <span class="at">min_length =</span> <span class="dv">100</span>L)</span>
+<span id="cb18-353"><a href="#cb18-353" aria-hidden="true" tabindex="-1"></a>                      <span class="at">min_length =</span> 100L)</span>
 <span id="cb18-354"><a href="#cb18-354" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-355"><a href="#cb18-355" aria-hidden="true" tabindex="-1"></a>outputs</span>
 <span id="cb18-356"><a href="#cb18-356" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
@@ -1663,7 +1552,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-367"><a href="#cb18-367" aria-hidden="true" tabindex="-1"></a>generator <span class="ot">&lt;-</span> transformers<span class="sc">$</span><span class="fu">pipeline</span>(<span class="st">"text-generation"</span>)</span>
 <span id="cb18-368"><a href="#cb18-368" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="st">"Dear Bumblebee, I am sorry to hear that your order was mixed up."</span></span>
 <span id="cb18-369"><a href="#cb18-369" aria-hidden="true" tabindex="-1"></a>prompt <span class="ot">&lt;-</span> <span class="fu">paste</span>(text, <span class="st">"</span><span class="sc">\n\n</span><span class="st">Customer service response:</span><span class="sc">\n</span><span class="st">"</span>, response)</span>
-<span id="cb18-370"><a href="#cb18-370" aria-hidden="true" tabindex="-1"></a>outputs <span class="ot">&lt;-</span> <span class="fu">generator</span>(prompt, <span class="at">max_length =</span> <span class="dv">200</span>L)</span>
+<span id="cb18-370"><a href="#cb18-370" aria-hidden="true" tabindex="-1"></a>outputs <span class="ot">&lt;-</span> <span class="fu">generator</span>(prompt, <span class="at">max_length =</span> 200L)</span>
 <span id="cb18-371"><a href="#cb18-371" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-372"><a href="#cb18-372" aria-hidden="true" tabindex="-1"></a>outputs <span class="sc">%&gt;%</span> </span>
 <span id="cb18-373"><a href="#cb18-373" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pluck</span>(<span class="dv">1</span>, <span class="st">"generated_text"</span>) <span class="sc">%&gt;%</span> </span>
@@ -1680,15 +1569,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
-    <div class="nav-footer-left">
-<p><a href="https://quarto.org/">Quarto</a> 개발</p>
-</div>   
-    <div class="nav-footer-center">
-<p><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></p>
-</div>
-    <div class="nav-footer-right">
-<p><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></p>
-</div>
+    <div class="nav-footer-left"><a href="https://quarto.org/">Quarto</a> 개발</div>   
+    <div class="nav-footer-center"><a href="mailto:admin@r2bit.com">한국 R 사용자회</a></div>
+    <div class="nav-footer-right"><a href="https://github.com/bit2r/chatGPT">Github 코드 저장소</a></div>
   </div>
 </footer>
 
