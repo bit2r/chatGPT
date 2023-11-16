@@ -37,7 +37,7 @@ website:
         - href: langchain_arch.qmd
           text: "LangCahin 아키텍쳐"
         - href: openai_api_turbo.qmd
-          text: "OpenAI API 학습"
+          text: "OpenAI API 학습(11월16일)"
 
 
       - text: "생성 AI"
