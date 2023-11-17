@@ -105,6 +105,7 @@ print(text_df)
 
 
 ```{python}
+#| eval: false
 image_response = client.chat.completions.create(
     model="gpt-4-vision-preview",
     messages=[

@@ -47,6 +47,7 @@ editor:
 
 
 ```{python}
+#| eval: false
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -168,6 +169,7 @@ print(weather_response.choices[0].message.content)
 지문을 주어지고 프롬프트 엔지니어링을 통해 필요한 정보만을 추출한다.
 
 ```{python}
+#| eval: false
 about_me = 'Hello! My name is David Hundley. I am a principal machine learning engineer at State Farm. I enjoy learning about AI and teaching what I learn back to others. I have two daughters. I drive a Tesla Model 3, and my favorite video game series is The Legend of Zelda.'
 
 about_me_prompt = f'''
@@ -202,6 +204,7 @@ plain_response = client.chat.completions.create(
 함수를 정의해서 필요한 정보를 추출한다.
 
 ```{python}
+#| eval: false
 def extract_person_info(name, job_title, num_children):
     '''
     Prints basic "About Me" information

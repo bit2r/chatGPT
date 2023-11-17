@@ -61,6 +61,7 @@ A detailed migration guide is available here: https://github.com/openai/openai-p
 
 
 ```{python}
+#| eval: false
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
