@@ -1,0 +1,456 @@
+---
+title: "chatGPT"
+subtitle: "OpenAI 함수 호출"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+bibliography: bibliography.bib
+csl: apa-single-spaced.csl    
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+# API 설정
+
+[[Farzad Mahmoodinobar, "OpenAI API — Intro & Implementation of the Models Behind ChatGPT - A programmatic approach to use models behind ChatGPT."](https://towardsdatascience.com/openai-api-intro-11-practical-implementation-examples-of-the-models-behind-chatgpt-18601f68b51b)]{.aside}
+
+
+
+```{python}
+import os
+from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
+
+client = OpenAI(
+    api_key=os.getenv('OPENAI_API_KEY'),
+)
+
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "함께 달릴 준비되면 ok, 그렇지 않으면 ko를 출력해줘",
+        }
+    ],
+    model="gpt-3.5-turbo",
+)
+
+
+print(chat_completion.choices[0].message.content)
+```
+
+```
+I'm sorry, but I am an AI language model and I cannot physically run or prepare to run with you. However, if you need any advice or information about running, I'll be happy to help.
+```
+
+# 날씨
+
+## 날씨 API
+
+[OpenWeather](https://openweathermap.org/) API를 가져와서 현재 날씨를 가져온다.
+`location`에 서울(seoul)을 넣으면, 서울의 현재 날씨를 가져온다.
+
+
+```{python}
+#| eval: false
+import requests 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # This loads the environment variables from .env
+
+# 현재 날씨를 가져오는 함수를 정의한다.
+def get_current_weather(location, unit='celsius'):
+    # 여기에 실제 날씨 API로 요청을 보내는 코드를 작성한다.
+    # 예를 들어, OpenWeatherMap API를 사용할 수 있다. (API 키가 필요하다)
+    # API_ENDPOINT는 사용하는 날씨 API의 엔드포인트 URL이다.
+    API_ENDPOINT = 'http://api.openweathermap.org/data/2.5/weather'
+    API_KEY = os.getenv('WEATHER_API_KEY')  # 실제 날씨 API 키
+
+    params = {
+        'q': location,
+        'appid': API_KEY,
+        'units': 'metric' if unit == 'celsius' else 'imperial'
+    }
+    response = requests.get(API_ENDPOINT, params=params)
+    weather_data = response.json()
+    
+    # 가정: weather_data에는 날씨 정보가 JSON 형태로 들어 있다.
+    return weather_data
+
+seoul_weather = get_current_weather("seoul")
+
+print('현재 온도: ' + str(seoul_weather['main']['temp']) )
+```
+
+```bash
+{'coord': {'lon': 126.9778, 'lat': 37.5683}, 'weather': [{'id': 800, 'main': 'Clear', 'description': 'clear sky', 'icon': '01n'}], 'base': 'stations', 'main': {'temp': 6.51, 'feels_like': 6.51, 'temp_min': 5.66, 'temp_max': 7.69, 'pressure': 1022, 'humidity': 81}, 'visibility': 10000, 'wind': {'speed': 0.51, 'deg': 150}, 'clouds': {'all': 0}, 'dt': 1699449426, 'sys': {'type': 1, 'id': 8105, 'country': 'KR', 'sunrise': 1699394614, 'sunset': 1699432081}, 'timezone': 32400, 'id': 1835848, 'name': 'Seoul', 'cod': 200}
+```
+
+
+## 챗GPT 날씨
+
+챗GPT를 사용하여 서울 날씨를 물어보면 다음과 같이 대답한다.
+현재 서울의 날씨를 직접 확인하지 않고 환영(Halluciation)을 보여주고 있다.
+
+```{python}
+#| eval: false
+
+import os
+import openai
+
+# OpenAI API를 사용할 준비를 한다.
+OPENAI_API_KEY = os.getenv('OPEN_API_KEY')
+openai.api_key = OPENAI_API_KEY
+
+# 대화형 챗봇 모형을 이용하여 서울 날씨에 대한 대화를 시작한다.
+
+weather_response = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "서울 날씨는 어떠하냐?",
+        }
+    ],
+    model="gpt-3.5-turbo",
+)
+
+
+# 응답 결과를 출력한다.
+print(weather_response.choices[0].message.content)
+```
+
+```bash
+현재 서울의 날씨는 어린이 날은 보통 맑음입니다. 현재 기온은 약 19도이며, 오늘은 하루 종일 맑은 날씨로 예상됩니다.
+```
+
+
+# Function calling
+
+함수 호출(function calling)을 활용한 사례를 살펴보자. [^function-calling]
+
+[^function-calling]: [David Hundley, "An Introduction to OpenAI Function Calling - No more unstructured data outputs; turn ChatGPT’s completions into structured JSON!", Towards Data Science, 2023-07-10](https://medium.com/towards-data-science/an-introduction-to-openai-function-calling-e47e7cd7680e)
+
+## 스크립트
+
+지문을 주어지고 프롬프트 엔지니어링을 통해 필요한 정보만을 추출한다.
+
+```{python}
+about_me = 'Hello! My name is David Hundley. I am a principal machine learning engineer at State Farm. I enjoy learning about AI and teaching what I learn back to others. I have two daughters. I drive a Tesla Model 3, and my favorite video game series is The Legend of Zelda.'
+
+about_me_prompt = f'''
+Please extract information as a JSON object. Please look for the following pieces of information.
+Name
+Job title
+Company
+Number of children as a single integer
+Car make
+Car model
+Favorite video game series
+
+This is the body of text to extract the information from:
+{about_me}
+'''
+
+plain_response = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": about_me_prompt,
+        }
+    ],
+    model="gpt-3.5-turbo",
+    max_tokens=256
+)
+
+```
+
+## 함수 호출
+
+함수를 정의해서 필요한 정보를 추출한다.
+
+```{python}
+def extract_person_info(name, job_title, num_children):
+    '''
+    Prints basic "About Me" information
+
+    Inputs:
+        - name (str): Name of the person
+        - job_title (str): Job title of the person
+        - num_chilren (int): The number of children the parent has.
+    '''
+
+    print(f'This person\'s name is {name}. Their job title is {job_title}, and they have {num_children} children.')
+
+info_functions = [
+    {
+        'name': 'extract_person_info',
+        'description': 'Get "About Me" information from the body of the input text',
+        'parameters': {
+            'type': 'object',
+            'properties': {
+                'name': {
+                    'type': 'string',
+                    'description': 'Name of the person'
+                },
+                'job_title': {
+                    'type': 'string',
+                    'description': 'Job title of the person'
+                },
+                'num_children': {
+                    'type': 'integer',
+                    'description': 'Number of children the person is a parent to'
+                }
+            }
+        }
+    }
+]
+
+
+info_response = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": about_me,
+        }
+    ],
+    model="gpt-3.5-turbo",
+    functions = info_functions,
+    function_call = 'auto'    
+)
+
+import json
+
+# JSON 문자열 예시
+json_str = info_response.choices[0].message.function_call.arguments
+
+# JSON 문자열을 Python 딕셔너리로 변환
+info_dict = json.loads(json_str)
+
+# 필요한 정보 추출
+name = info_dict['name']
+job_title = info_dict['job_title']
+num_children = info_dict['num_children']
+
+print(f" Name: {name}\n Job Title: {job_title}\n Number of Children: {num_children}\n")
+```
+
+
+# LLM 출력결과 
+
+[[Gabriel Cassimiro, "LLM Output Parsing: Function Calling vs. LangChain - How to consistently parse outputs from LLMs using Open AI API and LangChain function calling: evaluating the methods’ advantages and disadvantages", Towards Data Science, 2023-09-22](https://medium.com/towards-data-science/llm-output-parsing-function-calling-vs-langchain-63b80545b3a7)]{.aside}
+
+LLM을 활용한 도구 제작에 벡터 데이터베이스, 체인, 에이전트, 문서 분할 등 여러 구성 요소가 필요하지만, 가장 중요한 구성 요소 중 하나는 **LLM 출력 파싱(parsing)**이다. LLM에서 구조화된 응답결과를 전달받지 못하면 후속 작업에 어려움이 크다.
+
+## 프롬프트 공학
+
+f-string을 사용해서 API 호출 결과를 텍스트로 출력한다. 
+따라서, 별도 후처리가 필요하다.
+
+```{python}
+#| eval: false
+recipe = 'Fish and chips'
+query = f"""What is the recipe for {recipe}? Return the ingredients list and steps separately."""
+
+cook_response = client.chat.completions.create(
+  messages = [
+    {
+          "role": "system",
+          "content": "You are the best cook in the world." 
+      
+    },
+    {
+        "role": "user",
+        "content": query
+    }
+  ],
+  model="gpt-3.5-turbo",
+  max_tokens=256,
+  temperature=0
+)
+
+print(cook_response.choices[0].message.content)
+```
+
+```
+Ingredients for Fish and Chips:
+- 1 lb white fish fillets (such as cod or haddock)
+- 1 cup all-purpose flour
+- 1 tsp baking powder
+- 1 tsp salt
+- 1/2 tsp black pepper
+- 1 cup cold sparkling water
+- Vegetable oil, for frying
+- 4 large potatoes, peeled and cut into thick fries
+- Salt, to taste
+
+Steps for Fish:
+1. In a shallow dish, mix together flour, baking powder, salt, and black pepper.
+2. Dip each fish fillet into the flour mixture, coating it evenly on both sides.
+3. Heat vegetable oil in a deep frying pan or pot over medium-high heat.
+4. Carefully place the coated fish fillets into the hot oil and fry for about 4-5 minutes on each side, or until golden brown and crispy.
+5. Once cooked, remove the fish from the oil and place on a paper towel-lined plate to drain excess oil.
+
+Steps for Chips:
+1. Rinse the cut potato fries under cold water to remove excess starch.
+2. In a large pot, heat vegetable oil over medium-high heat until it reaches about 350°F (175°C).
+3. Carefully add the potato
+```
+
+## 함수 호출
+
+함수 호출(function calling) 기능을 사용하면 출력결과를 나눠 구별할 수 있다. 텍스트 형식으로 요리재료와 요리절차가 함께 출력되어 이를 재활용하는데 어려움이 크다. 함수 호출을 사용해서 이러한 문제를 해결해보자.
+
+```{python}
+#| eval: false
+cook_funciton = [
+    {
+        "name": "return_recipe",
+        "description": "Return the recipe asked",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "ingredients": {
+                    "type": "string",
+                    "description": "The ingredients list."
+                },
+                "steps": {
+                    "type": "string",
+                    "description": "The recipe steps."
+                },
+            },
+            },
+            "required": ["ingredients","steps"],
+        }
+]
+
+recipe_response = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": query,
+        }
+    ],
+    model="gpt-3.5-turbo",
+    functions = cook_funciton,
+    function_call = 'auto'    
+)
+
+# JSON 문자열 예시
+recipe_json = recipe_response.choices[0].message.function_call.arguments
+
+import json
+
+# JSON 문자열을 Python 딕셔너리로 변환
+recipe_dict = json.loads(recipe_json)
+
+# 필요한 정보 추출
+recipe_ingredients = recipe_dict['ingredients']
+recipe_steps = recipe_dict['steps']
+
+print(f"재료: \n{recipe_ingredients}\n\n요리절차: \n{recipe_steps}")
+
+```
+
+```
+재료: 
+Fish
+Potatoes
+Flour
+Salt
+Pepper
+Baking powder
+Milk
+Beer
+Vegetable oil
+
+요리절차: 
+1. Slice potatoes into fries
+2. Mix flour, salt, pepper, and baking powder
+3. Add milk and beer to flour mixture
+4. Dip fish into batter
+5. Fry fish and fries in vegetable oil until golden brown
+```
+
+## JSON 출력
+
+OpenAI 개발자 컨퍼런스에서 새롭게 소개된 JSON 출력을 지원하는 기능을 사용한다. [^openai_json]
+
+[^openai_json]: [Jake Cyr, "Extracting Structured Wisdom: Leveraging OpenAI’s New JSON Feature for Enhanced Data Interpretation",Artificial Intelligence in Plain English, 2023-11-12](https://medium.com/ai-in-plain-english/extracting-structured-wisdom-leveraging-openais-new-json-feature-for-enhanced-data-interpretation-2a1161ce301e)
+
+```{python}
+#| eval: false
+json_response = client.chat.completions.create(
+    model="gpt-3.5-turbo-1106", # "gpt-4-1106-preview",
+    messages=[
+        {
+            "role": "system",
+            "content": "You are the best cook in the world. Your response should be in JSON format.",
+        },
+        {
+            "role": "user",
+            "content": query,
+        }
+    ],
+    response_format={ "type": "json_object" }
+)
+
+# JSON 문자열 예시
+recipe_gpt_json = json_response.choices[0].message.content
+
+import json
+recipe_dict = json.loads(recipe_gpt_json)
+
+print(recipe_dict['recipe']['name'])
+# Fish and Chips
+print(recipe_dict['recipe']['ingredients'])
+# {'fish': '2 fillets of cod or haddock', 'potatoes': '4 large potatoes', 'flour': '1 cup', 'baking powder': '2 tsp', 'salt': '1 tsp', 'milk': '1 cup', 'egg': '1', 'oil': 'for frying'}
+print(recipe_dict['recipe']['steps'])
+# ['Peel and cut the potatoes into thick strips for the chips.', 'Rinse and pat dry the fish fillets. Cut them into manageable pieces.', 'In a bowl, mix together the flour, baking powder, and salt. In another bowl, whisk together the milk and egg.', "Dip each piece of fish into the flour mixture, then into the milk mixture, and back into the flour mixture, ensuring it's well coated.", 'Heat the oil in a deep fryer or large pot to 375°F (190°C). Fry the chips until golden and crispy, then remove and drain on paper towels.', 'Reheat the oil to 350°F (175°C). Fry the fish pieces for 4-5 minutes until they are golden and crispy. Drain on paper towels.', 'Serve the fish and chips hot, with sides such as tartar sauce, malt vinegar, or lemon wedges.']
+```
+
+
+:::{.callout-note}
+
+프롬프트에 항상 "JSON" 용어를 추가해야만 JSON 출력결과를 얻을 수 있다.
+
+```
+openai.BadRequestError: Error code: 400 - {'error': {'message': "'messages' must contain the word 'json' in some form, to use 'response_format' of type 'json_object'.", 'type': 'invalid_request_error', 'param': 'messages', 'code': None}}
+```
+
+:::
+
+
+

@@ -38,7 +38,10 @@ website:
           text: "LangCahin 아키텍쳐"
         - href: openai_api_turbo.qmd
           text: "OpenAI API 학습(11월16일)"
-
+        - href: openai_function_call.qmd
+          text: "OpenAI 함수 호출"
+        - href: openai_multimodality.qmd
+          text: "OpenAI 다중 모드성"
 
       - text: "생성 AI"
         menu:
