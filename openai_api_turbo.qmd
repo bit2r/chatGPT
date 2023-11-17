@@ -42,6 +42,9 @@ editor:
 
 # API 설정
 
+[[Farzad Mahmoodinobar, "OpenAI API — Intro & Implementation of the Models Behind ChatGPT - A programmatic approach to use models behind ChatGPT."](https://towardsdatascience.com/openai-api-intro-11-practical-implementation-examples-of-the-models-behind-chatgpt-18601f68b51b)]{.aside}
+
+
 :::{.callout-warning}
 
 ```
@@ -127,4 +130,488 @@ download.file(url = 'https://oaidalleapiprodscus.blob.core.windows.net/private/o
 ![](images/dalle_gpt4_cat.jpg)
 
 
+# 공항코드
+
+```{python}
+#| eval: false
+airport_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": 'I flew from Seattle to Boston in August.',
+        },
+        {
+            "role": "system",
+            "content": 'You will be provided with a text, and your task is to extract the airport codes from it. The output format should be like airport name (airport code).'
+        }
+    ],
+    model="gpt-3.5-turbo",
+    max_tokens=256
+)
+
+print(airport_completion.choices[0].message.content)
+```
+
+```
+Seattle (SEA), Boston (BOS)
+```
+
+# 개체명 추출
+
+
+```{python}
+#| eval: false
+ner_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": 'I flew from Seattle to Boston in August. I remember I was wearing my brand new Nike shoes because I was so excited about them that I ended up leaving my iPhone in the yellow Camry cab.'
+        },
+        {
+            "role": "system",
+            "content": 'You will be provided with a text, and your task is to extract the named-entities from it.'
+        }
+    ],
+    model="gpt-3.5-turbo",
+    max_tokens=256
+)
+
+print(ner_completion.choices[0].message.content)
+```
+
+```
+Named-entities extracted:
+- Seattle (Location)
+- Boston (Location)
+- Nike (Brand)
+- iPhone (Product)
+- Camry (Brand)
+- yellow (Color)
+```
+
+# 번역
+
+```{python}
+#| eval: false
+translation_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": 'I flew from Seattle to Boston in August. I remember I was wearing my brand new Nike shoes because I was so excited about them that I ended up leaving my iPhone in the yellow Camry cab.'
+        },
+        {
+            "role": "system",
+            "content": 'You will be provided with a text, and your task is to translate it to Korean.'
+        }
+    ],
+    model="gpt-3.5-turbo",
+    max_tokens=2048
+)
+
+print(translation_completion.choices[0].message.content)
+```
+
+```
+저는 8월에 시애틀에서 보스턴으로 비행기를 타고 갔었습니다. 그 날 저는 새로 구입한 나이키 신발을 신고 있었는데, 너무 기뻐서 노란색 카미리 택시 안에 아이폰을 두고 내렸던 기억이 있습니다.
+```
+
+# 감성분석
+
+```{python}
+#| eval: false
+sentiment_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": '토크투미 영화를 끝으로 더이상 호러 장르는 끝이다.'
+        },
+        {
+            "role": "system",
+            "content": 'You will be provided with a text, and your task is to provide a nuanced sentiment analysis with the format like positive (0.75)'
+        }
+    ],
+    model="gpt-3.5-turbo",
+    max_tokens=2048
+)
+
+print(sentiment_completion.choices[0].message.content)
+```
+
+```
+negative (0.6)
+```
+
+# 텍스트 요약
+
+경향신문 2023.11.16 16:31 김희진 기자가 작성한 [대통령 장모 최은순 ‘잔고증명 위조’ 징역 1년 확정](https://www.khan.co.kr/national/court-law/article/202311161127001) 기사에 대한 기본 정보는 다음과 같다.
+
+- OpenAI [Tokenizer](https://platform.openai.com/tokenizer)
+    - Tokens: 1,339
+    - Characters: 1245
+- [글자수세기](https://lettercounter.net/)
+    - 단어: 290
+    - 공백제외: 947
+    - 공백포함: 1245
+    - 줄: 18
+
+> 290 단어로 작성된 기사를 50 단어로 요약한다.
+
+```{python}
+#| eval: false
+summary_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": """
+            통장 잔고증명서를 위조·행사한 혐의로 재판에 넘겨진 윤석열 대통령의 장모 최은순씨가 징역 1년을 확정받았다. 최씨는 가석방되거나 사면받지 않으면 내년 7월까지 수감 생활을 해야 한다.
+
+대법원 3부(주심 이흥구 대법관)는 16일 사문서위조·위조사문서행사 등 혐의로 기소된 최씨의 상고심에서 징역 1년을 선고한 원심을 확정했다.
+
+대법원은 “원심 판단에 법리 오해 등 판결에 영향을 미친 잘못이 없다”고 밝혔다. 최씨가 불구속 재판을 받게 해달라며 지난 9월 신청한 보석 청구도 기각했다.
+
+최씨는 경기 성남시 도촌동 땅을 매입하는 과정에서 2013년 4월부터 10월까지 4차례에 걸쳐 총 349억원 가량이 저축은행에 예치된 것처럼 잔고증명서를 위조한 혐의로 재판에 넘겨졌다. 위조된 100억원 상당의 잔고증명서 한 장은 2013년 8월 도촌동 땅과 관련한 계약금 반환청구 소송 때 법원에 제출됐다.
+
+
+최씨는 2013년 10월 도촌동 부동산을 매수하면서 공범 안모씨의 사위 명의를 빌려 계약하고 등기한 혐의(부동산실명법 위반)도 있다.
+
+최씨는 재판에서 사문서위조 혐의만 인정했다. 위조된 잔고증명서가 법원에 제출되는지는 몰랐고 부동산 매수대금은 자신이 부담하지 않았다며 나머지 혐의는 부인했다.
+
+1·2심은 최씨 혐의를 유죄로 인정해 징역 1년을 선고했다. 1심 재판부는 “위조 잔액 증명서 액수가 거액이고 여러 차례 지속적으로 범행이 이뤄졌다”고 했다. 2심 재판부는 최씨가 안씨와 계약금 반환을 두고 대책회의를 했으며, 소송에 필요한 서류를 준비했다는 점 등을 들어 잔고증명서가 법원에 제출될 것을 최씨가 알았을 것으로 판단했다. 그러면서 “방어권이 충분히 보장됐으며 죄질이 매우 나쁘다”며 지난 7월 최씨를 법정구속했다.
+
+앞서 윤 대통령이 검찰총장일 때 대검찰청이 도촌동 사건과 파주 요양병원 의료법 위반 사건 등 4건에 대한 ‘총장 장모 대응 문건’을 만든 사실이 알려져 논란이 일었다. 1심이 진행 중인 ‘고발 사주 의혹’ 재판에서는 손준성 대구고검 차장검사(전 대검 수사정보정책관)가 대검 대변인실에 윤 대통령 장모 사건과 관련한 문건을 전달한 사실이 드러나기도 했다.
+
+당시는 최씨에 대한 의혹이 집중적으로 보도되던 때였다. 공수처는 윤 대통령 가족에 대한 비판 여론과 범여권의 공세가 커지자 손 부장이 김웅 국민의힘 의원에게 범민주당 인사를 상대로 한 고발장을 보내 고발을 사주했다고 의심한다. 손 부장이 윤 대통령 장모 대응 문건을 대변인실에 보낸 것과 고발 사주 의혹이 같은 맥락에 있다고 보는 것이다.
+"""
+        },
+        {
+            "role": "system",
+            "content": 'You will be provided with a text, and your task is to provide a summary of it, without using the original words. The output should be Korean less than 50 words.'
+        }
+    ],
+    model="gpt-3.5-turbo",
+    max_tokens=2048
+)
+
+print(summary_completion.choices[0].message.content)
+```
+
+- OpenAI [Tokenizer](https://platform.openai.com/tokenizer)
+    - Tokens: 171
+    - Characters: 156
+- [글자수세기](https://lettercounter.net/)
+    - 단어: 35
+    - 공백제외: 122
+    - 공백포함: 156
+    - 줄: 1
+
+```
+윤석열 대통령 장모 최은순씨가 통장 잔고증명서를 위조한 혐의로 징역 1년을 확정받았다. 대법원은 16일 최씨의 상고심에서 원심을 확정했다. 최씨는 사문서위조 혐의만 인정했으며, 부동산 매수도 혐의되고 있다. 최씨의 재판에서는 윤 대통령 사건과 관련한 문건이 알려져 논란이 일었다.
+```
+
+# 정형 데이터 변환
+
+```{python}
+#| eval: false
+data_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": """
+As I was walking around Mars a few days ago, I came across a group of Amazon employees. The first one, Jack, was originally from Boston and wore black pants with a white shirt and black running shoes. Another one, Jill, had a long indigo-colored dress on with light blue sandals and was originally from Seattle. The third one was named John. I cannot remember what he was wearing but I particularly recall that John was from Newark, New Jersey. The last individual was Jenna and she was from San Francisco. Jenna had a white t-shirt and blue pants on but I cannot recall her shoes.
+"""
+        },
+        {
+            "role": "system",
+            "content": 'You will be provided with unstructured data, and your task is to parse it into a Pandas dataframe.'
+        }
+    ],
+    model="gpt-3.5-turbo",
+    max_tokens=2048
+)
+
+print(data_completion.choices[0].message.content)
+```
+
+```
+Here is the parsed data presented in a Pandas dataframe:
+
+| Employee | Origin           | Shirt Color | Pants Color | Shoes Color |
+|----------|------------------|-------------|-------------|-------------|
+| Jack     | Boston           | White       | Black       | Black       |
+| Jill     | Seattle          | None        | Indigo      | Light Blue  |
+| John     | Newark, New Jersey | None       | None        | None        |
+| Jenna    | San Francisco    | Blue        | White       | None        |
+```
+
+# SQL 쿼리
+
+## 텍스트 &rarr; 테이블
+
+
+```{python}
+#| eval: false
+table_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "system",
+            "content": """
+Given the following SQL tables, your job is to parse the text below into Pandas dataframe.
+
+DROP TABLE IF EXISTS salary;
+
+CREATE TEMPORARY TABLE salary(city VARCHAR(30), average_salary int);
+
+INSERT INTO
+salary
+VALUES
+    ('san_francisco', '54500'),
+    ('seattle', '54100'),
+    ('new_york', '34400'),
+    ('phoenix', '31800');
+
+DROP TABLE IF EXISTS people;
+
+CREATE TEMPORARY TABLE people(
+    person_id int,
+    name VARCHAR(30),
+    gender VARCHAR(30),
+    location VARCHAR(30),
+    birth_year int,
+    birth_month VARCHAR(30),
+    birth_day int,
+    job_title VARCHAR(30),
+    salary int
+);
+
+INSERT INTO
+people
+VALUES
+    (
+        '1',
+        'james',
+        'male',
+        'seattle',
+        '1984',
+        '9',
+        '15',
+        'software_developer',
+        '115000'
+    ),
+    (
+        '2',
+        'mary',
+        'female',
+        'new_york',
+        '1992',
+        '1',
+        '13',
+        'financial_analyst',
+        '183000'
+    ),
+    (
+        '3',
+        'john',
+        'male',
+        'san_francisco',
+        '1971',
+        '4',
+        '22',
+        'data_scientist',
+        '165000'
+    ),
+    (
+        '4',
+        'patricia',
+        'female',
+        'phoenix',
+        '1971',
+        '8',
+        '15',
+        'physician',
+        '215000'
+    ),
+    (
+        '5',
+        'michael',
+        'male',
+        'new_york',
+        '1966',
+        '1',
+        '13',
+        'retired',
+        '25000'
+    ),
+    (
+        '6',
+        'jennifer',
+        'female',
+        'phoenix',
+        '1994',
+        '12',
+        '12',
+        'data_scientist',
+        '165000'
+    );
+"""
+        },
+        {
+            "role": "user",
+            "content": 'Parse the text into Pandas dataframe and return the result into markdown table format'
+        }
+    ],
+    model="gpt-3.5-turbo",
+    max_tokens=2048
+)
+
+print(table_completion.choices[0].message.content)
+```
+
+```
+|   person_id | name     | gender | location      |   birth_year | birth_month   |   birth_day | job_title          |   salary |
+|------------:|:---------|:-------|:--------------|-------------:|:--------------|------------:|:-------------------|---------:|
+|           1 | james    | male   | seattle       |         1984 | 9             |          15 | software_developer |   115000 |
+|           2 | mary     | female | new_york      |         1992 | 1             |          13 | financial_analyst  |   183000 |
+|           3 | john     | male   | san_francisco |         1971 | 4             |          22 | data_scientist     |   165000 |
+|           4 | patricia | female | phoenix       |         1971 | 8             |          15 | physician          |   215000 |
+|           5 | michael  | male   | new_york      |         1966 | 1             |          13 | retired            |    25000 |
+|           6 | jennifer | female | phoenix       |         1994 | 12            |          12 | data_scientist     |   165000 |
+`````
+
+## 쿼리 작성
+
+```{python}
+#| eval: false
+sql_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "system",
+            "content":
+
+"""
+Given the following SQL tables, your job is to write queries given a user’ s request.
+
+DROP TABLE IF EXISTS salary;
+
+CREATE TEMPORARY TABLE salary(city VARCHAR(30), average_salary int);
+
+INSERT INTO
+salary
+VALUES
+    ('san_francisco', '54500'),
+    ('seattle', '54100'),
+    ('new_york', '34400'),
+    ('phoenix', '31800');
+
+DROP TABLE IF EXISTS people;
+
+CREATE TEMPORARY TABLE people(
+    person_id int,
+    name VARCHAR(30),
+    gender VARCHAR(30),
+    location VARCHAR(30),
+    birth_year int,
+    birth_month VARCHAR(30),
+    birth_day int,
+    job_title VARCHAR(30),
+    salary int
+);
+
+INSERT INTO
+people
+VALUES
+    (
+        '1',
+        'james',
+        'male',
+        'seattle',
+        '1984',
+        '9',
+        '15',
+        'software_developer',
+        '115000'
+    ),
+    (
+        '2',
+        'mary',
+        'female',
+        'new_york',
+        '1992',
+        '1',
+        '13',
+        'financial_analyst',
+        '183000'
+    ),
+    (
+        '3',
+        'john',
+        'male',
+        'san_francisco',
+        '1971',
+        '4',
+        '22',
+        'data_scientist',
+        '165000'
+    ),
+    (
+        '4',
+        'patricia',
+        'female',
+        'phoenix',
+        '1971',
+        '8',
+        '15',
+        'physician',
+        '215000'
+    ),
+    (
+        '5',
+        'michael',
+        'male',
+        'new_york',
+        '1966',
+        '1',
+        '13',
+        'retired',
+        '25000'
+    ),
+    (
+        '6',
+        'jennifer',
+        'female',
+        'phoenix',
+        '1994',
+        '12',
+        '12',
+        'data_scientist',
+        '165000'
+    );
+"""    
+        },
+        {
+            "role": "user",
+            "content":               
+              'Write a SQL query which returns a rank of the salaries overall and also by gender from highest to the lowest salary.'
+        }
+    ],
+    model="gpt-3.5-turbo",
+    max_tokens=2048
+)
+
+print(sql_completion.choices[0].message.content)
+```
+
+`````
+To rank the salaries overall and by gender from highest to lowest, you can use the RANK() function in SQL. Here is the SQL query:
+
+SELECT
+    p.name,
+    p.gender,
+    p.salary,
+    RANK() OVER (ORDER BY p.salary DESC) AS overall_rank,
+    RANK() OVER (PARTITION BY p.gender ORDER BY p.salary DESC) AS gender_rank
+FROM
+    people p
+ORDER BY
+    p.salary DESC;
+`````
 
