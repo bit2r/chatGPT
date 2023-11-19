@@ -45,6 +45,13 @@ editor:
 [[Farzad Mahmoodinobar, "OpenAI API — Intro & Implementation of the Models Behind ChatGPT - A programmatic approach to use models behind ChatGPT."](https://towardsdatascience.com/openai-api-intro-11-practical-implementation-examples-of-the-models-behind-chatgpt-18601f68b51b)]{.aside}
 
 
+2023년 11월 `openai` API가 대규모 업데이트가 이뤄졌다. 이에 따라 기존의 `openai` API를 사용하는 코드는 작동하지 않는다. 이를 해결하기 위해서는 `openai` API를 업데이트해야 한다.
+
+```bash
+$ pip install openai --upgrade
+```
+
+
 :::{.callout-warning}
 
 ```
@@ -95,40 +102,6 @@ print(chat_completion.choices[0].message.content)
 
 따라서 어떤 언어를 선택할지는 사용자의 목적과 선호도, 배경에 따라 달라집니다. 파이썬은 범용적인 프로그래밍 언어로 다양한 분야에서 활용할 수 있으며, R은 통계 분석과 데이터 처리에 좀 더 특화되어 있습니다.
 ```
-
-# 이미지 생성
-
-```{python}
-#| eval: false
-
-from IPython.display import display, Image
-import requests
-
-response = client.images.generate(
-  model="dall-e-3",
-  prompt="A black Scottish fold cat with light golden eyes laying down on white sheets",
-  size="1024x1024",
-  quality="standard",
-  n=1,
-)
-
-# Save the image URL
-image_url = response.data[0].url
-
-# Fetch the image
-image_response = requests.get(image_url)
-
-# Display the image
-img = Image(data=image_response.content)
-display(img)
-```
-
-```{r}
-#| eval: false
-download.file(url = 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-GpPkNlGHcRh9i7pQIlhT18p7/user-Qkv0ntrn5tQoUu6pocAidY5V/img-rypewgc6ys0EPhho7OTn7f5m.png?st=2023-11-16T08%3A52%3A12Z&se=2023-11-16T10%3A52%3A12Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-11-16T09%3A51%3A05Z&ske=2023-11-17T09%3A51%3A05Z&sks=b&skv=2021-08-06&sig=bPIlrK7Lhflj2Igsg6TWOSnT1DKQ3F2A0/vTTZSwgfI%3D', destfile = "images/dalle_gpt4_cat.jpg", mode = "wb")
-```
-
-![](images/dalle_gpt4_cat.jpg)
 
 
 # 공항코드
