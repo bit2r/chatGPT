@@ -43,6 +43,9 @@ website:
           text: "OpenAI 함수 호출"
         - href: openai_multimodality.qmd
           text: "OpenAI 다중 모드성"
+        - text: "------------------"
+        - href: openAI_ml.qmd
+          text: "OpenAI API 예측모형"
 
       - text: "생성 AI"
         menu:

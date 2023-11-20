@@ -1,0 +1,222 @@
+---
+title: "chatGPT"
+subtitle: "OpenAI API 예측모형"
+author:
+  - name: 이광춘
+    url: https://www.linkedin.com/in/kwangchunlee/
+    affiliation: 한국 R 사용자회
+    affiliation-url: https://github.com/bit2r
+title-block-banner: true
+#title-block-banner: "#562457"
+format:
+  html:
+    css: css/quarto.css
+    theme: flatly
+    code-fold: true
+    toc: true
+    toc-depth: 3
+    toc-title: 목차
+    number-sections: true
+    highlight-style: github    
+    self-contained: false
+filters:
+   - lightbox
+lightbox: auto
+link-citations: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    collapse: true
+    comment: "#>" 
+    R.options:
+      knitr.graphics.auto_pdf: true
+editor_options: 
+  chunk_output_type: console
+bibliography: bibliography.bib
+csl: apa-single-spaced.csl    
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+
+# 환경설정
+
+윈도우 환경에서 [`scikit-llm`](https://github.com/iryna-kondr/scikit-llm)을 설치할 경우 Visual Studio 커뮤니티 버젼을 설치할 때 C/C++ 빌드 환경도 함께 설치한 후 `scikit-llm` 설치를 권장한다.
+
+[[ScikitLLM – A powerful combination of SKLearn and LLMs](https://mlengineeringplace.com/scikitllm-a-powerful-combination-of-sklearn-and-llms/)]{.aside}
+
+
+```{python}
+#| eval: false
+! pip install scikit-llm
+! pip install palmerpenguins
+```
+
+
+# ML 모형
+
+전통적인 방식으로 머신러닝 모형을 만들고 예측하는 방법은 다음과 같다.
+펭귄 데이터를 이용하여 의사결정나무 모형을 만들고 예측하는 예제코드를 다음과 
+같이 작성할 수 있다.
+
+
+
+```{python}
+#| eval: false
+from palmerpenguins import load_penguins
+from sklearn.model_selection import train_test_split
+from sklearn import tree
+from sklearn.metrics import accuracy_score
+
+
+# Load the Iris dataset
+penguins_raw = load_penguins()
+
+penguins = penguins_raw.dropna()
+
+y = penguins.species
+# 설명 변수 선택
+X = penguins[['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']]
+
+# 데이터 분할
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1)
+
+# 의사결정나무 모형 생성 및 훈련
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(X_train, y_train)
+
+# Use the model to make predictions on unseen data
+predictions = clf.predict(X_test)
+
+# 모형 평가
+accuracy_score(y_test, predictions)
+```
+
+
+```
+0.93
+```
+
+# Scikit-LLM  
+
+Scikit-LLM은 파이썬에서 대규모 언어 모형(Large Language Models, LLMs)을 Scikit-learn 프레임워크와 통합한 라이브러리다. OpenAI의 GPT-3와 같은 대규모 언어 모형을 Scikit-learn의 텍스트 분석 작업에 매끄럽게 통합할 수 있다.
+
+Scikit-LLM의 주요 특징은 다음과 같다:
+
+1. **Scikit-learn과 통합**: Scikit-LLM은 Scikit-learn의 인터페이스와 호환되며, 이를 통해 사용자들은 익숙한 방식으로 대규모 언어 모형의 강력한 기능을 활용할 수 있다. 예를 들어, Scikit-learn에서 자주 사용되는 `fit`과 `predict` 메서드를 그대로 사용할 수 있다.
+
+2. **OpenAI API와 자동 연동**: OpenAI API와의 상호작용을 연계하여 자동으로 처리하는데 API 키 구성 및 응답 처리와 같은 작업을 자동으로 처리한다.
+
+3. **텍스트 분석 작업을 위한 향상된 접근**: Scikit-LLM은 제로샷 텍스트 분류부터 고급 텍스트 벡터화에 이르는 다양한 고급 자연어 처리(NLP) 작업을 수행하는 데 사용될 수 있다.
+
+## OpenAI API
+
+
+```{python}
+#|eval: false
+import os
+from dotenv import load_dotenv
+from skllm.config import SKLLMConfig
+from sklearn.metrics import accuracy_score
+
+load_dotenv()
+
+SKLLMConfig.set_openai_key(os.getenv("OPENAI_API_KEY"))
+SKLLMConfig.set_openai_org(os.getenv("OPENAI_API_ORG"))
+```
+
+
+## LLM 모형
+
+Scikit-LLM 라이브러리를 사용하여 감성 분석을 위한 대규모 언어 모형(`ZeroShotGPTClassifier`)을 구현하고 평가하는 과정을 진행하고 계십니다. 여기서 `ZeroShotGPTClassifier`를 통해 감성 분석(positive, negative, neutral)을 수행하고, 모형의 정확도를 평가한다.
+
+교차표는 실제 레이블과 예측 레이블 간의 관계를 표로 나타내어 모형의 성능을 보다 명확하게 이해할 수 있어 도움이 되고, 모형의 성능을 평가하는 데 사용된다.
+
+
+```{python}
+#|eval: false
+from skllm import ZeroShotGPTClassifier
+from skllm.datasets import get_classification_dataset
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+# 감성분석 내장 데이터셋
+# labels: positive, negative, neutral
+
+sentiment_pd = get_classification_dataset()
+
+X, y = get_classification_dataset() 
+
+clf = ZeroShotGPTClassifier(openai_model = "gpt-3.5-turbo")
+
+# Fit/Train our model
+clf.fit(X, y)
+
+# Predict/Inference on our Data using trained model
+labels = clf.predict(X)
+```
+
+```{r}
+#|eval: false
+py$labels |> 
+  write_rds("data/sentiment_labels.rds")
+```
+
+```{python}
+#| eval: false
+# 모형 평가
+accuracy = accuracy_score(y, labels)
+print("정확도:", accuracy)
+
+# 교차표 생성
+conf_matrix = confusion_matrix(y, labels)
+print("교차표:\n", conf_matrix)
+```
+
+
+
+```
+교차표:
+ [[10  0  0]
+ [ 3  7  0]
+ [ 0  0 10]]
+```
+
+
+```{python}
+#| eval: false
+# 분류 보고서 생성
+class_report = classification_report(y, labels)
+print("분류 보고서:\n", class_report)
+```
+
+
+```
+분류 보고서:
+               precision    recall  f1-score   support
+
+    negative       0.77      1.00      0.87        10
+     neutral       1.00      0.70      0.82        10
+    positive       1.00      1.00      1.00        10
+
+    accuracy                           0.90        30
+   macro avg       0.92      0.90      0.90        30
+weighted avg       0.92      0.90      0.90        30
+```
+
+
+
+
+```{r}
+#| eval: false
+library(reticulate)
+library(tidyverse)
+
+sentiment_tbl <- tibble(label = py$sentiment_pd[[2]], text = py$sentiment_pd[[1]])
+
+sentiment_tbl |>
+  slice(1:10) |> 
+  gt::gt()
+```
+
