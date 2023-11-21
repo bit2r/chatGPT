@@ -3400,5 +3400,26 @@
     "title": "chatGPT",
     "section": "\n4.3 보정작업",
     "text": "4.3 보정작업\nOpenAI Speech to text 문서를 바탕으로 음성 오디오를 필사하는 보정작업을 수행하는 예제를 살펴보자.\n\n코드audio_file = open(\"data/audio_0001.wav\", \"rb\")\n\nsystem_prompt = \"You are a helpful assistant for the company Korea R User Group. Your task is to correct any spelling discrepancies in the transcribed text. Make sure that the names of the following products are spelled correctly: Korea R User Group, 한국 R 사용자회. Only add necessary punctuation such as periods, commas, and capitalization, and use only the context provided.\"\n\ndef transcribe(audio_file):\n    transcript = client.audio.transcriptions.create(\n      model=\"whisper-1\", \n      file=audio_file, \n      response_format=\"text\"\n    )\n    \n    return transcript\n  \n# transcribe(audio_file)\n\ndef generate_corrected_transcript(temperature, system_prompt, audio_file):\n    response = client.chat.completions.create(\n        model=\"gpt-4\",\n        temperature=temperature,\n        messages=[\n            {\n                \"role\": \"system\",\n                \"content\": system_prompt\n            },\n            {\n                \"role\": \"user\",\n                \"content\": transcribe(audio_file)\n            }\n        ]\n    )\n    return response\n\ncorrected_text = generate_corrected_transcript(0, system_prompt, audio_file)\n\ncorrected_text.choices[0].message.content\n\n\n'커피숍에 쓰는 돈이 월 10만원이 넘더라고요. 소비를 좀 줄이라고 캡슐 커피 머신을 구매했는데, 캡슐 가격이 너무 나가서 그게 그거인 것 같아요.'"
+  },
+  {
+    "objectID": "openai_ml.html",
+    "href": "openai_ml.html",
+    "title": "chatGPT",
+    "section": "",
+    "text": "윈도우 환경에서 scikit-llm을 설치할 경우 Visual Studio 커뮤니티 버젼을 설치할 때 C/C++ 빌드 환경도 함께 설치한 후 scikit-llm 설치를 권장한다.\nScikitLLM – A powerful combination of SKLearn and LLMs\n\n코드! pip install scikit-llm\n! pip install palmerpenguins"
+  },
+  {
+    "objectID": "openai_ml.html#openai-api",
+    "href": "openai_ml.html#openai-api",
+    "title": "chatGPT",
+    "section": "\n3.1 OpenAI API",
+    "text": "3.1 OpenAI API\n\n코드import os\nfrom dotenv import load_dotenv\nfrom skllm.config import SKLLMConfig\nfrom sklearn.metrics import accuracy_score\n\nload_dotenv()\n\nSKLLMConfig.set_openai_key(os.getenv(\"OPENAI_API_KEY\"))\nSKLLMConfig.set_openai_org(os.getenv(\"OPENAI_API_ORG\"))"
+  },
+  {
+    "objectID": "openai_ml.html#llm-모형",
+    "href": "openai_ml.html#llm-모형",
+    "title": "chatGPT",
+    "section": "\n3.2 LLM 모형",
+    "text": "3.2 LLM 모형\nScikit-LLM 라이브러리를 사용하여 감성 분석을 위한 대규모 언어 모형(ZeroShotGPTClassifier)을 구현하고 평가하는 과정을 진행하고 계십니다. 여기서 ZeroShotGPTClassifier를 통해 감성 분석(positive, negative, neutral)을 수행하고, 모형의 정확도를 평가한다.\n교차표는 실제 레이블과 예측 레이블 간의 관계를 표로 나타내어 모형의 성능을 보다 명확하게 이해할 수 있어 도움이 되고, 모형의 성능을 평가하는 데 사용된다.\n\n코드from skllm import ZeroShotGPTClassifier\nfrom skllm.datasets import get_classification_dataset\nfrom sklearn.metrics import accuracy_score, confusion_matrix, classification_report\n\n# 감성분석 내장 데이터셋\n# labels: positive, negative, neutral\n\nsentiment_pd = get_classification_dataset()\n\nX, y = get_classification_dataset() \n\nclf = ZeroShotGPTClassifier(openai_model = \"gpt-3.5-turbo\")\n\n# Fit/Train our model\nclf.fit(X, y)\n\n# Predict/Inference on our Data using trained model\nlabels = clf.predict(X)\n\n\n\n코드py$labels |&gt; \n  write_rds(\"data/sentiment_labels.rds\")\n\n\n\n코드# 모형 평가\naccuracy = accuracy_score(y, labels)\nprint(\"정확도:\", accuracy)\n\n# 교차표 생성\nconf_matrix = confusion_matrix(y, labels)\nprint(\"교차표:\\n\", conf_matrix)\n\n\n교차표:\n [[10  0  0]\n [ 3  7  0]\n [ 0  0 10]]\n\n코드# 분류 보고서 생성\nclass_report = classification_report(y, labels)\nprint(\"분류 보고서:\\n\", class_report)\n\n\n분류 보고서:\n               precision    recall  f1-score   support\n\n    negative       0.77      1.00      0.87        10\n     neutral       1.00      0.70      0.82        10\n    positive       1.00      1.00      1.00        10\n\n    accuracy                           0.90        30\n   macro avg       0.92      0.90      0.90        30\nweighted avg       0.92      0.90      0.90        30\n\n코드library(reticulate)\nlibrary(tidyverse)\n\nsentiment_tbl &lt;- tibble(label = py$sentiment_pd[[2]], text = py$sentiment_pd[[1]])\n\nsentiment_tbl |&gt;\n  slice(1:10) |&gt; \n  gt::gt()"
   }
 ]
